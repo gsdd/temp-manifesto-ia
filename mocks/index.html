@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MGA website IA: navigation wireframe (not final design)</title>
+<style>
+  /* Wireframe only. Greyscale, system font, no brand assets. */
+  :root {
+    --ink: #222;
+    --mid: #666;
+    --line: #bbb;
+    --soft: #e6e6e6;
+    --panel: #f4f4f4;
+    --paper: #fff;
+    --focus: #000;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.45;
+    color: var(--ink);
+    background: #d9d9d9;
+  }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+  /* Banner */
+  .banner {
+    position: sticky; top: 0; z-index: 100;
+    background: repeating-linear-gradient(135deg, #333 0 12px, #555 12px 24px);
+    color: #fff; text-align: center; padding: 8px 12px;
+    font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; font-size: 13px;
+  }
+  .banner span { background: #111; padding: 3px 10px; border-radius: 3px; }
+
+  /* Page chrome */
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 20px; }
+  .intro { background: var(--paper); border: 1px solid var(--line); padding: 16px 20px; margin-bottom: 16px; }
+  .intro h1 { margin: 0 0 6px; font-size: 20px; }
+  .intro p { margin: 4px 0; color: var(--mid); }
+  .intro code { background: var(--panel); padding: 1px 5px; border: 1px solid var(--soft); font-size: 13px; }
+
+  .tabs { display: flex; gap: 6px; margin-bottom: 0; }
+  .tabs button {
+    padding: 10px 16px; border: 1px solid var(--line); border-bottom: 0;
+    background: var(--soft); font-weight: 600; color: var(--mid);
+  }
+  .tabs button[aria-selected="true"] { background: var(--paper); color: var(--ink); }
+  .tabpanel { display: none; background: var(--paper); border: 1px solid var(--line); padding: 20px; }
+  .tabpanel[data-active="true"] { display: block; }
+  .note { font-size: 13px; color: var(--mid); margin: 0 0 14px; }
+  .note strong { color: var(--ink); }
+
+  /* Toast for "would navigate to" */
+  .toast {
+    position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%);
+    background: #111; color: #fff; padding: 10px 16px; font-size: 13px; border-radius: 4px;
+    opacity: 0; pointer-events: none; transition: opacity .15s; z-index: 200; max-width: 90vw;
+  }
+  .toast[data-show="true"] { opacity: 1; }
+  .toast code { color: #ddd; }
+
+  /* ---------- Desktop frame ---------- */
+  .browser {
+    border: 1px solid var(--line); background: var(--paper);
+    width: 100%; max-width: 1200px; margin: 0 auto;
+  }
+  .browser-bar {
+    background: var(--soft); border-bottom: 1px solid var(--line); padding: 6px 10px;
+    font-size: 12px; color: var(--mid); display: flex; gap: 8px; align-items: center;
+  }
+  .browser-bar .url { flex: 1; background: var(--paper); border: 1px solid var(--line); padding: 3px 8px; }
+
+  .header-zone { position: relative; }
+  .site-header {
+    position: relative; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px; height: 64px; border-bottom: 1px solid var(--line); background: var(--paper);
+  }
+  .logo {
+    width: 140px; height: 36px; border: 2px dashed var(--line); display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: var(--mid); text-decoration: none;
+  }
+  .primary-nav { display: flex; align-items: center; gap: 4px; margin: 0; padding: 0; list-style: none; }
+  .primary-nav > li { position: relative; }
+  .top-link {
+    display: inline-flex; align-items: center; gap: 6px; padding: 20px 14px; text-decoration: none; font-weight: 600;
+    border-bottom: 3px solid transparent;
+  }
+  .top-link[aria-expanded="true"], .top-link:hover { border-bottom-color: var(--ink); }
+  .top-link .caret { font-size: 10px; color: var(--mid); }
+  .btn-contact {
+    display: inline-block; padding: 10px 18px; border: 2px solid var(--ink); font-weight: 700; text-decoration: none;
+    background: var(--panel);
+  }
+
+  /* Small dropdowns */
+  .dropdown {
+    display: none; position: absolute; top: 100%; left: 0; min-width: 240px;
+    background: var(--paper); border: 1px solid var(--line); box-shadow: 0 6px 16px rgba(0,0,0,.08); padding: 12px 0;
+    z-index: 30;
+  }
+  .primary-nav > li[data-open="true"] .dropdown { display: block; }
+  .dropdown ul { list-style: none; margin: 0; padding: 0; }
+  .dropdown li a { display: block; padding: 6px 18px; text-decoration: none; }
+  .dropdown li a:hover { background: var(--panel); }
+  .dropdown .group { padding: 10px 18px 2px; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--mid); }
+  .dropdown.two-col { display: none; grid-template-columns: 1fr 1fr; min-width: 480px; }
+  .primary-nav > li[data-open="true"] .dropdown.two-col { display: grid; }
+  .dropdown.two-col > div + div { border-left: 1px solid var(--soft); }
+  .dropdown .col-head a { font-weight: 700; }
+
+  /* Mega-nav */
+  .mega {
+    display: none; position: absolute; left: 0; right: 0; top: 64px;
+    background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: 0 10px 24px rgba(0,0,0,.08); z-index: 25;
+  }
+  .site-header[data-mega-open="true"] ~ .mega { display: block; }
+  .mega-inner { max-width: 1152px; margin: 0 auto; padding: 28px 24px 0; }
+  .mega-cols { display: grid; grid-template-columns: 1fr 1fr 1fr 1.3fr; gap: 32px; }
+  .mega-col h3 { margin: 0; font-size: 15px; }
+  .mega-col h3 a { text-decoration: none; }
+  .mega-col .desc { margin: 4px 0 12px; font-size: 12px; color: var(--mid); min-height: 34px; }
+  .mega-col ul { list-style: none; margin: 0; padding: 0; }
+  .mega-col li a { display: block; padding: 6px 0; text-decoration: none; border-bottom: 1px dotted var(--soft); }
+  .mega-col li a:hover { background: var(--panel); }
+  .col-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
+  .card {
+    border: 1px solid var(--line); background: var(--panel); padding: 12px; text-decoration: none; display: block; margin-bottom: 12px;
+  }
+  .card .img { height: 70px; border: 2px dashed var(--line); background: repeating-linear-gradient(45deg, #eee 0 8px, #f7f7f7 8px 16px); margin-bottom: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #999; }
+  .card .kicker { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--mid); }
+  .card .title { font-weight: 700; }
+  .card .result { font-size: 13px; color: var(--mid); }
+  .mega-col .text-link { display: block; padding: 6px 0; text-decoration: underline; }
+  .strip {
+    margin-top: 22px; border-top: 1px solid var(--soft); padding: 12px 24px;
+    display: flex; justify-content: space-between; font-size: 13px; color: var(--mid); background: var(--panel);
+  }
+  .strip a { text-decoration: none; }
+  .strip a:hover { text-decoration: underline; }
+  .strip .mid { color: #888; }
+
+  /* Page placeholder */
+  .page { padding: 24px; background: var(--paper); }
+  .block {
+    border: 2px dashed var(--line); background: var(--panel); padding: 12px; margin-bottom: 10px;
+    color: var(--mid); font-size: 13px; text-align: center;
+  }
+  .block.tall { padding: 40px 12px; }
+
+  /* Footer */
+  .site-footer { border-top: 1px solid var(--line); background: var(--soft); padding: 28px 24px 16px; }
+  .footer-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .footer-cols h4 { margin: 0 0 8px; font-size: 13px; }
+  .footer-cols ul { list-style: none; margin: 0; padding: 0; font-size: 13px; }
+  .footer-cols li a { text-decoration: none; display: block; padding: 2px 0; color: #444; }
+  .footer-bottom { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 10px; font-size: 12px; color: var(--mid); display: flex; gap: 14px; flex-wrap: wrap; }
+  .footer-bottom a { text-decoration: none; }
+
+  /* ---------- Mobile frame ---------- */
+  .phone-wrap { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+  .phone {
+    width: 390px; border: 10px solid #444; border-radius: 28px; background: var(--paper); overflow: hidden; position: relative;
+    height: 760px;
+  }
+  .m-header {
+    display: flex; align-items: center; justify-content: space-between; height: 56px; padding: 0 12px; border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; background: var(--paper); z-index: 5;
+  }
+  .m-header .logo { width: 100px; height: 30px; }
+  .m-header .right { display: flex; align-items: center; gap: 8px; }
+  .m-header .btn-contact { padding: 7px 12px; font-size: 13px; }
+  .m-menu-btn { border: 1px solid var(--ink); padding: 7px 10px; font-weight: 600; font-size: 13px; }
+  .m-panel { position: absolute; inset: 56px 0 0 0; background: var(--paper); overflow-y: auto; display: none; }
+  .phone[data-menu="open"] .m-panel { display: block; }
+  .phone[data-menu="open"] .m-page { display: none; }
+  .m-page { padding: 12px; }
+
+  .acc { list-style: none; margin: 0; padding: 0; }
+  .acc > li { border-bottom: 1px solid var(--soft); }
+  .acc-row { display: flex; align-items: stretch; }
+  .acc-row > a { flex: 1; padding: 14px 16px; text-decoration: none; font-weight: 600; }
+  .acc-row > .toggle {
+    width: 48px; min-height: 44px; display: flex; align-items: center; justify-content: center;
+    border-left: 1px solid var(--soft); font-size: 14px; color: var(--mid);
+  }
+  .acc-row > .toggle::before { content: "+"; }
+  .acc li[data-open="true"] > .acc-row > .toggle::before { content: "\2212"; }
+  .acc-body { display: none; background: var(--panel); }
+  .acc li[data-open="true"] > .acc-body { display: block; }
+  .acc-body .acc > li { border-bottom: 1px solid #ddd; }
+  .acc-body .acc-row > a { font-weight: 600; font-size: 14px; padding-left: 24px; }
+  .acc-body .plain { list-style: none; margin: 0; padding: 4px 0; }
+  .acc-body .plain li a { display: block; padding: 10px 16px 10px 32px; text-decoration: none; font-size: 14px; }
+  .acc-body .plain .group { padding: 10px 16px 0 32px; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--mid); }
+  .acc-body .acc-body .plain li a { padding-left: 44px; }
+  .acc .plain-top a { display: block; padding: 14px 16px; text-decoration: none; font-weight: 600; }
+  .m-quiet { padding: 16px; background: #eee; margin-top: 8px; font-size: 13px; color: var(--mid); }
+  .m-quiet h4 { margin: 0 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+  .m-quiet ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; }
+  .m-quiet a { text-decoration: none; color: #444; }
+  .m-notes { flex: 1; min-width: 260px; font-size: 13px; color: var(--mid); }
+  .m-notes ul { padding-left: 18px; }
+  .m-notes li { margin-bottom: 6px; }
+
+  /* ---------- Sitemap ---------- */
+  .legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: 12px; margin-bottom: 16px; }
+  .badge { display: inline-block; font-size: 10px; text-transform: uppercase; letter-spacing: .06em; padding: 1px 6px; border: 1px solid var(--line); margin-left: 8px; vertical-align: middle; }
+  .badge.canonical { background: #222; color: #fff; border-color: #222; font-weight: 700; }
+  .badge.supporting { background: var(--paper); }
+  .badge.light { background: var(--paper); border-style: dashed; color: var(--mid); }
+  .badge.utility { background: var(--soft); color: var(--mid); }
+  .tree, .tree ul { list-style: none; margin: 0; padding: 0; }
+  .tree ul { margin-left: 24px; border-left: 1px solid var(--line); padding-left: 16px; }
+  .tree li { margin: 6px 0; position: relative; }
+  .tree ul li::before { content: ""; position: absolute; left: -16px; top: 14px; width: 12px; border-top: 1px solid var(--line); }
+  .node { display: inline-block; border: 1px solid var(--line); background: var(--paper); padding: 5px 10px; }
+  .node.canonical { border-width: 2px; border-color: #222; }
+  .node.light { border-style: dashed; }
+  .node.utility { background: var(--soft); color: var(--mid); }
+  .node .url { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: #444; margin-right: 8px; }
+  .node .name { font-weight: 600; }
+  .node .n { color: var(--mid); font-size: 12px; margin-left: 6px; }
+  .tree .section { margin-top: 18px; }
+  .tree .section > .node { background: var(--panel); }
+  .totals { font-size: 13px; color: var(--mid); margin-top: 18px; }
+
+  @media (max-width: 900px) {
+    .mega-cols, .footer-cols { grid-template-columns: 1fr 1fr; }
+    .browser { overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="banner"><span>Wireframe / not final design</span> &nbsp; Structure and labels only. Greyscale placeholders. No visual design decisions are implied.</div>
+
+<div class="wrap">
+  <div class="intro">
+    <h1>MGA website IA: navigation wireframe</h1>
+    <p>Interactive mock of <code>docs/01-primary-navigation.md</code> and <code>docs/02-sitemap.md</code>. Labels, order and URLs match the documents exactly. If this page and the documents disagree, the documents win.</p>
+    <p>Hover over or click <strong>What we do</strong>, <strong>Our work</strong>, <strong>Insights</strong> or <strong>About</strong> in the desktop tab. Links do not navigate; a message shows the URL they would open on the live site. Press Escape to close any menu.</p>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button role="tab" id="tab-desktop" aria-selected="true" aria-controls="panel-desktop">Desktop navigation</button>
+    <button role="tab" id="tab-mobile" aria-selected="false" aria-controls="panel-mobile">Mobile navigation</button>
+    <button role="tab" id="tab-sitemap" aria-selected="false" aria-controls="panel-sitemap">Sitemap</button>
+  </div>
+
+  <!-- ===================== DESKTOP ===================== -->
+  <section class="tabpanel" id="panel-desktop" role="tabpanel" aria-labelledby="tab-desktop" data-active="true">
+    <p class="note"><strong>Behaviour:</strong> hover opens after a short delay and closes after a short delay when the cursor leaves. Click on a top-level label opens the menu here; on the live site click also navigates to the landing page. Only one menu is open at a time. Sectors are not in the header: they appear as a text link in the mega-nav bottom strip and in the footer.</p>
+
+    <div class="browser">
+      <div class="browser-bar"><span>Desktop, 1200 px</span><span class="url">manifestogrowth.example /</span></div>
+
+      <div class="header-zone">
+      <header class="site-header" id="siteHeader" data-mega-open="false">
+        <a class="logo" href="/" data-url="/">MGA logo</a>
+
+        <ul class="primary-nav" id="primaryNav">
+          <li data-menu="mega">
+            <a class="top-link" href="/services/" data-url="/services/" aria-haspopup="true" aria-expanded="false">What we do <span class="caret">&#9662;</span></a>
+          </li>
+
+          <li data-menu="work">
+            <a class="top-link" href="/work/" data-url="/work/" aria-haspopup="true" aria-expanded="false">Our work <span class="caret">&#9662;</span></a>
+            <div class="dropdown" role="region" aria-label="Our work menu">
+              <ul>
+                <li><a href="/work/" data-url="/work/">All work</a></li>
+                <li class="group">By service</li>
+                <li><a href="/work/?service=growth-strategy" data-url="/work/?service=growth-strategy">Growth Strategy</a></li>
+                <li><a href="/work/?service=activation" data-url="/work/?service=activation">Activation</a></li>
+                <li class="group">By expertise</li>
+                <li><a href="/work/?expertise=loyalty" data-url="/work/?expertise=loyalty">Loyalty</a></li>
+                <li><a href="/work/?expertise=subscriptions" data-url="/work/?expertise=subscriptions">Subscriptions</a></li>
+                <li><a href="/work/?expertise=pricing" data-url="/work/?expertise=pricing">Pricing</a></li>
+                <li class="group">By sector</li>
+                <li><a href="/work/?sector=financial-services" data-url="/work/?sector=financial-services">Financial services</a></li>
+                <li><a href="/work/?sector=media" data-url="/work/?sector=media">Media</a></li>
+                <li><a href="/work/?sector=consumer" data-url="/work/?sector=consumer">Consumer</a></li>
+                <li><a href="/work/?sector=retail" data-url="/work/?sector=retail">Retail</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li data-menu="insights">
+            <a class="top-link" href="/insights/" data-url="/insights/" aria-haspopup="true" aria-expanded="false">Insights <span class="caret">&#9662;</span></a>
+            <div class="dropdown two-col" role="region" aria-label="Insights menu">
+              <div>
+                <div class="group">Browse</div>
+                <ul>
+                  <li><a href="/insights/" data-url="/insights/">Latest insights</a></li>
+                  <li><a href="/insights/?type=article" data-url="/insights/?type=article">Articles</a></li>
+                  <li><a href="/insights/?type=report" data-url="/insights/?type=report">Reports and guides</a></li>
+                  <li><a href="/insights/?type=event" data-url="/insights/?type=event">Events and webinars</a></li>
+                  <li><a href="/newsletter/" data-url="/newsletter/">Newsletter</a></li>
+                </ul>
+              </div>
+              <div>
+                <div class="group">By theme</div>
+                <ul>
+                  <li class="col-head"><a href="/expertise/" data-url="/expertise/">Explore our expertise</a></li>
+                  <li><a href="/expertise/loyalty/" data-url="/expertise/loyalty/">Loyalty</a></li>
+                  <li><a href="/expertise/membership/" data-url="/expertise/membership/">Membership</a></li>
+                  <li><a href="/expertise/subscriptions/" data-url="/expertise/subscriptions/">Subscriptions</a></li>
+                  <li><a href="/expertise/pricing/" data-url="/expertise/pricing/">Pricing</a></li>
+                  <li><a href="/expertise/customer-value/" data-url="/expertise/customer-value/">Customer Value</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+
+          <li data-menu="about">
+            <a class="top-link" href="/about/" data-url="/about/" aria-haspopup="true" aria-expanded="false">About <span class="caret">&#9662;</span></a>
+            <div class="dropdown" role="region" aria-label="About menu">
+              <ul>
+                <li><a href="/about/" data-url="/about/">About Manifesto</a></li>
+                <li><a href="/about/team/" data-url="/about/team/">Our team</a></li>
+                <li><a href="/about/how-we-work/" data-url="/about/how-we-work/">How we work</a></li>
+                <li><a href="/about/careers/" data-url="/about/careers/">Careers</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+
+        <a class="btn-contact" href="/contact/" data-url="/contact/">Contact</a>
+      </header>
+
+      <!-- Mega-nav panel: full width below the header -->
+      <div class="mega" id="megaNav" role="region" aria-label="What we do menu">
+        <div class="mega-inner">
+          <div class="mega-cols">
+            <div class="mega-col">
+              <div class="col-label">Column 1</div>
+              <h3><a href="/services/growth-strategy/" data-url="/services/growth-strategy/">Growth Strategy</a></h3>
+              <p class="desc">Strategy that works. Our core offer.</p>
+              <ul>
+                <li><a href="/services/growth-strategy/" data-url="/services/growth-strategy/">Growth Strategy</a></li>
+                <li><a href="/services/proposition-innovation/" data-url="/services/proposition-innovation/">Proposition Innovation</a></li>
+              </ul>
+            </div>
+
+            <div class="mega-col">
+              <div class="col-label">Column 2</div>
+              <h3><a href="/services/activation/" data-url="/services/activation/">Activation Services</a></h3>
+              <p class="desc">Execution that delivers. From strategy to live results.</p>
+              <ul>
+                <li><a href="/services/customer-intelligence/" data-url="/services/customer-intelligence/">Customer Intelligence</a></li>
+                <li><a href="/services/experience-engineering/" data-url="/services/experience-engineering/">Experience Engineering</a></li>
+                <li><a href="/services/data-agents/" data-url="/services/data-agents/">Data Agents (AgentLab)</a></li>
+                <li><a href="/services/operating-architecture/" data-url="/services/operating-architecture/">Operating Architecture</a></li>
+                <li><a href="/services/growth-office/" data-url="/services/growth-office/">Growth Office</a></li>
+                <li><a href="/services/ai-enablement/" data-url="/services/ai-enablement/">AI Enablement</a></li>
+              </ul>
+            </div>
+
+            <div class="mega-col">
+              <div class="col-label">Column 3</div>
+              <h3><a href="/expertise/" data-url="/expertise/">Expertise</a></h3>
+              <p class="desc">The growth problems we know inside out.</p>
+              <ul>
+                <li><a href="/expertise/loyalty/" data-url="/expertise/loyalty/">Loyalty</a></li>
+                <li><a href="/expertise/membership/" data-url="/expertise/membership/">Membership</a></li>
+                <li><a href="/expertise/subscriptions/" data-url="/expertise/subscriptions/">Subscriptions</a></li>
+                <li><a href="/expertise/pricing/" data-url="/expertise/pricing/">Pricing</a></li>
+                <li><a href="/expertise/customer-value/" data-url="/expertise/customer-value/">Customer Value</a></li>
+              </ul>
+            </div>
+
+            <div class="mega-col">
+              <div class="col-label">Column 4: Featured (editorial, CMS-managed)</div>
+              <a class="card" href="/work/{client}/" data-url="/work/{client}/">
+                <div class="img">Image placeholder</div>
+                <div class="kicker">Featured case study</div>
+                <div class="title">Client name</div>
+                <div class="result">One-line result</div>
+              </a>
+              <a class="text-link" href="/about/how-we-work/" data-url="/about/how-we-work/">How we work</a>
+              <a class="text-link" href="/contact/" data-url="/contact/">Talk to us about your growth challenge</a>
+            </div>
+          </div>
+        </div>
+        <div class="strip">
+          <a href="/services/" data-url="/services/">All services</a>
+          <a class="mid" href="/services/ceo-advisory/" data-url="/services/ceo-advisory/">CEO Advisory: Side-by-Side</a>
+          <a href="/sectors/" data-url="/sectors/">Who we work with</a>
+        </div>
+      </div>
+      </div>
+
+      <!-- Page body placeholder: Home template blocks in order (docs/03-page-layouts.md, T1) -->
+      <div class="page">
+        <div class="block tall">Page content placeholder. Home template (T1) blocks in order:</div>
+        <div class="block">1. Hero: positioning statement, who it is for, CTA to Contact, secondary CTA to /services/</div>
+        <div class="block">2. Client logo strip</div>
+        <div class="block">3. What we do: Growth Strategy (largest), Activation Services, small text link for CEO Advisory</div>
+        <div class="block">4. Expertise strip: five themes</div>
+        <div class="block">5. Featured work: three case studies</div>
+        <div class="block">6. Proof point band (editorial)</div>
+        <div class="block">7. How we work teaser</div>
+        <div class="block">8. Latest insights</div>
+        <div class="block">9. Who we work with: four sector links</div>
+        <div class="block">10. Closing CTA</div>
+      </div>
+
+      <!-- Footer per docs/01-primary-navigation.md section 8 -->
+      <footer class="site-footer">
+        <div class="footer-cols">
+          <div>
+            <h4>What we do</h4>
+            <ul>
+              <li><a href="/services/growth-strategy/" data-url="/services/growth-strategy/">Growth Strategy</a></li>
+              <li><a href="/services/proposition-innovation/" data-url="/services/proposition-innovation/">Proposition Innovation</a></li>
+              <li><a href="/services/customer-intelligence/" data-url="/services/customer-intelligence/">Customer Intelligence</a></li>
+              <li><a href="/services/experience-engineering/" data-url="/services/experience-engineering/">Experience Engineering</a></li>
+              <li><a href="/services/data-agents/" data-url="/services/data-agents/">Data Agents (AgentLab)</a></li>
+              <li><a href="/services/operating-architecture/" data-url="/services/operating-architecture/">Operating Architecture</a></li>
+              <li><a href="/services/growth-office/" data-url="/services/growth-office/">Growth Office</a></li>
+              <li><a href="/services/ai-enablement/" data-url="/services/ai-enablement/">AI Enablement</a></li>
+              <li><a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/">CEO Advisory: Side-by-Side</a></li>
+              <li><a href="/services/" data-url="/services/">All services</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Expertise</h4>
+            <ul>
+              <li><a href="/expertise/loyalty/" data-url="/expertise/loyalty/">Loyalty</a></li>
+              <li><a href="/expertise/membership/" data-url="/expertise/membership/">Membership</a></li>
+              <li><a href="/expertise/subscriptions/" data-url="/expertise/subscriptions/">Subscriptions</a></li>
+              <li><a href="/expertise/pricing/" data-url="/expertise/pricing/">Pricing</a></li>
+              <li><a href="/expertise/customer-value/" data-url="/expertise/customer-value/">Customer Value</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Who we work with</h4>
+            <ul>
+              <li><a href="/sectors/financial-services/" data-url="/sectors/financial-services/">Financial services</a></li>
+              <li><a href="/sectors/media/" data-url="/sectors/media/">Media</a></li>
+              <li><a href="/sectors/consumer/" data-url="/sectors/consumer/">Consumer</a></li>
+              <li><a href="/sectors/retail/" data-url="/sectors/retail/">Retail</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <ul>
+              <li><a href="/about/" data-url="/about/">About</a></li>
+              <li><a href="/about/team/" data-url="/about/team/">Our team</a></li>
+              <li><a href="/about/how-we-work/" data-url="/about/how-we-work/">How we work</a></li>
+              <li><a href="/about/careers/" data-url="/about/careers/">Careers</a></li>
+              <li><a href="/work/" data-url="/work/">Our work</a></li>
+              <li><a href="/insights/" data-url="/insights/">Insights</a></li>
+              <li><a href="/newsletter/" data-url="/newsletter/">Newsletter</a></li>
+              <li><a href="/contact/" data-url="/contact/">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>Company registration line</span>
+          <a href="/privacy-policy/" data-url="/privacy-policy/">Privacy policy</a>
+          <a href="/cookie-policy/" data-url="/cookie-policy/">Cookie policy</a>
+          <a href="/terms/" data-url="/terms/">Terms</a>
+          <a href="/accessibility/" data-url="/accessibility/">Accessibility statement</a>
+          <span>Social links</span>
+        </div>
+      </footer>
+    </div>
+  </section>
+
+  <!-- ===================== MOBILE ===================== -->
+  <section class="tabpanel" id="panel-mobile" role="tabpanel" aria-labelledby="tab-mobile" data-active="false">
+    <p class="note"><strong>Behaviour (below roughly 1024 px):</strong> the header collapses to logo, Contact button and Menu. The menu is a full-screen panel. Tapping the label text navigates; tapping the plus or minus toggles the accordion (target at least 44 px). What we do opens with Growth Strategy expanded by default. The featured card is not shown on mobile.</p>
+
+    <div class="phone-wrap">
+      <div class="phone" id="phone" data-menu="open">
+        <div class="m-header">
+          <a class="logo" href="/" data-url="/">MGA logo</a>
+          <div class="right">
+            <a class="btn-contact" href="/contact/" data-url="/contact/">Contact</a>
+            <button class="m-menu-btn" id="menuBtn" aria-expanded="true" aria-controls="mPanel">Close</button>
+          </div>
+        </div>
+
+        <div class="m-page">
+          <div class="block tall">Page content placeholder</div>
+          <div class="block">Tap Menu to open the navigation</div>
+        </div>
+
+        <nav class="m-panel" id="mPanel" aria-label="Mobile menu">
+          <ul class="acc">
+            <!-- 1. What we do -->
+            <li data-open="true">
+              <div class="acc-row">
+                <a href="/services/" data-url="/services/">What we do</a>
+                <button class="toggle" aria-label="Toggle What we do" aria-expanded="true"></button>
+              </div>
+              <div class="acc-body">
+                <ul class="acc">
+                  <li data-open="true">
+                    <div class="acc-row">
+                      <a href="/services/growth-strategy/" data-url="/services/growth-strategy/">Growth Strategy</a>
+                      <button class="toggle" aria-label="Toggle Growth Strategy" aria-expanded="true"></button>
+                    </div>
+                    <div class="acc-body">
+                      <ul class="plain">
+                        <li><a href="/services/growth-strategy/" data-url="/services/growth-strategy/">Growth Strategy</a></li>
+                        <li><a href="/services/proposition-innovation/" data-url="/services/proposition-innovation/">Proposition Innovation</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li data-open="false">
+                    <div class="acc-row">
+                      <a href="/services/activation/" data-url="/services/activation/">Activation Services</a>
+                      <button class="toggle" aria-label="Toggle Activation Services" aria-expanded="false"></button>
+                    </div>
+                    <div class="acc-body">
+                      <ul class="plain">
+                        <li><a href="/services/customer-intelligence/" data-url="/services/customer-intelligence/">Customer Intelligence</a></li>
+                        <li><a href="/services/experience-engineering/" data-url="/services/experience-engineering/">Experience Engineering</a></li>
+                        <li><a href="/services/data-agents/" data-url="/services/data-agents/">Data Agents (AgentLab)</a></li>
+                        <li><a href="/services/operating-architecture/" data-url="/services/operating-architecture/">Operating Architecture</a></li>
+                        <li><a href="/services/growth-office/" data-url="/services/growth-office/">Growth Office</a></li>
+                        <li><a href="/services/ai-enablement/" data-url="/services/ai-enablement/">AI Enablement</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li data-open="false">
+                    <div class="acc-row">
+                      <a href="/expertise/" data-url="/expertise/">Expertise</a>
+                      <button class="toggle" aria-label="Toggle Expertise" aria-expanded="false"></button>
+                    </div>
+                    <div class="acc-body">
+                      <ul class="plain">
+                        <li><a href="/expertise/loyalty/" data-url="/expertise/loyalty/">Loyalty</a></li>
+                        <li><a href="/expertise/membership/" data-url="/expertise/membership/">Membership</a></li>
+                        <li><a href="/expertise/subscriptions/" data-url="/expertise/subscriptions/">Subscriptions</a></li>
+                        <li><a href="/expertise/pricing/" data-url="/expertise/pricing/">Pricing</a></li>
+                        <li><a href="/expertise/customer-value/" data-url="/expertise/customer-value/">Customer Value</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+                <ul class="plain">
+                  <li><a href="/services/" data-url="/services/">All services</a></li>
+                  <li><a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/">CEO Advisory: Side-by-Side</a></li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- 2. Our work -->
+            <li data-open="false">
+              <div class="acc-row">
+                <a href="/work/" data-url="/work/">Our work</a>
+                <button class="toggle" aria-label="Toggle Our work filters" aria-expanded="false"></button>
+              </div>
+              <div class="acc-body">
+                <ul class="plain">
+                  <li class="group">Filter by</li>
+                  <li><a href="/work/" data-url="/work/">All work</a></li>
+                  <li class="group">By service</li>
+                  <li><a href="/work/?service=growth-strategy" data-url="/work/?service=growth-strategy">Growth Strategy</a></li>
+                  <li><a href="/work/?service=activation" data-url="/work/?service=activation">Activation</a></li>
+                  <li class="group">By expertise</li>
+                  <li><a href="/work/?expertise=loyalty" data-url="/work/?expertise=loyalty">Loyalty</a></li>
+                  <li><a href="/work/?expertise=subscriptions" data-url="/work/?expertise=subscriptions">Subscriptions</a></li>
+                  <li><a href="/work/?expertise=pricing" data-url="/work/?expertise=pricing">Pricing</a></li>
+                  <li class="group">By sector</li>
+                  <li><a href="/work/?sector=financial-services" data-url="/work/?sector=financial-services">Financial services</a></li>
+                  <li><a href="/work/?sector=media" data-url="/work/?sector=media">Media</a></li>
+                  <li><a href="/work/?sector=consumer" data-url="/work/?sector=consumer">Consumer</a></li>
+                  <li><a href="/work/?sector=retail" data-url="/work/?sector=retail">Retail</a></li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- 3. Insights -->
+            <li data-open="false">
+              <div class="acc-row">
+                <a href="/insights/" data-url="/insights/">Insights</a>
+                <button class="toggle" aria-label="Toggle Insights" aria-expanded="false"></button>
+              </div>
+              <div class="acc-body">
+                <ul class="plain">
+                  <li class="group">Browse</li>
+                  <li><a href="/insights/" data-url="/insights/">Latest insights</a></li>
+                  <li><a href="/insights/?type=article" data-url="/insights/?type=article">Articles</a></li>
+                  <li><a href="/insights/?type=report" data-url="/insights/?type=report">Reports and guides</a></li>
+                  <li><a href="/insights/?type=event" data-url="/insights/?type=event">Events and webinars</a></li>
+                  <li><a href="/newsletter/" data-url="/newsletter/">Newsletter</a></li>
+                  <li class="group">By theme</li>
+                  <li><a href="/expertise/" data-url="/expertise/">Explore our expertise</a></li>
+                  <li><a href="/expertise/loyalty/" data-url="/expertise/loyalty/">Loyalty</a></li>
+                  <li><a href="/expertise/membership/" data-url="/expertise/membership/">Membership</a></li>
+                  <li><a href="/expertise/subscriptions/" data-url="/expertise/subscriptions/">Subscriptions</a></li>
+                  <li><a href="/expertise/pricing/" data-url="/expertise/pricing/">Pricing</a></li>
+                  <li><a href="/expertise/customer-value/" data-url="/expertise/customer-value/">Customer Value</a></li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- 4. About -->
+            <li data-open="false">
+              <div class="acc-row">
+                <a href="/about/" data-url="/about/">About</a>
+                <button class="toggle" aria-label="Toggle About" aria-expanded="false"></button>
+              </div>
+              <div class="acc-body">
+                <ul class="plain">
+                  <li><a href="/about/" data-url="/about/">About Manifesto</a></li>
+                  <li><a href="/about/team/" data-url="/about/team/">Our team</a></li>
+                  <li><a href="/about/how-we-work/" data-url="/about/how-we-work/">How we work</a></li>
+                  <li><a href="/about/careers/" data-url="/about/careers/">Careers</a></li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- 5. Contact -->
+            <li class="plain-top"><a href="/contact/" data-url="/contact/">Contact</a></li>
+          </ul>
+
+          <!-- 6. Quiet sector block -->
+          <div class="m-quiet">
+            <h4>Who we work with</h4>
+            <ul>
+              <li><a href="/sectors/financial-services/" data-url="/sectors/financial-services/">Financial services</a></li>
+              <li><a href="/sectors/media/" data-url="/sectors/media/">Media</a></li>
+              <li><a href="/sectors/consumer/" data-url="/sectors/consumer/">Consumer</a></li>
+              <li><a href="/sectors/retail/" data-url="/sectors/retail/">Retail</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="m-notes">
+        <p><strong>What this frame shows</strong></p>
+        <ul>
+          <li>Header: logo left, Contact button right and always visible, Menu control.</li>
+          <li>What we do accordion with three sub-groups in desktop order: Growth Strategy (open by default), Activation Services, Expertise. Then two plain links: All services, CEO Advisory: Side-by-Side.</li>
+          <li>Our work: link plus filter list. Insights: link plus content types and themes. About: About Manifesto, Our team, How we work, Careers. Contact as a plain link.</li>
+          <li>Below the primary items, a quieter Who we work with block with the four sector links.</li>
+          <li>Toggle pattern used here: label navigates, separate plus or minus toggles. The nav doc allows a whole-row toggle with a View all link as the alternative; pick one in wireframes.</li>
+          <li>The panel scrolls if content exceeds the viewport. Header stays pinned.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SITEMAP ===================== -->
+  <section class="tabpanel" id="panel-sitemap" role="tabpanel" aria-labelledby="tab-sitemap" data-active="false">
+    <p class="note"><strong>Source:</strong> <code>docs/02-sitemap.md</code>. Weight is shown as a badge. Curly braces mark CMS-generated slugs; "(n)" means many pages of that type. Activation services are shown under the Activation group for readability but their URLs are flat under /services/.</p>
+
+    <div class="legend">
+      <span><span class="badge canonical">Canonical</span> owns a topic, full content, high SEO investment</span>
+      <span><span class="badge supporting">Supporting</span> substantial, indexable, links up to canonicals</span>
+      <span><span class="badge light">Light</span> short landing, indexed only when threshold met</span>
+      <span><span class="badge utility">Utility</span> functional, mostly noindex</span>
+    </div>
+
+    <ul class="tree">
+      <li><span class="node canonical"><span class="url">/</span><span class="name">Home</span><span class="badge canonical">Canonical</span></span>
+        <ul>
+          <li class="section"><span class="node canonical"><span class="url">/services/</span><span class="name">Service hub</span><span class="badge canonical">Canonical</span></span>
+            <ul>
+              <li><span class="node canonical"><span class="url">/services/growth-strategy/</span><span class="name">Growth Strategy</span><span class="badge canonical">Canonical</span></span></li>
+              <li><span class="node canonical"><span class="url">/services/proposition-innovation/</span><span class="name">Proposition Innovation</span><span class="badge canonical">Canonical</span></span></li>
+              <li><span class="node"><span class="url">/services/activation/</span><span class="name">Activation Services (group)</span><span class="badge supporting">Supporting</span></span>
+                <ul>
+                  <li><span class="node canonical"><span class="url">/services/customer-intelligence/</span><span class="name">Customer Intelligence</span><span class="badge canonical">Canonical</span></span></li>
+                  <li><span class="node canonical"><span class="url">/services/experience-engineering/</span><span class="name">Experience Engineering</span><span class="badge canonical">Canonical</span></span></li>
+                  <li><span class="node canonical"><span class="url">/services/data-agents/</span><span class="name">Data Agents (AgentLab)</span><span class="badge canonical">Canonical</span></span></li>
+                  <li><span class="node canonical"><span class="url">/services/operating-architecture/</span><span class="name">Operating Architecture</span><span class="badge canonical">Canonical</span></span></li>
+                  <li><span class="node canonical"><span class="url">/services/growth-office/</span><span class="name">Growth Office</span><span class="badge canonical">Canonical</span></span></li>
+                  <li><span class="node canonical"><span class="url">/services/ai-enablement/</span><span class="name">AI Enablement</span><span class="badge canonical">Canonical</span></span></li>
+                </ul>
+              </li>
+              <li><span class="node"><span class="url">/services/ceo-advisory/</span><span class="name">CEO Advisory: Side-by-Side (downweighted)</span><span class="badge supporting">Supporting</span></span></li>
+            </ul>
+          </li>
+
+          <li class="section"><span class="node"><span class="url">/expertise/</span><span class="name">Expertise hub</span><span class="badge supporting">Supporting</span></span>
+            <ul>
+              <li><span class="node"><span class="url">/expertise/loyalty/</span><span class="name">Loyalty</span><span class="badge supporting">Supporting</span></span></li>
+              <li><span class="node"><span class="url">/expertise/membership/</span><span class="name">Membership</span><span class="badge supporting">Supporting</span></span></li>
+              <li><span class="node"><span class="url">/expertise/subscriptions/</span><span class="name">Subscriptions</span><span class="badge supporting">Supporting</span></span></li>
+              <li><span class="node"><span class="url">/expertise/pricing/</span><span class="name">Pricing</span><span class="badge supporting">Supporting</span></span></li>
+              <li><span class="node"><span class="url">/expertise/customer-value/</span><span class="name">Customer Value</span><span class="badge supporting">Supporting</span></span></li>
+            </ul>
+          </li>
+
+          <li class="section"><span class="node light"><span class="url">/sectors/</span><span class="name">Sector index</span><span class="badge light">Light</span></span>
+            <ul>
+              <li><span class="node light"><span class="url">/sectors/financial-services/</span><span class="name">Financial services</span><span class="badge light">Light</span></span></li>
+              <li><span class="node light"><span class="url">/sectors/media/</span><span class="name">Media</span><span class="badge light">Light</span></span></li>
+              <li><span class="node light"><span class="url">/sectors/consumer/</span><span class="name">Consumer</span><span class="badge light">Light</span></span></li>
+              <li><span class="node light"><span class="url">/sectors/retail/</span><span class="name">Retail</span><span class="badge light">Light</span></span></li>
+            </ul>
+          </li>
+
+          <li class="section"><span class="node canonical"><span class="url">/work/</span><span class="name">Work hub (filterable)</span><span class="badge canonical">Canonical</span></span>
+            <ul>
+              <li><span class="node"><span class="url">/work/{client}/</span><span class="name">Case study</span><span class="n">(n)</span><span class="badge supporting">Supporting</span></span></li>
+              <li><span class="node utility"><span class="url">/work/?service= ?expertise= ?sector=</span><span class="name">Filtered views, canonical to /work/</span><span class="badge utility">Utility, noindex</span></span></li>
+            </ul>
+          </li>
+
+          <li class="section"><span class="node"><span class="url">/insights/</span><span class="name">Insights hub (filterable)</span><span class="badge supporting">Supporting</span></span>
+            <ul>
+              <li><span class="node"><span class="url">/insights/{slug}/</span><span class="name">Insight: article, report or event</span><span class="n">(n)</span><span class="badge supporting">Supporting</span></span></li>
+              <li><span class="node utility"><span class="url">/insights/?type= ?expertise=</span><span class="name">Filtered views, canonical to /insights/</span><span class="badge utility">Utility, noindex</span></span></li>
+            </ul>
+          </li>
+          <li><span class="node utility"><span class="url">/newsletter/</span><span class="name">Newsletter sign-up</span><span class="badge utility">Utility, indexed</span></span></li>
+
+          <li class="section"><span class="node"><span class="url">/about/</span><span class="name">About</span><span class="badge supporting">Supporting</span></span>
+            <ul>
+              <li><span class="node"><span class="url">/about/team/</span><span class="name">Team listing</span><span class="badge supporting">Supporting</span></span>
+                <ul>
+                  <li><span class="node light"><span class="url">/about/team/{name}/</span><span class="name">Team profile</span><span class="n">(n)</span><span class="badge light">Light</span></span></li>
+                </ul>
+              </li>
+              <li><span class="node"><span class="url">/about/how-we-work/</span><span class="name">How we work (methodology)</span><span class="badge supporting">Supporting</span></span></li>
+              <li><span class="node light"><span class="url">/about/careers/</span><span class="name">Careers</span><span class="badge light">Light</span></span></li>
+            </ul>
+          </li>
+
+          <li class="section"><span class="node utility"><span class="url">/contact/</span><span class="name">Contact</span><span class="badge utility">Utility, indexed</span></span>
+            <ul>
+              <li><span class="node utility"><span class="url">/contact/thank-you/</span><span class="name">Confirmation</span><span class="badge utility">Utility, noindex</span></span></li>
+              <li><span class="node utility"><span class="url">/contact/?topic=</span><span class="name">Pre-filled contact, canonical to /contact/</span><span class="badge utility">Utility, noindex</span></span></li>
+            </ul>
+          </li>
+
+          <li class="section"><span class="node utility"><span class="name">Utility and system pages</span></span>
+            <ul>
+              <li><span class="node utility"><span class="url">/privacy-policy/</span><span class="name">Privacy policy</span><span class="badge utility">Utility</span></span></li>
+              <li><span class="node utility"><span class="url">/cookie-policy/</span><span class="name">Cookie policy</span><span class="badge utility">Utility</span></span></li>
+              <li><span class="node utility"><span class="url">/terms/</span><span class="name">Terms</span><span class="badge utility">Utility</span></span></li>
+              <li><span class="node utility"><span class="url">/accessibility/</span><span class="name">Accessibility statement</span><span class="badge utility">Utility</span></span></li>
+              <li><span class="node utility"><span class="url">/search/</span><span class="name">Site search</span><span class="badge utility">Utility, noindex</span></span></li>
+              <li><span class="node utility"><span class="url">/404/</span><span class="name">Not found</span><span class="badge utility">Utility, noindex</span></span></li>
+              <li><span class="node utility"><span class="url">/sitemap.xml</span><span class="name">XML sitemap</span><span class="badge utility">Utility</span></span></li>
+              <li><span class="node utility"><span class="url">/robots.txt</span><span class="name">Crawl directives</span><span class="badge utility">Utility</span></span></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p class="totals">Fixed pages at launch (excluding case studies, insights, profiles and filter patterns): 40, of which 11 are Canonical. Home is a page with no child URLs; the tree above shows sections as top-level paths.</p>
+  </section>
+</div>
+
+<div class="toast" id="toast" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---- Tabs ---- */
+  var tabs = document.querySelectorAll('[role="tab"]');
+  Array.prototype.forEach.call(tabs, function (tab) {
+    tab.addEventListener('click', function () {
+      Array.prototype.forEach.call(tabs, function (t) {
+        var selected = t === tab;
+        t.setAttribute('aria-selected', selected ? 'true' : 'false');
+        document.getElementById(t.getAttribute('aria-controls')).setAttribute('data-active', selected ? 'true' : 'false');
+      });
+      closeAllDesktop();
+    });
+  });
+
+  /* ---- Toast: links show the URL they would open ---- */
+  var toast = document.getElementById('toast');
+  var toastTimer;
+  function showToast(url) {
+    toast.innerHTML = 'On the live site this would open <code>' + url.replace(/</g, '&lt;') + '</code>';
+    toast.setAttribute('data-show', 'true');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.setAttribute('data-show', 'false'); }, 2200);
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[data-url]') : null;
+    if (!a) return;
+    e.preventDefault();
+    if (a.classList.contains('top-link')) return; /* handled by nav logic below */
+    showToast(a.getAttribute('data-url'));
+  });
+
+  /* ---- Desktop nav: hover with delays, click toggles, Escape and outside click close ---- */
+  var header = document.getElementById('siteHeader');
+  var items = document.querySelectorAll('#primaryNav > li');
+  var openTimer, closeTimer;
+  var OPEN_DELAY = 150, CLOSE_DELAY = 300;
+
+  function setOpen(li, open) {
+    var link = li.querySelector('.top-link');
+    if (li.getAttribute('data-menu') === 'mega') {
+      header.setAttribute('data-mega-open', open ? 'true' : 'false');
+    } else {
+      li.setAttribute('data-open', open ? 'true' : 'false');
+    }
+    link.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  function closeAllDesktop() {
+    Array.prototype.forEach.call(items, function (li) { setOpen(li, false); });
+  }
+  function openOnly(li) {
+    Array.prototype.forEach.call(items, function (other) { if (other !== li) setOpen(other, false); });
+    setOpen(li, true);
+  }
+  function isOpen(li) {
+    return li.getAttribute('data-menu') === 'mega'
+      ? header.getAttribute('data-mega-open') === 'true'
+      : li.getAttribute('data-open') === 'true';
+  }
+
+  var mega = document.getElementById('megaNav');
+  var megaLi = document.querySelector('#primaryNav > li[data-menu="mega"]');
+
+  Array.prototype.forEach.call(items, function (li) {
+    var link = li.querySelector('.top-link');
+    li.addEventListener('mouseenter', function () {
+      clearTimeout(closeTimer);
+      openTimer = setTimeout(function () { openOnly(li); }, OPEN_DELAY);
+    });
+    li.addEventListener('mouseleave', function () {
+      clearTimeout(openTimer);
+      closeTimer = setTimeout(function () { setOpen(li, false); }, CLOSE_DELAY);
+    });
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      clearTimeout(openTimer); clearTimeout(closeTimer);
+      if (isOpen(li)) { setOpen(li, false); } else { openOnly(li); }
+      showToast(link.getAttribute('data-url') + ' (click also navigates to the landing page on the live site)');
+    });
+    link.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); openOnly(li); var first = (li.getAttribute('data-menu') === 'mega' ? mega : li).querySelector('a[data-url]:not(.top-link)'); if (first) first.focus(); }
+    });
+  });
+
+  /* The mega panel sits outside its <li>, so keep it open while the cursor is inside it */
+  mega.addEventListener('mouseenter', function () { clearTimeout(closeTimer); });
+  mega.addEventListener('mouseleave', function () {
+    closeTimer = setTimeout(function () { setOpen(megaLi, false); }, CLOSE_DELAY);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      var openLink = document.querySelector('#primaryNav .top-link[aria-expanded="true"]');
+      closeAllDesktop();
+      if (openLink) openLink.focus();
+    }
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('#primaryNav') && !e.target.closest('#megaNav')) closeAllDesktop();
+  });
+
+  /* ---- Mobile: menu open/close and accordions ---- */
+  var phone = document.getElementById('phone');
+  var menuBtn = document.getElementById('menuBtn');
+  menuBtn.addEventListener('click', function () {
+    var open = phone.getAttribute('data-menu') === 'open';
+    phone.setAttribute('data-menu', open ? 'closed' : 'open');
+    menuBtn.textContent = open ? 'Menu' : 'Close';
+    menuBtn.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('.acc .toggle') : null;
+    if (!btn) return;
+    var li = btn.parentNode.parentNode;
+    var open = li.getAttribute('data-open') === 'true';
+    li.setAttribute('data-open', open ? 'false' : 'true');
+    btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
+})();
+</script>
+</body>
+</html>
