@@ -36,6 +36,7 @@ Read the documents in number order. Each one builds on the previous.
 | `docs/05-content-matrix.md` | Which content types appear on which pages, and whether the page is the primary home for that content or just surfaces it | Content, CMS modelling |
 | `docs/06-decisions-log.md` | Every significant IA decision, the alternatives considered, and the trade-off against the Gary three-dimension model and the Andy triangle | Stakeholders reviewing the IA |
 | `docs/diagrams/` | Mermaid diagrams of the mega-nav and sitemap for quick visual reference | Anyone who prefers a picture |
+| `mocks/index.html` | Interactive greyscale wireframe of the header, mega-nav, dropdowns, mobile menu and sitemap. Open it in a browser; no build step. See `mocks/README.md`. | Stakeholders who want to click through the navigation |
 
 ## Terms used throughout
 
