@@ -1,6 +1,8 @@
-# 02. Sitemap
+# 02. Sitemap (v2)
 
 Every URL on the site, grouped by section. Each entry has a slug, a page type (which maps to a template in `03-page-layouts.md`), a one-line purpose, and a weight.
+
+The structure follows Source A (Gary's suggested IA). The services taxonomy follows Source B (Andy's Growth Architecture triangle). Weighting follows Source C and Source D: Growth Strategy first, Activation second, CEO Advisory third and quieter, themes real but calm, sectors light.
 
 Related: `diagrams/sitemap.md` shows this structure as a tree.
 
@@ -24,7 +26,7 @@ Rule of thumb: services are Canonical, expertise themes and work are Supporting,
 - Lowercase, words separated by hyphens, trailing slash on all directory-style pages.
 - No dates, IDs or file extensions in slugs.
 - Maximum depth is three levels below the root (for example `/about/team/{name}/`).
-- Service URLs are flat under `/services/` even though the nav groups them. Grouping is a presentation concern; flat URLs survive repackaging (see `06-decisions-log.md`, decision D-03).
+- Service URLs are flat under `/services/` even though the nav groups them by pillar. Grouping is a presentation concern; flat URLs survive repackaging (`06-decisions-log.md`, D-12).
 - Filter and sort states use query strings (`?service=`, `?expertise=`, `?sector=`, `?type=`) and are never given their own paths.
 - `{slug}` placeholders are filled from the CMS. Client case study slugs use the client name only (for example `/work/dayinsure/`).
 
@@ -34,71 +36,79 @@ Rule of thumb: services are Canonical, expertise themes and work are Supporting,
 
 | URL | Page type | Purpose | Weight |
 |---|---|---|---|
-| `/` | Home | Say who MGA is for, name the core offer, route visitors into Services, Expertise and Work within one screen. | Canonical |
+| `/` | Home | Say who MGA is for, show the Growth Architecture triangle, route into services, work and insights within one screen. | Canonical |
 
-Home is a page, not a hub. There are no child URLs under `/`. Every other section is a top-level path.
+Home is a page, not a hub (Source A). There are no child URLs under `/`. Every other section is a top-level path. Home is reached by the logo.
 
 ---
 
-## 2. Services (What we do)
+## 2. What we do: Services
 
-The SEO spine of the site. Every capability topic has exactly one canonical home here.
+The SEO spine of the site and the home of the triangle. Every capability topic has exactly one canonical page here.
 
-| URL | Page type | Purpose | Weight |
-|---|---|---|---|
-| `/services/` | Service hub | Explain the triangle (Growth Strategy, Activation, CEO Advisory) and route to each service. | Canonical |
-| `/services/growth-strategy/` | Service detail | The lead offer. Customer-led growth strategy for boards and exec teams. Owns the topic "growth strategy consultancy". | Canonical |
-| `/services/proposition-innovation/` | Service detail | Designing and validating new propositions (the CIVD approach in Source B). Owns "proposition design / proposition innovation". | Canonical |
-| `/services/activation/` | Service group | Explain what Activation means at MGA: taking a strategy into live execution with AI-powered tooling, not running operations forever. Lists the six activation services. | Supporting |
-| `/services/customer-intelligence/` | Service detail | Customer research, segmentation, insight and value analytics that feed strategy and activation. Owns "customer intelligence / customer insight consultancy". | Canonical |
-| `/services/experience-engineering/` | Service detail | Designing and building customer experiences, websites and journeys, with research built in. Written to be found for CX, website and research searches. Owns "experience engineering" and the CX / website / research cluster. | Canonical |
-| `/services/data-agents/` | Service detail | AgentLab and the catalogue of data agents (reporting, data infrastructure, automation, QA, channel optimisation, test and learn, attribution, segmentation, CDP clean-up, tagging, journey mapping). Owns "data agents / AI agents for marketing and data teams". | Canonical |
-| `/services/operating-architecture/` | Service detail | Adaptive operating models: data and tools, work units, orchestration culture, value streams combining humans and AI. Owns "operating model design / operating architecture". | Canonical |
-| `/services/growth-office/` | Service detail | Interim growth experts embedded in the client team to build culture, capability and value. Owns "interim growth leadership / growth office". | Canonical |
-| `/services/ai-enablement/` | Service detail | AI adoption, value cases and business model innovation. Owns "AI enablement consultancy". | Canonical |
-| `/services/ceo-advisory/` | Service detail (downweighted) | Side-by-Side retainer for senior leaders. Personality-led, speed-dial access. Present for those who look for it; not promoted. | Supporting |
+Source A suggested a separate Growth Architecture page alongside a services hub. v2 merges them: `/services/` **is** the Growth Architecture page. One hub, the triangle on it, the services under it (`06-decisions-log.md`, D-03).
+
+| URL | Page type | Pillar | Purpose | Weight |
+|---|---|---|---|---|
+| `/services/` | Services hub (Growth Architecture) | All three | Present the triangle: Growth Strategy, Activation Services, CEO Advisory. Route to every service. Carries the Growth Architecture positioning from Source B ("Strategy that works. Execution that delivers."). | Canonical |
+| `/services/growth-strategy/` | Service detail | Growth Strategy | The lead offer (Source C: bread and butter). Customer value growth strategy: where to play, how to win. Home of the CIVD frame (Customer, Innovation, Value, Delivery) from the Source B Growth Strategy slide. Owns "growth strategy consultancy". | Canonical |
+| `/services/proposition-innovation/` | Service detail | Growth Strategy | Designing new value propositions that grow sustainable customer value: loyalty, membership, subscription and D2C propositions (Source C). Owns "proposition design / proposition innovation". | Canonical |
+| `/services/activation/` | Service group | Activation Services | Explain Activation: the bridge from strategy to execution, AI-powered and human-led, not ongoing operations (Source C). Lists the six services. | Supporting |
+| `/services/customer-intelligence/` | Service detail | Activation Services | AI-powered insight, research and sensemaking that gets to the "so what" faster. Insight projects and intelligence capabilities (Source B). Owns "customer intelligence / customer insight consultancy / customer research". | Canonical |
+| `/services/experience-engineering/` | Service detail | Activation Services | Finding, redesigning, testing and scaling experiences that drive disproportionate value. CX design, digital and website build, testing (Source B). Written so CX, website and research searches land here (Source C). Owns "experience engineering" and the CX / website / research cluster. | Canonical |
+| `/services/data-agents/` | Service detail | Activation Services | AI-powered performance marketing guided by experts. AgentLab and the agent catalogue (Source B). Owns "data agents / AI agents for marketing and customer data". | Canonical |
+| `/services/operating-architecture/` | Service detail | Activation Services | Adaptive operating models for the age of AI: grounded in customer value, fuelled by data, redesigned around humans and AI agents, orchestrated for impact (Source B). Owns "operating model design / operating architecture". | Canonical |
+| `/services/growth-office/` | Service detail | Activation Services | Lean teams of interim growth experts bridging strategy and execution through culture, capability and value (Source B). Owns "growth office / interim growth leadership". | Canonical |
+| `/services/ai-enablement/` | Service detail | Activation Services | AI adoption, value case delivery and business model innovation (Source B). Owns "AI enablement consultancy". | Canonical |
+| `/services/ceo-advisory/` | Service detail (third pillar, quieter) | CEO Advisory | Side-by-Side (SxS): personalised one-to-one support for senior executives from proven growth leaders, retainer-based, virtual or in person (Source B). Surfaces advisor profiles. Present and visible as the third pillar; not promoted above the other two. | Supporting |
 
 Notes:
-- `/services/activation/` is a group page, not a service. It exists because "Activation" needs explaining and because the six services are sold as a set as often as individually. It is Supporting, not Canonical, because it owns no capability topic of its own.
-- There is no `/services/growth-strategy-group/` equivalent. Growth Strategy is both the group name and the lead service; `/services/growth-strategy/` serves both roles.
-- Individual data agents do not get their own URLs in v1. They are sections of `/services/data-agents/`. If AgentLab is later productised, agents can become Light pages under `/services/data-agents/{agent}/` (see `06-decisions-log.md`, decision D-11).
+- `/services/activation/` is a group page, not a service. It exists because "Activation" is MGA's own term and needs explaining, and because the six services are sold as a set as often as individually. It is Supporting because it owns no capability topic of its own.
+- There is no Growth Strategy group page. Growth Strategy is both the pillar name and the lead service; `/services/growth-strategy/` serves both roles.
+- There is no separate CEO Advisory group page. `/services/ceo-advisory/` is the pillar and the offer.
+- Individual data agents do not get their own URLs in v2. They are catalogue entries on `/services/data-agents/` (`06-decisions-log.md`, D-15).
+- Marketing shortcuts `/growth-architecture/`, `/agentlab/` and `/side-by-side/` are redirects, not pages (see `04-canonicals-and-seo.md`, section 7).
 
 ---
 
 ## 3. Expertise themes
 
-The intersecting dimension. Each theme page answers "do you understand my problem?" and routes to the services that solve it, the work that proves it and the insights that explore it. Theme pages never describe how a service is delivered; they link to the service for that.
+The intersecting dimension (Source A). Each theme page answers "do you understand my problem?" and routes to the services that solve it, the work that proves it and the insights that explore it. Theme pages never describe how a service is delivered.
+
+Themes are the expertise story: "loyalty and membership experts who work cross-sector", not "FS experts who do loyalty" (Source C).
 
 | URL | Page type | Purpose | Weight |
 |---|---|---|---|
-| `/expertise/` | Expertise hub | Introduce the five growth themes and explain how they cut across services and sectors. | Supporting |
-| `/expertise/loyalty/` | Expertise theme | Loyalty as a growth lever: what goes wrong, what good looks like, which MGA services apply, proof. | Supporting |
+| `/expertise/` | Expertise hub | Introduce the five growth themes and show how they cut across services and sectors. | Supporting |
+| `/expertise/loyalty/` | Expertise theme | Loyalty as a growth lever: what goes wrong, what good looks like, which services apply, proof. | Supporting |
 | `/expertise/membership/` | Expertise theme | Membership models and member economics. | Supporting |
 | `/expertise/subscriptions/` | Expertise theme | Subscription growth, retention and churn. | Supporting |
 | `/expertise/pricing/` | Expertise theme | Pricing strategy and value-based pricing. | Supporting |
 | `/expertise/customer-value/` | Expertise theme | Customer lifetime value, value management and customer-led growth economics. | Supporting |
 
 Notes:
-- Five themes in v1. Adding a sixth requires at least two published case studies and two insights tagged to it, so the page is not thin on launch.
+- Five themes at launch. Adding a sixth requires at least two published case studies and two insights tagged to it.
 - Theme pages are indexable and target the theme as a problem space (for example "loyalty strategy consultancy"). They do not target service terms.
+- Nav weight is deliberately lower than in v1: themes are reached from the Insights dropdown, one text link in the mega-nav footer row, and the footer (`06-decisions-log.md`, D-04).
 
 ---
 
 ## 4. Sectors (Who we work with)
 
-Light landings only. Each sector page is a short intro followed by filtered proof. There are no sector points of view, no sector-specific service descriptions, and no sector-specific insights sections beyond a filtered list.
+Light landings only (Source C: sector-agnostic services, no sector POV pages; Gary: light landings for SEO and AI search, H1 plus proof, buried a bit, no children).
 
 | URL | Page type | Purpose | Weight |
 |---|---|---|---|
-| `/sectors/` | Sector index | List the four sectors with client logos and a sentence each. | Light |
-| `/sectors/financial-services/` | Sector light landing | Short intro, client logos, filtered case studies and insights for financial services. | Light |
+| `/sectors/` | Sector index | List the four sectors with client logos and a sentence each. Footer heading target. | Light |
+| `/sectors/financial-services/` | Sector light landing | Short intro, client logos, filtered case studies and insights. | Light |
 | `/sectors/media/` | Sector light landing | As above for media and publishing. | Light |
 | `/sectors/consumer/` | Sector light landing | As above for consumer brands, travel and leisure. | Light |
 | `/sectors/retail/` | Sector light landing | As above for retail. | Light |
 
 Notes:
-- The four sectors follow Source A. Travel and leisure clients (Merlin, Parkdean, IAG) are grouped under Consumer for v1 rather than given a fifth sector. Technology clients (Meta, Microsoft) appear in Our work but do not justify a sector landing on launch (see `06-decisions-log.md`, decision D-08).
-- A sector landing is indexed only when it has at least 150 words of unique intro, three published case studies and two insights tagged to it. Below that threshold it is noindex, follow (see `04-canonicals-and-seo.md`).
+- Four sectors from Source A. Travel and leisure clients (Merlin, Parkdean, IAG) sit under Consumer. Technology clients (Meta, Microsoft) appear in Our work without a sector landing (`06-decisions-log.md`, D-09).
+- A sector landing is indexed only when it has at least 150 words of unique intro, three published case studies and two insights tagged to it. Below that it is noindex, follow.
+- No pages under a sector. Ever.
 
 ---
 
@@ -106,16 +116,17 @@ Notes:
 
 | URL | Page type | Purpose | Weight |
 |---|---|---|---|
-| `/work/` | Work hub (filterable) | Every case study in one place, filterable by service, expertise and sector. The proof engine for the whole site. | Canonical |
-| `/work/{client}/` | Case study | One engagement: challenge, approach, result, services used, themes, sector. Examples: `/work/dayinsure/`, `/work/key-group/`, `/work/transfergo/`, `/work/merlin/`, `/work/wsj/`, `/work/parkdean/`, `/work/tsb/`, `/work/post-office/`. | Supporting |
+| `/work/` | Work hub (filterable) | Every case study in one place, filterable by service, expertise and sector. Testimonials live inside case studies (Source A). | Canonical |
+| `/work/{client}/` | Case study | One engagement: challenge, approach, result, quote, services used, themes, sector. Examples from Source B: `/work/dayinsure/`, `/work/key-group/`, `/work/transfergo/`, `/work/merlin/`, `/work/wsj/`, `/work/parkdean/`, `/work/tsb/`, `/work/post-office/`, `/work/mars/`, `/work/bbc/`. | Supporting |
 | `/work/?service={slug}` | Filtered view | Case studies for one service. Canonical to `/work/`. | Utility (noindex) |
 | `/work/?expertise={slug}` | Filtered view | Case studies for one theme. Canonical to `/work/`. | Utility (noindex) |
 | `/work/?sector={slug}` | Filtered view | Case studies for one sector. Canonical to `/work/`. | Utility (noindex) |
 
 Notes:
-- One case study per engagement. If a client has several engagements, either combine into one page with chapters or use `/work/{client}-{topic}/` (for example `/work/key-group-membership/`). Do not create a client hub.
+- One case study per engagement. If a client has several engagements, combine into one page with chapters or use `/work/{client}-{topic}/`. Do not create a client hub.
 - Case studies can be anonymised. Anonymised slugs describe the sector and outcome (for example `/work/uk-retail-bank-loyalty/`).
 - Every case study must be tagged with at least one service. Expertise and sector tags are optional but expected.
+- No separate testimonials page (Source A: redundant).
 
 ---
 
@@ -123,37 +134,53 @@ Notes:
 
 | URL | Page type | Purpose | Weight |
 |---|---|---|---|
-| `/insights/` | Insights hub (filterable) | All articles, reports and events, newest first, filterable by type, expertise, service and sector. | Supporting |
-| `/insights/{slug}/` | Insight article | One piece of thinking. Tagged to services, themes and sectors so it surfaces on the right pages. | Supporting (Light if under 500 words or event listings) |
+| `/insights/` | Insights hub (filterable) | All articles, reports and events, newest first ("latest" is a section, not a page, per Source A), filterable by type, expertise, service and sector. | Supporting |
+| `/insights/{slug}/` | Insight | One article, report or event. Tagged to services, themes and sectors. | Supporting (Light if under 500 words or an event listing) |
 | `/insights/?type={article\|report\|event}` | Filtered view | Insights of one type. Canonical to `/insights/`. | Utility (noindex) |
 | `/insights/?expertise={slug}` | Filtered view | Insights for one theme. Canonical to `/insights/`. | Utility (noindex) |
-| `/newsletter/` | Newsletter sign-up | Capture email sign-ups for MGA's regular newsletter. | Utility (indexed) |
+| `/newsletter/` | Newsletter sign-up | Capture email sign-ups. | Utility (indexed) |
 
 Notes:
-- Reports and guides that need a download form use the same `/insights/{slug}/` template with a gated download module. No separate `/resources/` section.
-- Events are insights of type "event" and expire from the hub's default list after the event date, remaining reachable by URL.
-- No author archive pages. Authors link to their `/about/team/{name}/` profile instead.
-- No tag or category archive pages. Filters replace them.
+- Reports that need a download form use the same `/insights/{slug}/` template with a gated download module. No separate `/resources/` section.
+- Events are insights of type "event" and drop out of the default list after the event date, remaining reachable by URL.
+- No author, tag or category archive pages. Filters and team profiles cover these.
+- Any insight on loyalty links back to `/expertise/loyalty/` (Source A).
 
 ---
 
 ## 7. About
 
+Source A asked for a clear About hub and a clear Careers hub instead of "Life at Manifesto" doing both jobs. v2 follows that split.
+
 | URL | Page type | Purpose | Weight |
 |---|---|---|---|
-| `/about/` | About | Who MGA is, the positioning (sustainable customer-led growth, strategy plus AI-powered activation), what makes the firm different, senior team preview. | Supporting |
-| `/about/team/` | Team listing | Everyone client-facing, grouped by role, with advisors identified. | Supporting |
-| `/about/team/{name}/` | Team profile | One person: role, focus, sectors, selected work, insights authored, contact route. Advisor profiles carry the Side-by-Side offer link. | Light |
-| `/about/how-we-work/` | Methodology | Ways of working, frameworks, engagement models and what a typical engagement looks like. Kept separate from services so method is never mistaken for product. | Supporting |
-| `/about/careers/` | Careers | Open roles and what it is like to work at MGA. | Light |
+| `/about/` | About | Who we are and our story: the positioning (sustainable customer-led growth, strategy plus AI-powered activation), what makes MGA different, senior team preview. | Supporting |
+| `/about/team/` | Team listing | Everyone client-facing, grouped by role. Side-by-Side advisors are a named group with the anchor `#advisors`. | Supporting |
+| `/about/team/{name}/` | Team profile | One person: role, focus, selected work, insights authored, contact route. Advisor profiles carry the Side-by-Side link. | Light |
+| `/about/how-we-work/` | Methodology | Ways of working, frameworks, engagement models. Kept separate from services so method is never mistaken for product (Source A). | Supporting |
+| `/about/values/` | Values and culture | Values, culture and DEI on one page (Source A lists Values / Culture and DEI; combined to avoid two thin pages). | Light |
 
 Notes:
 - Team profiles exist for senior consultants and advisors. Junior team members can be listed on `/about/team/` without a profile page.
-- Profiles are indexed because named-person searches are a real referral path. Profiles with fewer than 100 words of unique content are noindex until completed.
+- Profiles are indexed because named-person searches are a real referral path. Profiles under 100 words are noindex until completed.
+- Advisor profiles matter (Source C: showcase heavyweight advisor profiles). They are the substance behind the third pillar.
 
 ---
 
-## 8. Contact
+## 8. Careers
+
+| URL | Page type | Purpose | Weight |
+|---|---|---|---|
+| `/careers/` | Careers hub | Life at Manifesto, benefits and the current open roles on one page. | Light |
+| `/careers/{role}/` | Role | One open role with how to apply. | Light (noindex when closed) |
+
+Notes:
+- Source A lists Life at Manifesto, Benefits and Open Roles as children of Careers. At MGA's size these are sections of one page, not three pages. If the roles list grows past ten, split `/careers/roles/` out.
+- Careers is not in the header. It is reached from the About dropdown and the footer.
+
+---
+
+## 9. Contact
 
 | URL | Page type | Purpose | Weight |
 |---|---|---|---|
@@ -163,7 +190,7 @@ Notes:
 
 ---
 
-## 9. Utility and system pages
+## 10. Utility and system pages
 
 | URL | Page type | Purpose | Weight |
 |---|---|---|---|
@@ -178,7 +205,7 @@ Notes:
 
 ---
 
-## 10. Sitemap summary
+## 11. Sitemap summary
 
 | Section | Canonical | Supporting | Light | Utility |
 |---|---|---|---|---|
@@ -187,24 +214,29 @@ Notes:
 | Expertise | | 6 (hub + 5 themes) | | |
 | Sectors | | | 5 (index + 4 landings) | |
 | Work | 1 (hub) | n (case studies) | | 3 filter patterns |
-| Insights | | 1 (hub) + n (articles) | | 2 filter patterns, newsletter |
-| About | | 3 (About, Team, How we work) | 1 (Careers) + n (profiles) | |
+| Insights | | 1 (hub) + n (insights) | | 2 filter patterns, newsletter |
+| About | | 3 (About, Team, How we work) | 1 (Values) + n (profiles) | |
+| Careers | | | 1 (hub) + n (roles) | |
 | Contact | | | | 2 pages + 1 pattern |
 | System | | | | 8 |
 
-Fixed pages at launch (excluding case studies, insights and profiles, and excluding filter patterns): 40, of which 11 are Canonical.
+Fixed pages at launch (excluding case studies, insights, profiles, roles and filter patterns): 41, of which 11 are Canonical.
 
 ---
 
-## 11. Pages deliberately not in the sitemap
+## 12. Pages deliberately not in the sitemap
 
 | Excluded | Reason |
 |---|---|
-| Sector point-of-view pages (for example `/sectors/retail/loyalty-in-retail/`) | Client preference and the services-canonical rule. Sector content is a filter, not a destination. |
-| Theme pages inside other sections (for example `/services/loyalty/`, `/insights/loyalty/`) | Themes have one home at `/expertise/`. Everything else links to it. |
+| A separate `/growth-architecture/` page | Merged into `/services/`. One hub carries the triangle. `/growth-architecture/` redirects there. |
+| A separate CIVD page | CIVD is the Growth Strategy frame (Source B). It is a module on `/services/growth-strategy/` and is explained once in How we work. |
+| Sector point-of-view pages (for example `/sectors/retail/loyalty-in-retail/`) | Source C: sector-agnostic services. Sector content is a filter and a light landing, not a destination. |
+| Theme pages inside other sections (for example `/services/loyalty/`, `/insights/loyalty/`) | Themes have one home at `/expertise/`. Everything else links to it (Source A's one-canonical-home rule). |
 | Home child pages (for example `/why-manifesto/`) | Home is a page, not a hub. That content belongs on `/about/`. |
-| Separate CX, UX, website or research service pages | These are entry keywords for `/services/experience-engineering/`, not separate offers. |
+| Separate CX, UX, website or research service pages | Entry keywords for `/services/experience-engineering/`, not separate offers. |
 | Methodology pages under `/services/` | Method is not a product. Lives at `/about/how-we-work/`. |
+| A separate testimonials page | Testimonials live inside case studies (Source A). |
 | Client hub pages (`/work/{client}/` with children) | One engagement, one page. |
 | Author, tag and category archives | Filters and team profiles cover these needs without thin pages. |
-| A separate AgentLab microsite or `/agentlab/` | AgentLab is the named product inside Data Agents. A redirect from `/agentlab/` to `/services/data-agents/` is acceptable for marketing use. |
+| A separate AgentLab microsite or `/agentlab/` page | AgentLab is the named product inside Data Agents. `/agentlab/` redirects to `/services/data-agents/`. |
+| Separate Life at Manifesto, Benefits and Open roles pages | Sections of `/careers/` at current scale. |
