@@ -1,4 +1,4 @@
-# Diagram: sitemap
+# Diagram: sitemap (v2)
 
 Mermaid source. The authoritative list is `../02-sitemap.md`; if the two disagree, the document wins.
 
@@ -15,18 +15,18 @@ flowchart TB
 
     Home["/ Home"]:::canonical
 
-    %% Services
-    Home --> S["/services/ Service hub"]:::canonical
-    S --> S1["/services/growth-strategy/"]:::canonical
-    S --> S2["/services/proposition-innovation/"]:::canonical
-    S --> SA["/services/activation/ Group"]:::supporting
+    %% Services: the triangle
+    Home --> S["/services/ What we do: Growth Architecture"]:::canonical
+    S --> S1["/services/growth-strategy/ (pillar 1 and lead service)"]:::canonical
+    S1 --> S2["/services/proposition-innovation/"]:::canonical
+    S --> SA["/services/activation/ (pillar 2, group page)"]:::supporting
     SA --> S3["/services/customer-intelligence/"]:::canonical
     SA --> S4["/services/experience-engineering/"]:::canonical
     SA --> S5["/services/data-agents/"]:::canonical
     SA --> S6["/services/operating-architecture/"]:::canonical
     SA --> S7["/services/growth-office/"]:::canonical
     SA --> S8["/services/ai-enablement/"]:::canonical
-    S --> S9["/services/ceo-advisory/ (downweighted)"]:::supporting
+    S --> S9["/services/ceo-advisory/ (pillar 3, Side-by-Side)"]:::supporting
 
     %% Expertise
     Home --> E["/expertise/ Hub"]:::supporting
@@ -57,9 +57,13 @@ flowchart TB
     %% About
     Home --> A["/about/"]:::supporting
     A --> A1["/about/team/"]:::supporting
-    A1 --> A1a["/about/team/{name}/ Profile (n)"]:::light
+    A1 --> A1a["/about/team/{name}/ Profile (n), advisors flagged"]:::light
     A --> A2["/about/how-we-work/ Methodology"]:::supporting
-    A --> A3["/about/careers/"]:::light
+    A --> A3["/about/values/ Values, culture, DEI"]:::light
+
+    %% Careers
+    Home --> Car["/careers/ Hub"]:::light
+    Car --> Car1["/careers/{role}/ (n)"]:::light
 
     %% Contact
     Home --> C["/contact/"]:::utility
@@ -70,22 +74,31 @@ flowchart TB
     Home --> U2["/search/ /404/ /sitemap.xml /robots.txt"]:::utility
 ```
 
-Note: the Activation group node is shown as a parent of six services for readability. The six service URLs are flat under `/services/` (see decision D-03 in `../06-decisions-log.md`).
+Notes:
+- Proposition Innovation and the six Activation services are shown under their pillar for readability. All service URLs are flat under `/services/` (see D-12 in `../06-decisions-log.md`).
+- Home is a page with no child URLs. The arrows from Home show top-level sections, not parent-child paths.
 
 ## The three dimensions and how they intersect
 
 ```mermaid
 flowchart LR
-    subgraph Services["Services (Canonical spine)"]
-        GS["Growth Strategy"]
-        PI["Proposition Innovation"]
-        CI["Customer Intelligence"]
-        EE["Experience Engineering"]
-        DA["Data Agents"]
-        OA["Operating Architecture"]
-        GO["Growth Office"]
-        AI["AI Enablement"]
-        CA["CEO Advisory"]
+    subgraph Services["Services: the triangle (Canonical spine)"]
+        direction TB
+        subgraph P1["Growth Strategy"]
+            GS["Growth Strategy"]
+            PI["Proposition Innovation"]
+        end
+        subgraph P2["Activation Services"]
+            CI["Customer Intelligence"]
+            EE["Experience Engineering"]
+            DA["Data Agents"]
+            OA["Operating Architecture"]
+            GO["Growth Office"]
+            AI["AI Enablement"]
+        end
+        subgraph P3["CEO Advisory"]
+            SxS["Side-by-Side"]
+        end
     end
 
     subgraph Themes["Expertise themes (Supporting)"]
@@ -104,21 +117,23 @@ flowchart LR
     end
 
     Proof["Case studies and insights (tagged to all three)"]
+    Advisors["Advisor profiles (/about/team/)"]
 
     Themes -- "Where we help: links to" --> Services
     Sectors -- "Services most used here: auto links to" --> Services
     Proof -- "surfaces on" --> Services
     Proof -- "surfaces on" --> Themes
     Proof -- "surfaces on" --> Sectors
+    Advisors -- "surface on" --> P3
 ```
 
-Reading the diagram: content flows one way. Themes and sectors point into services. Proof (case studies and insights) is tagged with services, themes and sectors and appears automatically on all three. Services never point "down" into a theme-specific or sector-specific copy of themselves, because none exist.
+Reading the diagram: content flows one way. Themes and sectors point into services. Proof (case studies and insights) is tagged with services, themes and sectors and appears automatically on all three. Advisor profiles are the substance behind the CEO Advisory pillar. Services never point "down" into a theme-specific or sector-specific copy of themselves, because none exist.
 
 ## Visitor journey the IA is built around
 
 ```mermaid
 flowchart LR
-    Q1["1. What can you do?"] --> Services["/services/…"]
+    Q1["1. What can you do?"] --> Services["/services/ (the triangle)"]
     Q2["2. Do you understand my problem?"] --> Themes["/expertise/…"]
     Q3["3. Businesses like mine?"] --> Sectors["/sectors/… (light)"]
     Q4["4. Prove it"] --> Work["/work/… and /insights/…"]
