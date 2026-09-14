@@ -1,6 +1,8 @@
-# 04. Canonicals and SEO
+# 04. Canonicals and SEO (v2)
 
-Which page owns which topic, how the overlaps between services, expertise themes and sectors are resolved, what is and is not indexed, and how pages link to one another. The aim is a site that originates enquiries from search, not just one that confirms credibility after a referral.
+Which page owns which topic, how the overlaps between services, expertise themes and sectors are resolved, what is and is not indexed, and how pages link to one another. The aim is a site that originates enquiries from search, not just one that confirms credibility after a referral (Source C).
+
+The principle is Source A's: one canonical page for each important proposition or topic, with the rest of the site linking into and out of it. Services are canonical. Themes and sectors intersect them through links and tags, never through duplicate pages.
 
 Related: weights are defined in `02-sitemap.md`. The "Related" blocks referenced here are specified in `03-page-layouts.md`.
 
@@ -29,16 +31,17 @@ The canonical home for each topic cluster, and the pages that may reference but 
 
 | Topic cluster | Canonical owner | May reference (with link) | Must not have own page |
 |---|---|---|---|
-| Growth strategy, customer-led growth strategy, growth consultancy | `/services/growth-strategy/` | Home, About, all theme pages, case studies | Any theme or sector variant such as "growth strategy for retail" |
-| Proposition design, proposition innovation, new proposition development, CIVD | `/services/proposition-innovation/` | Growth Strategy page, How we work (framework explanation only) | A separate CIVD page |
-| Strategy activation, strategy to execution | `/services/activation/` (group) | Home, Services hub, all activation services | |
-| Customer intelligence, customer insight, segmentation, customer research | `/services/customer-intelligence/` | Experience Engineering (research for design), Customer Value theme | A separate research service page |
+| Growth Architecture (the proposition), "strategy that works, execution that delivers" | `/services/` | Home (triangle block), About | A separate `/growth-architecture/` page (redirect only) |
+| Growth strategy, customer value growth strategy, growth consultancy, CIVD (Customer, Innovation, Value, Delivery) | `/services/growth-strategy/` | Home, About, all theme pages, case studies, How we work (framework explanation only) | Any theme or sector variant such as "growth strategy for retail"; a separate CIVD page |
+| Proposition design, proposition innovation, new proposition development, D2C propositions | `/services/proposition-innovation/` | Growth Strategy page, Loyalty / Membership / Subscriptions theme pages | |
+| Strategy activation, strategy to execution, activation services | `/services/activation/` (group) | Home, Services hub, all activation services | |
+| Customer intelligence, customer insight, segmentation, customer research, voice of the customer, digital listening | `/services/customer-intelligence/` | Experience Engineering (research for design), Customer Value theme | A separate research service page |
 | Experience engineering, customer experience design, CX consultancy, website design and build, digital product design, user research, usability testing | `/services/experience-engineering/` | Customer Intelligence (for analytical research), case studies | Separate CX, UX, website or research pages. All of these are H2 sections of this page. |
-| Data agents, AI agents for marketing and data, AgentLab, marketing automation agents, attribution, CDP clean-up, tagging | `/services/data-agents/` | AI Enablement, Operating Architecture, How we work | Individual agent pages in v1; `/agentlab/` as a page (redirect only) |
-| Operating model, operating architecture, adaptive operating model, value streams | `/services/operating-architecture/` | Growth Office, AI Enablement | |
-| Interim growth leadership, growth office, embedded growth team, fractional CMO or CGO | `/services/growth-office/` | Operating Architecture, CEO Advisory | |
-| AI enablement, AI adoption, AI value cases, AI business model innovation | `/services/ai-enablement/` | Data Agents, Operating Architecture | A generic "AI" page |
-| CEO advisory, side-by-side advisory, executive advisor retainer | `/services/ceo-advisory/` | Team profiles flagged as advisor, Growth Office | |
+| Data agents, AI agents for marketing and data, AgentLab, marketing automation agents, attribution, CDP clean-up, tagging | `/services/data-agents/` | AI Enablement, Operating Architecture, How we work | Individual agent pages; `/agentlab/` as a page (redirect only) |
+| Operating model, operating architecture, adaptive operating model, value streams | `/services/operating-architecture/` | Growth Office, AI Enablement, How we work (framework explanation only) | |
+| Growth office, interim growth leadership, embedded growth team, modern PMO, fractional CMO or CGO | `/services/growth-office/` | Operating Architecture, CEO Advisory | |
+| AI enablement, AI adoption, AI maturity, AI value cases, AI business model innovation | `/services/ai-enablement/` | Data Agents, Operating Architecture | A generic "AI" page |
+| CEO advisory, Side-by-Side, SxS, executive advisor retainer | `/services/ceo-advisory/` | Team profiles flagged as advisor, Team listing `#advisors`, Growth Office | A separate `/side-by-side/` page (redirect only) |
 | Loyalty strategy, loyalty programme design, loyalty economics | `/expertise/loyalty/` | Services (as related theme), case studies, insights, sectors | `/services/loyalty/`, `/sectors/retail/loyalty/` |
 | Membership models, member economics | `/expertise/membership/` | As above | |
 | Subscription growth, churn, retention | `/expertise/subscriptions/` | As above | |
@@ -46,6 +49,8 @@ The canonical home for each topic cluster, and the pages that may reference but 
 | Customer lifetime value, customer value management | `/expertise/customer-value/` | Customer Intelligence (analytics), Growth Strategy | |
 | Financial services, media, consumer, retail (as "consultancy for X" queries) | `/sectors/{sector}/` (Light, no keyword targets) | Case studies, Home logo strip | Sector points of view, sector-specific service pages |
 | Ways of working, frameworks, engagement models | `/about/how-we-work/` | Every service page (block 5) | Method pages under `/services/` |
+| Values, culture, DEI | `/about/values/` | About, Careers | Separate DEI page at launch |
+| Careers, life at Manifesto, benefits, open roles | `/careers/` | About, Values, Team listing | A "Life at Manifesto" page competing with About (Source A) |
 
 ---
 
@@ -78,8 +83,11 @@ Result: one loyalty page, one retail page, two service pages, and the proof and 
 
 | Overlap | Ruling |
 |---|---|
-| Growth Strategy vs Proposition Innovation | Growth Strategy is where to play and how to win at business level. Proposition Innovation is designing the specific offer. Growth Strategy page names Proposition Innovation as the natural next step; Proposition Innovation page opens with one line placing it inside the Growth Strategy group. Neither restates the other. |
+| Services hub vs Growth Architecture | One page. `/services/` is the Growth Architecture page and shows the triangle. There is no second proposition page for the triangle to be repeated on. |
+| Growth Strategy vs Proposition Innovation | Growth Strategy is where to play and how to win at business level. Proposition Innovation is designing the specific offer. Growth Strategy page names Proposition Innovation as the natural next step; Proposition Innovation page opens with one line placing it inside the Growth Strategy pillar. Neither restates the other. |
+| Growth Strategy vs CIVD | CIVD is the Growth Strategy frame (Source B Growth Strategy slide: Customer, Innovation, Value, Delivery). It is a module on the Growth Strategy page and is explained as a framework once in How we work. In v1 it was wrongly attached to Proposition Innovation. |
 | Growth Strategy vs CEO Advisory | Growth Strategy is a project with outputs. CEO Advisory is a standing relationship. CEO Advisory page may say advisors draw on Growth Strategy thinking and link to it. Growth Strategy page does not promote CEO Advisory. |
+| CEO Advisory vs advisor profiles | The offer is described once on `/services/ceo-advisory/`. The people are described once each on `/about/team/{name}/`. The offer page surfaces the profiles; the profiles carry a one-line note and link back. Neither copies the other. |
 | Activation group vs the six activation services | The group page explains the concept and lists. It never describes an individual service beyond the card summary. |
 | Customer Intelligence vs Experience Engineering (research) | Research that produces insight and segmentation lives in Customer Intelligence. Research that directly informs design (usability, journey research) lives in Experience Engineering under its "Customer research and testing" H2. Each page links to the other in one sentence. |
 | Experience Engineering vs separate CX / website / research pages | No separate pages. Experience Engineering carries three H2 sections, each with its own anchor (`#customer-experience`, `#website-and-digital`, `#research-and-testing`). Metadata, FAQ and internal anchor text use the plain terms so that the page ranks for them. |
@@ -88,7 +96,7 @@ Result: one loyalty page, one retail page, two service pages, and the proof and 
 | Growth Office vs Operating Architecture | Operating Architecture designs; Growth Office staffs. Cross-linked once each. |
 | Expertise theme vs a service that mainly serves it (for example Customer Value vs Customer Intelligence) | The theme page states the problem and links to the service for the analytics. The service page lists the theme under Related expertise. If a service page is found to be mostly about one theme, its copy is corrected, not the theme page. |
 | Sector landing vs sector case studies | Landing aggregates; case studies hold the substance. The landing never summarises case studies in prose beyond the hero paragraph. |
-| Methodology (for example CIVD) vs Proposition Innovation | How we work explains the framework once. Proposition Innovation says "we use our CIVD approach" and links. |
+| Methodology vs services | How we work explains each framework once. A service page says "we use our X approach" and links. |
 | Insight vs theme page | An insight is a dated point of view. A theme page is the evergreen position. If an insight becomes the definitive view, its key points are folded into the theme page and the insight links to it. |
 
 ---
@@ -101,7 +109,8 @@ Result: one loyalty page, one retail page, two service pages, and the proof and 
 | All Supporting pages | index, follow | Self | Secondary and long-tail targets |
 | Sector landings | index, follow when threshold met; otherwise noindex, follow | Self | Threshold: at least 150 words of unique intro, three published case studies, two insights tagged to the sector. Prevents thin pages competing with services. |
 | `/sectors/` index | index, follow | Self | Short but unique, and it is the sector navigation home |
-| Team profiles | index, follow when biography is at least 100 words; otherwise noindex, follow | Self | Named-person search is a real path; thin stubs are not useful |
+| Team profiles | index, follow when biography is at least 100 words; otherwise noindex, follow | Self | Named-person search is a real path; thin stubs are not useful. Advisor profiles are a priority because CEO Advisory depends on them. |
+| `/careers/{role}/` | index, follow while open; noindex or 301 to `/careers/` when closed | Self | Roles expire |
 | Case studies | index, follow | Self | Proof pages earn brand and client-name searches |
 | Anonymised case studies | index, follow | Self | Still unique content |
 | Insights | index, follow | Self | Long-tail |
@@ -137,16 +146,16 @@ Internal links are how the three dimensions intersect without duplicate pages. T
 | Sector landing | At least two service pages (Services most used here block, auto) and `/work/?sector={sector}` |
 | Case study | Every service used (hero and Related services), every theme tagged, one sector |
 | Insight | At least one service (Related services block) and at least one theme |
-| Team profile | The services and themes the person leads on |
-| How we work | Every service group it mentions |
-| Home | Services hub, Growth Strategy, Activation, Expertise hub, Work hub |
+| Team profile | The services and themes the person leads on; advisors link to `/services/ceo-advisory/` |
+| How we work | Every pillar it mentions |
+| Home | Services hub, all three pillar pages (Growth Strategy, Activation, CEO Advisory), Work hub, Expertise hub |
 
 ### 5.2 Canonicals link across and down
 
 | Page type | Must link to |
 |---|---|
-| Service detail | Its group page (or Services hub), two or three related services, one to five related themes, tagged case studies, How we work |
-| Services hub | Every service, every theme (cross-reference grid), How we work |
+| Service detail | Its pillar page (or Services hub), two or three related services, one to five related themes, tagged case studies, How we work |
+| Services hub | All three pillar pages, every service, the Expertise hub (themes strip) |
 | Work hub | Nothing mandatory beyond filters; the case study cards carry the links |
 
 ### 5.3 Anchor text
@@ -197,7 +206,7 @@ The current site's URLs are not listed in the sources, so this section sets the 
 | Service redirects | Old service or capability pages redirect to the matching `/services/` canonical. Old CX, UX, website or research pages redirect to `/services/experience-engineering/` and may target a section anchor. |
 | Sector redirects | Any old industry pages redirect to `/sectors/{sector}/` if the sector exists, otherwise to `/work/?sector=` or `/work/`. |
 | Content redirects | Old articles redirect to their new `/insights/{slug}/` URL, keeping slugs where possible. |
-| Marketing shortcuts | `/agentlab/` 301 to `/services/data-agents/`. `/side-by-side/` 301 to `/services/ceo-advisory/`. |
+| Marketing shortcuts | `/growth-architecture/` 301 to `/services/`. `/agentlab/` 301 to `/services/data-agents/`. `/side-by-side/` 301 to `/services/ceo-advisory/`. `/life-at-manifesto/` (if it exists today) 301 to `/careers/`. |
 | Repackaging later | If services are renamed or regrouped (Source C notes the deck is a subset and may change), the old `/services/{slug}/` 301s to the new one. Flat service URLs make this a single redirect per service. |
 | Testing | Redirect map is tested before go-live and monitored for 404s for 90 days after. |
 
@@ -213,9 +222,9 @@ The site must catch people who do not know MGA. The mapping below shows which pa
 | Problem | "how to fix a loyalty programme", "subscription churn strategy", "pricing strategy consultancy" | Expertise theme |
 | Sector reassurance | "growth consultancy financial services" | Sector landing (Light; ranks only opportunistically) plus the service page, which mentions sectors in proof |
 | Proof | "{client name} case study", "{client name} Manifesto" | Case study |
-| Person | "{consultant name}" | Team profile |
-| Brand | "Manifesto Growth Architects", "Manifesto Growth" | Home, About |
-| Product | "AgentLab" | Data Agents |
+| Person | "{consultant name}", "{advisor name}" | Team profile |
+| Brand | "Manifesto Growth Architects", "Manifesto Growth", "Growth Architecture" | Home, About, Services hub |
+| Product | "AgentLab", "Side-by-Side advisory" | Data Agents, CEO Advisory |
 | Thought leadership | Long-tail topical questions | Insight, handing off to a theme and a service |
 
 Sector queries are the weakest intentionally. Sector authority is earned through case studies and service pages that name sectors, not through sector content hubs.
