@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MGA website IA v4: wireframe</title>
+<title>MGA website IA v5: wireframe</title>
 <style>
   /* Wireframe only. Greyscale, system font, no brand assets. */
   :root {
@@ -79,11 +79,13 @@
   .pillar li a small { display: block; font-size: 12.5px; color: var(--mid); font-weight: 400; line-height: 1.3; }
   .pillar.quiet h3 { font-size: 16px; font-weight: 600; color: #555; }
   .pillar.quiet .line { color: #999; }
+  .pillar.quiet li a { font-size: 13px; color: #777; }
   .mega-row { margin-top: 28px; border-top: 1px solid var(--soft); padding: 12px 0 14px; display: flex; gap: 28px; font-size: 13px; color: var(--mid); }
   .mega-row a:hover { text-decoration: underline; }
 
-  /* ---------- Home page body (T1, six blocks) ---------- */
-  .page { padding: 0 32px; }
+  /* ---------- Page bodies: Home (T1, six blocks) and Services hub (T2, eight blocks) share one frame ---------- */
+  .page { padding: 0 32px; display: none; }
+  .page[data-active="true"] { display: block; }
   .block { padding: 36px 0; border-bottom: 1px solid var(--soft); }
   .block:last-child { border-bottom: 0; }
   .block h2 { margin: 0 0 16px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--mid); }
@@ -91,6 +93,8 @@
   .hero p { margin: 0 0 20px; color: var(--mid); font-size: 17px; }
   .hero .cta { display: flex; align-items: center; gap: 22px; }
   .hero .cta a.text { text-decoration: underline; color: var(--mid); }
+  .hero .eyebrow { display: block; margin: 0 0 10px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--mid); }
+  .hero p.body { font-size: 15px; color: #555; max-width: 720px; margin: 0 0 10px; }
   .logos { display: flex; gap: 12px; margin-top: 36px; }
   .logos span { flex: 1; height: 28px; border: 1px dashed var(--line); }
 
@@ -101,13 +105,40 @@
   .tri a.quiet { border-color: var(--soft); background: #fafafa; }
   .tri a.quiet strong { font-size: 16px; font-weight: 600; color: #555; }
   .tri a.quiet span { color: #999; }
+  /* The triangle line: one sentence under the three blocks, shared by Home and the hub */
+  .tri-line { margin: 14px 0 0; font-size: 13px; color: var(--mid); }
+  .tri-line a { text-decoration: underline; margin-left: 10px; }
+
+  /* Hub: "Where are you starting from?" seven lines */
+  .situations { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 40px; max-width: 900px; }
+  .situations li { break-inside: avoid; padding: 7px 0; border-top: 1px solid var(--soft); }
+  .situations li:first-child { border-top: 0; }
+  .situations li a { display: block; font-size: 15px; }
+  .situations li a:hover { text-decoration: underline; }
+
+  /* Hub: pillar sections */
+  .pillar-sec h3 { margin: 0; font-size: 22px; line-height: 1.2; }
+  .pillar-sec h3 a:hover { text-decoration: underline; }
+  .pillar-sec .line { margin: 4px 0 12px; font-size: 13px; color: var(--mid); }
+  .pillar-sec .sentence { margin: 0 0 18px; font-size: 16px; color: #444; max-width: 760px; }
+  .pillar-sec .sentence a { text-decoration: underline; }
+  .pillar-sec.quiet h3 { font-size: 18px; color: #555; }
+  .pillar-sec.quiet .sentence { color: #666; }
+  .case-line { margin: 18px 0 0; font-size: 13px; color: var(--mid); }
+  .case-line a { text-decoration: underline; }
 
   .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .cards.two { grid-template-columns: 1fr 1fr; max-width: 760px; }
   .card { border: 1px solid var(--line); padding: 18px; min-height: 110px; }
+  .card.flat { min-height: 0; }
+  .card.person { border-color: var(--soft); background: #fafafa; min-height: 0; }
   .card .ph { height: 56px; border: 1px dashed var(--line); margin-bottom: 12px; }
+  .card .avatar { width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--line); margin-bottom: 10px; }
   .card strong { display: block; font-size: 15px; }
   .card span { font-size: 13px; color: var(--mid); }
   .more { display: inline-block; margin-top: 16px; font-size: 13px; color: var(--mid); text-decoration: underline; }
+  .one-line { margin: 0; font-size: 15px; color: #444; }
+  .one-line a { text-decoration: underline; }
 
   .row-links { display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 15px; }
   .row-links a:hover { text-decoration: underline; }
@@ -157,6 +188,7 @@
   .m-items { list-style: none; margin: 0; padding: 0; }
   .m-items li a { display: block; padding: 9px 0; font-size: 15px; }
   .m-items li a small { display: block; font-size: 12px; color: var(--mid); font-weight: 400; }
+  .m-items li.quiet a { font-size: 14px; color: #777; }
   .m-links { display: flex; gap: 22px; padding: 14px 0 0; font-size: 13px; color: var(--mid); }
   .acc .plain-top a { display: block; padding: 15px 16px; font-weight: 600; font-size: 16px; }
 
@@ -173,6 +205,7 @@
 
   @media (max-width: 900px) {
     .mega-cols, .footer-cols, .tri, .cards { grid-template-columns: 1fr 1fr; }
+    .situations { columns: 1; }
     .browser { overflow-x: auto; }
   }
 </style>
@@ -180,16 +213,17 @@
 <body>
 
 <div class="top">
-  <span>MGA website IA v4. Wireframe, not design.</span>
+  <span>MGA website IA v5. Wireframe, not design.</span>
   <nav class="views" aria-label="Views">
     <button data-view="nav" aria-pressed="true">Navigation</button>
     <button data-view="home" aria-pressed="false">Homepage</button>
+    <button data-view="hub" aria-pressed="false">Services hub</button>
     <button data-view="mobile" aria-pressed="false">Mobile</button>
     <button data-view="sitemap" aria-pressed="false">Sitemap</button>
   </nav>
 </div>
 
-<!-- ===================== DESKTOP: Navigation (menu open) and Homepage (menu closed) share one frame ===================== -->
+<!-- ===================== DESKTOP: Navigation (menu open), Homepage and Services hub (menu closed) share one frame ===================== -->
 <div class="view" id="view-desktop" data-active="true">
   <div class="wrap">
     <div class="browser" id="browser" data-mega-open="true">
@@ -250,20 +284,22 @@
               <div class="pillar quiet">
                 <h3><a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/">CEO Advisory</a></h3>
                 <p class="line">One-to-one support for leaders</p>
+                <ul>
+                  <li><a href="/services/ceo-advisory/#advisors" data-url="/services/ceo-advisory/#advisors">Our advisors</a></li>
+                </ul>
               </div>
             </div>
 
             <div class="mega-row">
               <a href="/services/" data-url="/services/">All services</a>
               <a href="/expertise/" data-url="/expertise/">Expertise</a>
-              <a href="/contact/" data-url="/contact/">Contact</a>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Home (T1): six blocks -->
-      <main class="page">
+      <main class="page" id="pageHome" data-active="true">
         <section class="block hero">
           <h1>Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth.</h1>
           <p>Strategy that works. Execution that delivers.</p>
@@ -281,6 +317,7 @@
             <a href="/services/activation/" data-url="/services/activation/"><strong>Activation Services</strong><span>Turning strategy into results</span></a>
             <a class="quiet" href="/services/ceo-advisory/" data-url="/services/ceo-advisory/"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
           </div>
+          <p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside. <a href="/services/" data-url="/services/">Our Growth Architecture</a></p>
         </section>
 
         <section class="block">
@@ -312,6 +349,87 @@
             <li><a href="/insights/example-three/" data-url="/insights/example-three/">Insight title</a><span>Date</span></li>
           </ul>
           <a class="more" href="/insights/" data-url="/insights/">All insights</a>
+        </section>
+
+        <section class="block closing">
+          <p>Tell us about your growth challenge</p>
+          <a class="btn" href="/contact/" data-url="/contact/">Contact</a>
+        </section>
+      </main>
+
+      <!-- Services hub (T2): the Growth Architecture story, eight blocks -->
+      <main class="page" id="pageHub" data-active="false">
+        <section class="block hero">
+          <span class="eyebrow">What we do</span>
+          <h1>Our Growth Architecture</h1>
+          <p>Strategy that works. Execution that delivers.</p>
+          <p class="body">The path from strategy to execution has become more complex and fragmented, despite more tools, data and channels than ever.</p>
+          <p class="body">Growth Architecture is a better way to unlock customer value growth: market-leading strategic thinking combined with AI-powered, human-led activation.</p>
+        </section>
+
+        <section class="block">
+          <h2>Three ways we work with you</h2>
+          <div class="tri">
+            <a href="#hub-gs" data-url="/services/growth-strategy/"><strong>Growth Strategy</strong><span>Where and how you grow</span></a>
+            <a href="#hub-act" data-url="/services/activation/"><strong>Activation Services</strong><span>Turning strategy into results</span></a>
+            <a class="quiet" href="#hub-ceo" data-url="/services/ceo-advisory/"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
+          </div>
+          <p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside.</p>
+        </section>
+
+        <section class="block">
+          <h2>Where are you starting from?</h2>
+          <ul class="situations">
+            <li><a href="/services/growth-strategy/" data-url="/services/growth-strategy/">We need to decide where and how to grow</a></li>
+            <li><a href="/services/proposition-innovation/" data-url="/services/proposition-innovation/">We need a new proposition, loyalty or membership offer</a></li>
+            <li><a href="/services/customer-research/" data-url="/services/customer-research/">We need to understand our customers better</a></li>
+            <li><a href="/services/experience-engineering/" data-url="/services/experience-engineering/">Our journeys or website are not converting</a></li>
+            <li><a href="/services/activation/" data-url="/services/activation/">Our strategy is not turning into results</a></li>
+            <li><a href="/services/ai-enablement/" data-url="/services/ai-enablement/">We want AI to pay off</a></li>
+            <li><a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/">I want a sounding board I trust</a></li>
+          </ul>
+        </section>
+
+        <section class="block pillar-sec" id="hub-gs">
+          <h3><a href="/services/growth-strategy/" data-url="/services/growth-strategy/">Growth Strategy</a></h3>
+          <p class="line">Where and how you grow</p>
+          <p class="sentence">We work out where the growth is and design the propositions that win it, using our <a href="/services/growth-strategy/#civd" data-url="/services/growth-strategy/#civd">Customer, Innovation, Value and Delivery</a> frame.</p>
+          <div class="cards two">
+            <a class="card flat" href="/services/growth-strategy/" data-url="/services/growth-strategy/"><strong>Growth Strategy</strong><span>Customer-led growth strategy: where to focus and how to win</span></a>
+            <a class="card flat" href="/services/proposition-innovation/" data-url="/services/proposition-innovation/"><strong>Proposition Innovation</strong><span>New offers: loyalty, membership, subscription, direct-to-consumer</span></a>
+          </div>
+          <p class="case-line">Client, one-line result. <a href="/work/key-group/" data-url="/work/key-group/">Read the case study</a></p>
+        </section>
+
+        <section class="block pillar-sec" id="hub-act">
+          <h3><a href="/services/activation/" data-url="/services/activation/">Activation Services</a></h3>
+          <p class="line">Turning strategy into results</p>
+          <p class="sentence">We build the bridge from strategy to results: new operating models and AI-powered, human-led delivery. <a href="/services/activation/" data-url="/services/activation/">Which of the six do you need?</a></p>
+          <div class="cards">
+            <a class="card flat" href="/services/customer-research/" data-url="/services/customer-research/"><strong>Customer Research and Insight</strong><span>Research, surveys, analytics and customer listening, faster with AI</span></a>
+            <a class="card flat" href="/services/experience-engineering/" data-url="/services/experience-engineering/"><strong>Experience Engineering</strong><span>Customer experience (CX), website and digital design, build and testing</span></a>
+            <a class="card flat" href="/services/ai-agents-for-marketing/" data-url="/services/ai-agents-for-marketing/"><strong>AI Agents for Marketing</strong><span>AI that cleans up customer data and improves marketing performance, guided by experts</span></a>
+            <a class="card flat" href="/services/operating-model-design/" data-url="/services/operating-model-design/"><strong>Operating Model Design</strong><span>How your teams, data and AI agents should work together</span></a>
+            <a class="card flat" href="/services/growth-office/" data-url="/services/growth-office/"><strong>Growth Office</strong><span>Interim growth team and programme office that gets strategy delivered</span></a>
+            <a class="card flat" href="/services/ai-enablement/" data-url="/services/ai-enablement/"><strong>AI Enablement</strong><span>AI skills, training and adoption: finding where AI pays off</span></a>
+          </div>
+          <p class="case-line">Client, one-line result. <a href="/work/dayinsure/" data-url="/work/dayinsure/">Read the case study</a></p>
+        </section>
+
+        <section class="block pillar-sec quiet" id="hub-ceo">
+          <h3><a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/">CEO Advisory</a></h3>
+          <p class="line">One-to-one support for leaders</p>
+          <p class="sentence">Experienced growth leaders alongside you, on retainer, to help you make good decisions.</p>
+          <div class="cards">
+            <a class="card person" href="/about/team/advisor-one/" data-url="/about/team/advisor-one/"><div class="avatar"></div><strong>Advisor name</strong><span>Former role, one line</span></a>
+            <a class="card person" href="/about/team/advisor-two/" data-url="/about/team/advisor-two/"><div class="avatar"></div><strong>Advisor name</strong><span>Former role, one line</span></a>
+            <a class="card person" href="/about/team/advisor-three/" data-url="/about/team/advisor-three/"><div class="avatar"></div><strong>Advisor name</strong><span>Former role, one line</span></a>
+          </div>
+          <a class="more" href="/services/ceo-advisory/#advisors" data-url="/services/ceo-advisory/#advisors">Our advisors</a>
+        </section>
+
+        <section class="block">
+          <p class="one-line">We apply these services to the growth problems we know best. <a href="/expertise/" data-url="/expertise/">Our expertise</a></p>
         </section>
 
         <section class="block closing">
@@ -426,6 +544,9 @@
               </ul>
 
               <div class="m-pillar quiet"><a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/">CEO Advisory</a></div>
+              <ul class="m-items">
+                <li class="quiet"><a href="/services/ceo-advisory/#advisors" data-url="/services/ceo-advisory/#advisors">Our advisors</a></li>
+              </ul>
 
               <div class="m-links">
                 <a href="/services/" data-url="/services/">All services</a>
@@ -466,7 +587,7 @@
       <ul>
         <li><span class="u">/</span> Home <span class="w">Canonical</span></li>
 
-        <li class="sec"><span class="u">/services/</span> What we do: Growth Architecture <span class="w">Canonical</span>
+        <li class="sec"><span class="u">/services/</span> What we do: Our Growth Architecture <span class="w">Canonical</span>
           <ul>
             <li><span class="u">/services/growth-strategy/</span> Growth Strategy <span class="w">Canonical, pillar 1</span></li>
             <li><span class="u">/services/proposition-innovation/</span> Proposition Innovation <span class="w">Canonical</span></li>
@@ -477,7 +598,7 @@
             <li><span class="u">/services/operating-model-design/</span> Operating Model Design <span class="w">Canonical</span></li>
             <li><span class="u">/services/growth-office/</span> Growth Office <span class="w">Canonical</span></li>
             <li><span class="u">/services/ai-enablement/</span> AI Enablement <span class="w">Canonical</span></li>
-            <li><span class="u">/services/ceo-advisory/</span> CEO Advisory (Side-by-Side) <span class="w">Supporting, pillar 3</span></li>
+            <li><span class="u">/services/ceo-advisory/</span> CEO Advisory (Side-by-Side), advisors at #advisors <span class="w">Supporting, pillar 3</span></li>
           </ul>
         </li>
 
@@ -556,12 +677,18 @@
   var openTimer, closeTimer;
   var OPEN_DELAY = 150, CLOSE_DELAY = 300;
 
-  /* ---- Views: Navigation and Homepage are the same desktop frame, menu open or closed ---- */
+  /* ---- Views: Navigation, Homepage and Services hub are the same desktop frame; the menu is open on Navigation, and the page body swaps ---- */
   var viewButtons = document.querySelectorAll('.views button');
-  var views = { nav: 'view-desktop', home: 'view-desktop', mobile: 'view-mobile', sitemap: 'view-sitemap' };
+  var views = { nav: 'view-desktop', home: 'view-desktop', hub: 'view-desktop', mobile: 'view-mobile', sitemap: 'view-sitemap' };
+  var pages = { nav: 'pageHome', home: 'pageHome', hub: 'pageHub' };
+  var pageUrls = { nav: '/', home: '/', hub: '/services/' };
   function showView(name) {
     Array.prototype.forEach.call(viewButtons, function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-view') === name ? 'true' : 'false'); });
     Array.prototype.forEach.call(document.querySelectorAll('.view'), function (v) { v.setAttribute('data-active', v.id === views[name] ? 'true' : 'false'); });
+    if (pages[name]) {
+      Array.prototype.forEach.call(document.querySelectorAll('.page'), function (p) { p.setAttribute('data-active', p.id === pages[name] ? 'true' : 'false'); });
+      urlBar.textContent = 'manifestogrowth.example' + pageUrls[name];
+    }
     if (name === 'nav') { openOnly(megaLi); } else { closeAllDesktop(); }
     window.scrollTo(0, 0);
   }
@@ -573,13 +700,19 @@
     });
   });
 
-  /* ---- Links do not navigate; the frame's address bar shows where they would go ---- */
+  /* ---- Links do not navigate; the frame's address bar shows where they would go.
+         On the hub, the three triangle blocks scroll to their pillar section, as the live page would. ---- */
   document.addEventListener('click', function (e) {
     var a = e.target.closest ? e.target.closest('a[data-url]') : null;
     if (!a) return;
     e.preventDefault();
     if (a.classList.contains('top-link') && !a.classList.contains('plain')) return;
     urlBar.textContent = 'manifestogrowth.example' + a.getAttribute('data-url');
+    var href = a.getAttribute('href') || '';
+    if (href.indexOf('#hub-') === 0) {
+      var target = document.getElementById(href.slice(1));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   });
 
   /* ---- Desktop menus: hover with delays, click toggles, Escape and outside click close ---- */
@@ -657,7 +790,7 @@
     btn.setAttribute('aria-expanded', open ? 'false' : 'true');
   });
 
-  /* #nav, #home, #mobile or #sitemap in the URL opens that view directly */
+  /* #nav, #home, #hub, #mobile or #sitemap in the URL opens that view directly */
   var initial = (location.hash || '#nav').slice(1);
   if (views[initial] && initial !== 'nav') showView(initial);
 })();
