@@ -1,6 +1,8 @@
-# 05. Content matrix (v3)
+# 05. Content matrix (v4)
 
 Which content types live on which pages. Read this alongside `03-page-layouts.md` (block order and rules) and `04-canonicals-and-seo.md` (ownership).
+
+v4 changes: the mega-nav carries three pillar lines and two quiet lines instead of thirteen subtitles; each service page gains a hero line carrying its searched terms; the sector landing loses its themes row and the theme page its sectors row; Home's theme row is names only; the Services hub's theme strip is one sentence.
 
 ---
 
@@ -20,7 +22,9 @@ Which content types live on which pages. Read this alongside `03-page-layouts.md
 | Content type | Definition | Primary home |
 |---|---|---|
 | Positioning statement | The one-line and one-paragraph description of what MGA is and does (Source B: "Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth") | About (full), Home (short) |
-| Growth Architecture triangle | The three pillars with their Source B one-liners, drawn as a triangle | Services hub (full), Home (compact) |
+| Growth Architecture triangle | The three pillars with their pillar lines (the same lines as the mega-nav), drawn as three blocks | Services hub (full), Home (compact) |
+| Pillar lines and quiet lines | Three pillar lines ("Where and how you grow", "Turning strategy into results", "One-to-one advice for senior leaders") and two quiet lines (Experience Engineering, Growth Office) | Global navigation settings; rendered in the mega-nav, mobile menu, Home and Services hub |
+| Service hero line | One line under the service H1 carrying the searched terms for that service (`04-canonicals-and-seo.md`, 6.1) | Service detail |
 | Service description | Why, What, How it works, for one service | Service detail |
 | Pillar explanation | What Activation means; what Side-by-Side is | Activation group page, CEO Advisory page |
 | Service-specific module | CIVD frame, agent catalogue, operating model diagram, EE sub-sections and so on | Service detail |
@@ -54,7 +58,7 @@ Pages across the top, content types down the side.
 | Service description | | T (cards) | **P** | T (cards) | **P** | | T (Where we help) | S (auto) | | S (Related services) | | S (Related services) | | | S (Focus) | T (Engagement shapes) | | | |
 | Pillar explanation | T (triangle) | T (pillar sections) | T (Pillar context) | **P** | **P** | | | | | | | | | | | T | | | |
 | Service-specific module | | | **P** | | **P** (advisor list) | | | | | | | | | | | | | | |
-| Theme point of view | T (strip) | T (strip) | S (Related expertise) | | | T (cards) | **P** | S (Themes that matter) | | S (tags) | | S (Related expertise) | | | S (Focus) | | | | |
+| Theme point of view | T (one row of names) | T (one sentence) | S (Related expertise, max 3) | | | T (cards) | **P** | | | S (Related expertise, max 3) | | S (hero chips, max 3) | | | S (Focus) | | | | |
 | Sector intro | | | | | | | | **P** | | | | | | | | | | | |
 | Case study | S (Featured) | S (Proof) | S (Proof, auto) | S (Proof) | S (Proof) | | S (Proof, auto) | S (auto) | S (all, filterable) | **P** | | | | | S (Selected work) | | | | |
 | Outcome statistic | | | S (in cards) | | | | | | S (cards) | **P** (At a glance) | | | | | | | | | |
@@ -73,7 +77,8 @@ Pages across the top, content types down the side.
 
 Notes on reading the matrix:
 
-- The Growth Architecture triangle has one primary home (the Services hub) and one compact copy (Home). Both use the same three labels and one-liners. Nowhere else draws the triangle; other pages reference their own pillar in one line.
+- The Growth Architecture triangle has one primary home (the Services hub) and one compact copy (Home). Both use the same three labels and pillar lines as the mega-nav. Nowhere else draws the triangle; other pages reference their own pillar in one line.
+- Sector landing lost its "Themes that matter" cell and Expertise theme its "Sectors where this matters" cell in v4 (D-42). Sectors and themes still meet in the Work filters and through case study tags.
 - A column with many **P** marks is a content-heavy page (Service detail, Case study, Insight). A column with mostly **S** and **T** is a router (Home, hubs, sector landings). Routers stay light; weight sits on the canonicals and proof.
 - Sector landing has no **P** except its own short intro. That is the practical definition of "light".
 - Expertise theme has one **P** (the point of view). Everything else on it is surfaced.
@@ -88,12 +93,13 @@ How much of each content type the site needs at launch, so the pages above are n
 
 | Content type | Minimum at launch | Why |
 |---|---|---|
-| Growth Architecture triangle copy | 3 one-liners (already in Source B) plus the positioning paragraph | Home and Services hub depend on it |
+| Growth Architecture triangle copy | 3 pillar lines (shared with the mega-nav) plus the positioning paragraph and strapline | Home and Services hub depend on it |
 | Service descriptions | 8 canonical + Activation group + CEO Advisory = 10 | Every service in the mega-nav must be complete on day one. Source B provides Why and What for every Activation service and for Side-by-Side; Growth Strategy and Proposition Innovation are marked "to be updated" in Source B and need writing. |
-| Mega-nav subtitles | 13 (ten item subtitles plus three pillar subtitles), as written in `01-primary-navigation.md` section 3.2 | Fixed text, plain English, each carrying a searched term, kept to one line and ten words. Proposals for Andy to approve (`nav-wording-decisions.md`). |
+| Pillar lines and quiet lines | 3 pillar lines (four to six words) and 2 quiet lines (two to four words), as written in `01-primary-navigation.md` section 3.2 | Fixed text. Proposals for Andy to approve. v3's thirteen subtitles are retired from the menu (D-35). |
+| Service hero lines | 9 (eight canonical services plus CEO Advisory) | Each carries the searched terms listed in `04-canonicals-and-seo.md` 6.1. Start from the v3 subtitles in `nav-wording-decisions.md`. |
 | "Also known as" lines | 3 (Customer Research and Insight, AI Agents for Marketing, Operating Model Design) | One line each under the H1 naming the deck term so referred visitors recognise the offer |
-| Theme points of view | 5 | All five themes are linked from the Insights dropdown and footer |
-| Sector intros | 4 plus index | Footer links must land on something; noindex until threshold |
+| Theme points of view | 5 | All five themes are linked from Home and the footer |
+| Sector intros | 4 (no index page) | Footer links must land on something; noindex until threshold |
 | Case studies | 12 minimum, tagged so that every service has at least one and every theme has at least two | Source B names example clients per service: Mars, Trojan Energy, BBC, PEX, Skillshare, TransferGo, Dayinsure, Merlin, WSJ, Key Group, Parkdean, TSB, Standard Chartered, Post Office, Meta, IAG, Microsoft, Dowds, News Corp. |
 | Insights | 10 minimum, tagged so that every theme has at least two | Theme pages cannot publish with fewer than two |
 | Team profiles | All leadership and all advisors, at least 100 words each | CEO Advisory and the Services hub pillar 3 depend on advisor profiles |
@@ -110,12 +116,13 @@ How much of each content type the site needs at launch, so the pages above are n
 
 | Content type | Edited in | Appears via |
 |---|---|---|
-| Triangle one-liners and pillar subtitles | Global navigation settings (shared by mega-nav, Home and Services hub) | Direct |
+| Pillar lines and quiet lines | Global navigation settings (shared by mega-nav, mobile menu, Home and Services hub) | Direct |
+| Service hero lines | The service page in the CMS | Direct |
 | Service, theme, sector, about, methodology, values copy | Its own page in the CMS | Direct |
 | Case studies, insights, team profiles, roles | Their own entries | Tags drive surfacing everywhere else |
 | Advisor flag | Team profile entry | Surfaces on CEO Advisory, Services hub pillar 3, Team listing |
 | Featured and pinned items | Per hub or per Home in the CMS | Curated blocks |
 | Client logos and quotes | Asset library with client permission flag | Surfaced by tag or curation |
-| Nav labels, subtitles and footer | Global navigation settings. Labels follow the v3 wording rule (`01-primary-navigation.md` section 3.3); a label change is an IA decision, not a content edit. | All pages |
+| Nav labels and footer | Global navigation settings. Labels follow the wording rule (`01-primary-navigation.md` section 3.3); a label change, or adding a line to the menu, is an IA decision, not a content edit. | All pages |
 
-Rule: if the same sentence appears on two pages, one of them is wrong. Fix it by turning the second into a link. The only exception is the three triangle one-liners, which are shared data rendered in two places.
+Rule: if the same sentence appears on two pages, one of them is wrong. Fix it by turning the second into a link. The only exception is the three pillar lines, which are shared data rendered in the menu, on Home and on the Services hub.

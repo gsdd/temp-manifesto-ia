@@ -243,7 +243,7 @@ Fixed pages at launch (excluding case studies, insights, profiles, roles and fil
 | Separate CX, UX or website service pages | Entry keywords for `/services/experience-engineering/`, not separate offers. The page's hero line, H2 sections and title tag carry them (and the menu's quiet line "Customer experience and websites"). |
 | A separate "research" or "market research" page | Customer research is `/services/customer-research/`; user research and testing is an H2 of Experience Engineering. Two homes already; a third would compete. |
 | Pages under the deck names (`/services/customer-intelligence/`, `/services/data-agents/`, `/services/operating-architecture/`) | Renamed in v3 to the searched terms. The deck slugs are 301s, not pages. |
-| A generic `/services/ai/` page | "AI" is caught by two labels (AI Agents for Marketing, AI Enablement) plus the Customer Research and Operating Model Design subtitles. A generic AI page would be thin and compete with them. |
+| A generic `/services/ai/` page | "AI" is caught by two labels (AI Agents for Marketing, AI Enablement) plus the Customer Research and Operating Model Design hero lines. A generic AI page would be thin and compete with them. |
 | Methodology pages under `/services/` | Method is not a product. Lives at `/about/how-we-work/`. |
 | A separate testimonials page | Testimonials live inside case studies (Source A). |
 | Client hub pages (`/work/{client}/` with children) | One engagement, one page. |

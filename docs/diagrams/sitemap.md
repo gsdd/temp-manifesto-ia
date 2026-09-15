@@ -1,6 +1,6 @@
-# Diagram: sitemap (v3)
+# Diagram: sitemap (v4)
 
-Mermaid source. The authoritative list is `../02-sitemap.md`; if the two disagree, the document wins.
+Mermaid source. The authoritative list is `../02-sitemap.md`; if the two disagree, the document wins. v4 removed one node from v3: the `/sectors/` index page (D-44). Everything else is unchanged.
 
 Legend for node styling: Canonical pages are bold-bordered, Supporting pages normal, Light pages dashed, Utility pages grey.
 
@@ -36,8 +36,8 @@ flowchart TB
     E --> E4["/expertise/pricing/"]:::supporting
     E --> E5["/expertise/customer-value/"]:::supporting
 
-    %% Sectors
-    Home --> Sec["/sectors/ Index"]:::light
+    %% Sectors: four light landings, no index page, reached from the footer and Work filters
+    Home --> Sec["Sectors (footer heading, not a page)"]:::light
     Sec --> Sec1["/sectors/financial-services/"]:::light
     Sec --> Sec2["/sectors/media/"]:::light
     Sec --> Sec3["/sectors/consumer/"]:::light
@@ -77,6 +77,7 @@ flowchart TB
 Notes:
 - Proposition Innovation and the six Activation services are shown under their pillar for readability. All service URLs are flat under `/services/` (see D-12 in `../06-decisions-log.md`).
 - Three service slugs changed in v3 with their labels (D-27 to D-29). The v2 slugs `/services/customer-intelligence/`, `/services/data-agents/` and `/services/operating-architecture/` are redirects.
+- There is no `/sectors/` index page (v4, D-44). The "Sectors" node above is the footer heading, shown only to group the four landings. `/sectors/` redirects to `/work/`.
 - Home is a page with no child URLs. The arrows from Home show top-level sections, not parent-child paths.
 
 ## The three dimensions and how they intersect

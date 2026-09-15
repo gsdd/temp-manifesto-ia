@@ -1,6 +1,16 @@
-# Nav wording decisions (v3)
+# Nav wording decisions (v3, with v4 status)
 
 Why v3 exists, the rule it applies, and every label change from v2 to v3: old label, new label, why. Read this alongside `01-primary-navigation.md` (the nav as it now stands) and `06-decisions-log.md` (D-26 to D-33, where each change is logged with its sources).
+
+## v4 status of this document
+
+v4 (`v4-simplification.md`) changes **no label**. Every label decision below stands: the three renames, the coined names kept, the acronyms removed, "Expertise" as the visitor's word.
+
+What v4 changes is where the **subtitles** live. The thirteen v3 subtitles are retired from the menu (D-35). In their place: three pillar lines of four to six words ("Where and how you grow", "Turning strategy into results", "One-to-one advice for senior leaders") and two quiet lines under the two labels Andy named as opaque (Experience Engineering: "Customer experience and websites"; Growth Office: "Interim growth team"). Each v3 subtitle becomes the **hero line** of its service page, and `04-canonicals-and-seo.md` section 6.1 makes the searched terms a per-page requirement. So the subtitle tables below are still the approved wording; they now describe page copy, not menu copy.
+
+Three v3 menu items no longer exist (D-36): the "Growth Strategy" item under its own heading, "Side-by-Side" under CEO Advisory (the heading is the link), and "Meet the advisors". The Insights dropdown is gone (D-38), so its Expertise column no longer exists either. The footer-row link reads "Expertise" without the five names (D-37).
+
+The "Search intent to nav item" table at the end is rewritten for v4.
 
 ---
 
@@ -145,31 +155,31 @@ Nothing from the deck is lost. Where a label was renamed, the deck term moves on
 
 ---
 
-## Search intent to nav item
+## Search intent to nav item (v4)
 
-The test the brief sets: someone with one of these intents should be able to point at a nav item.
+The test the v3 brief set: someone with one of these intents should be able to point at a nav item. Under v4 the menu carries labels, three pillar lines and two quiet lines, so the third column now says whether the word is in the menu or on the page the label leads to.
 
 | Prospect types or thinks | Nav item they land on | Where the word appears |
 |---|---|---|
-| customer experience, CX | Experience Engineering | Subtitle: "Customer experience (CX) ..." |
-| website, digital product, can you build a website | Experience Engineering | Subtitle: "... website and digital design, build and testing" |
-| customer research, market research, surveys, insight | Customer Research and Insight | Label and subtitle |
-| loyalty, loyalty programme | Proposition Innovation; Expertise: Loyalty | Subtitle; footer row; Insights dropdown |
-| membership, subscription, subscription churn | Proposition Innovation; Expertise: Membership, Subscriptions | Subtitle; footer row; Insights dropdown |
-| direct-to-consumer, D2C | Proposition Innovation | Subtitle |
-| pricing | Expertise: Pricing | Footer row; Insights dropdown |
-| customer lifetime value, customer value | Expertise: Customer Value; Growth Strategy | Footer row; subtitle "customer-led growth strategy" |
+| customer experience, CX | Experience Engineering | Menu quiet line "Customer experience and websites"; page H2 "Customer experience (CX) design"; title tag |
+| website, digital product, can you build a website | Experience Engineering | Menu quiet line; page H2 "Website and digital product design and build" |
+| customer research, market research, surveys, insight | Customer Research and Insight | Label; page hero line and H2s |
+| loyalty, loyalty programme | Proposition Innovation; Expertise | Page H2 per proposition type; Home expertise row; footer; `/expertise/loyalty/` |
+| membership, subscription, subscription churn | Proposition Innovation; Expertise | As above |
+| direct-to-consumer, D2C | Proposition Innovation | Page H2 |
+| pricing | Expertise | Home expertise row; footer; `/expertise/pricing/` |
+| customer lifetime value, customer value | Expertise; Growth Strategy | Home expertise row; footer; Growth Strategy hero line "customer-led growth strategy" |
 | AI, AI agents, marketing AI, marketing automation | AI Agents for Marketing | Label |
-| AI training, AI adoption, AI skills | AI Enablement | Label and subtitle |
-| customer data, data quality, CDP | AI Agents for Marketing | Subtitle: "cleans up customer data" |
-| operating model, ways of working, org design | Operating Model Design | Label and subtitle |
-| PMO, programme office, interim, transformation office | Growth Office | Subtitle |
-| growth strategy, growth consultancy, commercial strategy | Growth Strategy | Label and subtitle |
-| CEO advisor, executive coach, non-exec, retainer | CEO Advisory, Side-by-Side | Heading and subtitle |
+| AI training, AI adoption, AI skills | AI Enablement | Label; page H2s |
+| customer data, data quality, CDP | AI Agents for Marketing | Page hero line "cleans up customer data" |
+| operating model, ways of working, org design | Operating Model Design | Label; page hero line |
+| PMO, programme office, interim, transformation office | Growth Office | Menu quiet line "Interim growth team"; page hero line and title tag carry "programme office" |
+| growth strategy, growth consultancy, commercial strategy | Growth Strategy | Heading; pillar line "Where and how you grow" |
+| CEO advisor, executive coach, non-exec, retainer | CEO Advisory | Heading; pillar line "One-to-one advice for senior leaders"; page names Side-by-Side and the retainer |
 | case studies, clients, results | Our work | Header |
-| financial services, media, consumer, retail | Footer: Who we work with | Footer only, by design |
+| financial services, media, consumer, retail | Footer: Who we work with; Work filters | Footer and More filters, by design |
 
-Every row has a landing. No row depends on the visitor knowing a Manifesto term.
+Every row has a landing. Six of the seven service labels are themselves the searched term. The two that are not (Experience Engineering, Growth Office) carry a quiet line. No row depends on the visitor knowing a Manifesto term.
 
 ---
 

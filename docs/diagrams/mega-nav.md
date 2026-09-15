@@ -1,4 +1,4 @@
-# Diagram: header and What we do mega-nav (v3)
+# Diagram: header and What we do mega-nav (v4)
 
 Mermaid source. Renders in GitHub, GitLab and most markdown previewers. The authoritative description is `../01-primary-navigation.md`; if the two disagree, the document wins.
 
@@ -8,60 +8,56 @@ Mermaid source. Renders in GitHub, GitLab and most markdown previewers. The auth
 flowchart LR
     Logo["MGA logo → /"]
     WWD["What we do (mega-nav) → /services/"]
-    Work["Our work (plain link) → /work/"]
-    Insights["Insights (dropdown) → /insights/"]
+    Work["Our work → /work/"]
+    Insights["Insights → /insights/"]
     About["About (dropdown) → /about/"]
     Contact["Contact (button) → /contact/"]
     Logo --- WWD --- Work --- Insights --- About --- Contact
 ```
 
-## What we do mega-nav: the triangle, three columns
+One mega-nav, one small dropdown. Our work and Insights are plain links.
+
+## What we do mega-nav: the triangle, three columns, labels only
 
 ```mermaid
 flowchart TB
-    Head["Our Growth Architecture → /services/<br/>Strategy that works. Execution that delivers."]
-
     subgraph Panel["What we do: mega-nav panel"]
         direction LR
 
-        subgraph C1["Growth Strategy<br/>Deciding where and how you grow. Our core offer."]
+        subgraph C1["Growth Strategy → /services/growth-strategy/<br/><i>Where and how you grow</i>"]
             direction TB
-            C1a["Growth Strategy → /services/growth-strategy/<br/><i>Customer-led growth strategy: where to focus and how to win</i>"]
-            C1b["Proposition Innovation → /services/proposition-innovation/<br/><i>New offers and business models: loyalty, membership, subscription, direct-to-consumer</i>"]
-            C1a --> C1b
+            C1a["Proposition Innovation → /services/proposition-innovation/"]
         end
 
-        subgraph C2["Activation Services<br/>Hands-on delivery that turns strategy into results"]
+        subgraph C2["Activation Services → /services/activation/<br/><i>Turning strategy into results</i>"]
             direction TB
-            C2a["Customer Research and Insight → /services/customer-research/<br/><i>Research, surveys, analytics and customer listening, faster with AI</i>"]
-            C2b["Experience Engineering → /services/experience-engineering/<br/><i>Customer experience (CX), website and digital design, build and testing</i>"]
-            C2c["AI Agents for Marketing → /services/ai-agents-for-marketing/<br/><i>AI that cleans up customer data and improves marketing performance</i>"]
-            C2d["Operating Model Design → /services/operating-model-design/<br/><i>How your teams, data and AI agents should work together</i>"]
-            C2e["Growth Office → /services/growth-office/<br/><i>Interim growth team and programme office that gets strategy delivered</i>"]
-            C2f["AI Enablement → /services/ai-enablement/<br/><i>AI skills, training and adoption: finding where AI pays off</i>"]
+            C2a["Customer Research and Insight → /services/customer-research/"]
+            C2b["Experience Engineering → /services/experience-engineering/<br/><i>Customer experience and websites</i>"]
+            C2c["AI Agents for Marketing → /services/ai-agents-for-marketing/"]
+            C2d["Operating Model Design → /services/operating-model-design/"]
+            C2e["Growth Office → /services/growth-office/<br/><i>Interim growth team</i>"]
+            C2f["AI Enablement → /services/ai-enablement/"]
             C2a --> C2b --> C2c --> C2d --> C2e --> C2f
         end
 
-        subgraph C3["CEO Advisory (quieter)<br/>One-to-one advice for CEOs and senior leaders"]
+        subgraph C3["CEO Advisory (quieter) → /services/ceo-advisory/<br/><i>One-to-one advice for senior leaders</i>"]
             direction TB
-            C3a["Side-by-Side → /services/ceo-advisory/<br/><i>Our advisory retainer: an experienced growth leader on call</i>"]
-            C3b["Meet the advisors → /about/team/#advisors<br/><i>The senior leaders you would work with</i>"]
-            C3a --> C3b
+            C3a["(no items: the heading is the link)"]
         end
     end
 
     subgraph Row["Footer row (one thin line)"]
         direction LR
         R1["All services → /services/"]
-        R2["Expertise: loyalty, membership, subscriptions, pricing, customer value → /expertise/"]
+        R2["Expertise → /expertise/"]
         R3["Contact → /contact/"]
         R1 --- R2 --- R3
     end
 
-    Head --> Panel --> Row
+    Panel --> Row
 ```
 
-Column headings link to the pillar pages: Growth Strategy → `/services/growth-strategy/`, Activation Services → `/services/activation/`, CEO Advisory → `/services/ceo-advisory/`. Italic lines are the one-line subtitles. Three labels changed from v2 (Customer Intelligence → Customer Research and Insight, Data Agents → AI Agents for Marketing, Operating Architecture → Operating Model Design); see `../nav-wording-decisions.md`.
+Column headings are the pillar links. Italic lines under the headings are the three pillar lines; the two italic lines under Experience Engineering and Growth Office are the only item-level text in the panel. There is no heading line above the columns. 13 links, 12 destinations, about 45 words. See `../v4-simplification.md` for what was removed from v3.
 
 ## The triangle as Andy draws it (Source B) and how it maps to the nav
 
@@ -76,57 +72,36 @@ flowchart TB
     T1 -. "column 3" .-> N3["Mega-nav column 3"]
 ```
 
-## Insights dropdown
-
-```mermaid
-flowchart LR
-    subgraph I1["Insights"]
-        direction TB
-        I1a["Latest insights → /insights/"]
-        I1b["Reports and guides → /insights/?type=report"]
-        I1c["Events → /insights/?type=event"]
-        I1a --> I1b --> I1c
-    end
-    subgraph I2["Expertise"]
-        direction TB
-        I2h["All expertise → /expertise/"]
-        I2a["Loyalty → /expertise/loyalty/"]
-        I2b["Membership → /expertise/membership/"]
-        I2c["Subscriptions → /expertise/subscriptions/"]
-        I2d["Pricing → /expertise/pricing/"]
-        I2e["Customer Value → /expertise/customer-value/"]
-        I2h --> I2a --> I2b --> I2c --> I2d --> I2e
-    end
-```
-
 ## About dropdown
 
 ```mermaid
 flowchart TB
-    A1["About Manifesto → /about/"]
-    A2["Our team → /about/team/"]
-    A3["How we work → /about/how-we-work/"]
-    A4["Values and culture → /about/values/"]
-    A5["Careers → /careers/"]
-    A1 --> A2 --> A3 --> A4 --> A5
+    A1["Our team → /about/team/"]
+    A2["How we work → /about/how-we-work/"]
+    A3["Values and culture → /about/values/"]
+    A4["Careers → /careers/"]
+    A1 --> A2 --> A3 --> A4
 ```
+
+Clicking About itself goes to `/about/`.
 
 ## Mobile menu (collapsed header)
 
 ```mermaid
 flowchart TB
     M["Menu (full-screen panel)"]
-    M --> M1["What we do (accordion): Our Growth Architecture"]
-    M1 --> M1a["Growth Strategy (open by default): 2 links"]
-    M1 --> M1b["Activation Services (closed): 6 links with subtitles"]
-    M1 --> M1c["CEO Advisory (closed, quieter): 2 links"]
+    M --> M1["What we do (expands; open by default)"]
+    M1 --> M1a["Growth Strategy (small label, link): Proposition Innovation"]
+    M1 --> M1b["Activation Services (small label, link): 6 services, two quiet lines"]
+    M1 --> M1c["CEO Advisory (small label, link, quieter)"]
     M1 --> M1d["All services / Expertise"]
-    M --> M2["Our work (plain link)"]
-    M --> M3["Insights (accordion): 3 links, then 5 theme links"]
-    M --> M4["About (accordion): About, Team, How we work, Values, Careers"]
-    M --> M5["Contact (link, also pinned button)"]
-    M --> M6["Who we work with: 4 sector links (quiet)"]
+    M --> M2["Our work"]
+    M --> M3["Insights"]
+    M --> M4["About (expands): Our team, How we work, Values and culture, Careers"]
+    M --> M5["Contact (also the pinned button)"]
 ```
+
+Two levels deep. No pillar sub-accordions and no sectors block; sectors are in the page footer.
 
 ## Footer
 
@@ -134,13 +109,13 @@ flowchart TB
 flowchart LR
     subgraph F1["What we do"]
         direction TB
-        F1a["Growth Strategy, Proposition Innovation, Customer Research and Insight, Experience Engineering, AI Agents for Marketing, Operating Model Design, Growth Office, AI Enablement, CEO Advisory: Side-by-Side, All services"]
+        F1a["Growth Strategy, Proposition Innovation, Customer Research and Insight, Experience Engineering, AI Agents for Marketing, Operating Model Design, Growth Office, AI Enablement, CEO Advisory, All services"]
     end
     subgraph F2["Expertise"]
         direction TB
         F2a["Loyalty, Membership, Subscriptions, Pricing, Customer Value"]
     end
-    subgraph F3["Who we work with"]
+    subgraph F3["Who we work with (heading is plain text)"]
         direction TB
         F3a["Financial services, Media, Consumer, Retail"]
     end
