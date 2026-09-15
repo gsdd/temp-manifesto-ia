@@ -12,7 +12,7 @@ This repository holds the Information Architecture (IA) package for the new Mani
 
 ## The one idea to hold in your head
 
-The What we do menu **is** Andy's triangle: three headings, three short lines, eight service labels, one thin row of links. Nothing else.
+The What we do menu **is** Andy's triangle: three headings, three short lines, seven service labels, one quiet advisors link, one thin row of links. Nothing else.
 
 | Growth Strategy | Activation Services | CEO Advisory (quieter) |
 |---|---|---|

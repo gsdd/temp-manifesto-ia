@@ -18,7 +18,7 @@ Then switch to the Services hub. Without scrolling, see the name of the system a
 
 | View | Shows | Source |
 |---|---|---|
-| Navigation | Desktop header with the mega-nav open: three columns, three short pillar lines, eight service labels, two quiet lines, one quiet "Our advisors" item, a footer row of two links. The About dropdown opens on hover. Our work and Insights are plain links. | `docs/01-primary-navigation.md` |
+| Navigation | Desktop header with the mega-nav open: three columns, three short pillar lines, seven service labels, two quiet lines, one quiet "Our advisors" item, a footer row of two links. The About dropdown opens on hover. Our work and Insights are plain links. | `docs/01-primary-navigation.md` |
 | Homepage | The same frame with the menu closed: six blocks (hero with logos, triangle with the triangle line, work, one row of expertise links, latest insights, closing CTA) and the footer. | `docs/03-page-layouts.md`, T1 |
 | Services hub | The same frame on `/services/`: eyebrow "What we do", H1 "Our Growth Architecture", strapline, triangle with the triangle line, "Where are you starting from?" (seven lines), three pillar sections each with a sentence, its services and one case, the expertise sentence, closing CTA. The triangle blocks scroll to their pillar section. | `docs/03-page-layouts.md`, T2 |
 | Mobile | Phone frame with the menu open and What we do expanded: three small pillar labels above a flat list (CEO Advisory now has Our advisors beneath it), then Our work, Insights, About, Contact. Two levels deep. | `docs/01-primary-navigation.md`, section 3.5 |
