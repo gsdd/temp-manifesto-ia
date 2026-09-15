@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MGA website IA v2: navigation wireframe (not final design)</title>
+<title>MGA website IA v3: navigation wireframe (not final design)</title>
 <style>
   /* Wireframe only. Greyscale, system font, no brand assets. */
   :root {
@@ -43,6 +43,15 @@
   .intro h1 { margin: 0 0 6px; font-size: 20px; }
   .intro p { margin: 4px 0; color: var(--mid); }
   .intro code { background: var(--panel); padding: 1px 5px; border: 1px solid var(--soft); font-size: 13px; }
+  .intro .review-aid { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; padding: 6px 10px; border: 1px dashed var(--line); font-size: 13px; color: var(--ink); cursor: pointer; }
+  .intro .review-aid input { margin: 0; }
+
+  /* Review aid: show the v2 label after any renamed label. Off by default. Not a live-site behaviour. */
+  [data-was]::after { display: none; }
+  body[data-show-diff="true"] [data-was]::after {
+    content: " (was: " attr(data-was) ")"; display: inline;
+    font-weight: 400; font-style: italic; font-size: 0.85em; color: #8a6d00;
+  }
 
   .tabs { display: flex; gap: 6px; margin-bottom: 0; }
   .tabs button {
@@ -133,10 +142,10 @@
   .pillar li:last-child a { border-bottom: 1px solid var(--soft); }
   .pillar li a:hover { background: var(--panel); }
   .pillar .label { display: block; font-weight: 600; font-size: 14.5px; }
-  .pillar .hint { display: block; font-size: 12px; color: var(--mid); line-height: 1.3; }
+  .pillar .hint { display: block; font-size: 12.5px; color: #555; line-height: 1.35; margin-top: 1px; }
   .pillar.quiet h3 { font-size: 15px; font-weight: 600; color: #444; }
   .pillar.quiet .label { font-weight: 500; font-size: 14px; color: #444; }
-  .pillar.quiet .hint { color: #888; }
+  .pillar.quiet .hint { color: #7a7a7a; }
   .mega-row {
     margin-top: 22px; border-top: 1px solid var(--soft); padding: 10px 0 12px;
     display: flex; justify-content: space-between; gap: 16px; font-size: 12.5px; color: var(--mid);
@@ -262,9 +271,11 @@
 
 <div class="wrap">
   <div class="intro">
-    <h1>MGA website IA v2: navigation wireframe</h1>
-    <p>Interactive mock of <code>docs/01-primary-navigation.md</code> and <code>docs/02-sitemap.md</code>. Labels, order and URLs match the documents exactly. If this page and the documents disagree, the documents win.</p>
+    <h1>MGA website IA v3: navigation wireframe</h1>
+    <p>Interactive mock of <code>docs/01-primary-navigation.md</code> and <code>docs/02-sitemap.md</code>. Labels, subtitles, order and URLs match the documents exactly. If this page and the documents disagree, the documents win.</p>
     <p>The <strong>What we do</strong> panel is open when the page loads so the three pillars of the Growth Architecture triangle are the first thing you see: <strong>Growth Strategy</strong>, <strong>Activation Services</strong>, <strong>CEO Advisory</strong>. Move the cursor away, press Escape or click outside to close it; hover over What we do to reopen it. Links do not navigate; a message shows the URL they would open on the live site.</p>
+    <p><strong>v3 is a wording pass.</strong> The structure is unchanged from v2. Every mega-nav item now has a plain-English subtitle carrying the words a prospect would search (customer experience, website, research, loyalty, membership, AI, operating model, interim, retainer). Three services are renamed from Andy's deck to the searched term; the deck names stay on the service pages. Reasons per label: <code>docs/nav-wording-decisions.md</code>.</p>
+    <label class="review-aid"><input type="checkbox" id="showDiff"> Show what changed from v2 (appends the old label after any renamed item; review aid only)</label>
   </div>
 
   <div class="tabs" role="tablist">
@@ -305,9 +316,9 @@
                 </ul>
               </div>
               <div>
-                <div class="group">Expertise themes</div>
+                <div class="group" data-was="Expertise themes">Expertise</div>
                 <ul>
-                  <li class="col-head"><a href="/expertise/" data-url="/expertise/">All themes</a></li>
+                  <li class="col-head"><a href="/expertise/" data-url="/expertise/" data-was="All themes">All expertise</a></li>
                   <li><a href="/expertise/loyalty/" data-url="/expertise/loyalty/">Loyalty</a></li>
                   <li><a href="/expertise/membership/" data-url="/expertise/membership/">Membership</a></li>
                   <li><a href="/expertise/subscriptions/" data-url="/expertise/subscriptions/">Subscriptions</a></li>
@@ -346,39 +357,39 @@
           <div class="mega-cols">
             <div class="pillar">
               <h3><a href="/services/growth-strategy/" data-url="/services/growth-strategy/">Growth Strategy</a></h3>
-              <p class="sub">Where to play and how to win. Our core offer.</p>
+              <p class="sub">Deciding where and how you grow. Our core offer.</p>
               <ul>
-                <li><a href="/services/growth-strategy/" data-url="/services/growth-strategy/"><span class="label">Growth Strategy</span><span class="hint">Customer value growth strategy for leadership teams</span></a></li>
-                <li><a href="/services/proposition-innovation/" data-url="/services/proposition-innovation/"><span class="label">Proposition Innovation</span><span class="hint">New propositions: loyalty, membership, subscription and D2C models</span></a></li>
+                <li><a href="/services/growth-strategy/" data-url="/services/growth-strategy/"><span class="label">Growth Strategy</span><span class="hint">Customer-led growth strategy: where to focus and how to win</span></a></li>
+                <li><a href="/services/proposition-innovation/" data-url="/services/proposition-innovation/"><span class="label">Proposition Innovation</span><span class="hint">New offers and business models: loyalty, membership, subscription, direct-to-consumer</span></a></li>
               </ul>
             </div>
 
             <div class="pillar">
               <h3><a href="/services/activation/" data-url="/services/activation/">Activation Services</a></h3>
-              <p class="sub">The bridge from strategy to execution. AI-powered, human-led.</p>
+              <p class="sub">Hands-on delivery that turns strategy into results</p>
               <ul>
-                <li><a href="/services/customer-intelligence/" data-url="/services/customer-intelligence/"><span class="label">Customer Intelligence</span><span class="hint">Research and insight that gets to the so what faster</span></a></li>
-                <li><a href="/services/experience-engineering/" data-url="/services/experience-engineering/"><span class="label">Experience Engineering</span><span class="hint">CX design, website and digital build, testing at scale</span></a></li>
-                <li><a href="/services/data-agents/" data-url="/services/data-agents/"><span class="label">Data Agents</span><span class="hint">AI agents for performance marketing and customer data</span></a></li>
-                <li><a href="/services/operating-architecture/" data-url="/services/operating-architecture/"><span class="label">Operating Architecture</span><span class="hint">Adaptive operating models for the age of AI</span></a></li>
-                <li><a href="/services/growth-office/" data-url="/services/growth-office/"><span class="label">Growth Office</span><span class="hint">Interim growth teams that get strategy delivered</span></a></li>
-                <li><a href="/services/ai-enablement/" data-url="/services/ai-enablement/"><span class="label">AI Enablement</span><span class="hint">AI skills, value cases and business model innovation</span></a></li>
+                <li><a href="/services/customer-research/" data-url="/services/customer-research/"><span class="label" data-was="Customer Intelligence">Customer Research and Insight</span><span class="hint">Research, surveys, analytics and customer listening, faster with AI</span></a></li>
+                <li><a href="/services/experience-engineering/" data-url="/services/experience-engineering/"><span class="label">Experience Engineering</span><span class="hint">Customer experience (CX), website and digital design, build and testing</span></a></li>
+                <li><a href="/services/ai-agents-for-marketing/" data-url="/services/ai-agents-for-marketing/"><span class="label" data-was="Data Agents">AI Agents for Marketing</span><span class="hint">AI that cleans up customer data and improves marketing performance</span></a></li>
+                <li><a href="/services/operating-model-design/" data-url="/services/operating-model-design/"><span class="label" data-was="Operating Architecture">Operating Model Design</span><span class="hint">How your teams, data and AI agents should work together</span></a></li>
+                <li><a href="/services/growth-office/" data-url="/services/growth-office/"><span class="label">Growth Office</span><span class="hint">Interim growth team and programme office that gets strategy delivered</span></a></li>
+                <li><a href="/services/ai-enablement/" data-url="/services/ai-enablement/"><span class="label">AI Enablement</span><span class="hint">AI skills, training and adoption: finding where AI pays off</span></a></li>
               </ul>
             </div>
 
             <div class="pillar quiet">
               <h3><a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/">CEO Advisory</a></h3>
-              <p class="sub">Side-by-Side: one-to-one support for senior leaders</p>
+              <p class="sub">One-to-one advice for CEOs and senior leaders</p>
               <ul>
-                <li><a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/"><span class="label">Side-by-Side (SxS)</span><span class="hint">Proven growth leaders on speed-dial, on retainer</span></a></li>
-                <li><a href="/about/team/#advisors" data-url="/about/team/#advisors"><span class="label">Meet the advisors</span><span class="hint">The people behind Side-by-Side</span></a></li>
+                <li><a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/"><span class="label" data-was="Side-by-Side (SxS)">Side-by-Side</span><span class="hint">Our advisory retainer: an experienced growth leader on call</span></a></li>
+                <li><a href="/about/team/#advisors" data-url="/about/team/#advisors"><span class="label">Meet the advisors</span><span class="hint">The senior leaders you would work with</span></a></li>
               </ul>
             </div>
           </div>
 
           <div class="mega-row">
             <a href="/services/" data-url="/services/">All services</a>
-            <a href="/expertise/" data-url="/expertise/">Expertise themes: loyalty, membership, subscriptions, pricing, customer value</a>
+            <a href="/expertise/" data-url="/expertise/" data-was="Expertise themes: ...">Expertise: loyalty, membership, subscriptions, pricing, customer value</a>
             <a href="/contact/" data-url="/contact/">Contact</a>
           </div>
         </div>
@@ -405,7 +416,7 @@
           </div>
         </div>
         <div class="block">4. Featured work: three case studies (moved here from the v1 mega-nav)</div>
-        <div class="block">5. Expertise themes strip: loyalty, membership, subscriptions, pricing, customer value (one calm row)</div>
+        <div class="block">5. Expertise strip, heading "Growth problems we know deeply": loyalty, membership, subscriptions, pricing, customer value (one calm row)</div>
         <div class="block">6. Latest insights</div>
         <div class="block">7. Closing CTA: "Tell us about your growth challenge"</div>
       </div>
@@ -418,10 +429,10 @@
             <ul>
               <li><a href="/services/growth-strategy/" data-url="/services/growth-strategy/">Growth Strategy</a></li>
               <li><a href="/services/proposition-innovation/" data-url="/services/proposition-innovation/">Proposition Innovation</a></li>
-              <li><a href="/services/customer-intelligence/" data-url="/services/customer-intelligence/">Customer Intelligence</a></li>
+              <li><a href="/services/customer-research/" data-url="/services/customer-research/" data-was="Customer Intelligence">Customer Research and Insight</a></li>
               <li><a href="/services/experience-engineering/" data-url="/services/experience-engineering/">Experience Engineering</a></li>
-              <li><a href="/services/data-agents/" data-url="/services/data-agents/">Data Agents</a></li>
-              <li><a href="/services/operating-architecture/" data-url="/services/operating-architecture/">Operating Architecture</a></li>
+              <li><a href="/services/ai-agents-for-marketing/" data-url="/services/ai-agents-for-marketing/" data-was="Data Agents">AI Agents for Marketing</a></li>
+              <li><a href="/services/operating-model-design/" data-url="/services/operating-model-design/" data-was="Operating Architecture">Operating Model Design</a></li>
               <li><a href="/services/growth-office/" data-url="/services/growth-office/">Growth Office</a></li>
               <li><a href="/services/ai-enablement/" data-url="/services/ai-enablement/">AI Enablement</a></li>
               <li><a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/">CEO Advisory: Side-by-Side</a></li>
@@ -429,7 +440,7 @@
             </ul>
           </div>
           <div>
-            <h4>Expertise themes</h4>
+            <h4 data-was="Expertise themes">Expertise</h4>
             <ul>
               <li><a href="/expertise/loyalty/" data-url="/expertise/loyalty/">Loyalty</a></li>
               <li><a href="/expertise/membership/" data-url="/expertise/membership/">Membership</a></li>
@@ -506,48 +517,48 @@
                 <ul class="acc">
                   <li data-open="true">
                     <div class="acc-row">
-                      <a href="/services/growth-strategy/" data-url="/services/growth-strategy/">Growth Strategy<small>Where to play and how to win. Our core offer.</small></a>
+                      <a href="/services/growth-strategy/" data-url="/services/growth-strategy/">Growth Strategy<small>Deciding where and how you grow. Our core offer.</small></a>
                       <button class="toggle" aria-label="Toggle Growth Strategy" aria-expanded="true"></button>
                     </div>
                     <div class="acc-body">
                       <ul class="plain">
-                        <li><a href="/services/growth-strategy/" data-url="/services/growth-strategy/">Growth Strategy<small>Customer value growth strategy for leadership teams</small></a></li>
-                        <li><a href="/services/proposition-innovation/" data-url="/services/proposition-innovation/">Proposition Innovation<small>New propositions: loyalty, membership, subscription and D2C models</small></a></li>
+                        <li><a href="/services/growth-strategy/" data-url="/services/growth-strategy/">Growth Strategy<small>Customer-led growth strategy: where to focus and how to win</small></a></li>
+                        <li><a href="/services/proposition-innovation/" data-url="/services/proposition-innovation/">Proposition Innovation<small>New offers and business models: loyalty, membership, subscription, direct-to-consumer</small></a></li>
                       </ul>
                     </div>
                   </li>
                   <li data-open="false">
                     <div class="acc-row">
-                      <a href="/services/activation/" data-url="/services/activation/">Activation Services<small>The bridge from strategy to execution</small></a>
+                      <a href="/services/activation/" data-url="/services/activation/">Activation Services<small>Hands-on delivery that turns strategy into results</small></a>
                       <button class="toggle" aria-label="Toggle Activation Services" aria-expanded="false"></button>
                     </div>
                     <div class="acc-body">
                       <ul class="plain">
-                        <li><a href="/services/customer-intelligence/" data-url="/services/customer-intelligence/">Customer Intelligence<small>Research and insight that gets to the so what faster</small></a></li>
-                        <li><a href="/services/experience-engineering/" data-url="/services/experience-engineering/">Experience Engineering<small>CX design, website and digital build, testing at scale</small></a></li>
-                        <li><a href="/services/data-agents/" data-url="/services/data-agents/">Data Agents<small>AI agents for performance marketing and customer data</small></a></li>
-                        <li><a href="/services/operating-architecture/" data-url="/services/operating-architecture/">Operating Architecture<small>Adaptive operating models for the age of AI</small></a></li>
-                        <li><a href="/services/growth-office/" data-url="/services/growth-office/">Growth Office<small>Interim growth teams that get strategy delivered</small></a></li>
-                        <li><a href="/services/ai-enablement/" data-url="/services/ai-enablement/">AI Enablement<small>AI skills, value cases and business model innovation</small></a></li>
+                        <li><a href="/services/customer-research/" data-url="/services/customer-research/"><span data-was="Customer Intelligence">Customer Research and Insight</span><small>Research, surveys, analytics and customer listening, faster with AI</small></a></li>
+                        <li><a href="/services/experience-engineering/" data-url="/services/experience-engineering/">Experience Engineering<small>Customer experience (CX), website and digital design, build and testing</small></a></li>
+                        <li><a href="/services/ai-agents-for-marketing/" data-url="/services/ai-agents-for-marketing/"><span data-was="Data Agents">AI Agents for Marketing</span><small>AI that cleans up customer data and improves marketing performance</small></a></li>
+                        <li><a href="/services/operating-model-design/" data-url="/services/operating-model-design/"><span data-was="Operating Architecture">Operating Model Design</span><small>How your teams, data and AI agents should work together</small></a></li>
+                        <li><a href="/services/growth-office/" data-url="/services/growth-office/">Growth Office<small>Interim growth team and programme office that gets strategy delivered</small></a></li>
+                        <li><a href="/services/ai-enablement/" data-url="/services/ai-enablement/">AI Enablement<small>AI skills, training and adoption: finding where AI pays off</small></a></li>
                       </ul>
                     </div>
                   </li>
                   <li data-open="false" class="quiet">
                     <div class="acc-row">
-                      <a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/">CEO Advisory<small>Side-by-Side: one-to-one support for senior leaders</small></a>
+                      <a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/">CEO Advisory<small>One-to-one advice for CEOs and senior leaders</small></a>
                       <button class="toggle" aria-label="Toggle CEO Advisory" aria-expanded="false"></button>
                     </div>
                     <div class="acc-body">
                       <ul class="plain">
-                        <li><a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/">Side-by-Side (SxS)<small>Proven growth leaders on speed-dial, on retainer</small></a></li>
-                        <li><a href="/about/team/#advisors" data-url="/about/team/#advisors">Meet the advisors<small>The people behind Side-by-Side</small></a></li>
+                        <li><a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/"><span data-was="Side-by-Side (SxS)">Side-by-Side</span><small>Our advisory retainer: an experienced growth leader on call</small></a></li>
+                        <li><a href="/about/team/#advisors" data-url="/about/team/#advisors">Meet the advisors<small>The senior leaders you would work with</small></a></li>
                       </ul>
                     </div>
                   </li>
                 </ul>
                 <div class="row-links">
                   <a href="/services/" data-url="/services/">All services</a>
-                  <a href="/expertise/" data-url="/expertise/">Expertise themes</a>
+                  <a href="/expertise/" data-url="/expertise/" data-was="Expertise themes">Expertise</a>
                 </div>
               </div>
             </li>
@@ -566,8 +577,8 @@
                   <li><a href="/insights/" data-url="/insights/">Latest insights</a></li>
                   <li><a href="/insights/?type=report" data-url="/insights/?type=report">Reports and guides</a></li>
                   <li><a href="/insights/?type=event" data-url="/insights/?type=event">Events</a></li>
-                  <li class="group">Expertise themes</li>
-                  <li><a href="/expertise/" data-url="/expertise/">All themes</a></li>
+                  <li class="group" data-was="Expertise themes">Expertise</li>
+                  <li><a href="/expertise/" data-url="/expertise/" data-was="All themes">All expertise</a></li>
                   <li><a href="/expertise/loyalty/" data-url="/expertise/loyalty/">Loyalty</a></li>
                   <li><a href="/expertise/membership/" data-url="/expertise/membership/">Membership</a></li>
                   <li><a href="/expertise/subscriptions/" data-url="/expertise/subscriptions/">Subscriptions</a></li>
@@ -615,8 +626,8 @@
         <p><strong>What this frame shows</strong></p>
         <ul>
           <li>Header: logo left, Contact button right and always visible, Menu control.</li>
-          <li>What we do accordion headed "Our Growth Architecture" with the three pillars in desktop order: Growth Strategy (open by default), Activation Services, CEO Advisory (quieter). Then one row of two links: All services, Expertise themes.</li>
-          <li>Our work: plain link. Insights: latest, reports, events, then the five expertise themes. About: About Manifesto, Our team, How we work, Values and culture, Careers. Contact as a plain link.</li>
+          <li>What we do accordion headed "Our Growth Architecture" with the three pillars in desktop order: Growth Strategy (open by default), Activation Services, CEO Advisory (quieter). Every item carries the same plain-English subtitle as desktop. Then one row of two links: All services, Expertise.</li>
+          <li>Our work: plain link. Insights: latest, reports, events, then Expertise with the five theme links. About: About Manifesto, Our team, How we work, Values and culture, Careers. Contact as a plain link.</li>
           <li>Below the primary items, a quieter Who we work with block with the four sector links.</li>
           <li>Toggle pattern used here: label navigates, separate plus or minus toggles. The nav doc allows a whole-row toggle with a View all link as the alternative; pick one in wireframes.</li>
           <li>The panel scrolls if content exceeds the viewport. Header stays pinned.</li>
@@ -627,7 +638,7 @@
 
   <!-- ===================== SITEMAP ===================== -->
   <section class="tabpanel" id="panel-sitemap" role="tabpanel" aria-labelledby="tab-sitemap" data-active="false">
-    <p class="note"><strong>Source:</strong> <code>docs/02-sitemap.md</code>. Weight is shown as a badge. Curly braces mark CMS-generated slugs; "(n)" means many pages of that type. Services are shown under their pillar for readability but every service URL is flat under /services/.</p>
+    <p class="note"><strong>Source:</strong> <code>docs/02-sitemap.md</code>. Weight is shown as a badge. Curly braces mark CMS-generated slugs; "(n)" means many pages of that type. Services are shown under their pillar for readability but every service URL is flat under /services/. Three service slugs changed in v3 with their labels; the v2 slugs redirect (tick "Show what changed from v2" above to see them).</p>
 
     <div class="legend">
       <span><span class="badge canonical">Canonical</span> owns a topic, full content, high SEO investment</span>
@@ -649,10 +660,10 @@
               </li>
               <li><span class="node"><span class="url">/services/activation/</span><span class="name">Activation Services (group)</span><span class="badge pillar">Pillar 2</span><span class="badge supporting">Supporting</span></span>
                 <ul>
-                  <li><span class="node canonical"><span class="url">/services/customer-intelligence/</span><span class="name">Customer Intelligence</span><span class="badge canonical">Canonical</span></span></li>
+                  <li><span class="node canonical"><span class="url">/services/customer-research/</span><span class="name" data-was="Customer Intelligence, /services/customer-intelligence/">Customer Research and Insight</span><span class="badge canonical">Canonical</span></span></li>
                   <li><span class="node canonical"><span class="url">/services/experience-engineering/</span><span class="name">Experience Engineering</span><span class="badge canonical">Canonical</span></span></li>
-                  <li><span class="node canonical"><span class="url">/services/data-agents/</span><span class="name">Data Agents</span><span class="badge canonical">Canonical</span></span></li>
-                  <li><span class="node canonical"><span class="url">/services/operating-architecture/</span><span class="name">Operating Architecture</span><span class="badge canonical">Canonical</span></span></li>
+                  <li><span class="node canonical"><span class="url">/services/ai-agents-for-marketing/</span><span class="name" data-was="Data Agents, /services/data-agents/">AI Agents for Marketing</span><span class="badge canonical">Canonical</span></span></li>
+                  <li><span class="node canonical"><span class="url">/services/operating-model-design/</span><span class="name" data-was="Operating Architecture, /services/operating-architecture/">Operating Model Design</span><span class="badge canonical">Canonical</span></span></li>
                   <li><span class="node canonical"><span class="url">/services/growth-office/</span><span class="name">Growth Office</span><span class="badge canonical">Canonical</span></span></li>
                   <li><span class="node canonical"><span class="url">/services/ai-enablement/</span><span class="name">AI Enablement</span><span class="badge canonical">Canonical</span></span></li>
                 </ul>
@@ -661,7 +672,7 @@
             </ul>
           </li>
 
-          <li class="section"><span class="node"><span class="url">/expertise/</span><span class="name">Expertise themes hub</span><span class="badge supporting">Supporting</span></span>
+          <li class="section"><span class="node"><span class="url">/expertise/</span><span class="name">Expertise hub (expertise themes)</span><span class="badge supporting">Supporting</span></span>
             <ul>
               <li><span class="node"><span class="url">/expertise/loyalty/</span><span class="name">Loyalty</span><span class="badge supporting">Supporting</span></span></li>
               <li><span class="node"><span class="url">/expertise/membership/</span><span class="name">Membership</span><span class="badge supporting">Supporting</span></span></li>
@@ -759,6 +770,12 @@
     });
   });
 
+  /* ---- Review aid: show v2 labels next to renamed items ---- */
+  var showDiff = document.getElementById('showDiff');
+  showDiff.addEventListener('change', function () {
+    document.body.setAttribute('data-show-diff', showDiff.checked ? 'true' : 'false');
+  });
+
   /* ---- Toast: links show the URL they would open ---- */
   var toast = document.getElementById('toast');
   var toastTimer;
@@ -848,6 +865,7 @@
     }
   });
   document.addEventListener('click', function (e) {
+    if (e.target.closest('.review-aid')) return; /* the v2 diff toggle should not close the panel it is annotating */
     if (!e.target.closest('#primaryNav') && !e.target.closest('#megaNav')) closeAllDesktop();
   });
 
