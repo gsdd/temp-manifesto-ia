@@ -6,7 +6,7 @@ Why v3 exists, the rule it applies, and every label change from v2 to v3: old la
 
 v4 (`v4-simplification.md`) changes **no label**. Every label decision below stands: the three renames, the coined names kept, the acronyms removed, "Expertise" as the visitor's word.
 
-What v4 changes is where the **subtitles** live. The thirteen v3 subtitles are retired from the menu (D-35). In their place: three pillar lines of four to six words ("Where and how you grow", "Turning strategy into results", "One-to-one advice for senior leaders") and two quiet lines under the two labels Andy named as opaque (Experience Engineering: "Customer experience and websites"; Growth Office: "Interim growth team"). Each v3 subtitle becomes the **hero line** of its service page, and `04-canonicals-and-seo.md` section 6.1 makes the searched terms a per-page requirement. So the subtitle tables below are still the approved wording; they now describe page copy, not menu copy.
+What v4 changes is where the **subtitles** live. The thirteen v3 subtitles are retired from the menu (D-35). In their place: three pillar lines of four to six words ("Where and how you grow", "Turning strategy into results", "One-to-one support for leaders") and two quiet lines under the two labels Andy named as opaque (Experience Engineering: "Customer experience and websites"; Growth Office: "Interim growth team"). Each v3 subtitle becomes the **hero line** of its service page, and `04-canonicals-and-seo.md` section 6.1 makes the searched terms a per-page requirement. So the subtitle tables below are still the approved wording; they now describe page copy, not menu copy.
 
 Three v3 menu items no longer exist (D-36): the "Growth Strategy" item under its own heading, "Side-by-Side" under CEO Advisory (the heading is the link), and "Meet the advisors". The Insights dropdown is gone (D-38), so its Expertise column no longer exists either. The footer-row link reads "Expertise" without the five names (D-37).
 
@@ -175,7 +175,7 @@ The test the v3 brief set: someone with one of these intents should be able to p
 | operating model, ways of working, org design | Operating Model Design | Label; page hero line |
 | PMO, programme office, interim, transformation office | Growth Office | Menu quiet line "Interim growth team"; page hero line and title tag carry "programme office" |
 | growth strategy, growth consultancy, commercial strategy | Growth Strategy | Heading; pillar line "Where and how you grow" |
-| CEO advisor, executive coach, non-exec, retainer | CEO Advisory | Heading; pillar line "One-to-one advice for senior leaders"; page names Side-by-Side and the retainer |
+| CEO advisor, executive coach, non-exec, retainer | CEO Advisory | Heading; pillar line "One-to-one support for leaders"; page names Side-by-Side and the retainer |
 | case studies, clients, results | Our work | Header |
 | financial services, media, consumer, retail | Footer: Who we work with; Work filters | Footer and More filters, by design |
 

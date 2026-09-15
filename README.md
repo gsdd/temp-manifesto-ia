@@ -14,7 +14,7 @@ The What we do menu **is** Andy's triangle: three headings, three short lines, s
 
 | Growth Strategy | Activation Services | CEO Advisory (quieter) |
 |---|---|---|
-| Where and how you grow | Turning strategy into results | One-to-one advice for senior leaders |
+| Where and how you grow | Turning strategy into results | One-to-one support for leaders |
 | Proposition Innovation | Customer Research and Insight | |
 | | Experience Engineering, *Customer experience and websites* | |
 | | AI Agents for Marketing | |

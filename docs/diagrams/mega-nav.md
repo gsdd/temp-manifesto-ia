@@ -40,7 +40,7 @@ flowchart TB
             C2a --> C2b --> C2c --> C2d --> C2e --> C2f
         end
 
-        subgraph C3["CEO Advisory (quieter) → /services/ceo-advisory/<br/><i>One-to-one advice for senior leaders</i>"]
+        subgraph C3["CEO Advisory (quieter) → /services/ceo-advisory/<br/><i>One-to-one support for leaders</i>"]
             direction TB
             C3a["(no items: the heading is the link)"]
         end
@@ -57,7 +57,7 @@ flowchart TB
     Panel --> Row
 ```
 
-Column headings are the pillar links. Italic lines under the headings are the three pillar lines; the two italic lines under Experience Engineering and Growth Office are the only item-level text in the panel. There is no heading line above the columns. 13 links, 12 destinations, about 45 words. See `../v4-simplification.md` for what was removed from v3.
+Column headings are the pillar links. Italic lines under the headings are the three pillar lines; the two italic lines under Experience Engineering and Growth Office are the only item-level text in the panel. There is no heading line above the columns. 13 links, 13 distinct destinations, 49 words. See `../v4-simplification.md` for what was removed from v3.
 
 ## The triangle as Andy draws it (Source B) and how it maps to the nav
 

@@ -37,7 +37,7 @@ Each piece was justified on its own. Together they made a simple idea look compl
 
 ```
 Growth Strategy              Activation Services              CEO Advisory
-Where and how you grow       Turning strategy into results    One-to-one advice for senior leaders
+Where and how you grow       Turning strategy into results    One-to-one support for leaders
 
 Proposition Innovation       Customer Research and Insight
                              Experience Engineering
@@ -59,7 +59,7 @@ All services   Expertise   Contact
 - **The heading line is cut.** "Our Growth Architecture / Strategy that works. Execution that delivers." was a line to read before reaching the pillars. Growth Architecture is the subheading of `/services/` and is in the company name; the strapline is hero copy on Home and the Services hub.
 - **Footer row: three words.** All services, Expertise, Contact. The five theme names are gone from the menu.
 
-Count: 13 links (3 headings, 7 items, 3 footer) and 12 destinations, about 45 words. v3 had 17 links, 14 destinations and about 200 words. v1 had 22 links.
+Count: 13 links (3 headings, 7 items, 3 footer), every one a distinct destination, 49 words. v3 had 17 links, 14 destinations and about 200 words. v1 had 22 links.
 
 ### 2. Header: one mega-nav, one small dropdown
 

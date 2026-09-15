@@ -507,7 +507,7 @@ What v1 got right and v2 keeps: services canonical and flat under `/services/`; 
 
 **Rationale**: Source F: prefer labels only; at most one short line per pillar; a quiet line is acceptable for a coined name that stays, or move the explanation to the page, and prefer bare if still busy. Source C is the tie-breaker on which names need help: Andy said Experience Engineering must map to "can you build a website?" and that Growth Office terminology is hard. He did not say that about Proposition Innovation (both Gary's IA doc and the deck use "proposition"; it is standard UK marketing language) or Activation Services (the pillar name, with the searched words in the six labels beneath it). Side-by-Side is no longer a menu item (D-36). Option 3 would leave Experience Engineering unexplained in the menu, which contradicts Otter. Option 2 keeps four lines where two do the job.
 
-The three pillar lines are shortened from seven to nine words to four to six ("Where and how you grow", "Turning strategy into results", "One-to-one advice for senior leaders") and are shared with the Home and Services hub triangle blocks.
+The three pillar lines are shortened from seven to nine words to four to six ("Where and how you grow", "Turning strategy into results", "One-to-one support for leaders") and are shared with the Home and Services hub triangle blocks.
 
 **Where the words went**: each v3 subtitle becomes the hero line of its service page, and `04-canonicals-and-seo.md` section 6.1 makes the searched terms a per-page requirement. Nothing Otter asked for is lost; it moves from menu to page.
 

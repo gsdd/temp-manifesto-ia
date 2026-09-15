@@ -23,7 +23,7 @@ v4 changes: the mega-nav carries three pillar lines and two quiet lines instead 
 |---|---|---|
 | Positioning statement | The one-line and one-paragraph description of what MGA is and does (Source B: "Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth") | About (full), Home (short) |
 | Growth Architecture triangle | The three pillars with their pillar lines (the same lines as the mega-nav), drawn as three blocks | Services hub (full), Home (compact) |
-| Pillar lines and quiet lines | Three pillar lines ("Where and how you grow", "Turning strategy into results", "One-to-one advice for senior leaders") and two quiet lines (Experience Engineering, Growth Office) | Global navigation settings; rendered in the mega-nav, mobile menu, Home and Services hub |
+| Pillar lines and quiet lines | Three pillar lines ("Where and how you grow", "Turning strategy into results", "One-to-one support for leaders") and two quiet lines (Experience Engineering, Growth Office) | Global navigation settings; rendered in the mega-nav, mobile menu, Home and Services hub |
 | Service hero line | One line under the service H1 carrying the searched terms for that service (`04-canonicals-and-seo.md`, 6.1) | Service detail |
 | Service description | Why, What, How it works, for one service | Service detail |
 | Pillar explanation | What Activation means; what Side-by-Side is | Activation group page, CEO Advisory page |

@@ -93,7 +93,7 @@ Order follows the Source B deck. Labels are the v3 labels (`nav-wording-decision
 | Element | Text | Links to |
 |---|---|---|
 | Heading | **CEO Advisory** | `/services/ceo-advisory/` |
-| Pillar line | One-to-one advice for senior leaders | not a link |
+| Pillar line | One-to-one support for leaders | not a link |
 
 No items. The heading is the link. v3 had two items beneath it: "Side-by-Side" (the same page as the heading) and "Meet the advisors" (`/about/team/#advisors`). Both are cut (D-36). Side-by-Side is named in the hero of the CEO Advisory page; the advisors are that page's main block and are also listed under Our team. The column stays: it is visibly the third pillar, quieter by width and type weight, not by being hidden (Source C, Source D).
 
@@ -122,7 +122,7 @@ Three one-word or two-word links. The middle one is the only place expertise app
 - Column headings align on one baseline. Reading left to right gives Growth Strategy, Activation Services, CEO Advisory.
 - Column 3 uses the same structure (heading, pillar line) with lighter type weight and a slightly smaller heading.
 - The footer row is separated by a rule and uses smaller text. It must not grow beyond three links.
-- Word budget for the whole open panel: under fifty words. v4 as specified is about forty-five.
+- Word budget for the whole open panel: under fifty words. v4 as specified is forty-nine.
 
 ### 3.5 Mobile and tablet behaviour (below roughly 1024 px)
 
@@ -232,7 +232,7 @@ Breadcrumbs are marked up with `BreadcrumbList` structured data (see `04-canonic
 |---|---|---|---|---|
 | Mega-nav columns | 4 plus a 3-link strip | 3 plus a 3-link footer row | Same as v2 | 3 plus a 3-link footer row; no heading line |
 | Links inside the mega-nav | 22 | 17 | 17 | 13 (3 headings, 7 items, 3 footer) |
-| Distinct destinations | 21 | 14 | 14 | 12 |
+| Distinct destinations | 21 | 14 | 14 | 13 |
 | Words in the open panel (approx.) | 120 | 170 | 200 | 45 |
 | Item subtitles | 0 | 10 | 10 | 0 (two quiet lines) |
 | Pillar subtitles | 0 | 3 | 3 | 3, shortened to four to six words |
