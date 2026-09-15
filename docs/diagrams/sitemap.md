@@ -1,4 +1,4 @@
-# Diagram: sitemap (v2)
+# Diagram: sitemap (v3)
 
 Mermaid source. The authoritative list is `../02-sitemap.md`; if the two disagree, the document wins.
 
@@ -20,12 +20,12 @@ flowchart TB
     S --> S1["/services/growth-strategy/ (pillar 1 and lead service)"]:::canonical
     S1 --> S2["/services/proposition-innovation/"]:::canonical
     S --> SA["/services/activation/ (pillar 2, group page)"]:::supporting
-    SA --> S3["/services/customer-intelligence/"]:::canonical
-    SA --> S4["/services/experience-engineering/"]:::canonical
-    SA --> S5["/services/data-agents/"]:::canonical
-    SA --> S6["/services/operating-architecture/"]:::canonical
-    SA --> S7["/services/growth-office/"]:::canonical
-    SA --> S8["/services/ai-enablement/"]:::canonical
+    SA --> S3["/services/customer-research/ Customer Research and Insight"]:::canonical
+    SA --> S4["/services/experience-engineering/ Experience Engineering"]:::canonical
+    SA --> S5["/services/ai-agents-for-marketing/ AI Agents for Marketing"]:::canonical
+    SA --> S6["/services/operating-model-design/ Operating Model Design"]:::canonical
+    SA --> S7["/services/growth-office/ Growth Office"]:::canonical
+    SA --> S8["/services/ai-enablement/ AI Enablement"]:::canonical
     S --> S9["/services/ceo-advisory/ (pillar 3, Side-by-Side)"]:::supporting
 
     %% Expertise
@@ -76,6 +76,7 @@ flowchart TB
 
 Notes:
 - Proposition Innovation and the six Activation services are shown under their pillar for readability. All service URLs are flat under `/services/` (see D-12 in `../06-decisions-log.md`).
+- Three service slugs changed in v3 with their labels (D-27 to D-29). The v2 slugs `/services/customer-intelligence/`, `/services/data-agents/` and `/services/operating-architecture/` are redirects.
 - Home is a page with no child URLs. The arrows from Home show top-level sections, not parent-child paths.
 
 ## The three dimensions and how they intersect
@@ -89,10 +90,10 @@ flowchart LR
             PI["Proposition Innovation"]
         end
         subgraph P2["Activation Services"]
-            CI["Customer Intelligence"]
+            CI["Customer Research and Insight"]
             EE["Experience Engineering"]
-            DA["Data Agents"]
-            OA["Operating Architecture"]
+            DA["AI Agents for Marketing"]
+            OA["Operating Model Design"]
             GO["Growth Office"]
             AI["AI Enablement"]
         end

@@ -1,6 +1,8 @@
-# 04. Canonicals and SEO (v2)
+# 04. Canonicals and SEO (v3)
 
 Which page owns which topic, how the overlaps between services, expertise themes and sectors are resolved, what is and is not indexed, and how pages link to one another. The aim is a site that originates enquiries from search, not just one that confirms credibility after a referral (Source C).
+
+v3 changes: three service labels and slugs now use the searched term rather than the deck term (Customer Research and Insight, AI Agents for Marketing, Operating Model Design); the anchor text, H1, title tag and redirect rules below are updated to match. See `nav-wording-decisions.md`.
 
 The principle is Source A's: one canonical page for each important proposition or topic, with the rest of the site linking into and out of it. Services are canonical. Themes and sectors intersect them through links and tags, never through duplicate pages.
 
@@ -35,18 +37,18 @@ The canonical home for each topic cluster, and the pages that may reference but 
 | Growth strategy, customer value growth strategy, growth consultancy, CIVD (Customer, Innovation, Value, Delivery) | `/services/growth-strategy/` | Home, About, all theme pages, case studies, How we work (framework explanation only) | Any theme or sector variant such as "growth strategy for retail"; a separate CIVD page |
 | Proposition design, proposition innovation, new proposition development, D2C propositions | `/services/proposition-innovation/` | Growth Strategy page, Loyalty / Membership / Subscriptions theme pages | |
 | Strategy activation, strategy to execution, activation services | `/services/activation/` (group) | Home, Services hub, all activation services | |
-| Customer intelligence, customer insight, segmentation, customer research, voice of the customer, digital listening | `/services/customer-intelligence/` | Experience Engineering (research for design), Customer Value theme | A separate research service page |
-| Experience engineering, customer experience design, CX consultancy, website design and build, digital product design, user research, usability testing | `/services/experience-engineering/` | Customer Intelligence (for analytical research), case studies | Separate CX, UX, website or research pages. All of these are H2 sections of this page. |
-| Data agents, AI agents for marketing and data, AgentLab, marketing automation agents, attribution, CDP clean-up, tagging | `/services/data-agents/` | AI Enablement, Operating Architecture, How we work | Individual agent pages; `/agentlab/` as a page (redirect only) |
-| Operating model, operating architecture, adaptive operating model, value streams | `/services/operating-architecture/` | Growth Office, AI Enablement, How we work (framework explanation only) | |
-| Growth office, interim growth leadership, embedded growth team, modern PMO, fractional CMO or CGO | `/services/growth-office/` | Operating Architecture, CEO Advisory | |
-| AI enablement, AI adoption, AI maturity, AI value cases, AI business model innovation | `/services/ai-enablement/` | Data Agents, Operating Architecture | A generic "AI" page |
+| Customer research, customer insight, market research, surveys, segmentation, voice of the customer, digital listening, customer intelligence | `/services/customer-research/` | Experience Engineering (research for design), Customer Value theme | A separate research or market research page |
+| Experience engineering, customer experience design, CX consultancy, website design and build, digital product design, user research, usability testing | `/services/experience-engineering/` | Customer Research and Insight (for analytical research), case studies | Separate CX, UX, website or research pages. All of these are H2 sections of this page. |
+| AI agents for marketing, marketing AI, data agents, AgentLab, marketing automation agents, attribution, CDP clean-up, customer data quality, tagging | `/services/ai-agents-for-marketing/` | AI Enablement, Operating Model Design, How we work | Individual agent pages; `/agentlab/` or `/data-agents/` as pages (redirects only) |
+| Operating model design, operating model consultancy, operating architecture, adaptive operating model, value streams | `/services/operating-model-design/` | Growth Office, AI Enablement, How we work (framework explanation only) | |
+| Growth office, interim growth leadership, embedded growth team, programme office, modern PMO, fractional CMO or CGO | `/services/growth-office/` | Operating Model Design, CEO Advisory | |
+| AI enablement, AI adoption, AI training, AI maturity, AI value cases, AI business model innovation | `/services/ai-enablement/` | AI Agents for Marketing, Operating Model Design | A generic "AI" page |
 | CEO advisory, Side-by-Side, SxS, executive advisor retainer | `/services/ceo-advisory/` | Team profiles flagged as advisor, Team listing `#advisors`, Growth Office | A separate `/side-by-side/` page (redirect only) |
 | Loyalty strategy, loyalty programme design, loyalty economics | `/expertise/loyalty/` | Services (as related theme), case studies, insights, sectors | `/services/loyalty/`, `/sectors/retail/loyalty/` |
 | Membership models, member economics | `/expertise/membership/` | As above | |
 | Subscription growth, churn, retention | `/expertise/subscriptions/` | As above | |
 | Pricing strategy, value-based pricing | `/expertise/pricing/` | As above | |
-| Customer lifetime value, customer value management | `/expertise/customer-value/` | Customer Intelligence (analytics), Growth Strategy | |
+| Customer lifetime value, customer value management | `/expertise/customer-value/` | Customer Research and Insight (analytics), Growth Strategy | |
 | Financial services, media, consumer, retail (as "consultancy for X" queries) | `/sectors/{sector}/` (Light, no keyword targets) | Case studies, Home logo strip | Sector points of view, sector-specific service pages |
 | Ways of working, frameworks, engagement models | `/about/how-we-work/` | Every service page (block 5) | Method pages under `/services/` |
 | Values, culture, DEI | `/about/values/` | About, Careers | Separate DEI page at launch |
@@ -72,8 +74,8 @@ Worked example: loyalty content.
 |---|---|---|
 | MGA's view on loyalty and what goes wrong | `/expertise/loyalty/` | Problem understanding |
 | How MGA designs a loyalty proposition | `/services/proposition-innovation/` (with loyalty named in Related expertise) | Capability |
-| How MGA measures loyalty economics | `/services/customer-intelligence/` | Capability |
-| A retail loyalty case study | `/work/{client}/` tagged Loyalty, Retail, Proposition Innovation, Customer Intelligence | Proof. Surfaces automatically on all four related pages. |
+| How MGA measures loyalty economics | `/services/customer-research/` | Capability |
+| A retail loyalty case study | `/work/{client}/` tagged Loyalty, Retail, Proposition Innovation, Customer Research and Insight | Proof. Surfaces automatically on all four related pages. |
 | Loyalty in retail as a sector view | Nowhere as a page. The retail sector landing shows loyalty in its "Themes that matter here" block, auto-derived from case study tags. | Sectors are light |
 | An article on loyalty trends | `/insights/{slug}/` tagged Loyalty | Thinking. Surfaces on the theme page. |
 
@@ -89,12 +91,13 @@ Result: one loyalty page, one retail page, two service pages, and the proof and 
 | Growth Strategy vs CEO Advisory | Growth Strategy is a project with outputs. CEO Advisory is a standing relationship. CEO Advisory page may say advisors draw on Growth Strategy thinking and link to it. Growth Strategy page does not promote CEO Advisory. |
 | CEO Advisory vs advisor profiles | The offer is described once on `/services/ceo-advisory/`. The people are described once each on `/about/team/{name}/`. The offer page surfaces the profiles; the profiles carry a one-line note and link back. Neither copies the other. |
 | Activation group vs the six activation services | The group page explains the concept and lists. It never describes an individual service beyond the card summary. |
-| Customer Intelligence vs Experience Engineering (research) | Research that produces insight and segmentation lives in Customer Intelligence. Research that directly informs design (usability, journey research) lives in Experience Engineering under its "Customer research and testing" H2. Each page links to the other in one sentence. |
+| Customer Research and Insight vs Experience Engineering (research) | Research that produces insight and segmentation lives in Customer Research and Insight. Research that directly informs design (usability, journey research) lives in Experience Engineering under its "User research and testing" H2. Each page links to the other in one sentence. |
 | Experience Engineering vs separate CX / website / research pages | No separate pages. Experience Engineering carries three H2 sections, each with its own anchor (`#customer-experience`, `#website-and-digital`, `#research-and-testing`). Metadata, FAQ and internal anchor text use the plain terms so that the page ranks for them. |
-| Data Agents vs AI Enablement | Data Agents is the tooling: specific agents doing specific jobs. AI Enablement is adoption and value strategy. AI Enablement links to Data Agents as "the tooling side"; Data Agents links to AI Enablement as "if you are earlier in the journey". |
-| Data Agents vs Operating Architecture | Operating Architecture designs the model in which humans and agents work. Data Agents supplies the agents. Cross-linked once each. |
-| Growth Office vs Operating Architecture | Operating Architecture designs; Growth Office staffs. Cross-linked once each. |
-| Expertise theme vs a service that mainly serves it (for example Customer Value vs Customer Intelligence) | The theme page states the problem and links to the service for the analytics. The service page lists the theme under Related expertise. If a service page is found to be mostly about one theme, its copy is corrected, not the theme page. |
+| AI Agents for Marketing vs AI Enablement | AI Agents for Marketing is the tooling: specific agents doing specific jobs. AI Enablement is adoption and value strategy. AI Enablement links to AI Agents for Marketing as "the tooling side"; AI Agents for Marketing links to AI Enablement as "if you are earlier in the journey". Both labels carry "AI" so a visitor with an AI intent sees two doors; the subtitles tell them which. |
+| AI Agents for Marketing vs Operating Model Design | Operating Model Design designs the model in which humans and agents work. AI Agents for Marketing supplies the agents. Cross-linked once each. |
+| Growth Office vs Operating Model Design | Operating Model Design designs; Growth Office staffs. Cross-linked once each. |
+| Nav label vs deck name (renamed services) | The nav label is the H1 and the slug. The deck name (Customer Intelligence, Data Agents, Operating Architecture) appears once in the hero as an "also known as" line and may be used in body copy as the practice, product or framework name. It is never a second page. |
+| Expertise theme vs a service that mainly serves it (for example Customer Value vs Customer Research and Insight) | The theme page states the problem and links to the service for the analytics. The service page lists the theme under Related expertise. If a service page is found to be mostly about one theme, its copy is corrected, not the theme page. |
 | Sector landing vs sector case studies | Landing aggregates; case studies hold the substance. The landing never summarises case studies in prose beyond the hero paragraph. |
 | Methodology vs services | How we work explains each framework once. A service page says "we use our X approach" and links. |
 | Insight vs theme page | An insight is a dated point of view. A theme page is the evergreen position. If an insight becomes the definitive view, its key points are folded into the theme page and the insight links to it. |
@@ -160,7 +163,8 @@ Internal links are how the three dimensions intersect without duplicate pages. T
 
 ### 5.3 Anchor text
 
-- Link to a service using its exact service label ("Experience Engineering"), optionally followed by a plain-language gloss in the sentence ("Experience Engineering, our CX and website practice").
+- Link to a service using its nav label exactly ("Customer Research and Insight", "AI Agents for Marketing", "Operating Model Design", "Experience Engineering"). Never link using a retired deck label on its own.
+- Where the nav label is a Manifesto term (Experience Engineering, Growth Office, Side-by-Side, Proposition Innovation), follow it with a plain gloss in the sentence the first time it appears on a page ("Experience Engineering, our customer experience and website practice").
 - Link to a theme using the theme name.
 - Never use "click here" or "read more" as the only link text.
 - Anchor links into Experience Engineering sections may use the plain terms ("website design and build").
@@ -181,9 +185,9 @@ Every case study, insight and team profile carries three tag sets: services (req
 
 | Item | Rule |
 |---|---|
-| Title tags | `{Page title} \| Manifesto Growth Architects`. Service titles carry the plain-language term where it aids search, for example `Experience Engineering: CX, website and research \| Manifesto Growth Architects`. Under 60 characters where practical. |
+| Title tags | `{Page title} \| Manifesto Growth Architects`. Service titles carry the plain-language term where the label is a Manifesto term, for example `Experience Engineering: customer experience and websites \| Manifesto Growth Architects`, `Growth Office: interim growth team \| Manifesto Growth Architects`. Renamed services already carry the searched term in the label. Our work uses `Case studies \| Manifesto Growth Architects`. Under 60 characters where practical. |
 | Meta descriptions | Unique per page, 140 to 160 characters, written as an answer to the visitor's question. |
-| H1 | One per page, matching the page's nav label or title. Service H1s use the exact service label. |
+| H1 | One per page, matching the page's nav label or title. Service H1s use the exact nav label (v3 wording). Renamed services carry a one-line "also known as" under the H1 naming the deck term. |
 | Organization schema | Site-wide, with name, logo, sameAs (LinkedIn), contactPoint. Name and logo unchanged (Source C). |
 | Service schema | On each service detail page: name, description, provider, areaServed, and serviceType using the plain-language terms. |
 | BreadcrumbList schema | All pages with breadcrumbs. |
@@ -206,8 +210,9 @@ The current site's URLs are not listed in the sources, so this section sets the 
 | Service redirects | Old service or capability pages redirect to the matching `/services/` canonical. Old CX, UX, website or research pages redirect to `/services/experience-engineering/` and may target a section anchor. |
 | Sector redirects | Any old industry pages redirect to `/sectors/{sector}/` if the sector exists, otherwise to `/work/?sector=` or `/work/`. |
 | Content redirects | Old articles redirect to their new `/insights/{slug}/` URL, keeping slugs where possible. |
-| Marketing shortcuts | `/growth-architecture/` 301 to `/services/`. `/agentlab/` 301 to `/services/data-agents/`. `/side-by-side/` 301 to `/services/ceo-advisory/`. `/life-at-manifesto/` (if it exists today) 301 to `/careers/`. |
-| Repackaging later | If services are renamed or regrouped (Source C notes the deck is a subset and may change), the old `/services/{slug}/` 301s to the new one. Flat service URLs make this a single redirect per service. |
+| Marketing shortcuts | `/growth-architecture/` 301 to `/services/`. `/agentlab/` and `/data-agents/` 301 to `/services/ai-agents-for-marketing/`. `/side-by-side/` 301 to `/services/ceo-advisory/`. `/life-at-manifesto/` (if it exists today) 301 to `/careers/`. |
+| v2 service slugs (deck names) | `/services/customer-intelligence/` 301 to `/services/customer-research/`. `/services/data-agents/` 301 to `/services/ai-agents-for-marketing/`. `/services/operating-architecture/` 301 to `/services/operating-model-design/`. Nothing is live, so these matter only if the v2 URLs were shared; they cost nothing to keep. |
+| Repackaging later | If services are renamed or regrouped (Source C notes the deck is a subset and may change), the old `/services/{slug}/` 301s to the new one. Flat service URLs make this a single redirect per service. v3 is the first use of this rule. |
 | Testing | Redirect map is tested before go-live and monitored for 404s for 90 days after. |
 
 ---
@@ -218,13 +223,15 @@ The site must catch people who do not know MGA. The mapping below shows which pa
 
 | Intent type | Example query shape | Catching page |
 |---|---|---|
-| Capability | "growth strategy consultancy", "customer experience consultancy UK", "AI enablement consultancy" | Service detail |
+| Capability | "growth strategy consultancy", "customer experience consultancy UK", "customer research agency", "AI agents for marketing", "operating model design consultancy", "AI enablement consultancy" | Service detail |
 | Problem | "how to fix a loyalty programme", "subscription churn strategy", "pricing strategy consultancy" | Expertise theme |
 | Sector reassurance | "growth consultancy financial services" | Sector landing (Light; ranks only opportunistically) plus the service page, which mentions sectors in proof |
 | Proof | "{client name} case study", "{client name} Manifesto" | Case study |
 | Person | "{consultant name}", "{advisor name}" | Team profile |
 | Brand | "Manifesto Growth Architects", "Manifesto Growth", "Growth Architecture" | Home, About, Services hub |
-| Product | "AgentLab", "Side-by-Side advisory" | Data Agents, CEO Advisory |
+| Product and deck names | "AgentLab", "Data Agents", "Side-by-Side advisory", "Manifesto Customer Intelligence" | AI Agents for Marketing, CEO Advisory, Customer Research and Insight (via the "also known as" line and redirects) |
 | Thought leadership | Long-tail topical questions | Insight, handing off to a theme and a service |
 
 Sector queries are the weakest intentionally. Sector authority is earned through case studies and service pages that name sectors, not through sector content hubs.
+
+The nav-level version of this table (which header or mega-nav item a visitor with each intent would click) is in `nav-wording-decisions.md`, section "Search intent to nav item".
