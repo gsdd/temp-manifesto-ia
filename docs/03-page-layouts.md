@@ -1,6 +1,8 @@
-# 03. Page layouts (v2)
+# 03. Page layouts (v3)
 
 Templates for each page type, described as an ordered list of blocks. For every block: what it contains, where its content comes from, and when it appears. This is structure, not visual design. Block names are working names for the CMS and wireframes.
+
+v3 changes are confined to wording: service names follow the v3 nav labels (`nav-wording-decisions.md`), the service hero gains an "also known as" line for renamed services, and the Experience Engineering H2s use the plain terms. Block order and rules are unchanged from v2.
 
 Related: `05-content-matrix.md` shows the same information as a grid; `04-canonicals-and-seo.md` sets the linking rules the "Related" blocks follow.
 
@@ -31,7 +33,7 @@ Purpose: say who MGA is for, show the Growth Architecture triangle, and route in
 |---|---|---|---|
 | 1 | Hero | Positioning statement from Source B ("Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth") and the line "Strategy that works. Execution that delivers.", one line of who it is for, primary CTA to Contact, secondary CTA to `/services/` | Always |
 | 2 | Client logo strip | 8 to 12 logos from the Source B client list, linking to `/work/` | Always. Logos link to the case study if one exists, otherwise to `/work/?sector=`. |
-| 3 | Growth Architecture triangle | The triangle drawn as three connected blocks with the Source B one-liners: Growth Strategy ("Architecting strategies and value propositions that deliver sustainable customer value growth"), Activation Services ("Building the bridge from strategy to execution"), CEO Advisory ("Direct support that sits side-by-side with leaders"). Each block links to its pillar page. Growth Strategy is largest, Activation second, CEO Advisory smallest and quietest. | Always. This is the block Gary asked for: the triangle must be pointable within seconds. Uses the same three labels as the mega-nav. |
+| 3 | Growth Architecture triangle | The triangle drawn as three connected blocks with the Source B one-liners: Growth Strategy ("Architecting strategies and value propositions that deliver sustainable customer value growth"), Activation Services ("Building the bridge from strategy to execution"), CEO Advisory ("Direct support that sits side-by-side with leaders"). Each block links to its pillar page. Growth Strategy is largest, Activation second, CEO Advisory smallest and quietest. | Always. This is the block Gary asked for: the triangle must be pointable within seconds. Uses the same three labels as the mega-nav. The one-liners are Source B copy and should get the same plain-language pass as the nav when Andy writes the service copy (open item in `06-decisions-log.md`). |
 | 4 | Featured work | Three case studies, curated, spanning at least two pillars | Always. Curated; falls back to newest. This is where the v1 mega-nav featured card moved to. |
 | 5 | Expertise themes strip | The five themes as a single calm row of links with one-line descriptors, heading "Growth problems we know deeply" | Always. One row, no cards. |
 | 6 | Latest insights | Three newest insights, auto | Always |
@@ -68,11 +70,11 @@ Used for all eight canonical services and, with the noted variations, the Activa
 
 | # | Block | Content | Rule |
 |---|---|---|---|
-| 1 | Hero | Service name as H1, the Source B one-line definition, one-line "who this is for", primary CTA (`/contact/?topic={service}`) | Always |
+| 1 | Hero | Service name as H1 (the v3 nav label, exactly), a one-line plain definition (start from the mega-nav subtitle, then the Source B one-liner if it adds something), one-line "who this is for", primary CTA (`/contact/?topic={service}`). For services renamed from the deck (Customer Research and Insight, AI Agents for Marketing, Operating Model Design) a small "also known as" line under the H1 names the deck term: "Our Customer Intelligence practice", "Data Agents, built in AgentLab", "Our Operating Architecture framework". | Always. The "also known as" line is Conditional: only on renamed services. |
 | 2 | Pillar context | One line placing the service in the triangle ("Part of Activation Services" or "Part of Growth Strategy") linking to the pillar page, and previous / next service links within the pillar | Always for Activation services and Proposition Innovation. Omitted for Growth Strategy (it is the pillar) and CEO Advisory (it is the pillar). |
 | 3 | Why | Two to four short paragraphs on the situations that lead clients to this service. Source B provides a "Why" paragraph for every service; start from it. | Always |
 | 4 | What we do | The service explained: scope, typical deliverables, what the client gets. Source B provides a "What" section for every service. Subheadings carry the search-friendly terms. | Always. This is the canonical description; no other page restates it. |
-| 5 | How it works | Typical phases or shape of the engagement, duration where Source B gives it (Data Agents: 4 weeks, 6 weeks, ongoing), who from MGA is involved | Always. Links to `/about/how-we-work/` for general methodology rather than repeating it. |
+| 5 | How it works | Typical phases or shape of the engagement, duration where Source B gives it (AI Agents for Marketing: 4 weeks, 6 weeks, ongoing), who from MGA is involved | Always. Links to `/about/how-we-work/` for general methodology rather than repeating it. |
 | 6 | Service-specific module | Varies by service (table below) | Conditional per service |
 | 7 | Proof | Case studies tagged to this service, auto, up to four, with the option to pin one. Source B names example clients per service. | Always when at least one tagged case study exists. If none, show a client logo list instead. |
 | 8 | Related expertise | Themes where this service is commonly applied, each with one line on the intersection | Always. Set per service in the CMS. Minimum one, maximum five. |
@@ -88,12 +90,12 @@ Service-specific module (block 6), drawn from Source B:
 |---|---|
 | Growth Strategy | The CIVD frame (Customer, Innovation, Value, Delivery) from the Source B Growth Strategy slide, as a four-part diagram with a paragraph each. Plus a link to Proposition Innovation as the natural next step. Source B marks this slide "to be updated from existing content on growth architecture / approach". |
 | Proposition Innovation | How MGA designs new value propositions that grow sustainable customer value, with the proposition types named on the call (loyalty, membership, subscription, D2C) each linking to its expertise theme. |
-| Customer Intelligence | Two offers as sub-sections (Insight Projects; Intelligence Capabilities) and the input types as a scannable list: digital listening, qual research, quant research, customer data analytics, internal knowledge, external market data. |
-| Experience Engineering | Three sub-sections with their own H2s: Customer experience (CX) design; Website and digital product build; Customer and value analytics with testing. Each two paragraphs. Plus the Source B proof line: engagements consistently deliver over 3x EBITDA return on investment. This is how CX, website and research searches are caught on one canonical page. Reference model: Dayinsure and Key Group. |
-| Data Agents | Timeline (4 weeks audit, 6 weeks first agents, ongoing portfolio) then the AgentLab catalogue grouped as in Source B: Reporting and Analytics; Data and Infrastructure; Strategy and Planning; Automation and Execution. Agents are entries in this list, not pages. |
-| Operating Architecture | The four qualities of an adaptive operating model (grounded in customer value growth; fuelled by high-quality data; redesigned around humans and AI agents; orchestrated and linked to impact) and the Source B appendix diagram (Growth Strategy, Data and Tools, New Work Units, Orchestration, value streams) as a captioned figure. |
-| Growth Office | The three connected elements from Source B (Culture, Capability, Value) as sub-sections, and the note that MGA provides interim support then establishes ongoing ways of working. |
-| AI Enablement | Three programmes as sub-sections (AI Adoption, Value Case Delivery, Business Model Innovation) with the maturity assessment as the entry step. Cross-link to Data Agents for tooling. |
+| Customer Research and Insight | Two offers as sub-sections with plain H2s ("Research projects": qualitative, quantitative, surveys, digital listening; "Always-on customer insight": voice of the customer tools, panels, intelligence platforms) and the input types as a scannable list: digital listening, qual research, quant research, customer data analytics, internal knowledge, external market data. "Customer Intelligence" is used in body copy as the practice name. |
+| Experience Engineering | Three sub-sections with their own plain H2s: Customer experience (CX) design; Website and digital product design and build; User research and testing (with customer and value analytics). Each two paragraphs. Plus the Source B proof line: engagements consistently deliver over 3x EBITDA return on investment. This is how customer experience, website and research searches are caught on one canonical page. Reference model: Dayinsure and Key Group. |
+| AI Agents for Marketing | Timeline (4 weeks audit, 6 weeks first agents, ongoing portfolio) then the AgentLab catalogue grouped as in Source B: Reporting and Analytics; Data and Infrastructure; Strategy and Planning; Automation and Execution. Agents are entries in this list, not pages. "Data Agents" and "AgentLab" are named in the module heading. |
+| Operating Model Design | The four qualities of an adaptive operating model (grounded in customer value growth; fuelled by high-quality data; redesigned around humans and AI agents; orchestrated and linked to impact) and the Source B appendix diagram (Growth Strategy, Data and Tools, New Work Units, Orchestration, value streams) as a captioned figure titled "Our Operating Architecture framework". |
+| Growth Office | The three connected elements from Source B (Culture, Capability, Value) as sub-sections, and the note that MGA provides interim support then establishes ongoing ways of working. Body copy uses the plain terms "interim growth team" and "programme office" alongside the label. |
+| AI Enablement | Three programmes as sub-sections with plain H2s (AI skills and adoption; Finding where AI pays off (value cases); New business models with AI) with the maturity assessment as the entry step. Cross-link to AI Agents for Marketing for tooling. |
 | CEO Advisory (Side-by-Side) | Why (driving customer-led growth is demanding and lonely) and What (a select group of senior leaders armed with Manifesto thinking and frameworks; adaptive and personality-led; virtual or in person; retainer-based). Advisor profiles pulled from `/about/team/` where the person is flagged as advisor: this block is the heart of the page. How the retainer works. No FAQ module. Quieter CTA ("Arrange a conversation"). |
 | Activation group page | Replaces blocks 3 to 6 with: "What Activation means here" (the bridge from strategy to execution, AI-powered and human-led, not ongoing operations), then six service cards with subtitles. Blocks 7 to 13 as standard. |
 
@@ -103,7 +105,7 @@ Service-specific module (block 6), drawn from Source B:
 
 | # | Block | Content | Rule |
 |---|---|---|---|
-| 1 | Intro | Heading "Expertise themes", one paragraph explaining these are the growth problems MGA is known for and that each cuts across services and sectors | Always |
+| 1 | Intro | Heading "Our expertise", one paragraph explaining these are the growth problems MGA is known for and that each cuts across services and sectors | Always |
 | 2 | Theme cards | Five cards in nav order, each with a definition line and the count of case studies and insights available | Always |
 | 3 | Latest insights across themes | Six newest insights tagged to any theme | Always |
 | 4 | CTA | Contact | Always |
@@ -258,7 +260,7 @@ Purpose: explain method without turning it into a product (Source A: separate me
 | 2 | Principles | The ways of working MGA holds to, as a short list with a paragraph each. Include "AI-powered, human-led" (Source B). | Always |
 | 3 | Engagement shapes | Strategy project, strategy into activation, embedded growth office, advisory retainer. Each links to the relevant service or pillar. | Always |
 | 4 | Frameworks and tools | Named frameworks (for example CIVD, the adaptive operating model) with a paragraph each. Frameworks are explained here once and referenced from service pages. | Always |
-| 5 | Working with AI | How AI-powered activation works in practice; links to Data Agents and AI Enablement | Always |
+| 5 | Working with AI | How AI-powered activation works in practice; links to AI Agents for Marketing and AI Enablement | Always |
 | 6 | What clients say | Two or three quotes about the experience of working with MGA | Editorial |
 | 7 | CTA | Contact | Always |
 

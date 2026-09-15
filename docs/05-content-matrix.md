@@ -1,4 +1,4 @@
-# 05. Content matrix (v2)
+# 05. Content matrix (v3)
 
 Which content types live on which pages. Read this alongside `03-page-layouts.md` (block order and rules) and `04-canonicals-and-seo.md` (ownership).
 
@@ -90,7 +90,8 @@ How much of each content type the site needs at launch, so the pages above are n
 |---|---|---|
 | Growth Architecture triangle copy | 3 one-liners (already in Source B) plus the positioning paragraph | Home and Services hub depend on it |
 | Service descriptions | 8 canonical + Activation group + CEO Advisory = 10 | Every service in the mega-nav must be complete on day one. Source B provides Why and What for every Activation service and for Side-by-Side; Growth Strategy and Proposition Innovation are marked "to be updated" in Source B and need writing. |
-| Mega-nav subtitles | 10 (one per service label, plus three pillar subtitles) | Fixed text, agreed with Andy, kept to one line each |
+| Mega-nav subtitles | 13 (ten item subtitles plus three pillar subtitles), as written in `01-primary-navigation.md` section 3.2 | Fixed text, plain English, each carrying a searched term, kept to one line and ten words. Proposals for Andy to approve (`nav-wording-decisions.md`). |
+| "Also known as" lines | 3 (Customer Research and Insight, AI Agents for Marketing, Operating Model Design) | One line each under the H1 naming the deck term so referred visitors recognise the offer |
 | Theme points of view | 5 | All five themes are linked from the Insights dropdown and footer |
 | Sector intros | 4 plus index | Footer links must land on something; noindex until threshold |
 | Case studies | 12 minimum, tagged so that every service has at least one and every theme has at least two | Source B names example clients per service: Mars, Trojan Energy, BBC, PEX, Skillshare, TransferGo, Dayinsure, Merlin, WSJ, Key Group, Parkdean, TSB, Standard Chartered, Post Office, Meta, IAG, Microsoft, Dowds, News Corp. |
@@ -115,6 +116,6 @@ How much of each content type the site needs at launch, so the pages above are n
 | Advisor flag | Team profile entry | Surfaces on CEO Advisory, Services hub pillar 3, Team listing |
 | Featured and pinned items | Per hub or per Home in the CMS | Curated blocks |
 | Client logos and quotes | Asset library with client permission flag | Surfaced by tag or curation |
-| Nav labels and footer | Global navigation settings | All pages |
+| Nav labels, subtitles and footer | Global navigation settings. Labels follow the v3 wording rule (`01-primary-navigation.md` section 3.3); a label change is an IA decision, not a content edit. | All pages |
 
 Rule: if the same sentence appears on two pages, one of them is wrong. Fix it by turning the second into a link. The only exception is the three triangle one-liners, which are shared data rendered in two places.

@@ -1,8 +1,8 @@
 # 00. Sources
 
-The four inputs the v2 package is built from, what each one contributed, and how conflicts between them were resolved. Read this before the decisions log.
+The five inputs the package is built from, what each one contributed, and how conflicts between them were resolved. Read this before the decisions log.
 
-v1 was produced from a brief that summarised these sources rather than supplying them. v2 was produced from the full text of A, B and C plus Gary's direction D. Where v1 and v2 differ, the difference can usually be traced to something in the full text that the summary lost.
+v1 was produced from a brief that summarised these sources rather than supplying them. v2 was produced from the full text of A, B and C plus Gary's direction D. v3 adds Gary's wording brief E, which changes how B is used: B still decides what the services are and how they group, but no longer decides what they are called in the nav.
 
 ---
 
@@ -11,9 +11,10 @@ v1 was produced from a brief that summarised these sources rather than supplying
 | Question | Source that wins | Why |
 |---|---|---|
 | What sections exist and how they relate | **A** (Gary's IA feedback) | It is the structural brief from the IA lead |
-| What the services are called and how they group | **B** (Andy's deck) | It is the client's own taxonomy |
-| Which services lead, how sectors and themes are weighted, what language to use | **C** (Otter call) | It is where Gary and Andy agreed the weighting |
-| How simple the mega-nav must be, and that CEO Advisory must be visible as a pillar | **D** (Gary, 14 Sept) | It is the latest instruction and the reason for the redo |
+| What the services are and how they group (the triangle, the six activation services) | **B** (Andy's deck) | It is the client's own taxonomy |
+| What the services are called in the nav, and what the subtitles say | **C** (Otter call) and **E** (Gary, 15 Sept) over **B** | Andy and Gary agreed on the call that the deck is not website copy and that plain, searched language wins. E makes that the rule for the nav. |
+| Which services lead, how sectors and themes are weighted | **C** (Otter call) | It is where Gary and Andy agreed the weighting |
+| How simple the mega-nav must be, and that CEO Advisory must be visible as a pillar | **D** (Gary, 14 Sept) | It is the instruction behind the v2 redo |
 
 ---
 
@@ -97,3 +98,23 @@ v1 was produced from a brief that summarised these sources rather than supplying
 - Suggested shape: three columns matching the triangle; Proposition Innovation under Growth Strategy; six activation items with one-line subtitles where labels are opaque; CEO Advisory column with a subtitle and a link to advisors; optional thin footer row (All services, Expertise themes hub, Contact); no Featured card column.
 
 **How v2 uses it**: The whole shape of the mega-nav (`01-primary-navigation.md`, section 3), the "Why v1 was rejected" record in `06-decisions-log.md`, the mock opening with the panel visible (D-25).
+
+---
+
+## Source E: Gary's v3 wording brief (15 September)
+
+**What it is**: Gary's follow-up after reviewing v2, asking for a search-friendly wording pass on the nav.
+
+**Key points used**
+
+- The v2 nav may have taken Andy's literal services deck wording too literally.
+- Restates what Andy and Gary agreed on the 7 September call: prefer search-friendly, plain language normal people and Google understand; HPX failed as a term and clients look for CX; Experience Engineering especially needs subtitles and keywords so "can you build a website?" and CX and research map clearly; the services deck is a starting point for alignment, not website copy; "simplification of language is helpful".
+- Rewrite primary nav, mega-nav labels and service link text for discoverability. Prefer what a prospect would type or search over internal product names where they conflict.
+- Keep Andy's triangle structure and relative weighting (CEO Advisory / Side-by-Side secondary, quieter).
+- For hyper-technical or Manifesto-coined labels, keep a clear primary label and add a subtitle or supporting line in the mega-nav (Experience Engineering given as the example; apply the same pattern to Growth Office, Operating Architecture / Models, Data Agents, Proposition Innovation, Side-by-Side / CEO Advisory and anywhere else that needs it).
+- Update sitemap and URL slugs if labels change. Keep services as canonicals, sectors light, no sector point-of-view rabbit holes.
+- Refresh the mock so the mega-nav shows primary labels and subtitles clearly.
+- Record every departure from Andy's deck wording: old label, new label, why.
+- Success: mega-nav still three columns; no unexplained jargon without a plain subtitle; someone searching "customer experience", "website", "loyalty", "membership", "AI" and so on can map those intents onto nav items.
+
+**How v3 uses it**: The wording rule and every label change (`nav-wording-decisions.md`); the rewritten mega-nav (`01-primary-navigation.md`, section 3); three renamed services and slugs (`02-sitemap.md`); the "also known as" hero line (`03-page-layouts.md`, T3); anchor text, title tag and redirect updates (`04-canonicals-and-seo.md`); decisions D-26 to D-33 (`06-decisions-log.md`); the refreshed mock with a "show v2 labels" review aid.
