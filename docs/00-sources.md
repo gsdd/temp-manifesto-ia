@@ -1,8 +1,8 @@
 # 00. Sources
 
-The five inputs the package is built from, what each one contributed, and how conflicts between them were resolved. Read this before the decisions log.
+The six inputs the package is built from, what each one contributed, and how conflicts between them were resolved. Read this before the decisions log.
 
-v1 was produced from a brief that summarised these sources rather than supplying them. v2 was produced from the full text of A, B and C plus Gary's direction D. v3 adds Gary's wording brief E, which changes how B is used: B still decides what the services are and how they group, but no longer decides what they are called in the nav.
+v1 was produced from a brief that summarised these sources rather than supplying them. v2 was produced from the full text of A, B and C plus Gary's direction D. v3 added Gary's wording brief E, which changed how B is used: B decides what the services are and how they group, not what they are called in the nav. v4 adds Gary's feedback F, which changes how much the nav, the pages and the mock are allowed to say.
 
 ---
 
@@ -12,9 +12,10 @@ v1 was produced from a brief that summarised these sources rather than supplying
 |---|---|---|
 | What sections exist and how they relate | **A** (Gary's IA feedback) | It is the structural brief from the IA lead |
 | What the services are and how they group (the triangle, the six activation services) | **B** (Andy's deck) | It is the client's own taxonomy |
-| What the services are called in the nav, and what the subtitles say | **C** (Otter call) and **E** (Gary, 15 Sept) over **B** | Andy and Gary agreed on the call that the deck is not website copy and that plain, searched language wins. E makes that the rule for the nav. |
+| What the services are called in the nav | **C** (Otter call) and **E** (Gary, 15 Sept) over **B** | Andy and Gary agreed on the call that the deck is not website copy and that plain, searched language wins. E makes that the rule for the nav. |
 | Which services lead, how sectors and themes are weighted | **C** (Otter call) | It is where Gary and Andy agreed the weighting |
 | How simple the mega-nav must be, and that CEO Advisory must be visible as a pillar | **D** (Gary, 14 Sept) | It is the instruction behind the v2 redo |
+| How much the menu, page chrome, homepage and mock may say | **F** (Gary, 15 Sept evening) over **E** | E asked for subtitles on coined terms; F says the whole concept is too complicated and to prefer bare labels. F wins in the menu; E's words move to the pages. C decides which two coined names still get a quiet line. |
 
 ---
 
@@ -118,3 +119,26 @@ v1 was produced from a brief that summarised these sources rather than supplying
 - Success: mega-nav still three columns; no unexplained jargon without a plain subtitle; someone searching "customer experience", "website", "loyalty", "membership", "AI" and so on can map those intents onto nav items.
 
 **How v3 uses it**: The wording rule and every label change (`nav-wording-decisions.md`); the rewritten mega-nav (`01-primary-navigation.md`, section 3); three renamed services and slugs (`02-sitemap.md`); the "also known as" hero line (`03-page-layouts.md`, T3); anchor text, title tag and redirect updates (`04-canonicals-and-seo.md`); decisions D-26 to D-33 (`06-decisions-log.md`); the refreshed mock with a "show v2 labels" review aid.
+
+**How v4 uses it**: The labels and slugs stand. The subtitles E asked for move from the menu to the service page hero lines (D-35), where they still do the job E set them: mapping "customer experience", "website", "research" and the rest onto a service.
+
+---
+
+## Source F: Gary's v4 feedback (15 September, evening)
+
+**What it is**: Gary's response to v3, after seeing the mega-nav with labels and subtitles, the page chip rules and the mock.
+
+**Key points used**
+
+- It still feels too complicated as a full concept. Not only "strip the subtitles": the dropdown, the page chips and the homepage all feel as if they are trying to say too much. Simplify the idea, then the UI.
+- Goal: the IA should feel calm and obvious in under two seconds. Fewer things, fewer words, fewer chrome elements. A prospect should instantly get Growth Strategy, Activation, CEO Advisory (quieter). Everything else is secondary.
+- Mega-nav: keep the three-column triangle; do not reintroduce Expertise or Featured columns. Prefer labels only. At most one short subtitle per pillar, not per item. If a coined name stays (Experience Engineering, Growth Office, Side-by-Side) one quiet supporting line is acceptable for those only, or move the explanation to the service page and leave the menu bare; prefer bare if still busy. Panel footer: three short links at most (All services, Expertise, Contact); no list of theme names. Cut redundant items (the duplicate Growth Strategy heading and item; "Meet the advisors" if About covers it) and document the decision. Mobile: same rules, fewer nested levels.
+- Homepage: it surfaces too many dimensions at once. One primary chip set, or none on first paint. Cap visible chips at three to five. No stacked service, expertise and sector chip walls. One clear CTA path rather than a dashboard of tags.
+- Page chips: one primary dimension per page type, not all three. Cap at three visible; hide the rest or omit. Service pages: expertise themes only, or none. Sectors belong in Work filters and the footer, not everywhere.
+- Sitemap: do not explode it. Services Canonical, themes Supporting, sectors Light. Cut or demote anything ornamental or duplicative and log it. Still honour Otter (plain language, CX and website findable) but that can live in page H2s, not menu chrome.
+- Mocks: rebuild to match. Remove fussy edge chrome: decorative borders, legends, toggle clutter, "show what changed" UI, busy annotations, dense helper text, multi-tab overkill if it fights calmness. A quiet wireframe of the real nav and homepage, not a design-system playground. Mega-nav open by default on the nav view. Homepage view shows the simplified chips only.
+- Docs: update primary nav, sitemap and decisions log; add `v4-simplification.md` explaining what was cut and why; keep a short old-to-new for anything structural.
+- Out of scope: no Google Doc; do not re-expand the mega-nav; do not invent new service offerings.
+- Success: name the three pillars from the mock in two seconds without scanning paragraphs; the homepage does not feel like a tag cloud; chips are sparse and purposeful; the mock has less edge chrome and less explanatory UI.
+
+**How v4 uses it**: The whole of `v4-simplification.md`; the labels-only mega-nav and plain Insights link (`01-primary-navigation.md`); the chip rule and six-block Home (`03-page-layouts.md`); the sector index cut (`02-sitemap.md`); the search vocabulary requirement per page (`04-canonicals-and-seo.md`, 6.1); decisions D-34 to D-45 (`06-decisions-log.md`); the rebuilt mock (`../mocks/`).

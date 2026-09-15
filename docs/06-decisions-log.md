@@ -1,14 +1,35 @@
-# 06. Decisions log (v3)
+# 06. Decisions log (v4)
 
-Every significant IA decision, the options considered, what was chosen, and the trade-off. Each entry names the sources it rests on. The five sources are summarised in `00-sources.md`:
+Every significant IA decision, the options considered, what was chosen, and the trade-off. Each entry names the sources it rests on. The six sources are summarised in `00-sources.md`:
 
 - **Source A**: Gary's IA feedback document (structure, three intersecting dimensions, one canonical home per topic, About and Careers split).
 - **Source B**: Andy's Growth Architecture Services deck, working draft Sept 26 (the triangle, service grouping, Why and What copy per service).
 - **Source C**: Otter transcript of the Shed x Manifesto check-in, 7 September 2026 (weighting, language, sectors versus themes, site role).
 - **Source D**: Gary's direction of 14 September after reviewing v1 (simplify, make the triangle obvious, CEO Advisory visible as a pillar, themes calm).
 - **Source E**: Gary's v3 wording brief of 15 September (plain, search-friendly labels; subtitles for coined terms; deck is not website copy).
+- **Source F**: Gary's v4 feedback of 15 September, evening (the whole concept is still too complicated; simplify the idea, then the UI; calm mocks; quiet homepage chips).
 
-Precedence: structure from A; service taxonomy from B; weight and order from C; simplification from D; nav wording from C and E. Where B and E conflict on what a service is called in the nav, E wins: B decides what the services are, not what the site calls them.
+Precedence: structure from A; service taxonomy from B; weight and order from C; simplification from D and F; nav wording from C and E. Where E's "add a subtitle" and F's "fewer words" conflict, F wins in the menu and E's words move to the page.
+
+---
+
+## Why v4 exists
+
+Gary reviewed v3 on the evening of 15 September (Source F). His concern was not the wording. The whole concept felt too complicated: the mega-nav was busy, the page chips were busy, the homepage had too much going on, and the mock was fussy around its edges. Each version since v1 had fixed the previous complaint by adding explanation, and the explanation had become the clutter.
+
+| Problem with v3 | Evidence | What v4 does instead |
+|---|---|---|
+| **The mega-nav read as a page of copy.** Heading line and strapline, thirteen subtitles, a footer row spelling out five theme names, two items pointing at the same page as their column heading. About 200 words. | Source F ("dropdown too busy"); Source D's two-second test | Labels only. Three short pillar lines, two quiet lines under the two opaque coined names, three one-word footer links, no heading line, no duplicates. About 45 words (D-34 to D-37). |
+| **Two content menus in the header.** The Insights dropdown listed type filters and five themes, competing with the mega-nav. | Source F; Source A ("no hub for every filter"); D-07 already made this call for Our work | Insights is a plain link. Filters on the hub (D-38). About dropdown loses its duplicate first item (D-39). |
+| **Mobile menu three levels deep.** | Source F ("fewer nested levels") | Two levels: What we do expands once to a flat list under small pillar labels. No sectors block (D-40). |
+| **Homepage drew the triangle twice and tagged everything.** Three cards plus a pyramid diagram; work cards with service and theme tags; a theme strip with descriptors; a logo strip. | Source F ("homepage chips too much going on", "not a tag cloud") | Six blocks. Triangle once, as three blocks with the pillar lines. No tags on cards. One row of five plain expertise links (D-41). |
+| **Every page showed all three dimensions as chips.** Case study heroes: sector, services, themes. Theme pages: a sectors row. Sector pages: a themes row. Service pages: related expertise, related services, previous / next. Work hub: three filter groups open at once. | Source F ("page chips too busy"); Source C (Andy: discoverable "but not too confusing") | One chip dimension per page type, three visible. Sector rows and theme rows cut. Filters open one group (D-42, D-43). |
+| **Ornamental page.** The sector index duplicated the footer. | Source F ("cut or demote if ornamental") | `/sectors/` cut and redirected (D-44). |
+| **The mock explained itself.** Banner, intro box, review toggle, tabs, legend, badges, behaviour notes, side notes, toast. | Source F ("mocks not fussy", "remove edge chrome, legends, toggle clutter") | Rebuilt: one title line, four plain view switches, address bar shows URLs. Nothing else (D-45). |
+
+What v3 got right and v4 keeps, unchanged: the seven service labels and their slugs (`nav-wording-decisions.md`); the three renames pending Andy's sign-off; the "also known as" hero line; the plain H2s on Experience Engineering; no acronyms in the nav; "Expertise" as the visitor-facing word. And from v2: three columns in triangle order; CEO Advisory quieter; expertise and sectors out of the mega-nav; the five header items; flat service URLs; every canonical, linking and indexing rule.
+
+The full narrative of what was cut and where each piece of explanation went is in `v4-simplification.md`.
 
 ---
 
@@ -42,6 +63,23 @@ Gary reviewed v1 on 14 September and rejected it (Source D). Recorded here so th
 What v1 got right and v2 keeps: services canonical and flat under `/services/`; Home a page not a hub; sectors light; methodology under About; Growth Strategy first; Activation framed as strategy-to-execution; Experience Engineering label kept with plain-language sections; no thin archive pages; filters as query strings.
 
 ---
+
+## Summary of v4 decisions (D-34 to D-45)
+
+| ID | Decision | Sources |
+|---|---|---|
+| D-34 | Mega-nav heading line ("Our Growth Architecture" and strapline) removed from the menu; strapline moves to the Home and Services hub heroes | F, D |
+| D-35 | Item subtitles retired. One pillar line per column (four to six words). Two quiet lines only, under Experience Engineering and Growth Office. Search vocabulary moves to page heroes, H2s and title tags | F, C, E |
+| D-36 | Duplicate routes cut: the Growth Strategy item under its own heading, the Side-by-Side item under CEO Advisory, and "Meet the advisors". Column headings are the pillar links; column 3 is heading and line only | F, C |
+| D-37 | Panel footer row is three short links: All services, Expertise, Contact. Theme names removed from the menu | F |
+| D-38 | Insights is a plain header link. Its dropdown (type filters and five themes) is removed; filters live on the hub | F, A |
+| D-39 | About dropdown drops "About Manifesto" (duplicate of the About link); four items remain | F |
+| D-40 | Mobile menu is two levels: What we do expands once to a flat list under small pillar labels. No pillar sub-accordions, no sectors block | F |
+| D-41 | Home is six blocks: hero with logos, triangle once (three blocks, pillar lines), work without tags, one row of five expertise links, insights without tags, CTA. No pyramid diagram | F, D |
+| D-42 | One chip dimension per page type, three visible. Case study hero shows services only; theme pages lose the sectors row; sector pages lose the themes row; service pages lose previous / next; Services hub expertise strip becomes one sentence | F, C |
+| D-43 | Work and Insights hubs open with one filter group (Service; Type). Other groups behind "More filters" | F, A |
+| D-44 | `/sectors/` index page cut; footer heading is plain text; `/sectors/` redirects to `/work/` | F, C |
+| D-45 | Mock rebuilt as a quiet wireframe: no banner, intro, toggle, legend, badges, notes or toast. Four plain view switches. Mega-nav open on load | F, D |
 
 ## Summary of v3 decisions (D-26 to D-33)
 
@@ -117,6 +155,8 @@ What v1 got right and v2 keeps: services canonical and flat under `/services/`; 
 
 **Trade-off**: A quieter column can still be read as a lesser service. Accepted, because Source C says it is one, and the structure (a full column) makes it unmistakably the third pillar.
 
+**v4 note**: The column keeps its heading and pillar line but loses both items (D-36). The heading is the link to `/services/ceo-advisory/`; the advisors are that page's main block.
+
 ---
 
 ## D-03. `/services/` is the Growth Architecture page
@@ -146,6 +186,8 @@ What v1 got right and v2 keeps: services canonical and flat under `/services/`; 
 
 **Trade-off vs Source A**: Themes are one click less prominent than services in the header. They keep equal footing in URL structure, footer, filters and cross-linking, which is where Source A's SEO and GEO argument is actually made.
 
+**v4 note**: The Insights dropdown is removed (D-38), so the header placement for themes is now the single "Expertise" link in the mega-nav footer row. Themes also have a row on Home (D-41), the footer column and the hub filters. The sitemap weight and linking rules are unchanged.
+
 ---
 
 ## D-05. One-line subtitles under service labels
@@ -157,6 +199,8 @@ What v1 got right and v2 keeps: services canonical and flat under `/services/`; 
 **Trade-off**: Subtitles add text to the panel. They are kept to one line and are the only text besides labels, so the panel still reads as three short lists.
 
 **v3 note**: v2 wrote the subtitles partly in deck language. D-30 rewrites all thirteen. The mechanism (one line, ten words, fixed text) is unchanged.
+
+**v4 note**: Superseded by D-35. Item subtitles are retired from the menu; the three pillar lines stay, shortened; two quiet lines remain under Experience Engineering and Growth Office. The v3 subtitle wording is reused as the hero line on each service page.
 
 ---
 
@@ -267,6 +311,8 @@ What v1 got right and v2 keeps: services canonical and flat under `/services/`; 
 
 **Rationale**: Source A: home is a page, not a hub, reached by the logo; sections on the home page can sell the proposition in order. Source D: the triangle must be pointable. v1's ten blocks (proof band, How we work teaser, Who we work with) were cut as noise.
 
+**v4 note**: Reduced to six blocks (D-41). Logo strip folded into the hero, pyramid diagram removed, tags removed from cards, expertise strip reduced to names.
+
 ---
 
 ## D-18. About and Careers are separate hubs
@@ -332,6 +378,8 @@ What v1 got right and v2 keeps: services canonical and flat under `/services/`; 
 **Rationale**: Source D's success test is that Gary can open the mock and immediately point at the three pillars including CEO Advisory. This is a review aid, not a live-site behaviour.
 
 **v3 note**: The mock gains a second review aid, a "Show what changed from v2" toggle that appends the v2 label after any renamed label. Off by default. Also not a live-site behaviour.
+
+**v4 note**: The panel still opens on load. The review toggle and every other piece of explanatory chrome are removed (D-45).
 
 ---
 
@@ -400,6 +448,8 @@ What v1 got right and v2 keeps: services canonical and flat under `/services/`; 
 
 **Trade-off**: Six Manifesto terms remain in the panel. Each has a plain subtitle directly beneath it, which is the pattern Source E asks for.
 
+**v4 note**: The labels stand. The subtitles are retired from the menu (D-35) and become the hero line on each service page. Only Experience Engineering and Growth Office keep a quiet line in the menu, because those are the two Andy named as opaque on the call (Source C). Proposition Innovation, Activation Services and Side-by-Side stand without one: the first two are the pillar and its natural companion, and Side-by-Side is no longer a menu item.
+
 ---
 
 ## D-31. No acronyms in the nav
@@ -416,6 +466,8 @@ What v1 got right and v2 keeps: services canonical and flat under `/services/`; 
 
 **Rationale**: "Themes" is an IA word. "Expertise" plus the five names says everything the visitor needs. Source E: plain language throughout the nav, not only in the service columns.
 
+**v4 note**: The Insights dropdown no longer exists (D-38). "Expertise" remains the word on the footer-row link, the footer column heading and the `/expertise/` hub.
+
 ---
 
 ## D-33. Header labels unchanged after review
@@ -424,20 +476,158 @@ What v1 got right and v2 keeps: services canonical and flat under `/services/`; 
 
 **Rationale**: Reviewed against "Services" and "Case studies" (Source E asks for the primary nav to be rewritten for discoverability). "What we do" is Source A's label and plain; the searched word is in the URL `/services/`. "Our work" is the plain consultancy convention; "case studies" goes in the page title and H1. The other three were never in question. The problem Gary raised was inside the mega-nav, not the header.
 
+**v4 note**: Unchanged. Source F did not question the header labels.
+
+---
+
+## D-34. Mega-nav heading line removed
+
+**Options**
+1. Keep "Our Growth Architecture" and the strapline above the columns (v2, v3).
+2. Keep the heading, drop the strapline.
+3. Remove the line. Columns start at the top of the panel.
+
+**Chosen**: Option 3.
+
+**Rationale**: Source F's test is that the pillars are read in two seconds. A heading line is something to read before the pillars, and its content is available elsewhere: Growth Architecture is in the company name and is the subheading of `/services/`; the strapline is hero copy on Home and the Services hub. The "All services" footer link already goes to `/services/`, so the heading's link was a duplicate too.
+
+**Trade-off**: The panel no longer says the words "Growth Architecture". Accepted: the triangle is the Growth Architecture, and the brand carries the term.
+
+---
+
+## D-35. Item subtitles retired; pillar lines shortened; two quiet lines
+
+**Options**
+1. Keep a subtitle under every item (v3).
+2. Subtitles only under the coined names (Experience Engineering, Growth Office, Proposition Innovation, Side-by-Side).
+3. No item subtitles at all; the three pillar lines only.
+4. Pillar lines plus a quiet line under the two names Andy explicitly flagged as opaque on the call.
+
+**Chosen**: Option 4.
+
+**Rationale**: Source F: prefer labels only; at most one short line per pillar; a quiet line is acceptable for a coined name that stays, or move the explanation to the page, and prefer bare if still busy. Source C is the tie-breaker on which names need help: Andy said Experience Engineering must map to "can you build a website?" and that Growth Office terminology is hard. He did not say that about Proposition Innovation (both Gary's IA doc and the deck use "proposition"; it is standard UK marketing language) or Activation Services (the pillar name, with the searched words in the six labels beneath it). Side-by-Side is no longer a menu item (D-36). Option 3 would leave Experience Engineering unexplained in the menu, which contradicts Otter. Option 2 keeps four lines where two do the job.
+
+The three pillar lines are shortened from seven to nine words to four to six ("Where and how you grow", "Turning strategy into results", "One-to-one advice for senior leaders") and are shared with the Home and Services hub triangle blocks.
+
+**Where the words went**: each v3 subtitle becomes the hero line of its service page, and `04-canonicals-and-seo.md` section 6.1 makes the searched terms a per-page requirement. Nothing Otter asked for is lost; it moves from menu to page.
+
+**Trade-off**: A visitor scanning the menu for "customer research" or "AI training" sees only the labels. Accepted: the v3 labels were chosen to be the searched terms (D-27 to D-29), so the label is the keyword for six of the seven services.
+
+---
+
+## D-36. Duplicate routes cut: column headings are the pillar links
+
+**Options**
+1. Keep pillar headings as labels with every service listed beneath, including Growth Strategy and Side-by-Side (v3).
+2. Headings are the links to the pillar pages; items are the other services in that pillar. Cut items whose destination is the heading's.
+
+**Chosen**: Option 2.
+
+**Rationale**: Source F names the duplicate Growth Strategy heading-plus-item as an example of what to cut. The same logic applies to Side-by-Side, which pointed at `/services/ceo-advisory/`, the same page as its heading. "Meet the advisors" (`/about/team/#advisors`) goes too: Source F says cut it if About covers it, and About, Our team lists the advisors, while the CEO Advisory page surfaces their profiles as its main block (Source C: advisor profiles are the substance of the offer). One route from the menu to CEO Advisory is enough.
+
+Result: column 1 is a heading and one item; column 3 is a heading and its pillar line. Column 3 looks sparse. That is accurate: CEO Advisory is one offer, and Source C says not to design the site around it.
+
+**Trade-off**: A visitor may not realise the headings are clickable. Mitigated by the same hover state as items and by the "All services" link. The pillar pages are also linked from Home, the hub and the footer.
+
+---
+
+## D-37. Panel footer row: three short links
+
+**Chosen**: All services, Expertise, Contact. Nothing else, and no theme names in the link text.
+
+**Rationale**: Source F: "three short links max; no laundry list of theme names in the menu." The v3 link "Expertise: loyalty, membership, subscriptions, pricing, customer value" was the longest line in the panel. The five names have a row on Home, a footer column and a hub.
+
+---
+
+## D-38. Insights is a plain link
+
+**Options**
+1. Keep the two-column dropdown (v3).
+2. Single-column dropdown of the five themes only.
+3. Plain link. Type filters on the hub; expertise reached from the mega-nav footer row, Home, footer and hub filters.
+
+**Chosen**: Option 3.
+
+**Rationale**: Source F: the full concept is too complicated; cut redundant menu items. Type filters in a dropdown are the same pattern v2 removed from Our work (D-07, Source A: no hub for every filter). Themes under Insights was a v2 compromise to keep them in the header somewhere; with the header reduced to one mega-nav and one small dropdown, the compromise costs more than it returns. Option 2 was considered and would work as a fallback if Gary wants themes back in the header.
+
+**Trade-off vs Source A and D-04**: Themes lose their one header dropdown. They keep the mega-nav footer-row link, a Home row, the footer column, the hub, the filters, and every cross-link from services, case studies and insights. Source A's SEO and GEO argument rests on those, not on a dropdown.
+
+---
+
+## D-39. About dropdown: four items
+
+**Chosen**: Our team, How we work, Values and culture, Careers. "About Manifesto" removed.
+
+**Rationale**: Clicking About navigates to `/about/` (section 2 of `01-primary-navigation.md`). The first item duplicated the parent, which is the pattern D-36 removes from the mega-nav. Same rule, same result.
+
+---
+
+## D-40. Mobile: two levels, no sectors block
+
+**Chosen**: What we do expands once to a flat list. Three small pillar labels (each a link to the pillar page) sit above their services. No pillar sub-accordions. No sectors block at the foot of the menu. Labels only, plus the same two quiet lines as desktop.
+
+**Rationale**: Source F: same rules as desktop, fewer nested levels. Three levels (menu, pillar, service) meant two taps and a scroll to reach a service. Sectors are in the footer on every device; a second copy in the menu was a fourth thing to read.
+
+---
+
+## D-41. Home: six blocks, one row of expertise links, triangle once
+
+**Chosen**: Hero with one CTA, one text link and a logo row; triangle as three blocks with the pillar lines; three case studies without tags; one row of five plain expertise links; three insights without tags; closing CTA.
+
+**Rationale**: Source F: one primary chip set or none on first paint; cap visible chips at three to five; no stacked service, expertise and sector chip walls; one clear CTA path. The v3 Home drew the triangle twice (three cards plus a pyramid with a caption), and its cards and strip carried tags in three dimensions. v4 keeps one representation of the triangle, removes every tag from cards, and keeps a single row of five expertise names as the only topic links. The Source B one-liners on the triangle cards are replaced by the pillar lines: they were deck language and the plain-language pass was already an open item.
+
+**Trade-off**: Home shows less. Source A: Home is a page, not a hub. Everything it drops has a page one click away.
+
+---
+
+## D-42. One chip dimension per page type, three visible
+
+**Chosen**: The table in `03-page-layouts.md`, "Chips and tags". Service pages show expertise; case studies show services; insights show expertise; hub cards show one tag; Home shows one row; theme, sector and team pages show none. Cap three, except Home at five. Cut: sector chips in case study heroes, the sectors row on theme pages, the themes row on sector pages, previous / next links on service pages, the five-link strip on the Services hub.
+
+**Rationale**: Source F: one primary dimension of chips per page type, not all three; cap at three; sectors belong in Work filters and the footer, not everywhere. Source C: Andy wants themes and sectors discoverable "but not too confusing in terms of how we lay it all out." The three-dimension model (Source A) is kept in the tags, filters and auto modules; it stops being displayed in full on every page.
+
+**Trade-off**: A case study no longer names its sector on the page. Accepted: sector is a filter value and a light landing, and the client name usually says it.
+
+---
+
+## D-43. Filters open one group
+
+**Chosen**: Work hub opens with Service (grouped by pillar); Insights hub opens with Type. Expertise, Sector (and on Insights, Service) sit behind "More filters". Active filters from any group show as removable chips above the results. A URL arriving with a hidden group's parameter opens that group.
+
+**Rationale**: Source F: "prefer one clear CTA path over a dashboard of tags." Three or four open filter groups above a grid is a dashboard. The primary question on Work is "what did you do?", which is the service filter. Source A's filters are all still there.
+
+---
+
+## D-44. Sector index page cut
+
+**Chosen**: No `/sectors/` page. Footer heading "Who we work with" is plain text over the four sector links. `/sectors/` redirects to `/work/`. Fixed pages at launch: 40.
+
+**Rationale**: Source F: cut or demote ornamental or duplicative page types and log it. The v3 open items already flagged the index as possibly redundant. It listed four sectors with a sentence each; the footer lists the same four on every page, and the Work hub's sector filter does the aggregation. Source C: sectors buried a bit, no children.
+
+---
+
+## D-45. Mock rebuilt as a quiet wireframe
+
+**Chosen**: `mocks/index.html` is rebuilt. One line of small grey text (what the file is), four plain view switches (Navigation, Homepage, Mobile, Sitemap), and the frames. Removed: striped banner, intro box, "show what changed" toggle and amber annotations, tab chrome, behaviour notes, sitemap legend and badges, notes beside the phone, toast on click. Clicking a link writes its URL into the frame's address bar. The Navigation view opens with the mega-nav already open. A URL hash (`#home`, `#mobile`, `#sitemap`) opens a view directly.
+
+**Rationale**: Source F: remove fussy chrome around the edges; the mock should look like a quiet wireframe of the real nav and homepage, not a design-system playground; mega-nav open by default so density can be judged at a glance. The v3 mock was documenting itself. Anything a reviewer needs to know is in `mocks/README.md`.
+
+**Trade-off**: The "show what changed from v2" aid is gone. The label history is in `nav-wording-decisions.md`.
+
 ---
 
 ## Open items for the next stage (wireframes)
 
 | Item | Note |
 |---|---|
-| **Andy's sign-off on the three renames** | Customer Research and Insight, AI Agents for Marketing, Operating Model Design change how three offers are described to the market. Confirm before wireframes lock. Fallback if any is refused: revert that one label and slug to the deck term and rely on its subtitle (D-30 pattern). |
+| **Andy's sign-off on the three renames** | Customer Research and Insight, AI Agents for Marketing, Operating Model Design change how three offers are described to the market. Confirm before wireframes lock. Fallback if any is refused: revert that one label and slug to the deck term. Under v4 there is no menu subtitle to lean on, so the fallback label would need to be one that stands alone or carry a quiet line like Growth Office does. |
+| **Gary's confirmation of the v4 cuts** | Insights as a plain link (D-38), column 3 as heading only (D-36), and the sector index cut (D-44) are the three v4 decisions most likely to be questioned. Each has a stated fallback: a single-column Expertise dropdown under Insights; a "Side-by-Side" item restored under CEO Advisory; a Light `/sectors/` page restored. |
 | Growth Strategy and Proposition Innovation copy | Source B marks both slides "to be updated from existing content". Andy is sourcing (Source C action). |
 | CEO Advisory event | Pushed to October (Source C). The page can launch with advisor profiles and the Why / What copy from Source B before the event. |
-| Advisor profiles | Until at least one profile is flagged as advisor, "Meet the advisors" in the mega-nav points to `/services/ceo-advisory/`. |
-| Subtitle wording | The thirteen mega-nav subtitles in `01-primary-navigation.md` are proposals for Andy to approve. Keep to one line and ten words; keep at least one searched term per line. |
-| Triangle one-liners | The three Source B one-liners used on Home and the Services hub ("Architecting strategies and value propositions that deliver sustainable customer value growth" and so on) are page copy, not nav, and were out of scope for v3. They should get the same plain-language pass when Andy writes the service copy. |
-| Mobile accordion tap behaviour | Two acceptable patterns are given in `01-primary-navigation.md`, section 3.5. Pick one in wireframes. |
+| Advisor profiles | The CEO Advisory page's main block is advisor profiles. Until at least one profile is flagged as advisor, the block shows the Why / What copy only. |
+| Pillar lines and quiet lines | The three pillar lines and two quiet lines in `01-primary-navigation.md` are proposals for Andy to approve. Four to six words per pillar line; two to four per quiet line. |
+| Service hero lines | Each service page needs a hero line carrying its searched terms (`04-canonicals-and-seo.md`, 6.1). Start from the v3 subtitles in `nav-wording-decisions.md`. |
+| Mobile toggle tap behaviour | Label navigates, plus or minus toggles. Confirm in wireframes. |
 | Contact topic list | `?topic=` values should be the service and theme slugs. Confirm whether "general" and "careers" are also needed. |
 | Anonymised case studies | Some Source B example clients may not permit naming. Confirm before the twelve-case-study launch minimum is planned. |
-| Sector index page | `/sectors/` is included as a Light page for the footer heading. If it feels redundant in wireframes, the footer heading can be plain text and the index dropped. |
 | Brand | Name and logo stay; colour likely to change; fonts under debate; Sarah leading (Source C). None of this affects the IA. |
