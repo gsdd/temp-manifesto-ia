@@ -1,12 +1,10 @@
-# 01. Primary navigation (v3)
+# 01. Primary navigation (v4)
 
 This document describes everything a visitor can click in the site header and footer, in the order it appears, and what happens when they do. It is written so that someone who is not a designer or developer can picture the navigation without a wireframe.
 
-v2 replaced the v1 navigation in full: the v1 mega-nav (four columns plus a bottom strip) was rejected as too busy and for hiding the Growth Architecture triangle. The v2 mega-nav has **three columns, one per pillar of Andy's triangle**, and nothing else competing with them. See `06-decisions-log.md`, section "Why v1 was rejected".
+v2 gave the mega-nav its shape: three columns, one per pillar of Andy's Growth Architecture triangle. v3 rewrote the words in plain, search-friendly language. **v4 strips the concept back** after Gary's feedback that the whole thing still felt too complicated: the mega-nav is now labels with three short pillar lines, the Insights dropdown is gone, the mobile menu has two levels instead of three, and every duplicate route is cut. What was cut and why is in `v4-simplification.md`.
 
-v3 keeps the v2 structure exactly and changes the **words**. Gary's concern after v2 was that the labels took Andy's services deck wording too literally. v3 rewrites the mega-nav labels and subtitles for plain, search-friendly language: three services are renamed to what prospects search for, Manifesto-coined labels that stay carry a plain subtitle, and acronyms are gone. Every change is recorded old to new in `nav-wording-decisions.md`.
-
-Related: `02-sitemap.md` lists every URL referenced here. `diagrams/mega-nav.md` shows the same mega-nav as a diagram. `../mocks/index.html` is the clickable wireframe.
+Related: `02-sitemap.md` lists every URL referenced here. `diagrams/mega-nav.md` shows the same mega-nav as a diagram. `../mocks/index.html` is the wireframe.
 
 ---
 
@@ -18,38 +16,36 @@ The header has one row. From left to right:
 |---|---|---|---|
 | Left | MGA logo | Click returns to Home | `/` |
 | Centre | **What we do** | Opens the mega-nav (section 3) | `/services/` |
-| Centre | **Our work** | Plain link, no dropdown | `/work/` |
-| Centre | **Insights** | Opens a small dropdown (section 4) | `/insights/` |
-| Centre | **About** | Opens a small dropdown (section 5) | `/about/` |
-| Right | **Contact** (button style) | No dropdown. Direct link. | `/contact/` |
+| Centre | **Our work** | Plain link | `/work/` |
+| Centre | **Insights** | Plain link | `/insights/` |
+| Centre | **About** | Opens a small dropdown (section 4) | `/about/` |
+| Right | **Contact** (button style) | Plain link | `/contact/` |
 
-Five items plus the logo. Only one mega-nav (What we do) and two small dropdowns (Insights, About). Our work is a plain link because its filters live on the page; a filter list in the header was noise.
+Five items plus the logo. One mega-nav (What we do) and one small dropdown (About). Our work and Insights are plain links because their filters live on the page.
 
-Sectors are not in the header at all. They live in the footer, as filters on Our work and Insights, and as light landing pages (section 7; `06-decisions-log.md`, D-08).
+Sectors are not in the header. They live in the footer, as filters on Our work and Insights, and as light landing pages (section 6; `06-decisions-log.md`, D-08).
 
 ### Nav label rules
 
-- Labels are plain English and describe what the visitor gets, not internal team names. The test for every label is "what would a prospect who has never heard of Manifesto type into Google to find this?" (`nav-wording-decisions.md`).
-- **What we do** is the visible label (Source A uses it for the grouping). The URL is `/services/` because that is what people search for and type. Source A notes What we do itself is not a route; clicking it here lands on the services hub, which is the Growth Architecture page.
-- The five header labels were reviewed in v3 against the alternatives "Services" and "Case studies" and kept. The searched words sit in the URLs (`/services/`) and page titles ("case studies") instead.
-- The header is the same on every page. Nothing is added or removed by section.
-- The current page's top-level item is shown in an active state.
+- Labels are plain English and describe what the visitor gets. The test for every label is "what would a prospect who has never heard of Manifesto type into Google to find this?" (`nav-wording-decisions.md`).
+- **What we do** is the visible label (Source A uses it for the grouping). The URL is `/services/`. Clicking it lands on the services hub, which is the Growth Architecture page.
+- The header is the same on every page. The current page's top-level item is shown in an active state.
 
 ---
 
 ## 2. General dropdown behaviour (desktop)
 
-The same rules apply to the mega-nav and the small dropdowns.
+The same rules apply to the mega-nav and the About dropdown.
 
 | Interaction | Behaviour |
 |---|---|
 | Hover over a top-level label | Opens after a short delay (around 150 ms) so passing the cursor across the header does not flicker menus open |
-| Click a top-level label | Navigates to the landing page (for example `/services/`). The dropdown also opens on click for touch laptops and keyboard users who press Enter |
-| Move the cursor out of the dropdown | Closes after a short delay (around 300 ms) so diagonal movement does not close it |
+| Click a top-level label | Navigates to the landing page. The dropdown also opens on click for touch laptops and keyboard users who press Enter |
+| Move the cursor out of the dropdown | Closes after a short delay (around 300 ms) |
 | Press Escape | Closes the dropdown and returns focus to the top-level label |
 | Tab / Shift+Tab | Moves through items inside the open dropdown in reading order (column by column, top to bottom) |
 | Click anywhere outside | Closes the dropdown |
-| Only one dropdown open at a time | Opening a second closes the first |
+| Only one dropdown open at a time | Opening one closes the other |
 
 Accessibility: every top-level label with a dropdown is a button with `aria-expanded`, and the dropdown is a labelled region. Click-to-navigate means the landing page is always reachable without hover.
 
@@ -57,193 +53,138 @@ Accessibility: every top-level label with a dropdown is a button with `aria-expa
 
 ## 3. What we do: the mega-nav
 
-This is the only mega-nav on the site. It is a full-width panel below the header. It contains **one heading line, three columns and one thin footer row**. That is all.
+This is the only mega-nav on the site. It is a full-width panel below the header. It contains **three columns and one thin footer row**. That is all. There is no heading line above the columns.
 
 ### 3.1 The rule for this panel
 
-The panel is Andy's Growth Architecture triangle (Source B) laid flat, in the order of prominence agreed on the 7 September call (Source C): Growth Strategy first, Activation Services second, CEO Advisory third and quieter. A prospect should be able to name the three pillars within two seconds of the panel opening (Source D).
+The panel is Andy's Growth Architecture triangle (Source B) laid flat, in the order of prominence agreed on the 7 September call (Source C): Growth Strategy first, Activation Services second, CEO Advisory third and quieter. A prospect should be able to name the three pillars within two seconds of the panel opening without reading anything in smaller type (Source D, Source F).
 
-Things that are deliberately **not** in this panel, and where they went:
-
-| Removed from the v1 mega-nav | Now lives |
-|---|---|
-| Expertise column (five themes) | Insights dropdown (section 4), footer, one text link in the panel footer row, `/expertise/` pages |
-| Featured case study card | Home (T1 block 4) and the Work hub |
-| "How we work" link | About dropdown and footer |
-| "Talk to us" link | Panel footer row as "Contact" (one word), plus the header button |
-| "Who we work with" (sectors) | Footer only |
-| "Column 1 / Column 2" labels and long descriptors | Gone. One plain subtitle per column. |
+The panel carries labels, not copy. Explanation lives on the pages. The only supporting text is one short line per pillar and one quiet line under each of the two coined service names that Andy flagged as opaque.
 
 ### 3.2 The panel, exactly as it appears
 
-**Heading line** (full width, above the columns)
+**Column 1: Growth Strategy** (leftmost, full weight)
 
 | Element | Text | Links to |
 |---|---|---|
-| Small heading | "Our Growth Architecture" | `/services/` |
-| One-line subtitle | "Strategy that works. Execution that delivers." (Source B) | not a link |
+| Heading | **Growth Strategy** | `/services/growth-strategy/` |
+| Pillar line | Where and how you grow | not a link |
+| Item 1 | Proposition Innovation | `/services/proposition-innovation/` |
 
-"Growth Architecture" is the brand (Manifesto Growth Architects), not a service label, so it stays. The strapline is already plain English.
-
-**Column 1: Growth Strategy** (leftmost, full weight)
-
-| Order | Label | Subtitle (one line, plain English) | Links to |
-|---|---|---|---|
-| Heading | **Growth Strategy** | "Deciding where and how you grow. Our core offer." | `/services/growth-strategy/` |
-| 1 | Growth Strategy | "Customer-led growth strategy: where to focus and how to win" | `/services/growth-strategy/` |
-| 2 | Proposition Innovation | "New offers and business models: loyalty, membership, subscription, direct-to-consumer" | `/services/proposition-innovation/` |
-
-The heading and item 1 point to the same page. This is intentional: the heading names the pillar, item 1 is the service. On mobile the duplicate is removed (section 3.5).
-
-Proposition Innovation keeps its label (both Gary's IA doc and Andy's deck use "proposition"; no single plain term covers loyalty, membership, subscription and direct-to-consumer work). Its subtitle carries those searched terms.
+The heading is the pillar and the lead service in one (D-11). v3 repeated "Growth Strategy" as an item beneath the heading, pointing at the same page; v4 cuts the duplicate (D-36).
 
 **Column 2: Activation Services** (centre, full weight)
 
-| Order | Label | Subtitle (one line, plain English) | Links to |
+| Element | Text | Quiet line (small, grey) | Links to |
 |---|---|---|---|
-| Heading | **Activation Services** | "Hands-on delivery that turns strategy into results" | `/services/activation/` |
-| 1 | Customer Research and Insight | "Research, surveys, analytics and customer listening, faster with AI" | `/services/customer-research/` |
-| 2 | Experience Engineering | "Customer experience (CX), website and digital design, build and testing" | `/services/experience-engineering/` |
-| 3 | AI Agents for Marketing | "AI that cleans up customer data and improves marketing performance" | `/services/ai-agents-for-marketing/` |
-| 4 | Operating Model Design | "How your teams, data and AI agents should work together" | `/services/operating-model-design/` |
-| 5 | Growth Office | "Interim growth team and programme office that gets strategy delivered" | `/services/growth-office/` |
-| 6 | AI Enablement | "AI skills, training and adoption: finding where AI pays off" | `/services/ai-enablement/` |
+| Heading | **Activation Services** | | `/services/activation/` |
+| Pillar line | Turning strategy into results | | not a link |
+| Item 1 | Customer Research and Insight | | `/services/customer-research/` |
+| Item 2 | Experience Engineering | Customer experience and websites | `/services/experience-engineering/` |
+| Item 3 | AI Agents for Marketing | | `/services/ai-agents-for-marketing/` |
+| Item 4 | Operating Model Design | | `/services/operating-model-design/` |
+| Item 5 | Growth Office | Interim growth team | `/services/growth-office/` |
+| Item 6 | AI Enablement | | `/services/ai-enablement/` |
 
-Order follows the Source B deck. Three labels are renamed from the deck in v3 (Source C and Source E: plain, searched language over internal names where they conflict):
-
-| Deck label (Source B) | Nav label (v3) | Deck term lives on |
-|---|---|---|
-| Customer Intelligence | Customer Research and Insight | Service page hero ("our Customer Intelligence practice") |
-| Data Agents | AI Agents for Marketing | Service page hero ("Data Agents, built in AgentLab"); `/agentlab/` and `/data-agents/` redirect |
-| Operating Architecture (also "Operating Models" on deck slide 3) | Operating Model Design | Name of the framework module on the service page and in How we work |
-
-Experience Engineering, Growth Office and AI Enablement keep their labels and rely on the subtitle. Subtitles exist because Andy said on the call that labels like Experience Engineering are opaque and "can you build a website?" must map clearly (Source C). Subtitles are set text, not CMS descriptions, and must stay one line.
+Order follows the Source B deck. Labels are the v3 labels (`nav-wording-decisions.md`), unchanged. The two quiet lines are the only item-level text in the panel: Experience Engineering and Growth Office are the two names Andy said need a plain keyword beside them (Source C: "can you build a website?" must map; Growth Office "terminology hard"). Every other label is the searched term or close to it and stands alone (D-35).
 
 **Column 3: CEO Advisory** (rightmost, narrower, quieter type)
 
-| Order | Label | Subtitle (one line) | Links to |
-|---|---|---|---|
-| Heading | **CEO Advisory** | "One-to-one advice for CEOs and senior leaders" | `/services/ceo-advisory/` |
-| 1 | Side-by-Side | "Our advisory retainer: an experienced growth leader on call" | `/services/ceo-advisory/` |
-| 2 | Meet the advisors | "The senior leaders you would work with" | `/about/team/#advisors` |
+| Element | Text | Links to |
+|---|---|---|
+| Heading | **CEO Advisory** | `/services/ceo-advisory/` |
+| Pillar line | One-to-one advice for senior leaders | not a link |
 
-This column is visibly the third pillar of the triangle. It is quieter by width and type weight, not by being hidden. Source C: do not design the site around it, but it is part of the triangle. Source D: it must be visible as such. The "(SxS)" acronym used in v2 is removed; Side-by-Side is always written in full.
+No items. The heading is the link. v3 had two items beneath it: "Side-by-Side" (the same page as the heading) and "Meet the advisors" (`/about/team/#advisors`). Both are cut (D-36). Side-by-Side is named in the hero of the CEO Advisory page; the advisors are that page's main block and are also listed under Our team. The column stays: it is visibly the third pillar, quieter by width and type weight, not by being hidden (Source C, Source D).
 
 **Panel footer row** (full width, one thin line, small text, separated by a rule)
 
 | Order | Label | Links to |
 |---|---|---|
-| Left | "All services" | `/services/` |
-| Middle | "Expertise: loyalty, membership, subscriptions, pricing, customer value" | `/expertise/` |
-| Right | "Contact" | `/contact/` |
+| Left | All services | `/services/` |
+| Middle | Expertise | `/expertise/` |
+| Right | Contact | `/contact/` |
 
-Three text links. The middle one is the only place expertise appears in the mega-nav, as a single link with the five theme names as its text. It is not a column and has no sub-items. The visitor-facing word is "Expertise"; "expertise themes" remains the name of the dimension inside these documents.
+Three one-word or two-word links. The middle one is the only place expertise appears in the header. v3 spelled out the five theme names here; v4 does not (D-37).
 
 ### 3.3 Mega-nav wording rules
 
-- Labels use the words a prospect would search for. Where Andy's deck label and the searched term agree, the deck label is used. Where they conflict, the searched term is the label and the deck term is kept on the service page and as a redirect. Where the deck label is a Manifesto term Andy wants to be known for and no plain term replaces it (Experience Engineering, Growth Office, Proposition Innovation, Side-by-Side, Activation Services), the label stays and the subtitle carries the plain words. The full reasoning per label is in `nav-wording-decisions.md`.
-- No acronyms or internal shorthand in the nav: no SxS, D2C, HPX, CX on its own (write "customer experience (CX)").
-- One subtitle per label, one line, no more than ten words, no full stops except the heading subtitles.
-- Subtitles are where the search vocabulary lives (customer experience, website, research, loyalty, membership, subscription, AI, operating model, interim, retainer). Every subtitle must contain at least one term a prospect would type.
-- No icons are required for comprehension. If icons are used later, labels must still stand alone.
-- No "Column 1", "Pillar 1" or similar labels in the live nav. The three-column layout does the work.
+- Labels use the words a prospect would search for. Where the deck label and the searched term conflict, the searched term is the label and the deck term lives on the page. The reasoning per label is in `nav-wording-decisions.md`; v4 changes no label.
+- No acronyms or internal shorthand in the nav.
+- **One pillar line per column**, four to six words, no full stop. The same three lines are used on the Home and Services hub triangle blocks (shared data, `05-content-matrix.md`).
+- **No item subtitles**, with two exceptions: a quiet line of two to four words under Experience Engineering and Growth Office. Adding a third quiet line is an IA decision, not a content edit, and the default answer is no: put the explanation on the page.
+- The search vocabulary that v3 carried in subtitles (customer experience, website, research, surveys, loyalty, membership, subscription, AI, operating model, interim, programme office, retainer) lives in service page H1s, H2s, title tags and FAQs (`04-canonicals-and-seo.md`, section 6). The menu does not have to carry it.
+- No "Column 1", "Pillar 1" or similar labels in the live nav.
 
 ### 3.4 Desktop layout notes (structural, not visual)
 
 - Grid: columns 1 and 2 equal width; column 3 roughly two thirds of that width. The panel has a maximum width matching the page content, centred.
-- Column headings align on one baseline. Reading left to right gives Growth Strategy, Activation Services, CEO Advisory: the triangle in order of prominence.
-- Column 3 uses the same structure as the others (heading, subtitle, list) so it reads as a peer pillar, but with lighter type weight and a slightly smaller heading.
+- Column headings align on one baseline. Reading left to right gives Growth Strategy, Activation Services, CEO Advisory.
+- Column 3 uses the same structure (heading, pillar line) with lighter type weight and a slightly smaller heading.
 - The footer row is separated by a rule and uses smaller text. It must not grow beyond three links.
+- Word budget for the whole open panel: under fifty words. v4 as specified is about forty-five.
 
 ### 3.5 Mobile and tablet behaviour (below roughly 1024 px)
 
 The header collapses to: logo (left), Contact button (right, kept visible), and a Menu button that opens a full-screen panel.
 
-Inside the panel, in order:
+Inside the panel, five rows in order:
 
-1. **What we do** (accordion). When expanded, a small line "Our Growth Architecture" then three sub-accordions in triangle order, each with the desktop subtitle:
-   - **Growth Strategy** (expanded by default): Growth Strategy, Proposition Innovation
-   - **Activation Services** (collapsed): the six services in desktop order (Customer Research and Insight, Experience Engineering, AI Agents for Marketing, Operating Model Design, Growth Office, AI Enablement), each with its subtitle
-   - **CEO Advisory** (collapsed, quieter): Side-by-Side, Meet the advisors
-   - Then one thin row of two plain links: "All services", "Expertise"
-2. **Our work**: plain link
-3. **Insights** (accordion): Latest insights, Reports and guides, Events; then a small "Expertise" heading, All expertise and the five theme links
-4. **About** (accordion): About Manifesto, Our team, How we work, Values and culture, Careers
-5. **Contact**: plain link (also present as the header button)
-6. Below the primary items, a quieter block: "Who we work with" with the four sector links
+1. **What we do** (expands; open by default when the menu opens). One flat list, two levels deep in total:
+   - small label **Growth Strategy** (link to `/services/growth-strategy/`), then Proposition Innovation
+   - small label **Activation Services** (link to `/services/activation/`), then the six services in desktop order, with the same two quiet lines
+   - small label **CEO Advisory** (link to `/services/ceo-advisory/`), quieter
+   - then one thin row of two links: All services, Expertise
+2. **Our work**: plain row
+3. **Insights**: plain row
+4. **About** (expands): Our team, How we work, Values and culture, Careers
+5. **Contact**: plain row (also the pinned header button)
 
 Rules:
-- Tapping the label text navigates. Tapping the plus or minus toggles the accordion. The toggle target is at least 44 px square. (The alternative whole-row toggle with a "View all" link is acceptable; pick one in wireframes and use it everywhere.)
+- No sub-accordions inside What we do. v3 had one per pillar; v4 uses small pillar labels above a flat list (D-40).
+- No sectors block in the menu. Sectors are in the page footer on every device.
+- Tapping the label text navigates. Tapping the plus or minus toggles the group. The toggle target is at least 44 px square.
 - The panel scrolls if content exceeds the viewport. The Contact button and close control stay pinned.
-- No hover states on touch. Everything is reachable by tap.
 
 ---
 
-## 4. Insights dropdown
-
-A small, two-column dropdown. This is the calm home for expertise themes in the header (Source D: themes matter for SEO and cross-linking but must not compete with the triangle).
-
-**Column 1: Insights**
-
-| Order | Label | Links to |
-|---|---|---|
-| 1 | Latest insights | `/insights/` |
-| 2 | Reports and guides | `/insights/?type=report` |
-| 3 | Events | `/insights/?type=event` |
-
-**Column 2: Expertise**
-
-| Order | Label | Links to |
-|---|---|---|
-| Heading | Expertise (label, not a link) | |
-| 1 | All expertise | `/expertise/` |
-| 2 | Loyalty | `/expertise/loyalty/` |
-| 3 | Membership | `/expertise/membership/` |
-| 4 | Subscriptions | `/expertise/subscriptions/` |
-| 5 | Pricing | `/expertise/pricing/` |
-| 6 | Customer Value | `/expertise/customer-value/` |
-
-Why themes sit here: someone browsing thinking wants to browse by problem. Themes are the evergreen version of that thinking, and every theme page routes to the services that solve the problem (Source A's intersecting model). Placing them under Insights keeps the What we do panel to the triangle. See `06-decisions-log.md`, D-04. The heading was "Expertise themes" in v2; "themes" is an IA word, so the visitor sees "Expertise" (D-32). The five theme names were reviewed in v3 and kept: all are terms prospects search.
-
-"Articles" and "Newsletter" from the v1 dropdown are removed. Latest insights is the article list; the newsletter is in the footer and on the Insights hub.
-
----
-
-## 5. About dropdown
+## 4. About dropdown
 
 A small, single-column dropdown.
 
 | Order | Label | Links to |
 |---|---|---|
-| 1 | About Manifesto | `/about/` |
-| 2 | Our team | `/about/team/` |
-| 3 | How we work | `/about/how-we-work/` |
-| 4 | Values and culture | `/about/values/` |
-| 5 | Careers | `/careers/` |
+| 1 | Our team | `/about/team/` |
+| 2 | How we work | `/about/how-we-work/` |
+| 3 | Values and culture | `/about/values/` |
+| 4 | Careers | `/careers/` |
 
-"How we work" lives under About, not under What we do, because it describes method rather than a buyable service (Source A: separate tangible services from methodology). Careers is a separate top-level section (`/careers/`, per Source A) reached from About and the footer; it does not need its own header item.
-
----
-
-## 6. Contact
-
-A button-styled link with no dropdown. Present on every page in the header, including the collapsed mobile header. Links to `/contact/`.
-
-Secondary calls to action inside pages (for example "Talk to us about loyalty") also point to `/contact/` and may pass a context parameter (for example `/contact/?topic=loyalty`) to pre-select the enquiry subject. These are canonicalised to `/contact/`.
+Clicking About itself goes to `/about/`, so v3's first item "About Manifesto" was a duplicate and is cut (D-39). "How we work" lives here, not under What we do, because it describes method rather than a buyable service (Source A). Careers is a top-level section (`/careers/`) reached from here and the footer.
 
 ---
 
-## 7. Footer
+## 5. Insights and Our work
 
-The footer is the second navigation system. It is identical on every page and carries the full site structure, including sectors and themes, which are deliberately kept out of or light in the header.
+Both are plain header links. Neither has a dropdown.
+
+- **Our work** (`/work/`): filters for Service, Expertise and Sector are on the hub. Service is open on load; Expertise and Sector are behind "More filters" (`03-page-layouts.md`, T7).
+- **Insights** (`/insights/`): filters for Type, Expertise, Service and Sector are on the hub. Type is open on load; the rest are behind "More filters" (T9).
+
+v3 gave Insights a two-column dropdown (three type filters plus Expertise with five theme links). v4 removes it (D-38). Where expertise is reachable in v4: the mega-nav footer row, the site footer, the Home expertise row, the `/expertise/` hub, and the More filters on Work and Insights. Themes keep their full weight in the sitemap and in cross-linking; they lose one header placement.
+
+---
+
+## 6. Footer
+
+The footer is the second navigation system. It is identical on every page and carries the full site structure, including sectors and themes, which are kept out of the header.
 
 **Footer column 1: What we do**
-Growth Strategy, Proposition Innovation, Customer Research and Insight, Experience Engineering, AI Agents for Marketing, Operating Model Design, Growth Office, AI Enablement, CEO Advisory: Side-by-Side, All services
+Growth Strategy, Proposition Innovation, Customer Research and Insight, Experience Engineering, AI Agents for Marketing, Operating Model Design, Growth Office, AI Enablement, CEO Advisory, All services
 
 **Footer column 2: Expertise**
 Loyalty, Membership, Subscriptions, Pricing, Customer Value
 
-**Footer column 3: Who we work with**
+**Footer column 3: Who we work with** (heading is plain text; there is no sector index page in v4, D-44)
 Financial services, Media, Consumer, Retail (each to `/sectors/{slug}/`)
 
 **Footer column 4: Company**
@@ -253,66 +194,66 @@ About, Our team, How we work, Values and culture, Careers, Our work, Insights, N
 Company registration line, Privacy policy, Cookie policy, Terms, Accessibility statement, social links
 
 Footer rules:
-- Footer links are plain text lists with column headings. No subtitles. Service link text is the mega-nav label, exactly.
+- Footer links are plain text lists with column headings. No subtitles or quiet lines. Service link text is the mega-nav label, exactly. CEO Advisory is listed as "CEO Advisory" (v3 wrote "CEO Advisory: Side-by-Side").
 - The footer lists every Canonical and Supporting page in the sitemap except individual case studies, individual insights, individual roles and individual team profiles.
 - Sectors appear here in full. This is their primary navigation home.
 
 ---
 
-## 8. Breadcrumbs
+## 7. Breadcrumbs
 
-Every page below the top level shows a breadcrumb trail directly beneath the header. Home is always the first item and is labelled "Home".
-
-Breadcrumb text is the nav label, so renamed services show their v3 label.
+Every page below the top level shows a breadcrumb trail directly beneath the header. Home is always the first item and is labelled "Home". Breadcrumb text is the nav label.
 
 Examples:
 - `Home > What we do > Growth Strategy`
-- `Home > What we do > Activation Services > Experience Engineering` (Activation services show the group in the trail even though the URL is flat; see `02-sitemap.md`)
-- `Home > What we do > Activation Services > AI Agents for Marketing`
+- `Home > What we do > Activation Services > Experience Engineering` (Activation services show the group in the trail even though the URL is flat)
 - `Home > What we do > CEO Advisory`
 - `Home > Expertise > Loyalty`
 - `Home > Our work > Dayinsure`
 - `Home > About > Our team > {Name}`
-- `Home > Careers > {Role}`
 
 Breadcrumbs are marked up with `BreadcrumbList` structured data (see `04-canonicals-and-seo.md`).
 
 ---
 
-## 9. Quick reference: where does each dimension live in the nav?
+## 8. Quick reference: where does each dimension live in the nav?
 
 | Dimension | Header | Footer | Filters | Own pages |
 |---|---|---|---|---|
-| Services (the triangle) | Mega-nav, all three columns | Column 1 | Our work, Insights | `/services/...` (Canonical; Activation group and CEO Advisory Supporting) |
-| Expertise themes (shown as "Expertise") | Insights dropdown column 2; one text link in the mega-nav footer row | Column 2 | Our work, Insights | `/expertise/...` (Supporting) |
-| Sectors | Not in the header | Column 3 | Our work, Insights | `/sectors/...` (Light) |
+| Services (the triangle) | Mega-nav, all three columns | Column 1 | Our work (open on load), Insights (More filters) | `/services/...` (Canonical; Activation group and CEO Advisory Supporting) |
+| Expertise themes (shown as "Expertise") | One link in the mega-nav footer row | Column 2 | Our work and Insights (More filters) | `/expertise/...` (Supporting) |
+| Sectors | Not in the header | Column 3 | Our work and Insights (More filters) | `/sectors/{sector}/` (Light); no index page |
 | Methodology | About dropdown | Column 4 | None | `/about/how-we-work/` (Supporting) |
 | CEO Advisory | Mega-nav column 3 (quieter) | Column 1, last service | Our work (service filter value) | `/services/ceo-advisory/` (Supporting), advisor profiles under `/about/team/` |
 
-## 10. v1 to v2 to v3 header comparison
+## 9. v1 to v4 header comparison
 
-| | v1 | v2 | v3 |
-|---|---|---|---|
-| Mega-nav columns | 4 (Growth Strategy, Activation, Expertise, Featured) plus a 3-link bottom strip | 3 (Growth Strategy, Activation Services, CEO Advisory) plus a 3-link footer row | Same as v2 |
-| Links inside the mega-nav | 22 across 4 columns and a strip | 17 (1 heading, 13 in three columns, 3 in the footer row), of which 10 are the triangle's services | Same as v2 |
-| Distinct destinations | 21 | 14 | 14 |
-| CEO Advisory position | Bottom strip text link | Third column, quieter, with advisors link | Same as v2 |
-| Themes in the mega-nav | Full column of 5 | One text link ("Expertise themes: ...") | One text link ("Expertise: ...") |
-| Featured case study in the mega-nav | Yes | No (Home and Work hub) | No |
-| Sectors in the mega-nav | Bottom strip link | No (footer only) | No |
-| Header dropdowns | 4 (mega, Our work, Insights, About) | 3 (mega, Insights, About) | 3 |
-| Service labels | Deck labels | Deck labels, verbatim, by rule | Searched terms; three renamed (Customer Research and Insight, AI Agents for Marketing, Operating Model Design); acronyms removed |
-| Subtitles | None | 13, mixing plain English and deck phrasing | 13, all plain English, each carrying at least one searched term |
+| | v1 | v2 | v3 | v4 |
+|---|---|---|---|---|
+| Mega-nav columns | 4 plus a 3-link strip | 3 plus a 3-link footer row | Same as v2 | 3 plus a 3-link footer row; no heading line |
+| Links inside the mega-nav | 22 | 17 | 17 | 13 (3 headings, 7 items, 3 footer) |
+| Distinct destinations | 21 | 14 | 14 | 12 |
+| Words in the open panel (approx.) | 120 | 170 | 200 | 45 |
+| Item subtitles | 0 | 10 | 10 | 0 (two quiet lines) |
+| Pillar subtitles | 0 | 3 | 3 | 3, shortened to four to six words |
+| Theme names in the mega-nav | Full column of 5 | In the footer-row link text | In the footer-row link text | None; one "Expertise" link |
+| Header dropdowns | 4 | 3 | 3 | 2 (mega-nav, About) |
+| Mobile depth inside What we do | 3 levels | 3 levels | 3 levels | 2 levels |
+| Sectors in the mobile menu | Yes | Yes (quiet block) | Yes (quiet block) | No (footer only) |
 
-## 11. v2 to v3 label changes at a glance
+## 10. v3 to v4 changes at a glance
 
-| v2 | v3 |
+| v3 | v4 |
 |---|---|
-| Customer Intelligence | Customer Research and Insight |
-| Data Agents | AI Agents for Marketing |
-| Operating Architecture | Operating Model Design |
-| Side-by-Side (SxS) | Side-by-Side |
-| Expertise themes (dropdown heading, footer heading, footer-row link) | Expertise |
-| All themes | All expertise |
+| Heading line "Our Growth Architecture" with strapline | Cut from the menu |
+| Column 1: heading plus items Growth Strategy, Proposition Innovation | Heading (link) plus Proposition Innovation |
+| Column 3: heading plus items Side-by-Side, Meet the advisors | Heading (link) plus pillar line only |
+| Ten item subtitles | Two quiet lines (Experience Engineering, Growth Office) |
+| Pillar subtitles of seven to nine words | Pillar lines of four to six words |
+| Footer row "Expertise: loyalty, membership, subscriptions, pricing, customer value" | "Expertise" |
+| Insights two-column dropdown | Plain link |
+| About dropdown with "About Manifesto" | Four items |
+| Mobile: pillar sub-accordions, subtitles, sectors block | Flat list under small pillar labels; no sectors block |
+| Footer: "CEO Advisory: Side-by-Side" | "CEO Advisory" |
 
-All thirteen subtitles are rewritten. The full list with reasons is in `nav-wording-decisions.md`.
+Labels and slugs are unchanged from v3.
