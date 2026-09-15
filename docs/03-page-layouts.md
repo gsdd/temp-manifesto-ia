@@ -1,10 +1,35 @@
-# 03. Page layouts (v3)
+# 03. Page layouts (v4)
 
 Templates for each page type, described as an ordered list of blocks. For every block: what it contains, where its content comes from, and when it appears. This is structure, not visual design. Block names are working names for the CMS and wireframes.
 
-v3 changes are confined to wording: service names follow the v3 nav labels (`nav-wording-decisions.md`), the service hero gains an "also known as" line for renamed services, and the Experience Engineering H2s use the plain terms. Block order and rules are unchanged from v2.
+v4 changes (`v4-simplification.md`): Home goes from seven blocks to six and loses the pyramid diagram, the tagged cards and the theme descriptors; every template follows the **one chip dimension, three visible** rule set out below; the Work and Insights hubs open with one filter group and put the rest behind "More filters"; the sector rows on theme pages and the theme rows on sector pages are cut; the sector index page is gone. Service names, the "also known as" hero line and the plain H2s from v3 are unchanged.
 
 Related: `05-content-matrix.md` shows the same information as a grid; `04-canonicals-and-seo.md` sets the linking rules the "Related" blocks follow.
+
+---
+
+## Chips and tags: one dimension per page type
+
+Gary's v4 feedback: page chips are too busy. The cause was structural. The IA has three intersecting dimensions (services, expertise themes, sectors) and v3 showed all three as chips wherever they were tagged. The cross-referencing model is right; showing it everywhere is not.
+
+The rule: **each page type shows chips from one dimension only, capped at three visible.** The other dimensions still exist as CMS tags, drive filters and auto modules, and appear as blocks (a list of cards, a "Where we help" list) where the template calls for them. They are not displayed as chips.
+
+| Page type | Chip dimension | Cap | Not shown as chips |
+|---|---|---|---|
+| Home | Expertise (one row of plain text links) | 5 | Services (the triangle is three blocks, not chips), sectors, insight types |
+| Services hub | None | | The expertise line is one sentence with a link |
+| Service detail | Expertise (Related expertise block) | 3 | Sectors; other services (Related services is two or three cards) |
+| Expertise theme | None | | Services (Where we help is a list with a line each); sectors (row cut) |
+| Sector landing | None | | Themes (row cut); services (Services most used here is a short list) |
+| Work hub | Service, one per card | 1 | Themes and sectors on cards; they remain filters |
+| Case study | Services used (hero) | 3 | Sector and themes in the hero. Related expertise appears once, at the foot, capped at 3 |
+| Insights hub | Expertise, one per card | 1 | Type is a word in the meta line, not a chip |
+| Insight | Expertise (hero) | 3 | Services (Related services is a block, max 2); sectors |
+| Team profile | None | | Focus is a sentence with links |
+
+Where a page has more tags than the cap, the template shows the first three (editor-ordered) and nothing else. There is no "+2 more" control on chips; the full set is visible on the filter hubs.
+
+Sectors are shown as chips nowhere. They live in the Work and Insights filters (behind More filters), the footer, and their own light landings.
 
 ---
 
@@ -27,21 +52,20 @@ Block order matters. The first two blocks on any page must answer "where am I an
 
 ## T1. Home (`/`)
 
-Purpose: say who MGA is for, show the Growth Architecture triangle, and route into services, work and insights within one screen. Home carries no unique long-form content. Everything it shows exists in full somewhere else.
+Purpose: say who MGA is for, show the Growth Architecture triangle once, and route into services, work and insights. Home carries no unique long-form content. Everything it shows exists in full somewhere else. Home has one chip set (block 4), one CTA path (Contact, in the hero and again at the foot) and no tags on any card.
 
 | # | Block | Content | Rule |
 |---|---|---|---|
-| 1 | Hero | Positioning statement from Source B ("Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth") and the line "Strategy that works. Execution that delivers.", one line of who it is for, primary CTA to Contact, secondary CTA to `/services/` | Always |
-| 2 | Client logo strip | 8 to 12 logos from the Source B client list, linking to `/work/` | Always. Logos link to the case study if one exists, otherwise to `/work/?sector=`. |
-| 3 | Growth Architecture triangle | The triangle drawn as three connected blocks with the Source B one-liners: Growth Strategy ("Architecting strategies and value propositions that deliver sustainable customer value growth"), Activation Services ("Building the bridge from strategy to execution"), CEO Advisory ("Direct support that sits side-by-side with leaders"). Each block links to its pillar page. Growth Strategy is largest, Activation second, CEO Advisory smallest and quietest. | Always. This is the block Gary asked for: the triangle must be pointable within seconds. Uses the same three labels as the mega-nav. The one-liners are Source B copy and should get the same plain-language pass as the nav when Andy writes the service copy (open item in `06-decisions-log.md`). |
-| 4 | Featured work | Three case studies, curated, spanning at least two pillars | Always. Curated; falls back to newest. This is where the v1 mega-nav featured card moved to. |
-| 5 | Expertise themes strip | The five themes as a single calm row of links with one-line descriptors, heading "Growth problems we know deeply" | Always. One row, no cards. |
-| 6 | Latest insights | Three newest insights, auto | Always |
-| 7 | Closing CTA | Contact CTA with a plain-English prompt ("Tell us about your growth challenge") | Always |
+| 1 | Hero | Positioning statement from Source B ("Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth"), the line "Strategy that works. Execution that delivers.", one primary CTA to Contact, one text link to `/services/` ("What we do"). Beneath, a thin row of 8 client logos. | Always. Logos link to the case study if one exists, otherwise to `/work/`. |
+| 2 | Growth Architecture triangle | Three blocks, each with the pillar label and the same short pillar line as the mega-nav: Growth Strategy ("Where and how you grow"), Activation Services ("Turning strategy into results"), CEO Advisory ("One-to-one advice for senior leaders"). Each block links to its pillar page. Growth Strategy and Activation equal weight; CEO Advisory narrower and quieter. Section heading "What we do". | Always. The triangle is drawn once, here. No pyramid diagram, no Source B one-liners, no second rendering. The three lines are shared data with the mega-nav (`05-content-matrix.md`). |
+| 3 | Our work | Three case studies, curated, spanning at least two pillars. Card: image, client, one-line result. No tags. Link "All work". | Always. Curated; falls back to newest. |
+| 4 | Expertise | Heading "Growth problems we know best" and the five theme names as plain text links in one row. No descriptors, no cards, no counts. | Always. This is the only row of topic links on Home. Cap is five; a sixth theme does not appear here until one of the five is retired. |
+| 5 | Latest insights | Three newest insights, auto: title and date. No type or theme tags. Link "All insights". | Always |
+| 6 | Closing CTA | "Tell us about your growth challenge" and a Contact button | Always |
 
-What Home does not do: no long "about us" copy, no full service descriptions, no methodology explanation, no team grid, no sector block (sectors are in the footer and on the logo strip through case study links). Each of those has a page.
+What Home does not do: no long "about us" copy, no full service descriptions, no methodology explanation, no team grid, no sector block, no filter chips, no type or theme tags on cards. Each of those has a page.
 
-v1 had ten blocks here. v2 has seven. The proof band, How we work teaser and Who we work with block were cut as noise.
+v1 had ten blocks here. v2 and v3 had seven, with the triangle drawn twice (three cards plus a pyramid). v4 has six: the logo strip is folded into the hero, the pyramid is gone, the cards carry no tags, and the expertise row is names only (D-41).
 
 ---
 
@@ -51,16 +75,16 @@ Purpose: this is the triangle page. Explain the three pillars and route to the r
 
 | # | Block | Content | Rule |
 |---|---|---|---|
-| 1 | Intro | H1 "What we do", subheading "Our Growth Architecture", two short paragraphs from Source B: the path from strategy to execution has become complex and fragmented; Growth Architecture combines market-leading strategic thinking with AI-powered activation services. | Always |
-| 2 | The triangle | The same three-block triangle as Home block 3, larger, with the three Source B one-liners. Each block anchors to the pillar section below and links to the pillar page. | Always |
-| 3 | Pillar 1: Growth Strategy | Pillar heading and one-line subtitle (as in the mega-nav), two service cards (Growth Strategy, Proposition Innovation) each with a two-line summary and link | Always. First pillar section. |
-| 4 | Pillar 2: Activation Services | Pillar heading and subtitle, one paragraph on strategy-to-execution and "not ongoing operations", link to `/services/activation/`, six service cards in nav order, each with the one-line subtitle from the mega-nav | Always |
-| 5 | Pillar 3: CEO Advisory | Pillar heading and subtitle, one paragraph on Side-by-Side, up to three advisor profile cards (auto from the advisor flag), link to `/services/ceo-advisory/` | Always. Third and visibly quieter than pillars 1 and 2, but a full section, not a footnote. |
-| 6 | Proof | Three case studies spanning at least two pillars, curated | Always |
-| 7 | Expertise themes strip | The five theme links, one row, heading "We apply these services to the growth problems we know best" | Always. This is the intersecting dimension made visible without a grid. |
+| 1 | Intro | H1 "What we do", subheading "Our Growth Architecture", the strapline "Strategy that works. Execution that delivers." and two short paragraphs from Source B: the path from strategy to execution has become complex and fragmented; Growth Architecture combines market-leading strategic thinking with AI-powered activation services. | Always. This is where the strapline lives now that it is out of the mega-nav (D-34). |
+| 2 | The triangle | The same three-block triangle as Home block 2, larger, with the same three pillar lines. Each block anchors to the pillar section below and links to the pillar page. | Always |
+| 3 | Pillar 1: Growth Strategy | Pillar heading and pillar line, two service cards (Growth Strategy, Proposition Innovation) each with a two-line summary and link | Always. First pillar section. |
+| 4 | Pillar 2: Activation Services | Pillar heading and pillar line, one paragraph on strategy-to-execution and "not ongoing operations", link to `/services/activation/`, six service cards in nav order, each with a one-line summary written for the card (the card is where the v3 subtitle wording can be reused) | Always |
+| 5 | Pillar 3: CEO Advisory | Pillar heading and pillar line, one paragraph naming Side-by-Side, up to three advisor profile cards (auto from the advisor flag), link to `/services/ceo-advisory/` | Always. Third and visibly quieter than pillars 1 and 2, but a full section, not a footnote. |
+| 6 | Proof | Three case studies spanning at least two pillars, curated. Cards carry no tags. | Always |
+| 7 | Expertise | One sentence, "We apply these services to the growth problems we know best", with a single link to `/expertise/` | Always. One line, one link. The five names are on Home, in the footer and on the hub. |
 | 8 | Closing CTA | Contact | Always |
 
-v1 carried a services-against-themes cross-reference grid here. It is removed from the hub as visual noise. The intersection is carried by the Related expertise block on every service page and by the Where we help block on every theme page.
+v1 carried a services-against-themes cross-reference grid here. v2 and v3 replaced it with a five-link strip. v4 reduces that to one sentence and one link (D-42). The intersection is carried by the Related expertise block on every service page and by the Where we help block on every theme page.
 
 ---
 
@@ -70,15 +94,15 @@ Used for all eight canonical services and, with the noted variations, the Activa
 
 | # | Block | Content | Rule |
 |---|---|---|---|
-| 1 | Hero | Service name as H1 (the v3 nav label, exactly), a one-line plain definition (start from the mega-nav subtitle, then the Source B one-liner if it adds something), one-line "who this is for", primary CTA (`/contact/?topic={service}`). For services renamed from the deck (Customer Research and Insight, AI Agents for Marketing, Operating Model Design) a small "also known as" line under the H1 names the deck term: "Our Customer Intelligence practice", "Data Agents, built in AgentLab", "Our Operating Architecture framework". | Always. The "also known as" line is Conditional: only on renamed services. |
-| 2 | Pillar context | One line placing the service in the triangle ("Part of Activation Services" or "Part of Growth Strategy") linking to the pillar page, and previous / next service links within the pillar | Always for Activation services and Proposition Innovation. Omitted for Growth Strategy (it is the pillar) and CEO Advisory (it is the pillar). |
+| 1 | Hero | Service name as H1 (the nav label, exactly), a one-line plain definition carrying the searched terms (this is where the v3 mega-nav subtitle wording now lives: for example Experience Engineering, "Customer experience (CX), website and digital design, build and testing"), one-line "who this is for", primary CTA (`/contact/?topic={service}`). No chips in the hero. For services renamed from the deck (Customer Research and Insight, AI Agents for Marketing, Operating Model Design) a small "also known as" line under the H1 names the deck term: "Our Customer Intelligence practice", "Data Agents, built in AgentLab", "Our Operating Architecture framework". | Always. The "also known as" line is Conditional: only on renamed services. |
+| 2 | Pillar context | One line placing the service in the triangle ("Part of Activation Services" or "Part of Growth Strategy") linking to the pillar page | Always for Activation services and Proposition Innovation. Omitted for Growth Strategy (it is the pillar) and CEO Advisory (it is the pillar). v3 also had previous / next service links here; cut in v4 as chrome (D-42). |
 | 3 | Why | Two to four short paragraphs on the situations that lead clients to this service. Source B provides a "Why" paragraph for every service; start from it. | Always |
 | 4 | What we do | The service explained: scope, typical deliverables, what the client gets. Source B provides a "What" section for every service. Subheadings carry the search-friendly terms. | Always. This is the canonical description; no other page restates it. |
 | 5 | How it works | Typical phases or shape of the engagement, duration where Source B gives it (AI Agents for Marketing: 4 weeks, 6 weeks, ongoing), who from MGA is involved | Always. Links to `/about/how-we-work/` for general methodology rather than repeating it. |
 | 6 | Service-specific module | Varies by service (table below) | Conditional per service |
-| 7 | Proof | Case studies tagged to this service, auto, up to four, with the option to pin one. Source B names example clients per service. | Always when at least one tagged case study exists. If none, show a client logo list instead. |
-| 8 | Related expertise | Themes where this service is commonly applied, each with one line on the intersection | Always. Set per service in the CMS. Minimum one, maximum five. |
-| 9 | Related services | Two or three services most often bought alongside this one | Always. Curated. |
+| 7 | Proof | Case studies tagged to this service, auto, up to four, with the option to pin one. Cards: client and one-line result, no tags. Source B names example clients per service. | Always when at least one tagged case study exists. If none, show a client logo list instead. |
+| 8 | Related expertise | Themes where this service is commonly applied, as chips, each with one line on the intersection | Always. Set per service in the CMS. Minimum one, **maximum three visible**. This is the one chip dimension on a service page. |
+| 9 | Related services | Two or three services most often bought alongside this one, as cards | Always. Curated. Cards, not chips. |
 | 10 | Insights | Up to three insights tagged to this service, auto | Conditional: at least one tagged insight exists |
 | 11 | People | One to three team profiles who lead this service | Editorial |
 | 12 | FAQ | Three to six questions clients ask about this service, marked up as FAQ structured data | Editorial. Recommended for every canonical service because it captures long-tail search phrasing. |
@@ -97,7 +121,7 @@ Service-specific module (block 6), drawn from Source B:
 | Growth Office | The three connected elements from Source B (Culture, Capability, Value) as sub-sections, and the note that MGA provides interim support then establishes ongoing ways of working. Body copy uses the plain terms "interim growth team" and "programme office" alongside the label. |
 | AI Enablement | Three programmes as sub-sections with plain H2s (AI skills and adoption; Finding where AI pays off (value cases); New business models with AI) with the maturity assessment as the entry step. Cross-link to AI Agents for Marketing for tooling. |
 | CEO Advisory (Side-by-Side) | Why (driving customer-led growth is demanding and lonely) and What (a select group of senior leaders armed with Manifesto thinking and frameworks; adaptive and personality-led; virtual or in person; retainer-based). Advisor profiles pulled from `/about/team/` where the person is flagged as advisor: this block is the heart of the page. How the retainer works. No FAQ module. Quieter CTA ("Arrange a conversation"). |
-| Activation group page | Replaces blocks 3 to 6 with: "What Activation means here" (the bridge from strategy to execution, AI-powered and human-led, not ongoing operations), then six service cards with subtitles. Blocks 7 to 13 as standard. |
+| Activation group page | Replaces blocks 3 to 6 with: "What Activation means here" (the bridge from strategy to execution, AI-powered and human-led, not ongoing operations), then six service cards, each with a one-line summary. Blocks 7 to 13 as standard. |
 
 ---
 
@@ -123,10 +147,11 @@ Purpose: prove MGA understands the problem, then hand off to the services that s
 | 3 | Where we help | The services applied to this theme, each with one line on how it applies here, linking to the service page | Always. Curated per theme. Minimum two. This block is the hand-off to the canonicals. |
 | 4 | Proof | Case studies tagged to this theme, auto, up to six | Always when at least two exist. Below two, the theme page should not have been published. |
 | 5 | Insights | Insights tagged to this theme, auto, up to six, with a link to `/insights/?expertise={theme}` | Always when at least two exist |
-| 6 | Sectors where this matters | Small row of sectors with case studies tagged to both this theme and the sector | Conditional: at least one such case study exists. Links to `/sectors/{sector}/`. |
-| 7 | People | Team members who lead on this theme | Editorial |
-| 8 | Related themes | The other four themes as links | Always |
-| 9 | CTA | Contact with topic pre-set | Always |
+| 6 | People | Team members who lead on this theme | Editorial |
+| 7 | Related themes | The other four themes as plain text links in one line | Always |
+| 8 | CTA | Contact with topic pre-set | Always |
+
+v3 had a "Sectors where this matters" row between Insights and People. Cut in v4 (D-42): sectors are reached through the Work filters and the footer, and a sector row on a theme page was a second chip dimension. The sector tags on the underlying case studies are unchanged.
 
 ---
 
@@ -138,13 +163,12 @@ Purpose: reassure "you have worked with businesses like mine" and route to proof
 |---|---|---|---|
 | 1 | Hero | Sector name as H1, two or three sentences on the kind of work MGA does in this sector and the clients it has worked with | Always. 150 to 300 words maximum. |
 | 2 | Client logos | Logos of clients in this sector | Always |
-| 3 | Case studies | All case studies tagged to this sector, auto | Always. If fewer than three, the page is noindex. |
-| 4 | Services most used here | The two or three services most frequently tagged alongside this sector, auto from case study tags | Always |
-| 5 | Themes that matter here | Themes tagged alongside this sector, auto | Conditional: at least one |
-| 6 | Insights | Insights tagged to this sector, auto, up to three | Conditional: at least two exist |
-| 7 | CTA | Contact | Always |
+| 3 | Case studies | All case studies tagged to this sector, auto. Cards: client and result, no tags. | Always. If fewer than three, the page is noindex. |
+| 4 | Services most used here | The two or three services most frequently tagged alongside this sector, as a short list with a line each, auto from case study tags | Always |
+| 5 | Insights | Insights tagged to this sector, auto, up to three | Conditional: at least two exist |
+| 6 | CTA | Contact | Always |
 
-The sector index (`/sectors/`) is T6 block 1 (generic) plus a four-card list and CTA.
+v3 had a "Themes that matter here" row after Services most used here. Cut in v4 (D-42) for the same reason as the sector row on theme pages. There is no sector index page in v4 (D-44); the footer heading "Who we work with" is plain text and the four landings are reached from the footer and the Work filters.
 
 ---
 
@@ -154,8 +178,8 @@ The sector index (`/sectors/`) is T6 block 1 (generic) plus a four-card list and
 |---|---|---|---|
 | 1 | Intro | Heading "Our work", one line | Always |
 | 2 | Featured | One curated case study, large | Editorial. Falls back to newest. |
-| 3 | Filters | Three filter groups: Service (grouped by pillar: Growth Strategy and Proposition Innovation; the six Activation services; CEO Advisory), Expertise (five), Sector (four). Multi-select within a group, AND across groups. Filters update the URL query string. | Always |
-| 4 | Results grid | Case study cards: client, one-line result, service and theme tags. Newest first by default, pinned items first. | Always. Paginated or load-more after 12. |
+| 3 | Filters | One filter group open on load: Service, grouped by pillar (Growth Strategy and Proposition Innovation; the six Activation services; CEO Advisory). A "More filters" control reveals Expertise (five) and Sector (four). Multi-select within a group, AND across groups. Filters update the URL query string. Active filters from any group are shown as removable chips above the grid. | Always. v3 opened all three groups at once; v4 opens one (D-43). Arriving with `?expertise=` or `?sector=` in the URL opens More filters with that group visible. |
+| 4 | Results grid | Case study cards: client, one-line result, one service tag (the primary service). Newest first by default, pinned items first. | Always. Paginated or load-more after 12. Theme tags on cards were cut in v4. |
 | 5 | Empty state | If a filter combination returns nothing: message plus links to the nearest broader filter | Conditional |
 | 6 | CTA | Contact | Always |
 
@@ -165,7 +189,7 @@ The sector index (`/sectors/`) is T6 block 1 (generic) plus a four-card list and
 
 | # | Block | Content | Rule |
 |---|---|---|---|
-| 1 | Hero | Client name, one-line headline result, sector, services used (linked), themes (linked) | Always |
+| 1 | Hero | Client name, one-line headline result, services used as chips (linked, maximum three) | Always. The one chip dimension on a case study. v3 also showed sector and theme chips here; cut in v4 (D-42). Sector and themes stay as CMS tags so the case study still surfaces on sector landings, theme pages and in filters. |
 | 2 | At a glance | Three to four headline numbers or outcomes | Always |
 | 3 | The challenge | Two to four paragraphs | Always |
 | 4 | What we did | Narrative of the approach, with the services referenced inline and linked. Does not explain what the service is in general; links do that. | Always |
@@ -173,8 +197,9 @@ The sector index (`/sectors/`) is T6 block 1 (generic) plus a four-card list and
 | 6 | Client quote | Attributed testimonial. Testimonials live here, not on a separate page (Source A). | Editorial |
 | 7 | Team | The MGA people on the engagement, linking to profiles | Editorial |
 | 8 | Related services | The services used, as cards | Always |
-| 9 | Related work | Three more case studies sharing a service or theme, auto | Always |
-| 10 | CTA | Contact with the primary service pre-set | Always |
+| 9 | Related expertise | The themes tagged, as chips, maximum three | Always when tagged. This is the only place themes appear on a case study. |
+| 10 | Related work | Three more case studies sharing a service or theme, auto. Cards carry no tags. | Always |
+| 11 | CTA | Contact with the primary service pre-set | Always |
 
 Anonymised case studies use the same template with the client name replaced by a sector descriptor.
 
@@ -186,8 +211,8 @@ Anonymised case studies use the same template with the client name replaced by a
 |---|---|---|---|
 | 1 | Intro | Heading "Insights", one line | Always |
 | 2 | Latest | One curated or newest insight, large, plus the next three | Always. "Latest" is a section here, not a page (Source A). |
-| 3 | Filters | Type (article, report, event), Expertise, Service, Sector | Always |
-| 4 | Results list | Cards: title, type, date, theme tags, reading time | Always. Paginated after 12. Past events hidden by default. |
+| 3 | Filters | One filter group open on load: Type (article, report, event). A "More filters" control reveals Expertise, Service and Sector. Filters update the URL query string. | Always. v3 opened all four groups; v4 opens one (D-43). This is also where the v3 Insights dropdown's type links now live (D-38). |
+| 4 | Results list | Cards: title, one meta line (type, date, reading time), one theme tag | Always. Paginated after 12. Past events hidden by default. |
 | 5 | Newsletter sign-up | Inline form or link to `/newsletter/` | Always |
 
 ---
@@ -196,13 +221,13 @@ Anonymised case studies use the same template with the client name replaced by a
 
 | # | Block | Content | Rule |
 |---|---|---|---|
-| 1 | Hero | Title as H1, type label, date, author(s) linked to profiles, reading time, theme tags | Always |
+| 1 | Hero | Title as H1, one meta line (type, date, reading time, author(s) linked to profiles), theme chips (maximum three) | Always. Themes are the one chip dimension on an insight. |
 | 2 | Body | Long-form content with standard rich text | Always |
 | 3 | Gated download | Form to receive a report | Conditional: type is report and gating is enabled |
 | 4 | Event details | Date, time, location or link, registration | Conditional: type is event |
 | 5 | Author box | Author profile summary linking to `/about/team/{name}/` | Always |
-| 6 | Related services | Services tagged to this insight, maximum two, with a one-line "how we help" | Always when tagged. This is how thinking hands off to the canonical. |
-| 7 | Related expertise | Theme(s) tagged, linking to `/expertise/{theme}/` | Always when tagged |
+| 6 | Related services | Services tagged to this insight, maximum two, as a block with a one-line "how we help" each | Always when tagged. This is how thinking hands off to the canonical. A block, not chips. |
+| 7 | Related expertise | Theme(s) tagged, linking to `/expertise/{theme}/` | Always when tagged. Repeats the hero chips as a labelled block for readers who skipped the hero. |
 | 8 | Related insights | Three, sharing a theme, auto | Always |
 | 9 | Newsletter sign-up | Inline | Always |
 | 10 | CTA | Contact | Always |
@@ -233,7 +258,7 @@ Team listing:
 | 1 | Intro | Heading, one paragraph | Always |
 | 2 | Leadership | Profile cards | Always |
 | 3 | Consultants | Profile cards | Always |
-| 4 | Side-by-Side advisors | Anchor `#advisors`. Profile cards for advisors, with a one-line note and link to `/services/ceo-advisory/`. This is the target of "Meet the advisors" in the mega-nav. | Conditional: at least one advisor is flagged. Until then the mega-nav link points to `/services/ceo-advisory/`. |
+| 4 | Side-by-Side advisors | Anchor `#advisors`. Profile cards for advisors, with a one-line note and link to `/services/ceo-advisory/`. The CEO Advisory page links here; the mega-nav no longer does (v3's "Meet the advisors" item was cut, D-36). | Conditional: at least one advisor is flagged. |
 | 5 | Careers CTA | Link to `/careers/` | Always |
 
 Team profile:
@@ -322,7 +347,7 @@ Thank-you page: confirmation, then three curated links (a service, a case study,
 | T3 Service detail | `/services/{service}/` including `/services/activation/` and `/services/ceo-advisory/` with noted variations |
 | T4 Expertise hub | `/expertise/` |
 | T5 Expertise theme | `/expertise/{theme}/` |
-| T6 Sector light landing | `/sectors/`, `/sectors/{sector}/` |
+| T6 Sector light landing | `/sectors/{sector}/` (no index page) |
 | T7 Work hub | `/work/` |
 | T8 Case study | `/work/{client}/` |
 | T9 Insights hub | `/insights/` |

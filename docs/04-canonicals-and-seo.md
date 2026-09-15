@@ -1,8 +1,8 @@
-# 04. Canonicals and SEO (v3)
+# 04. Canonicals and SEO (v4)
 
 Which page owns which topic, how the overlaps between services, expertise themes and sectors are resolved, what is and is not indexed, and how pages link to one another. The aim is a site that originates enquiries from search, not just one that confirms credibility after a referral (Source C).
 
-v3 changes: three service labels and slugs now use the searched term rather than the deck term (Customer Research and Insight, AI Agents for Marketing, Operating Model Design); the anchor text, H1, title tag and redirect rules below are updated to match. See `nav-wording-decisions.md`.
+v3 renamed three services to the searched term (Customer Research and Insight, AI Agents for Marketing, Operating Model Design). v4 (`v4-simplification.md`) takes the item subtitles out of the mega-nav, so the **search vocabulary now has to be carried by the pages**: hero lines, H2s, title tags, meta descriptions and FAQs (section 6). Nothing about ownership, indexing or linking changes except that the `/sectors/` index page is cut and redirected (sections 4 and 7).
 
 The principle is Source A's: one canonical page for each important proposition or topic, with the rest of the site linking into and out of it. Services are canonical. Themes and sectors intersect them through links and tags, never through duplicate pages.
 
@@ -49,7 +49,7 @@ The canonical home for each topic cluster, and the pages that may reference but 
 | Subscription growth, churn, retention | `/expertise/subscriptions/` | As above | |
 | Pricing strategy, value-based pricing | `/expertise/pricing/` | As above | |
 | Customer lifetime value, customer value management | `/expertise/customer-value/` | Customer Research and Insight (analytics), Growth Strategy | |
-| Financial services, media, consumer, retail (as "consultancy for X" queries) | `/sectors/{sector}/` (Light, no keyword targets) | Case studies, Home logo strip | Sector points of view, sector-specific service pages |
+| Financial services, media, consumer, retail (as "consultancy for X" queries) | `/sectors/{sector}/` (Light, no keyword targets) | Case studies, Home logo strip | Sector points of view, sector-specific service pages, a sector index (cut in v4) |
 | Ways of working, frameworks, engagement models | `/about/how-we-work/` | Every service page (block 5) | Method pages under `/services/` |
 | Values, culture, DEI | `/about/values/` | About, Careers | Separate DEI page at launch |
 | Careers, life at Manifesto, benefits, open roles | `/careers/` | About, Values, Team listing | A "Life at Manifesto" page competing with About (Source A) |
@@ -93,7 +93,7 @@ Result: one loyalty page, one retail page, two service pages, and the proof and 
 | Activation group vs the six activation services | The group page explains the concept and lists. It never describes an individual service beyond the card summary. |
 | Customer Research and Insight vs Experience Engineering (research) | Research that produces insight and segmentation lives in Customer Research and Insight. Research that directly informs design (usability, journey research) lives in Experience Engineering under its "User research and testing" H2. Each page links to the other in one sentence. |
 | Experience Engineering vs separate CX / website / research pages | No separate pages. Experience Engineering carries three H2 sections, each with its own anchor (`#customer-experience`, `#website-and-digital`, `#research-and-testing`). Metadata, FAQ and internal anchor text use the plain terms so that the page ranks for them. |
-| AI Agents for Marketing vs AI Enablement | AI Agents for Marketing is the tooling: specific agents doing specific jobs. AI Enablement is adoption and value strategy. AI Enablement links to AI Agents for Marketing as "the tooling side"; AI Agents for Marketing links to AI Enablement as "if you are earlier in the journey". Both labels carry "AI" so a visitor with an AI intent sees two doors; the subtitles tell them which. |
+| AI Agents for Marketing vs AI Enablement | AI Agents for Marketing is the tooling: specific agents doing specific jobs. AI Enablement is adoption and value strategy. AI Enablement links to AI Agents for Marketing as "the tooling side"; AI Agents for Marketing links to AI Enablement as "if you are earlier in the journey". Both labels carry "AI" so a visitor with an AI intent sees two doors; the labels themselves ("for Marketing" versus "Enablement") tell them which, and the page hero lines confirm it. |
 | AI Agents for Marketing vs Operating Model Design | Operating Model Design designs the model in which humans and agents work. AI Agents for Marketing supplies the agents. Cross-linked once each. |
 | Growth Office vs Operating Model Design | Operating Model Design designs; Growth Office staffs. Cross-linked once each. |
 | Nav label vs deck name (renamed services) | The nav label is the H1 and the slug. The deck name (Customer Intelligence, Data Agents, Operating Architecture) appears once in the hero as an "also known as" line and may be used in body copy as the practice, product or framework name. It is never a second page. |
@@ -111,7 +111,7 @@ Result: one loyalty page, one retail page, two service pages, and the proof and 
 | All Canonical pages | index, follow | Self | Core targets |
 | All Supporting pages | index, follow | Self | Secondary and long-tail targets |
 | Sector landings | index, follow when threshold met; otherwise noindex, follow | Self | Threshold: at least 150 words of unique intro, three published case studies, two insights tagged to the sector. Prevents thin pages competing with services. |
-| `/sectors/` index | index, follow | Self | Short but unique, and it is the sector navigation home |
+| `/sectors/` | 301 to `/work/` | | No index page in v4 (D-44). The footer lists the four sectors directly. |
 | Team profiles | index, follow when biography is at least 100 words; otherwise noindex, follow | Self | Named-person search is a real path; thin stubs are not useful. Advisor profiles are a priority because CEO Advisory depends on them. |
 | `/careers/{role}/` | index, follow while open; noindex or 301 to `/careers/` when closed | Self | Roles expire |
 | Case studies | index, follow | Self | Proof pages earn brand and client-name searches |
@@ -151,14 +151,14 @@ Internal links are how the three dimensions intersect without duplicate pages. T
 | Insight | At least one service (Related services block) and at least one theme |
 | Team profile | The services and themes the person leads on; advisors link to `/services/ceo-advisory/` |
 | How we work | Every pillar it mentions |
-| Home | Services hub, all three pillar pages (Growth Strategy, Activation, CEO Advisory), Work hub, Expertise hub |
+| Home | Services hub, all three pillar pages (Growth Strategy, Activation, CEO Advisory), Work hub, Insights hub, the five theme pages (the one expertise row) |
 
 ### 5.2 Canonicals link across and down
 
 | Page type | Must link to |
 |---|---|
-| Service detail | Its pillar page (or Services hub), two or three related services, one to five related themes, tagged case studies, How we work |
-| Services hub | All three pillar pages, every service, the Expertise hub (themes strip) |
+| Service detail | Its pillar page (or Services hub), two or three related services, one to three related themes (the visible cap; more may be tagged), tagged case studies, How we work |
+| Services hub | All three pillar pages, every service, the Expertise hub (one sentence, one link) |
 | Work hub | Nothing mandatory beyond filters; the case study cards carry the links |
 
 ### 5.3 Anchor text
@@ -183,11 +183,32 @@ Every case study, insight and team profile carries three tag sets: services (req
 
 ## 6. Metadata and structured data
 
+### 6.1 Where the search vocabulary lives (v4)
+
+v3 put a plain-English subtitle under every mega-nav item so that "customer experience", "website", "research", "loyalty", "AI", "operating model", "interim" and so on were visible in the menu. v4 removes those subtitles (D-35). The words are not dropped; each service page must carry them in the places search engines and visitors read first. This is now a hard requirement per canonical service, checked at content sign-off:
+
+| Service | Terms the page must carry (hero line, at least one H2, title tag, meta description) |
+|---|---|
+| Growth Strategy | growth strategy, customer-led growth, where to focus and how to win |
+| Proposition Innovation | new propositions, loyalty, membership, subscription, direct-to-consumer (one H2 per proposition type, each linking to its expertise theme) |
+| Customer Research and Insight | customer research, customer insight, market research, surveys, analytics, customer listening, AI-powered research |
+| Experience Engineering | customer experience (CX), website design and build, digital product, user research and testing (H2 per section, as in `03-page-layouts.md` T3) |
+| AI Agents for Marketing | AI agents, marketing performance, customer data quality, data agents, AgentLab |
+| Operating Model Design | operating model, teams, data and AI agents working together, operating architecture |
+| Growth Office | interim growth team, programme office, PMO, strategy delivered |
+| AI Enablement | AI skills, AI training, AI adoption, where AI pays off |
+| CEO Advisory | CEO advisor, senior leaders, advisory retainer, Side-by-Side, advisor profiles |
+
+The two quiet lines that remain in the menu (Experience Engineering: "Customer experience and websites"; Growth Office: "Interim growth team") are a courtesy for the two labels Andy flagged as opaque, not the primary carrier of these terms.
+
+### 6.2 Rules
+
 | Item | Rule |
 |---|---|
-| Title tags | `{Page title} \| Manifesto Growth Architects`. Service titles carry the plain-language term where the label is a Manifesto term, for example `Experience Engineering: customer experience and websites \| Manifesto Growth Architects`, `Growth Office: interim growth team \| Manifesto Growth Architects`. Renamed services already carry the searched term in the label. Our work uses `Case studies \| Manifesto Growth Architects`. Under 60 characters where practical. |
-| Meta descriptions | Unique per page, 140 to 160 characters, written as an answer to the visitor's question. |
-| H1 | One per page, matching the page's nav label or title. Service H1s use the exact nav label (v3 wording). Renamed services carry a one-line "also known as" under the H1 naming the deck term. |
+| Title tags | `{Page title} \| Manifesto Growth Architects`. Service titles carry the plain-language term where the label is a Manifesto term, for example `Experience Engineering: customer experience and websites \| Manifesto Growth Architects`, `Growth Office: interim growth team and programme office \| Manifesto Growth Architects`, `Proposition Innovation: loyalty, membership and subscription propositions \| Manifesto Growth Architects`. Renamed services already carry the searched term in the label. Our work uses `Case studies \| Manifesto Growth Architects`. Under 60 characters where practical. |
+| Meta descriptions | Unique per page, 140 to 160 characters, written as an answer to the visitor's question and carrying the page's terms from 6.1. |
+| H1 | One per page, matching the page's nav label or title. Service H1s use the exact nav label. Renamed services carry a one-line "also known as" under the H1 naming the deck term. |
+| Service hero line | One line under the H1 carrying the searched terms. Start from the v3 mega-nav subtitle for that service (`nav-wording-decisions.md`), which was written for exactly this purpose. |
 | Organization schema | Site-wide, with name, logo, sameAs (LinkedIn), contactPoint. Name and logo unchanged (Source C). |
 | Service schema | On each service detail page: name, description, provider, areaServed, and serviceType using the plain-language terms. |
 | BreadcrumbList schema | All pages with breadcrumbs. |
@@ -211,6 +232,7 @@ The current site's URLs are not listed in the sources, so this section sets the 
 | Sector redirects | Any old industry pages redirect to `/sectors/{sector}/` if the sector exists, otherwise to `/work/?sector=` or `/work/`. |
 | Content redirects | Old articles redirect to their new `/insights/{slug}/` URL, keeping slugs where possible. |
 | Marketing shortcuts | `/growth-architecture/` 301 to `/services/`. `/agentlab/` and `/data-agents/` 301 to `/services/ai-agents-for-marketing/`. `/side-by-side/` 301 to `/services/ceo-advisory/`. `/life-at-manifesto/` (if it exists today) 301 to `/careers/`. |
+| `/sectors/` | 301 to `/work/`. The v3 sector index page was cut in v4 (D-44); the Work hub with its sector filter is the nearest destination. |
 | v2 service slugs (deck names) | `/services/customer-intelligence/` 301 to `/services/customer-research/`. `/services/data-agents/` 301 to `/services/ai-agents-for-marketing/`. `/services/operating-architecture/` 301 to `/services/operating-model-design/`. Nothing is live, so these matter only if the v2 URLs were shared; they cost nothing to keep. |
 | Repackaging later | If services are renamed or regrouped (Source C notes the deck is a subset and may change), the old `/services/{slug}/` 301s to the new one. Flat service URLs make this a single redirect per service. v3 is the first use of this rule. |
 | Testing | Redirect map is tested before go-live and monitored for 404s for 90 days after. |
@@ -234,4 +256,4 @@ The site must catch people who do not know MGA. The mapping below shows which pa
 
 Sector queries are the weakest intentionally. Sector authority is earned through case studies and service pages that name sectors, not through sector content hubs.
 
-The nav-level version of this table (which header or mega-nav item a visitor with each intent would click) is in `nav-wording-decisions.md`, section "Search intent to nav item".
+The nav-level version of this table (which header or mega-nav item a visitor with each intent would click, and where on the page the word appears now that the menu carries labels only) is in `nav-wording-decisions.md`, section "Search intent to nav item".
