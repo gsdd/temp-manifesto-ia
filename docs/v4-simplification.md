@@ -4,6 +4,8 @@ Gary's feedback on v3 (15 September, evening): **it still feels too complicated 
 
 This document is the record of what v4 cut, what it kept, and why. It is written to be read on its own. The detailed specifications are in `01-primary-navigation.md`, `02-sitemap.md` and `03-page-layouts.md`; the decisions are logged as D-34 to D-45 in `06-decisions-log.md`.
 
+**v5 note**: v5 (`v5-refinements.md`) keeps everything below and makes two small changes to the menu it describes: column 3 gains one quiet item, "Our advisors", and the footer row drops Contact (D-49, D-50). The word count is 50. The section "1. Mega-nav" and the "Old to new" table are otherwise still the current state; where they say the footer row has three links or column 3 has no items, read them as v4's record, not v5's specification.
+
 ---
 
 ## The idea in one line

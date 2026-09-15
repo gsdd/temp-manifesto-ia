@@ -1,6 +1,6 @@
-# 06. Decisions log (v4)
+# 06. Decisions log (v5)
 
-Every significant IA decision, the options considered, what was chosen, and the trade-off. Each entry names the sources it rests on. The six sources are summarised in `00-sources.md`:
+Every significant IA decision, the options considered, what was chosen, and the trade-off. Each entry names the sources it rests on. The seven sources are summarised in `00-sources.md`:
 
 - **Source A**: Gary's IA feedback document (structure, three intersecting dimensions, one canonical home per topic, About and Careers split).
 - **Source B**: Andy's Growth Architecture Services deck, working draft Sept 26 (the triangle, service grouping, Why and What copy per service).
@@ -8,8 +8,30 @@ Every significant IA decision, the options considered, what was chosen, and the 
 - **Source D**: Gary's direction of 14 September after reviewing v1 (simplify, make the triangle obvious, CEO Advisory visible as a pillar, themes calm).
 - **Source E**: Gary's v3 wording brief of 15 September (plain, search-friendly labels; subtitles for coined terms; deck is not website copy).
 - **Source F**: Gary's v4 feedback of 15 September, evening (the whole concept is still too complicated; simplify the idea, then the UI; calm mocks; quiet homepage chips).
+- **Source G**: Gary's v5 brief of 16 September (not yet best in class; review real competitors; check the deck is fully reflected; no deck copy back in the mega-nav).
 
-Precedence: structure from A; service taxonomy from B; weight and order from C; simplification from D and F; nav wording from C and E. Where E's "add a subtitle" and F's "fewer words" conflict, F wins in the menu and E's words move to the page.
+Precedence: structure from A; service taxonomy from B; weight and order from C; simplification from D and F; nav wording from C and E; where the pages go beyond the peer set from G, evidenced by `competitor-nav-review.md`. Where E's "add a subtitle" and F's "fewer words" conflict, F wins in the menu and E's words move to the page. Where G's "best in class" and F's calmness pull apart, the change lands on a page or as one quiet link, never as a column or a subtitle.
+
+---
+
+## Why v5 exists
+
+Gary reviewed v4 on 16 September (Source G). Two concerns: the navigation is calm but not yet best in class, and Andy's deck may not be fully reflected. He asked for outside evidence first.
+
+The competitor review (`competitor-nav-review.md`) read the live navigation of ten peers and six pattern references. The finding: the v4 menu is already sparser than any peer with a mega-nav (13 links against Prophet's 25 and Elixirr's 60), and its labels are as plain as the best of them. The gap is on the pages the menu opens onto. The deck audit (`andy-deck-coverage.md`) found 55 elements Present, 16 Partial and 1 Missing, with the Partials clustered where the pages were vague: the pillar one-liners, the logic connecting the pillars, the named frameworks, and the structures inside each service slide.
+
+| Gap in v4 | Evidence | What v5 does instead |
+|---|---|---|
+| **The hub was a list of pillars.** No way in by problem; proof in a block at the foot; the system's name a subheading. | Prophet, Yonder and frog give two ways in; Elsewhen and Baringa put proof under each offer; Lippincott and Ellipsis name their system on the hub. Slide 1 title, slide 2 logic and slide 3 one-liners had no home. | Hub H1 "Our Growth Architecture"; "Where are you starting from?" with seven situations; one sentence, cards and one case per pillar; triangle line under the blocks (D-46, D-47, D-51). |
+| **The third column was a heading and a line.** | Source D asked for CEO Advisory "visible as a pillar"; Criticaleye, Baringa and The Foundation show that an advisory offer sells on its people; Source C: "showcase advisor profiles, heavyweight". | One quiet item, "Our advisors", to the advisor block on the offer page (D-49). |
+| **The footer row repeated the Contact button.** | No peer repeats Contact inside its services panel; D-36 and D-39 already cut duplicate routes. | Footer row is All services, Expertise (D-50). |
+| **Service pages buried proof and people.** Proof was block 7 of 13; People was Editorial. | Elsewhen, Baringa, Prophet, Ekimetrics put proof and numbers under the offer; Baringa puts partners on the page. | Proof follows What we do; three situations open the Why; a numbers line where the deck gives one; People is Always when a lead is flagged (D-48, D-53). |
+| **The operating model versus activation distinction was an internal ruling.** | Elixirr explains its coined family (Execution Edge) in its first sentence, then lists the capabilities with a line each. Gary named this worry. | Activation group page opens with the bridge and adds "Which of the six do you need?" (D-52). |
+| **Named frameworks had loose homes.** "for example CIVD, the adaptive operating model"; "agents are entries in this list". | Gary named Growth Architecture and AgentLab; the deck names twelve agents and four groups. | Anchored modules (`#civd`, `#operating-architecture`, `#agentlab`, `#advisors`); the five listed once on How we work with links; the agents listed in the spec (D-51). |
+
+What v4 got right and v5 keeps, unchanged: the labels-only mega-nav with three pillar lines and two quiet lines; Insights as a plain link; the two-level mobile menu; the six-block Home (plus one line); the chip rule; one filter group open; no sector index; the quiet mock. And everything from v2 and v3 that v4 kept.
+
+The refinements and their evidence are set out in `v5-refinements.md`.
 
 ---
 
@@ -63,6 +85,19 @@ Gary reviewed v1 on 14 September and rejected it (Source D). Recorded here so th
 What v1 got right and v2 keeps: services canonical and flat under `/services/`; Home a page not a hub; sectors light; methodology under About; Growth Strategy first; Activation framed as strategy-to-execution; Experience Engineering label kept with plain-language sections; no thin archive pages; filters as query strings.
 
 ---
+
+## Summary of v5 decisions (D-46 to D-53)
+
+| ID | Decision | Sources |
+|---|---|---|
+| D-46 | Services hub gains "Where are you starting from?": seven situation lines, each a link to a service or pillar. No fourth mega-nav column | G, A; Prophet, Yonder, frog |
+| D-47 | Services hub tells the Growth Architecture story: triangle line under the blocks (also on Home), one plain sentence per pillar from the slide 3 one-liners, one case per pillar section; the separate Proof block is cut | G, B; Elixirr, Elsewhen, Baringa |
+| D-48 | Service page template: three situations open the Why; Proof moves up to follow What we do; a numbers line where Source B gives a figure; each module names its slide's structure | G, B; Prophet, Elsewhen, Baringa, Ekimetrics |
+| D-49 | Mega-nav column 3 carries one quiet item, "Our advisors", to `/services/ceo-advisory/#advisors` | G, C, D; Criticaleye, Baringa, The Foundation |
+| D-50 | Panel footer row is All services, Expertise; the Contact link is cut as a duplicate of the header button. Panel word budget: fifty or fewer | G, F |
+| D-51 | The named system is visible: hub H1 "Our Growth Architecture" with "What we do" as eyebrow and nav label; five frameworks and tools listed once on How we work with links to anchored homes | G, B, A; Lippincott, Ellipsis, Prophet, Ekimetrics |
+| D-52 | Activation group page opens with the bridge line and adds "Which of the six do you need?" | G, B; Elixirr |
+| D-53 | People on the offer: service People block is Always when a lead is flagged; optional Associates and expert network group on the Team listing | G, B, C; Baringa, The Foundation |
 
 ## Summary of v4 decisions (D-34 to D-45)
 
@@ -156,6 +191,8 @@ What v1 got right and v2 keeps: services canonical and flat under `/services/`; 
 **Trade-off**: A quieter column can still be read as a lesser service. Accepted, because Source C says it is one, and the structure (a full column) makes it unmistakably the third pillar.
 
 **v4 note**: The column keeps its heading and pillar line but loses both items (D-36). The heading is the link to `/services/ceo-advisory/`; the advisors are that page's main block.
+
+**v5 note**: One quiet item returns, "Our advisors", pointing at the advisor block on the offer page rather than at Our team (D-49). Column 3 is heading, line and one item.
 
 ---
 
@@ -529,6 +566,8 @@ Result: column 1 is a heading and one item; column 3 is a heading and its pillar
 
 **Trade-off**: A visitor may not realise the headings are clickable. Mitigated by the same hover state as items and by the "All services" link. The pillar pages are also linked from Home, the hub and the footer.
 
+**v5 note**: The Growth Strategy and Side-by-Side cuts stand. "Meet the advisors" is partly reversed by D-49: one item, "Our advisors", to the offer page's advisor block, on new evidence. The duplicate-route rule is unchanged; the new item is not a duplicate of the heading's destination.
+
 ---
 
 ## D-37. Panel footer row: three short links
@@ -536,6 +575,8 @@ Result: column 1 is a heading and one item; column 3 is a heading and its pillar
 **Chosen**: All services, Expertise, Contact. Nothing else, and no theme names in the link text.
 
 **Rationale**: Source F: "three short links max; no laundry list of theme names in the menu." The v3 link "Expertise: loyalty, membership, subscriptions, pricing, customer value" was the longest line in the panel. The five names have a row on Home, a footer column and a hub.
+
+**v5 note**: Contact is cut from the row (D-50). Two links remain: All services, Expertise.
 
 ---
 
@@ -614,14 +655,125 @@ Result: column 1 is a heading and one item; column 3 is a heading and its pillar
 
 **Trade-off**: The "show what changed from v2" aid is gone. The label history is in `nav-wording-decisions.md`.
 
+**v5 note**: A fifth view, Services hub, is added so the hub refinements can be judged at a glance. Same rules: no chrome that explains the mock.
+
+---
+
+## D-46. "Where are you starting from?" on the Services hub
+
+**Options**
+1. No problem entry; capability list only (v4).
+2. A fourth mega-nav column of problems or themes (rejected in v1 and by Source D and F).
+3. A separate "Problems we solve" page.
+4. A block on the Services hub: seven plain situations, one line each, each a link to a service or pillar.
+
+**Chosen**: Option 4.
+
+**Rationale**: Every best-in-class peer offers a second way in beside the capability list. Prophet asks "What is your company's context for growth?" and gives three situations on the service page; Yonder's hub opens by naming both routes ("outcome-led solutions or specialist services"); frog's hub is problem-led. Source A's test for the whole IA is "can these people solve the particular growth problem that I have?", and v4 had nothing that answered it in the visitor's own words. Option 2 is the v1 mistake. Option 3 would compete with the expertise themes, which are the problem-space pages. Option 4 lives one click from the menu, on the page the menu's own label leads to.
+
+**Rules**: seven lines, eight words or fewer each, no descriptors, each destination once. Wording is a proposal for Andy.
+
+**Trade-off**: The hub is one block longer above the pillar sections. Offset by cutting the Proof block (D-47); the hub stays at eight blocks.
+
+---
+
+## D-47. The hub tells the Growth Architecture story
+
+**Chosen**: One shared triangle line under the three pillar blocks on Home and the hub ("Strategy first. Activation to deliver it. Advisors alongside."). Each hub pillar section opens with one plain sentence derived from its slide 3 one-liner and ends with one case line (client, one-line result). The v4 Proof block at the foot of the hub is cut.
+
+**Rationale**: Slide 2 draws the pillars as one shape and v4 never said how they relate; Elixirr states its strategy-to-execution logic in one sentence and Simon-Kucher repeats its promise on every hub. The slide 3 one-liners were the one piece of deck copy v4 left without a home (`nav-wording-decisions.md` called them "page content" that "should get a plain-language pass"; `andy-deck-coverage.md` marks all three Partial). Proof under each offer is the Elsewhen and Baringa pattern; a proof block at the foot was v4's, and it is the weaker of the two.
+
+**Trade-off**: Three case lines instead of three case cards. Cards with images are on Home and the Work hub; the hub's job is to route.
+
+---
+
+## D-48. Service page: situations first, proof up, numbers where the deck gives them
+
+**Chosen**: The Why block opens with three one-line situations. Proof moves from block 7 to directly after What we do. A Conditional numbers line sits under the hero on the two pages where Source B gives a figure (Experience Engineering: over 3x EBITDA return; AI Agents for Marketing: 4 weeks, 6 weeks). Each service module names the structure its slide has: Find, Redesign, Test, Scale; the 4 and 6 week timeline; AgentLab's four groups and twelve agents; Growth Office's two phases; the "So What" hook; candidate Growth Strategy H2s from the appendix.
+
+**Rationale**: Prophet opens its Growth Strategy page with three situations. Elsewhen and Baringa put case studies directly under the offer; Ekimetrics puts numbers above the fold. Slides 7 to 12 each have a structure that v4 placed loosely ("typical phases", "agents are entries"); naming them means content and CMS build the same thing and nothing on a slide is left without a stated home.
+
+**Trade-off**: How it works and the module move down one block. Accepted: a visitor who has read Why and What wants proof before process.
+
+---
+
+## D-49. Column 3 carries one quiet item: "Our advisors"
+
+**Options**
+1. Heading and pillar line only (v4).
+2. Restore the v3 pair: Side-by-Side and Meet the advisors.
+3. One quiet item, "Our advisors", to `/services/ceo-advisory/#advisors`.
+4. Advisor names in the column (auto, three names).
+
+**Chosen**: Option 3.
+
+**Rationale**: Source D asked for CEO Advisory to be visible as a pillar; a heading with nothing under it in a three-column grid read as an afterthought. A senior advisory offer sells on its people: Criticaleye leads with "over 110 Board Mentors", Baringa puts seven partners on its capability page, The Foundation makes its team a first-class section. Andy (Source C): "showcase advisor profiles, heavyweight". D-36 cut "Meet the advisors" because it pointed at Our team and "About covers it"; Option 3 points at the offer page, where the advisors are the main block, and rests on the new evidence rather than on the About dropdown. Option 2 restores a duplicate of the heading's destination. Option 4 puts CMS data in the menu, which Source F rejected for featured content.
+
+**Word count**: 49 in v4; 50 in v5 after D-50. Budget becomes "fifty or fewer".
+
+**Fallback**: remove the item and restore Contact to the footer row; the panel is v4 exactly.
+
+**Trade-off vs Source C ("do not design the site around it")**: one quiet link in the same grey as the pillar line. The column is still narrower and lighter, and still last.
+
+---
+
+## D-50. Panel footer row: two links
+
+**Chosen**: All services, Expertise. Contact is cut.
+
+**Rationale**: The Contact button sits in the header directly above the open panel; the footer-row link duplicated a control a few centimetres away. D-36 and D-39 cut duplicate routes on the same reasoning. No peer with a services mega-nav repeats Contact inside it. Cutting it pays for the one word D-49 adds.
+
+**Trade-off**: A visitor whose cursor is at the foot of the panel has to move up to Contact. Accepted.
+
+---
+
+## D-51. The named system is visible without being a nav item
+
+**Options**
+1. Rename the nav label to "Growth Architecture".
+2. Restore the v3 heading line "Our Growth Architecture" in the menu.
+3. Hub H1 "Our Growth Architecture", eyebrow and nav label "What we do"; the five frameworks and tools listed once on How we work with links to anchored homes on service pages.
+
+**Chosen**: Option 3.
+
+**Rationale**: Gary named "Growth Architecture as a named system" as a worry. Lippincott presents its frameworks on the Solutions hub; Ellipsis gives its method a page; Prophet and Ekimetrics give their labs a page under About; none puts the named system in the primary nav. Option 1 fails Source A and E (plain label; "What we do" is what Prophet, Yonder and Deloitte Digital use). Option 2 reverses D-34. Option 3 makes the system the first thing on the page the menu leads to, and gives every named thing (Growth Architecture, CIVD, the Operating Architecture framework, AgentLab, Side-by-Side) one linkable address.
+
+**Trade-off**: The hub is the one page whose H1 does not match its nav label. Recorded in `04-canonicals-and-seo.md` 6.2.
+
+---
+
+## D-52. Activation group page: the bridge and "Which of the six do you need?"
+
+**Chosen**: `/services/activation/` opens with the bridge in one line (from the deck's Growth Office "Why": a brilliant strategy only counts if it gets executed and the value shows up), then one line per service saying when you need it, then the six cards.
+
+**Rationale**: Gary's worry about the operating model versus activation distinction. In v4 it was an internal ruling (`04-canonicals-and-seo.md` 3.1: Operating Model Design designs, Growth Office staffs, AI Agents supplies the agents) never said to a visitor. Elixirr's Execution Edge page explains a coined family in its first sentence and then lists each capability with a line. The group page is where the six are seen together, so it is where the distinction belongs.
+
+**Trade-off**: Six services are described twice on one page (a line, then a card). Accepted: the lines say when, the cards say what.
+
+---
+
+## D-53. People on the offer
+
+**Chosen**: The service page People block is Always when at least one profile is flagged as lead for that service (v4: Editorial). The Team listing gains a Conditional "Associates and expert network" group.
+
+**Rationale**: Baringa shows seven named partners on its capability page; The Foundation lists Associates on its team page; Criticaleye's whole proposition is its mentors. Source C: the site today is a post-referral credibility check, and people are what referred visitors check. The deck names "AI practitioners from our expert network" (slide 12) and "a select group of senior leaders" (slide 4); the Associates group is where the network can be shown when Andy wants to. Making People conditional on a flag rather than editorial choice means every service that has a lead shows one.
+
+**Trade-off**: Every canonical service needs a lead flagged at launch. Added to the content minimums.
+
 ---
 
 ## Open items for the next stage (wireframes)
 
 | Item | Note |
 |---|---|
-| **Andy's sign-off on the three renames** | Customer Research and Insight, AI Agents for Marketing, Operating Model Design change how three offers are described to the market. Confirm before wireframes lock. Fallback if any is refused: revert that one label and slug to the deck term. Under v4 there is no menu subtitle to lean on, so the fallback label would need to be one that stands alone or carry a quiet line like Growth Office does. |
-| **Gary's confirmation of the v4 cuts** | Insights as a plain link (D-38), column 3 as heading only (D-36), and the sector index cut (D-44) are the three v4 decisions most likely to be questioned. Each has a stated fallback: a single-column Expertise dropdown under Insights; a "Side-by-Side" item restored under CEO Advisory; a Light `/sectors/` page restored. |
+| **Andy's sign-off on the three renames** | Customer Research and Insight, AI Agents for Marketing, Operating Model Design change how three offers are described to the market. The competitor review supports all three (frog "Customer Research & Insights"; Elixirr "Target Operating Model"; Prophet "Agentic Deployment"). Confirm before wireframes lock. Fallback if any is refused: revert that one label and slug to the deck term, with a quiet line as Growth Office has. |
+| **Two labels flagged for Andy by the competitor review** | No peer uses "Experience Engineering" (all say "Customer Experience") or "Growth Office" (Elixirr coined "Execution Edge" for the same space). The deck argues to keep both; competitors argue for plainer labels. v5 keeps both with their quiet lines and does not decide. If Andy prefers plain, the candidates are "Customer Experience and Digital" and "Interim Growth Team"; slugs would follow (`04-canonicals-and-seo.md`, section 7). |
+| **Gary's confirmation of the v5 nav tweaks** | "Our advisors" in column 3 (D-49) and the two-link footer row (D-50) are the only menu changes. Fallback: remove the item, restore Contact; the panel is v4 exactly. |
+| **Gary's confirmation of the v4 cuts** | Insights as a plain link (D-38) and the sector index cut (D-44) stand. The v4 "column 3 as heading only" question is answered by D-49. |
+| **Proposed fixed text for Andy** | The triangle line, the three pillar sentences, the seven situation lines and the six "which of the six" lines (`v5-refinements.md` R1, R2, R5) are proposals. The rules to keep: plain, in the visitor's words, one line each, no Manifesto shorthand. |
+| **"c&n" on slide 12** | The AI Enablement examples say "including c&n". Not expanded on the slide; Andy to confirm what it refers to before the client list is used. |
+| **Agent grouping in AgentLab** | The deck lists twelve agents under four group headings without assigning them. The assignment in `03-page-layouts.md` T3 is a reading of the slide for Andy to confirm. |
+| **Whether CIVD is still current** | Slide 5 is marked "to be updated". The IA keeps CIVD as the Growth Strategy frame and names it in the hub's pillar 1 sentence. If Andy retires it, the sentence loses its clause and the module is replaced by whatever the new frame is; no URL changes. |
 | Growth Strategy and Proposition Innovation copy | Source B marks both slides "to be updated from existing content". Andy is sourcing (Source C action). |
 | CEO Advisory event | Pushed to October (Source C). The page can launch with advisor profiles and the Why / What copy from Source B before the event. |
 | Advisor profiles | The CEO Advisory page's main block is advisor profiles. Until at least one profile is flagged as advisor, the block shows the Why / What copy only. |

@@ -1,4 +1,4 @@
-# Diagram: header and What we do mega-nav (v4)
+# Diagram: header and What we do mega-nav (v5)
 
 Mermaid source. Renders in GitHub, GitLab and most markdown previewers. The authoritative description is `../01-primary-navigation.md`; if the two disagree, the document wins.
 
@@ -42,7 +42,7 @@ flowchart TB
 
         subgraph C3["CEO Advisory (quieter) → /services/ceo-advisory/<br/><i>One-to-one support for leaders</i>"]
             direction TB
-            C3a["(no items: the heading is the link)"]
+            C3a["Our advisors → /services/ceo-advisory/#advisors"]
         end
     end
 
@@ -50,14 +50,13 @@ flowchart TB
         direction LR
         R1["All services → /services/"]
         R2["Expertise → /expertise/"]
-        R3["Contact → /contact/"]
-        R1 --- R2 --- R3
+        R1 --- R2
     end
 
     Panel --> Row
 ```
 
-Column headings are the pillar links. Italic lines under the headings are the three pillar lines; the two italic lines under Experience Engineering and Growth Office are the only item-level text in the panel. There is no heading line above the columns. 13 links, 13 distinct destinations, 49 words. See `../v4-simplification.md` for what was removed from v3.
+Column headings are the pillar links. Italic lines under the headings are the three pillar lines; the two italic lines under Experience Engineering and Growth Office are the only item-level text in the panel. There is no heading line above the columns. 13 links, 13 distinct destinations, 50 words. v5 added the one quiet item in column 3 and cut Contact from the footer row (D-49, D-50); see `../v5-refinements.md`. See `../v4-simplification.md` for what v4 removed from v3.
 
 ## The triangle as Andy draws it (Source B) and how it maps to the nav
 
@@ -93,7 +92,7 @@ flowchart TB
     M --> M1["What we do (expands; open by default)"]
     M1 --> M1a["Growth Strategy (small label, link): Proposition Innovation"]
     M1 --> M1b["Activation Services (small label, link): 6 services, two quiet lines"]
-    M1 --> M1c["CEO Advisory (small label, link, quieter)"]
+    M1 --> M1c["CEO Advisory (small label, link, quieter): Our advisors"]
     M1 --> M1d["All services / Expertise"]
     M --> M2["Our work"]
     M --> M3["Insights"]

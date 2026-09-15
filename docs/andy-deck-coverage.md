@@ -109,7 +109,7 @@ Related: `competitor-nav-review.md` (Part A), `v5-refinements.md` (Part C), `00-
 | Timeline: 4 weeks audit, 6 weeks first agents, ongoing portfolio | **Present** | T3 How it works with durations | Also surfaced as the numbers line on this page (R6) |
 | **AgentLab** as a named module | **Partial** | Module heading on the page; also-known-as line "Data Agents, built in AgentLab"; `/agentlab/` redirect; no page (D-15) | Stays one page. AgentLab gets its own anchored H2 (`#agentlab`) and is named in the frameworks and tools list on How we work, so the term has a linkable home without a nav item (R3, R6). Competitor evidence: Prophet's lab and Ekimetrics' lab are pages under About, not nav items; a section anchor is the calmer version |
 | Four catalogue groups: Reporting & Analytics; Data & Infrastructure; Strategy & Planning; Automation & Execution | **Present** | T3 module groups | Unchanged |
-| Thirteen named agents (QA & Deployment; Channel Optimisation; Test & Learn; Effectiveness; Attribution Mapping; Segmentation Builder; CDP Data Clean-up; Tagging & Data Collection; Integration Discovery; Performance Planning; Customer Journey Mapping; Audience Opportunity) | **Partial** | "Agents are entries in this list"; the names are not recorded in the IA | Listed in the T3 module spec so content and CMS know the catalogue at launch (R6). Still entries, not pages |
+| Twelve named agents (QA & Deployment; Channel Optimisation; Test & Learn; Effectiveness; Attribution Mapping; Segmentation Builder; CDP Data Clean-up; Tagging & Data Collection; Integration Discovery; Performance Planning; Customer Journey Mapping; Audience Opportunity) | **Partial** | "Agents are entries in this list"; the names are not recorded in the IA | Listed in the T3 module spec so content and CMS know the catalogue at launch (R6). Still entries, not pages |
 | Examples: PEX, Parkdean, TSB, Standard Chartered | **Present** | Proof block; launch plan | Unchanged |
 
 ### Slide 10: Activation Services: Operating Architecture
@@ -167,7 +167,7 @@ Related: `competitor-nav-review.md` (Part A), `v5-refinements.md` (Part C), `00-
 | **"So what" and "bridge" language living somewhere useful** | Partial: "available for body copy" | "So What" is the named hook of the Customer Research and Insight Why block. The bridge is the triangle line on Home and the hub, the opening line of the Activation group page, and the pillar 2 sentence (R2, R5, R6) |
 | **Retainer and Side-by-Side model** | Present on the CEO Advisory page and as an engagement shape on How we work | Unchanged, plus the quiet "Our advisors" link in the menu so the model's substance (the people) is one click from the nav (R4) |
 | **Operating model vs activation distinction** | Partial: an internal ruling, not said to visitors | "Which of the six do you need?" on the Activation group page (R5) |
-| **Anything on the slides that never made the sitemap** | Three items: the Growth Strategy one-liner on slide 3; the North Star / growth priorities / demand signals / scenario planning terms in the appendix; the thirteen named agents | All three placed as page content (R2, R6). No new URLs |
+| **Anything on the slides that never made the sitemap** | Three items: the Growth Strategy one-liner on slide 3; the North Star / growth priorities / demand signals / scenario planning terms in the appendix; the twelve named agents | All three placed as page content (R2, R6). No new URLs |
 
 ---
 

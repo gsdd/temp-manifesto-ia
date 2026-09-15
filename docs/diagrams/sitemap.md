@@ -1,6 +1,6 @@
-# Diagram: sitemap (v4)
+# Diagram: sitemap (v5)
 
-Mermaid source. The authoritative list is `../02-sitemap.md`; if the two disagree, the document wins. v4 removed one node from v3: the `/sectors/` index page (D-44). Everything else is unchanged.
+Mermaid source. The authoritative list is `../02-sitemap.md`; if the two disagree, the document wins. v4 removed one node from v3: the `/sectors/` index page (D-44). v5 adds and removes no node; it changes the Services hub's H1 and adds anchored sections on four service pages, shown in the notes below.
 
 Legend for node styling: Canonical pages are bold-bordered, Supporting pages normal, Light pages dashed, Utility pages grey.
 
@@ -16,17 +16,17 @@ flowchart TB
     Home["/ Home"]:::canonical
 
     %% Services: the triangle
-    Home --> S["/services/ What we do: Growth Architecture"]:::canonical
-    S --> S1["/services/growth-strategy/ (pillar 1 and lead service)"]:::canonical
+    Home --> S["/services/ What we do: Our Growth Architecture (H1)"]:::canonical
+    S --> S1["/services/growth-strategy/ (pillar 1 and lead service) #civd"]:::canonical
     S1 --> S2["/services/proposition-innovation/"]:::canonical
     S --> SA["/services/activation/ (pillar 2, group page)"]:::supporting
     SA --> S3["/services/customer-research/ Customer Research and Insight"]:::canonical
     SA --> S4["/services/experience-engineering/ Experience Engineering"]:::canonical
-    SA --> S5["/services/ai-agents-for-marketing/ AI Agents for Marketing"]:::canonical
-    SA --> S6["/services/operating-model-design/ Operating Model Design"]:::canonical
+    SA --> S5["/services/ai-agents-for-marketing/ AI Agents for Marketing #agentlab"]:::canonical
+    SA --> S6["/services/operating-model-design/ Operating Model Design #operating-architecture"]:::canonical
     SA --> S7["/services/growth-office/ Growth Office"]:::canonical
     SA --> S8["/services/ai-enablement/ AI Enablement"]:::canonical
-    S --> S9["/services/ceo-advisory/ (pillar 3, Side-by-Side)"]:::supporting
+    S --> S9["/services/ceo-advisory/ (pillar 3, Side-by-Side) #advisors"]:::supporting
 
     %% Expertise
     Home --> E["/expertise/ Hub"]:::supporting
@@ -79,6 +79,7 @@ Notes:
 - Three service slugs changed in v3 with their labels (D-27 to D-29). The v2 slugs `/services/customer-intelligence/`, `/services/data-agents/` and `/services/operating-architecture/` are redirects.
 - There is no `/sectors/` index page (v4, D-44). The "Sectors" node above is the footer heading, shown only to group the four landings. `/sectors/` redirects to `/work/`.
 - Home is a page with no child URLs. The arrows from Home show top-level sections, not parent-child paths.
+- The `#` suffixes are anchored sections added in v5 (D-51): the CIVD module, the AgentLab catalogue, the Operating Architecture figure and the advisor block. They are linked from How we work, the Services hub and the mega-nav ("Our advisors"); they are not pages.
 
 ## The three dimensions and how they intersect
 

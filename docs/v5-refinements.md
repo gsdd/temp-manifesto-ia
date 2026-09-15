@@ -134,7 +134,7 @@ Then the six service cards as v4, and the standard blocks from Proof onward.
 | Growth Strategy | Candidate H2s for the What we do block from the appendix's Growth Strategy layer: North Star; Growth priorities; Demand signals; Scenario planning. Pending Andy's copy. CIVD module anchored `#civd` |
 | Customer Research and Insight | Why block hook is the deck's "So What": the problem is multiple versions of the truth; the promise is getting to the so-what faster. Body copy, not nav |
 | Experience Engineering | How it works block is the deck's four phases: Find, Redesign, Test, Scale. "Squad" allowed in body copy once glossed |
-| AI Agents for Marketing | Hero line requirement gains "guided by experts". AgentLab H2 anchored `#agentlab`; the four groups and thirteen named agents listed in the spec as catalogue entries (not pages) |
+| AI Agents for Marketing | Hero line requirement gains "guided by experts". AgentLab H2 anchored `#agentlab`; the four groups and twelve named agents listed in the spec as catalogue entries (not pages) |
 | Operating Model Design | Figure anchored `#operating-architecture`; caption cross-links Orchestration (Culture, Value, Capability) to Growth Office |
 | Growth Office | How it works block is two phases: interim activation support, then establishing the new ways of working |
 | AI Enablement | "Expert network" in What we do body copy; links to the optional Associates group if published |

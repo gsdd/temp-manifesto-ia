@@ -1,6 +1,26 @@
-# Nav wording decisions (v3, with v4 status)
+# Nav wording decisions (v3, with v4 and v5 status)
 
 Why v3 exists, the rule it applies, and every label change from v2 to v3: old label, new label, why. Read this alongside `01-primary-navigation.md` (the nav as it now stands) and `06-decisions-log.md` (D-26 to D-33, where each change is logged with its sources).
+
+## v5 status of this document
+
+v5 (`v5-refinements.md`) changes **no label** and adds one item: "Our advisors" under the CEO Advisory heading (D-49), which is plain and parallels "Our team" and "Our work". The footer-row "Contact" is cut (D-50).
+
+v5 also brings the first outside evidence on the v3 labels, from the competitor review (`competitor-nav-review.md`). The verdicts:
+
+| Label | What peers call the same thing | Verdict |
+|---|---|---|
+| Customer Research and Insight | frog "Customer Research & Insights"; Elixirr "Research & Insights", "Customer Understanding"; Prophet "AI-Augmented Customer Insights" | Confirmed |
+| Operating Model Design | Elixirr "Target Operating Model", "Business & Operating Models"; Yonder "operating models" in copy | Confirmed |
+| AI Agents for Marketing | Prophet "Agentic Deployment", "AI-Driven Marketing Modernization"; Elixirr "AI Consulting"; Elsewhen "AI Agent Development" | Confirmed; ours is the plainest of the set |
+| CEO Advisory | Baringa "CFO Advisory"; Elixirr "Define C-Suite Agenda", "Executive Immersions" | Confirmed by the parallel |
+| Growth Strategy | Prophet "Growth Strategy"; Simon-Kucher "growth" throughout | Confirmed |
+| Proposition Innovation | The Foundation tags case studies "Proposition Development"; Simon-Kucher "value proposition design"; frog "Breakthrough proposition" | Confirmed; "proposition" is the UK term |
+| AI Enablement | Prophet "AI-Enabled Culture"; Elsewhen "AI Strategy"; Baringa "Artificial Intelligence" | Confirmed |
+| Activation Services | Lippincott "Activation" (as a solution); Elixirr "Capability Activation", "Insights Activation" | Confirmed as a pillar name; the six labels beneath carry the searched words |
+| Experience Engineering | **No peer uses it.** Bain, Elixirr, Baringa and Simon-Kucher say "Customer Experience"; Elixirr "Digital Design & Build"; Elsewhen "User Research & CX Strategy" | **Flag for Andy.** The deck argues to keep it (the Dayinsure and Key Group model he wants to be known for); competitors argue for "Customer Experience and Digital". Kept, with the quiet line |
+| Growth Office | **No peer uses it.** Elixirr coined "Execution Edge" for the same space, with "Transformation Management" as its plain sibling | **Flag for Andy.** Kept, with the quiet line "Interim growth team" |
+| What we do; Our work; Insights | "What we do": Prophet, Yonder, Deloitte Digital. "Work": Prophet, Yonder, frog, Mando; "Our Work": Lippincott, Deloitte Digital; "Case Studies": Elsewhen, Elixirr. "Insights": frog, Baringa; "Thinking": Prophet, Yonder; "Ideas": Lippincott | Confirmed |
 
 ## v4 status of this document
 
@@ -175,7 +195,8 @@ The test the v3 brief set: someone with one of these intents should be able to p
 | operating model, ways of working, org design | Operating Model Design | Label; page hero line |
 | PMO, programme office, interim, transformation office | Growth Office | Menu quiet line "Interim growth team"; page hero line and title tag carry "programme office" |
 | growth strategy, growth consultancy, commercial strategy | Growth Strategy | Heading; pillar line "Where and how you grow" |
-| CEO advisor, executive coach, non-exec, retainer | CEO Advisory | Heading; pillar line "One-to-one support for leaders"; page names Side-by-Side and the retainer |
+| CEO advisor, executive coach, non-exec, retainer | CEO Advisory | Heading; pillar line "One-to-one support for leaders"; menu item "Our advisors" (v5); page names Side-by-Side and the retainer |
+| our strategy isn't landing, execution, delivery | Activation Services | Heading; pillar line "Turning strategy into results"; hub situation line "Our strategy is not turning into results" (v5) |
 | case studies, clients, results | Our work | Header |
 | financial services, media, consumer, retail | Footer: Who we work with; Work filters | Footer and More filters, by design |
 

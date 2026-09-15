@@ -1,10 +1,10 @@
-# 02. Sitemap (v4)
+# 02. Sitemap (v5)
 
 Every URL on the site, grouped by section. Each entry has a slug, a page type (which maps to a template in `03-page-layouts.md`), a one-line purpose, and a weight.
 
 The structure follows Source A (Gary's suggested IA). The services taxonomy follows Source B (Andy's Growth Architecture triangle). Weighting follows Source C and Source D: Growth Strategy first, Activation second, CEO Advisory third and quieter, themes real but calm, sectors light. Service names and slugs follow the v3 wording pass (Source C, Source E). See `nav-wording-decisions.md`.
 
-v4 (Source F, `v4-simplification.md`) does not explode or reshape the sitemap. One page is cut: the sector index `/sectors/`, which duplicated the footer (D-44). Weights are unchanged: services Canonical, themes Supporting, sectors Light. Fixed pages at launch go from 41 to 40.
+v4 (Source F, `v4-simplification.md`) cut one page, the sector index (D-44), leaving 40 fixed pages. **v5 (Source G, `v5-refinements.md`) adds no URL and removes none.** It changes what four existing pages carry: the Services hub becomes the Growth Architecture story with problem entry (R1 to R3), the Activation group page explains which of the six a visitor needs (R5), service pages gain anchored sections for the named frameworks (R3, R6), and the Team listing gains an optional Associates group (R7). Anchors are listed where they matter for linking; they are not pages.
 
 Related: `diagrams/sitemap.md` shows this structure as a tree.
 
@@ -53,17 +53,17 @@ Source A suggested a separate Growth Architecture page alongside a services hub.
 
 | URL | Page type | Pillar | Purpose | Weight |
 |---|---|---|---|---|
-| `/services/` | Services hub (Growth Architecture) | All three | Present the triangle: Growth Strategy, Activation Services, CEO Advisory. Route to every service. Carries the Growth Architecture positioning from Source B ("Strategy that works. Execution that delivers."). | Canonical |
-| `/services/growth-strategy/` | Service detail | Growth Strategy | The lead offer (Source C: bread and butter). Customer value growth strategy: where to play, how to win. Home of the CIVD frame (Customer, Innovation, Value, Delivery) from the Source B Growth Strategy slide. Owns "growth strategy consultancy". | Canonical |
+| `/services/` | Services hub (Growth Architecture) | All three | H1 "Our Growth Architecture", eyebrow "What we do" (v5, R3). Tell the Growth Architecture story: the problem (strategy to execution has become complex and fragmented), the strapline ("Strategy that works. Execution that delivers."), the triangle with the line that connects the pillars, a "Where are you starting from?" block of seven situations (R1), and one section per pillar with a plain sentence, service cards and one case (R2). Route to every service. | Canonical |
+| `/services/growth-strategy/` | Service detail | Growth Strategy | The lead offer (Source C: bread and butter). Customer value growth strategy: where to play, how to win. Home of the CIVD frame (Customer, Innovation, Value, Delivery) from the Source B Growth Strategy slide, anchored `#civd`. Candidate H2s from the deck appendix: North Star, growth priorities, demand signals, scenario planning (pending Andy's copy). Owns "growth strategy consultancy". | Canonical |
 | `/services/proposition-innovation/` | Service detail | Growth Strategy | Designing new value propositions that grow sustainable customer value: loyalty, membership, subscription and D2C propositions (Source C). Owns "proposition design / proposition innovation". | Canonical |
-| `/services/activation/` | Service group | Activation Services | Explain Activation in plain terms: hands-on delivery that turns strategy into results, AI-powered and human-led, not ongoing operations (Source C). Lists the six services. | Supporting |
-| `/services/customer-research/` | Service detail | Activation Services | **Customer Research and Insight** (deck: Customer Intelligence). AI-powered research, surveys, analytics and customer listening. Insight projects and intelligence capabilities (Source B). Owns "customer research / customer insight consultancy / market research / voice of the customer". "Customer Intelligence" is named on the page as the practice. | Canonical |
-| `/services/experience-engineering/` | Service detail | Activation Services | **Experience Engineering**. Finding, redesigning, testing and scaling experiences that drive disproportionate value. Customer experience (CX), website and digital design, build and testing (Source B). Written so customer experience, website and research searches land here (Source C). Owns "experience engineering" and the CX / website / digital product cluster. | Canonical |
-| `/services/ai-agents-for-marketing/` | Service detail | Activation Services | **AI Agents for Marketing** (deck: Data Agents). AI that cleans up customer data and improves marketing performance, guided by experts. AgentLab and the agent catalogue (Source B). Owns "AI agents for marketing / marketing AI / customer data quality / data agents". "Data Agents" and "AgentLab" are named on the page. | Canonical |
-| `/services/operating-model-design/` | Service detail | Activation Services | **Operating Model Design** (deck: Operating Architecture / Operating Models). How teams, data and AI agents work together: grounded in customer value, fuelled by data, redesigned around humans and AI agents, orchestrated for impact (Source B). Owns "operating model design / operating model consultancy / operating architecture". | Canonical |
-| `/services/growth-office/` | Service detail | Activation Services | **Growth Office**. Interim growth team and programme office bridging strategy and delivery through culture, capability and value (Source B). Owns "growth office / interim growth leadership / transformation programme office". | Canonical |
-| `/services/ai-enablement/` | Service detail | Activation Services | **AI Enablement**. AI skills, training and adoption; finding where AI pays off; business model innovation (Source B). Owns "AI enablement / AI adoption / AI training for leadership teams". | Canonical |
-| `/services/ceo-advisory/` | Service detail (third pillar, quieter) | CEO Advisory | **CEO Advisory**. Side-by-Side named in the hero. One-to-one advice for CEOs and senior leaders from experienced growth leaders, retainer-based, virtual or in person (Source B). Surfaces advisor profiles as its main block; this is the route to the advisors now that the mega-nav item is cut (D-36). Present and visible as the third pillar; not promoted above the other two. "SxS" is not used on the site. | Supporting |
+| `/services/activation/` | Service group | Activation Services | Explain Activation in plain terms: the bridge from strategy to results, hands-on, AI-powered and human-led, not ongoing operations (Source B, Source C). Opens with the bridge line, then "Which of the six do you need?" with one line per service (v5, R5), then the six cards. | Supporting |
+| `/services/customer-research/` | Service detail | Activation Services | **Customer Research and Insight** (deck: Customer Intelligence). AI-powered research, surveys, analytics and customer listening. Insight projects and intelligence capabilities (Source B). The Why block leads with the deck's "So What" hook (R6). Owns "customer research / customer insight consultancy / market research / voice of the customer". "Customer Intelligence" is named on the page as the practice. | Canonical |
+| `/services/experience-engineering/` | Service detail | Activation Services | **Experience Engineering**. Finding, redesigning, testing and scaling experiences that drive disproportionate value; the four phases are the How it works block (R6). Customer experience (CX), website and digital design, build and testing (Source B). Numbers line: over 3x EBITDA return on investment. Written so customer experience, website and research searches land here (Source C). Owns "experience engineering" and the CX / website / digital product cluster. | Canonical |
+| `/services/ai-agents-for-marketing/` | Service detail | Activation Services | **AI Agents for Marketing** (deck: Data Agents). AI that cleans up customer data and improves marketing performance, guided by experts. AgentLab and the agent catalogue (Source B), anchored `#agentlab`. Numbers line: 4 weeks to audit, 6 weeks to first agents. Owns "AI agents for marketing / marketing AI / customer data quality / data agents / AgentLab". "Data Agents" and "AgentLab" are named on the page. | Canonical |
+| `/services/operating-model-design/` | Service detail | Activation Services | **Operating Model Design** (deck: Operating Architecture / Operating Models). How teams, data and AI agents work together: grounded in customer value, fuelled by data, redesigned around humans and AI agents, orchestrated for impact (Source B). The framework figure is anchored `#operating-architecture`. Owns "operating model design / operating model consultancy / operating architecture". | Canonical |
+| `/services/growth-office/` | Service detail | Activation Services | **Growth Office**. Interim growth team and programme office bridging strategy and delivery through culture, capability and value (Source B); two phases, interim then embedded, as the How it works block (R6). Owns "growth office / interim growth leadership / transformation programme office". | Canonical |
+| `/services/ai-enablement/` | Service detail | Activation Services | **AI Enablement**. AI skills, training and adoption; finding where AI pays off; business model innovation (Source B). Names the expert network in body copy. Owns "AI enablement / AI adoption / AI training for leadership teams". | Canonical |
+| `/services/ceo-advisory/` | Service detail (third pillar, quieter) | CEO Advisory | **CEO Advisory**. Side-by-Side named in the hero. One-to-one advice for CEOs and senior leaders from experienced growth leaders, retainer-based, virtual or in person (Source B). Advisor profiles are the main block, anchored `#advisors`; the mega-nav item "Our advisors" lands here (v5, D-49). Present and visible as the third pillar; not promoted above the other two. "SxS" is not used on the site. | Supporting |
 
 Notes:
 - `/services/activation/` is a group page, not a service. It exists because "Activation" is MGA's own term and needs explaining, and because the six services are sold as a set as often as individually. It is Supporting because it owns no capability topic of its own.
@@ -71,7 +71,8 @@ Notes:
 - There is no separate CEO Advisory group page. `/services/ceo-advisory/` is the pillar and the offer.
 - Individual data agents do not get their own URLs. They are catalogue entries on `/services/ai-agents-for-marketing/` (`06-decisions-log.md`, D-15).
 - Three slugs changed in v3 with their labels: `/services/customer-intelligence/` became `/services/customer-research/`, `/services/data-agents/` became `/services/ai-agents-for-marketing/`, `/services/operating-architecture/` became `/services/operating-model-design/`. The v2 slugs are listed as redirects in `04-canonicals-and-seo.md`, section 7.
-- Marketing shortcuts `/growth-architecture/`, `/agentlab/`, `/data-agents/` and `/side-by-side/` are redirects, not pages (see `04-canonicals-and-seo.md`, section 7).
+- Marketing shortcuts `/growth-architecture/`, `/agentlab/`, `/data-agents/` and `/side-by-side/` are redirects, not pages (see `04-canonicals-and-seo.md`, section 7). `/agentlab/` now lands on the anchored section `/services/ai-agents-for-marketing/#agentlab`.
+- Named frameworks and tools (Growth Architecture, CIVD, the Operating Architecture framework, AgentLab, Side-by-Side) each have one anchored home listed above and are named once, with links, on `/about/how-we-work/` (v5, R3). None has a page of its own.
 
 ---
 
@@ -160,8 +161,8 @@ Source A asked for a clear About hub and a clear Careers hub instead of "Life at
 | URL | Page type | Purpose | Weight |
 |---|---|---|---|
 | `/about/` | About | Who we are and our story: the positioning (sustainable customer-led growth, strategy plus AI-powered activation), what makes MGA different, senior team preview. | Supporting |
-| `/about/team/` | Team listing | Everyone client-facing, grouped by role. Side-by-Side advisors are a named group with the anchor `#advisors`, linked from the CEO Advisory page (no longer from the mega-nav, D-36). | Supporting |
-| `/about/team/{name}/` | Team profile | One person: role, focus, selected work, insights authored, contact route. Advisor profiles carry the Side-by-Side link. | Light |
+| `/about/team/` | Team listing | Everyone client-facing, grouped by role: Leadership, Consultants, Side-by-Side advisors (anchor `#advisors`, linked from the CEO Advisory page), and an optional Associates and expert network group (v5, R7; Conditional on at least one profile flagged as associate). The mega-nav's "Our advisors" link lands on the CEO Advisory page, not here. | Supporting |
+| `/about/team/{name}/` | Team profile | One person: role, focus, selected work, insights authored, contact route. Advisor profiles carry the Side-by-Side link. Profiles flagged as lead for a service surface in that service's People block (R7). | Light |
 | `/about/how-we-work/` | Methodology | Ways of working, frameworks, engagement models. Kept separate from services so method is never mistaken for product (Source A). | Supporting |
 | `/about/values/` | Values and culture | Values, culture and DEI on one page (Source A lists Values / Culture and DEI; combined to avoid two thin pages). | Light |
 
@@ -225,7 +226,9 @@ Notes:
 | Contact | | | | 2 pages + 1 pattern |
 | System | | | | 8 |
 
-Fixed pages at launch (excluding case studies, insights, profiles, roles and filter patterns): 40, of which 11 are Canonical. v3 had 41; the sector index was cut in v4.
+Fixed pages at launch (excluding case studies, insights, profiles, roles and filter patterns): 40, of which 11 are Canonical. v3 had 41; the sector index was cut in v4; v5 adds none.
+
+Anchors that other pages link to (not pages): `/services/growth-strategy/#civd`, `/services/operating-model-design/#operating-architecture`, `/services/ai-agents-for-marketing/#agentlab`, `/services/ceo-advisory/#advisors`, `/about/team/#advisors`, and the three Experience Engineering sections (`#customer-experience`, `#website-and-digital`, `#research-and-testing`).
 
 ---
 
@@ -248,5 +251,7 @@ Fixed pages at launch (excluding case studies, insights, profiles, roles and fil
 | A separate testimonials page | Testimonials live inside case studies (Source A). |
 | Client hub pages (`/work/{client}/` with children) | One engagement, one page. |
 | Author, tag and category archives | Filters and team profiles cover these needs without thin pages. |
-| A separate AgentLab microsite or `/agentlab/` page | AgentLab is the named product inside AI Agents for Marketing. `/agentlab/` redirects to `/services/ai-agents-for-marketing/`. |
+| A separate AgentLab microsite or `/agentlab/` page | AgentLab is the named product inside AI Agents for Marketing. `/agentlab/` redirects to `/services/ai-agents-for-marketing/#agentlab`. Prophet and Ekimetrics give their labs a page under About; MGA's is a section with an anchor, which is enough for a catalogue of twelve entries. |
+| A "frameworks" or "our approach" page under `/services/` | The named frameworks are listed once on `/about/how-we-work/` with links to their anchored homes on service pages (v5, R3). Ellipsis makes its method a top-level page; Source A says method is not a service. |
+| A "problems we solve" page or section | Problem entry is a block on the Services hub (v5, R1), the way Prophet puts "what is your context?" on its service pages. A separate page would compete with the expertise themes. |
 | Separate Life at Manifesto, Benefits and Open roles pages | Sections of `/careers/` at current scale. |

@@ -1,8 +1,8 @@
 # 00. Sources
 
-The six inputs the package is built from, what each one contributed, and how conflicts between them were resolved. Read this before the decisions log.
+The seven inputs the package is built from, what each one contributed, and how conflicts between them were resolved. Read this before the decisions log.
 
-v1 was produced from a brief that summarised these sources rather than supplying them. v2 was produced from the full text of A, B and C plus Gary's direction D. v3 added Gary's wording brief E, which changed how B is used: B decides what the services are and how they group, not what they are called in the nav. v4 adds Gary's feedback F, which changes how much the nav, the pages and the mock are allowed to say.
+v1 was produced from a brief that summarised these sources rather than supplying them. v2 was produced from the full text of A, B and C plus Gary's direction D. v3 added Gary's wording brief E, which changed how B is used: B decides what the services are and how they group, not what they are called in the nav. v4 added Gary's feedback F, which changed how much the nav, the pages and the mock are allowed to say. v5 adds Gary's brief G, which asks for outside evidence: how real competitors structure navigation and services, and whether B is fully reflected. The competitor review itself is recorded in `competitor-nav-review.md` and is cited as evidence, not as a source with its own letter.
 
 ---
 
@@ -16,6 +16,7 @@ v1 was produced from a brief that summarised these sources rather than supplying
 | Which services lead, how sectors and themes are weighted | **C** (Otter call) | It is where Gary and Andy agreed the weighting |
 | How simple the mega-nav must be, and that CEO Advisory must be visible as a pillar | **D** (Gary, 14 Sept) | It is the instruction behind the v2 redo |
 | How much the menu, page chrome, homepage and mock may say | **F** (Gary, 15 Sept evening) over **E** | E asked for subtitles on coined terms; F says the whole concept is too complicated and to prefer bare labels. F wins in the menu; E's words move to the pages. C decides which two coined names still get a quiet line. |
+| Where the pages should go beyond the peer set, and whether every piece of B has a home | **G** (Gary, 16 Sept), evidenced by the competitor review | G asks for best in class and full deck fidelity within F's calmness. Where a competitor pattern and F pull apart (a fuller third column, problem entry), the change lands on the page or as one quiet link, never as a new column or subtitle. B is checked slide by slide in `andy-deck-coverage.md`. |
 
 ---
 
@@ -142,3 +143,26 @@ v1 was produced from a brief that summarised these sources rather than supplying
 - Success: name the three pillars from the mock in two seconds without scanning paragraphs; the homepage does not feel like a tag cloud; chips are sparse and purposeful; the mock has less edge chrome and less explanatory UI.
 
 **How v4 uses it**: The whole of `v4-simplification.md`; the labels-only mega-nav and plain Insights link (`01-primary-navigation.md`); the chip rule and six-block Home (`03-page-layouts.md`); the sector index cut (`02-sitemap.md`); the search vocabulary requirement per page (`04-canonicals-and-seo.md`, 6.1); decisions D-34 to D-45 (`06-decisions-log.md`); the rebuilt mock (`../mocks/`).
+
+---
+
+## Source G: Gary's v5 brief (16 September)
+
+**What it is**: Gary's response to v4, with a brief for a competitor review and a deck fidelity audit.
+
+**Key points used**
+
+- The navigation is **not yet best in class**. Review how actual competitors in Manifesto's space structure their navigation, services and IA, then refine ours.
+- Fear that Andy's Growth Architecture Services deck has not been fully reflected. Re-read it end to end and produce a coverage matrix (every pillar, service, programme, named module, why and what framing, proof example: Present, Partial or Missing). Call out the gaps he is worried about: Growth Architecture as a named system; the Customer, Innovation, Delivery, Value framing; AgentLab; "so what" and "bridge" language living somewhere useful; the retainer and Side-by-Side model; the operating model versus activation distinction; anything on the slides that never made the sitemap.
+- Peer set: bias toward firms selling customer-led growth strategy, proposition and loyalty work, CX and digital activation, AI-enabled commercial activation, and senior advisory models. Six to ten real competitors with public sites. Not random big-four homepages; large practices for pattern only.
+- **Do not shove deck copy back into the mega-nav.** v4's calmness stays. Gaps land as page modules, hub framing, optional nav tweaks or sitemap additions, with rationale.
+- Constraints for the refinements: keep calm density and the v4 word budget spirit; keep the triangle readable in two seconds; services canonical, sectors light, expertise discoverable not dominant; plain, search-friendly labels (v3 renames stand unless competitors and the deck strongly argue otherwise, then flag for Andy); prefer structural improvements competitors prove work (a clearer Services hub as the Growth Architecture story, proof adjacent to offers, problem entry without a fourth column, better About and How we work placement).
+- Deliverables: `competitor-nav-review.md`, `andy-deck-coverage.md`, `v5-refinements.md`, updated nav, sitemap, layouts and decisions log, updated mock, a PR from a branch off v4.
+- Out of scope: the Google Doc; inventing new sold services.
+- Success: concrete competitor evidence, not vibes; an explicit deck coverage matrix; a nav closer to best-in-class peers while staying simpler than v3; a mock Gary can judge at a glance.
+
+**How v5 uses it**: The three review documents; the hub as the Growth Architecture story, problem entry, proof under offers, the quiet advisors link and the two-link footer row (`01-primary-navigation.md`, `03-page-layouts.md`); anchors and title tag (`04-canonicals-and-seo.md`); new content types (`05-content-matrix.md`); decisions D-46 to D-53 (`06-decisions-log.md`); the fifth mock view.
+
+## Competitor evidence (used by v5, not a lettered source)
+
+`competitor-nav-review.md` records the live navigation of ten peers (Prophet, Yonder Consulting, The Foundation, Simon-Kucher, Elixirr, Baringa, Ellipsis, Ekimetrics, Elsewhen, Mando) and six pattern references (Deloitte Digital, Bain Customer Strategy and Marketing, frog, Lippincott, Valtech, Criticaleye), read on 15 September 2026. It is evidence for how G's "best in class" should be read. Where it conflicts with a lettered source, the lettered source wins; the review only ever proposes changes that A to F permit.
