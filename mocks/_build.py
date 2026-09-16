@@ -97,10 +97,11 @@ def heading_map_html(page: dict) -> str:
     h3_html = "<ul>" + "".join(f"<li>{x}</li>" for x in h3s) + "</ul>" if h3s else "<p class=\"map-note\">None.</p>"
     primary = page.get("primary") or "none"
     sitemap = os.path.relpath("sitemap.html", file_dir(page["url"]))
+    catalogue = os.path.relpath("catalogue/index.html", file_dir(page["url"]))
     return f"""
 <div class="heading-map">
   <h2>Heading map</h2>
-  <p class="map-note"><a href="{sitemap}">All pages</a></p>
+  <p class="map-note"><a href="{sitemap}">All pages</a> · <a href="{catalogue}">Chips and modules</a></p>
   <p class="k"><strong>URL</strong><code>{page["url"]}</code></p>
   <p class="k"><strong>H1 (one)</strong>{page["h1"]}</p>
   <p class="k"><strong>Primary keyword</strong>{primary}</p>
@@ -156,16 +157,18 @@ def header_html(from_url: str, section: str) -> str:
           <div class="mega-inner">
             <div class="mega-cols">
               <div class="pillar">
-                <h3><a href="{h("/services/growth-strategy/")}">Growth Strategy</a></h3>
+                <h3><a class="pillar-hub" href="{h("/services/growth-strategy/")}">Growth Strategy <span class="hub-chevron" aria-hidden="true">&#8594;</span></a></h3>
                 <p class="line">Where and how you grow</p>
                 <ul>
+                  <li><a class="strand-overview" href="{h("/services/growth-strategy/")}">Overview</a></li>
                   <li><a href="{h("/services/proposition-innovation/")}">Proposition Innovation</a></li>
                 </ul>
               </div>
               <div class="pillar">
-                <h3><a href="{h("/services/activation/")}">Activation Services</a></h3>
+                <h3><a class="pillar-hub" href="{h("/services/activation/")}">Activation Services <span class="hub-chevron" aria-hidden="true">&#8594;</span></a></h3>
                 <p class="line">Turning strategy into results</p>
                 <ul>
+                  <li><a class="strand-overview" href="{h("/services/activation/")}">Overview</a></li>
                   <li><a href="{h("/services/customer-research/")}">Customer Research and Insight</a></li>
                   <li><a href="{h("/services/experience-engineering/")}">Experience Engineering<small>Customer experience and websites</small></a></li>
                   <li><a href="{h("/services/ai-agents-for-marketing/")}">AI Agents for Marketing</a></li>
@@ -175,9 +178,10 @@ def header_html(from_url: str, section: str) -> str:
                 </ul>
               </div>
               <div class="pillar quiet">
-                <h3><a href="{h("/services/ceo-advisory/")}">CEO Advisory</a></h3>
+                <h3><a class="pillar-hub" href="{h("/services/ceo-advisory/")}">CEO Advisory <span class="hub-chevron" aria-hidden="true">&#8594;</span></a></h3>
                 <p class="line">One-to-one support for leaders</p>
                 <ul>
+                  <li><a href="{h("/services/ceo-advisory/#side-by-side")}">Side-by-Side</a></li>
                   <li><a href="{h("/services/ceo-advisory/#advisors")}">Our advisors</a></li>
                 </ul>
               </div>
@@ -345,6 +349,33 @@ def closing(h, line="Tell us about your growth challenge"):
 """
 
 
+def civd_html(compact=False):
+    cls = "civd-grid compact" if compact else "civd-grid"
+    cells = [
+        ("Customer", "Who you grow with."),
+        ("Innovation", "What you offer next."),
+        ("Value", "Where the economics move."),
+        ("Delivery", "Whether it can be executed."),
+    ]
+    inner = "".join(f'<div class="civd-cell"><strong>{n}</strong><span>{t}</span></div>' for n, t in cells)
+    return f'<div class="{cls}" aria-label="Customer, Innovation, Value and Delivery">{inner}</div>'
+
+
+def thinking_feature(h):
+    return f"""
+        <section class="block">
+          <h2 class="sec">Our thinking</h2>
+          <div class="thinking-split">
+            {card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "Featured report. From tactical lever to growth engine", "doc")}
+            <div class="thinking-side">
+              {card(h, "/insights/loyalty-without-the-discount/", "Loyalty without the discount", "Article", "flat")}
+              <a class="more" href="{h("/insights/")}">All thinking</a>
+            </div>
+          </div>
+        </section>
+"""
+
+
 # ---------------------------------------------------------------------------
 # Page registry: heading maps + chips. Bodies are built in body_for().
 # ---------------------------------------------------------------------------
@@ -364,12 +395,12 @@ PAGES: list[dict] = [
         sectors=[],
         services=[T("Growth Strategy", "/services/growth-strategy/"), T("Activation Services", "/services/activation/"), T("CEO Advisory", "/services/ceo-advisory/")],
         h1="Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth.",
-        h2s=["Trusted partners", "What we do", "Our work", "Awards", "Growth problems we know best", "Latest thinking"],
+        h2s=["Trusted partners", "What we do", "Our thinking", "Our work", "Awards", "Growth problems we know best"],
         h3s=[],
-        intent="Brand and router. Trusted partners sit high. FT awards sit lower, not in the hero. Do not replicate the reports grid here. Thinking is a teaser to Our thinking.",
+        intent="Brand and router. Trusted partners sit high. Featured thinking sits after the triangle, not as a strip at the foot. FT awards sit lower, not in the hero. Do not replicate the reports grid here.",
         crumbs=[],
         kind="home",
-        mural=["Trusted partners banner up", "FT not at the top", "No homepage reports grid", "Showreel visual at launch", "Client quotes with work"],
+        mural=["Trusted partners banner up", "FT not at the top", "No homepage reports grid", "Showreel visual at launch", "Client quotes with work", "Thinking after the offer, not only at the bottom"],
     ),
     dict(
         url="/services/",
@@ -654,9 +685,9 @@ PAGES: list[dict] = [
         sectors=[],
         services=[T("Growth Strategy", "/services/growth-strategy/"), T("Growth Office", "/services/growth-office/")],
         h1="CEO Advisory",
-        h2s=["Why this, now", "What we do", "Our advisors", "How the retainer works"],
-        h3s=["Side-by-Side (named in the hero and this section, not in the nav)"],
-        intent="Nav stays CEO Advisory. Proof is the people. Coaching language is adjacent, not the offer. SxS is not used on the site.",
+        h2s=["Why this, now", "Side-by-Side", "Our advisors", "How the retainer works"],
+        h3s=["The named product (hero and this section, not a second URL)"],
+        intent="Nav stays CEO Advisory. Two mega-nav strands: Side-by-Side (the retainer) and Our advisors (the people). Proof is the people. Coaching language is adjacent, not the offer. SxS is not used on the site.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("CEO Advisory", None)],
         kind="ceo",
         hero="One-to-one support for leaders. Side-by-Side.",
@@ -1193,6 +1224,40 @@ PAGES.append(dict(
     kind="notfound",
 ))
 
+PAGES.append(dict(
+    url="/catalogue/",
+    title="Chips and modules",
+    section="home",
+    weight="Utility",
+    primary="none (wireframe index, not a live URL)",
+    alts=["Not a client sitemap item. Linked from All pages and the sidebar."],
+    quiet="Quiet line example",
+    themes=[T("Loyalty", "/expertise/loyalty/")],
+    sectors=[],
+    services=[T("Growth Strategy", "/services/growth-strategy/")],
+    h1="Chips and modules",
+    h2s=[
+        "Sidebar chips",
+        "Service and offer cards",
+        "Logo placeholders",
+        "Case cards",
+        "Quote",
+        "Video 16:9",
+        "Stats",
+        "Report cards",
+        "Article blocks",
+        "MURAL modules row",
+        "CIVD four-cell",
+        "Triangle blocks",
+        "Mega-nav hub and strands",
+    ],
+    h3s=[],
+    intent="Wireframe design-system index. One example of each module shape used in the mock. Not a proposed live client URL.",
+    crumbs=[("Home", "/"), ("Chips and modules", None)],
+    kind="catalogue",
+    mural=["Example MURAL module chip"],
+))
+
 
 def body_for(page: dict) -> str:
     url = page["url"]
@@ -1223,6 +1288,7 @@ def body_for(page: dict) -> str:
           </div>
           <p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside. <a href="{h("/services/")}">Our Growth Architecture</a></p>
         </section>
+        {thinking_feature(h)}
         <section class="block">
           <h2 class="sec">Our work</h2>
           <div class="cards">
@@ -1246,14 +1312,6 @@ def body_for(page: dict) -> str:
             <a href="{h("/expertise/pricing/")}">Pricing</a>
             <a href="{h("/expertise/customer-value/")}">Customer Value</a>
           </div>
-        </section>
-        <section class="block">
-          <h2 class="sec">Latest thinking</h2>
-          <div class="cards two">
-            {card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "Report", "doc")}
-            {card(h, "/insights/loyalty-without-the-discount/", "Loyalty without the discount", "Article", "flat")}
-          </div>
-          <a class="more" href="{h("/insights/")}">All thinking</a>
         </section>
         {closing(h)}
 """
@@ -1292,6 +1350,8 @@ def body_for(page: dict) -> str:
           <h2 class="plain"><a href="{h("/services/growth-strategy/")}">Growth Strategy</a></h2>
           <p class="line">Where and how you grow</p>
           <p class="sentence">We work out where the growth is and design the propositions that win it, using our <a href="{h("/services/growth-strategy/#civd")}">Customer, Innovation, Value and Delivery</a> frame.</p>
+          {civd_html(compact=True)}
+          <p class="case-line" style="margin-top:12px">The frame lives on Growth Strategy. Next: <a href="{h("/services/growth-strategy/#civd")}">Open the CIVD module</a></p>
           <div class="cards two">
             {card(h, "/services/growth-strategy/", "Growth Strategy", "Customer-led growth strategy: where to focus and how to win", "flat")}
             {card(h, "/services/proposition-innovation/", "Proposition Innovation", "Value proposition design: loyalty, membership, subscription, direct-to-consumer", "flat")}
@@ -1443,9 +1503,9 @@ def body_for(page: dict) -> str:
           </ul>
           <p class="prose">Senior leaders who work with you on retainer.</p>
         </section>
-        <section class="block">
-          <h2 class="plain">What we do</h2>
-          <p class="prose">A select group of senior leaders, armed with Manifesto thinking and frameworks. Adaptive and personality-led. Retainer-based, virtual or in person, so practitioners focus on delivering value, not on selling.</p>
+        <section class="block" id="side-by-side">
+          <h2 class="plain">Side-by-Side</h2>
+          <p class="prose">A select group of senior leaders, armed with Manifesto thinking and frameworks. Adaptive and personality-led. Retainer-based, virtual or in person, so practitioners focus on delivering value, not on selling. This is the named product inside CEO Advisory.</p>
         </section>
         <section class="block" id="advisors">
           <h2 class="plain">Our advisors</h2>
@@ -1995,6 +2055,143 @@ def body_for(page: dict) -> str:
         </section>
 """
 
+    if kind == "catalogue":
+        return f"""
+        <section class="block hero">
+          <h1>Chips and modules</h1>
+          <p>Wireframe index of every chip, widget and module shape in this mock. Not a live client URL.</p>
+        </section>
+        <section class="block">
+          <h2 class="plain">Sidebar chips</h2>
+          <div class="catalogue-item">
+            <span class="cat-label">Canonical weight</span>
+            <div class="chips"><span class="chip weight">Canonical</span></div>
+          </div>
+          <div class="catalogue-item">
+            <span class="cat-label">Keyword</span>
+            <div class="chips"><span class="chip kw">Primary: growth strategy (~480)</span></div>
+          </div>
+          <div class="catalogue-item">
+            <span class="cat-label">Quiet line</span>
+            <div class="chips"><span class="chip quiet">Quiet line: Interim growth team</span></div>
+          </div>
+          <div class="catalogue-item">
+            <span class="cat-label">Related services or themes</span>
+            <div class="chips"><span class="chip">Services: <a href="{h("/services/growth-strategy/")}">Growth Strategy</a></span></div>
+          </div>
+          <div class="catalogue-item">
+            <span class="cat-label">MURAL modules row</span>
+            <div class="chips"><span class="chip muted">Keep CIVD, different visuals</span><span class="chip muted">Showreel visual at launch</span></div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">On-page tags</h2>
+          <div class="catalogue-item">
+            <span class="cat-label">Page tags</span>
+            <div class="page-tags"><a href="{h("/expertise/loyalty/")}">Loyalty</a><a href="{h("/expertise/pricing/")}">Pricing</a></div>
+          </div>
+          <div class="catalogue-item">
+            <span class="cat-label">Filters</span>
+            <div class="filters">
+              <span class="filter on">Growth Strategy</span>
+              <span class="filter">Experience Engineering</span>
+              <span class="filter more">More filters</span>
+            </div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Cards</h2>
+          <div class="catalogue-item">
+            <span class="cat-label">Service cards</span>
+            <div class="cards two">
+              {card(h, "/services/growth-strategy/", "Growth Strategy", "Customer-led growth strategy: where to focus and how to win", "flat")}
+              {card(h, "/services/proposition-innovation/", "Proposition Innovation", "Value proposition design", "offer")}
+            </div>
+          </div>
+          <div class="catalogue-item">
+            <span class="cat-label">Case cards</span>
+            <div class="cards two">
+              {card(h, "/work/dayinsure/", "Dayinsure", "One-line result", "ph")}
+              {card(h, "/work/key-group/", "Key Group", "One-line result", "ph")}
+            </div>
+          </div>
+          <div class="catalogue-item">
+            <span class="cat-label">Report cards</span>
+            <div class="cards two">
+              {card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "Report", "doc")}
+            </div>
+          </div>
+          <div class="catalogue-item">
+            <span class="cat-label">Person cards</span>
+            <div class="cards">
+              {card(h, "/about/team/advisor-one/", "Advisor name", "Former role, one line", "person")}
+            </div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Proof and media</h2>
+          <div class="catalogue-item">
+            <span class="cat-label">Logo placeholders</span>
+            {logos_html(6, "Logo")}
+          </div>
+          <div class="catalogue-item">
+            <span class="cat-label">Quote</span>
+            <blockquote class="quote">"The work changed how we think about growth."<cite>Dayinsure</cite></blockquote>
+          </div>
+          <div class="catalogue-item">
+            <span class="cat-label">Video 16:9</span>
+            {video_html("Showreel")}
+          </div>
+          <div class="catalogue-item">
+            <span class="cat-label">Stats</span>
+            {metrics_html([("3x", "EBITDA return"), ("4 wks", "Data audit"), ("6 wks", "First agents"), ("TBC", "NPS")])}
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Article blocks</h2>
+          {article_body()}
+        </section>
+        <section class="block">
+          <h2 class="plain">CIVD four-cell</h2>
+          {civd_html()}
+        </section>
+        <section class="block">
+          <h2 class="plain">Triangle blocks</h2>
+          <div class="tri">
+            <a href="{h("/services/growth-strategy/")}"><strong>Growth Strategy</strong><span>Where and how you grow</span></a>
+            <a href="{h("/services/activation/")}"><strong>Activation Services</strong><span>Turning strategy into results</span></a>
+            <a class="quiet" href="{h("/services/ceo-advisory/")}"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Mega-nav hub and strands</h2>
+          <p class="prose">Example of one group: linked hub title with chevron, then Overview plus a strand. Full panel is under What we do.</p>
+          <div class="pillar" style="max-width:280px">
+            <h3><a class="pillar-hub" href="{h("/services/growth-strategy/")}">Growth Strategy <span class="hub-chevron" aria-hidden="true">&#8594;</span></a></h3>
+            <p class="line">Where and how you grow</p>
+            <ul>
+              <li><a class="strand-overview" href="{h("/services/growth-strategy/")}">Overview</a></li>
+              <li><a href="{h("/services/proposition-innovation/")}">Proposition Innovation</a></li>
+            </ul>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Situations list</h2>
+          <ul class="situations">
+            <li><a href="{h("/services/growth-strategy/")}">We need to decide where and how to grow</a></li>
+            <li><a href="{h("/services/ceo-advisory/")}">I want a sounding board I trust</a></li>
+          </ul>
+        </section>
+        <section class="block">
+          <h2 class="plain">Form fields</h2>
+          <div class="form">
+            <div class="field"><label>Name</label><div class="box"></div></div>
+            <div class="field"><label>Message</label><div class="box tall"></div></div>
+          </div>
+        </section>
+        {closing(h)}
+"""
+
     raise KeyError(kind)
 
 
@@ -2014,7 +2211,8 @@ def service_module(page: dict, h) -> str:
         </section>
         <section class="block" id="civd">
           <h2 class="plain">Customer, Innovation, Value and Delivery</h2>
-          <p class="prose">The CIVD frame. Next: <a href="{h("/services/proposition-innovation/")}">Proposition Innovation</a>.</p>
+          <p class="prose">The CIVD frame. Customer, Innovation, Value and Delivery. Next: <a href="{h("/services/proposition-innovation/")}">Proposition Innovation</a>.</p>
+          {civd_html()}
           <h3 class="plain">Customer</h3>
           <p class="prose">Who you grow with.</p>
           <h3 class="plain">Innovation</h3>
@@ -2209,6 +2407,7 @@ def write_sitemap_html() -> None:
         ("Careers", [p["url"] for p in PAGES if p["url"].startswith("/careers/")]),
         ("Contact", [p["url"] for p in PAGES if p["url"].startswith("/contact/")]),
         ("Utility", [p["url"] for p in PAGES if p["url"] in {"/privacy-policy/", "/cookie-policy/", "/terms/", "/accessibility/", "/search/", "/404/"}]),
+        ("Wireframe tools", ["/catalogue/"]),
     ]
     by_url = {p["url"]: p for p in PAGES}
     lis = []
@@ -2236,7 +2435,7 @@ def write_sitemap_html() -> None:
 </head>
 <body>
 <div class="wrap" style="max-width:900px;margin:24px auto 48px;padding:0 12px">
-  <p class="map-note" style="margin:0 0 16px"><a href="index.html">Home</a></p>
+  <p class="map-note" style="margin:0 0 16px"><a href="index.html">Home</a> · <a href="catalogue/index.html">Chips and modules</a></p>
   <div class="sitemap">
     <ul>
       {"".join(lis)}
@@ -2255,7 +2454,7 @@ def write_heading_map_md() -> None:
         "",
         "Recommended H1 (one), H2s (ordered) and H3s for every URL in the clickable wireframe.",
         "Tied to UK DataForSEO volumes (Sep 2026) and Andy's Growth Architecture Services deck.",
-        "Header chrome is MURAL-informed (see `docs/mural-gap-check.md`). Mega-nav labels are unchanged. Buyer language sits in quiet lines, H1 support, H2/H3s and page chips.",
+        "Header chrome is MURAL-informed (see `docs/mural-gap-check.md`). Mega-nav group titles are linked hubs with Overview or strand children. Buyer language sits in quiet lines, H1 support, H2/H3s and page chips.",
         "",
         "Volumes are average monthly Google Ads search volume for the United Kingdom. Exact Manifesto product phrases are often thin; adjacent demand is the useful signal.",
         "",

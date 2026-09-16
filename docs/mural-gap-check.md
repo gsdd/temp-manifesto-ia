@@ -20,7 +20,7 @@ Primary nav in the wireframe is **six items**, logo aside (under the cap of seve
 | The Nutshell | Newsletter utility + Contact + Our thinking | Named from the current contact form. Footer Company column. |
 | Our clients | Not top-nav | Proof on Our work; logos as Trusted partners on Home; sectors in the footer. |
 
-Mega-nav (What we do triangle) is unchanged.
+Mega-nav (What we do triangle) uses linked hub titles and strand children. See `01-primary-navigation.md` and D-54.
 
 ### Page chips, H1/H2/H3 maps and modules
 
