@@ -730,21 +730,12 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   - Not a client sitemap item. Linked from All pages.
 - **H1:** Page modules
 - **H2s (ordered):**
-  1. On-page tags
-  2. Service and offer cards
-  3. Logo placeholders
-  4. Case cards
-  5. Quote
-  6. Video 16:9
-  7. Stats
-  8. Report cards
-  9. Article blocks
-  10. CIVD four-cell
-  11. Triangle blocks
-  12. Mega-nav hub and strands
-  13. Empty state
-  14. Pagination
-  15. Forms
-  16. Primary and secondary CTA
-  17. Cookie bar
-- **Intent:** Wireframe index of live page modules and blocks. Not a proposed live client URL. No working notes sidebar.
+  1. How to read these units
+  2. Actions: button versus link versus filter versus tag
+  3. Cards (one shape per type)
+  4. Proof and media
+  5. Page blocks
+  6. Forms
+  7. Empty state and pagination
+  8. Cookie bar
+- **Intent:** Named index of live page modules: one type, one shape. Not a proposed live client URL. No working notes sidebar.

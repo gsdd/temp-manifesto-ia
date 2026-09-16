@@ -43,7 +43,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .top-link { display: inline-flex; align-items: center; gap: 6px; padding: 21px 10px; font-weight: 600; border-bottom: 2px solid transparent; }
 .top-link[aria-expanded="true"], .top-link:hover, .top-link[aria-current="page"] { border-bottom-color: var(--ink); }
 .top-link .caret { font-size: 9px; color: var(--mid); }
-.btn { display: inline-block; padding: 9px 18px; border: 1.5px solid var(--ink); font-weight: 600; }
+/* Primary button: the one action in a cluster. Not a nav link, filter, or tag. */
+.btn {
+  display: inline-block; padding: 9px 18px; border: 1.5px solid var(--ink);
+  background: var(--ink); color: #fff; font-weight: 600;
+}
 
 .dropdown { display: none; position: absolute; top: 100%; left: 0; min-width: 220px; background: var(--paper); border: 1px solid var(--line); padding: 8px 0; z-index: 30; }
 .primary-nav > li[data-open="true"] .dropdown { display: block; }
@@ -115,7 +119,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hero h1 { margin: 0 0 8px; font-size: 30px; line-height: 1.2; font-weight: 600; max-width: 760px; }
 .hero p { margin: 0 0 12px; color: var(--mid); font-size: 17px; }
 .hero .cta, .cta { display: flex; align-items: center; gap: 22px; margin-top: 8px; }
-.cta a.text { text-decoration: underline; color: var(--mid); }
+.cta a.text {
+  text-decoration: underline; color: var(--mid);
+  background: none; border: 0; padding: 0; font-weight: 400;
+}
 .hero .eyebrow { display: block; margin: 0 0 10px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--mid); }
 .hero p.body, .prose { font-size: 15px; color: #555; max-width: 760px; margin: 0 0 10px; }
 .hero .aka { font-size: 13px; color: var(--mid); margin: 0 0 10px; }
@@ -145,24 +152,26 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .quote cite { display: block; margin-top: 8px; font-size: 13px; font-style: normal; color: var(--mid); }
 .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 760px; }
-.metric { border: 1px solid var(--line); padding: 16px 14px; min-height: 88px; }
+.metric { border: 1px solid var(--line); padding: 16px 14px; min-height: 88px; background: #fff; }
 .metric strong { display: block; font-size: 22px; margin-bottom: 4px; }
 .metric span { font-size: 12px; color: var(--mid); }
 .article-body { max-width: 680px; }
 .article-body .prose { min-height: 3.2em; }
 .page-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .page-tags a {
-  display: inline-block; padding: 4px 10px; border: 1px solid var(--line); font-size: 13px;
+  display: inline-block; padding: 4px 10px; border: 1px dashed var(--line); font-size: 13px;
+  border-radius: 0; background: #fff;
 }
 
 .tri { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-.tri a { display: block; border: 1px solid var(--line); padding: 22px 20px; min-height: 120px; }
+.tri a { display: block; border: 2px solid var(--ink); padding: 22px 20px; min-height: 120px; background: #fff; }
 .tri a strong { display: block; font-size: 19px; margin-bottom: 6px; }
 .tri a span { font-size: 13px; color: var(--mid); }
 .pagination { display: flex; gap: 8px; margin-top: 16px; font-size: 13px; }
 .pagination span, .pagination a {
   display: inline-flex; align-items: center; justify-content: center;
   min-width: 32px; height: 32px; border: 1px solid var(--line); padding: 0 8px;
+  border-radius: 2px; background: #fff; font-weight: 400;
 }
 .pagination .on { border-color: var(--ink); font-weight: 600; }
 .empty-state {
@@ -191,7 +200,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 .civd-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 900px; }
 .civd-cell {
-  border: 1px solid var(--line); padding: 16px 14px; min-height: 110px; background: #f7f7f7;
+  border: 1px solid var(--ink); padding: 16px 14px; min-height: 110px; background: #f7f7f7;
 }
 .civd-cell strong { display: block; margin-bottom: 6px; }
 .civd-cell span { font-size: 13px; color: var(--mid); }
@@ -200,8 +209,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 .catalogue-item { margin: 0 0 28px; }
 .catalogue-item .cat-label {
-  display: block; margin: 0 0 8px; font-size: 11px; font-weight: 600;
+  display: block; margin: 0 0 4px; font-size: 11px; font-weight: 600;
   letter-spacing: .06em; text-transform: uppercase; color: var(--mid);
+}
+.catalogue-item .cat-note {
+  display: block; margin: 0 0 10px; font-size: 12px; color: var(--mid); max-width: 640px;
 }
 
 .situations { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 40px; max-width: 900px; }
@@ -225,9 +237,15 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .cards.two { grid-template-columns: 1fr 1fr; max-width: 760px; }
 .cards.four { grid-template-columns: repeat(4, 1fr); }
-.card { border: 1px solid var(--line); padding: 0 0 16px; min-height: 110px; display: block; }
+.card { border: 1px solid var(--line); padding: 0 0 16px; min-height: 110px; display: block; background: #fff; }
 .card.flat, .card.offer { padding: 18px; min-height: 120px; background: #f7f7f7; }
 .card.person { padding: 18px; border-color: var(--soft); background: #fafafa; min-height: 0; }
+.card.case, .card:has(> .ph) { background: #fff; }
+.card.report, .card:has(> .doc) { background: #fff; text-align: center; }
+.card.article, .card.theme, .card.role {
+  padding: 18px; min-height: 88px; background: #fff;
+}
+.card.theme { min-height: 100px; }
 .card .ph {
   aspect-ratio: 16 / 10; height: auto; border: 0; border-bottom: 1px dashed var(--line);
   margin-bottom: 12px; background: #f3f3f3;
@@ -242,9 +260,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .card.person .avatar, .card .avatar { width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--line); margin: 0 18px 10px; }
 .card strong { display: block; font-size: 15px; padding: 0 16px; }
-.card.flat strong, .card.offer strong, .card.person strong { padding: 0; }
+.card.flat strong, .card.offer strong, .card.person strong,
+.card.article strong, .card.theme strong, .card.role strong { padding: 0; }
 .card span, .card p { font-size: 13px; color: var(--mid); margin: 6px 16px 0; }
-.card.flat span, .card.offer span, .card.person span { margin-left: 0; margin-right: 0; }
+.card.flat span, .card.offer span, .card.person span,
+.card.article span, .card.theme span, .card.role span { margin-left: 0; margin-right: 0; }
 .card:hover strong { text-decoration: underline; }
 .more { display: inline-block; margin-top: 16px; font-size: 13px; color: var(--mid); text-decoration: underline; }
 .one-line { margin: 0; font-size: 15px; color: #444; }
@@ -265,9 +285,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
 .filter {
-  padding: 6px 10px; border: 1px solid var(--line); font-size: 13px; background: var(--paper);
+  padding: 6px 12px; border: 1px solid var(--line); font-size: 13px; background: var(--paper);
+  border-radius: 999px;
 }
-.filter.on { border-color: var(--ink); font-weight: 600; }
+.filter.on { border-color: var(--ink); font-weight: 600; background: #f4f4f4; }
 .filter.more { color: var(--mid); }
 
 .form { max-width: 520px; }
