@@ -1,6 +1,6 @@
 # Manifesto Growth Architects: Website Information Architecture (v5)
 
-This repository holds the Information Architecture (IA) package for the new Manifesto Growth Architects (MGA) website. It is documentation plus one wireframe. There is no website code here and no visual design. The package defines what the site contains, how it is organised, how it is navigated, and which page owns which topic.
+This repository holds the Information Architecture (IA) package for the new Manifesto Growth Architects (MGA) website. It is documentation plus a clickable full-site wireframe. There is no production website code here and no visual design. The package defines what the site contains, how it is organised, how it is navigated, and which page owns which topic.
 
 **v2 replaced v1 in full.** v1 was rejected on 14 September because the navigation was too complicated and Andy's Growth Architecture triangle was not visible in it.
 
@@ -9,6 +9,8 @@ This repository holds the Information Architecture (IA) package for the new Mani
 **v4 simplified the whole concept.** Gary's feedback on v3 was that it still felt too complicated as a whole. v4 kept the structure and the labels and took out everything that was explaining them (`docs/v4-simplification.md`).
 
 **v5 takes the pages to best in class on evidence.** Gary's feedback on v4 (16 September) was that the navigation was calm but not yet best in class, and that Andy's deck might not be fully reflected. v5 reviewed the live navigation of ten real peers and six pattern references (`docs/competitor-nav-review.md`), audited the deck slide by slide (`docs/andy-deck-coverage.md`), and made eight refinements (`docs/v5-refinements.md`). The finding: the menu was already sparser than any peer's; the gap was on the pages. So v5 rebuilds the Services hub as the Growth Architecture story with a way in by problem, puts proof under each offer, names the system and its frameworks where a buyer can see them, and adds exactly one quiet link to the menu.
+
+**This pass does not change the IA.** It extends the v5 mock into a clickable full-site wireframe covering the sitemap, with page chips and an outside SEO heading map shaped by UK keyword intel (`docs/heading-map.md`).
 
 ## The one idea to hold in your head
 
@@ -57,7 +59,9 @@ Full summaries of all seven are in `docs/00-sources.md`. The competitor review i
 
 | File | What it answers | Read it if you are |
 |---|---|---|
-| `mocks/index.html` | The wireframe. Opens with the mega-nav visible. Five plain views: Navigation, Homepage, Services hub, Mobile, Sitemap. No build step. | Anyone. Start here. |
+| `mocks/index.html` | Clickable full-site wireframe. Home is the entry. Primary nav, mega-nav and footer work on every sitemap page. Each page has chips and an outside SEO heading map. | Anyone. Start here. |
+| `mocks/README.md` | How to click through locally, what is in the mega-nav, how to regenerate | Anyone opening the mock |
+| `docs/heading-map.md` | Recommended H1 / H2 / H3 plus UK keyword targets for every URL | SEO, content |
 | `docs/v5-refinements.md` | What v5 changes and why, with the competitor and deck evidence for each; old to new; the tests v5 has to pass | Gary and Andy reviewing v5 |
 | `docs/competitor-nav-review.md` | How ten real peers and six pattern references structure nav, services and IA; what is best in class; what to avoid; a patterns table against v4 | Anyone asking "is this best in class?" |
 | `docs/andy-deck-coverage.md` | Every element of Andy's deck, slide by slide: Present, Partial or Missing in the IA, and where v5 puts it | Andy, and Gary checking the deck is reflected |
@@ -106,6 +110,6 @@ Full summaries of all seven are in `docs/00-sources.md`. The competitor review i
 ## What this package deliberately does not cover
 
 - Visual design, typography, colour, imagery or component styling
-- Copywriting beyond nav labels, pillar lines, page purposes and example headings
+- Copywriting beyond nav labels, pillar lines, page purposes, example headings and the SEO heading map
 - CMS platform choice or technical build
-- Full wireframes of page bodies (the mock covers navigation and the homepage; other pages are specified as block lists)
+- Visual design of the live site (the mock is greyscale wireframe only)

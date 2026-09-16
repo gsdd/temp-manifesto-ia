@@ -3,797 +3,216 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MGA website IA v5: wireframe</title>
-<style>
-  /* Wireframe only. Greyscale, system font, no brand assets. */
-  :root {
-    --ink: #222;
-    --mid: #777;
-    --line: #cfcfcf;
-    --soft: #ececec;
-    --paper: #fff;
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 15px; line-height: 1.45; color: var(--ink); background: #f2f2f2;
-  }
-  a { color: inherit; text-decoration: none; }
-  a:focus-visible, button:focus-visible { outline: 2px solid #000; outline-offset: 2px; }
-  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
-
-  /* One quiet line above the frame: what this is, and the view switches */
-  .top {
-    max-width: 1200px; margin: 0 auto; padding: 18px 8px 10px;
-    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
-    font-size: 13px; color: var(--mid);
-  }
-  .views { display: flex; gap: 18px; }
-  .views button { color: var(--mid); padding-bottom: 2px; border-bottom: 1px solid transparent; }
-  .views button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--ink); }
-
-  .view { display: none; }
-  .view[data-active="true"] { display: block; }
-  .wrap { max-width: 1200px; margin: 0 auto 40px; padding: 0 8px; }
-
-  /* ---------- Desktop frame ---------- */
-  .browser { border: 1px solid var(--line); background: var(--paper); position: relative; }
-  /* Page fades back while the menu is open, as on the live site */
-  .scrim { display: none; position: absolute; left: 0; right: 0; bottom: 0; top: 0; background: rgba(255,255,255,.72); z-index: 15; }
-  .browser[data-mega-open="true"] .scrim { display: block; }
-  .bar { position: relative; z-index: 16; border-bottom: 1px solid var(--line); padding: 7px 12px; font-size: 12px; color: var(--mid); background: #f7f7f7; }
-  .bar .url { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-
-  .header-zone { position: relative; }
-  .site-header {
-    position: relative; z-index: 20;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 32px; height: 64px; border-bottom: 1px solid var(--line); background: var(--paper);
-  }
-  .logo { width: 132px; height: 32px; border: 1px dashed var(--line); display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--mid); }
-  .primary-nav { display: flex; align-items: center; gap: 6px; margin: 0; padding: 0; list-style: none; }
-  .primary-nav > li { position: relative; }
-  .top-link { display: inline-flex; align-items: center; gap: 6px; padding: 21px 14px; font-weight: 600; border-bottom: 2px solid transparent; }
-  .top-link[aria-expanded="true"], .top-link:hover { border-bottom-color: var(--ink); }
-  .top-link .caret { font-size: 9px; color: var(--mid); }
-  .btn { display: inline-block; padding: 9px 18px; border: 1.5px solid var(--ink); font-weight: 600; }
-
-  /* Small dropdown (About) */
-  .dropdown { display: none; position: absolute; top: 100%; left: 0; min-width: 220px; background: var(--paper); border: 1px solid var(--line); padding: 8px 0; z-index: 30; }
-  .primary-nav > li[data-open="true"] .dropdown { display: block; }
-  .dropdown ul { list-style: none; margin: 0; padding: 0; }
-  .dropdown li a { display: block; padding: 7px 18px; }
-  .dropdown li a:hover { background: var(--soft); }
-
-  /* Mega-nav: three columns, one thin footer row */
-  .mega { display: none; position: absolute; left: 0; right: 0; top: 64px; background: var(--paper); border-bottom: 1px solid var(--line); z-index: 25; }
-  .site-header[data-mega-open="true"] ~ .mega { display: block; }
-  .mega-inner { max-width: 1040px; margin: 0 auto; padding: 32px 32px 0; }
-  .mega-cols { display: grid; grid-template-columns: 1fr 1fr 0.7fr; gap: 56px; }
-  .pillar h3 { margin: 0; font-size: 19px; line-height: 1.2; }
-  .pillar .line { margin: 5px 0 18px; font-size: 13px; color: var(--mid); }
-  .pillar ul { list-style: none; margin: 0; padding: 0; }
-  .pillar li a { display: block; padding: 7px 0; font-size: 15px; }
-  .pillar li a:hover { text-decoration: underline; }
-  .pillar li a small { display: block; font-size: 12.5px; color: var(--mid); font-weight: 400; line-height: 1.3; }
-  .pillar.quiet h3 { font-size: 16px; font-weight: 600; color: #555; }
-  .pillar.quiet .line { color: #999; }
-  .pillar.quiet li a { font-size: 13px; color: #777; }
-  .mega-row { margin-top: 28px; border-top: 1px solid var(--soft); padding: 12px 0 14px; display: flex; gap: 28px; font-size: 13px; color: var(--mid); }
-  .mega-row a:hover { text-decoration: underline; }
-
-  /* ---------- Page bodies: Home (T1, six blocks) and Services hub (T2, eight blocks) share one frame ---------- */
-  .page { padding: 0 32px; display: none; }
-  .page[data-active="true"] { display: block; }
-  .block { padding: 36px 0; border-bottom: 1px solid var(--soft); }
-  .block:last-child { border-bottom: 0; }
-  .block h2 { margin: 0 0 16px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--mid); }
-  .hero h1 { margin: 0 0 8px; font-size: 30px; line-height: 1.2; font-weight: 600; max-width: 720px; }
-  .hero p { margin: 0 0 20px; color: var(--mid); font-size: 17px; }
-  .hero .cta { display: flex; align-items: center; gap: 22px; }
-  .hero .cta a.text { text-decoration: underline; color: var(--mid); }
-  .hero .eyebrow { display: block; margin: 0 0 10px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--mid); }
-  .hero p.body { font-size: 15px; color: #555; max-width: 720px; margin: 0 0 10px; }
-  .logos { display: flex; gap: 12px; margin-top: 36px; }
-  .logos span { flex: 1; height: 28px; border: 1px dashed var(--line); }
-
-  .tri { display: grid; grid-template-columns: 1fr 1fr 0.7fr; gap: 16px; }
-  .tri a { display: block; border: 1px solid var(--line); padding: 22px 20px; min-height: 120px; }
-  .tri a strong { display: block; font-size: 19px; margin-bottom: 6px; }
-  .tri a span { font-size: 13px; color: var(--mid); }
-  .tri a.quiet { border-color: var(--soft); background: #fafafa; }
-  .tri a.quiet strong { font-size: 16px; font-weight: 600; color: #555; }
-  .tri a.quiet span { color: #999; }
-  /* The triangle line: one sentence under the three blocks, shared by Home and the hub */
-  .tri-line { margin: 14px 0 0; font-size: 13px; color: var(--mid); }
-  .tri-line a { text-decoration: underline; margin-left: 10px; }
-
-  /* Hub: "Where are you starting from?" seven lines */
-  .situations { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 40px; max-width: 900px; }
-  .situations li { break-inside: avoid; padding: 7px 0; border-top: 1px solid var(--soft); }
-  .situations li:first-child { border-top: 0; }
-  .situations li a { display: block; font-size: 15px; }
-  .situations li a:hover { text-decoration: underline; }
-
-  /* Hub: pillar sections */
-  .pillar-sec h3 { margin: 0; font-size: 22px; line-height: 1.2; }
-  .pillar-sec h3 a:hover { text-decoration: underline; }
-  .pillar-sec .line { margin: 4px 0 12px; font-size: 13px; color: var(--mid); }
-  .pillar-sec .sentence { margin: 0 0 18px; font-size: 16px; color: #444; max-width: 760px; }
-  .pillar-sec .sentence a { text-decoration: underline; }
-  .pillar-sec.quiet h3 { font-size: 18px; color: #555; }
-  .pillar-sec.quiet .sentence { color: #666; }
-  .case-line { margin: 18px 0 0; font-size: 13px; color: var(--mid); }
-  .case-line a { text-decoration: underline; }
-
-  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .cards.two { grid-template-columns: 1fr 1fr; max-width: 760px; }
-  .card { border: 1px solid var(--line); padding: 18px; min-height: 110px; }
-  .card.flat { min-height: 0; }
-  .card.person { border-color: var(--soft); background: #fafafa; min-height: 0; }
-  .card .ph { height: 56px; border: 1px dashed var(--line); margin-bottom: 12px; }
-  .card .avatar { width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--line); margin-bottom: 10px; }
-  .card strong { display: block; font-size: 15px; }
-  .card span { font-size: 13px; color: var(--mid); }
-  .more { display: inline-block; margin-top: 16px; font-size: 13px; color: var(--mid); text-decoration: underline; }
-  .one-line { margin: 0; font-size: 15px; color: #444; }
-  .one-line a { text-decoration: underline; }
-
-  .row-links { display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 15px; }
-  .row-links a:hover { text-decoration: underline; }
-
-  .list { list-style: none; margin: 0; padding: 0; }
-  .list li { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-top: 1px solid var(--soft); }
-  .list li:first-child { border-top: 0; }
-  .list li span { color: var(--mid); font-size: 13px; white-space: nowrap; }
-
-  .closing { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-  .closing p { margin: 0; font-size: 20px; font-weight: 600; }
-
-  /* Footer */
-  .site-footer { border-top: 1px solid var(--line); background: #f7f7f7; padding: 32px 32px 18px; }
-  .footer-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-  .footer-cols h4 { margin: 0 0 8px; font-size: 13px; }
-  .footer-cols ul { list-style: none; margin: 0; padding: 0; font-size: 13px; }
-  .footer-cols li a { display: block; padding: 2px 0; color: #555; }
-  .footer-bottom { margin-top: 22px; border-top: 1px solid var(--line); padding-top: 10px; font-size: 12px; color: var(--mid); display: flex; gap: 14px; flex-wrap: wrap; }
-
-  /* ---------- Mobile frame ---------- */
-  .phone { width: 390px; height: 760px; margin: 0 auto; border: 1px solid var(--line); background: var(--paper); overflow: hidden; position: relative; }
-  .m-header { display: flex; align-items: center; justify-content: space-between; height: 56px; padding: 0 14px; border-bottom: 1px solid var(--line); background: var(--paper); position: relative; z-index: 5; }
-  .m-header .logo { width: 96px; height: 28px; }
-  .m-header .right { display: flex; align-items: center; gap: 10px; }
-  .m-header .btn { padding: 6px 12px; font-size: 13px; }
-  .m-menu-btn { font-weight: 600; font-size: 14px; padding: 6px 4px; }
-  .m-page { padding: 20px 16px; }
-  .m-page h1 { font-size: 22px; margin: 0 0 8px; }
-  .m-page p { color: var(--mid); margin: 0 0 16px; }
-  .m-panel { position: absolute; inset: 56px 0 0 0; background: var(--paper); overflow-y: auto; display: none; }
-  .phone[data-menu="open"] .m-panel { display: block; }
-  .phone[data-menu="open"] .m-page { display: none; }
-
-  .acc { list-style: none; margin: 0; padding: 0; }
-  .acc > li { border-bottom: 1px solid var(--soft); }
-  .acc-row { display: flex; align-items: stretch; }
-  .acc-row > a { flex: 1; padding: 15px 16px; font-weight: 600; font-size: 16px; }
-  .acc-row > .toggle { width: 52px; min-height: 44px; display: flex; align-items: center; justify-content: center; color: var(--mid); font-size: 18px; }
-  .acc-row > .toggle::before { content: "+"; }
-  .acc li[data-open="true"] > .acc-row > .toggle::before { content: "\2212"; }
-  .acc-body { display: none; padding: 2px 16px 14px; }
-  .acc li[data-open="true"] > .acc-body { display: block; }
-  .m-pillar { margin: 12px 0 4px; }
-  .m-pillar a { display: inline-block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--mid); padding: 4px 0; }
-  .m-pillar.quiet a { color: #aaa; }
-  .m-items { list-style: none; margin: 0; padding: 0; }
-  .m-items li a { display: block; padding: 9px 0; font-size: 15px; }
-  .m-items li a small { display: block; font-size: 12px; color: var(--mid); font-weight: 400; }
-  .m-items li.quiet a { font-size: 14px; color: #777; }
-  .m-links { display: flex; gap: 22px; padding: 14px 0 0; font-size: 13px; color: var(--mid); }
-  .acc .plain-top a { display: block; padding: 15px 16px; font-weight: 600; font-size: 16px; }
-
-  /* ---------- Sitemap: plain list ---------- */
-  .sitemap { background: var(--paper); border: 1px solid var(--line); padding: 28px 32px; font-size: 14px; }
-  .sitemap ul { list-style: none; margin: 0; padding: 0; }
-  .sitemap ul ul { margin-left: 26px; }
-  .sitemap li { padding: 3px 0; }
-  .sitemap .u { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
-  .sitemap .w { color: var(--mid); font-size: 12px; margin-left: 8px; }
-  .sitemap .sec { margin-top: 14px; }
-  .sitemap .sec > .u { font-weight: 600; }
-  .sitemap p { color: var(--mid); font-size: 13px; margin: 20px 0 0; }
-
-  @media (max-width: 900px) {
-    .mega-cols, .footer-cols, .tri, .cards { grid-template-columns: 1fr 1fr; }
-    .situations { columns: 1; }
-    .browser { overflow-x: auto; }
-  }
-</style>
+<title>Home | Manifesto Growth Architects (IA wireframe)</title>
+<link rel="stylesheet" href="assets/wireframe.css">
 </head>
 <body>
-
+<a class="skip" href="#main">Skip to content</a>
 <div class="top">
-  <span>MGA website IA v5. Wireframe, not design.</span>
-  <nav class="views" aria-label="Views">
-    <button data-view="nav" aria-pressed="true">Navigation</button>
-    <button data-view="home" aria-pressed="false">Homepage</button>
-    <button data-view="hub" aria-pressed="false">Services hub</button>
-    <button data-view="mobile" aria-pressed="false">Mobile</button>
-    <button data-view="sitemap" aria-pressed="false">Sitemap</button>
-  </nav>
+  <span>MGA website IA. Wireframe, not design. Click through the site; the right-hand panel is the SEO heading map.</span>
+  <span><a href="sitemap.html">All pages</a></span>
 </div>
-
-<!-- ===================== DESKTOP: Navigation (menu open), Homepage and Services hub (menu closed) share one frame ===================== -->
-<div class="view" id="view-desktop" data-active="true">
-  <div class="wrap">
-    <div class="browser" id="browser" data-mega-open="true">
-      <div class="bar"><span class="url" id="urlBar">manifestogrowth.example/</span></div>
-      <div class="scrim"></div>
-
+<div class="layout">
+  <div class="browser" id="browser" data-mega-open="false">
+    <div class="bar"><span class="url">manifestogrowth.example/</span></div>
+    <div class="scrim"></div>
+    
       <div class="header-zone">
-        <header class="site-header" id="siteHeader" data-mega-open="true">
-          <a class="logo" href="/" data-url="/">MGA logo</a>
-
+        <header class="site-header" id="siteHeader" data-mega-open="false">
+          <a class="logo" href="index.html">MGA logo</a>
           <ul class="primary-nav" id="primaryNav">
             <li data-menu="mega">
-              <a class="top-link" href="/services/" data-url="/services/" aria-haspopup="true" aria-expanded="true">What we do <span class="caret">&#9660;</span></a>
+              <a class="top-link" href="services/index.html" aria-haspopup="true" aria-expanded="false">What we do <span class="caret">&#9660;</span></a>
             </li>
-            <li><a class="top-link plain" href="/work/" data-url="/work/">Our work</a></li>
-            <li><a class="top-link plain" href="/insights/" data-url="/insights/">Insights</a></li>
+            <li><a class="top-link plain" href="work/index.html">Our work</a></li>
+            <li><a class="top-link plain" href="insights/index.html">Insights</a></li>
             <li data-menu="about">
-              <a class="top-link" href="/about/" data-url="/about/" aria-haspopup="true" aria-expanded="false">About <span class="caret">&#9660;</span></a>
+              <a class="top-link" href="about/index.html" aria-haspopup="true" aria-expanded="false">About <span class="caret">&#9660;</span></a>
               <div class="dropdown" role="region" aria-label="About menu">
                 <ul>
-                  <li><a href="/about/team/" data-url="/about/team/">Our team</a></li>
-                  <li><a href="/about/how-we-work/" data-url="/about/how-we-work/">How we work</a></li>
-                  <li><a href="/about/values/" data-url="/about/values/">Values and culture</a></li>
-                  <li><a href="/careers/" data-url="/careers/">Careers</a></li>
+                  <li><a href="about/team/index.html">Our team</a></li>
+                  <li><a href="about/how-we-work/index.html">How we work</a></li>
+                  <li><a href="about/values/index.html">Values and culture</a></li>
+                  <li><a href="careers/index.html">Careers</a></li>
                 </ul>
               </div>
             </li>
           </ul>
-
-          <a class="btn" href="/contact/" data-url="/contact/">Contact</a>
+          <a class="btn" href="contact/index.html">Contact</a>
         </header>
-
-        <!-- Mega-nav: the triangle. Three columns, one thin footer row. -->
         <div class="mega" id="megaNav" role="region" aria-label="What we do menu">
           <div class="mega-inner">
             <div class="mega-cols">
               <div class="pillar">
-                <h3><a href="/services/growth-strategy/" data-url="/services/growth-strategy/">Growth Strategy</a></h3>
+                <h3><a href="services/growth-strategy/index.html">Growth Strategy</a></h3>
                 <p class="line">Where and how you grow</p>
                 <ul>
-                  <li><a href="/services/proposition-innovation/" data-url="/services/proposition-innovation/">Proposition Innovation</a></li>
+                  <li><a href="services/proposition-innovation/index.html">Proposition Innovation</a></li>
                 </ul>
               </div>
-
               <div class="pillar">
-                <h3><a href="/services/activation/" data-url="/services/activation/">Activation Services</a></h3>
+                <h3><a href="services/activation/index.html">Activation Services</a></h3>
                 <p class="line">Turning strategy into results</p>
                 <ul>
-                  <li><a href="/services/customer-research/" data-url="/services/customer-research/">Customer Research and Insight</a></li>
-                  <li><a href="/services/experience-engineering/" data-url="/services/experience-engineering/">Experience Engineering<small>Customer experience and websites</small></a></li>
-                  <li><a href="/services/ai-agents-for-marketing/" data-url="/services/ai-agents-for-marketing/">AI Agents for Marketing</a></li>
-                  <li><a href="/services/operating-model-design/" data-url="/services/operating-model-design/">Operating Model Design</a></li>
-                  <li><a href="/services/growth-office/" data-url="/services/growth-office/">Growth Office<small>Interim growth team</small></a></li>
-                  <li><a href="/services/ai-enablement/" data-url="/services/ai-enablement/">AI Enablement</a></li>
+                  <li><a href="services/customer-research/index.html">Customer Research and Insight</a></li>
+                  <li><a href="services/experience-engineering/index.html">Experience Engineering<small>Customer experience and websites</small></a></li>
+                  <li><a href="services/ai-agents-for-marketing/index.html">AI Agents for Marketing</a></li>
+                  <li><a href="services/operating-model-design/index.html">Operating Model Design</a></li>
+                  <li><a href="services/growth-office/index.html">Growth Office<small>Interim growth team</small></a></li>
+                  <li><a href="services/ai-enablement/index.html">AI Enablement</a></li>
                 </ul>
               </div>
-
               <div class="pillar quiet">
-                <h3><a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/">CEO Advisory</a></h3>
+                <h3><a href="services/ceo-advisory/index.html">CEO Advisory</a></h3>
                 <p class="line">One-to-one support for leaders</p>
                 <ul>
-                  <li><a href="/services/ceo-advisory/#advisors" data-url="/services/ceo-advisory/#advisors">Our advisors</a></li>
+                  <li><a href="services/ceo-advisory/index.html#advisors">Our advisors</a></li>
                 </ul>
               </div>
             </div>
-
             <div class="mega-row">
-              <a href="/services/" data-url="/services/">All services</a>
-              <a href="/expertise/" data-url="/expertise/">Expertise</a>
+              <a href="services/index.html">All services</a>
+              <a href="expertise/index.html">Expertise</a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Home (T1): six blocks -->
-      <main class="page" id="pageHome" data-active="true">
+    
+    <div class="ia-chips" aria-label="Page chips"><span class="label">Page chips</span><div class="chips"><span class="chip weight">Canonical</span><span class="chip kw">Primary: growth architecture (~50) / brand</span><span class="chip">Themes: <a href="expertise/loyalty/index.html">Loyalty</a>, <a href="expertise/membership/index.html">Membership</a>, <a href="expertise/subscriptions/index.html">Subscriptions</a>, <a href="expertise/pricing/index.html">Pricing</a>, <a href="expertise/customer-value/index.html">Customer Value</a></span><span class="chip">Services: <a href="services/growth-strategy/index.html">Growth Strategy</a>, <a href="services/activation/index.html">Activation Services</a>, <a href="services/ceo-advisory/index.html">CEO Advisory</a></span></div></div>
+    <main class="page" id="main">
+      
         <section class="block hero">
           <h1>Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth.</h1>
           <p>Strategy that works. Execution that delivers.</p>
           <div class="cta">
-            <a class="btn" href="/contact/" data-url="/contact/">Contact</a>
-            <a class="text" href="/services/" data-url="/services/">What we do</a>
+            <a class="btn" href="contact/index.html">Contact</a>
+            <a class="text" href="services/index.html">What we do</a>
           </div>
           <div class="logos" aria-label="Client logos"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
         </section>
-
         <section class="block">
-          <h2>What we do</h2>
+          <h2 class="sec">What we do</h2>
           <div class="tri">
-            <a href="/services/growth-strategy/" data-url="/services/growth-strategy/"><strong>Growth Strategy</strong><span>Where and how you grow</span></a>
-            <a href="/services/activation/" data-url="/services/activation/"><strong>Activation Services</strong><span>Turning strategy into results</span></a>
-            <a class="quiet" href="/services/ceo-advisory/" data-url="/services/ceo-advisory/"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
+            <a href="services/growth-strategy/index.html"><strong>Growth Strategy</strong><span>Where and how you grow</span></a>
+            <a href="services/activation/index.html"><strong>Activation Services</strong><span>Turning strategy into results</span></a>
+            <a class="quiet" href="services/ceo-advisory/index.html"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
           </div>
-          <p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside. <a href="/services/" data-url="/services/">Our Growth Architecture</a></p>
+          <p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside. <a href="services/index.html">Our Growth Architecture</a></p>
         </section>
-
         <section class="block">
-          <h2>Our work</h2>
+          <h2 class="sec">Our work</h2>
           <div class="cards">
-            <a class="card" href="/work/dayinsure/" data-url="/work/dayinsure/"><div class="ph"></div><strong>Client</strong><span>One-line result</span></a>
-            <a class="card" href="/work/key-group/" data-url="/work/key-group/"><div class="ph"></div><strong>Client</strong><span>One-line result</span></a>
-            <a class="card" href="/work/tsb/" data-url="/work/tsb/"><div class="ph"></div><strong>Client</strong><span>One-line result</span></a>
+            <a class="card" href="work/dayinsure/index.html"><div class="ph"></div><strong>Dayinsure</strong><span>One-line result</span></a>
+            <a class="card" href="work/key-group/index.html"><div class="ph"></div><strong>Key Group</strong><span>One-line result</span></a>
+            <a class="card" href="work/index.html"><div class="ph"></div><strong>More work</strong><span>All case studies</span></a>
           </div>
-          <a class="more" href="/work/" data-url="/work/">All work</a>
+          <a class="more" href="work/index.html">All work</a>
         </section>
-
         <section class="block">
-          <h2>Growth problems we know best</h2>
+          <h2 class="sec">Growth problems we know best</h2>
           <div class="row-links">
-            <a href="/expertise/loyalty/" data-url="/expertise/loyalty/">Loyalty</a>
-            <a href="/expertise/membership/" data-url="/expertise/membership/">Membership</a>
-            <a href="/expertise/subscriptions/" data-url="/expertise/subscriptions/">Subscriptions</a>
-            <a href="/expertise/pricing/" data-url="/expertise/pricing/">Pricing</a>
-            <a href="/expertise/customer-value/" data-url="/expertise/customer-value/">Customer Value</a>
+            <a href="expertise/loyalty/index.html">Loyalty</a>
+            <a href="expertise/membership/index.html">Membership</a>
+            <a href="expertise/subscriptions/index.html">Subscriptions</a>
+            <a href="expertise/pricing/index.html">Pricing</a>
+            <a href="expertise/customer-value/index.html">Customer Value</a>
           </div>
         </section>
-
         <section class="block">
-          <h2>Latest insights</h2>
+          <h2 class="sec">Latest insights</h2>
           <ul class="list">
-            <li><a href="/insights/example-one/" data-url="/insights/example-one/">Insight title</a><span>Date</span></li>
-            <li><a href="/insights/example-two/" data-url="/insights/example-two/">Insight title</a><span>Date</span></li>
-            <li><a href="/insights/example-three/" data-url="/insights/example-three/">Insight title</a><span>Date</span></li>
+            <li><a href="insights/loyalty-without-the-discount/index.html">Loyalty without the discount</a><span>Date</span></li>
+            <li><a href="insights/index.html">Insight title</a><span>Date</span></li>
+            <li><a href="insights/index.html">Insight title</a><span>Date</span></li>
           </ul>
-          <a class="more" href="/insights/" data-url="/insights/">All insights</a>
+          <a class="more" href="insights/index.html">All insights</a>
         </section>
-
+        
         <section class="block closing">
           <p>Tell us about your growth challenge</p>
-          <a class="btn" href="/contact/" data-url="/contact/">Contact</a>
-        </section>
-      </main>
-
-      <!-- Services hub (T2): the Growth Architecture story, eight blocks -->
-      <main class="page" id="pageHub" data-active="false">
-        <section class="block hero">
-          <span class="eyebrow">What we do</span>
-          <h1>Our Growth Architecture</h1>
-          <p>Strategy that works. Execution that delivers.</p>
-          <p class="body">The path from strategy to execution has become more complex and fragmented, despite more tools, data and channels than ever.</p>
-          <p class="body">Growth Architecture is a better way to unlock customer value growth: market-leading strategic thinking combined with AI-powered, human-led activation.</p>
+          <a class="btn" href="contact/index.html">Contact</a>
         </section>
 
-        <section class="block">
-          <h2>Three ways we work with you</h2>
-          <div class="tri">
-            <a href="#hub-gs" data-url="/services/growth-strategy/"><strong>Growth Strategy</strong><span>Where and how you grow</span></a>
-            <a href="#hub-act" data-url="/services/activation/"><strong>Activation Services</strong><span>Turning strategy into results</span></a>
-            <a class="quiet" href="#hub-ceo" data-url="/services/ceo-advisory/"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
-          </div>
-          <p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside.</p>
-        </section>
 
-        <section class="block">
-          <h2>Where are you starting from?</h2>
-          <ul class="situations">
-            <li><a href="/services/growth-strategy/" data-url="/services/growth-strategy/">We need to decide where and how to grow</a></li>
-            <li><a href="/services/proposition-innovation/" data-url="/services/proposition-innovation/">We need a new proposition, loyalty or membership offer</a></li>
-            <li><a href="/services/customer-research/" data-url="/services/customer-research/">We need to understand our customers better</a></li>
-            <li><a href="/services/experience-engineering/" data-url="/services/experience-engineering/">Our journeys or website are not converting</a></li>
-            <li><a href="/services/activation/" data-url="/services/activation/">Our strategy is not turning into results</a></li>
-            <li><a href="/services/ai-enablement/" data-url="/services/ai-enablement/">We want AI to pay off</a></li>
-            <li><a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/">I want a sounding board I trust</a></li>
-          </ul>
-        </section>
-
-        <section class="block pillar-sec" id="hub-gs">
-          <h3><a href="/services/growth-strategy/" data-url="/services/growth-strategy/">Growth Strategy</a></h3>
-          <p class="line">Where and how you grow</p>
-          <p class="sentence">We work out where the growth is and design the propositions that win it, using our <a href="/services/growth-strategy/#civd" data-url="/services/growth-strategy/#civd">Customer, Innovation, Value and Delivery</a> frame.</p>
-          <div class="cards two">
-            <a class="card flat" href="/services/growth-strategy/" data-url="/services/growth-strategy/"><strong>Growth Strategy</strong><span>Customer-led growth strategy: where to focus and how to win</span></a>
-            <a class="card flat" href="/services/proposition-innovation/" data-url="/services/proposition-innovation/"><strong>Proposition Innovation</strong><span>New offers: loyalty, membership, subscription, direct-to-consumer</span></a>
-          </div>
-          <p class="case-line">Client, one-line result. <a href="/work/key-group/" data-url="/work/key-group/">Read the case study</a></p>
-        </section>
-
-        <section class="block pillar-sec" id="hub-act">
-          <h3><a href="/services/activation/" data-url="/services/activation/">Activation Services</a></h3>
-          <p class="line">Turning strategy into results</p>
-          <p class="sentence">We build the bridge from strategy to results: new operating models and AI-powered, human-led delivery. <a href="/services/activation/" data-url="/services/activation/">Which of the six do you need?</a></p>
-          <div class="cards">
-            <a class="card flat" href="/services/customer-research/" data-url="/services/customer-research/"><strong>Customer Research and Insight</strong><span>Research, surveys, analytics and customer listening, faster with AI</span></a>
-            <a class="card flat" href="/services/experience-engineering/" data-url="/services/experience-engineering/"><strong>Experience Engineering</strong><span>Customer experience (CX), website and digital design, build and testing</span></a>
-            <a class="card flat" href="/services/ai-agents-for-marketing/" data-url="/services/ai-agents-for-marketing/"><strong>AI Agents for Marketing</strong><span>AI that cleans up customer data and improves marketing performance, guided by experts</span></a>
-            <a class="card flat" href="/services/operating-model-design/" data-url="/services/operating-model-design/"><strong>Operating Model Design</strong><span>How your teams, data and AI agents should work together</span></a>
-            <a class="card flat" href="/services/growth-office/" data-url="/services/growth-office/"><strong>Growth Office</strong><span>Interim growth team and programme office that gets strategy delivered</span></a>
-            <a class="card flat" href="/services/ai-enablement/" data-url="/services/ai-enablement/"><strong>AI Enablement</strong><span>AI skills, training and adoption: finding where AI pays off</span></a>
-          </div>
-          <p class="case-line">Client, one-line result. <a href="/work/dayinsure/" data-url="/work/dayinsure/">Read the case study</a></p>
-        </section>
-
-        <section class="block pillar-sec quiet" id="hub-ceo">
-          <h3><a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/">CEO Advisory</a></h3>
-          <p class="line">One-to-one support for leaders</p>
-          <p class="sentence">Experienced growth leaders alongside you, on retainer, to help you make good decisions.</p>
-          <div class="cards">
-            <a class="card person" href="/about/team/advisor-one/" data-url="/about/team/advisor-one/"><div class="avatar"></div><strong>Advisor name</strong><span>Former role, one line</span></a>
-            <a class="card person" href="/about/team/advisor-two/" data-url="/about/team/advisor-two/"><div class="avatar"></div><strong>Advisor name</strong><span>Former role, one line</span></a>
-            <a class="card person" href="/about/team/advisor-three/" data-url="/about/team/advisor-three/"><div class="avatar"></div><strong>Advisor name</strong><span>Former role, one line</span></a>
-          </div>
-          <a class="more" href="/services/ceo-advisory/#advisors" data-url="/services/ceo-advisory/#advisors">Our advisors</a>
-        </section>
-
-        <section class="block">
-          <p class="one-line">We apply these services to the growth problems we know best. <a href="/expertise/" data-url="/expertise/">Our expertise</a></p>
-        </section>
-
-        <section class="block closing">
-          <p>Tell us about your growth challenge</p>
-          <a class="btn" href="/contact/" data-url="/contact/">Contact</a>
-        </section>
-      </main>
-
+    </main>
+    
       <footer class="site-footer">
         <div class="footer-cols">
           <div>
             <h4>What we do</h4>
             <ul>
-              <li><a href="/services/growth-strategy/" data-url="/services/growth-strategy/">Growth Strategy</a></li>
-              <li><a href="/services/proposition-innovation/" data-url="/services/proposition-innovation/">Proposition Innovation</a></li>
-              <li><a href="/services/customer-research/" data-url="/services/customer-research/">Customer Research and Insight</a></li>
-              <li><a href="/services/experience-engineering/" data-url="/services/experience-engineering/">Experience Engineering</a></li>
-              <li><a href="/services/ai-agents-for-marketing/" data-url="/services/ai-agents-for-marketing/">AI Agents for Marketing</a></li>
-              <li><a href="/services/operating-model-design/" data-url="/services/operating-model-design/">Operating Model Design</a></li>
-              <li><a href="/services/growth-office/" data-url="/services/growth-office/">Growth Office</a></li>
-              <li><a href="/services/ai-enablement/" data-url="/services/ai-enablement/">AI Enablement</a></li>
-              <li><a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/">CEO Advisory</a></li>
-              <li><a href="/services/" data-url="/services/">All services</a></li>
+              <li><a href="services/growth-strategy/index.html">Growth Strategy</a></li>
+              <li><a href="services/proposition-innovation/index.html">Proposition Innovation</a></li>
+              <li><a href="services/customer-research/index.html">Customer Research and Insight</a></li>
+              <li><a href="services/experience-engineering/index.html">Experience Engineering</a></li>
+              <li><a href="services/ai-agents-for-marketing/index.html">AI Agents for Marketing</a></li>
+              <li><a href="services/operating-model-design/index.html">Operating Model Design</a></li>
+              <li><a href="services/growth-office/index.html">Growth Office</a></li>
+              <li><a href="services/ai-enablement/index.html">AI Enablement</a></li>
+              <li><a href="services/ceo-advisory/index.html">CEO Advisory</a></li>
+              <li><a href="services/index.html">All services</a></li>
             </ul>
           </div>
           <div>
             <h4>Expertise</h4>
             <ul>
-              <li><a href="/expertise/loyalty/" data-url="/expertise/loyalty/">Loyalty</a></li>
-              <li><a href="/expertise/membership/" data-url="/expertise/membership/">Membership</a></li>
-              <li><a href="/expertise/subscriptions/" data-url="/expertise/subscriptions/">Subscriptions</a></li>
-              <li><a href="/expertise/pricing/" data-url="/expertise/pricing/">Pricing</a></li>
-              <li><a href="/expertise/customer-value/" data-url="/expertise/customer-value/">Customer Value</a></li>
+              <li><a href="expertise/loyalty/index.html">Loyalty</a></li>
+              <li><a href="expertise/membership/index.html">Membership</a></li>
+              <li><a href="expertise/subscriptions/index.html">Subscriptions</a></li>
+              <li><a href="expertise/pricing/index.html">Pricing</a></li>
+              <li><a href="expertise/customer-value/index.html">Customer Value</a></li>
             </ul>
           </div>
           <div>
             <h4>Who we work with</h4>
             <ul>
-              <li><a href="/sectors/financial-services/" data-url="/sectors/financial-services/">Financial services</a></li>
-              <li><a href="/sectors/media/" data-url="/sectors/media/">Media</a></li>
-              <li><a href="/sectors/consumer/" data-url="/sectors/consumer/">Consumer</a></li>
-              <li><a href="/sectors/retail/" data-url="/sectors/retail/">Retail</a></li>
+              <li><a href="sectors/financial-services/index.html">Financial services</a></li>
+              <li><a href="sectors/media/index.html">Media</a></li>
+              <li><a href="sectors/consumer/index.html">Consumer</a></li>
+              <li><a href="sectors/retail/index.html">Retail</a></li>
             </ul>
           </div>
           <div>
             <h4>Company</h4>
             <ul>
-              <li><a href="/about/" data-url="/about/">About</a></li>
-              <li><a href="/about/team/" data-url="/about/team/">Our team</a></li>
-              <li><a href="/about/how-we-work/" data-url="/about/how-we-work/">How we work</a></li>
-              <li><a href="/about/values/" data-url="/about/values/">Values and culture</a></li>
-              <li><a href="/careers/" data-url="/careers/">Careers</a></li>
-              <li><a href="/work/" data-url="/work/">Our work</a></li>
-              <li><a href="/insights/" data-url="/insights/">Insights</a></li>
-              <li><a href="/newsletter/" data-url="/newsletter/">Newsletter</a></li>
-              <li><a href="/contact/" data-url="/contact/">Contact</a></li>
+              <li><a href="about/index.html">About</a></li>
+              <li><a href="about/team/index.html">Our team</a></li>
+              <li><a href="about/how-we-work/index.html">How we work</a></li>
+              <li><a href="about/values/index.html">Values and culture</a></li>
+              <li><a href="careers/index.html">Careers</a></li>
+              <li><a href="work/index.html">Our work</a></li>
+              <li><a href="insights/index.html">Insights</a></li>
+              <li><a href="newsletter/index.html">Newsletter</a></li>
+              <li><a href="contact/index.html">Contact</a></li>
             </ul>
           </div>
         </div>
         <div class="footer-bottom">
           <span>Company registration line</span>
-          <a href="/privacy-policy/" data-url="/privacy-policy/">Privacy policy</a>
-          <a href="/cookie-policy/" data-url="/cookie-policy/">Cookie policy</a>
-          <a href="/terms/" data-url="/terms/">Terms</a>
-          <a href="/accessibility/" data-url="/accessibility/">Accessibility statement</a>
+          <a href="privacy-policy/index.html">Privacy policy</a>
+          <a href="cookie-policy/index.html">Cookie policy</a>
+          <a href="terms/index.html">Terms</a>
+          <a href="accessibility/index.html">Accessibility statement</a>
           <span>Social links</span>
         </div>
       </footer>
-    </div>
+
   </div>
+  
+<aside class="heading-map" aria-label="Outside page / SEO heading map">
+  <h2>Outside page / SEO heading map</h2>
+  <p class="map-note">Annotation for content and SEO. Not part of the live page. UK volumes from DataForSEO, Sep 2026. One-line intent only; not body copy.</p>
+  <p class="k"><strong>URL</strong><code>/</code></p>
+  <p class="k"><strong>H1 (one)</strong>Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth.</p>
+  <p class="k"><strong>Primary keyword</strong>growth architecture (~50) / brand</p>
+  <div class="k"><strong>Alts (2 to 4)</strong><ul><li>Manifesto Growth Architects (brand)</li><li>customer-led growth (positioning, not a target)</li></ul></div>
+  <div class="k"><strong>H2s (ordered)</strong><ol><li>What we do</li><li>Our work</li><li>Growth problems we know best</li><li>Latest insights</li></ol></div>
+  <div class="k"><strong>H3s where useful</strong><p class="map-note">None required.</p></div>
+  <p class="intent"><strong>Intent.</strong> Brand and router. Name who you are for, show the triangle, send people into services, work and insights. Not a service keyword page.</p>
+</aside>
+
 </div>
-
-<!-- ===================== MOBILE ===================== -->
-<div class="view" id="view-mobile" data-active="false">
-  <div class="wrap">
-    <div class="phone" id="phone" data-menu="open">
-      <div class="m-header">
-        <a class="logo" href="/" data-url="/">MGA logo</a>
-        <div class="right">
-          <a class="btn" href="/contact/" data-url="/contact/">Contact</a>
-          <button class="m-menu-btn" id="menuBtn" aria-expanded="true" aria-controls="mPanel">Close</button>
-        </div>
-      </div>
-
-      <div class="m-page">
-        <h1>Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth.</h1>
-        <p>Strategy that works. Execution that delivers.</p>
-        <a class="btn" href="/contact/" data-url="/contact/">Contact</a>
-      </div>
-
-      <nav class="m-panel" id="mPanel" aria-label="Mobile menu">
-        <ul class="acc">
-          <li data-open="true">
-            <div class="acc-row">
-              <a href="/services/" data-url="/services/">What we do</a>
-              <button class="toggle" aria-label="Toggle What we do" aria-expanded="true"></button>
-            </div>
-            <div class="acc-body">
-              <div class="m-pillar"><a href="/services/growth-strategy/" data-url="/services/growth-strategy/">Growth Strategy</a></div>
-              <ul class="m-items">
-                <li><a href="/services/proposition-innovation/" data-url="/services/proposition-innovation/">Proposition Innovation</a></li>
-              </ul>
-
-              <div class="m-pillar"><a href="/services/activation/" data-url="/services/activation/">Activation Services</a></div>
-              <ul class="m-items">
-                <li><a href="/services/customer-research/" data-url="/services/customer-research/">Customer Research and Insight</a></li>
-                <li><a href="/services/experience-engineering/" data-url="/services/experience-engineering/">Experience Engineering<small>Customer experience and websites</small></a></li>
-                <li><a href="/services/ai-agents-for-marketing/" data-url="/services/ai-agents-for-marketing/">AI Agents for Marketing</a></li>
-                <li><a href="/services/operating-model-design/" data-url="/services/operating-model-design/">Operating Model Design</a></li>
-                <li><a href="/services/growth-office/" data-url="/services/growth-office/">Growth Office<small>Interim growth team</small></a></li>
-                <li><a href="/services/ai-enablement/" data-url="/services/ai-enablement/">AI Enablement</a></li>
-              </ul>
-
-              <div class="m-pillar quiet"><a href="/services/ceo-advisory/" data-url="/services/ceo-advisory/">CEO Advisory</a></div>
-              <ul class="m-items">
-                <li class="quiet"><a href="/services/ceo-advisory/#advisors" data-url="/services/ceo-advisory/#advisors">Our advisors</a></li>
-              </ul>
-
-              <div class="m-links">
-                <a href="/services/" data-url="/services/">All services</a>
-                <a href="/expertise/" data-url="/expertise/">Expertise</a>
-              </div>
-            </div>
-          </li>
-
-          <li class="plain-top"><a href="/work/" data-url="/work/">Our work</a></li>
-          <li class="plain-top"><a href="/insights/" data-url="/insights/">Insights</a></li>
-
-          <li data-open="false">
-            <div class="acc-row">
-              <a href="/about/" data-url="/about/">About</a>
-              <button class="toggle" aria-label="Toggle About" aria-expanded="false"></button>
-            </div>
-            <div class="acc-body">
-              <ul class="m-items">
-                <li><a href="/about/team/" data-url="/about/team/">Our team</a></li>
-                <li><a href="/about/how-we-work/" data-url="/about/how-we-work/">How we work</a></li>
-                <li><a href="/about/values/" data-url="/about/values/">Values and culture</a></li>
-                <li><a href="/careers/" data-url="/careers/">Careers</a></li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="plain-top"><a href="/contact/" data-url="/contact/">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-</div>
-
-<!-- ===================== SITEMAP: plain list ===================== -->
-<div class="view" id="view-sitemap" data-active="false">
-  <div class="wrap">
-    <div class="sitemap">
-      <ul>
-        <li><span class="u">/</span> Home <span class="w">Canonical</span></li>
-
-        <li class="sec"><span class="u">/services/</span> What we do: Our Growth Architecture <span class="w">Canonical</span>
-          <ul>
-            <li><span class="u">/services/growth-strategy/</span> Growth Strategy <span class="w">Canonical, pillar 1</span></li>
-            <li><span class="u">/services/proposition-innovation/</span> Proposition Innovation <span class="w">Canonical</span></li>
-            <li><span class="u">/services/activation/</span> Activation Services <span class="w">Supporting, pillar 2</span></li>
-            <li><span class="u">/services/customer-research/</span> Customer Research and Insight <span class="w">Canonical</span></li>
-            <li><span class="u">/services/experience-engineering/</span> Experience Engineering <span class="w">Canonical</span></li>
-            <li><span class="u">/services/ai-agents-for-marketing/</span> AI Agents for Marketing <span class="w">Canonical</span></li>
-            <li><span class="u">/services/operating-model-design/</span> Operating Model Design <span class="w">Canonical</span></li>
-            <li><span class="u">/services/growth-office/</span> Growth Office <span class="w">Canonical</span></li>
-            <li><span class="u">/services/ai-enablement/</span> AI Enablement <span class="w">Canonical</span></li>
-            <li><span class="u">/services/ceo-advisory/</span> CEO Advisory (Side-by-Side), advisors at #advisors <span class="w">Supporting, pillar 3</span></li>
-          </ul>
-        </li>
-
-        <li class="sec"><span class="u">/expertise/</span> Expertise <span class="w">Supporting</span>
-          <ul>
-            <li><span class="u">/expertise/loyalty/</span> Loyalty <span class="w">Supporting</span></li>
-            <li><span class="u">/expertise/membership/</span> Membership <span class="w">Supporting</span></li>
-            <li><span class="u">/expertise/subscriptions/</span> Subscriptions <span class="w">Supporting</span></li>
-            <li><span class="u">/expertise/pricing/</span> Pricing <span class="w">Supporting</span></li>
-            <li><span class="u">/expertise/customer-value/</span> Customer Value <span class="w">Supporting</span></li>
-          </ul>
-        </li>
-
-        <li class="sec"><span class="u">/sectors/{sector}/</span> Who we work with, four landings, no index page <span class="w">Light</span>
-          <ul>
-            <li><span class="u">/sectors/financial-services/</span> Financial services</li>
-            <li><span class="u">/sectors/media/</span> Media</li>
-            <li><span class="u">/sectors/consumer/</span> Consumer</li>
-            <li><span class="u">/sectors/retail/</span> Retail</li>
-          </ul>
-        </li>
-
-        <li class="sec"><span class="u">/work/</span> Our work <span class="w">Canonical</span>
-          <ul>
-            <li><span class="u">/work/{client}/</span> Case study <span class="w">Supporting, many</span></li>
-          </ul>
-        </li>
-
-        <li class="sec"><span class="u">/insights/</span> Insights <span class="w">Supporting</span>
-          <ul>
-            <li><span class="u">/insights/{slug}/</span> Article, report or event <span class="w">Supporting, many</span></li>
-          </ul>
-        </li>
-        <li><span class="u">/newsletter/</span> Newsletter <span class="w">Utility</span></li>
-
-        <li class="sec"><span class="u">/about/</span> About <span class="w">Supporting</span>
-          <ul>
-            <li><span class="u">/about/team/</span> Our team <span class="w">Supporting</span>
-              <ul>
-                <li><span class="u">/about/team/{name}/</span> Profile <span class="w">Light, many</span></li>
-              </ul>
-            </li>
-            <li><span class="u">/about/how-we-work/</span> How we work <span class="w">Supporting</span></li>
-            <li><span class="u">/about/values/</span> Values and culture <span class="w">Light</span></li>
-          </ul>
-        </li>
-
-        <li class="sec"><span class="u">/careers/</span> Careers <span class="w">Light</span>
-          <ul>
-            <li><span class="u">/careers/{role}/</span> Role <span class="w">Light, many</span></li>
-          </ul>
-        </li>
-
-        <li class="sec"><span class="u">/contact/</span> Contact <span class="w">Utility</span>
-          <ul>
-            <li><span class="u">/contact/thank-you/</span> Confirmation <span class="w">Utility, noindex</span></li>
-          </ul>
-        </li>
-
-        <li class="sec"><span class="u">/privacy-policy/ /cookie-policy/ /terms/ /accessibility/ /search/ /404/</span> <span class="w">Utility</span></li>
-      </ul>
-      <p>Filter states (?service= ?expertise= ?sector= ?type= ?topic=) are query strings on the hubs, not pages. Service URLs are flat under /services/; the pillar grouping is shown in the menu only. Full detail: docs/02-sitemap.md.</p>
-    </div>
-  </div>
-</div>
-
-<script>
-(function () {
-  'use strict';
-
-  var header = document.getElementById('siteHeader');
-  var mega = document.getElementById('megaNav');
-  var items = document.querySelectorAll('#primaryNav > li[data-menu]');
-  var megaLi = document.querySelector('#primaryNav > li[data-menu="mega"]');
-  var urlBar = document.getElementById('urlBar');
-  var openTimer, closeTimer;
-  var OPEN_DELAY = 150, CLOSE_DELAY = 300;
-
-  /* ---- Views: Navigation, Homepage and Services hub are the same desktop frame; the menu is open on Navigation, and the page body swaps ---- */
-  var viewButtons = document.querySelectorAll('.views button');
-  var views = { nav: 'view-desktop', home: 'view-desktop', hub: 'view-desktop', mobile: 'view-mobile', sitemap: 'view-sitemap' };
-  var pages = { nav: 'pageHome', home: 'pageHome', hub: 'pageHub' };
-  var pageUrls = { nav: '/', home: '/', hub: '/services/' };
-  function showView(name) {
-    Array.prototype.forEach.call(viewButtons, function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-view') === name ? 'true' : 'false'); });
-    Array.prototype.forEach.call(document.querySelectorAll('.view'), function (v) { v.setAttribute('data-active', v.id === views[name] ? 'true' : 'false'); });
-    if (pages[name]) {
-      Array.prototype.forEach.call(document.querySelectorAll('.page'), function (p) { p.setAttribute('data-active', p.id === pages[name] ? 'true' : 'false'); });
-      urlBar.textContent = 'manifestogrowth.example' + pageUrls[name];
-    }
-    if (name === 'nav') { openOnly(megaLi); } else { closeAllDesktop(); }
-    window.scrollTo(0, 0);
-  }
-  Array.prototype.forEach.call(viewButtons, function (b) {
-    b.addEventListener('click', function () {
-      var name = b.getAttribute('data-view');
-      if (history.replaceState) history.replaceState(null, '', '#' + name);
-      showView(name);
-    });
-  });
-
-  /* ---- Links do not navigate; the frame's address bar shows where they would go.
-         On the hub, the three triangle blocks scroll to their pillar section, as the live page would. ---- */
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest ? e.target.closest('a[data-url]') : null;
-    if (!a) return;
-    e.preventDefault();
-    if (a.classList.contains('top-link') && !a.classList.contains('plain')) return;
-    urlBar.textContent = 'manifestogrowth.example' + a.getAttribute('data-url');
-    var href = a.getAttribute('href') || '';
-    if (href.indexOf('#hub-') === 0) {
-      var target = document.getElementById(href.slice(1));
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-
-  /* ---- Desktop menus: hover with delays, click toggles, Escape and outside click close ---- */
-  var browser = document.getElementById('browser');
-  function setOpen(li, open) {
-    var link = li.querySelector('.top-link');
-    if (li.getAttribute('data-menu') === 'mega') {
-      header.setAttribute('data-mega-open', open ? 'true' : 'false');
-      browser.setAttribute('data-mega-open', open ? 'true' : 'false');
-    } else {
-      li.setAttribute('data-open', open ? 'true' : 'false');
-    }
-    link.setAttribute('aria-expanded', open ? 'true' : 'false');
-  }
-  function closeAllDesktop() { Array.prototype.forEach.call(items, function (li) { setOpen(li, false); }); }
-  function openOnly(li) { Array.prototype.forEach.call(items, function (o) { if (o !== li) setOpen(o, false); }); setOpen(li, true); }
-  function isOpen(li) {
-    return li.getAttribute('data-menu') === 'mega' ? header.getAttribute('data-mega-open') === 'true' : li.getAttribute('data-open') === 'true';
-  }
-
-  Array.prototype.forEach.call(items, function (li) {
-    var link = li.querySelector('.top-link');
-    li.addEventListener('mouseenter', function () { clearTimeout(closeTimer); openTimer = setTimeout(function () { openOnly(li); }, OPEN_DELAY); });
-    li.addEventListener('mouseleave', function () { clearTimeout(openTimer); closeTimer = setTimeout(function () { setOpen(li, false); }, CLOSE_DELAY); });
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-      clearTimeout(openTimer); clearTimeout(closeTimer);
-      if (isOpen(li)) setOpen(li, false); else openOnly(li);
-      urlBar.textContent = 'manifestogrowth.example' + link.getAttribute('data-url');
-    });
-    link.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowDown') {
-        e.preventDefault(); openOnly(li);
-        var first = (li.getAttribute('data-menu') === 'mega' ? mega : li).querySelector('a[data-url]:not(.top-link)');
-        if (first) first.focus();
-      }
-    });
-  });
-
-  /* Hovering a plain link (Our work, Insights) closes any open menu, as on the live site */
-  Array.prototype.forEach.call(document.querySelectorAll('#primaryNav > li:not([data-menu])'), function (li) {
-    li.addEventListener('mouseenter', function () { clearTimeout(openTimer); closeTimer = setTimeout(closeAllDesktop, CLOSE_DELAY); });
-  });
-
-  mega.addEventListener('mouseenter', function () { clearTimeout(closeTimer); });
-  mega.addEventListener('mouseleave', function () { closeTimer = setTimeout(function () { setOpen(megaLi, false); }, CLOSE_DELAY); });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      var openLink = document.querySelector('#primaryNav .top-link[aria-expanded="true"]');
-      closeAllDesktop();
-      if (openLink) openLink.focus();
-    }
-  });
-  document.addEventListener('click', function (e) {
-    if (e.target.closest('.views')) return;
-    if (!e.target.closest('#primaryNav') && !e.target.closest('#megaNav')) closeAllDesktop();
-  });
-
-  /* ---- Mobile: menu open/close and the two expanding rows ---- */
-  var phone = document.getElementById('phone');
-  var menuBtn = document.getElementById('menuBtn');
-  menuBtn.addEventListener('click', function () {
-    var open = phone.getAttribute('data-menu') === 'open';
-    phone.setAttribute('data-menu', open ? 'closed' : 'open');
-    menuBtn.textContent = open ? 'Menu' : 'Close';
-    menuBtn.setAttribute('aria-expanded', open ? 'false' : 'true');
-  });
-  document.addEventListener('click', function (e) {
-    var btn = e.target.closest ? e.target.closest('.acc .toggle') : null;
-    if (!btn) return;
-    var li = btn.parentNode.parentNode;
-    var open = li.getAttribute('data-open') === 'true';
-    li.setAttribute('data-open', open ? 'false' : 'true');
-    btn.setAttribute('aria-expanded', open ? 'false' : 'true');
-  });
-
-  /* #nav, #home, #hub, #mobile or #sitemap in the URL opens that view directly */
-  var initial = (location.hash || '#nav').slice(1);
-  if (views[initial] && initial !== 'nav') showView(initial);
-})();
-</script>
+<script src="assets/nav.js"></script>
 </body>
 </html>

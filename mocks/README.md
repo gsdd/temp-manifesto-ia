@@ -1,41 +1,70 @@
-# Wireframe mock (v5)
+# Wireframe mock (full-site, extending v5)
 
-A single self-contained HTML file showing the v5 navigation, homepage, Services hub, mobile menu and sitemap. Greyscale, system font, no brand colours, no imagery, no dependencies. It is a wireframe, not a design.
+A clickable, desktop-first HTML wireframe of the Manifesto Growth Architects site. Greyscale, system font, no brand colours, no imagery, no network dependencies. It is a wireframe, not a design.
 
-v4 rebuilt the mock to be as calm as the IA it shows. v5 keeps that and adds one view, the Services hub, because that page is where most of the v5 refinements land (`../docs/v5-refinements.md`). In the menu, the CEO Advisory column has one quiet item and the footer row has two links.
+This extends the v5 IA (`docs/01-primary-navigation.md`, `docs/02-sitemap.md`, `docs/03-page-layouts.md`). It does not invent a competing IA. Nav labels, mega-nav shape, quiet lines, weights and URLs are unchanged. UK keyword intel (DataForSEO, Sep 2026) is applied in quiet lines, H1/H2/H3s and page chips, not as extra top-nav items.
 
-## How to open it
+## How to click through
 
-Locally: clone the repository and open `mocks/index.html` in any modern browser. No server, build step or internet connection is needed. From GitHub: use the raw or preview link, or enable GitHub Pages and visit `/mocks/index.html`.
+1. Clone the repository.
+2. Open `mocks/index.html` in any modern browser. No server, build step or internet connection is needed. (A local server is fine if you prefer: `python3 -m http.server` from `mocks/`.)
+3. Use the primary nav as you would on the live site:
+   - **Logo** returns to Home.
+   - **What we do** opens the mega-nav on hover (three columns plus a footer row). The label itself goes to `/services/`.
+   - **Our work** and **Insights** are plain links.
+   - **About** opens a small dropdown on hover; the label goes to `/about/`.
+   - **Contact** is the header button.
+4. Every sitemap URL is a real HTML page. The top-right **All pages** link opens `sitemap.html`, a clickable index.
+5. Each page has **page chips** (weight, primary keyword with UK volume when known, quiet line if any, related themes / sectors / services) and an **Outside page / SEO heading map** panel to the right (below the frame on smaller screens).
 
-## The two-second test
+From GitHub: use the preview or raw HTML, or enable GitHub Pages and visit `/mocks/index.html`.
 
-The page loads on the Navigation view with the What we do menu already open. Without reading anything in grey, name the three pillars: **Growth Strategy**, **Activation Services**, **CEO Advisory**. If that takes longer than two seconds, or you find yourself reading, the mock has failed.
+## What you should see in two seconds
 
-Then switch to the Services hub. Without scrolling, see the name of the system and the three pillars. In the next screen, find your own situation in seven lines.
+Home loads with the menu closed. Open **What we do**. Without reading anything in grey, name the three pillars: **Growth Strategy**, **Activation Services**, **CEO Advisory**. If that takes longer than two seconds, the mock has failed.
 
-## The five views
+Then go to **All services**. Without scrolling, see **Our Growth Architecture** and the three pillars. In the next screen, find your own situation in seven lines.
 
-| View | Shows | Source |
+## What is in the mega-nav (unchanged from v5)
+
+Three columns, in call order, plus a thin footer row. About 50 words. Thirteen links.
+
+| Growth Strategy | Activation Services | CEO Advisory (quieter) |
 |---|---|---|
-| Navigation | Desktop header with the mega-nav open: three columns, three short pillar lines, seven service labels, two quiet lines, one quiet "Our advisors" item, a footer row of two links. The About dropdown opens on hover. Our work and Insights are plain links. | `docs/01-primary-navigation.md` |
-| Homepage | The same frame with the menu closed: six blocks (hero with logos, triangle with the triangle line, work, one row of expertise links, latest insights, closing CTA) and the footer. | `docs/03-page-layouts.md`, T1 |
-| Services hub | The same frame on `/services/`: eyebrow "What we do", H1 "Our Growth Architecture", strapline, triangle with the triangle line, "Where are you starting from?" (seven lines), three pillar sections each with a sentence, its services and one case, the expertise sentence, closing CTA. The triangle blocks scroll to their pillar section. | `docs/03-page-layouts.md`, T2 |
-| Mobile | Phone frame with the menu open and What we do expanded: three small pillar labels above a flat list (CEO Advisory now has Our advisors beneath it), then Our work, Insights, About, Contact. Two levels deep. | `docs/01-primary-navigation.md`, section 3.5 |
-| Sitemap | Every URL as a plain indented list with its weight in grey. | `docs/02-sitemap.md` |
+| Where and how you grow | Turning strategy into results | One-to-one support for leaders |
+| Proposition Innovation | Customer Research and Insight | Our advisors |
+| | Experience Engineering, *Customer experience and websites* | |
+| | AI Agents for Marketing | |
+| | Operating Model Design | |
+| | Growth Office, *Interim growth team* | |
+| | AI Enablement | |
 
-## How to use it
+Footer row: All services | Expertise. Contact is not repeated (the header button already does that). Deck one-liners and the AgentLab catalogue are not in the menu.
 
-- Hover or click What we do and About to open them. Escape or clicking outside closes them.
-- Links do not navigate. Clicking one writes its URL into the frame's address bar. The exception is the three triangle blocks on the Services hub, which scroll to their section as the live page would.
-- In the Mobile view, tap the plus or minus to expand a row and the label text to "navigate". Close and Menu toggle the panel.
-- `#nav`, `#home`, `#hub`, `#mobile` or `#sitemap` in the URL opens that view directly.
+## Pages included
+
+Home; Services hub; Growth Strategy; Proposition Innovation; Activation group and the six activation services; CEO Advisory (Side-by-Side + Our advisors); Expertise hub and Loyalty / Membership / Subscriptions / Pricing / Customer Value; four light sectors (Financial Services, Media, Consumer, Retail); Work hub plus Dayinsure and Key Group shells; Insights hub plus one article shell; About (story, team, how we work, values); Careers (plus one role shell); Contact (plus thank-you); newsletter and legal / 404 / search utilities so every footer link resolves.
+
+## Page chips and the heading map
+
+- **Page chips** are an IA annotation, not the live-site chip rule in `docs/03-page-layouts.md`. They always show canonical weight, the primary keyword target (with UK monthly volume when this pull has it), the quiet line if the page has one, and related themes / sectors / services.
+- **Outside page / SEO heading map** lists the recommended H1 (one), H2s in order, H3s where useful, primary keyword, two to four alts, and a one-line intent note. It is not body copy. The same content is consolidated in `docs/heading-map.md`.
+
+Keyword rules applied here: Manifesto labels stay in the nav (Proposition Innovation, Experience Engineering, Growth Office, CEO Advisory). Buyer language is on the page. AI phrases stay marketing-qualified. Growth Office SEO is interim / embedded growth team (interim CMO where accurate), not "growth office" as primary.
+
+## Regenerating
+
+Pages are generated from `mocks/_build.py` so HTML and `docs/heading-map.md` cannot drift.
+
+```
+python3 mocks/_build.py
+```
+
+Shared CSS and JS live in `mocks/assets/`. Do not edit generated `index.html` files by hand; change the builder.
 
 ## Rules for editing
 
-- Labels, order, pillar lines, quiet lines, the triangle line, the seven situation lines and URLs must match `docs/01-primary-navigation.md`, `docs/03-page-layouts.md` and `docs/02-sitemap.md` exactly. Change the document first, then the mock.
+- Labels, order, pillar lines, quiet lines, the triangle line, the seven situation lines and URLs must match `docs/01-primary-navigation.md`, `docs/03-page-layouts.md` and `docs/02-sitemap.md`. Change the document first, then the builder.
 - The open mega-nav stays at fifty words or fewer. Adding a subtitle or a link to it is an IA decision to log in `docs/06-decisions-log.md`, and the default answer is no.
-- The Services hub stays at eight blocks. Adding a block is an IA decision.
-- No chrome that explains the mock: no banners, legends, toggles, notes or toasts. If something needs explaining, explain it in this README.
-- Keep it greyscale and dependency-free: no external CSS, JavaScript, fonts or images.
+- No visual brand redesign. Keep it greyscale and dependency-free: no external CSS, JavaScript, fonts or images.
 - No em dashes in any copy. British English.
