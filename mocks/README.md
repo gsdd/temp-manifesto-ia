@@ -17,7 +17,7 @@ This extends the v5 IA (`docs/01-primary-navigation.md`, `docs/02-sitemap.md`, `
    - **Careers** is a plain first-class link.
    - **Contact** is the header button.
 4. Every sitemap URL is a real HTML page. **All pages** in the heading map opens `sitemap.html`.
-5. Each page has quiet **page notes** (weight, primary keyword with UK volume when known, quiet line if any, related themes / sectors / services) and, where a MURAL keep/drop note landed, a **Modules** row. A **heading map** sits to the right.
+5. The **main column** is the page layout (hero, modules, footer). Supplementary IA lives in the **sidebar**: page notes (weight, primary keyword, quiet line, related themes / sectors / services, MURAL modules) plus the **heading map**. **All pages** in the heading map opens `sitemap.html`.
 
 From GitHub: use the preview or raw HTML, or enable GitHub Pages and visit `/mocks/index.html`.
 
@@ -47,10 +47,11 @@ Footer row: All services | Expertise. Contact is not repeated (the header button
 
 Home; Services hub; Growth Strategy; Proposition Innovation; Activation group and the six activation services; CEO Advisory (Side-by-Side + Our advisors); Expertise hub and Loyalty / Membership / Subscriptions / Pricing / Customer Value; four light sectors (Financial Services, Media, Consumer, Retail); Work hub plus Dayinsure and Key Group shells; Our thinking hub plus one article and one report shell; About (story, Our people, Our approach, values); Careers (Life at Manifesto + one role shell); Contact (work with us / work for us, plus thank-you); The Nutshell and legal / 404 / search utilities so every footer link resolves.
 
-## Page chips and the heading map
+## Page notes, heading map and on-page shapes
 
-- **Page chips** are an IA annotation, not the live-site chip rule in `docs/03-page-layouts.md`. They always show canonical weight, the primary keyword target (with UK monthly volume when this pull has it), the quiet line if the page has one, and related themes / sectors / services. A second row lists MURAL modules when that page absorbed a keep/drop note.
-- **Outside page / SEO heading map** lists the recommended H1 (one), H2s in order, H3s where useful, primary keyword, two to four alts, and a one-line intent note. It is not body copy. The same content is consolidated in `docs/heading-map.md`.
+- **Page notes** (sidebar chips) are an IA annotation, not the live-site chip rule in `docs/03-page-layouts.md`. They show canonical weight, the primary keyword target (with UK monthly volume when this pull has it), the quiet line if the page has one, and related themes / sectors / services. A Modules row lists MURAL keep/drop notes when that page absorbed one.
+- **Heading map** (sidebar) lists the recommended H1 (one), H2s in order, H3s where useful, primary keyword, two to four alts, and a one-line intent note. It is not body copy. The same content is consolidated in `docs/heading-map.md`.
+- **On-page modules** in the main column use rough shapes that match the module type: grey offer cards, logo boxes, work cards with image placeholders, quote blocks, 16:9 video, metric boxes, report cards, article text blocks. Related-theme tags that would appear on the live page stay in the body as page tags, not as IA chips.
 
 Keyword rules applied here: Manifesto labels stay in the nav (Proposition Innovation, Experience Engineering, Growth Office, CEO Advisory). Buyer language is on the page. AI phrases stay marketing-qualified. Growth Office SEO is interim / embedded growth team (interim CMO where accurate), not "growth office" as primary.
 

@@ -76,7 +76,8 @@ def chips_html(page: dict) -> str:
             f'<div class="chips">{mural_chips}</div>'
         )
     return (
-        '<div class="ia-chips" aria-label="Page notes">'
+        '<div class="ia-chips">'
+        '<span class="label">Notes</span>'
         f'<div class="chips">{"".join(chips)}</div>'
         f"{mural_row}"
         "</div>"
@@ -97,7 +98,7 @@ def heading_map_html(page: dict) -> str:
     primary = page.get("primary") or "none"
     sitemap = os.path.relpath("sitemap.html", file_dir(page["url"]))
     return f"""
-<aside class="heading-map" aria-label="Heading map">
+<div class="heading-map">
   <h2>Heading map</h2>
   <p class="map-note"><a href="{sitemap}">All pages</a></p>
   <p class="k"><strong>URL</strong><code>{page["url"]}</code></p>
@@ -107,7 +108,7 @@ def heading_map_html(page: dict) -> str:
   <div class="k"><strong>H2s (ordered)</strong>{h2_html}</div>
   <div class="k"><strong>H3s where useful</strong>{h3_html}</div>
   <p class="intent"><strong>Intent.</strong> {page["intent"]}</p>
-</aside>
+</div>
 """
 
 
@@ -278,13 +279,15 @@ def wrap(page: dict, body: str) -> str:
     <div class="scrim"></div>
     {header_html(url, section)}
     {crumbs_html(url, page.get("crumbs") or [])}
-    {chips_html(page)}
     <main class="page" id="main">
       {body}
     </main>
     {footer_html(url)}
   </div>
-  {heading_map_html(page)}
+  <aside class="sidebar" aria-label="Page notes">
+    {chips_html(page)}
+    {heading_map_html(page)}
+  </aside>
 </div>
 <script src="{js}"></script>
 </body>
@@ -293,9 +296,44 @@ def wrap(page: dict, body: str) -> str:
 
 
 def card(h, href, title, sub, extra=""):
-    cls = "card flat" if extra == "flat" else ("card person" if extra == "person" else "card")
-    ph = '<div class="avatar"></div>' if extra == "person" else ('<div class="ph"></div>' if extra == "ph" else "")
-    return f'<a class="{cls}" href="{h(href)}">{ph}<strong>{title}</strong><span>{sub}</span></a>'
+    cls = "card"
+    inner = ""
+    if extra == "flat" or extra == "offer":
+        cls = "card offer"
+    elif extra == "person":
+        cls = "card person"
+        inner = '<div class="avatar"></div>'
+    elif extra == "ph":
+        inner = '<div class="ph">Image</div>'
+    elif extra == "doc":
+        inner = '<div class="doc">Report</div>'
+    return f'<a class="{cls}" href="{h(href)}">{inner}<strong>{title}</strong><span>{sub}</span></a>'
+
+
+def logos_html(n=8, label="Logo"):
+    cells = "".join(f'<span class="logo-ph">{label}</span>' for _ in range(n))
+    return f'<div class="logos" aria-label="{label}s">{cells}</div>'
+
+
+def video_html(label="Video"):
+    return f'<div class="video-ph" aria-label="{label}"><span>{label}</span></div>'
+
+
+def metrics_html(pairs):
+    inner = "".join(
+        f'<div class="metric"><strong>{v}</strong><span>{l}</span></div>' for v, l in pairs
+    )
+    return f'<div class="metrics">{inner}</div>'
+
+
+def article_body():
+    return """
+        <div class="article-body">
+          <p class="prose">Opening argument. Two or three sentences that set the problem.</p>
+          <p class="prose">The view we take, and why the usual response fails.</p>
+          <p class="prose">What we would do next, in brief, with a link to the relevant service.</p>
+        </div>
+"""
 
 
 def closing(h, line="Tell us about your growth challenge"):
@@ -1170,11 +1208,11 @@ def body_for(page: dict) -> str:
             <a class="btn" href="{h("/contact/")}">Contact</a>
             <a class="text" href="{h("/services/")}">What we do</a>
           </div>
-          <div class="video-ph" aria-label="Showreel">Showreel</div>
+          {video_html("Showreel")}
         </section>
         <section class="block">
           <h2 class="sec">Trusted partners</h2>
-          <div class="logos partners" aria-label="Trusted partner logos"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          {logos_html(8, "Logo")}
         </section>
         <section class="block">
           <h2 class="sec">What we do</h2>
@@ -1192,12 +1230,12 @@ def body_for(page: dict) -> str:
             {card(h, "/work/key-group/", "Key Group", "One-line result", "ph")}
             {card(h, "/work/", "More work", "All case studies", "ph")}
           </div>
-          <p class="quote">"The work changed how we think about growth." <a href="{h("/work/dayinsure/")}">Dayinsure</a></p>
+          <blockquote class="quote">"The work changed how we think about growth."<cite>Dayinsure</cite></blockquote>
           <a class="more" href="{h("/work/")}">All work</a>
         </section>
         <section class="block">
           <h2 class="sec">Awards</h2>
-          <div class="awards" aria-label="Awards"><div class="ph"></div><div class="ph"></div><div class="ph"></div></div>
+          {logos_html(3, "Award")}
         </section>
         <section class="block">
           <h2 class="sec">Growth problems we know best</h2>
@@ -1211,11 +1249,10 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="sec">Latest thinking</h2>
-          <ul class="list">
-            <li><a href="{h("/insights/pricing-paradox/")}">The Pricing Paradox</a><span>Report</span></li>
-            <li><a href="{h("/insights/loyalty-without-the-discount/")}">Loyalty without the discount</a><span>Article</span></li>
-            <li><a href="{h("/insights/#events")}">Event or news title</a><span>Event</span></li>
-          </ul>
+          <div class="cards two">
+            {card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "Report", "doc")}
+            {card(h, "/insights/loyalty-without-the-discount/", "Loyalty without the discount", "Article", "flat")}
+          </div>
           <a class="more" href="{h("/insights/")}">All thinking</a>
         </section>
         {closing(h)}
@@ -1329,14 +1366,21 @@ def body_for(page: dict) -> str:
     if kind == "service":
         sits = "".join(f"<li>{s}</li>" for s in page["situations"])
         aka = f'<p class="aka">Also known as: {page["aka"]}</p>' if page.get("aka") else ""
-        nums = f'<p class="numbers">{page["numbers"]}</p>' if page.get("numbers") else ""
+        nums = ""
+        if page.get("numbers"):
+            if "3x" in page["numbers"]:
+                nums = metrics_html([("3x", "EBITDA return")])
+            elif "4 weeks" in page["numbers"]:
+                nums = metrics_html([("4 wks", "Data audit"), ("6 wks", "First agents")])
+            else:
+                nums = metrics_html([("Result", page["numbers"])])
         pillar = (
             f'<p class="pillar-note"><a href="{h(page["pillar"][1])}">{page["pillar"][0]}</a></p>'
             if page.get("pillar") else ""
         )
         extra = service_module(page, h)
-        theme_chips = "".join(
-            f'<a class="chip" href="{h(u)}">{n}</a>' for n, u in (page.get("themes") or [])[:3]
+        theme_tags = "".join(
+            f'<a href="{h(u)}">{n}</a>' for n, u in (page.get("themes") or [])[:3]
         )
         rel_svcs = "".join(card(h, u, n, "Often bought alongside", "flat") for n, u in (page.get("services") or [])[:3])
         what_h2 = page["h2s"][1]
@@ -1373,7 +1417,7 @@ def body_for(page: dict) -> str:
         {extra}
         <section class="block">
           <h2 class="sec">Related expertise</h2>
-          <div class="chips">{theme_chips or ""}</div>
+          <div class="page-tags">{theme_tags}</div>
         </section>
         <section class="block">
           <h2 class="sec">Related services</h2>
@@ -1510,7 +1554,7 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="plain">Clients</h2>
-          <div class="logos" aria-label="Client logos"><span></span><span></span><span></span><span></span><span></span></div>
+          {logos_html(5, "Logo")}
         </section>
         <section class="block">
           <h2 class="plain">Case studies</h2>
@@ -1535,8 +1579,10 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="plain">Featured</h2>
-          {card(h, "/work/dayinsure/", "Dayinsure", "Quote journey rebuilt", "ph")}
-          <p class="quote">"The work changed how we think about growth."</p>
+          <div class="cards two">
+            {card(h, "/work/dayinsure/", "Dayinsure", "Quote journey rebuilt", "ph")}
+          </div>
+          <blockquote class="quote">"The work changed how we think about growth."<cite>Client</cite></blockquote>
         </section>
         <section class="block">
           <h2 class="plain">All case studies</h2>
@@ -1556,21 +1602,21 @@ def body_for(page: dict) -> str:
 """
 
     if kind == "case":
-        svc_chips = "".join(
-            f'<a class="chip" href="{h(u)}">{n}</a>' for n, u in (page.get("services") or [])[:3]
+        svc_tags = "".join(
+            f'<a href="{h(u)}">{n}</a>' for n, u in (page.get("services") or [])[:3]
         )
-        theme_chips = "".join(
-            f'<a class="chip" href="{h(u)}">{n}</a>' for n, u in (page.get("themes") or [])[:3]
+        theme_tags = "".join(
+            f'<a href="{h(u)}">{n}</a>' for n, u in (page.get("themes") or [])[:3]
         )
         return f"""
         <section class="block hero">
           <h1>{page["client"]}</h1>
           <p>{page["result"]}</p>
-          <div class="chips">{svc_chips}</div>
+          <div class="page-tags">{svc_tags}</div>
         </section>
         <section class="block">
           <h2 class="plain">At a glance</h2>
-          <p class="prose">Three or four headline numbers.</p>
+          {metrics_html([("TBC", "Conversion"), ("TBC", "Value"), ("TBC", "Time"), ("TBC", "NPS")])}
         </section>
         <section class="block">
           <h2 class="plain">The challenge</h2>
@@ -1584,12 +1630,12 @@ def body_for(page: dict) -> str:
           <h2 class="plain">The result</h2>
           <p class="prose">Outcomes, quantified where permitted.</p>
           <h3 class="plain">Client quote</h3>
-          <p class="quote">"The work changed how we think about growth."</p>
-          <div class="video-ph">Film</div>
+          <blockquote class="quote">"The work changed how we think about growth."<cite>Client</cite></blockquote>
+          {video_html("Film")}
         </section>
         <section class="block">
           <h2 class="sec">Related expertise</h2>
-          <div class="chips">{theme_chips}</div>
+          <div class="page-tags">{theme_tags}</div>
         </section>
         {closing(h)}
 """
@@ -1604,7 +1650,7 @@ def body_for(page: dict) -> str:
           <h2 class="plain">Reports</h2>
           <p class="prose">Long-form reports, read on the page.</p>
           <div class="cards two">
-            {card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "Report · from tactical lever to growth engine", "flat")}
+          {card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "Report. From tactical lever to growth engine", "doc")}
           </div>
         </section>
         <section class="block" id="articles">
@@ -1615,9 +1661,9 @@ def body_for(page: dict) -> str:
             <span class="filter">Event</span>
             <span class="filter more">More filters</span>
           </div>
-          <ul class="list">
-            <li><a href="{h("/insights/loyalty-without-the-discount/")}">Loyalty without the discount</a><span>Loyalty</span></li>
-          </ul>
+          <div class="cards two">
+            {card(h, "/insights/loyalty-without-the-discount/", "Loyalty without the discount", "Article · Loyalty", "flat")}
+          </div>
         </section>
         <section class="block" id="events">
           <h2 class="plain">Events and news</h2>
@@ -1635,11 +1681,11 @@ def body_for(page: dict) -> str:
         <section class="block hero">
           <h1>{page["h1"]}</h1>
           <p class="who">Article · Date · 6 min · Author</p>
-          <div class="chips"><a class="chip" href="{h("/expertise/loyalty/")}">Loyalty</a></div>
+          <div class="page-tags"><a href="{h("/expertise/loyalty/")}">Loyalty</a></div>
         </section>
         <section class="block">
           <h2 class="plain">The problem</h2>
-          <p class="prose">A dated point of view. The evergreen position stays on the <a href="{h("/expertise/loyalty/")}">Loyalty</a> theme page.</p>
+          {article_body()}
         </section>
         <section class="block">
           <h2 class="plain">What we think</h2>
@@ -1657,11 +1703,11 @@ def body_for(page: dict) -> str:
         <section class="block hero">
           <h1>{page["h1"]}</h1>
           <p class="who">Report · Date · Author</p>
-          <div class="chips"><a class="chip" href="{h("/expertise/pricing/")}">Pricing</a></div>
+          <div class="page-tags"><a href="{h("/expertise/pricing/")}">Pricing</a></div>
         </section>
         <section class="block">
           <h2 class="plain">What this report covers</h2>
-          <p class="prose">The argument of the report, on this page.</p>
+          {article_body()}
         </section>
         <section class="block">
           <h2 class="plain">Read it on this page</h2>
@@ -1771,7 +1817,7 @@ def body_for(page: dict) -> str:
         <section class="block">
           <h2 class="plain">Growth partner videos</h2>
           <p class="prose">Client films on working with Manifesto.</p>
-          <div class="video-ph">Working with Manifesto</div>
+          {video_html("Working with Manifesto")}
         </section>
         <section class="block">
           <h2 class="plain">Principles</h2>
@@ -1830,7 +1876,7 @@ def body_for(page: dict) -> str:
         <section class="block hero">
           <h1>Careers at Manifesto</h1>
           <p>What it is like to work here, and the roles we are hiring for.</p>
-          <div class="video-ph">Studio</div>
+          {video_html("Studio")}
         </section>
         <section class="block">
           <h2 class="plain">Life at Manifesto</h2>
@@ -1841,6 +1887,11 @@ def body_for(page: dict) -> str:
           <p class="prose">Agency, client and strategy backgrounds.</p>
           <h3 class="plain">Pioneers / recent joiners</h3>
           <p class="prose">Portraits of people who joined recently.</p>
+          <div class="cards">
+            {card(h, "/about/team/advisor-one/", "Name", "Recent joiner", "person")}
+            {card(h, "/about/team/advisor-one/", "Name", "Recent joiner", "person")}
+            {card(h, "/about/team/advisor-one/", "Name", "Recent joiner", "person")}
+          </div>
         </section>
         <section class="block">
           <h2 class="plain">Diversity, equity and inclusion</h2>
