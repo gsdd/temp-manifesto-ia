@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page modules | Manifesto Growth Architects</title>
+<title>Component library | Manifesto Growth Architects</title>
 <link rel="stylesheet" href="../assets/wireframe.css">
 </head>
 <body>
@@ -87,31 +87,24 @@
         </div>
       </div>
 
-    <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Home</a></li><li>Page modules</li></ol></nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Home</a></li><li>Component library</li></ol></nav>
     <main class="page" id="main">
       
-        <section class="block hero">
-          <h1>Page modules</h1>
-          <p>Named units used on this wireframe. Each unit has one interaction type. Working notes are not shown here.</p>
+        <section class="block hero" data-module="Hero" title="Hero">
+          <h1>Component library</h1>
+          <p>The reusable blocks every page is built from. One name, one shape, one interaction type per component. The sidebar on each page lists which of these it uses, by the same names.</p>
         </section>
         <section class="block">
-          <h2 class="plain">How to read these units</h2>
+          <h2 class="plain">How to read this library</h2>
           <div class="legend">
-            <p class="unit-purpose">Six types. If a rectangle cannot be named from this list, it is a random box.</p>
-            <ul class="legend-list">
-              <li><span class="unit-kind unit-button">Button</span> An action: Send, Accept, Clear filters, Search submit, header Contact. Outlined control. Never a content-page link except header Contact.</li>
-              <li><span class="unit-kind unit-text-link">Text link</span> Navigate: See our work, All thinking, situations, breadcrumbs, footer, mega-nav strands.</li>
-              <li><span class="unit-kind unit-card">Card</span> Whole unit is a hit area to one destination page. Solid box. Title plus support line.</li>
-              <li><span class="unit-kind unit-tag">Tag</span> Small linked label. One dimension, max three. Not a filter.</li>
-              <li><span class="unit-kind unit-filter">Filter</span> Toggle on a listing. Button, not a link. Selected uses .on.</li>
-              <li><span class="unit-kind unit-static">Static</span> Not clickable. Dashed box: logos, metrics, CIVD, form fields, video, empty message.</li>
-            </ul>
+            <p class="unit-purpose">Seven interaction types. If a rectangle cannot be named from this library, it is a random box and should not be on a page.</p>
+            <ul class="legend-list"><li><span class="unit-kind unit-band">Band</span> A full-width block that composes other components: Hero, Closing CTA band.</li><li><span class="unit-kind unit-button">Button</span> An action: Send, Accept, Clear filters, Search, header Contact, the primary of a CTA pair. Outlined control, 1.5px ink. Never a content-page link except header Contact.</li><li><span class="unit-kind unit-text-link">Text link</span> Navigate: See our work, All thinking, situations, breadcrumbs, footer, mega-nav strands. Underlined or plain text, never a box.</li><li><span class="unit-kind unit-card">Card</span> Whole unit is a hit area to one destination page. Solid 1px box. Title plus support line. Seven card types, one shape each.</li><li><span class="unit-kind unit-tag">Tag</span> Small linked label. One dimension, max three. Squared corners, quiet border. Not a filter.</li><li><span class="unit-kind unit-filter">Filter</span> Toggle on a listing. Pill-shaped button, not a link. Selected uses a heavier border.</li><li><span class="unit-kind unit-static">Static</span> Not clickable. Dashed box or plain text: logos, metrics, CIVD, form fields, video, quote, empty message, prose.</li></ul>
           </div>
         </section>
+        
         <section class="block">
           <h2 class="plain">Chrome</h2>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="header-contact">
             <div class="unit-head">
               <span class="cat-label">Header Contact</span>
               <span class="unit-kind unit-button">Button</span>
@@ -119,8 +112,7 @@
             <p class="unit-purpose">Primary enquire in the bar. Other nav items stay text links.</p>
             <a class="btn" href="../contact/index.html">Contact</a>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="mega-nav-hub-and-strands">
             <div class="unit-head">
               <span class="cat-label">Mega-nav hub and strands</span>
               <span class="unit-kind unit-text-link">Text link</span>
@@ -135,17 +127,15 @@
             </ul>
           </div>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="breadcrumb">
             <div class="unit-head">
               <span class="cat-label">Breadcrumb</span>
               <span class="unit-kind unit-text-link">Text link</span>
             </div>
             <p class="unit-purpose">Ancestors link. Current page is text. Every page except Home.</p>
-            <nav class="crumbs" aria-label="Example"><ol><li><a href="../index.html">Home</a></li><li>Page modules</li></ol></nav>
+            <nav class="crumbs" aria-label="Example" style="padding:0"><ol><li><a href="../index.html">Home</a></li><li>Component library</li></ol></nav>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="cookie-bar">
             <div class="unit-head">
               <span class="cat-label">Cookie bar</span>
               <span class="unit-kind unit-button">Button</span>
@@ -159,189 +149,196 @@
         </section>
         <section class="block">
           <h2 class="plain">Heroes and bands</h2>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="hero">
             <div class="unit-head">
-              <span class="cat-label">Hero CTA pair</span>
+              <span class="cat-label">Hero</span>
+              <span class="unit-kind unit-band">Band</span>
+            </div>
+            <p class="unit-purpose">First block. H1, one support line, optional eyebrow, also-known-as, who-for and metric boxes. Composes a CTA pair and, where a film exists, a Video 16:9.</p>
+            <div class="hero" style="padding:0">
+            <span class="eyebrow">Eyebrow (optional)</span>
+            <h1 style="font-size:24px">H1: one per page</h1>
+            <p>One support line. Who this is for.</p>
+            <div class="cta" data-module="CTA pair" title="CTA pair"><a class="btn" href="../contact/index.html">Contact</a><a class="text" href="../work/index.html">See our work</a></div>
+          </div>
+          </div>
+          <div class="catalogue-item" id="cta-pair">
+            <div class="unit-head">
+              <span class="cat-label">CTA pair</span>
               <span class="unit-kind unit-button">Button</span>
             </div>
             <p class="unit-purpose">Primary Button plus secondary Text link. Header Contact is the same Button.</p>
-            <div class="cta"><a class="btn" href="../contact/index.html">Contact</a><a class="text" href="../work/index.html">See our work</a></div>
+            <div class="cta" data-module="CTA pair" title="CTA pair"><a class="btn" href="../contact/index.html">Contact</a><a class="text" href="../work/index.html">See our work</a></div>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="closing-cta-band">
             <div class="unit-head">
               <span class="cat-label">Closing CTA band</span>
-              <span class="unit-kind unit-button">Button</span>
+              <span class="unit-kind unit-band">Band</span>
             </div>
-            <p class="unit-purpose">Last enquire on the page. Careers uses Work for us.</p>
+            <p class="unit-purpose">Last enquire on the page. One line, a Button and a Text link. Careers uses Work for us.</p>
             <div class="closing" style="border:0;padding:0"><p>Tell us about your growth challenge</p><div class="cta"><a class="btn" href="../contact/index.html">Contact</a><a class="text" href="../work/index.html">See our work</a></div></div>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="prose">
+            <div class="unit-head">
+              <span class="cat-label">Prose</span>
+              <span class="unit-kind unit-static">Static</span>
+            </div>
+            <p class="unit-purpose">Heading plus one to four short paragraphs. Body copy, not a card and not a box.</p>
+            <h2 class="plain" style="font-size:18px">Heading</h2><p class="prose">One to four short paragraphs. Body copy carries the keyword language the H2 promises.</p>
+          </div>
+          <div class="catalogue-item" id="metric-box">
             <div class="unit-head">
               <span class="cat-label">Metric box</span>
               <span class="unit-kind unit-static">Static</span>
             </div>
             <p class="unit-purpose">A number the deck already gives. Not a card. Not clickable.</p>
-            <div class="metrics"><div class="metric"><strong>3x</strong><span>EBITDA return</span></div><div class="metric"><strong>4 wks</strong><span>Data audit</span></div><div class="metric"><strong>6 wks</strong><span>First agents</span></div></div>
+            <div class="metrics"><div class="metric" data-module="Metric box" title="Metric box"><strong>3x</strong><span>EBITDA return</span></div><div class="metric" data-module="Metric box" title="Metric box"><strong>4 wks</strong><span>Data audit</span></div><div class="metric" data-module="Metric box" title="Metric box"><strong>6 wks</strong><span>First agents</span></div></div>
           </div>
         </section>
         <section class="block">
           <h2 class="plain">Cards</h2>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="offer-card">
             <div class="unit-head">
-              <span class="cat-label">Service card</span>
+              <span class="cat-label">Offer card</span>
               <span class="unit-kind unit-card">Card</span>
             </div>
             <p class="unit-purpose">Buyable service. Grey fill, no image. Whole card goes to the service page.</p>
-            <div class="cards two"><a class="card offer" href="../services/growth-strategy/index.html"><strong>Growth Strategy</strong><span>Customer-led growth strategy: where to focus and how to win</span></a><a class="card offer" href="../services/proposition-innovation/index.html"><strong>Proposition Innovation</strong><span>Value proposition design</span></a></div>
+            <div class="cards two"><a class="card offer" data-module="Offer card" title="Offer card" href="../services/growth-strategy/index.html"><strong>Growth Strategy</strong><span>Customer-led growth strategy: where to focus and how to win</span></a><a class="card offer" data-module="Offer card" title="Offer card" href="../services/proposition-innovation/index.html"><strong>Proposition Innovation</strong><span>Value proposition design</span></a></div>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="theme-card">
             <div class="unit-head">
               <span class="cat-label">Theme card</span>
               <span class="unit-kind unit-card">Card</span>
             </div>
-            <p class="unit-purpose">Expertise problem. Same shape as a Service card. Hub only. Not a nav item.</p>
-            <div class="cards two"><a class="card offer" href="../expertise/loyalty/index.html"><strong>Loyalty</strong><span>Cases and thinking</span></a></div>
+            <p class="unit-purpose">Expertise problem. Outline only, no fill. Expertise hub only. Not a nav item.</p>
+            <div class="cards two"><a class="card theme" data-module="Theme card" title="Theme card" href="../expertise/loyalty/index.html"><strong>Loyalty</strong><span>Cases and thinking</span></a><a class="card theme" data-module="Theme card" title="Theme card" href="../expertise/pricing/index.html"><strong>Pricing</strong><span>Cases and thinking</span></a></div>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="case-card">
             <div class="unit-head">
               <span class="cat-label">Case card</span>
               <span class="unit-kind unit-card">Card</span>
             </div>
             <p class="unit-purpose">Proof. Image placeholder, client, one-line result. Whole card goes to the case.</p>
-            <div class="cards two"><a class="card" href="../work/dayinsure/index.html"><div class="ph">Image</div><strong>Dayinsure</strong><span>One-line result</span></a><a class="card" href="../work/key-group/index.html"><div class="ph">Image</div><strong>Key Group</strong><span>One-line result</span></a></div>
+            <div class="cards two"><a class="card" data-module="Case card" title="Case card" href="../work/dayinsure/index.html"><div class="ph">Image</div><strong>Dayinsure</strong><span>One-line result</span></a><a class="card" data-module="Case card" title="Case card" href="../work/key-group/index.html"><div class="ph">Image</div><strong>Key Group</strong><span>One-line result</span></a></div>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="report-card">
             <div class="unit-head">
               <span class="cat-label">Report card</span>
               <span class="unit-kind unit-card">Card</span>
             </div>
             <p class="unit-purpose">Long-form thinking. Portrait Report placeholder.</p>
-            <div class="cards two"><a class="card" href="../insights/pricing-paradox/index.html"><div class="doc">Report</div><strong>The Pricing Paradox</strong><span>Report</span></a></div>
+            <div class="cards two"><a class="card" data-module="Report card" title="Report card" href="../insights/pricing-paradox/index.html"><div class="doc">Report</div><strong>The Pricing Paradox</strong><span>Report</span></a></div>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="article-card">
             <div class="unit-head">
               <span class="cat-label">Article card</span>
               <span class="unit-kind unit-card">Card</span>
             </div>
-            <p class="unit-purpose">Short thinking. No grey fill, no image. Do not reuse the Service card class.</p>
-            <div class="cards two"><a class="card article" href="../insights/loyalty-without-the-discount/index.html"><strong>Loyalty without the discount</strong><span>Article</span></a></div>
+            <p class="unit-purpose">Short thinking. No grey fill, no image. Not the Offer card shape.</p>
+            <div class="cards two"><a class="card article" data-module="Article card" title="Article card" href="../insights/loyalty-without-the-discount/index.html"><strong>Loyalty without the discount</strong><span>Article · Loyalty</span></a></div>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="person-card">
             <div class="unit-head">
               <span class="cat-label">Person card</span>
               <span class="unit-kind unit-card">Card</span>
             </div>
             <p class="unit-purpose">Someone. Avatar, name, one line.</p>
-            <div class="cards"><a class="card person" href="../about/team/advisor-one/index.html"><div class="avatar"></div><strong>Advisor name</strong><span>Former role, one line</span></a></div>
+            <div class="cards"><a class="card person" data-module="Person card" title="Person card" href="../about/team/advisor-one/index.html"><div class="avatar"></div><strong>Advisor name</strong><span>Former role, one line</span></a></div>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="role-card">
             <div class="unit-head">
               <span class="cat-label">Role card</span>
               <span class="unit-kind unit-card">Card</span>
             </div>
-            <p class="unit-purpose">Open role. Same shape as a Service card.</p>
-            <div class="cards two"><a class="card offer" href="../careers/growth-architect/index.html"><strong>Growth Architect</strong><span>Location · type · actively hiring</span></a></div>
+            <p class="unit-purpose">Open role. Outline with a top rule: location, type, hiring state.</p>
+            <div class="cards two"><a class="card role" data-module="Role card" title="Role card" href="../careers/growth-architect/index.html"><strong>Growth Architect</strong><span>Location · type · actively hiring</span></a></div>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="triangle-tile">
             <div class="unit-head">
               <span class="cat-label">Triangle tile</span>
               <span class="unit-kind unit-card">Card</span>
             </div>
-            <p class="unit-purpose">Pillar, not a service. Three tiles. Links to the pillar page or in-page anchor. Not a Service card.</p>
-            <div class="tri">
-            <a href="../services/growth-strategy/index.html"><strong>Growth Strategy</strong><span>Where and how you grow</span></a>
-            <a href="../services/activation/index.html"><strong>Activation Services</strong><span>Turning strategy into results</span></a>
-            <a href="../services/ceo-advisory/index.html"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
-          </div>
+            <p class="unit-purpose">Pillar, not a service. Three tiles plus the triangle line. Links to the pillar page or an in-page anchor. Not an Offer card.</p>
+            <div class="tri"><a href="../services/growth-strategy/index.html" data-module="Triangle tile" title="Triangle tile"><strong>Growth Strategy</strong><span>Where and how you grow</span></a><a href="../services/activation/index.html" data-module="Triangle tile" title="Triangle tile"><strong>Activation Services</strong><span>Turning strategy into results</span></a><a href="../services/ceo-advisory/index.html" data-module="Triangle tile" title="Triangle tile"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a></div><p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside.</p>
           </div>
         </section>
         <section class="block">
           <h2 class="plain">Lists and locators</h2>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="page-tag">
             <div class="unit-head">
               <span class="cat-label">Page tag</span>
               <span class="unit-kind unit-tag">Tag</span>
             </div>
-            <p class="unit-purpose">One dimension, max three. Linked. Service pages show expertise. Cases show services. Not a filter.</p>
-            <div class="page-tags"><a href="../expertise/loyalty/index.html">Loyalty</a><a href="../expertise/pricing/index.html">Pricing</a></div>
+            <p class="unit-purpose">One dimension, max three. Small linked label. Service pages show expertise. Cases show services. Not a filter.</p>
+            <div class="page-tags"><a href="../expertise/loyalty/index.html" data-module="Page tag" title="Page tag">Loyalty</a><a href="../expertise/pricing/index.html" data-module="Page tag" title="Page tag">Pricing</a></div>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="filter-bar">
             <div class="unit-head">
               <span class="cat-label">Filter bar</span>
               <span class="unit-kind unit-filter">Filter</span>
             </div>
-            <p class="unit-purpose">Toggle a listing. Button, not a span or a link. More filters is also a Filter.</p>
-            <div class="filters"><button type="button" class="filter on">Growth Strategy</button><button type="button" class="filter">Experience Engineering</button><button type="button" class="filter more">More filters</button></div>
+            <p class="unit-purpose">Toggle a listing. Pill-shaped buttons, not links. More filters is also a Filter.</p>
+            <div class="filters" data-module="Filter bar" title="Filter bar"><button type="button" class="filter on">All services</button><button type="button" class="filter">Growth Strategy</button><button type="button" class="filter">Experience Engineering</button><button type="button" class="filter more">More filters</button></div>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="situations-list">
             <div class="unit-head">
               <span class="cat-label">Situations list</span>
               <span class="unit-kind unit-text-link">Text link</span>
             </div>
             <p class="unit-purpose">Prospect language in. Links on the services hub. On a service page the three lines are static text.</p>
-            <ul class="situations">
+            <ul class="situations" data-module="Situations list" title="Situations list">
             <li><a href="../services/growth-strategy/index.html">We need to decide where and how to grow</a></li>
             <li><a href="../services/ceo-advisory/index.html">I want a sounding board I trust</a></li>
           </ul>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="row-of-text-links">
             <div class="unit-head">
               <span class="cat-label">Row of text links</span>
               <span class="unit-kind unit-text-link">Text link</span>
             </div>
-            <p class="unit-purpose">Names only. Home Growth problems we know best. Not cards, not tags.</p>
-            <div class="row-links"><a href="../expertise/loyalty/index.html">Loyalty</a><a href="../expertise/pricing/index.html">Pricing</a><a href="../expertise/customer-value/index.html">Customer Value</a></div>
+            <p class="unit-purpose">Names only, in one row. Home Growth problems we know best. Not cards, not tags.</p>
+            <div class="row-links" data-module="Row of text links" title="Row of text links"><a href="../expertise/loyalty/index.html">Loyalty</a><a href="../expertise/pricing/index.html">Pricing</a><a href="../expertise/customer-value/index.html">Customer Value</a></div>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="link-list">
             <div class="unit-head">
-              <span class="cat-label">Related list</span>
+              <span class="cat-label">Link list</span>
               <span class="unit-kind unit-text-link">Text link</span>
             </div>
-            <p class="unit-purpose">Compact related thinking or search hits. Title left, type right.</p>
-            <ul class="list"><li><a href="../insights/pricing-paradox/index.html">The Pricing Paradox</a><span>Report</span></li><li><a href="../insights/loyalty-without-the-discount/index.html">Loyalty without the discount</a><span>Article</span></li></ul>
+            <p class="unit-purpose">Compact list of links: related thinking, which of the six, engagement shapes, search hits. Title left, type right.</p>
+            <ul class="list" data-module="Link list" title="Link list"><li><a href="../insights/pricing-paradox/index.html">The Pricing Paradox</a><span>Report</span></li><li><a href="../insights/loyalty-without-the-discount/index.html">Loyalty without the discount</a><span>Article</span></li></ul>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="case-line">
             <div class="unit-head">
               <span class="cat-label">Case line</span>
               <span class="unit-kind unit-text-link">Text link</span>
             </div>
-            <p class="unit-purpose">One proof under a pillar. Not a Case card.</p>
-            <p class="case-line">Key Group, one-line result. <a href="../work/key-group/index.html">Read the case study</a></p>
+            <p class="unit-purpose">One proof under a pillar. Client, one-line result, Read the case study. Not a Case card.</p>
+            <p class="case-line" data-module="Case line" title="Case line">Key Group, one-line result. <a href="../work/key-group/index.html">Read the case study</a></p>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="link-line">
+            <div class="unit-head">
+              <span class="cat-label">Link line</span>
+              <span class="unit-kind unit-text-link">Text link</span>
+            </div>
+            <p class="unit-purpose">One sentence that ends in a text link. Routes without a card.</p>
+            <p class="one-line" data-module="Link line" title="Link line">We apply these services to the growth problems we know best. <a href="../expertise/index.html">Our expertise</a></p>
+          </div>
+          <div class="catalogue-item" id="pagination">
             <div class="unit-head">
               <span class="cat-label">Pagination</span>
               <span class="unit-kind unit-text-link">Text link</span>
             </div>
             <p class="unit-purpose">Current page is text. Others are page links. Not buttons.</p>
-            <div class="pagination" aria-label="Pagination"><span class="on">1</span><a href="#">2</a><a href="#">3</a><a href="#">Next</a></div>
+            <div class="pagination" data-module="Pagination" title="Pagination" aria-label="Pagination"><span class="on">1</span><a href="#">2</a><a href="#">3</a><a href="#">Next</a></div>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="empty-state">
             <div class="unit-head">
               <span class="cat-label">Empty state</span>
               <span class="unit-kind unit-static">Static</span>
             </div>
             <p class="unit-purpose">No results for this filter or query. Hide when results exist. Clear filters is a Button.</p>
-            <div class="empty-state">
+            
+          <div class="empty-state" data-module="Empty state" title="Empty state">
             <p>No case studies match these filters.</p>
             <a class="btn" href="../work/index.html">Clear filters</a>
           </div>
@@ -349,51 +346,46 @@
         </section>
         <section class="block">
           <h2 class="plain">Proof and media</h2>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="logo-strip">
             <div class="unit-head">
               <span class="cat-label">Logo strip</span>
               <span class="unit-kind unit-static">Static</span>
             </div>
             <p class="unit-purpose">Trusted partners, awards, or sector clients. Link a logo only if a case exists.</p>
-            <div class="logos" aria-label="Logos"><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span></div>
+            <div class="logos" data-module="Logo strip" title="Logo strip" aria-label="Logos"><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span></div>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="quote">
             <div class="unit-head">
               <span class="cat-label">Quote</span>
               <span class="unit-kind unit-static">Static</span>
             </div>
             <p class="unit-purpose">Testimonial. Lives with work. Not a testimonials page.</p>
-            <blockquote class="quote">"The work changed how we think about growth."<cite>Dayinsure</cite></blockquote>
+            <blockquote class="quote" data-module="Quote" title="Quote">"The work changed how we think about growth."<cite>Dayinsure</cite></blockquote>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="video-169">
             <div class="unit-head">
               <span class="cat-label">Video 16:9</span>
               <span class="unit-kind unit-static">Static</span>
             </div>
             <p class="unit-purpose">Showreel, partner film, or case film. Placeholder until film exists.</p>
-            <div class="video-ph" aria-label="Showreel"><span>Showreel</span></div>
+            <div class="video-ph" data-module="Video 16:9" title="Video 16:9" aria-label="Showreel"><span>Showreel</span></div>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="civd-four-cell">
             <div class="unit-head">
               <span class="cat-label">CIVD four-cell</span>
               <span class="unit-kind unit-static">Static</span>
             </div>
-            <p class="unit-purpose">Growth Strategy frame. Dashed cells. The Open CIVD text link sits beside it, not on the cells.</p>
-            <div class="civd-grid" aria-label="Customer, Innovation, Value and Delivery"><div class="civd-cell"><strong>Customer</strong><span>Who you grow with.</span></div><div class="civd-cell"><strong>Innovation</strong><span>What you offer next.</span></div><div class="civd-cell"><strong>Value</strong><span>Where the economics move.</span></div><div class="civd-cell"><strong>Delivery</strong><span>Whether it can be executed.</span></div></div>
+            <p class="unit-purpose">Growth Strategy frame. Dashed cells. The text link sits beside it, not on the cells.</p>
+            <div class="civd-grid" data-module="CIVD four-cell" title="CIVD four-cell" aria-label="Customer, Innovation, Value and Delivery"><div class="civd-cell"><strong>Customer</strong><span>Who you grow with.</span></div><div class="civd-cell"><strong>Innovation</strong><span>What you offer next.</span></div><div class="civd-cell"><strong>Value</strong><span>Where the economics move.</span></div><div class="civd-cell"><strong>Delivery</strong><span>Whether it can be executed.</span></div></div>
           </div>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="article-body">
             <div class="unit-head">
               <span class="cat-label">Article body</span>
               <span class="unit-kind unit-static">Static</span>
             </div>
             <p class="unit-purpose">Long-form paragraphs on a report or article.</p>
             
-        <div class="article-body">
+        <div class="article-body" data-module="Article body" title="Article body">
           <p class="prose">Opening argument. Two or three sentences that set the problem.</p>
           <p class="prose">The view we take, and why the usual response fails.</p>
           <p class="prose">What we would do next, in brief, with a link to the relevant service.</p>
@@ -403,46 +395,25 @@
         </section>
         <section class="block">
           <h2 class="plain">Forms</h2>
-          
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="form">
             <div class="unit-head">
-              <span class="cat-label">Work with us</span>
+              <span class="cat-label">Form</span>
               <span class="unit-kind unit-button">Button</span>
             </div>
-            <p class="unit-purpose">Client enquire. Topic is a select, not a text box. Send is a Button.</p>
-            <div class="form">
-              <div class="field"><label>Name</label><div class="box"></div></div>
-              <div class="field"><label>Company</label><div class="box"></div></div>
-              <div class="field"><label>Email</label><div class="box"></div></div>
-              <div class="field"><label>Topic</label><div class="box select">Select a service</div></div>
-              <div class="field"><label>Message</label><div class="box tall"></div></div>
-              <button type="button" class="btn">Send</button>
-            </div>
+            <p class="unit-purpose">Stacked fields with labels. Submit is a Button. Variants: Work with us, Work for us, email capture, search, report copy.</p>
+            <span class="wf-label">Work with us</span>
+          <div class="form" data-module="Form" title="Form">
+            <div class="field"><label>Name</label><div class="box"></div></div><div class="field"><label>Company</label><div class="box"></div></div><div class="field"><label>Email</label><div class="box"></div></div><div class="field"><label>Topic</label><div class="box select">Select a service</div></div><div class="field"><label>Message</label><div class="box tall"></div></div>
+            <a class="btn" href="../contact/thank-you/index.html">Send</a>
+          </div><span class="wf-label" style="margin-top:18px">Work for us</span>
+          <div class="form" data-module="Form" title="Form">
+            <div class="field"><label>Name</label><div class="box"></div></div><div class="field"><label>Email</label><div class="box"></div></div><div class="field"><label>Message</label><div class="box tall"></div></div>
+            <a class="btn" href="../contact/thank-you/index.html">Send</a>
+          </div><span class="wf-label" style="margin-top:18px">Email capture, with the one error state</span>
+          <div class="form" data-module="Form" title="Form">
+            <div class="field"><label>Email</label><div class="box error"></div></div><span class="field-msg">Enter a valid email.</span>
+            <a class="btn" href="../contact/thank-you/index.html">Subscribe</a>
           </div>
-          
-          <div class="catalogue-item">
-            <div class="unit-head">
-              <span class="cat-label">Email error state</span>
-              <span class="unit-kind unit-static">Static</span>
-            </div>
-            <p class="unit-purpose">Show on Contact. Invalid email. Do not invent other validation copy.</p>
-            <div class="form">
-              <div class="field"><label>Email</label><div class="box error"></div><span class="field-msg">Enter a valid email.</span></div>
-            </div>
-          </div>
-          
-          <div class="catalogue-item">
-            <div class="unit-head">
-              <span class="cat-label">Work for us</span>
-              <span class="unit-kind unit-button">Button</span>
-            </div>
-            <p class="unit-purpose">Speculative hire. Roles stay on Careers.</p>
-            <div class="form">
-              <div class="field"><label>Name</label><div class="box"></div></div>
-              <div class="field"><label>Email</label><div class="box"></div></div>
-              <div class="field"><label>Message</label><div class="box tall"></div></div>
-              <button type="button" class="btn">Send</button>
-            </div>
           </div>
         </section>
         <section class="block">
@@ -450,15 +421,16 @@
           <ul class="legend-list">
             <li>A Filter is not a Tag. Tags navigate. Filters toggle.</li>
             <li>A Tag is not a Button. Do not put tags in the header.</li>
-            <li>A Triangle tile is not a Service card. Pillar versus buyable service.</li>
+            <li>A Triangle tile is not an Offer card. Pillar versus buyable service.</li>
+            <li>A Theme card and a Role card are outline cards. An Offer card has the grey fill. An Article card has neither fill nor image.</li>
             <li>A CIVD cell is not a Card. The cells are a static diagram.</li>
             <li>A Metric box is not a Card. Numbers are not destinations.</li>
-            <li>A listing link is not a Case card. Home All work is a Text link. Do not invent a case called More work.</li>
-            <li>Do not call live units chips. Sidebar working notes are annotations.</li>
+            <li>A listing link is not a Case card. Home All work is a Text link. Only real cases wear the Case card.</li>
+            <li>The sidebar on each page is annotation for this wireframe. Nothing in it is a live component.</li>
           </ul>
         </section>
         
-        <section class="block closing">
+        <section class="block closing" data-module="Closing CTA band" title="Closing CTA band">
           <p>Tell us about your growth challenge</p>
           <div class="cta">
             <a class="btn" href="../contact/index.html">Contact</a>

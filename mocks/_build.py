@@ -7,6 +7,8 @@ markdown map cannot drift. Run from repo root: python3 mocks/_build.py
 from __future__ import annotations
 
 import os
+from html import escape as esc
+from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -48,69 +50,228 @@ def crumbs_html(from_url: str, crumbs: list[tuple[str, str | None]]) -> str:
     return f'<nav class="crumbs" aria-label="Breadcrumb"><ol>{"".join(items)}</ol></nav>'
 
 
-def notes_html(page: dict) -> str:
-    notes = [f'<span class="note weight">{page["weight"]}</span>']
-    if page.get("primary"):
-        notes.append(f'<span class="note kw">Primary: {page["primary"]}</span>')
-    else:
-        notes.append('<span class="note muted">Primary: no keyword target</span>')
-    if page.get("quiet"):
-        notes.append(f'<span class="note quiet">Strand subtitle: {page["quiet"]}</span>')
-    for label, items in (
-        ("Themes", page.get("themes") or []),
-        ("Sectors", page.get("sectors") or []),
-        ("Services", page.get("services") or []),
-    ):
-        if not items:
-            continue
-        links = ", ".join(
-            f'<a href="{rel_href(page["url"], u)}">{n}</a>' for n, u in items
-        )
-        notes.append(f'<span class="note">{label}: {links}</span>')
-    mural = page.get("mural") or []
-    mural_row = ""
-    if mural:
-        mural_notes = "".join(f'<span class="note muted">{m}</span>' for m in mural)
-        mural_row = (
-            '<span class="label">Modules</span>'
-            f'<div class="notes">{mural_notes}</div>'
-        )
-    return (
-        '<div class="ia-notes">'
-        '<span class="label">Working notes</span>'
-        f'<div class="notes">{"".join(notes)}</div>'
-        f"{mural_row}"
-        "</div>"
-    )
+# ---------------------------------------------------------------------------
+# Component vocabulary. One name and one shape per reusable block. Pages mark
+# each block with data-module="<name>"; the sidebar inventory and the component
+# library at /catalogue/ are both generated from these names, so they cannot
+# drift. Kinds are the interaction types a designer has to tell apart.
+# ---------------------------------------------------------------------------
+
+COMPONENTS: dict[str, tuple[str, str, str]] = {
+    # name: (group, kind, purpose)
+    "Header Contact": ("Chrome", "Button", "Primary enquire in the bar. Other nav items stay text links."),
+    "Mega-nav hub and strands": ("Chrome", "Text link", "Triangle laid flat. Hub title with chevron, strand, keyword subtitle. Not cards."),
+    "Breadcrumb": ("Chrome", "Text link", "Ancestors link. Current page is text. Every page except Home."),
+    "Cookie bar": ("Chrome", "Button", "Accept dismisses. Cookie policy is the text link, not the button."),
+    "Hero": ("Heroes and bands", "Band", "First block. H1, one support line, optional eyebrow, also-known-as, who-for and metric boxes. Composes a CTA pair and, where a film exists, a Video 16:9."),
+    "CTA pair": ("Heroes and bands", "Button", "Primary Button plus secondary Text link. Header Contact is the same Button."),
+    "Closing CTA band": ("Heroes and bands", "Band", "Last enquire on the page. One line, a Button and a Text link. Careers uses Work for us."),
+    "Prose": ("Heroes and bands", "Static", "Heading plus one to four short paragraphs. Body copy, not a card and not a box."),
+    "Metric box": ("Heroes and bands", "Static", "A number the deck already gives. Not a card. Not clickable."),
+    "Offer card": ("Cards", "Card", "Buyable service. Grey fill, no image. Whole card goes to the service page."),
+    "Theme card": ("Cards", "Card", "Expertise problem. Outline only, no fill. Expertise hub only. Not a nav item."),
+    "Case card": ("Cards", "Card", "Proof. Image placeholder, client, one-line result. Whole card goes to the case."),
+    "Report card": ("Cards", "Card", "Long-form thinking. Portrait Report placeholder."),
+    "Article card": ("Cards", "Card", "Short thinking. No grey fill, no image. Not the Offer card shape."),
+    "Person card": ("Cards", "Card", "Someone. Avatar, name, one line."),
+    "Role card": ("Cards", "Card", "Open role. Outline with a top rule: location, type, hiring state."),
+    "Triangle tile": ("Cards", "Card", "Pillar, not a service. Three tiles plus the triangle line. Links to the pillar page or an in-page anchor. Not an Offer card."),
+    "Page tag": ("Lists and locators", "Tag", "One dimension, max three. Small linked label. Service pages show expertise. Cases show services. Not a filter."),
+    "Filter bar": ("Lists and locators", "Filter", "Toggle a listing. Pill-shaped buttons, not links. More filters is also a Filter."),
+    "Situations list": ("Lists and locators", "Text link", "Prospect language in. Links on the services hub. On a service page the three lines are static text."),
+    "Row of text links": ("Lists and locators", "Text link", "Names only, in one row. Home Growth problems we know best. Not cards, not tags."),
+    "Link list": ("Lists and locators", "Text link", "Compact list of links: related thinking, which of the six, engagement shapes, search hits. Title left, type right."),
+    "Case line": ("Lists and locators", "Text link", "One proof under a pillar. Client, one-line result, Read the case study. Not a Case card."),
+    "Link line": ("Lists and locators", "Text link", "One sentence that ends in a text link. Routes without a card."),
+    "Pagination": ("Lists and locators", "Text link", "Current page is text. Others are page links. Not buttons."),
+    "Empty state": ("Lists and locators", "Static", "No results for this filter or query. Hide when results exist. Clear filters is a Button."),
+    "Logo strip": ("Proof and media", "Static", "Trusted partners, awards, or sector clients. Link a logo only if a case exists."),
+    "Quote": ("Proof and media", "Static", "Testimonial. Lives with work. Not a testimonials page."),
+    "Video 16:9": ("Proof and media", "Static", "Showreel, partner film, or case film. Placeholder until film exists."),
+    "CIVD four-cell": ("Proof and media", "Static", "Growth Strategy frame. Dashed cells. The text link sits beside it, not on the cells."),
+    "Article body": ("Proof and media", "Static", "Long-form paragraphs on a report or article."),
+    "Form": ("Forms", "Button", "Stacked fields with labels. Submit is a Button. Variants: Work with us, Work for us, email capture, search, report copy."),
+}
+
+COMPONENT_GROUPS = ["Chrome", "Heroes and bands", "Cards", "Lists and locators", "Proof and media", "Forms"]
+CHROME_LINE = "Header Contact, Mega-nav hub and strands, Breadcrumb, Cookie bar and the footer are on every page."
+
+WEIGHT_GLOSS = {
+    "Canonical": "owns its topic; other pages on the topic link here",
+    "Supporting": "supports a canonical page and links up to it",
+    "Light": "short landing; proof lives elsewhere",
+    "Utility": "functional page; not a search destination",
+}
+
+KIND_LABELS = {
+    "home": "Home",
+    "hub": "Services hub",
+    "service": "Service detail",
+    "activation": "Activation group",
+    "ceo": "CEO Advisory",
+    "expertise-hub": "Expertise hub",
+    "theme": "Expertise theme",
+    "sector": "Sector landing",
+    "work-hub": "Work hub",
+    "case": "Case study",
+    "insights-hub": "Thinking hub",
+    "insight": "Article",
+    "report": "Report",
+    "about": "About",
+    "team": "People listing",
+    "profile": "Profile",
+    "how": "Our approach",
+    "values": "Values and culture",
+    "careers": "Careers",
+    "role": "Role",
+    "contact": "Contact",
+    "thanks": "Confirmation",
+    "legal": "Utility page",
+    "notfound": "Not found",
+    "catalogue": "Component library",
+}
 
 
-def heading_map_html(page: dict) -> str:
-    alts = page.get("alts") or []
-    alts_html = (
-        "<ul>" + "".join(f"<li>{a}</li>" for a in alts) + "</ul>"
-        if alts
-        else "<p class=\"map-note\">None.</p>"
-    )
-    h2s = page.get("h2s") or []
-    h3s = page.get("h3s") or []
-    h2_html = "<ol>" + "".join(f"<li>{x}</li>" for x in h2s) + "</ol>" if h2s else "<p class=\"map-note\">None.</p>"
-    h3_html = "<ul>" + "".join(f"<li>{x}</li>" for x in h3s) + "</ul>" if h3s else "<p class=\"map-note\">None.</p>"
+def mod(name: str) -> str:
+    """Attribute pair that names a reusable component on the canvas."""
+    if name not in COMPONENTS:
+        raise SystemExit(f"Unknown component: {name}")
+    return f'data-module="{esc(name)}" title="{esc(name)}"'
+
+
+class _CanvasScan(HTMLParser):
+    """Walk a page body and list the components in each top-level block."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.blocks: list[dict] = []
+        self.depth = 0
+        self.cur: dict | None = None
+        self.cur_depth = 0
+        self.h2_buf: list[str] | None = None
+
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        if self.cur is None:
+            self.cur = dict(module=None, items=[], h2s=[], h3s=[])
+            self.cur_depth = self.depth
+            self.blocks.append(self.cur)
+            self.cur["module"] = a.get("data-module")
+        elif a.get("data-module"):
+            self.cur["items"].append(a["data-module"])
+        if tag in ("h2", "h3"):
+            self.h2_buf = []
+        if tag not in VOID_TAGS:
+            self.depth += 1
+
+    def handle_endtag(self, tag):
+        if tag in VOID_TAGS:
+            return
+        self.depth -= 1
+        if tag in ("h2", "h3") and self.h2_buf is not None and self.cur is not None:
+            self.cur[tag + "s"].append(" ".join("".join(self.h2_buf).split()))
+            self.h2_buf = None
+        if self.cur is not None and self.depth == self.cur_depth:
+            self.cur = None
+
+    def handle_data(self, data):
+        if self.h2_buf is not None:
+            self.h2_buf.append(data)
+
+
+VOID_TAGS = {"br", "hr", "img", "input", "meta", "link"}
+
+
+def _collapse(names: list[str]) -> list[str]:
+    out: list[tuple[str, int]] = []
+    for n in names:
+        if out and out[-1][0] == n:
+            out[-1] = (n, out[-1][1] + 1)
+        else:
+            out.append((n, 1))
+    return [f"{n} \u00d7{c}" if c > 1 else n for n, c in out]
+
+
+def component_inventory(body: str) -> list[tuple[str, str]]:
+    """(components, block context) per top-level block, in canvas order."""
+    scan = _CanvasScan()
+    scan.feed(body)
+    scan.close()
+    rows: list[tuple[str, str]] = []
+    for b in scan.blocks:
+        names = ([b["module"]] if b["module"] else []) + b["items"]
+        if not names:
+            names = ["Prose"]
+        unknown = [n for n in names if n not in COMPONENTS]
+        if unknown:
+            raise SystemExit(f"Unknown component(s) on canvas: {unknown}")
+        context = " / ".join(b["h2s"] or b["h3s"])
+        rows.append((", ".join(_collapse(names)), context))
+    return rows
+
+
+def sidebar_html(page: dict, body: str) -> str:
+    e = esc
+    url = page["url"]
+    sitemap = os.path.relpath("sitemap.html", file_dir(url))
+    catalogue = os.path.relpath("catalogue/index.html", file_dir(url))
+
+    def links(items):
+        return ", ".join(f'<a href="{rel_href(url, u)}">{e(n)}</a>' for n, u in items)
+
     primary = page.get("primary") or "none"
-    sitemap = os.path.relpath("sitemap.html", file_dir(page["url"]))
-    catalogue = os.path.relpath("catalogue/index.html", file_dir(page["url"]))
+    alts = page.get("alts") or []
+    kw = f"<p>Primary: {e(primary)}</p>"
+    if alts:
+        kw += "<ul>" + "".join(f"<li>{e(a)}</li>" for a in alts) + "</ul>"
+
+    rows = [
+        f'<p class="k"><strong>URL</strong><code>{e(url)}</code></p>',
+        f'<p class="k"><strong>Template</strong>{e(KIND_LABELS[page["kind"]])}. '
+        f'{e(page["weight"])}: {e(WEIGHT_GLOSS[page["weight"]])}.</p>',
+        f'<p class="k"><strong>H1</strong>{e(page["h1"])}</p>',
+        f'<div class="k"><strong>Keywords</strong>{kw}</div>',
+    ]
+    if page.get("quiet"):
+        rows.append(f'<p class="k"><strong>Menu subtitle</strong>{e(page["quiet"])}</p>')
+    h2s = page.get("h2s") or []
+    h2_html = "<ol>" + "".join(f"<li>{e(x)}</li>" for x in h2s) + "</ol>" if h2s else "<p>None. H1 only.</p>"
+    rows.append(f'<div class="k"><strong>H2s (ordered)</strong>{h2_html}</div>')
+    h3s = page.get("h3s") or []
+    if h3s:
+        rows.append('<div class="k"><strong>H3s</strong><ul>' + "".join(f"<li>{e(x)}</li>" for x in h3s) + "</ul></div>")
+    rows.append(f'<p class="k"><strong>Intent</strong>{e(page["intent"])}</p>')
+    notes = page.get("notes") or []
+    if notes:
+        rows.append('<div class="k"><strong>Content notes</strong><ul>' + "".join(f"<li>{e(n)}</li>" for n in notes) + "</ul></div>")
+    rel = []
+    for label, items in (("Expertise", page.get("themes")), ("Sectors", page.get("sectors")), ("Services", page.get("services"))):
+        if items:
+            rel.append(f"{label}: {links(items)}")
+    if rel:
+        rows.append('<p class="k"><strong>Links to</strong>' + " · ".join(rel) + "</p>")
+
+    inv = page["_components"] = component_inventory(body)
+    comp_rows = "".join(
+        f'<li><span class="mods">{e(names)}</span>'
+        + (f'<span class="blk">{e(ctx)}</span>' if ctx else "")
+        + "</li>"
+        for names, ctx in inv
+    )
     return f"""
-<div class="heading-map">
-  <h2>Heading map</h2>
-  <p class="map-note"><a href="{sitemap}">All pages</a> · <a href="{catalogue}">Page modules</a></p>
-  <p class="k"><strong>URL</strong><code>{page["url"]}</code></p>
-  <p class="k"><strong>H1 (one)</strong>{page["h1"]}</p>
-  <p class="k"><strong>Primary keyword</strong>{primary}</p>
-  <div class="k"><strong>Alts (2 to 4)</strong>{alts_html}</div>
-  <div class="k"><strong>H2s (ordered)</strong>{h2_html}</div>
-  <div class="k"><strong>H3s where useful</strong>{h3_html}</div>
-  <p class="intent"><strong>Intent.</strong> {page["intent"]}</p>
-</div>
-"""
+  <aside class="sidebar" aria-label="Page fundamentals and components">
+    <section class="panel">
+      <h2>Page fundamentals</h2>
+      <p class="map-note"><a href="{sitemap}">All pages</a> · <a href="{catalogue}">Component library</a></p>
+      {"".join(rows)}
+    </section>
+    <section class="panel">
+      <h2>Components on this page</h2>
+      <p class="map-note">In canvas order. Block heading on the right where the block has one.</p>
+      <ol class="comp">{comp_rows}</ol>
+      <p class="map-note">{e(CHROME_LINE)} Names match the <a href="{catalogue}">component library</a>.</p>
+    </section>
+  </aside>"""
 
 
 def header_html(from_url: str, section: str) -> str:
@@ -280,13 +441,7 @@ def wrap(page: dict, body: str) -> str:
     js = asset(url, "nav.js")
     solo = page.get("kind") == "catalogue" or page.get("no_sidebar")
     layout_cls = "layout layout-solo" if solo else "layout"
-    sidebar = ""
-    if not solo:
-        sidebar = f"""
-  <aside class="sidebar" aria-label="Working notes">
-    {notes_html(page)}
-    {heading_map_html(page)}
-  </aside>"""
+    sidebar = "" if solo else sidebar_html(page, body)
     return f"""<!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -315,21 +470,26 @@ def wrap(page: dict, body: str) -> str:
 """
 
 
-def card(h, href, title, sub, extra=""):
-    cls = "card"
-    inner = ""
-    if extra == "flat" or extra == "offer":
-        cls = "card offer"
-    elif extra == "article":
-        cls = "card article"
-    elif extra == "person":
-        cls = "card person"
-        inner = '<div class="avatar"></div>'
-    elif extra == "ph":
-        inner = '<div class="ph">Image</div>'
-    elif extra == "doc":
-        inner = '<div class="doc">Report</div>'
-    return f'<a class="{cls}" href="{h(href)}">{inner}<strong>{title}</strong><span>{sub}</span></a>'
+CARD_KINDS = {
+    # extra: (class, inner placeholder, component name)
+    "offer": ("card offer", "", "Offer card"),
+    "theme": ("card theme", "", "Theme card"),
+    "role": ("card role", "", "Role card"),
+    "article": ("card article", "", "Article card"),
+    "person": ("card person", '<div class="avatar"></div>', "Person card"),
+    "ph": ("card", '<div class="ph">Image</div>', "Case card"),
+    "doc": ("card", '<div class="doc">Report</div>', "Report card"),
+}
+
+
+def card(h, href, title, sub, extra="offer"):
+    cls, inner, name = CARD_KINDS[extra]
+    return f'<a class="{cls}" {mod(name)} href="{h(href)}">{inner}<strong>{title}</strong><span>{sub}</span></a>'
+
+
+def tags_html(h, items):
+    inner = "".join(f'<a href="{h(u)}" {mod("Page tag")}>{n}</a>' for n, u in items)
+    return f'<div class="page-tags">{inner}</div>'
 
 
 def filter_bar(items, on=None, more=False):
@@ -339,7 +499,7 @@ def filter_bar(items, on=None, more=False):
         bits.append(f'<button type="button" class="{cls}">{label}</button>')
     if more:
         bits.append('<button type="button" class="filter more">More filters</button>')
-    return f'<div class="filters">{"".join(bits)}</div>'
+    return f'<div class="filters" {mod("Filter bar")}>{"".join(bits)}</div>'
 
 
 def pagination_html(pages=("1", "2", "3"), next_label="Next"):
@@ -350,53 +510,84 @@ def pagination_html(pages=("1", "2", "3"), next_label="Next"):
         else:
             bits.append(f'<a href="#">{p}</a>')
     bits.append(f'<a href="#">{next_label}</a>')
-    return f'<div class="pagination" aria-label="Pagination">{"".join(bits)}</div>'
+    return f'<div class="pagination" {mod("Pagination")} aria-label="Pagination">{"".join(bits)}</div>'
+
+
+def empty_html(message, btn_href, btn_label="Clear filters"):
+    return f"""
+          <div class="empty-state" {mod("Empty state")}>
+            <p>{message}</p>
+            <a class="btn" href="{btn_href}">{btn_label}</a>
+          </div>"""
 
 
 def empty_stub(message, btn_href, btn_label="Clear filters"):
     return f"""
         <section class="block">
-          <span class="wf-label">Empty state (stub: hide when results exist)</span>
-          <div class="empty-state">
-            <p>{message}</p>
-            <a class="btn" href="{btn_href}">{btn_label}</a>
-          </div>
+          <span class="wf-label">Conditional: shown only when there are no results</span>
+          {empty_html(message, btn_href, btn_label)}
         </section>
 """
 
 
-def unit(name, kind, purpose, sample):
+def form_html(fields, submit, href, extra=""):
+    rows = "".join(
+        f'<div class="field"><label>{label}</label><div class="box{(" " + box) if box else ""}">{text}</div></div>'
+        for label, box, text in fields
+    )
+    return f"""
+          <div class="form" {mod("Form")}>
+            {rows}{extra}
+            <a class="btn" href="{href}">{submit}</a>
+          </div>"""
+
+
+def unit(name, sample):
+    group, kind, purpose = COMPONENTS[name]
     slug = kind.lower().replace(" ", "-")
     return f"""
-          <div class="catalogue-item">
+          <div class="catalogue-item" id="{name.lower().replace(' ', '-').replace(':', '')}">
             <div class="unit-head">
-              <span class="cat-label">{name}</span>
+              <span class="cat-label">{esc(name)}</span>
               <span class="unit-kind unit-{slug}">{kind}</span>
             </div>
-            <p class="unit-purpose">{purpose}</p>
+            <p class="unit-purpose">{esc(purpose)}</p>
             {sample}
           </div>"""
 
 
 def logos_html(n=8, label="Logo"):
     cells = "".join(f'<span class="logo-ph">{label}</span>' for _ in range(n))
-    return f'<div class="logos" aria-label="{label}s">{cells}</div>'
+    return f'<div class="logos" {mod("Logo strip")} aria-label="{label}s">{cells}</div>'
 
 
 def video_html(label="Video"):
-    return f'<div class="video-ph" aria-label="{label}"><span>{label}</span></div>'
+    return f'<div class="video-ph" {mod("Video 16:9")} aria-label="{label}"><span>{label}</span></div>'
 
 
 def metrics_html(pairs):
     inner = "".join(
-        f'<div class="metric"><strong>{v}</strong><span>{l}</span></div>' for v, l in pairs
+        f'<div class="metric" {mod("Metric box")}><strong>{v}</strong><span>{l}</span></div>' for v, l in pairs
     )
     return f'<div class="metrics">{inner}</div>'
 
 
+def quote_html(text='"The work changed how we think about growth."', cite="Client"):
+    return f'<blockquote class="quote" {mod("Quote")}>{text}<cite>{cite}</cite></blockquote>'
+
+
+def cta_html(h, primary=("Contact", "/contact/"), secondary=("See our work", "/work/"), extra=""):
+    sec = f'<a class="text" href="{h(secondary[1])}">{secondary[0]}</a>' if secondary else ""
+    return f'<div class="cta" {mod("CTA pair")}><a class="btn" href="{h(primary[1])}">{primary[0]}</a>{sec}{extra}</div>'
+
+
+def hero_open(cls=""):
+    return f'<section class="block hero{(" " + cls) if cls else ""}" {mod("Hero")}>'
+
+
 def article_body():
-    return """
-        <div class="article-body">
+    return f"""
+        <div class="article-body" {mod("Article body")}>
           <p class="prose">Opening argument. Two or three sentences that set the problem.</p>
           <p class="prose">The view we take, and why the usual response fails.</p>
           <p class="prose">What we would do next, in brief, with a link to the relevant service.</p>
@@ -406,7 +597,7 @@ def article_body():
 
 def closing(h, line="Tell us about your growth challenge", cta="Contact", dest="/contact/", secondary_label="See our work", secondary_url="/work/"):
     return f"""
-        <section class="block closing">
+        <section class="block closing" {mod("Closing CTA band")}>
           <p>{line}</p>
           <div class="cta">
             <a class="btn" href="{h(dest)}">{cta}</a>
@@ -416,14 +607,16 @@ def closing(h, line="Tell us about your growth challenge", cta="Contact", dest="
 """
 
 
+def link_list(items):
+    inner = "".join(f'<li><a href="{u}">{label}</a>{("<span>" + meta + "</span>") if meta else ""}</li>' for label, u, meta in items)
+    return f'<ul class="list" {mod("Link list")}>{inner}</ul>'
+
+
 def related_thinking(h):
     return f"""
         <section class="block">
           <h2 class="sec">Related thinking</h2>
-          <ul class="list">
-            <li><a href="{h("/insights/pricing-paradox/")}">The Pricing Paradox</a><span>Report</span></li>
-            <li><a href="{h("/insights/loyalty-without-the-discount/")}">Loyalty without the discount</a><span>Article</span></li>
-          </ul>
+          {link_list([("The Pricing Paradox", h("/insights/pricing-paradox/"), "Report"), ("Loyalty without the discount", h("/insights/loyalty-without-the-discount/"), "Article")])}
           <a class="more" href="{h("/insights/")}">All thinking</a>
         </section>
 """
@@ -438,7 +631,7 @@ def civd_html(compact=False):
         ("Delivery", "Whether it can be executed."),
     ]
     inner = "".join(f'<div class="civd-cell"><strong>{n}</strong><span>{t}</span></div>' for n, t in cells)
-    return f'<div class="{cls}" aria-label="Customer, Innovation, Value and Delivery">{inner}</div>'
+    return f'<div class="{cls}" {mod("CIVD four-cell")} aria-label="Customer, Innovation, Value and Delivery">{inner}</div>'
 
 
 def thinking_feature(h):
@@ -454,6 +647,21 @@ def thinking_feature(h):
           </div>
         </section>
 """
+
+
+def tri_html(h, tiles, line=""):
+    inner = "".join(
+        f'<a href="{h(u) if u.startswith("/") else u}" {mod("Triangle tile")}><strong>{n}</strong><span>{s}</span></a>'
+        for n, u, s in tiles
+    )
+    return f'<div class="tri">{inner}</div>{line}'
+
+
+PILLAR_TILES = [
+    ("Growth Strategy", "/services/growth-strategy/", "Where and how you grow"),
+    ("Activation Services", "/services/activation/", "Turning strategy into results"),
+    ("CEO Advisory", "/services/ceo-advisory/", "One-to-one support for leaders"),
+]
 
 
 # ---------------------------------------------------------------------------
@@ -477,10 +685,17 @@ PAGES: list[dict] = [
         h1="Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth.",
         h2s=["Trusted partners", "What we do", "Our thinking", "Our work", "Awards", "Growth problems we know best"],
         h3s=[],
-        intent="Brand and router. Trusted partners sit high. Featured thinking sits after the triangle, not as a strip at the foot. FT awards sit lower, not in the hero. Do not replicate the reports grid here.",
+        intent="Brand and router. Says who Manifesto is for, shows the Growth Architecture triangle once, and routes into services, thinking, work and expertise. Everything here exists in full on another page.",
         crumbs=[],
         kind="home",
-        mural=["Trusted partners banner up", "FT not at the top", "No homepage reports grid", "Showreel visual at launch", "Client quotes with work", "Thinking after the offer, not only at the bottom"],
+        notes=[
+            "Showreel film sits in the hero",
+            "Trusted partners sit directly under the hero",
+            "Featured thinking (one report, one article) sits after the triangle and before Our work",
+            "Client quote sits with the work cards",
+            "Awards sit after Work",
+            "No long copy, no tags on cards, no reports grid",
+        ],
     ),
     dict(
         url="/services/",
@@ -496,9 +711,10 @@ PAGES: list[dict] = [
         h1="Our Growth Architecture",
         h2s=["Three ways we work with you", "Where are you starting from?", "Growth Strategy", "Activation Services", "CEO Advisory"],
         h3s=[],
-        intent="Name the system. Two ways in: capability (triangle) and problem (seven situations). Do not target individual service terms here.",
+        intent="Names the Growth Architecture system and routes to every service. Two ways in: by capability (the triangle) and by problem (seven situations).",
         crumbs=[("Home", "/"), ("What we do", None)],
         kind="hub",
+        notes=["Keyword targets for individual services stay on the service pages", "One case line per pillar; the CIVD frame is shown compact and links to its home on Growth Strategy"],
     ),
     dict(
         url="/services/growth-strategy/",
@@ -514,10 +730,10 @@ PAGES: list[dict] = [
         h1="Growth Strategy",
         h2s=["Why this, now", "What we do", "North Star", "Growth priorities", "Demand signals", "Scenario planning", "Customer, Innovation, Value and Delivery", "Proof", "How it works"],
         h3s=["Customer", "Innovation", "Value", "Delivery"],
-        intent="Lead offer. Keep the nav label. H2s take brand / GTM language only where the work is truly that. CIVD is the named frame. MURAL: keep CIVD, new visuals; it is the strategy frame, not Side-by-Side.",
+        intent="Lead offer. Owns growth strategy search. CIVD (Customer, Innovation, Value and Delivery) is the named frame and lives on this page.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Growth Strategy", None)],
         kind="service",
-        mural=["Keep CIVD, different visuals", "CIVD is strategy, not Side-by-Side"],
+        notes=["Brand and go-to-market language appears in H2s only where the work is truly that", "CIVD belongs to Growth Strategy, not to Side-by-Side"],
         hero="Customer-led growth strategy: where to focus and how to win",
         who="For leadership teams deciding where and how to grow.",
         aka=None,
@@ -543,7 +759,7 @@ PAGES: list[dict] = [
         h1="Proposition Innovation",
         h2s=["Why this, now", "Value proposition design", "Loyalty propositions", "Membership propositions", "Subscription propositions", "Direct-to-consumer propositions", "Proof", "How it works"],
         h3s=[],
-        intent="Keep Manifesto label in the H1. Put value / proposition design in the strand subtitle, hero and H2s so search can see it. Each proposition type hands off to its theme.",
+        intent="Manifesto label in the H1; value proposition design in the menu subtitle, hero and H2s so search can see it. Each proposition type hands off to its expertise theme.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Proposition Innovation", None)],
         kind="service",
         hero="New offers and business models: loyalty, membership, subscription, direct-to-consumer",
@@ -578,7 +794,7 @@ PAGES: list[dict] = [
         h1="Activation Services",
         h2s=["The bridge from strategy to results", "Which of the six do you need?", "The six Activation services"],
         h3s=[],
-        intent="Explain Activation and route. Catch problem-minded searchers in the six lines (journey mapping, operating model, interim leadership) without owning those terms.",
+        intent="Explains Activation and routes to the six services. Catches problem-minded searchers in the six lines (journey mapping, operating model, interim leadership) without owning those terms.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", None)],
         kind="activation",
         hero="Hands-on delivery that turns strategy into results",
@@ -598,10 +814,10 @@ PAGES: list[dict] = [
         h1="Customer Research and Insight",
         h2s=["Why this, now", "Customer research methods", "Customer journey mapping", "Research projects", "Always-on customer insight", "Proof", "How it works"],
         h3s=["Digital listening", "Qualitative research", "Quantitative research", "Customer data analytics", "Internal knowledge", "External market data"],
-        intent="Label stays. Lead with methods, journey mapping and insight outcomes, not only the consultancy noun. Customer Intelligence is the practice name on the page. MURAL: qual and quant evidence lives here.",
+        intent="Leads with research methods, journey mapping and insight outcomes, not only the consultancy noun. Customer Intelligence is the practice name on the page. Qualitative and quantitative evidence lives here.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", "/services/activation/"), ("Customer Research and Insight", None)],
         kind="service",
-        mural=["Qual and quant evidence"],
+        notes=["Analytical journey mapping lives here; design research lives on Experience Engineering"],
         hero="Research, surveys, analytics and customer listening, faster with AI",
         who="For teams who need one version of the customer truth.",
         aka="Our Customer Intelligence practice",
@@ -627,7 +843,7 @@ PAGES: list[dict] = [
         h1="Experience Engineering",
         h2s=["Why this, now", "Find", "Redesign", "Test", "Scale", "Customer experience (CX) design", "Website and digital product", "User research and testing", "Proof"],
         h3s=["Customer and value analytics (under research and testing)"],
-        intent="Keep the Manifesto label. Strand subtitle and H2s do the CX, website and journey-mapping job (Dayinsure / Key Group pattern). Find / Redesign / Test / Scale is How it works from the deck.",
+        intent="Manifesto label in the H1; the menu subtitle and H2s carry the CX, website and journey-mapping search terms (Dayinsure and Key Group are the proof). Find, Redesign, Test, Scale is the How it works sequence.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", "/services/activation/"), ("Experience Engineering", None)],
         kind="service",
         hero="Customer experience (CX), website and digital design, build and testing",
@@ -655,7 +871,7 @@ PAGES: list[dict] = [
         h1="AI Agents for Marketing",
         h2s=["Why this, now", "What we do", "AgentLab", "How it works", "Proof"],
         h3s=["Reporting and Analytics", "Data and Infrastructure", "Strategy and Planning", "Automation and Execution"],
-        intent="Stay marketing-qualified. AgentLab is the named catalogue on this page, not in the nav. Bare 'AI agents' is too generic to be the sole target.",
+        intent="Marketing-qualified AI page. AgentLab is the named agent catalogue on this page. Bare 'AI agents' is too generic to be the sole target.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", "/services/activation/"), ("AI Agents for Marketing", None)],
         kind="service",
         hero="AI-powered performance marketing, guided by experts",
@@ -683,7 +899,7 @@ PAGES: list[dict] = [
         h1="Operating Model Design",
         h2s=["Why this, now", "Target operating model", "Adaptive operating model", "Our Operating Architecture framework", "Proof", "How it works"],
         h3s=["High-quality data and tools", "New work units", "Orchestration: culture, value, capability"],
-        intent="Strongest Activation volume case after journey / CX. Use operating model / target operating model language in H1 support and H2s. Operating Architecture is the framework name on the page.",
+        intent="Strongest Activation search volume after journey and CX. Operating model and target operating model language in the H1 support line and H2s. Operating Architecture is the framework name on the page.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", "/services/activation/"), ("Operating Model Design", None)],
         kind="service",
         hero="How your teams, data and AI agents should work together",
@@ -711,7 +927,7 @@ PAGES: list[dict] = [
         h1="Growth Office",
         h2s=["Why this, now", "Interim growth team", "Then embed", "Culture", "Capability", "Value", "Proof", "How it works"],
         h3s=["Interim CMO and senior cover (where the engagement needs it)"],
-        intent="Keep Growth Office as the label. Strand subtitle and body must say interim / embedded growth team, and interim CMO where accurate. Do not SEO-target 'growth office' as the primary phrase.",
+        intent="Growth Office is the label; the menu subtitle and body say interim or embedded growth team, and interim CMO where accurate. The primary search phrase is interim growth team, not growth office.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", "/services/activation/"), ("Growth Office", None)],
         kind="service",
         hero="Interim growth team and programme office that gets strategy delivered",
@@ -739,7 +955,7 @@ PAGES: list[dict] = [
         h1="AI Enablement",
         h2s=["Why this, now", "AI skills and adoption", "Finding where AI pays off", "New business models with AI", "Proof", "How it works"],
         h3s=[],
-        intent="Thin but real niche. Own 'AI enablement' as primary. Support with adoption, skills and operating-change copy. Expert network named in body.",
+        intent="Thin but real niche. Owns 'AI enablement' as primary, supported by adoption, skills and operating-change copy. The expert network is named in the body.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", "/services/activation/"), ("AI Enablement", None)],
         kind="service",
         hero="AI skills, training and adoption: finding where AI pays off",
@@ -767,9 +983,10 @@ PAGES: list[dict] = [
         h1="CEO Advisory",
         h2s=["Why this, now", "Side-by-Side", "Our advisors", "How the retainer works"],
         h3s=["The named product (hero and this section, not a second URL)"],
-        intent="Nav stays CEO Advisory. Two mega-nav strands: Side-by-Side (the retainer) and Our advisors (the people). Proof is the people. Coaching language is adjacent, not the offer. SxS is not used on the site.",
+        intent="Relationship page at full weight. Two menu strands land here: Side-by-Side (the retainer) and Our advisors (the people). Proof is the people. Coaching language is adjacent, not the offer.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("CEO Advisory", None)],
         kind="ceo",
+        notes=["Side-by-Side is always written in full", "Quieter call to action: Arrange a conversation"],
         hero="One-to-one support for leaders. Side-by-Side.",
         who="For CEOs and senior leaders who want a sounding board they trust.",
     ),
@@ -787,9 +1004,10 @@ PAGES: list[dict] = [
         h1="Our expertise",
         h2s=["The growth problems we know best", "Latest insights across themes"],
         h3s=[],
-        intent="Index the five themes. Do not restate how services are delivered. Themes were not fully keyworded in the Sep 2026 pull.",
+        intent="Indexes the five expertise themes. Describes the growth problems, not how services are delivered.",
         crumbs=[("Home", "/"), ("Expertise", None)],
         kind="expertise-hub",
+        notes=["Theme titles were not fully keyworded in the Sep 2026 pull; second pass before URLs lock"],
     ),
 ]
 
@@ -875,9 +1093,10 @@ for slug, name, view, help_svcs, primary, alts, h2s in [
         h1=name,
         h2s=h2s,
         h3s=[],
-        intent="Prove we understand the problem, then hand off to services. Never describe how a service is delivered. Theme titles were not fully keyworded in this pull.",
+        intent="Proves we understand the problem, then hands off to services. Describes the problem, never how a service is delivered.",
         crumbs=[("Home", "/"), ("Expertise", "/expertise/"), (name, None)],
         kind="theme",
+        notes=["Theme titles were not fully keyworded in the Sep 2026 pull"],
         view=view,
         help_svcs=help_svcs,
     ))
@@ -938,9 +1157,10 @@ for slug, name, intro, used in [
         h1=name,
         h2s=["Clients", "Case studies", "Services most used here"],
         h3s=[],
-        intent="Reassure 'businesses like mine'. Short intro plus filtered proof. No sector POV essay. No sector-specific service descriptions.",
+        intent="Reassures 'businesses like mine': a short intro plus filtered proof.",
         crumbs=[("Home", "/"), (name, None)],
         kind="sector",
+        notes=["Light landing: no sector point-of-view essay and no sector-specific service descriptions"],
         intro=intro,
     ))
 
@@ -959,10 +1179,14 @@ PAGES += [
         h1="Our work",
         h2s=["Featured", "All case studies"],
         h3s=["Client quote (inside the case, not a testimonials page)"],
-        intent="Proof hub. Our clients is not a top-level nav item: proof lives here, sectors in the footer. Quotes and video snippets live in the case, not on Home.",
+        intent="Proof hub: every case study in one place, filterable by service first, then expertise and sector.",
         crumbs=[("Home", "/"), ("Our work", None)],
         kind="work-hub",
-        mural=["Case studies pulled up", "Quotes in cases", "Video snippets from the approach film", "Tagging"],
+        notes=[
+            "Sectors are filters here and links in the footer, not a nav item",
+            "Client quotes and film snippets live inside each case",
+            "Cases are tagged by service, expertise and sector; the tags drive these filters and the proof blocks on service, theme and sector pages",
+        ],
     ),
     dict(
         url="/work/dayinsure/",
@@ -978,10 +1202,10 @@ PAGES += [
         h1="Dayinsure",
         h2s=["At a glance", "The challenge", "What we did", "The result"],
         h3s=[],
-        intent="Shell for an Experience Engineering engagement. Links to service, theme and sector. Testimonials live here. No PDF.",
+        intent="Case study shell for an Experience Engineering engagement. Links to the service, theme and sector. The testimonial and film live here.",
         crumbs=[("Home", "/"), ("Our work", "/work/"), ("Dayinsure", None)],
         kind="case",
-        mural=["Integrate quotes", "Video snippet if it applies"],
+        notes=["Client quote and film snippet sit in The result", "Read on the page; no PDF download"],
         client="Dayinsure",
         result="Quote journey rebuilt; conversion and value up (figure TBC)",
         sector_name="Financial services",
@@ -1001,10 +1225,10 @@ PAGES += [
         h1="Key Group",
         h2s=["At a glance", "The challenge", "What we did", "The result"],
         h3s=[],
-        intent="Second case-study shell. Same template as Dayinsure. Tags drive the auto modules on service, theme and sector pages.",
+        intent="Second case study shell, same template as Dayinsure. Its tags place it in the proof blocks on service, theme and sector pages.",
         crumbs=[("Home", "/"), ("Our work", "/work/"), ("Key Group", None)],
         kind="case",
-        mural=["Integrate quotes", "Video snippet if it applies"],
+        notes=["Client quote and film snippet sit in The result", "Read on the page; no PDF download"],
         client="Key Group",
         result="Experience and offer working as one (figure TBC)",
         sector_name="Financial services",
@@ -1024,10 +1248,15 @@ PAGES += [
         h1="Our thinking",
         h2s=["Reports", "Articles", "Events and news"],
         h3s=["The Nutshell (newsletter)"],
-        intent="MURAL: merge blogs into Our thinking. Reports at the top, articles underneath. Events and news as a section (separate page only if resource allows). No PDFs: expand on the page.",
+        intent="Home of all thinking: reports first, then articles, then events and news. Reports read on the page.",
         crumbs=[("Home", "/"), ("Our thinking", None)],
         kind="insights-hub",
-        mural=["Reports at the top, blogs underneath", "Merged into Our thinking", "Events + latest news", "No more PDFs", "Do not replicate on Home"],
+        notes=[
+            "Articles and blog posts are one type here; there is no separate blog",
+            "Events and news is a section; a separate events page only if recap content sustains it",
+            "Reports expand on the page; no PDFs",
+            "Home shows one featured report and one article, not this grid",
+        ],
     ),
     dict(
         url="/insights/loyalty-without-the-discount/",
@@ -1043,10 +1272,10 @@ PAGES += [
         h1="Loyalty without the discount",
         h2s=["The problem", "What we think", "How we help"],
         h3s=[],
-        intent="Article shell. Dated point of view. Theme page stays the evergreen position. Related services as a block, not extra nav.",
+        intent="Article shell. A dated point of view; the theme page holds the evergreen position. Related services are a block, not extra nav.",
         crumbs=[("Home", "/"), ("Our thinking", "/insights/"), ("Loyalty without the discount", None)],
         kind="insight",
-        mural=["Article under Our thinking, not a separate blog nav"],
+        notes=["Lives under Our thinking; there is no separate blog section"],
     ),
     dict(
         url="/insights/pricing-paradox/",
@@ -1062,10 +1291,10 @@ PAGES += [
         h1="The Pricing Paradox: from tactical lever to growth engine",
         h2s=["What this report covers", "Read it on this page", "How we help"],
         h3s=[],
-        intent="Report shell. MURAL: no more PDFs; expand within the page. Gated download is a form if needed, not a file.",
+        intent="Report shell. The report reads on the page; an optional email form offers a copy.",
         crumbs=[("Home", "/"), ("Our thinking", "/insights/"), ("The Pricing Paradox", None)],
         kind="report",
-        mural=["No more PDFs", "Expand within the page", "Reports at the top of Our thinking"],
+        notes=["No PDF download; gating, if used, is a form not a file", "Reports lead the Our thinking hub"],
     ),
     dict(
         url="/about/",
@@ -1081,10 +1310,10 @@ PAGES += [
         h1="About Manifesto Growth Architects",
         h2s=["Who we are and our story", "How we are distinct", "Leadership", "Our approach"],
         h3s=["Origins", "C and N members"],
-        intent="Story, origins, and how the people mix of agency, client and strategy is distinct. Life at Manifesto is Careers, not duplicated here. Method teases Our approach.",
+        intent="Story, origins, and how the people mix of agency, client and strategy is distinct. Teases Our approach.",
         crumbs=[("Home", "/"), ("About", None)],
         kind="about",
-        mural=["Origins / history", "How we are distinct", "People combo of agency, client and strategy", "Do not duplicate Life at Manifesto", "C and N members section"],
+        notes=["Life at Manifesto lives on Careers; About links to it", "C and N members are a named group, detailed on Our people"],
     ),
     dict(
         url="/about/team/",
@@ -1100,10 +1329,10 @@ PAGES += [
         h1="Our people",
         h2s=["Leadership", "Consultants", "Side-by-Side advisors", "Associates, expert network and C and N members"],
         h3s=["Culture over headshots (visual note)"],
-        intent="Meet the team. MURAL asked to merge with Life at Manifesto; Source A keeps Careers separate. Cross-link instead. Mega-nav Our advisors still lands on CEO Advisory.",
+        intent="Meet the team: client-facing people grouped by role. Cross-links to Careers for Life at Manifesto and current opportunities.",
         crumbs=[("Home", "/"), ("About", "/about/"), ("Our people", None)],
         kind="team",
-        mural=["Meet the team", "Culture over headshots", "Not merged with Life at Manifesto (see gap check)", "Link to current opportunities"],
+        notes=["Culture over headshots in the visual treatment", "The menu strand Our advisors lands on CEO Advisory, not here"],
     ),
     dict(
         url="/about/team/advisor-one/",
@@ -1137,10 +1366,10 @@ PAGES += [
         h1="Our approach",
         h2s=["How we partner", "Growth partner videos", "Principles", "Engagement shapes", "Frameworks and tools", "Working with AI"],
         h3s=["Growth Architecture", "Customer, Innovation, Value and Delivery", "Operating Architecture", "AgentLab", "Side-by-Side"],
-        intent="Nav label Our approach. Method is never a product. Growth partner videos live here, not on Home. CIVD kept.",
+        intent="Method page: how we partner, principles, engagement shapes, and the five named frameworks, each pointing to its home page. Method is never a product.",
         crumbs=[("Home", "/"), ("About", "/about/"), ("Our approach", None)],
         kind="how",
-        mural=["Our approach, how we partner", "Move video here", "Growth partner videos", "Keep CIVD", "Qual and quant evidence"],
+        notes=["Growth partner films live here", "Qualitative and quantitative evidence is described on Customer Research and Insight"],
     ),
     dict(
         url="/about/values/",
@@ -1159,7 +1388,7 @@ PAGES += [
         intent="Light culture page. Careers is the jobs destination.",
         crumbs=[("Home", "/"), ("About", "/about/"), ("Values and culture", None)],
         kind="values",
-        mural=["DEI commitments; detail and hiring context also on Careers"],
+        notes=["DEI commitments here; hiring context on Careers"],
     ),
     dict(
         url="/careers/",
@@ -1175,10 +1404,16 @@ PAGES += [
         h1="Careers at Manifesto",
         h2s=["Life at Manifesto", "Diversity, equity and inclusion", "Benefits", "Open roles", "Not hiring for a listed role?"],
         h3s=["Career change framing", "We hire from multiple backgrounds", "Pioneers / recent joiners"],
-        intent="First-class nav item so Contact can be work-with-us and this page work-for-us. Life at Manifesto + roles on one page. No PDFs: expand role descriptions on the page.",
+        intent="First-class nav item: Contact is work with us, this page is work for us. Life at Manifesto and the open roles sit on one page.",
         crumbs=[("Home", "/"), ("Careers", None)],
         kind="careers",
-        mural=["Life at Manifesto", "DEI", "Benefits", "Career change framing", "No more PDFs", "Reach out if no open role", "Office visuals"],
+        notes=[
+            "Life at Manifesto, DEI and benefits sit above the roles",
+            "Career-change framing and multiple backgrounds in the copy",
+            "Role descriptions expand on the role page; no PDFs",
+            "Speculative applications go through Work for us on Contact",
+            "Studio film in the hero",
+        ],
     ),
     dict(
         url="/careers/growth-architect/",
@@ -1194,10 +1429,10 @@ PAGES += [
         h1="Growth Architect",
         h2s=["About the role", "How to apply"],
         h3s=[],
-        intent="Role shell. Expand the description on this page. No PDF. noindex when closed.",
+        intent="Role shell. The description reads on this page. noindex when the role closes.",
         crumbs=[("Home", "/"), ("Careers", "/careers/"), ("Growth Architect", None)],
         kind="role",
-        mural=["No more PDFs", "Expand description on the page"],
+        notes=["No PDF job description"],
     ),
     dict(
         url="/contact/",
@@ -1213,10 +1448,10 @@ PAGES += [
         h1="Contact",
         h2s=["Work with us", "Work for us", "Direct contact"],
         h3s=["The Nutshell"],
-        intent="Split: work with us (this form) and work for us (Careers). Newsletter is The Nutshell. FT awards are not here.",
+        intent="Two routes: work with us (the client form) and work for us (a speculative form; roles stay on Careers). Links to The Nutshell sign-up.",
         crumbs=[("Home", "/"), ("Contact", None)],
         kind="contact",
-        mural=["Split work with us / work for us", "The Nutshell", "Keep Email Mark as one tracked route"],
+        notes=["Email Mark stays as one tracked direct route", "Topic is a select, pre-filled from ?topic= where a service page linked here"],
     ),
     dict(
         url="/contact/thank-you/",
@@ -1250,11 +1485,10 @@ PAGES += [
         h1="The Nutshell",
         h2s=["Sign up"],
         h3s=[],
-        intent="Email capture. Current site name for the newsletter. Indexed utility.",
+        intent="Email capture for the newsletter, which is called The Nutshell. Indexed utility page.",
         crumbs=[("Home", "/"), ("The Nutshell", None)],
         kind="legal",
         blurb="The Nutshell: events, thought leadership and what has caught our attention.",
-        mural=["Named newsletter from the current contact form"],
     ),
 ]
 
@@ -1306,29 +1540,20 @@ PAGES.append(dict(
 
 PAGES.append(dict(
     url="/catalogue/",
-    title="Page modules",
+    title="Component library",
     section="home",
     weight="Utility",
     primary="none (wireframe index, not a live URL)",
-    alts=["Not a client sitemap item. Linked from All pages."],
+    alts=["Not a client sitemap item. Linked from All pages and from every sidebar."],
     quiet=None,
     themes=[],
     sectors=[],
     services=[],
-    h1="Page modules",
-    h2s=[
-        "How to read these units",
-        "Chrome",
-        "Heroes and bands",
-        "Cards",
-        "Lists and locators",
-        "Proof and media",
-        "Forms",
-        "Do not mix",
-    ],
+    h1="Component library",
+    h2s=["How to read this library"] + COMPONENT_GROUPS + ["Do not mix"],
     h3s=[],
-    intent="Wireframe index of live page modules and blocks. Not a proposed live client URL. No working notes sidebar.",
-    crumbs=[("Home", "/"), ("Page modules", None)],
+    intent="Wireframe-only index of the reusable components used on every page: one name and one shape per component. Not a proposed live client URL.",
+    crumbs=[("Home", "/"), ("Component library", None)],
     kind="catalogue",
 ))
 
@@ -1340,13 +1565,10 @@ def body_for(page: dict) -> str:
 
     if kind == "home":
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>{page["h1"]}</h1>
           <p>Strategy that works. Execution that delivers.</p>
-          <div class="cta">
-            <a class="btn" href="{h("/contact/")}">Contact</a>
-            <a class="text" href="{h("/services/")}">What we do</a>
-          </div>
+          {cta_html(h, ("Contact", "/contact/"), ("What we do", "/services/"))}
           {video_html("Showreel")}
         </section>
         <section class="block">
@@ -1355,22 +1577,16 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="sec">What we do</h2>
-          <div class="tri">
-            <a href="{h("/services/growth-strategy/")}"><strong>Growth Strategy</strong><span>Where and how you grow</span></a>
-            <a href="{h("/services/activation/")}"><strong>Activation Services</strong><span>Turning strategy into results</span></a>
-            <a href="{h("/services/ceo-advisory/")}"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
-          </div>
-          <p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside. <a href="{h("/services/")}">Our Growth Architecture</a></p>
+          {tri_html(h, PILLAR_TILES, f'<p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside. <a href="{h("/services/")}">Our Growth Architecture</a></p>')}
         </section>
         {thinking_feature(h)}
         <section class="block">
           <h2 class="sec">Our work</h2>
-          <div class="cards">
+          <div class="cards two">
             {card(h, "/work/dayinsure/", "Dayinsure", "One-line result", "ph")}
             {card(h, "/work/key-group/", "Key Group", "One-line result", "ph")}
-            {card(h, "/work/", "More work", "All case studies", "ph")}
           </div>
-          <blockquote class="quote">"The work changed how we think about growth."<cite>Dayinsure</cite></blockquote>
+          {quote_html(cite="Dayinsure")}
           <a class="more" href="{h("/work/")}">All work</a>
         </section>
         <section class="block">
@@ -1379,7 +1595,7 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="sec">Growth problems we know best</h2>
-          <div class="row-links">
+          <div class="row-links" {mod("Row of text links")}>
             <a href="{h("/expertise/loyalty/")}">Loyalty</a>
             <a href="{h("/expertise/membership/")}">Membership</a>
             <a href="{h("/expertise/subscriptions/")}">Subscriptions</a>
@@ -1392,7 +1608,7 @@ def body_for(page: dict) -> str:
 
     if kind == "hub":
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <span class="eyebrow">What we do</span>
           <h1>Our Growth Architecture</h1>
           <p>Strategy that works. Execution that delivers.</p>
@@ -1401,16 +1617,11 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="sec">Three ways we work with you</h2>
-          <div class="tri">
-            <a href="#hub-gs"><strong>Growth Strategy</strong><span>Where and how you grow</span></a>
-            <a href="#hub-act"><strong>Activation Services</strong><span>Turning strategy into results</span></a>
-            <a href="#hub-ceo"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
-          </div>
-          <p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside.</p>
+          {tri_html(h, [(n, a, s) for (n, _, s), a in zip(PILLAR_TILES, ("#hub-gs", "#hub-act", "#hub-ceo"))], '<p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside.</p>')}
         </section>
         <section class="block">
           <h2 class="plain">Where are you starting from?</h2>
-          <ul class="situations">
+          <ul class="situations" {mod("Situations list")}>
             <li><a href="{h("/services/growth-strategy/")}">We need to decide where and how to grow</a></li>
             <li><a href="{h("/services/proposition-innovation/")}">We need a new proposition, loyalty or membership offer</a></li>
             <li><a href="{h("/services/customer-research/")}">We need to understand our customers better</a></li>
@@ -1425,26 +1636,26 @@ def body_for(page: dict) -> str:
           <p class="line">Where and how you grow</p>
           <p class="sentence">We work out where the growth is and design the propositions that win it, using our <a href="{h("/services/growth-strategy/#civd")}">Customer, Innovation, Value and Delivery</a> frame.</p>
           {civd_html(compact=True)}
-          <p class="case-line" style="margin-top:12px">The frame lives on Growth Strategy. Next: <a href="{h("/services/growth-strategy/#civd")}">Open the CIVD module</a></p>
+          <p class="link-line" {mod("Link line")}>The frame lives on Growth Strategy. <a href="{h("/services/growth-strategy/#civd")}">See the CIVD frame</a></p>
           <div class="cards two">
-            {card(h, "/services/growth-strategy/", "Growth Strategy", "Customer-led growth strategy: where to focus and how to win", "flat")}
-            {card(h, "/services/proposition-innovation/", "Proposition Innovation", "Value proposition design: loyalty, membership, subscription, direct-to-consumer", "flat")}
+            {card(h, "/services/growth-strategy/", "Growth Strategy", "Customer-led growth strategy: where to focus and how to win", "offer")}
+            {card(h, "/services/proposition-innovation/", "Proposition Innovation", "Value proposition design: loyalty, membership, subscription, direct-to-consumer", "offer")}
           </div>
-          <p class="case-line">Key Group, one-line result. <a href="{h("/work/key-group/")}">Read the case study</a></p>
+          <p class="case-line" {mod("Case line")}>Key Group, one-line result. <a href="{h("/work/key-group/")}">Read the case study</a></p>
         </section>
         <section class="block pillar-sec" id="hub-act">
           <h2 class="plain"><a href="{h("/services/activation/")}">Activation Services</a></h2>
           <p class="line">Turning strategy into results</p>
           <p class="sentence">We build the bridge from strategy to results: new operating models and AI-powered, human-led delivery. <a href="{h("/services/activation/")}">Which of the six do you need?</a></p>
           <div class="cards">
-            {card(h, "/services/customer-research/", "Customer Research and Insight", "Research, surveys, analytics and customer listening, faster with AI", "flat")}
-            {card(h, "/services/experience-engineering/", "Experience Engineering", "Customer experience (CX), website and digital design, build and testing", "flat")}
-            {card(h, "/services/ai-agents-for-marketing/", "AI Agents for Marketing", "AI marketing agents that clean data and improve performance, guided by experts", "flat")}
-            {card(h, "/services/operating-model-design/", "Operating Model Design", "Target operating model: how teams, data and AI agents work together", "flat")}
-            {card(h, "/services/growth-office/", "Growth Office", "Interim growth team and programme office that gets strategy delivered", "flat")}
-            {card(h, "/services/ai-enablement/", "AI Enablement", "AI skills, training and adoption: finding where AI pays off", "flat")}
+            {card(h, "/services/customer-research/", "Customer Research and Insight", "Research, surveys, analytics and customer listening, faster with AI", "offer")}
+            {card(h, "/services/experience-engineering/", "Experience Engineering", "Customer experience (CX), website and digital design, build and testing", "offer")}
+            {card(h, "/services/ai-agents-for-marketing/", "AI Agents for Marketing", "AI marketing agents that clean data and improve performance, guided by experts", "offer")}
+            {card(h, "/services/operating-model-design/", "Operating Model Design", "Target operating model: how teams, data and AI agents work together", "offer")}
+            {card(h, "/services/growth-office/", "Growth Office", "Interim growth team and programme office that gets strategy delivered", "offer")}
+            {card(h, "/services/ai-enablement/", "AI Enablement", "AI skills, training and adoption: finding where AI pays off", "offer")}
           </div>
-          <p class="case-line">Dayinsure, one-line result. <a href="{h("/work/dayinsure/")}">Read the case study</a></p>
+          <p class="case-line" {mod("Case line")}>Dayinsure, one-line result. <a href="{h("/work/dayinsure/")}">Read the case study</a></p>
         </section>
         <section class="block pillar-sec" id="hub-ceo">
           <h2 class="plain"><a href="{h("/services/ceo-advisory/")}">CEO Advisory</a></h2>
@@ -1458,7 +1669,7 @@ def body_for(page: dict) -> str:
           <a class="more" href="{h("/services/ceo-advisory/#advisors")}">Our advisors</a>
         </section>
         <section class="block">
-          <p class="one-line">We apply these services to the growth problems we know best. <a href="{h("/expertise/")}">Our expertise</a></p>
+          <p class="one-line" {mod("Link line")}>We apply these services to the growth problems we know best. <a href="{h("/expertise/")}">Our expertise</a></p>
         </section>
         {closing(h)}
 """
@@ -1472,15 +1683,15 @@ def body_for(page: dict) -> str:
             ("Growth Office", "/services/growth-office/", "You need an interim growth team, and sometimes an interim CMO, to get the strategy delivered and the value tracked."),
             ("AI Enablement", "/services/ai-enablement/", "You want your people to use AI well and to find where it pays off."),
         ]
-        lines = "".join(f'<li><a href="{h(u)}"><strong>{n}.</strong> {t}</a></li>' for n, u, t in six)
-        cards = "".join(card(h, u, n, t.split(".")[0], "flat") for n, u, t in six)
+        lines = link_list([(f"<strong>{n}.</strong> {t}", h(u), "") for n, u, t in six])
+        cards = "".join(card(h, u, n, t.split(".")[0], "offer") for n, u, t in six)
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <span class="eyebrow">Activation Services</span>
           <h1>Activation Services</h1>
           <p>{page["hero"]}</p>
           <p class="who">{page["who"]}</p>
-          <div class="cta"><a class="btn" href="{h("/contact/")}">Contact</a><a class="text" href="{h("/work/")}">See our work</a></div>
+          {cta_html(h)}
         </section>
         <section class="block">
           <h2 class="plain">The bridge from strategy to results</h2>
@@ -1488,7 +1699,7 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="plain">Which of the six do you need?</h2>
-          <ul class="list">{lines}</ul>
+          {lines}
         </section>
         <section class="block">
           <h2 class="plain">The six Activation services</h2>
@@ -1522,10 +1733,8 @@ def body_for(page: dict) -> str:
             if page.get("pillar") else ""
         )
         extra = service_module(page, h)
-        theme_tags = "".join(
-            f'<a href="{h(u)}">{n}</a>' for n, u in (page.get("themes") or [])[:3]
-        )
-        rel_svcs = "".join(card(h, u, n, "Often bought alongside", "flat") for n, u in (page.get("services") or [])[:3])
+        theme_tags = tags_html(h, (page.get("themes") or [])[:3])
+        rel_svcs = "".join(card(h, u, n, "Often bought alongside", "offer") for n, u in (page.get("services") or [])[:3])
         what_h2 = page["h2s"][1]
         what_block = ""
         if what_h2 in ("What we do", "Value proposition design"):
@@ -1535,18 +1744,18 @@ def body_for(page: dict) -> str:
           <p class="prose">What we do in this service, in plain words.</p>
         </section>"""
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>{page["h1"]}</h1>
           {aka}
           <p>{page["hero"]}</p>
           <p class="who">{page["who"]}</p>
           {nums}
           {pillar}
-          <div class="cta"><a class="btn" href="{h("/contact/")}">Contact</a><a class="text" href="{h("/work/")}">See our work</a></div>
+          {cta_html(h)}
         </section>
         <section class="block">
           <h2 class="plain">Why this, now</h2>
-          <ul class="situations">{sits}</ul>
+          <ul class="situations" {mod("Situations list")}>{sits}</ul>
           <p class="prose">Two to four short paragraphs on why this matters now.</p>
         </section>
         {what_block}
@@ -1561,7 +1770,7 @@ def body_for(page: dict) -> str:
         {extra}
         <section class="block">
           <h2 class="sec">Related expertise</h2>
-          <div class="page-tags">{theme_tags}</div>
+          {theme_tags}
         </section>
         <section class="block">
           <h2 class="sec">Related services</h2>
@@ -1569,25 +1778,22 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="sec">Related thinking</h2>
-          <ul class="list">
-            <li><a href="{h("/insights/pricing-paradox/")}">The Pricing Paradox</a><span>Report</span></li>
-            <li><a href="{h("/insights/loyalty-without-the-discount/")}">Loyalty without the discount</a><span>Article</span></li>
-          </ul>
+          {link_list([("The Pricing Paradox", h("/insights/pricing-paradox/"), "Report"), ("Loyalty without the discount", h("/insights/loyalty-without-the-discount/"), "Article")])}
         </section>
         {closing(h)}
 """
 
     if kind == "ceo":
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>CEO Advisory</h1>
           <p>{page["hero"]}</p>
           <p class="who">{page["who"]}</p>
-          <div class="cta"><a class="btn" href="{h("/contact/")}">Arrange a conversation</a><a class="text" href="{h("/work/")}">See our work</a></div>
+          {cta_html(h, ("Arrange a conversation", "/contact/"))}
         </section>
         <section class="block">
           <h2 class="plain">Why this, now</h2>
-          <ul class="situations">
+          <ul class="situations" {mod("Situations list")}>
             <li>I want a sounding board I trust</li>
             <li>Driving customer-led growth is demanding and lonely</li>
             <li>I need advice on speed-dial, not another consulting project</li>
@@ -1618,7 +1824,7 @@ def body_for(page: dict) -> str:
 
     if kind == "expertise-hub":
         cards = "".join(
-            card(h, f"/expertise/{s}/", n, "Cases and thinking", "flat")
+            card(h, f"/expertise/{s}/", n, "Cases and thinking", "theme")
             for s, n in [
                 ("loyalty", "Loyalty"),
                 ("membership", "Membership"),
@@ -1628,7 +1834,7 @@ def body_for(page: dict) -> str:
             ]
         )
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>Our expertise</h1>
           <p>The growth problems we are known for. Each cuts across services and sectors.</p>
         </section>
@@ -1638,19 +1844,13 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="plain">Latest thinking across themes</h2>
-          <ul class="list">
-            <li><a href="{h("/insights/loyalty-without-the-discount/")}">Loyalty without the discount</a><span>Article</span></li>
-            <li><a href="{h("/insights/pricing-paradox/")}">The Pricing Paradox</a><span>Report</span></li>
-          </ul>
+          {link_list([("Loyalty without the discount", h("/insights/loyalty-without-the-discount/"), "Article"), ("The Pricing Paradox", h("/insights/pricing-paradox/"), "Report")])}
         </section>
         {closing(h)}
 """
 
     if kind == "theme":
-        helps = "".join(
-            f'<li><a href="{h(u)}"><strong>{n}.</strong> {line}</a></li>'
-            for n, u, line in page["help_svcs"]
-        )
+        helps = link_list([(f"<strong>{n}.</strong> {line}", h(u), "") for n, u, line in page["help_svcs"]])
         others = " ".join(
             f'<a href="{h(u)}">{n}</a>'
             for n, u in [
@@ -1663,10 +1863,10 @@ def body_for(page: dict) -> str:
             if n != page["h1"]
         )
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>{page["h1"]}</h1>
           <p>{page["view"]}</p>
-          <div class="cta"><a class="btn" href="{h("/contact/")}">Contact</a><a class="text" href="{h("/work/")}">See our work</a></div>
+          {cta_html(h)}
         </section>
         <section class="block">
           <h2 class="plain">Our view</h2>
@@ -1674,7 +1874,7 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="plain">Where we help</h2>
-          <ul class="list">{helps}</ul>
+          {helps}
         </section>
         <section class="block">
           <h2 class="plain">Proof</h2>
@@ -1685,22 +1885,20 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="plain">Insights</h2>
-          <ul class="list">
-            <li><a href="{h("/insights/loyalty-without-the-discount/")}">Loyalty without the discount</a><span>Article</span></li>
-          </ul>
+          {link_list([("Loyalty without the discount", h("/insights/loyalty-without-the-discount/"), "Article")])}
           <a class="more" href="{h("/insights/")}">All thinking</a>
         </section>
         <section class="block">
           <h2 class="sec">Related themes</h2>
-          <div class="row-links">{others}</div>
+          <div class="row-links" {mod("Row of text links")}>{others}</div>
         </section>
         {closing(h)}
 """
 
     if kind == "sector":
-        used = "".join(f'<li><a href="{h(u)}">{n}</a></li>' for n, u in page["services"])
+        used = link_list([(n, h(u), "") for n, u in page["services"]])
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>{page["h1"]}</h1>
           <p class="body">{page["intro"]}</p>
         </section>
@@ -1718,7 +1916,7 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="plain">Services most used here</h2>
-          <ul class="list">{used}</ul>
+          {used}
         </section>
         {related_thinking(h)}
         {closing(h)}
@@ -1726,7 +1924,7 @@ def body_for(page: dict) -> str:
 
     if kind == "work-hub":
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>Our work</h1>
           <p>Case studies from recent engagements.</p>
         </section>
@@ -1735,12 +1933,12 @@ def body_for(page: dict) -> str:
           <div class="cards two">
             {card(h, "/work/dayinsure/", "Dayinsure", "Quote journey rebuilt", "ph")}
           </div>
-          <blockquote class="quote">"The work changed how we think about growth."<cite>Client</cite></blockquote>
+          {quote_html()}
         </section>
         <section class="block">
           <h2 class="plain">All case studies</h2>
-          {filter_bar(["All services", "Growth Strategy", "Experience Engineering", "Customer Research and Insight"], on="All services")}
-          <span class="wf-label">Revealed state: Expertise and Sector (More filters)</span>
+          {filter_bar(["All services", "Growth Strategy", "Experience Engineering", "Customer Research and Insight"], on="All services", more=True)}
+          <span class="wf-label">Revealed by More filters: Expertise and Sector</span>
           {filter_bar(["Loyalty", "Pricing", "Financial services", "Consumer"])}
           <div class="cards">
             {card(h, "/work/dayinsure/", "Dayinsure", "Experience Engineering", "ph")}
@@ -1754,17 +1952,13 @@ def body_for(page: dict) -> str:
 """
 
     if kind == "case":
-        svc_tags = "".join(
-            f'<a href="{h(u)}">{n}</a>' for n, u in (page.get("services") or [])[:3]
-        )
-        theme_tags = "".join(
-            f'<a href="{h(u)}">{n}</a>' for n, u in (page.get("themes") or [])[:3]
-        )
+        svc_tags = tags_html(h, (page.get("services") or [])[:3])
+        theme_tags = tags_html(h, (page.get("themes") or [])[:3])
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>{page["client"]}</h1>
           <p>{page["result"]}</p>
-          <div class="page-tags">{svc_tags}</div>
+          {svc_tags}
         </section>
         <section class="block">
           <h2 class="plain">At a glance</h2>
@@ -1782,12 +1976,12 @@ def body_for(page: dict) -> str:
           <h2 class="plain">The result</h2>
           <p class="prose">Outcomes, quantified where permitted.</p>
           <h3 class="plain">Client quote</h3>
-          <blockquote class="quote">"The work changed how we think about growth."<cite>Client</cite></blockquote>
+          {quote_html()}
           {video_html("Film")}
         </section>
         <section class="block">
           <h2 class="sec">Related expertise</h2>
-          <div class="page-tags">{theme_tags}</div>
+          {theme_tags}
         </section>
         {related_thinking(h)}
         {closing(h)}
@@ -1795,7 +1989,7 @@ def body_for(page: dict) -> str:
 
     if kind == "insights-hub":
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>Our thinking</h1>
           <p>Reports, articles, events and news.</p>
         </section>
@@ -1808,8 +2002,8 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block" id="articles">
           <h2 class="plain">Articles</h2>
-          {filter_bar(["All types", "Article", "Report", "Event"], on="All types")}
-          <span class="wf-label">Revealed state: Expertise, Service and Sector (More filters)</span>
+          {filter_bar(["All types", "Article", "Report", "Event"], on="All types", more=True)}
+          <span class="wf-label">Revealed by More filters: Expertise, Service and Sector</span>
           {filter_bar(["Loyalty", "Pricing", "Growth Strategy", "Financial services"])}
           <div class="cards two">
             {card(h, "/insights/loyalty-without-the-discount/", "Loyalty without the discount", "Article · Loyalty", "article")}
@@ -1820,15 +2014,13 @@ def body_for(page: dict) -> str:
         <section class="block" id="events">
           <h2 class="plain">Events and news</h2>
           <p class="prose">Launch events and recaps. A separate events page only if there is enough recap content to sustain it.</p>
-          <ul class="list">
-            <li><a href="{h("/insights/pricing-paradox/")}">Pricing Paradox launch event</a><span>Event</span></li>
-          </ul>
+          {link_list([("Pricing Paradox launch event", h("/insights/pricing-paradox/"), "Event")])}
           <h3 class="plain">The Nutshell</h3>
           <p class="prose">Events, thought leadership and what has caught our attention. <a href="{h("/newsletter/")}">Sign up to The Nutshell</a></p>
         </section>
         <section class="block">
           <h2 class="sec">Related services</h2>
-          <div class="row-links">
+          <div class="row-links" {mod("Row of text links")}>
             <a href="{h("/services/")}">What we do</a>
             <a href="{h("/expertise/")}">Expertise</a>
             <a href="{h("/work/")}">Our work</a>
@@ -1839,10 +2031,10 @@ def body_for(page: dict) -> str:
 
     if kind == "insight":
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>{page["h1"]}</h1>
           <p class="who">Article · Date · 6 min · Author</p>
-          <div class="page-tags"><a href="{h("/expertise/loyalty/")}">Loyalty</a></div>
+          {tags_html(h, [("Loyalty", "/expertise/loyalty/")])}
         </section>
         <section class="block">
           <h2 class="plain">The problem</h2>
@@ -1861,10 +2053,10 @@ def body_for(page: dict) -> str:
 
     if kind == "report":
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>{page["h1"]}</h1>
           <p class="who">Report · Date · Author</p>
-          <div class="page-tags"><a href="{h("/expertise/pricing/")}">Pricing</a></div>
+          {tags_html(h, [("Pricing", "/expertise/pricing/")])}
         </section>
         <section class="block">
           <h2 class="plain">What this report covers</h2>
@@ -1872,11 +2064,8 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="plain">Read it on this page</h2>
-          <p class="prose">Read the report here. Optional email to receive a copy.</p>
-          <div class="form">
-            <div class="field"><label>Email</label><div class="box"></div></div>
-            <a class="btn" href="{h("/newsletter/")}">Read on this page</a>
-          </div>
+          <p class="prose">The full report continues here. Optional: leave an email to receive a copy.</p>
+          {form_html([("Email", "", "")], "Send me a copy", h("/contact/thank-you/"))}
         </section>
         <section class="block">
           <h2 class="plain">How we help</h2>
@@ -1887,7 +2076,7 @@ def body_for(page: dict) -> str:
 
     if kind == "about":
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>About Manifesto Growth Architects</h1>
           <p>Sustainable, customer-led growth. Strategy plus AI-powered activation.</p>
         </section>
@@ -1920,7 +2109,7 @@ def body_for(page: dict) -> str:
 
     if kind == "team":
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>Our people</h1>
           <p>Client-facing people, grouped by role. <a href="{h("/careers/")}">Life at Manifesto</a> is on Careers.</p>
         </section>
@@ -1941,12 +2130,14 @@ def body_for(page: dict) -> str:
           <h2 class="plain">Associates, expert network and C and N members</h2>
           <p class="prose">AI practitioners for AI Enablement, associate advisors, and C and N members.</p>
         </section>
-        <p class="one-line" style="padding:0 0 36px"><a href="{h("/careers/")}">Current opportunities</a></p>
+        <section class="block">
+          <p class="one-line" {mod("Link line")}>Interested in joining the team? <a href="{h("/careers/")}">Current opportunities</a></p>
+        </section>
 """
 
     if kind == "profile":
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>Advisor name</h1>
           <p>Role · one-line focus</p>
         </section>
@@ -1967,7 +2158,7 @@ def body_for(page: dict) -> str:
 
     if kind == "how":
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>Our approach</h1>
           <p>How we partner with clients.</p>
         </section>
@@ -1986,12 +2177,12 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="plain">Engagement shapes</h2>
-          <ul class="list">
-            <li><a href="{h("/services/growth-strategy/")}">Strategy project</a></li>
-            <li><a href="{h("/services/activation/")}">Strategy into activation</a></li>
-            <li><a href="{h("/services/growth-office/")}">Embedded growth office / interim growth team</a></li>
-            <li><a href="{h("/services/ceo-advisory/")}">Advisory retainer</a></li>
-          </ul>
+          {link_list([
+              ("Strategy project", h("/services/growth-strategy/"), ""),
+              ("Strategy into activation", h("/services/activation/"), ""),
+              ("Embedded growth office / interim growth team", h("/services/growth-office/"), ""),
+              ("Advisory retainer", h("/services/ceo-advisory/"), ""),
+          ])}
         </section>
         <section class="block">
           <h2 class="plain">Frameworks and tools</h2>
@@ -2015,8 +2206,9 @@ def body_for(page: dict) -> str:
 
     if kind == "values":
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>Values and culture</h1>
+          <p>What we stand for and how the team works together.</p>
         </section>
         <section class="block">
           <h2 class="plain">Values</h2>
@@ -2034,7 +2226,7 @@ def body_for(page: dict) -> str:
 
     if kind == "careers":
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>Careers at Manifesto</h1>
           <p>What it is like to work here, and the roles we are hiring for.</p>
           {video_html("Studio")}
@@ -2065,7 +2257,7 @@ def body_for(page: dict) -> str:
         <section class="block">
           <h2 class="plain">Open roles</h2>
           <p class="prose">Roles we are actively hiring for. Full descriptions on the role page.</p>
-          <div class="cards two">{card(h, "/careers/growth-architect/", "Growth Architect", "Location · type · actively hiring", "flat")}</div>
+          <div class="cards two">{card(h, "/careers/growth-architect/", "Growth Architect", "Location · type · actively hiring", "role")}</div>
         </section>
         <section class="block">
           <h2 class="plain">Not hiring for a listed role?</h2>
@@ -2076,7 +2268,7 @@ def body_for(page: dict) -> str:
 
     if kind == "role":
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>Growth Architect</h1>
           <p>Location · type. Actively hiring.</p>
         </section>
@@ -2086,37 +2278,31 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="plain">How to apply</h2>
-          <p class="prose">Form or email. <a href="{h("/careers/")}">All roles</a>.</p>
+          <p class="prose">Apply through Work for us on Contact, or by email. <a href="{h("/careers/")}">All roles</a>.</p>
+          {cta_html(h, ("Apply", "/contact/#work-for-us"), ("All roles", "/careers/"))}
         </section>
 """
 
     if kind == "contact":
+        work_with = form_html(
+            [("Name", "", ""), ("Company", "", ""), ("Email", "", ""), ("Topic", "select", "Select a service"), ("Message", "tall", "")],
+            "Send", h("/contact/thank-you/"),
+        )
+        work_for = form_html([("Name", "", ""), ("Email", "", ""), ("Message", "tall", "")], "Send", h("/contact/thank-you/"))
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>Contact</h1>
           <p>Tell us about your growth challenge, or about joining the team.</p>
         </section>
         <section class="block" id="work-with-us">
           <h2 class="plain">Work with us</h2>
           <p class="prose">Tell us about your growth challenge.</p>
-          <div class="form">
-            <div class="field"><label>Name</label><div class="box"></div></div>
-            <div class="field"><label>Company</label><div class="box"></div></div>
-            <div class="field"><label>Email</label><div class="box"></div></div>
-            <div class="field"><label>Topic</label><div class="box"></div></div>
-            <div class="field"><label>Message</label><div class="box tall"></div></div>
-            <a class="btn" href="{h("/contact/thank-you/")}">Send</a>
-          </div>
+          {work_with}
         </section>
         <section class="block" id="work-for-us">
           <h2 class="plain">Work for us</h2>
           <p class="prose">Roles, Life at Manifesto, DEI and benefits live on <a href="{h("/careers/")}">Careers</a>. Speculative applications are welcome.</p>
-          <div class="form">
-            <div class="field"><label>Name</label><div class="box"></div></div>
-            <div class="field"><label>Email</label><div class="box"></div></div>
-            <div class="field"><label>Message</label><div class="box tall"></div></div>
-            <a class="btn" href="{h("/contact/thank-you/")}">Send</a>
-          </div>
+          {work_for}
         </section>
         <section class="block">
           <h2 class="plain">Direct contact</h2>
@@ -2128,16 +2314,16 @@ def body_for(page: dict) -> str:
 
     if kind == "thanks":
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>Thank you</h1>
           <p>We have your message.</p>
         </section>
         <section class="block">
           <h2 class="plain">While you wait</h2>
           <div class="cards">
-            {card(h, "/services/", "What we do", "Our Growth Architecture", "flat")}
-            {card(h, "/work/dayinsure/", "Dayinsure", "Case study", "flat")}
-            {card(h, "/insights/loyalty-without-the-discount/", "Loyalty without the discount", "Insight", "flat")}
+            {card(h, "/services/growth-strategy/", "Growth Strategy", "Customer-led growth strategy: where to focus and how to win", "offer")}
+            {card(h, "/work/dayinsure/", "Dayinsure", "One-line result", "ph")}
+            {card(h, "/insights/loyalty-without-the-discount/", "Loyalty without the discount", "Article", "article")}
           </div>
         </section>
 """
@@ -2148,17 +2334,11 @@ def body_for(page: dict) -> str:
             extra = f"""
         <section class="block">
           <h2 class="plain">Search</h2>
-          <div class="form">
-            <div class="field"><label>Query</label><div class="box"></div></div>
-            <a class="btn" href="{h("/search/")}">Search</a>
-          </div>
+          {form_html([("Query", "", "")], "Search", h("/search/"))}
         </section>
         <section class="block">
           <h2 class="plain">Results</h2>
-          <ul class="list">
-            <li><a href="{h("/services/growth-strategy/")}">Growth Strategy</a><span>Service</span></li>
-            <li><a href="{h("/insights/pricing-paradox/")}">The Pricing Paradox</a><span>Report</span></li>
-          </ul>
+          {link_list([("Growth Strategy", h("/services/growth-strategy/"), "Service"), ("The Pricing Paradox", h("/insights/pricing-paradox/"), "Report")])}
         </section>
         {empty_stub("No results for this query.", h("/services/"), "Browse services")}
 """
@@ -2166,10 +2346,7 @@ def body_for(page: dict) -> str:
             extra = f"""
         <section class="block">
           <h2 class="plain">Sign up</h2>
-          <div class="form">
-            <div class="field"><label>Email</label><div class="box"></div></div>
-            <a class="btn" href="{h("/contact/thank-you/")}">Subscribe</a>
-          </div>
+          {form_html([("Email", "", "")], "Subscribe", h("/contact/thank-you/"))}
         </section>
 """
         elif page["url"] in {"/privacy-policy/", "/cookie-policy/", "/terms/", "/accessibility/"}:
@@ -2187,7 +2364,7 @@ def body_for(page: dict) -> str:
         </section>
 """
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>{page["h1"]}</h1>
           <p class="body">{page.get("blurb") or ""}</p>
         </section>
@@ -2196,142 +2373,141 @@ def body_for(page: dict) -> str:
 
     if kind == "notfound":
         return f"""
-        <section class="block hero">
+        {hero_open()}
           <h1>Page not found</h1>
           <p>The page you asked for is not here.</p>
-          <div class="cta">
-            <a class="btn" href="{h("/services/")}">What we do</a>
-            <a class="text" href="{h("/work/")}">Our work</a>
-            <a class="text" href="{h("/contact/")}">Contact</a>
-          </div>
+          {cta_html(h, ("What we do", "/services/"), ("Our work", "/work/"), f'<a class="text" href="{h("/contact/")}">Contact</a>')}
         </section>
         <section class="block">
           <h2 class="plain">Search</h2>
-          <div class="form">
-            <div class="field"><label>Query</label><div class="box"></div></div>
-            <a class="btn" href="{h("/search/")}">Search</a>
-          </div>
+          {form_html([("Query", "", "")], "Search", h("/search/"))}
         </section>
 """
 
     if kind == "catalogue":
-        return f"""
-        <section class="block hero">
-          <h1>Page modules</h1>
-          <p>Named units used on this wireframe. Each unit has one interaction type. Working notes are not shown here.</p>
-        </section>
-        <section class="block">
-          <h2 class="plain">How to read these units</h2>
-          <div class="legend">
-            <p class="unit-purpose">Six types. If a rectangle cannot be named from this list, it is a random box.</p>
-            <ul class="legend-list">
-              <li><span class="unit-kind unit-button">Button</span> An action: Send, Accept, Clear filters, Search submit, header Contact. Outlined control. Never a content-page link except header Contact.</li>
-              <li><span class="unit-kind unit-text-link">Text link</span> Navigate: See our work, All thinking, situations, breadcrumbs, footer, mega-nav strands.</li>
-              <li><span class="unit-kind unit-card">Card</span> Whole unit is a hit area to one destination page. Solid box. Title plus support line.</li>
-              <li><span class="unit-kind unit-tag">Tag</span> Small linked label. One dimension, max three. Not a filter.</li>
-              <li><span class="unit-kind unit-filter">Filter</span> Toggle on a listing. Button, not a link. Selected uses .on.</li>
-              <li><span class="unit-kind unit-static">Static</span> Not clickable. Dashed box: logos, metrics, CIVD, form fields, video, empty message.</li>
-            </ul>
-          </div>
-        </section>
-        <section class="block">
-          <h2 class="plain">Chrome</h2>
-          {unit("Header Contact", "Button", "Primary enquire in the bar. Other nav items stay text links.", '<a class="btn" href="' + h("/contact/") + '">Contact</a>')}
-          {unit("Mega-nav hub and strands", "Text link", "Triangle laid flat. Hub title with chevron, strand, keyword subtitle. Not cards.", '''<div class="pillar" style="max-width:280px">
-            <h3><a class="pillar-hub" href="''' + h("/services/growth-strategy/") + '''">Growth Strategy <span class="hub-chevron" aria-hidden="true">&#8594;</span></a></h3>
+        return catalogue_body(h)
+
+    raise KeyError(kind)
+
+
+def catalogue_samples(h) -> dict[str, str]:
+    """One wireframe sample per component, keyed by the vocabulary name."""
+    pillar = f'''<div class="pillar" style="max-width:280px">
+            <h3><a class="pillar-hub" href="{h("/services/growth-strategy/")}">Growth Strategy <span class="hub-chevron" aria-hidden="true">&#8594;</span></a></h3>
             <p class="line">Where and how you grow</p>
             <ul>
-              <li><a class="strand-overview" href="''' + h("/services/growth-strategy/") + '''">Overview<small>Where to grow and how to win</small></a></li>
-              <li><a href="''' + h("/services/proposition-innovation/") + '''">Proposition Innovation<small>Value proposition design</small></a></li>
+              <li><a class="strand-overview" href="{h("/services/growth-strategy/")}">Overview<small>Where to grow and how to win</small></a></li>
+              <li><a href="{h("/services/proposition-innovation/")}">Proposition Innovation<small>Value proposition design</small></a></li>
             </ul>
-          </div>''')}
-          {unit("Breadcrumb", "Text link", "Ancestors link. Current page is text. Every page except Home.", '<nav class="crumbs" aria-label="Example"><ol><li><a href="' + h("/") + '">Home</a></li><li>Page modules</li></ol></nav>')}
-          {unit("Cookie bar", "Button", "Accept dismisses. Cookie policy is the text link, not the button.", '''<div class="cookie-bar">
-            <span>We use cookies to run this site. <a href="''' + h("/cookie-policy/") + '''">Cookie policy</a></span>
+          </div>'''
+    hero = f'''<div class="hero" style="padding:0">
+            <span class="eyebrow">Eyebrow (optional)</span>
+            <h1 style="font-size:24px">H1: one per page</h1>
+            <p>One support line. Who this is for.</p>
+            {cta_html(h)}
+          </div>'''
+    forms = (
+        '<span class="wf-label">Work with us</span>'
+        + form_html([("Name", "", ""), ("Company", "", ""), ("Email", "", ""), ("Topic", "select", "Select a service"), ("Message", "tall", "")], "Send", h("/contact/thank-you/"))
+        + '<span class="wf-label" style="margin-top:18px">Work for us</span>'
+        + form_html([("Name", "", ""), ("Email", "", ""), ("Message", "tall", "")], "Send", h("/contact/thank-you/"))
+        + '<span class="wf-label" style="margin-top:18px">Email capture, with the one error state</span>'
+        + form_html([("Email", "error", "")], "Subscribe", h("/contact/thank-you/"), '<span class="field-msg">Enter a valid email.</span>')
+    )
+    return {
+        "Header Contact": f'<a class="btn" href="{h("/contact/")}">Contact</a>',
+        "Mega-nav hub and strands": pillar,
+        "Breadcrumb": f'<nav class="crumbs" aria-label="Example" style="padding:0"><ol><li><a href="{h("/")}">Home</a></li><li>Component library</li></ol></nav>',
+        "Cookie bar": f'''<div class="cookie-bar">
+            <span>We use cookies to run this site. <a href="{h("/cookie-policy/")}">Cookie policy</a></span>
             <button type="button" class="btn">Accept</button>
-          </div>''')}
+          </div>''',
+        "Hero": hero,
+        "CTA pair": cta_html(h),
+        "Closing CTA band": f'<div class="closing" style="border:0;padding:0"><p>Tell us about your growth challenge</p><div class="cta"><a class="btn" href="{h("/contact/")}">Contact</a><a class="text" href="{h("/work/")}">See our work</a></div></div>',
+        "Prose": '<h2 class="plain" style="font-size:18px">Heading</h2><p class="prose">One to four short paragraphs. Body copy carries the keyword language the H2 promises.</p>',
+        "Metric box": metrics_html([("3x", "EBITDA return"), ("4 wks", "Data audit"), ("6 wks", "First agents")]),
+        "Offer card": '<div class="cards two">' + card(h, "/services/growth-strategy/", "Growth Strategy", "Customer-led growth strategy: where to focus and how to win", "offer") + card(h, "/services/proposition-innovation/", "Proposition Innovation", "Value proposition design", "offer") + "</div>",
+        "Theme card": '<div class="cards two">' + card(h, "/expertise/loyalty/", "Loyalty", "Cases and thinking", "theme") + card(h, "/expertise/pricing/", "Pricing", "Cases and thinking", "theme") + "</div>",
+        "Case card": '<div class="cards two">' + card(h, "/work/dayinsure/", "Dayinsure", "One-line result", "ph") + card(h, "/work/key-group/", "Key Group", "One-line result", "ph") + "</div>",
+        "Report card": '<div class="cards two">' + card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "Report", "doc") + "</div>",
+        "Article card": '<div class="cards two">' + card(h, "/insights/loyalty-without-the-discount/", "Loyalty without the discount", "Article · Loyalty", "article") + "</div>",
+        "Person card": '<div class="cards">' + card(h, "/about/team/advisor-one/", "Advisor name", "Former role, one line", "person") + "</div>",
+        "Role card": '<div class="cards two">' + card(h, "/careers/growth-architect/", "Growth Architect", "Location · type · actively hiring", "role") + "</div>",
+        "Triangle tile": tri_html(h, PILLAR_TILES, '<p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside.</p>'),
+        "Page tag": tags_html(h, [("Loyalty", "/expertise/loyalty/"), ("Pricing", "/expertise/pricing/")]),
+        "Filter bar": filter_bar(["All services", "Growth Strategy", "Experience Engineering"], on="All services", more=True),
+        "Situations list": f'''<ul class="situations" {mod("Situations list")}>
+            <li><a href="{h("/services/growth-strategy/")}">We need to decide where and how to grow</a></li>
+            <li><a href="{h("/services/ceo-advisory/")}">I want a sounding board I trust</a></li>
+          </ul>''',
+        "Row of text links": f'<div class="row-links" {mod("Row of text links")}><a href="{h("/expertise/loyalty/")}">Loyalty</a><a href="{h("/expertise/pricing/")}">Pricing</a><a href="{h("/expertise/customer-value/")}">Customer Value</a></div>',
+        "Link list": link_list([("The Pricing Paradox", h("/insights/pricing-paradox/"), "Report"), ("Loyalty without the discount", h("/insights/loyalty-without-the-discount/"), "Article")]),
+        "Case line": f'<p class="case-line" {mod("Case line")}>Key Group, one-line result. <a href="{h("/work/key-group/")}">Read the case study</a></p>',
+        "Link line": f'<p class="one-line" {mod("Link line")}>We apply these services to the growth problems we know best. <a href="{h("/expertise/")}">Our expertise</a></p>',
+        "Pagination": pagination_html(),
+        "Empty state": empty_html("No case studies match these filters.", h("/work/")),
+        "Logo strip": logos_html(6, "Logo"),
+        "Quote": quote_html(cite="Dayinsure"),
+        "Video 16:9": video_html("Showreel"),
+        "CIVD four-cell": civd_html(),
+        "Article body": article_body(),
+        "Form": forms,
+    }
+
+
+def catalogue_body(h) -> str:
+    samples = catalogue_samples(h)
+    missing = [n for n in COMPONENTS if n not in samples]
+    if missing:
+        raise SystemExit(f"Component library has no sample for: {missing}")
+    groups = ""
+    for group in COMPONENT_GROUPS:
+        units = "".join(unit(n, samples[n]) for n, (g, _, _) in COMPONENTS.items() if g == group)
+        groups += f"""
+        <section class="block">
+          <h2 class="plain">{group}</h2>{units}
+        </section>"""
+    kinds = [
+        ("Band", "A full-width block that composes other components: Hero, Closing CTA band."),
+        ("Button", "An action: Send, Accept, Clear filters, Search, header Contact, the primary of a CTA pair. Outlined control, 1.5px ink. Never a content-page link except header Contact."),
+        ("Text link", "Navigate: See our work, All thinking, situations, breadcrumbs, footer, mega-nav strands. Underlined or plain text, never a box."),
+        ("Card", "Whole unit is a hit area to one destination page. Solid 1px box. Title plus support line. Seven card types, one shape each."),
+        ("Tag", "Small linked label. One dimension, max three. Squared corners, quiet border. Not a filter."),
+        ("Filter", "Toggle on a listing. Pill-shaped button, not a link. Selected uses a heavier border."),
+        ("Static", "Not clickable. Dashed box or plain text: logos, metrics, CIVD, form fields, video, quote, empty message, prose."),
+    ]
+    legend = "".join(
+        f'<li><span class="unit-kind unit-{k.lower().replace(" ", "-")}">{k}</span> {t}</li>' for k, t in kinds
+    )
+    return f"""
+        <section class="block hero" {mod("Hero")}>
+          <h1>Component library</h1>
+          <p>The reusable blocks every page is built from. One name, one shape, one interaction type per component. The sidebar on each page lists which of these it uses, by the same names.</p>
         </section>
         <section class="block">
-          <h2 class="plain">Heroes and bands</h2>
-          {unit("Hero CTA pair", "Button", "Primary Button plus secondary Text link. Header Contact is the same Button.", '<div class="cta"><a class="btn" href="' + h("/contact/") + '">Contact</a><a class="text" href="' + h("/work/") + '">See our work</a></div>')}
-          {unit("Closing CTA band", "Button", "Last enquire on the page. Careers uses Work for us.", '<div class="closing" style="border:0;padding:0"><p>Tell us about your growth challenge</p><div class="cta"><a class="btn" href="' + h("/contact/") + '">Contact</a><a class="text" href="' + h("/work/") + '">See our work</a></div></div>')}
-          {unit("Metric box", "Static", "A number the deck already gives. Not a card. Not clickable.", metrics_html([("3x", "EBITDA return"), ("4 wks", "Data audit"), ("6 wks", "First agents")]))}
+          <h2 class="plain">How to read this library</h2>
+          <div class="legend">
+            <p class="unit-purpose">Seven interaction types. If a rectangle cannot be named from this library, it is a random box and should not be on a page.</p>
+            <ul class="legend-list">{legend}</ul>
+          </div>
         </section>
-        <section class="block">
-          <h2 class="plain">Cards</h2>
-          {unit("Service card", "Card", "Buyable service. Grey fill, no image. Whole card goes to the service page.", '<div class="cards two">' + card(h, "/services/growth-strategy/", "Growth Strategy", "Customer-led growth strategy: where to focus and how to win", "flat") + card(h, "/services/proposition-innovation/", "Proposition Innovation", "Value proposition design", "offer") + "</div>")}
-          {unit("Theme card", "Card", "Expertise problem. Same shape as a Service card. Hub only. Not a nav item.", '<div class="cards two">' + card(h, "/expertise/loyalty/", "Loyalty", "Cases and thinking", "flat") + "</div>")}
-          {unit("Case card", "Card", "Proof. Image placeholder, client, one-line result. Whole card goes to the case.", '<div class="cards two">' + card(h, "/work/dayinsure/", "Dayinsure", "One-line result", "ph") + card(h, "/work/key-group/", "Key Group", "One-line result", "ph") + "</div>")}
-          {unit("Report card", "Card", "Long-form thinking. Portrait Report placeholder.", '<div class="cards two">' + card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "Report", "doc") + "</div>")}
-          {unit("Article card", "Card", "Short thinking. No grey fill, no image. Do not reuse the Service card class.", '<div class="cards two">' + card(h, "/insights/loyalty-without-the-discount/", "Loyalty without the discount", "Article", "article") + "</div>")}
-          {unit("Person card", "Card", "Someone. Avatar, name, one line.", '<div class="cards">' + card(h, "/about/team/advisor-one/", "Advisor name", "Former role, one line", "person") + "</div>")}
-          {unit("Role card", "Card", "Open role. Same shape as a Service card.", '<div class="cards two">' + card(h, "/careers/growth-architect/", "Growth Architect", "Location · type · actively hiring", "flat") + "</div>")}
-          {unit("Triangle tile", "Card", "Pillar, not a service. Three tiles. Links to the pillar page or in-page anchor. Not a Service card.", '''<div class="tri">
-            <a href="''' + h("/services/growth-strategy/") + '''"><strong>Growth Strategy</strong><span>Where and how you grow</span></a>
-            <a href="''' + h("/services/activation/") + '''"><strong>Activation Services</strong><span>Turning strategy into results</span></a>
-            <a href="''' + h("/services/ceo-advisory/") + '''"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
-          </div>''')}
-        </section>
-        <section class="block">
-          <h2 class="plain">Lists and locators</h2>
-          {unit("Page tag", "Tag", "One dimension, max three. Linked. Service pages show expertise. Cases show services. Not a filter.", '<div class="page-tags"><a href="' + h("/expertise/loyalty/") + '">Loyalty</a><a href="' + h("/expertise/pricing/") + '">Pricing</a></div>')}
-          {unit("Filter bar", "Filter", "Toggle a listing. Button, not a span or a link. More filters is also a Filter.", filter_bar(["Growth Strategy", "Experience Engineering"], on="Growth Strategy", more=True))}
-          {unit("Situations list", "Text link", "Prospect language in. Links on the services hub. On a service page the three lines are static text.", '''<ul class="situations">
-            <li><a href="''' + h("/services/growth-strategy/") + '''">We need to decide where and how to grow</a></li>
-            <li><a href="''' + h("/services/ceo-advisory/") + '''">I want a sounding board I trust</a></li>
-          </ul>''')}
-          {unit("Row of text links", "Text link", "Names only. Home Growth problems we know best. Not cards, not tags.", '<div class="row-links"><a href="' + h("/expertise/loyalty/") + '">Loyalty</a><a href="' + h("/expertise/pricing/") + '">Pricing</a><a href="' + h("/expertise/customer-value/") + '">Customer Value</a></div>')}
-          {unit("Related list", "Text link", "Compact related thinking or search hits. Title left, type right.", '<ul class="list"><li><a href="' + h("/insights/pricing-paradox/") + '">The Pricing Paradox</a><span>Report</span></li><li><a href="' + h("/insights/loyalty-without-the-discount/") + '">Loyalty without the discount</a><span>Article</span></li></ul>')}
-          {unit("Case line", "Text link", "One proof under a pillar. Not a Case card.", '<p class="case-line">Key Group, one-line result. <a href="' + h("/work/key-group/") + '">Read the case study</a></p>')}
-          {unit("Pagination", "Text link", "Current page is text. Others are page links. Not buttons.", pagination_html())}
-          {unit("Empty state", "Static", "No results for this filter or query. Hide when results exist. Clear filters is a Button.", '''<div class="empty-state">
-            <p>No case studies match these filters.</p>
-            <a class="btn" href="''' + h("/work/") + '''">Clear filters</a>
-          </div>''')}
-        </section>
-        <section class="block">
-          <h2 class="plain">Proof and media</h2>
-          {unit("Logo strip", "Static", "Trusted partners, awards, or sector clients. Link a logo only if a case exists.", logos_html(6, "Logo"))}
-          {unit("Quote", "Static", "Testimonial. Lives with work. Not a testimonials page.", '<blockquote class="quote">"The work changed how we think about growth."<cite>Dayinsure</cite></blockquote>')}
-          {unit("Video 16:9", "Static", "Showreel, partner film, or case film. Placeholder until film exists.", video_html("Showreel"))}
-          {unit("CIVD four-cell", "Static", "Growth Strategy frame. Dashed cells. The Open CIVD text link sits beside it, not on the cells.", civd_html())}
-          {unit("Article body", "Static", "Long-form paragraphs on a report or article.", article_body())}
-        </section>
-        <section class="block">
-          <h2 class="plain">Forms</h2>
-          {unit("Work with us", "Button", "Client enquire. Topic is a select, not a text box. Send is a Button.", '''<div class="form">
-              <div class="field"><label>Name</label><div class="box"></div></div>
-              <div class="field"><label>Company</label><div class="box"></div></div>
-              <div class="field"><label>Email</label><div class="box"></div></div>
-              <div class="field"><label>Topic</label><div class="box select">Select a service</div></div>
-              <div class="field"><label>Message</label><div class="box tall"></div></div>
-              <button type="button" class="btn">Send</button>
-            </div>''')}
-          {unit("Email error state", "Static", "Show on Contact. Invalid email. Do not invent other validation copy.", '''<div class="form">
-              <div class="field"><label>Email</label><div class="box error"></div><span class="field-msg">Enter a valid email.</span></div>
-            </div>''')}
-          {unit("Work for us", "Button", "Speculative hire. Roles stay on Careers.", '''<div class="form">
-              <div class="field"><label>Name</label><div class="box"></div></div>
-              <div class="field"><label>Email</label><div class="box"></div></div>
-              <div class="field"><label>Message</label><div class="box tall"></div></div>
-              <button type="button" class="btn">Send</button>
-            </div>''')}
-        </section>
+        {groups}
         <section class="block">
           <h2 class="plain">Do not mix</h2>
           <ul class="legend-list">
             <li>A Filter is not a Tag. Tags navigate. Filters toggle.</li>
             <li>A Tag is not a Button. Do not put tags in the header.</li>
-            <li>A Triangle tile is not a Service card. Pillar versus buyable service.</li>
+            <li>A Triangle tile is not an Offer card. Pillar versus buyable service.</li>
+            <li>A Theme card and a Role card are outline cards. An Offer card has the grey fill. An Article card has neither fill nor image.</li>
             <li>A CIVD cell is not a Card. The cells are a static diagram.</li>
             <li>A Metric box is not a Card. Numbers are not destinations.</li>
-            <li>A listing link is not a Case card. Home All work is a Text link. Do not invent a case called More work.</li>
-            <li>Do not call live units chips. Sidebar working notes are annotations.</li>
+            <li>A listing link is not a Case card. Home All work is a Text link. Only real cases wear the Case card.</li>
+            <li>The sidebar on each page is annotation for this wireframe. Nothing in it is a live component.</li>
           </ul>
         </section>
         {closing(h)}
 """
-    raise KeyError(kind)
 
 
 def service_module(page: dict, h) -> str:
@@ -2574,7 +2750,7 @@ def write_sitemap_html() -> None:
 </head>
 <body>
 <div class="wrap" style="max-width:900px;margin:24px auto 48px;padding:0 12px">
-  <p class="map-note" style="margin:0 0 16px"><a href="index.html">Home</a> · <a href="catalogue/index.html">Page modules</a></p>
+  <p class="map-note" style="margin:0 0 16px"><a href="index.html">Home</a> · <a href="catalogue/index.html">Component library</a></p>
   <div class="sitemap">
     <ul>
       {"".join(lis)}
@@ -2598,16 +2774,17 @@ def write_heading_map_md() -> None:
         "Volumes are average monthly Google Ads search volume for the United Kingdom. Exact Manifesto product phrases are often thin; adjacent demand is the useful signal.",
         "",
         "Source of truth for structure: `docs/02-sitemap.md` and the IA report. This file is the SEO heading layer on top of that IA, not a competing sitemap.",
-        "MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `docs/mural-gap-check.md`.",
+        "Each page also lists the reusable components on its canvas, in order, by the names in the component library (`mocks/catalogue/`).",
         "",
     ]
     for p in PAGES:
         lines.append(f"## `{p['url']}`: {p['title']}")
         lines.append("")
-        lines.append(f"- **Weight:** {p['weight']}")
+        lines.append(f"- **Template:** {KIND_LABELS[p['kind']]}")
+        lines.append(f"- **Weight:** {p['weight']} ({WEIGHT_GLOSS[p['weight']]})")
         lines.append(f"- **Primary keyword:** {p.get('primary') or 'none'}")
         if p.get("quiet"):
-            lines.append(f"- **Strand subtitle:** {p['quiet']}")
+            lines.append(f"- **Menu subtitle:** {p['quiet']}")
         if p.get("alts"):
             lines.append("- **Alts:**")
             for a in p["alts"]:
@@ -2622,8 +2799,14 @@ def write_heading_map_md() -> None:
             for h3 in p["h3s"]:
                 lines.append(f"  - {h3}")
         lines.append(f"- **Intent:** {p['intent']}")
-        if p.get("mural"):
-            lines.append("- **MURAL modules:** " + "; ".join(p["mural"]))
+        if p.get("notes"):
+            lines.append("- **Content notes:**")
+            for n in p["notes"]:
+                lines.append(f"  - {n}")
+        if p.get("_components"):
+            lines.append("- **Components (canvas order):**")
+            for names, ctx in p["_components"]:
+                lines.append(f"  - {names}" + (f" ({ctx})" if ctx else ""))
         rels = []
         if p.get("themes"):
             rels.append("themes: " + ", ".join(n for n, _ in p["themes"]))
@@ -2646,12 +2829,31 @@ def write_pages() -> None:
         seen.add(url)
         dest = MOCKS / "index.html" if url == "/" else MOCKS / url.strip("/") / "index.html"
         dest.parent.mkdir(parents=True, exist_ok=True)
-        dest.write_text(wrap(page, body_for(page)), encoding="utf-8")
+        body = body_for(page)
+        if page["kind"] == "catalogue":
+            component_inventory(body)  # validates the library's own samples
+        dest.write_text(wrap(page, body), encoding="utf-8")
         print("wrote", dest.relative_to(ROOT))
+
+
+def check_vocabulary() -> None:
+    """Every named component appears on at least one page or in the chrome."""
+    used = {n for p in PAGES for names, _ in p.get("_components") or [] for n in names.split(", ")}
+    used = {n.split(" \u00d7")[0] for n in used}
+    unused = [n for n, (g, _, _) in COMPONENTS.items() if g != "Chrome" and n not in used]
+    if unused:
+        print("note: in the library but on no page:", ", ".join(unused))
+    banned = ["chip", "MURAL", "previous build", "not at the top", "banner up", "Canonical<"]
+    for path in MOCKS.rglob("index.html"):
+        text = path.read_text(encoding="utf-8")
+        for b in banned:
+            if b in text:
+                raise SystemExit(f"Banned wording {b!r} in {path.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":
     write_pages()
     write_sitemap_html()
     write_heading_map_md()
+    check_vocabulary()
     print(f"pages: {len(PAGES)}")

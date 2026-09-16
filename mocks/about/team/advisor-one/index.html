@@ -90,7 +90,7 @@
     <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../../../index.html">Home</a></li><li><a href="../../index.html">About</a></li><li><a href="../index.html">Our people</a></li><li>Advisor name</li></ol></nav>
     <main class="page" id="main">
       
-        <section class="block hero">
+        <section class="block hero" data-module="Hero" title="Hero">
           <h1>Advisor name</h1>
           <p>Role · one-line focus</p>
         </section>
@@ -104,10 +104,10 @@
         </section>
         <section class="block">
           <h2 class="plain">Selected work</h2>
-          <div class="cards two"><a class="card" href="../../../work/dayinsure/index.html"><div class="ph">Image</div><strong>Dayinsure</strong><span>One-line result</span></a></div>
+          <div class="cards two"><a class="card" data-module="Case card" title="Case card" href="../../../work/dayinsure/index.html"><div class="ph">Image</div><strong>Dayinsure</strong><span>One-line result</span></a></div>
         </section>
         
-        <section class="block closing">
+        <section class="block closing" data-module="Closing CTA band" title="Closing CTA band">
           <p>Tell us about your growth challenge</p>
           <div class="cta">
             <a class="btn" href="../../../contact/index.html">Contact</a>
@@ -190,21 +190,18 @@
 
   </div>
   
-  <aside class="sidebar" aria-label="Working notes">
-    <div class="ia-notes"><span class="label">Working notes</span><div class="notes"><span class="note weight">Light</span><span class="note kw">Primary: named-person search</span><span class="note">Services: <a href="../../../services/ceo-advisory/index.html">CEO Advisory</a></span></div></div>
-    
-<div class="heading-map">
-  <h2>Heading map</h2>
-  <p class="map-note"><a href="../../../sitemap.html">All pages</a> · <a href="../../../catalogue/index.html">Page modules</a></p>
-  <p class="k"><strong>URL</strong><code>/about/team/advisor-one/</code></p>
-  <p class="k"><strong>H1 (one)</strong>Advisor name</p>
-  <p class="k"><strong>Primary keyword</strong>named-person search</p>
-  <div class="k"><strong>Alts (2 to 4)</strong><ul><li>offer described on CEO Advisory, not here</li></ul></div>
-  <div class="k"><strong>H2s (ordered)</strong><ol><li>Biography</li><li>Focus</li><li>Selected work</li></ol></div>
-  <div class="k"><strong>H3s where useful</strong><p class="map-note">None.</p></div>
-  <p class="intent"><strong>Intent.</strong> Profile shell. Advisor note links back to Side-by-Side on the CEO Advisory page.</p>
-</div>
-
+  <aside class="sidebar" aria-label="Page fundamentals and components">
+    <section class="panel">
+      <h2>Page fundamentals</h2>
+      <p class="map-note"><a href="../../../sitemap.html">All pages</a> · <a href="../../../catalogue/index.html">Component library</a></p>
+      <p class="k"><strong>URL</strong><code>/about/team/advisor-one/</code></p><p class="k"><strong>Template</strong>Profile. Light: short landing; proof lives elsewhere.</p><p class="k"><strong>H1</strong>Advisor name</p><div class="k"><strong>Keywords</strong><p>Primary: named-person search</p><ul><li>offer described on CEO Advisory, not here</li></ul></div><div class="k"><strong>H2s (ordered)</strong><ol><li>Biography</li><li>Focus</li><li>Selected work</li></ol></div><p class="k"><strong>Intent</strong>Profile shell. Advisor note links back to Side-by-Side on the CEO Advisory page.</p><p class="k"><strong>Links to</strong>Services: <a href="../../../services/ceo-advisory/index.html">CEO Advisory</a></p>
+    </section>
+    <section class="panel">
+      <h2>Components on this page</h2>
+      <p class="map-note">In canvas order. Block heading on the right where the block has one.</p>
+      <ol class="comp"><li><span class="mods">Hero</span></li><li><span class="mods">Prose</span><span class="blk">Biography</span></li><li><span class="mods">Prose</span><span class="blk">Focus</span></li><li><span class="mods">Case card</span><span class="blk">Selected work</span></li><li><span class="mods">Closing CTA band</span></li></ol>
+      <p class="map-note">Header Contact, Mega-nav hub and strands, Breadcrumb, Cookie bar and the footer are on every page. Names match the <a href="../../../catalogue/index.html">component library</a>.</p>
+    </section>
   </aside>
 </div>
 <script src="../../../assets/nav.js"></script>

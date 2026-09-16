@@ -90,32 +90,33 @@
     <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Home</a></li><li>Our work</li></ol></nav>
     <main class="page" id="main">
       
-        <section class="block hero">
+        <section class="block hero" data-module="Hero" title="Hero">
           <h1>Our work</h1>
           <p>Case studies from recent engagements.</p>
         </section>
         <section class="block">
           <h2 class="plain">Featured</h2>
           <div class="cards two">
-            <a class="card" href="dayinsure/index.html"><div class="ph">Image</div><strong>Dayinsure</strong><span>Quote journey rebuilt</span></a>
+            <a class="card" data-module="Case card" title="Case card" href="dayinsure/index.html"><div class="ph">Image</div><strong>Dayinsure</strong><span>Quote journey rebuilt</span></a>
           </div>
-          <blockquote class="quote">"The work changed how we think about growth."<cite>Client</cite></blockquote>
+          <blockquote class="quote" data-module="Quote" title="Quote">"The work changed how we think about growth."<cite>Client</cite></blockquote>
         </section>
         <section class="block">
           <h2 class="plain">All case studies</h2>
-          <div class="filters"><button type="button" class="filter on">All services</button><button type="button" class="filter">Growth Strategy</button><button type="button" class="filter">Experience Engineering</button><button type="button" class="filter">Customer Research and Insight</button></div>
-          <span class="wf-label">Revealed state: Expertise and Sector (More filters)</span>
-          <div class="filters"><button type="button" class="filter">Loyalty</button><button type="button" class="filter">Pricing</button><button type="button" class="filter">Financial services</button><button type="button" class="filter">Consumer</button></div>
+          <div class="filters" data-module="Filter bar" title="Filter bar"><button type="button" class="filter on">All services</button><button type="button" class="filter">Growth Strategy</button><button type="button" class="filter">Experience Engineering</button><button type="button" class="filter">Customer Research and Insight</button><button type="button" class="filter more">More filters</button></div>
+          <span class="wf-label">Revealed by More filters: Expertise and Sector</span>
+          <div class="filters" data-module="Filter bar" title="Filter bar"><button type="button" class="filter">Loyalty</button><button type="button" class="filter">Pricing</button><button type="button" class="filter">Financial services</button><button type="button" class="filter">Consumer</button></div>
           <div class="cards">
-            <a class="card" href="dayinsure/index.html"><div class="ph">Image</div><strong>Dayinsure</strong><span>Experience Engineering</span></a>
-            <a class="card" href="key-group/index.html"><div class="ph">Image</div><strong>Key Group</strong><span>Experience Engineering</span></a>
+            <a class="card" data-module="Case card" title="Case card" href="dayinsure/index.html"><div class="ph">Image</div><strong>Dayinsure</strong><span>Experience Engineering</span></a>
+            <a class="card" data-module="Case card" title="Case card" href="key-group/index.html"><div class="ph">Image</div><strong>Key Group</strong><span>Experience Engineering</span></a>
           </div>
-          <div class="pagination" aria-label="Pagination"><span class="on">1</span><a href="#">2</a><a href="#">3</a><a href="#">Next</a></div>
+          <div class="pagination" data-module="Pagination" title="Pagination" aria-label="Pagination"><span class="on">1</span><a href="#">2</a><a href="#">3</a><a href="#">Next</a></div>
         </section>
         
         <section class="block">
-          <span class="wf-label">Empty state (stub: hide when results exist)</span>
-          <div class="empty-state">
+          <span class="wf-label">Conditional: shown only when there are no results</span>
+          
+          <div class="empty-state" data-module="Empty state" title="Empty state">
             <p>No case studies match these filters.</p>
             <a class="btn" href="index.html">Clear filters</a>
           </div>
@@ -124,15 +125,12 @@
         
         <section class="block">
           <h2 class="sec">Related thinking</h2>
-          <ul class="list">
-            <li><a href="../insights/pricing-paradox/index.html">The Pricing Paradox</a><span>Report</span></li>
-            <li><a href="../insights/loyalty-without-the-discount/index.html">Loyalty without the discount</a><span>Article</span></li>
-          </ul>
+          <ul class="list" data-module="Link list" title="Link list"><li><a href="../insights/pricing-paradox/index.html">The Pricing Paradox</a><span>Report</span></li><li><a href="../insights/loyalty-without-the-discount/index.html">Loyalty without the discount</a><span>Article</span></li></ul>
           <a class="more" href="../insights/index.html">All thinking</a>
         </section>
 
         
-        <section class="block closing">
+        <section class="block closing" data-module="Closing CTA band" title="Closing CTA band">
           <p>Tell us about your growth challenge</p>
           <div class="cta">
             <a class="btn" href="../contact/index.html">Contact</a>
@@ -215,21 +213,18 @@
 
   </div>
   
-  <aside class="sidebar" aria-label="Working notes">
-    <div class="ia-notes"><span class="label">Working notes</span><div class="notes"><span class="note weight">Canonical</span><span class="note kw">Primary: case studies (proof engine; not a service keyword)</span><span class="note">Sectors: <a href="../sectors/financial-services/index.html">Financial services</a>, <a href="../sectors/media/index.html">Media</a>, <a href="../sectors/consumer/index.html">Consumer</a>, <a href="../sectors/retail/index.html">Retail</a></span><span class="note">Services: <a href="../services/experience-engineering/index.html">Experience Engineering</a>, <a href="../services/growth-strategy/index.html">Growth Strategy</a></span></div><span class="label">Modules</span><div class="notes"><span class="note muted">Case studies pulled up</span><span class="note muted">Quotes in cases</span><span class="note muted">Video snippets from the approach film</span><span class="note muted">Tagging</span></div></div>
-    
-<div class="heading-map">
-  <h2>Heading map</h2>
-  <p class="map-note"><a href="../sitemap.html">All pages</a> · <a href="../catalogue/index.html">Page modules</a></p>
-  <p class="k"><strong>URL</strong><code>/work/</code></p>
-  <p class="k"><strong>H1 (one)</strong>Our work</p>
-  <p class="k"><strong>Primary keyword</strong>case studies (proof engine; not a service keyword)</p>
-  <div class="k"><strong>Alts (2 to 4)</strong><ul><li>client-name searches land on individual case studies</li></ul></div>
-  <div class="k"><strong>H2s (ordered)</strong><ol><li>Featured</li><li>All case studies</li></ol></div>
-  <div class="k"><strong>H3s where useful</strong><ul><li>Client quote (inside the case, not a testimonials page)</li></ul></div>
-  <p class="intent"><strong>Intent.</strong> Proof hub. Our clients is not a top-level nav item: proof lives here, sectors in the footer. Quotes and video snippets live in the case, not on Home.</p>
-</div>
-
+  <aside class="sidebar" aria-label="Page fundamentals and components">
+    <section class="panel">
+      <h2>Page fundamentals</h2>
+      <p class="map-note"><a href="../sitemap.html">All pages</a> · <a href="../catalogue/index.html">Component library</a></p>
+      <p class="k"><strong>URL</strong><code>/work/</code></p><p class="k"><strong>Template</strong>Work hub. Canonical: owns its topic; other pages on the topic link here.</p><p class="k"><strong>H1</strong>Our work</p><div class="k"><strong>Keywords</strong><p>Primary: case studies (proof engine; not a service keyword)</p><ul><li>client-name searches land on individual case studies</li></ul></div><div class="k"><strong>H2s (ordered)</strong><ol><li>Featured</li><li>All case studies</li></ol></div><div class="k"><strong>H3s</strong><ul><li>Client quote (inside the case, not a testimonials page)</li></ul></div><p class="k"><strong>Intent</strong>Proof hub: every case study in one place, filterable by service first, then expertise and sector.</p><div class="k"><strong>Content notes</strong><ul><li>Sectors are filters here and links in the footer, not a nav item</li><li>Client quotes and film snippets live inside each case</li><li>Cases are tagged by service, expertise and sector; the tags drive these filters and the proof blocks on service, theme and sector pages</li></ul></div><p class="k"><strong>Links to</strong>Sectors: <a href="../sectors/financial-services/index.html">Financial services</a>, <a href="../sectors/media/index.html">Media</a>, <a href="../sectors/consumer/index.html">Consumer</a>, <a href="../sectors/retail/index.html">Retail</a> · Services: <a href="../services/experience-engineering/index.html">Experience Engineering</a>, <a href="../services/growth-strategy/index.html">Growth Strategy</a></p>
+    </section>
+    <section class="panel">
+      <h2>Components on this page</h2>
+      <p class="map-note">In canvas order. Block heading on the right where the block has one.</p>
+      <ol class="comp"><li><span class="mods">Hero</span></li><li><span class="mods">Case card, Quote</span><span class="blk">Featured</span></li><li><span class="mods">Filter bar ×2, Case card ×2, Pagination</span><span class="blk">All case studies</span></li><li><span class="mods">Empty state</span></li><li><span class="mods">Link list</span><span class="blk">Related thinking</span></li><li><span class="mods">Closing CTA band</span></li></ol>
+      <p class="map-note">Header Contact, Mega-nav hub and strands, Breadcrumb, Cookie bar and the footer are on every page. Names match the <a href="../catalogue/index.html">component library</a>.</p>
+    </section>
   </aside>
 </div>
 <script src="../assets/nav.js"></script>

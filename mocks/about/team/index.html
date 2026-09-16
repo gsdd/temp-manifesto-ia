@@ -90,28 +90,30 @@
     <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../../index.html">Home</a></li><li><a href="../index.html">About</a></li><li>Our people</li></ol></nav>
     <main class="page" id="main">
       
-        <section class="block hero">
+        <section class="block hero" data-module="Hero" title="Hero">
           <h1>Our people</h1>
           <p>Client-facing people, grouped by role. <a href="../../careers/index.html">Life at Manifesto</a> is on Careers.</p>
         </section>
         <section class="block">
           <h2 class="plain">Leadership</h2>
-          <div class="cards"><a class="card person" href="advisor-one/index.html"><div class="avatar"></div><strong>Name</strong><span>Role</span></a></div>
+          <div class="cards"><a class="card person" data-module="Person card" title="Person card" href="advisor-one/index.html"><div class="avatar"></div><strong>Name</strong><span>Role</span></a></div>
         </section>
         <section class="block">
           <h2 class="plain">Consultants</h2>
-          <div class="cards"><a class="card person" href="advisor-one/index.html"><div class="avatar"></div><strong>Name</strong><span>Role</span></a></div>
+          <div class="cards"><a class="card person" data-module="Person card" title="Person card" href="advisor-one/index.html"><div class="avatar"></div><strong>Name</strong><span>Role</span></a></div>
         </section>
         <section class="block" id="advisors">
           <h2 class="plain">Side-by-Side advisors</h2>
           <p class="prose">The same people as <a href="../../services/ceo-advisory/index.html#advisors">Our advisors</a> on CEO Advisory.</p>
-          <div class="cards"><a class="card person" href="advisor-one/index.html"><div class="avatar"></div><strong>Advisor name</strong><span>Former role</span></a></div>
+          <div class="cards"><a class="card person" data-module="Person card" title="Person card" href="advisor-one/index.html"><div class="avatar"></div><strong>Advisor name</strong><span>Former role</span></a></div>
         </section>
         <section class="block">
           <h2 class="plain">Associates, expert network and C and N members</h2>
           <p class="prose">AI practitioners for AI Enablement, associate advisors, and C and N members.</p>
         </section>
-        <p class="one-line" style="padding:0 0 36px"><a href="../../careers/index.html">Current opportunities</a></p>
+        <section class="block">
+          <p class="one-line" data-module="Link line" title="Link line">Interested in joining the team? <a href="../../careers/index.html">Current opportunities</a></p>
+        </section>
 
     </main>
     
@@ -187,21 +189,18 @@
 
   </div>
   
-  <aside class="sidebar" aria-label="Working notes">
-    <div class="ia-notes"><span class="label">Working notes</span><div class="notes"><span class="note weight">Supporting</span><span class="note kw">Primary: named-person search (profiles); this page is the listing</span><span class="note">Services: <a href="../../services/ceo-advisory/index.html">CEO Advisory</a></span></div><span class="label">Modules</span><div class="notes"><span class="note muted">Meet the team</span><span class="note muted">Culture over headshots</span><span class="note muted">Not merged with Life at Manifesto (see gap check)</span><span class="note muted">Link to current opportunities</span></div></div>
-    
-<div class="heading-map">
-  <h2>Heading map</h2>
-  <p class="map-note"><a href="../../sitemap.html">All pages</a> · <a href="../../catalogue/index.html">Page modules</a></p>
-  <p class="k"><strong>URL</strong><code>/about/team/</code></p>
-  <p class="k"><strong>H1 (one)</strong>Our people</p>
-  <p class="k"><strong>Primary keyword</strong>named-person search (profiles); this page is the listing</p>
-  <div class="k"><strong>Alts (2 to 4)</strong><ul><li>Our advisors in the mega-nav land on CEO Advisory, not here</li></ul></div>
-  <div class="k"><strong>H2s (ordered)</strong><ol><li>Leadership</li><li>Consultants</li><li>Side-by-Side advisors</li><li>Associates, expert network and C and N members</li></ol></div>
-  <div class="k"><strong>H3s where useful</strong><ul><li>Culture over headshots (visual note)</li></ul></div>
-  <p class="intent"><strong>Intent.</strong> Meet the team. MURAL asked to merge with Life at Manifesto; Source A keeps Careers separate. Cross-link instead. Mega-nav Our advisors still lands on CEO Advisory.</p>
-</div>
-
+  <aside class="sidebar" aria-label="Page fundamentals and components">
+    <section class="panel">
+      <h2>Page fundamentals</h2>
+      <p class="map-note"><a href="../../sitemap.html">All pages</a> · <a href="../../catalogue/index.html">Component library</a></p>
+      <p class="k"><strong>URL</strong><code>/about/team/</code></p><p class="k"><strong>Template</strong>People listing. Supporting: supports a canonical page and links up to it.</p><p class="k"><strong>H1</strong>Our people</p><div class="k"><strong>Keywords</strong><p>Primary: named-person search (profiles); this page is the listing</p><ul><li>Our advisors in the mega-nav land on CEO Advisory, not here</li></ul></div><div class="k"><strong>H2s (ordered)</strong><ol><li>Leadership</li><li>Consultants</li><li>Side-by-Side advisors</li><li>Associates, expert network and C and N members</li></ol></div><div class="k"><strong>H3s</strong><ul><li>Culture over headshots (visual note)</li></ul></div><p class="k"><strong>Intent</strong>Meet the team: client-facing people grouped by role. Cross-links to Careers for Life at Manifesto and current opportunities.</p><div class="k"><strong>Content notes</strong><ul><li>Culture over headshots in the visual treatment</li><li>The menu strand Our advisors lands on CEO Advisory, not here</li></ul></div><p class="k"><strong>Links to</strong>Services: <a href="../../services/ceo-advisory/index.html">CEO Advisory</a></p>
+    </section>
+    <section class="panel">
+      <h2>Components on this page</h2>
+      <p class="map-note">In canvas order. Block heading on the right where the block has one.</p>
+      <ol class="comp"><li><span class="mods">Hero</span></li><li><span class="mods">Person card</span><span class="blk">Leadership</span></li><li><span class="mods">Person card</span><span class="blk">Consultants</span></li><li><span class="mods">Person card</span><span class="blk">Side-by-Side advisors</span></li><li><span class="mods">Prose</span><span class="blk">Associates, expert network and C and N members</span></li><li><span class="mods">Link line</span></li></ol>
+      <p class="map-note">Header Contact, Mega-nav hub and strands, Breadcrumb, Cookie bar and the footer are on every page. Names match the <a href="../../catalogue/index.html">component library</a>.</p>
+    </section>
   </aside>
 </div>
 <script src="../../assets/nav.js"></script>
