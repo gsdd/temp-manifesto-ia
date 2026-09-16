@@ -790,11 +790,63 @@ Result: column 1 is a heading and one item; column 3 is a heading and its pillar
 
 ---
 
-## D-56. Chips and modules catalogue is a wireframe utility
+## D-56. Page modules catalogue is a wireframe utility
 
-**Chosen**: `/catalogue/` in the mock lists one example of each chip and module shape. Linked from All pages, the sidebar, and the sitemap's Wireframe tools group. Not a live client URL, not in the header or footer.
+**Chosen**: `/catalogue/` in the mock lists one example of each live page module and block. Linked from All pages, the heading map, and the sitemap's Wireframe tools group. Not a live client URL, not in the header or footer. The catalogue does not show the working-notes sidebar.
 
-**Rationale**: Chips are deployed across pages; a single index lets Gary and Andy judge weight, keyword, quiet line, cards, logos, quotes, video, stats, reports, articles and MURAL rows without hunting.
+**Rationale**: Module shapes (cards, logos, quotes, video, stats, reports, articles, CIVD, empty states, pagination, forms) need a single index. Working notes stay on individual page reviews.
+
+---
+
+## D-57. CEO Advisory is a full-weight pillar
+
+**Options**
+1. Grey the CEO column (lighter type, muted ink) so it reads quieter.
+2. Full contrast and heading weight, same as Growth Strategy and Activation; quieter only by a slightly narrower column and fewer strands.
+3. Drop CEO Advisory from the mega-nav.
+
+**Chosen**: Option 2.
+
+**Rationale**: D-02 made the column visible but quieter by type. Client review of the wireframe: greying the pillar looks like a second-class offer. Source D still requires the triangle to be readable in two seconds. Source C still says do not design the whole site around advisory. Width and strand count do that job. Grey does not.
+
+**Fallback**: Narrow the column further. Do not restore muted type.
+
+---
+
+## D-58. Every mega-nav strand has a keyword-led subtitle
+
+**Options**
+1. Keep two quiet lines only (Experience Engineering, Growth Office) per D-35.
+2. Subtitle under every strand, short plain English drawn from UK keyword findings and deck language.
+3. Return full deck one-liners to the menu.
+
+**Chosen**: Option 2.
+
+**Rationale**: Client review: the two quiet lines mostly said nothing useful, except Experience Engineering. Prospects need a human-readable cue under each strand. UK DataForSEO (16 Sep 2026) supplies adjacent demand for the wording; it does not rename the labels. Option 3 would reverse v4 and crowd the panel.
+
+**The subtitles**
+
+| Strand | Subtitle |
+|---|---|
+| Growth Strategy Overview | Where to grow and how to win |
+| Proposition Innovation | Value proposition design |
+| Activation Overview | Hands-on delivery, six services |
+| Customer Research and Insight | Research methods and journey mapping |
+| Experience Engineering | Customer experience and websites |
+| AI Agents for Marketing | AI marketing agents, guided by experts |
+| Operating Model Design | Target operating model |
+| Growth Office | Interim growth team |
+| AI Enablement | AI skills and adoption |
+| Side-by-Side | One-to-one advisory retainer |
+| Our advisors | Experienced growth leaders |
+
+**Fallback**: Shorten a subtitle; do not drop the set back to two.
+
+---
+
+## D-59. Working notes stay off the catalogue
+
+**Chosen**: Individual pages keep a right-hand working-notes sidebar for IA review. The Page modules catalogue (`/catalogue/`) is `layout-solo` and shows live blocks only. UI copy and docs say **modules** or **blocks**, not chips.
 
 ---
 

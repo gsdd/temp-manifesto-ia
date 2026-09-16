@@ -10,28 +10,30 @@ Related: `05-content-matrix.md` shows the same information as a grid; `04-canoni
 
 ---
 
-## Chips and tags: one dimension per page type
+## On-page tags: one dimension per page type
 
-Gary's v4 feedback: page chips are too busy. The cause was structural. The IA has three intersecting dimensions (services, expertise themes, sectors) and v3 showed all three as chips wherever they were tagged. The cross-referencing model is right; showing it everywhere is not.
+Gary's v4 feedback: page tags were too busy. The cause was structural. The IA has three intersecting dimensions (services, expertise themes, sectors) and v3 showed all three as tags wherever they were tagged. The cross-referencing model is right; showing it everywhere is not.
 
-The rule: **each page type shows chips from one dimension only, capped at three visible.** The other dimensions still exist as CMS tags, drive filters and auto modules, and appear as blocks (a list of cards, a "Where we help" list) where the template calls for them. They are not displayed as chips.
+The rule: **each page type shows tags from one dimension only, capped at three visible.** The other dimensions still exist as CMS tags, drive filters and auto modules, and appear as blocks (a list of cards, a "Where we help" list) where the template calls for them. They are not displayed as a second tag row.
 
-| Page type | Chip dimension | Cap | Not shown as chips |
+Working notes in the wireframe sidebar (weight, primary keyword, related URLs) are review annotations. They are not live page modules. The **Page modules** catalogue (`/catalogue/`) shows live blocks only (D-59). Do not call these "chips" in UI copy.
+
+| Page type | Tag dimension | Cap | Not shown as tags |
 |---|---|---|---|
-| Home | Expertise (one row of plain text links) | 5 | Services (the triangle is three blocks, not chips), sectors, insight types |
+| Home | Expertise (one row of plain text links) | 5 | Services (the triangle is three blocks, not tags), sectors, insight types |
 | Services hub | None | | The expertise line is one sentence with a link |
 | Service detail | Expertise (Related expertise block) | 3 | Sectors; other services (Related services is two or three cards) |
 | Expertise theme | None | | Services (Where we help is a list with a line each); sectors (row cut) |
 | Sector landing | None | | Themes (row cut); services (Services most used here is a short list) |
 | Work hub | Service, one per card | 1 | Themes and sectors on cards; they remain filters |
 | Case study | Services used (hero) | 3 | Sector and themes in the hero. Related expertise appears once, at the foot, capped at 3 |
-| Insights hub | Expertise, one per card | 1 | Type is a word in the meta line, not a chip |
+| Insights hub | Expertise, one per card | 1 | Type is a word in the meta line, not a tag |
 | Insight | Expertise (hero) | 3 | Services (Related services is a block, max 2); sectors |
 | Team profile | None | | Focus is a sentence with links |
 
-Where a page has more tags than the cap, the template shows the first three (editor-ordered) and nothing else. There is no "+2 more" control on chips; the full set is visible on the filter hubs.
+Where a page has more tags than the cap, the template shows the first three (editor-ordered) and nothing else. There is no "+2 more" control. The full set is visible on the filter hubs.
 
-Sectors are shown as chips nowhere. They live in the Work and Insights filters (behind More filters), the footer, and their own light landings.
+Sectors are shown as tags nowhere. They live in the Work and Insights filters (behind More filters), the footer, and their own light landings.
 
 ---
 
@@ -44,9 +46,9 @@ Sectors are shown as chips nowhere. They live in the Work and Insights filters (
 | **Editorial** | The block appears when a content editor chooses to add it. |
 | **Auto** | Content is pulled automatically from tags and relationships in the CMS. |
 | **Curated** | Content is hand-picked by an editor. Falls back to Auto if nothing is picked. |
-| **CTA** | Call to action. On this site every primary CTA leads to `/contact/`, optionally with `?topic=`. |
+| **CTA** | Call to action. Primary CTA is a button to `/contact/` (Work with us, or Work for us on careers routes), optionally with `?topic=`. Secondary CTA is a text link, usually "See our work" or "What we do". |
 
-Global blocks on every page, not repeated below: Header (see `01-primary-navigation.md`), Breadcrumbs (all pages except Home), Footer, cookie notice.
+Global blocks on every page, not repeated below: Header (see `01-primary-navigation.md`), Breadcrumbs (all pages except Home), Footer (services, expertise, sectors, company including The Nutshell, legal, search), cookie bar.
 
 Block order matters. The first two blocks on any page must answer "where am I and is this for me?" before any proof or detail.
 
@@ -60,7 +62,7 @@ Purpose: say who MGA is for, show the Growth Architecture triangle once, and rou
 |---|---|---|---|
 | 1 | Hero | Positioning statement from Source B ("Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth"), the line "Strategy that works. Execution that delivers.", one primary CTA to Contact, one text link to `/services/` ("What we do"). Showreel placeholder beneath (film later). | Always. |
 | 2 | Trusted partners | Heading "Trusted partners" and a thin row of 8 client logos. | Always. Logos link to the case study if one exists, otherwise to `/work/`. High, before What we do (MURAL). |
-| 3 | Growth Architecture triangle | Three blocks, each with the pillar label and the same short pillar line as the mega-nav: Growth Strategy ("Where and how you grow"), Activation Services ("Turning strategy into results"), CEO Advisory ("One-to-one support for leaders"). Each block links to its pillar page. Growth Strategy and Activation equal weight; CEO Advisory narrower and quieter. Section heading "What we do". Beneath the three blocks, one line in small type, the **triangle line**: "Strategy first. Activation to deliver it. Advisors alongside." (v5, R2), with a text link "Our Growth Architecture" to `/services/`. | Always. The triangle is drawn once, here. No pyramid diagram, no Source B one-liners, no second rendering. The three pillar lines and the triangle line are shared data with the mega-nav and the Services hub (`05-content-matrix.md`). The triangle line is the only sentence in this block. |
+| 3 | Growth Architecture triangle | Three blocks, each with the pillar label and the same short pillar line as the mega-nav: Growth Strategy ("Where and how you grow"), Activation Services ("Turning strategy into results"), CEO Advisory ("One-to-one support for leaders"). Each block links to its pillar page. All three pillars use the same contrast and weight. CEO Advisory is not greyed out. Section heading "What we do". Beneath the three blocks, one line in small type, the **triangle line**: "Strategy first. Activation to deliver it. Advisors alongside." (v5, R2), with a text link "Our Growth Architecture" to `/services/`. | Always. The triangle is drawn once, here. No pyramid diagram, no Source B one-liners, no second rendering. The three pillar lines and the triangle line are shared data with the mega-nav and the Services hub (`05-content-matrix.md`). The triangle line is the only sentence in this block. |
 | 4 | Our thinking | Heading "Our thinking". One featured report card and one article card, then a text link "All thinking" to `/insights/`. | Always. Placed after the triangle and before Our work so thinking is not a strip at the foot (`thinking-placement.md`). Not a reports grid. |
 | 5 | Our work | Three case studies, curated, spanning at least two pillars. Card: image, client, one-line result. No tags. Link "All work". A quote with the work. | Always. Curated; falls back to newest. |
 | 6 | Awards | Heading "Awards" and a short logo row. FT sits here, not in the hero. | Always. |
@@ -190,9 +192,10 @@ v3 had a "Themes that matter here" row after Services most used here. Cut in v4 
 | 1 | Intro | Heading "Our work", one line | Always |
 | 2 | Featured | One curated case study, large | Editorial. Falls back to newest. |
 | 3 | Filters | One filter group open on load: Service, grouped by pillar (Growth Strategy and Proposition Innovation; the six Activation services; CEO Advisory). A "More filters" control reveals Expertise (five) and Sector (four). Multi-select within a group, AND across groups. Filters update the URL query string. Active filters from any group are shown as removable chips above the grid. | Always. v3 opened all three groups at once; v4 opens one (D-43). Arriving with `?expertise=` or `?sector=` in the URL opens More filters with that group visible. |
-| 4 | Results grid | Case study cards: client, one-line result, one service tag (the primary service). Newest first by default, pinned items first. | Always. Paginated or load-more after 12. Theme tags on cards were cut in v4. |
-| 5 | Empty state | If a filter combination returns nothing: message plus links to the nearest broader filter | Conditional |
-| 6 | CTA | Contact | Always |
+| 4 | Results grid | Case study cards: client, one-line result, one service tag (the primary service). Newest first by default, pinned items first. | Always. Paginated after 12. Theme tags on cards were cut in v4. |
+| 5 | Empty state | If a filter combination returns nothing: message plus a control to clear filters | Conditional. Shown in the wireframe as a labelled stub. |
+| 6 | Related thinking | Two thinking items plus All thinking | Always |
+| 7 | CTA | Primary Contact, secondary See our work | Always |
 
 ---
 
@@ -224,7 +227,10 @@ Anonymised case studies use the same template with the client name replaced by a
 | 2 | Latest | One curated or newest insight, large, plus the next three | Always. "Latest" is a section here, not a page (Source A). |
 | 3 | Filters | One filter group open on load: Type (article, report, event). A "More filters" control reveals Expertise, Service and Sector. Filters update the URL query string. | Always. v3 opened all four groups; v4 opens one (D-43). This is also where the v3 Insights dropdown's type links now live (D-38). |
 | 4 | Results list | Cards: title, one meta line (type, date, reading time), one theme tag | Always. Paginated after 12. Past events hidden by default. |
-| 5 | Newsletter sign-up | Inline form or link to `/newsletter/` | Always |
+| 5 | Empty state | If a filter combination returns nothing: message plus a control to clear filters | Conditional. Shown in the wireframe as a labelled stub. |
+| 6 | Events and news | Launch events and recaps. The Nutshell sign-up. | Always. A separate `/events/` page only if there is enough recap content (open decision). |
+| 7 | Related services | Links to What we do, Expertise, Our work | Always |
+| 8 | Newsletter sign-up | Inline form or link to `/newsletter/` (The Nutshell) | Always |
 
 ---
 
@@ -343,12 +349,32 @@ Role:
 
 | # | Block | Content | Rule |
 |---|---|---|---|
-| 1 | Intro | Heading, one line, what happens after you get in touch | Always |
-| 2 | Form | Name, company, email, topic selector (pre-filled from `?topic=`), message | Always |
-| 3 | Direct contact | Email, phone, office address | Always |
-| 4 | Reassurance | One or two lines on response time and confidentiality | Always |
+| 1 | Intro | Heading, one line | Always |
+| 2 | Work with us | Form: name, company, email, topic (`?topic=`), message. Primary client enquiry. | Always. Anchor `#work-with-us`. |
+| 3 | Work for us | Form: name, email, message. Speculative applications. Roles live on Careers. | Always. Anchor `#work-for-us`. |
+| 4 | Direct contact | Email, phone, office address. Response time and confidentiality. | Always |
+| 5 | The Nutshell | Link to `/newsletter/` | Always |
 
 Thank-you page: confirmation, then three curated links (a service, a case study, an insight).
+
+---
+
+## T17. Page modules catalogue (`/catalogue/`)
+
+Wireframe utility only. Not a live client URL. No working-notes sidebar.
+
+Ordered live blocks: on-page tags, filters, service/offer/case/report/person cards, logos, quote, 16:9 video, stats, article body, CIVD four-cell, triangle, mega-nav hub and strands, situations list, empty state, pagination, Work with us / Work for us forms, primary and secondary CTA, cookie bar.
+
+---
+
+## T18. Utility stubs
+
+| URL | Blocks |
+|---|---|
+| `/privacy-policy/`, `/cookie-policy/`, `/terms/`, `/accessibility/` | Hero + summary stub. Cookie policy also names the site-wide cookie bar. Legal review before launch. |
+| `/search/` | Query field, example results, empty state. |
+| `/newsletter/` | The Nutshell sign-up. |
+| `/404/` | Message, primary What we do, secondary Our work and Contact, plus search. |
 
 ---
 
@@ -372,4 +398,5 @@ Thank-you page: confirmation, then three curated links (a service, a case study,
 | T14 Values and culture | `/about/values/` |
 | T15 Careers and Role | `/careers/`, `/careers/{role}/` |
 | T16 Contact | `/contact/`, `/contact/thank-you/` |
-| Generic content | Legal pages, `/newsletter/`, `/search/`, `/404/` |
+| T17 Page modules catalogue | `/catalogue/` (wireframe only) |
+| T18 Utility stubs | `/privacy-policy/`, `/cookie-policy/`, `/terms/`, `/accessibility/`, `/search/`, `/newsletter/`, `/404/` |

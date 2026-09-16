@@ -2,7 +2,7 @@
 
 Recommended H1 (one), H2s (ordered) and H3s for every URL in the clickable wireframe.
 Tied to UK DataForSEO volumes (Sep 2026) and Andy's Growth Architecture Services deck.
-Header chrome is MURAL-informed (see `docs/mural-gap-check.md`). Mega-nav group titles are linked hubs with Overview or strand children. Buyer language sits in quiet lines, H1 support, H2/H3s and page chips.
+Header chrome is MURAL-informed (see `docs/mural-gap-check.md`). Mega-nav group titles are linked hubs with Overview or strand children. Buyer language sits in strand subtitles, H1 support, H2/H3s and page notes.
 
 Volumes are average monthly Google Ads search volume for the United Kingdom. Exact Manifesto product phrases are often thin; adjacent demand is the useful signal.
 
@@ -49,6 +49,7 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
 
 - **Weight:** Canonical
 - **Primary keyword:** growth strategy (~480)
+- **Strand subtitle:** Where to grow and how to win
 - **Alts:**
   - growth strategy consultancy / consultant (~70)
   - brand strategy consulting (~390) where true to the offer
@@ -77,7 +78,7 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
 
 - **Weight:** Canonical
 - **Primary keyword:** value proposition design (~140)
-- **Quiet line:** Value proposition design
+- **Strand subtitle:** Value proposition design
 - **Alts:**
   - value proposition (broad, noisy)
   - proposition design (~20)
@@ -92,13 +93,14 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   6. Direct-to-consumer propositions
   7. Proof
   8. How it works
-- **Intent:** Keep Manifesto label in the H1. Put value / proposition design in the quiet line, hero and H2s so search can see it. Each proposition type hands off to its theme.
+- **Intent:** Keep Manifesto label in the H1. Put value / proposition design in the strand subtitle, hero and H2s so search can see it. Each proposition type hands off to its theme.
 - **Related:** themes: Loyalty, Membership, Subscriptions; sectors: Retail, Consumer, Financial services; services: Growth Strategy, Customer Research and Insight
 
 ## `/services/activation/`: Activation Services
 
 - **Weight:** Supporting
 - **Primary keyword:** strategy to execution (group page; no single volume target)
+- **Strand subtitle:** Hands-on delivery, six services
 - **Alts:**
   - customer journey mapping (~2,900) in the Experience Engineering line
   - operating model (~880) in the Operating Model Design line
@@ -115,6 +117,7 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
 
 - **Weight:** Canonical
 - **Primary keyword:** customer research methods / companies (~720)
+- **Strand subtitle:** Research methods and journey mapping
 - **Alts:**
   - customer journey mapping (~2,900)
   - customer research techniques (~880)
@@ -143,7 +146,7 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
 
 - **Weight:** Canonical
 - **Primary keyword:** experience engineering (~90), with CX / journey H2s
-- **Quiet line:** Customer experience and websites
+- **Strand subtitle:** Customer experience and websites
 - **Alts:**
   - customer journey mapping (~2,900)
   - cx consultancy (~70)
@@ -162,13 +165,14 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   9. Proof
 - **H3s:**
   - Customer and value analytics (under research and testing)
-- **Intent:** Keep the Manifesto label. Quiet line and H2s do the CX, website and journey-mapping job (Dayinsure / Key Group pattern). Find / Redesign / Test / Scale is How it works from the deck.
+- **Intent:** Keep the Manifesto label. Strand subtitle and H2s do the CX, website and journey-mapping job (Dayinsure / Key Group pattern). Find / Redesign / Test / Scale is How it works from the deck.
 - **Related:** themes: Customer Value, Loyalty; sectors: Financial services, Consumer; services: Customer Research and Insight, AI Agents for Marketing
 
 ## `/services/ai-agents-for-marketing/`: AI Agents for Marketing
 
 - **Weight:** Canonical
 - **Primary keyword:** ai marketing agents (~390)
+- **Strand subtitle:** AI marketing agents, guided by experts
 - **Alts:**
   - ai agents for marketing (~70)
   - marketing automation consultancy (~90)
@@ -192,6 +196,7 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
 
 - **Weight:** Canonical
 - **Primary keyword:** operating model (~880)
+- **Strand subtitle:** Target operating model
 - **Alts:**
   - target operating model (~1,600)
   - operating model design (~140)
@@ -215,7 +220,7 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
 
 - **Weight:** Canonical
 - **Primary keyword:** interim cmo / interim growth team (~110 to 140)
-- **Quiet line:** Interim growth team
+- **Strand subtitle:** Interim growth team
 - **Alts:**
   - growth office (~10, weak; do not primary-target)
   - programme office / PMO (hero language)
@@ -232,13 +237,14 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   8. How it works
 - **H3s:**
   - Interim CMO and senior cover (where the engagement needs it)
-- **Intent:** Keep Growth Office as the label. Quiet line and body must say interim / embedded growth team, and interim CMO where accurate. Do not SEO-target 'growth office' as the primary phrase.
+- **Intent:** Keep Growth Office as the label. Strand subtitle and body must say interim / embedded growth team, and interim CMO where accurate. Do not SEO-target 'growth office' as the primary phrase.
 - **Related:** themes: Customer Value; sectors: Media, Consumer; services: Operating Model Design, CEO Advisory, AI Enablement
 
 ## `/services/ai-enablement/`: AI Enablement
 
 - **Weight:** Canonical
 - **Primary keyword:** ai enablement (~170)
+- **Strand subtitle:** AI skills and adoption
 - **Alts:**
   - ai transformation consultancy (~10)
   - ai adoption / skills (supporting copy; no volume in this pull for 'ai adoption consultancy')
@@ -258,6 +264,7 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
 
 - **Weight:** Supporting
 - **Primary keyword:** ceo advisory (~10)  /  relationship page, not volume-led
+- **Strand subtitle:** One-to-one advisory retainer
 - **Alts:**
   - board advisor (~90), adjacent
   - ceo coach (~320), adjacent only, not identical to Side-by-Side
@@ -574,7 +581,7 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
 
 - **Weight:** Supporting
 - **Primary keyword:** methodology (not a product; no service keyword)
-- **Quiet line:** How we partner with clients
+- **Strand subtitle:** How we partner with clients
 - **Alts:**
   - Growth Architecture, CIVD, Operating Architecture, AgentLab, Side-by-Side each have one anchored home
 - **H1:** Our approach
@@ -715,16 +722,15 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
 - **Intent:** Error page with routes to Services, Work and Contact.
 - **Related:** services: What we do, Our work, Contact
 
-## `/catalogue/`: Chips and modules
+## `/catalogue/`: Page modules
 
 - **Weight:** Utility
 - **Primary keyword:** none (wireframe index, not a live URL)
-- **Quiet line:** Quiet line example
 - **Alts:**
-  - Not a client sitemap item. Linked from All pages and the sidebar.
-- **H1:** Chips and modules
+  - Not a client sitemap item. Linked from All pages.
+- **H1:** Page modules
 - **H2s (ordered):**
-  1. Sidebar chips
+  1. On-page tags
   2. Service and offer cards
   3. Logo placeholders
   4. Case cards
@@ -733,10 +739,12 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   7. Stats
   8. Report cards
   9. Article blocks
-  10. MURAL modules row
-  11. CIVD four-cell
-  12. Triangle blocks
-  13. Mega-nav hub and strands
-- **Intent:** Wireframe design-system index. One example of each module shape used in the mock. Not a proposed live client URL.
-- **MURAL modules:** Example MURAL module chip
-- **Related:** themes: Loyalty; services: Growth Strategy
+  10. CIVD four-cell
+  11. Triangle blocks
+  12. Mega-nav hub and strands
+  13. Empty state
+  14. Pagination
+  15. Forms
+  16. Primary and secondary CTA
+  17. Cookie bar
+- **Intent:** Wireframe index of live page modules and blocks. Not a proposed live client URL. No working notes sidebar.

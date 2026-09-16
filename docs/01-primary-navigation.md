@@ -59,11 +59,11 @@ This is the only mega-nav on the site. It is a full-width panel below the header
 
 ### 3.1 The rule for this panel
 
-The panel is Andy's Growth Architecture triangle (Source B) laid flat, in the order of prominence agreed on the 7 September call (Source C): Growth Strategy first, Activation Services second, CEO Advisory third and quieter. A prospect should be able to name the three pillars within two seconds of the panel opening without reading anything in smaller type (Source D, Source F).
+The panel is Andy's Growth Architecture triangle (Source B) laid flat, in the order of prominence agreed on the 7 September call (Source C): Growth Strategy first, Activation Services second, CEO Advisory third. A prospect should be able to name the three pillars within two seconds of the panel opening without reading anything in smaller type (Source D, Source F). CEO Advisory is a full-weight pillar: same contrast and type weight as the other two. It is quieter only by column width and by having two strands rather than six (D-57).
 
 Each **group title is a hub**: a linked heading with a trailing arrow, so it never reads as a static label. Under the title, **strands are siblings**. Where a pillar has only one child service, an **Overview** row is the second visible strand so the header does not look like a fake heading over a lonely child. CEO Advisory always shows **two named strands**: Side-by-Side and Our advisors. Activation already has six services; it still gets Overview so every column uses the same hub-plus-strands pattern.
 
-The panel carries labels, not copy. Explanation lives on the pages. The only supporting text is one short line per pillar and one quiet line under each of the two coined service names that Andy flagged as opaque.
+The panel carries labels plus a short keyword-led subtitle under every strand (D-58). Longer explanation still lives on the pages. Pillar lines stay one short line per column.
 
 Against the peer set this is still a sparse services panel. The hub-and-strands pattern adds Overview rows and restores Side-by-Side as a strand (D-54). Deck one-liners do not return.
 
@@ -71,41 +71,41 @@ Against the peer set this is still a sparse services panel. The hub-and-strands 
 
 **Column 1: Growth Strategy** (leftmost, full weight)
 
-| Element | Text | Links to |
-|---|---|---|
-| Heading (hub) | **Growth Strategy →** | `/services/growth-strategy/` |
-| Pillar line | Where and how you grow | not a link |
-| Strand 1 | Overview | `/services/growth-strategy/` |
-| Strand 2 | Proposition Innovation | `/services/proposition-innovation/` |
+| Element | Text | Strand subtitle | Links to |
+|---|---|---|---|
+| Heading (hub) | **Growth Strategy →** | | `/services/growth-strategy/` |
+| Pillar line | Where and how you grow | | not a link |
+| Strand 1 | Overview | Where to grow and how to win | `/services/growth-strategy/` |
+| Strand 2 | Proposition Innovation | Value proposition design | `/services/proposition-innovation/` |
 
 The heading is the pillar hub (D-11, D-54). Overview is the same destination, labelled so the column always shows two strands: the hub page and the child service. v4 cut a duplicate "Growth Strategy" item (D-36); Overview is the replacement that makes the hub clickable without repeating the group name as a child.
 
-**Column 2: Activation Services** (centre, full weight)
+**Column 2: Activation Services** (centre, full weight; slightly wider because it holds six services)
 
-| Element | Text | Quiet line (small, grey) | Links to |
+| Element | Text | Strand subtitle | Links to |
 |---|---|---|---|
 | Heading (hub) | **Activation Services →** | | `/services/activation/` |
 | Pillar line | Turning strategy into results | | not a link |
-| Strand 1 | Overview | | `/services/activation/` |
-| Strand 2 | Customer Research and Insight | | `/services/customer-research/` |
+| Strand 1 | Overview | Hands-on delivery, six services | `/services/activation/` |
+| Strand 2 | Customer Research and Insight | Research methods and journey mapping | `/services/customer-research/` |
 | Strand 3 | Experience Engineering | Customer experience and websites | `/services/experience-engineering/` |
-| Strand 4 | AI Agents for Marketing | | `/services/ai-agents-for-marketing/` |
-| Strand 5 | Operating Model Design | | `/services/operating-model-design/` |
+| Strand 4 | AI Agents for Marketing | AI marketing agents, guided by experts | `/services/ai-agents-for-marketing/` |
+| Strand 5 | Operating Model Design | Target operating model | `/services/operating-model-design/` |
 | Strand 6 | Growth Office | Interim growth team | `/services/growth-office/` |
-| Strand 7 | AI Enablement | | `/services/ai-enablement/` |
+| Strand 7 | AI Enablement | AI skills and adoption | `/services/ai-enablement/` |
 
-Order of the six services follows the Source B deck. Overview is the group page. Labels are the v3 labels (`nav-wording-decisions.md`), unchanged. The two quiet lines are the only item-level text in the panel: Experience Engineering and Growth Office are the two names Andy said need a plain keyword beside them (Source C).
+Order of the six services follows the Source B deck. Overview is the group page. Labels are the v3 labels (`nav-wording-decisions.md`), unchanged. Every strand has a short subtitle in buyer language (`docs/keyword-findings.md`). Deck one-liners still do not return.
 
-**Column 3: CEO Advisory** (rightmost, narrower, quieter type)
+**Column 3: CEO Advisory** (rightmost, slightly narrower, full visual weight)
 
-| Element | Text | Links to |
-|---|---|---|
-| Heading (hub) | **CEO Advisory →** | `/services/ceo-advisory/` |
-| Pillar line | One-to-one support for leaders | not a link |
-| Strand 1 | Side-by-Side | `/services/ceo-advisory/#side-by-side` |
-| Strand 2 | Our advisors | `/services/ceo-advisory/#advisors` |
+| Element | Text | Strand subtitle | Links to |
+|---|---|---|---|
+| Heading (hub) | **CEO Advisory →** | | `/services/ceo-advisory/` |
+| Pillar line | One-to-one support for leaders | | not a link |
+| Strand 1 | Side-by-Side | One-to-one advisory retainer | `/services/ceo-advisory/#side-by-side` |
+| Strand 2 | Our advisors | Experienced growth leaders | `/services/ceo-advisory/#advisors` |
 
-Two strands, both visible (D-54). The heading is the pillar hub. Side-by-Side is the named retainer product (Source B slide 4); Our advisors is the people. v4/v5 had collapsed this column to heading plus one child, which read as a single strand. Side-by-Side is not a second URL and not an acronym (SxS stays off the site, D-31). The column stays quieter by width and type weight.
+Two strands, both visible (D-54). The heading is the pillar hub. Side-by-Side is the named retainer product (Source B slide 4); Our advisors is the people. v4/v5 had collapsed this column to heading plus one child, which read as a single strand. Side-by-Side is not a second URL and not an acronym (SxS stays off the site, D-31). The column is not greyed out (D-57). It is quieter only because it has two strands and a slightly narrower grid track.
 
 **Panel footer row** (full width, one thin line, small text, separated by a rule)
 
@@ -121,18 +121,18 @@ Two short links. Expertise is the only place expertise appears in the header. v3
 - Labels use the words a prospect would search for. Where the deck label and the searched term conflict, the searched term is the label and the deck term lives on the page. The reasoning per label is in `nav-wording-decisions.md`; v4 changes no label.
 - No acronyms or internal shorthand in the nav.
 - **One pillar line per column**, four to six words, no full stop. The same three lines are used on the Home and Services hub triangle blocks (shared data, `05-content-matrix.md`).
-- **No item subtitles**, with two exceptions: a quiet line of two to four words under Experience Engineering and Growth Office. Adding a third quiet line is an IA decision, not a content edit, and the default answer is no: put the explanation on the page.
-- **Column 3 has two strands and no more.** Side-by-Side is the named product; Our advisors is the people. Adding a third child or putting SxS in the menu is an IA decision with the default: no.
-- The search vocabulary that v3 carried in subtitles (customer experience, website, research, surveys, loyalty, membership, subscription, AI, operating model, interim, programme office, retainer) lives in service page H1s, H2s, title tags and FAQs (`04-canonicals-and-seo.md`, section 6). The menu does not have to carry it.
+- **One strand subtitle under every strand**, two to six words, keyword-led and human-readable (D-58). Subtitles help a prospect understand what they get. They do not rename the Manifesto label. Adding a third CEO child or putting SxS in the menu is an IA decision with the default: no.
+- **Column 3 has two strands and no more.** Side-by-Side is the named product; Our advisors is the people.
+- Search vocabulary also lives in service page H1s, H2s, title tags and FAQs (`04-canonicals-and-seo.md`, section 6; `docs/keyword-findings.md`). Volumes are not invented.
 - No "Column 1", "Pillar 1" or similar labels in the live nav.
 
 ### 3.4 Desktop layout notes (structural, not visual)
 
-- Grid: columns 1 and 2 equal width; column 3 roughly two thirds of that width. The panel has a maximum width matching the page content, centred.
+- Grid: Activation slightly wider than Growth Strategy; CEO Advisory slightly narrower. Same ink colour and heading weight on all three. The panel has a maximum width matching the page content, centred.
 - Column headings align on one baseline. Reading left to right gives Growth Strategy, Activation Services, CEO Advisory.
-- Column 3 uses the same structure (heading, pillar line, item) with lighter type weight and a slightly smaller heading. The item is set in the same quiet grey as the pillar line.
-- The footer row is separated by a rule and uses smaller text. It must not grow beyond three links; v5 uses two.
-- Word budget for the whole open panel: labels, three pillar lines, two quiet lines, Overview (twice), Side-by-Side, Our advisors, footer row. Hub rows are the cost of making group titles obviously clickable (D-54). Fifty words is no longer a hard cap.
+- Column 3 uses the same structure (heading, pillar line, strands). It is not set in quieter grey.
+- The footer row is separated by a rule and uses smaller text. It carries All services, Expertise, Our work.
+- Word budget is no longer a hard cap. Hub rows and strand subtitles are the cost of making the offer readable (D-54, D-58).
 
 ### 3.5 Mobile and tablet behaviour (below roughly 1024 px)
 
@@ -198,15 +198,18 @@ Loyalty, Membership, Subscriptions, Pricing, Customer Value
 Financial services, Media, Consumer, Retail (each to `/sectors/{slug}/`)
 
 **Footer column 4: Company**
-About, Our team, How we work, Values and culture, Careers, Our work, Insights, Newsletter, Contact
+About, Our people, Our approach, Values and culture, Careers, Our work, Our thinking, The Nutshell, Contact
 
 **Footer bottom row**
-Company registration line, Privacy policy, Cookie policy, Terms, Accessibility statement, social links
+Company registration line, Search field (submits to `/search/`), Privacy policy, Cookie policy, Terms, Accessibility statement, social links
+
+A site-wide cookie bar sits above the footer on every page and links to `/cookie-policy/`.
 
 Footer rules:
-- Footer links are plain text lists with column headings. No subtitles or quiet lines. Service link text is the mega-nav label, exactly. CEO Advisory is listed as "CEO Advisory" (v3 wrote "CEO Advisory: Side-by-Side").
+- Footer links are plain text lists with column headings. No strand subtitles. Service link text is the mega-nav label, exactly. CEO Advisory is listed as "CEO Advisory".
 - The footer lists every Canonical and Supporting page in the sitemap except individual case studies, individual insights, individual roles and individual team profiles.
 - Sectors appear here in full. This is their primary navigation home.
+- Search is footer plus `/search/`, not a seventh header item. The Nutshell is the named newsletter.
 
 ---
 
@@ -234,7 +237,7 @@ Breadcrumbs are marked up with `BreadcrumbList` structured data (see `04-canonic
 | Expertise themes (shown as "Expertise") | One link in the mega-nav footer row | Column 2 | Our work and Insights (More filters) | `/expertise/...` (Supporting) |
 | Sectors | Not in the header | Column 3 | Our work and Insights (More filters) | `/sectors/{sector}/` (Light); no index page |
 | Methodology | About dropdown | Column 4 | None | `/about/how-we-work/` (Supporting) |
-| CEO Advisory | Mega-nav column 3 (quieter): hub heading, Side-by-Side, Our advisors | Column 1, last service | Our work (service filter value) | `/services/ceo-advisory/` (Supporting) with `#side-by-side` and `#advisors`; advisor profiles under `/about/team/` |
+| CEO Advisory | Mega-nav column 3 (full weight, narrower): hub heading, Side-by-Side, Our advisors | Column 1, last service | Our work (service filter value) | `/services/ceo-advisory/` (Supporting) with `#side-by-side` and `#advisors`; advisor profiles under `/about/team/` |
 
 ## 9. v1 to v5 header comparison
 
@@ -265,14 +268,15 @@ For scale: Prophet's What We Do panel has about 25 links, Elixirr's Services pan
 
 Header items, About dropdown, footer, breadcrumbs, labels and slugs are unchanged from v4. The v3 to v4 changes are in `v4-simplification.md`.
 
-## 11. This pass: hub titles and two CEO strands
+## 11. This pass: hub titles, full-weight CEO, strand subtitles
 
-| v5 menu | This pass |
+| Previous menu | This pass |
 |---|---|
 | Group titles look like headings; Growth Strategy has one child | Group titles are linked hubs with a trailing arrow. Growth Strategy shows Overview + Proposition Innovation |
 | Activation: six children, no Overview | Overview + the six |
-| CEO Advisory: heading + Our advisors (reads as one strand) | Hub heading + Side-by-Side + Our advisors |
-| Word budget: fifty or fewer | Hub rows are allowed; fifty is no longer a hard cap |
+| CEO Advisory: heading + Our advisors (reads as one strand), greyed or quieter type | Hub heading + Side-by-Side + Our advisors, same contrast as the other pillars (D-57) |
+| Two quiet lines only (Experience Engineering, Growth Office) | Keyword-led subtitle under every strand (D-58) |
 | Latest thinking at the foot of Home | Featured thinking after the triangle (`thinking-placement.md`) |
+| Chips catalogue with working-notes sidebar | Page modules catalogue, live blocks only (D-59) |
 
 Top-level header stays at six items. Services remain the spine. See D-54.
