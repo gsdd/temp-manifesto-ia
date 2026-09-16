@@ -110,7 +110,7 @@ URL pattern: trailing slash, kebab-case slugs, **flat services** under `/service
 | `/search/` | Search | Utility |
 | `/privacy-policy/`, `/cookie-policy/`, `/terms/`, `/accessibility/` | Legal stubs | Utility |
 | `/404/` | Page not found | Utility |
-| `/catalogue/` | Page modules (wireframe only) | Not a live URL |
+| `/catalogue/` | Component library (wireframe only) | Not a live URL |
 
 There is no `/sectors/` index. `/sectors/` redirects to `/work/`. There is no separate `/side-by-side/`, `/civd/`, `/agentlab/` or events URL unless Decision 8 (Events) later warrants one.
 
@@ -220,9 +220,9 @@ Our approach: principles, engagement shapes, the five named frameworks (each lin
 Careers: Life at Manifesto, DEI, benefits, open roles, speculative route to Work for us, closing CTA.  
 Contact: Work with us form, Work for us form, direct contact, The Nutshell. Thank-you: three onward links.
 
-### Page modules catalogue (`/catalogue/`)
+### Component library (`/catalogue/`)
 
-Wireframe only. Live blocks in order, no working-notes sidebar. Title and nav labels say Page modules, not chips.
+Wireframe only. Every reusable component, one name and one shape each, grouped by type. No sidebar. Each page's sidebar lists the components on that page by the same names.
 
 **Evidence**
 
@@ -341,6 +341,6 @@ Related confirmations that affect copy more than structure: whether interim CMO 
 
 1. Open `mocks/index.html` in a browser. No build step or server is required. From the `mocks/` folder, `python3 -m http.server` is optional.
 2. Home loads with the menu closed. Hover **What we do** to open the mega-nav. Check that all three pillar headings share the same contrast, and that every strand has a subtitle.
-3. Use **All pages** (heading map) or `mocks/sitemap.html` to reach every URL. **Page modules** (`mocks/catalogue/index.html`) lists live blocks only. It does not show working notes.
+3. Use **All pages** (sidebar) or `mocks/sitemap.html` to reach every URL. **Component library** (`mocks/catalogue/index.html`) lists every reusable component. Each page's sidebar shows its fundamentals (URL, H1, keywords, H2s, H3s, intent, content notes) and the components on that page.
 4. Footer links (The Nutshell, sectors, legal, search) all resolve. Cookie bar sits above the footer. Contact shows both forms. Our work and Our thinking show filters, pagination and an empty state.
 5. Spec documents behind the mock: `docs/01-primary-navigation.md`, `docs/02-sitemap.md`, `docs/03-page-layouts.md`, `docs/keyword-findings.md`, `docs/06-decisions-log.md`.

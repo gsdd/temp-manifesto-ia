@@ -850,6 +850,16 @@ Result: column 1 is a heading and one item; column 3 is a heading and its pillar
 
 ---
 
+## D-60. One sidebar: page fundamentals plus the components on the page
+
+**Chosen**: The wireframe sidebar is one structure on every page: **Page fundamentals** (URL, template and weight in plain English, H1, keywords with alts, menu subtitle, H2s in order, H3s where useful, intent, content notes, links to) as plain label-and-value text, and **Components on this page**, an inventory of the reusable components on the canvas in order, generated from the canvas markup itself. The catalogue is renamed the **Component library** and is generated from the same vocabulary, so a page cannot name a component the library lacks.
+
+**Rejected**: Boxed "working notes" chips; a "Modules" row of editorial notes; "Canonical" as a bare label.
+
+**Rationale**: Gary's review of the Pages build (16 September, evening). A module is a reusable page block (hero, offer card, logo strip), not a note about placement. Notes that read as changes from a previous build ("not at the top", "banner up") mean nothing to a reader who has only seen this output; content decisions that matter are stated as present-tense intent. Sidebar notes are text, not chips, in the same visual language as the heading map.
+
+---
+
 ## Open items for the next stage (wireframes)
 
 | Item | Note |

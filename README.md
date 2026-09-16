@@ -60,7 +60,7 @@ Full summaries of all seven are in `docs/00-sources.md`. The competitor review i
 
 | File | What it answers | Read it if you are |
 |---|---|---|
-| `mocks/index.html` | Clickable full-site wireframe. Home is the entry. Primary nav, mega-nav and footer work on every sitemap page. Each page has working notes and an outside SEO heading map (catalogue has no sidebar). | Anyone. Start here. |
+| `mocks/index.html` | Clickable full-site wireframe. Home is the entry. Primary nav, mega-nav and footer work on every sitemap page. Each page has a sidebar with its fundamentals (URL, H1, keywords, ordered H2s and H3s, intent, content notes) and an inventory of the components on the canvas (the component library has no sidebar). | Anyone. Start here. |
 | `mocks/README.md` | How to click through locally, what is in the mega-nav, how to regenerate | Anyone opening the mock |
 | `docs/client-report-andy.md` | Client-facing IA recommendations report | Client review |
 | `docs/keyword-findings.md` | UK DataForSEO volumes (16 Sep 2026) used for strand subtitles and H2s | SEO, content |
@@ -106,7 +106,7 @@ Full summaries of all seven are in `docs/00-sources.md`. The competitor review i
 - Services are canonical and flat under `/services/`. No heavy sector point-of-view pages.
 - The mega-nav shows the triangle and only the triangle, in the order Growth Strategy, Activation Services, CEO Advisory. Group titles are linked hubs. Growth Strategy and Activation start with Overview. CEO Advisory shows Side-by-Side and Our advisors at full visual weight. Labels, three pillar lines, a strand subtitle under every strand, footer row (All services, Expertise, Our work).
 - Home places Our thinking after the triangle, not as a strip at the foot (`docs/thinking-placement.md`).
-- Page modules are indexed at `mocks/catalogue/` (wireframe utility, not a live URL). Working notes are not shown there.
+- Reusable components are indexed in the component library at `mocks/catalogue/` (wireframe utility, not a live URL). Every page sidebar lists its components by the same names.
 - CEO Advisory is visible as the third pillar, full contrast, slightly narrower column.
 - The Services hub is the Growth Architecture story: name the system, connect the pillars, offer a way in by problem, put proof under each pillar. It is not a menu on a page.
 - Deck copy goes on pages, not in the menu. Named frameworks (Growth Architecture, CIVD, Operating Architecture, AgentLab, Side-by-Side) have anchored homes and are listed once on How we work.
