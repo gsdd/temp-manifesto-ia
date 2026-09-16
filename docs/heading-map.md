@@ -533,7 +533,7 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   4. Our approach
 - **H3s:**
   - Origins
-  - C and N members (open: confirm what C and N is)
+  - C and N members
 - **Intent:** Story, origins, and how the people mix of agency, client and strategy is distinct. Life at Manifesto is Careers, not duplicated here. Method teases Our approach.
 - **MURAL modules:** Origins / history; How we are distinct; People combo of agency, client and strategy; Do not duplicate Life at Manifesto; C and N members section
 - **Related:** services: Our Growth Architecture
@@ -677,35 +677,35 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
 - **Weight:** Utility
 - **Primary keyword:** none
 - **H1:** Privacy policy
-- **Intent:** Privacy notice shell. Not a search destination.
+- **Intent:** How we use personal information. Not a search destination.
 
 ## `/cookie-policy/`: Cookie policy
 
 - **Weight:** Utility
 - **Primary keyword:** none
 - **H1:** Cookie policy
-- **Intent:** Cookie notice and preferences shell. Not a search destination.
+- **Intent:** Cookies and how to manage them. Not a search destination.
 
 ## `/terms/`: Terms
 
 - **Weight:** Utility
 - **Primary keyword:** none
 - **H1:** Terms
-- **Intent:** Website terms of use shell. Not a search destination.
+- **Intent:** Website terms of use. Not a search destination.
 
 ## `/accessibility/`: Accessibility statement
 
 - **Weight:** Utility
 - **Primary keyword:** none
 - **H1:** Accessibility statement
-- **Intent:** Accessibility statement shell. Not a search destination.
+- **Intent:** How we work to make this site usable. Not a search destination.
 
 ## `/search/`: Search
 
 - **Weight:** Utility
 - **Primary keyword:** none
 - **H1:** Search
-- **Intent:** Site search results. noindex. Not a search destination.
+- **Intent:** Search results. Not a search destination.
 
 ## `/404/`: Page not found
 

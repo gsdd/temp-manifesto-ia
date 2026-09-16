@@ -16,8 +16,8 @@ This extends the v5 IA (`docs/01-primary-navigation.md`, `docs/02-sitemap.md`, `
    - **About** opens a small dropdown (Our people, Our approach, Values and culture). The label goes to `/about/`.
    - **Careers** is a plain first-class link.
    - **Contact** is the header button.
-4. Every sitemap URL is a real HTML page. The top-right **All pages** link opens `sitemap.html`, a clickable index.
-5. Each page has **page chips** (weight, primary keyword with UK volume when known, quiet line if any, related themes / sectors / services) and, where a MURAL keep/drop note landed, a second row of **MURAL modules**. An **Outside page / SEO heading map** panel sits to the right (below the frame on smaller screens).
+4. Every sitemap URL is a real HTML page. **All pages** in the heading map opens `sitemap.html`.
+5. Each page has quiet **page notes** (weight, primary keyword with UK volume when known, quiet line if any, related themes / sectors / services) and, where a MURAL keep/drop note landed, a **Modules** row. A **heading map** sits to the right.
 
 From GitHub: use the preview or raw HTML, or enable GitHub Pages and visit `/mocks/index.html`.
 

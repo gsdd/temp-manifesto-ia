@@ -22,23 +22,14 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .skip:focus { left: 8px; }
 
-.top {
-  max-width: 1480px; margin: 0 auto; padding: 16px 12px 10px;
-  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
-  font-size: 13px; color: var(--mid);
-}
-.top a { text-decoration: underline; }
-
 .layout {
-  max-width: 1480px; margin: 0 auto 48px; padding: 0 12px;
+  max-width: 1480px; margin: 16px auto 48px; padding: 0 12px;
   display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 20px; align-items: start;
 }
 
 .browser { border: 1px solid var(--line); background: var(--paper); position: relative; }
 .scrim { display: none; position: absolute; left: 0; right: 0; bottom: 0; top: 0; background: rgba(255,255,255,.72); z-index: 15; }
 .browser[data-mega-open="true"] .scrim { display: block; }
-.bar { position: relative; z-index: 16; border-bottom: 1px solid var(--line); padding: 7px 12px; font-size: 12px; color: var(--mid); background: #f7f7f7; }
-.bar .url { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
 
 .header-zone { position: relative; }
 .site-header {
@@ -85,10 +76,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* IA annotation chips: weight, keyword, quiet line, related. Not live-site chips. */
 .ia-chips {
-  margin: 12px 32px 0; padding: 12px 14px; background: #f7f7f7; border: 1px dashed var(--line);
+  margin: 12px 32px 0; padding: 8px 0 4px;
 }
 .ia-chips .label {
-  display: block; margin: 8px 0 8px; font-size: 11px; font-weight: 600; letter-spacing: .06em;
+  display: block; margin: 10px 0 6px; font-size: 11px; font-weight: 600; letter-spacing: .06em;
   text-transform: uppercase; color: var(--mid);
 }
 .ia-chips .label:first-child { margin-top: 0; }
@@ -218,12 +209,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* Outside-the-page heading map: annotation, not part of the site. */
 .heading-map {
-  background: var(--paper); border: 1px dashed #aaa; padding: 18px 16px 20px; position: sticky; top: 12px;
+  background: var(--paper); border: 1px solid var(--soft); padding: 16px 14px 18px; position: sticky; top: 12px;
 }
 .heading-map h2 {
-  margin: 0 0 6px; font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  margin: 0 0 6px; font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--mid);
 }
 .heading-map .map-note { margin: 0 0 14px; font-size: 12px; color: var(--mid); }
+.heading-map .map-note a { text-decoration: underline; }
 .heading-map .k { margin: 0 0 12px; font-size: 13px; }
 .heading-map .k strong { display: block; font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--mid); margin-bottom: 2px; }
 .heading-map ol, .heading-map ul { margin: 0; padding: 0 0 0 18px; font-size: 13px; }
