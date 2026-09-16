@@ -2221,16 +2221,41 @@ def body_for(page: dict) -> str:
         return f"""
         <section class="block hero">
           <h1>Page modules</h1>
-          <p>Index of the live page modules and blocks used in this wireframe. Working notes are not shown here.</p>
+          <p>Wireframe-only index of named units. Not a live client URL. Rules in <code>docs/wireframe-fresh-review.md</code>. Working notes are not shown here.</p>
         </section>
         <section class="block">
-          <h2 class="plain">On-page tags</h2>
+          <h2 class="plain">Actions</h2>
           <div class="catalogue-item">
-            <span class="cat-label">Page tags</span>
+            <span class="cat-label">Primary button</span>
+            <p class="prose">One conversion action per view: Contact, Arrange a conversation, Send. Not cookie Accept, not Clear filters, not header Contact.</p>
+            <div class="cta"><a class="btn" href="{h("/contact/")}">Contact</a></div>
+          </div>
+          <div class="catalogue-item">
+            <span class="cat-label">Text link (secondary CTA)</span>
+            <p class="prose">Underlined alternative next to a primary. Not a button, not a card.</p>
+            <div class="cta"><a class="text" href="{h("/work/")}">See our work</a></div>
+          </div>
+          <div class="catalogue-item">
+            <span class="cat-label">Tertiary link</span>
+            <p class="prose">See-all. Smaller grey underline. Never a case card (do not use a "More work" image tile).</p>
+            <a class="more" href="{h("/work/")}">All work</a>
+          </div>
+          <div class="catalogue-item">
+            <span class="cat-label">Header utility</span>
+            <p class="prose">Header Contact only. Outline, persistent. Must not match the page primary.</p>
+            <a class="btn" href="{h("/contact/")}">Contact</a>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">On-page tags and filters</h2>
+          <div class="catalogue-item">
+            <span class="cat-label">Page tag</span>
+            <p class="prose">Metadata, one dimension per page type, max three. On service pages each tag needs a one-line intersection. Not a filter.</p>
             <div class="page-tags"><a href="{h("/expertise/loyalty/")}">Loyalty</a><a href="{h("/expertise/pricing/")}">Pricing</a></div>
           </div>
           <div class="catalogue-item">
-            <span class="cat-label">Filters</span>
+            <span class="cat-label">Filter chip</span>
+            <p class="prose">Listing control with on/off. "More filters" reveals extra groups. Not a page tag, not a service card.</p>
             <div class="filters">
               <span class="filter on">Growth Strategy</span>
               <span class="filter">Experience Engineering</span>
@@ -2241,27 +2266,38 @@ def body_for(page: dict) -> str:
         <section class="block">
           <h2 class="plain">Cards</h2>
           <div class="catalogue-item">
-            <span class="cat-label">Service cards</span>
+            <span class="cat-label">Service card</span>
+            <p class="prose">A buyable service: name plus one-line offer. No image, no avatar. Not for themes, roles, articles, or the triangle.</p>
             <div class="cards two">
               {card(h, "/services/growth-strategy/", "Growth Strategy", "Customer-led growth strategy: where to focus and how to win", "flat")}
               {card(h, "/services/proposition-innovation/", "Proposition Innovation", "Value proposition design", "offer")}
             </div>
           </div>
           <div class="catalogue-item">
-            <span class="cat-label">Case cards</span>
+            <span class="cat-label">Case card</span>
+            <p class="prose">Image, client, one-line result. Real cases only. Not a listing link dressed as a case.</p>
             <div class="cards two">
               {card(h, "/work/dayinsure/", "Dayinsure", "One-line result", "ph")}
               {card(h, "/work/key-group/", "Key Group", "One-line result", "ph")}
             </div>
           </div>
           <div class="catalogue-item">
-            <span class="cat-label">Report cards</span>
+            <span class="cat-label">Report card</span>
+            <p class="prose">Portrait document thumbnail. Not a 16:10 case image.</p>
             <div class="cards two">
               {card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "Report", "doc")}
             </div>
           </div>
           <div class="catalogue-item">
-            <span class="cat-label">Person cards</span>
+            <span class="cat-label">Article card</span>
+            <p class="prose">Title plus meta (Article · theme). No offer fill, no document thumbnail.</p>
+            <div class="cards two">
+              {card(h, "/insights/loyalty-without-the-discount/", "Loyalty without the discount", "Article · Loyalty")}
+            </div>
+          </div>
+          <div class="catalogue-item">
+            <span class="cat-label">Advisor card</span>
+            <p class="prose">Avatar, name, former or current role. People, not a "see all" tile and not a service card.</p>
             <div class="cards">
               {card(h, "/about/team/advisor-one/", "Advisor name", "Former role, one line", "person")}
             </div>
@@ -2270,20 +2306,29 @@ def body_for(page: dict) -> str:
         <section class="block">
           <h2 class="plain">Proof and media</h2>
           <div class="catalogue-item">
-            <span class="cat-label">Logo placeholders</span>
+            <span class="cat-label">Logo row</span>
+            <p class="prose">Dashed tiles. Link only if a case exists. Not a case card. Awards is a separate labelled row.</p>
             {logos_html(6, "Logo")}
           </div>
           <div class="catalogue-item">
             <span class="cat-label">Quote</span>
+            <p class="prose">Left rule, quote, cite. Lives inside a case or beside work. Not a card.</p>
             <blockquote class="quote">"The work changed how we think about growth."<cite>Dayinsure</cite></blockquote>
           </div>
           <div class="catalogue-item">
-            <span class="cat-label">Video 16:9</span>
+            <span class="cat-label">Media placeholder</span>
+            <p class="prose">16:9 dashed rectangle with a job label (Showreel, Film, Studio). Not a case-card image.</p>
             {video_html("Showreel")}
           </div>
           <div class="catalogue-item">
-            <span class="cat-label">Stats</span>
-            {metrics_html([("3x", "EBITDA return"), ("4 wks", "Data audit"), ("6 wks", "First agents"), ("TBC", "NPS")])}
+            <span class="cat-label">Metric strip</span>
+            <p class="prose">Case At a glance only: figure plus unit. Not CIVD. Not the service numbers line.</p>
+            {metrics_html([("TBC", "Conversion"), ("TBC", "Value"), ("TBC", "Time"), ("TBC", "NPS")])}
+          </div>
+          <div class="catalogue-item">
+            <span class="cat-label">Numbers line</span>
+            <p class="prose">One line of deck figures under a service hero. Experience Engineering and AI Agents only. Not a grid of cells.</p>
+            <p class="numbers">Over 3x EBITDA return on investment, consistently.</p>
           </div>
         </section>
         <section class="block">
@@ -2291,20 +2336,23 @@ def body_for(page: dict) -> str:
           {article_body()}
         </section>
         <section class="block">
-          <h2 class="plain">CIVD four-cell</h2>
+          <h2 class="plain">Framework cell (CIVD)</h2>
+          <p class="prose">Customer, Innovation, Value, Delivery. Strategy frame on Growth Strategy and a compact row on the hub. Not a metric strip, not a service card, not Side-by-Side.</p>
           {civd_html()}
         </section>
         <section class="block">
-          <h2 class="plain">Triangle blocks</h2>
+          <h2 class="plain">Triangle (architecture)</h2>
+          <p class="prose">Three equal-weight pillars plus the triangle line. CEO Advisory uses the same ink. This is the system, not a row of service cards.</p>
           <div class="tri">
             <a href="{h("/services/growth-strategy/")}"><strong>Growth Strategy</strong><span>Where and how you grow</span></a>
             <a href="{h("/services/activation/")}"><strong>Activation Services</strong><span>Turning strategy into results</span></a>
             <a href="{h("/services/ceo-advisory/")}"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
           </div>
+          <p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside.</p>
         </section>
         <section class="block">
           <h2 class="plain">Mega-nav hub and strands</h2>
-          <p class="prose">Example of one group: linked hub title with chevron, strand label, and a keyword-led subtitle. Full panel is under What we do.</p>
+          <p class="prose">Hub title is a linked heading with a chevron. Strands are label plus keyword subtitle, not cards. Full panel is under What we do.</p>
           <div class="pillar" style="max-width:280px">
             <h3><a class="pillar-hub" href="{h("/services/growth-strategy/")}">Growth Strategy <span class="hub-chevron" aria-hidden="true">&#8594;</span></a></h3>
             <p class="line">Where and how you grow</p>
@@ -2315,17 +2363,24 @@ def body_for(page: dict) -> str:
           </div>
         </section>
         <section class="block">
-          <h2 class="plain">Situations list</h2>
+          <h2 class="plain">Situation list</h2>
+          <p class="prose">One-line problem entry. No boxes, no icons. If used for the six Activation services, do not also draw the same lines as service cards.</p>
           <ul class="situations">
             <li><a href="{h("/services/growth-strategy/")}">We need to decide where and how to grow</a></li>
             <li><a href="{h("/services/ceo-advisory/")}">I want a sounding board I trust</a></li>
           </ul>
         </section>
         <section class="block">
+          <h2 class="plain">Case line</h2>
+          <p class="prose">Hub proof under a pillar: client, result, text link. Not a case card.</p>
+          <p class="case-line">Key Group, one-line result. <a href="{h("/work/key-group/")}">Read the case study</a></p>
+        </section>
+        <section class="block">
           <h2 class="plain">Empty state</h2>
+          <p class="prose">Replaces the grid when filters match nothing. Not stacked under results. Clear action is not a primary button.</p>
           <div class="empty-state">
             <p>No case studies match these filters.</p>
-            <a class="btn" href="{h("/work/")}">Clear filters</a>
+            <a class="more" href="{h("/work/")}">Clear filters</a>
           </div>
         </section>
         <section class="block">
@@ -2356,14 +2411,8 @@ def body_for(page: dict) -> str:
           </div>
         </section>
         <section class="block">
-          <h2 class="plain">Primary and secondary CTA</h2>
-          <div class="cta">
-            <a class="btn" href="{h("/contact/")}">Contact</a>
-            <a class="text" href="{h("/work/")}">See our work</a>
-          </div>
-        </section>
-        <section class="block">
           <h2 class="plain">Cookie bar</h2>
+          <p class="prose">Consent control. Accept is not a page primary.</p>
           <div class="cookie-bar">
             <span>We use cookies to run this site. <a href="{h("/cookie-policy/")}">Cookie policy</a></span>
             <a class="btn" href="{h("/cookie-policy/")}">Accept</a>
