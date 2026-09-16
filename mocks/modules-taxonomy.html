@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page module taxonomy (draft) | Manifesto Growth Architects</title>
+<link rel="stylesheet" href="assets/wireframe.css">
+<style>
+  .tax-wrap { max-width: 1280px; margin: 24px auto 48px; padding: 0 12px; }
+  .tax-wrap .intro { background: var(--paper); border: 1px solid var(--line); padding: 24px 28px; }
+  .tax-wrap .intro h1 { margin: 0 0 8px; font-size: 26px; }
+  .tax-wrap .intro p, .tax-wrap .intro li { font-size: 14px; color: #444; max-width: 860px; }
+  .tax-wrap .intro ol { padding-left: 20px; }
+  .tax-wrap .intro a { text-decoration: underline; }
+  .tax-class { background: var(--paper); border: 1px solid var(--line); padding: 20px 28px 24px; margin-top: 16px; }
+  .tax-class h2 { margin: 0 0 6px; font-size: 20px; }
+  .tax-note { margin: 0 0 14px; font-size: 13px; color: var(--mid); max-width: 860px; }
+  table.tax { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.tax th, table.tax td { text-align: left; vertical-align: top; padding: 10px 10px 12px 0; border-top: 1px solid var(--soft); }
+  table.tax thead th { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--mid); border-top: 0; }
+  table.tax tbody th { font-weight: 600; white-space: nowrap; width: 11%; }
+  table.tax td { width: 15%; color: #444; }
+  table.tax td.never { color: var(--mid); }
+  table.tax td.ex { width: 29%; color: inherit; }
+  .tax-today { margin: 0; font-size: 12px; color: var(--mid); }
+  .tax-today code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; }
+  .lookalike { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; align-items: start; }
+  .lookalike .cat-label { display: block; margin: 0 0 8px; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--mid); }
+  .lookalike .card, .lookalike .civd-cell, .lookalike .metric { min-height: 96px; }
+  /* Proposed shapes: page-local only */
+  .p-cell { background: #f0f0f0; padding: 16px 14px; min-height: 96px; }
+  .p-cell strong { display: block; margin-bottom: 6px; }
+  .p-cell span { font-size: 13px; color: var(--mid); }
+  .p-metric { padding: 8px 0; border-top: 2px solid var(--ink); }
+  .p-metric strong { display: block; font-size: 30px; line-height: 1.1; margin-bottom: 4px; }
+  .p-metric span { font-size: 12px; color: var(--mid); }
+  .btn.p-primary { background: var(--ink); color: #fff; }
+  .btn.p-secondary { color: var(--ink); }
+  .p-filter { display: inline-block; padding: 6px 10px 6px 26px; border: 1px solid var(--line); font-size: 13px; background: var(--paper); position: relative; margin: 0 4px 6px 0; }
+  .p-filter::before { content: ""; position: absolute; left: 8px; top: 9px; width: 11px; height: 11px; border: 1px solid var(--ink); background: #fff; }
+  .p-filter.on { border-color: var(--ink); font-weight: 600; }
+  .p-filter.on::before { background: var(--ink); }
+  @media (max-width: 1000px) { .lookalike { grid-template-columns: repeat(2, 1fr); } table.tax, table.tax thead, table.tax tbody, table.tax tr, table.tax th, table.tax td { display: block; width: auto; } table.tax thead { display: none; } }
+</style>
+</head>
+<body>
+<div class="tax-wrap">
+  <p class="map-note" style="margin:0 0 16px"><a href="index.html">Home</a> · <a href="sitemap.html">All pages</a> · <a href="catalogue/index.html">Page modules</a></p>
+  <div class="intro">
+    <h1>Page module taxonomy (draft for review)</h1>
+    <p>Wireframe tool, not a live URL. One row per unit type: what it is for, what shape it takes in the wireframe, what it does when clicked, and what it must never be. The example column renders each unit with the shared wireframe CSS, so it shows what ships today, including the places where today's shape breaks the rule. Full reasoning and the scorecard are in <code>docs/wireframe-fresh-review.md</code>, section 5.</p>
+    <p>A unit is classified by four questions, in order:</p>
+    <ol>
+      <li>Does the whole unit go somewhere when clicked? Yes: Link or Card. No: next question.</li>
+      <li>Does it do something on this page (submit, filter, toggle, page, accept)? Yes: Control. No: next question.</li>
+      <li>Is it framed content that stands alone (a number, a quote, a figure, a placeholder)? Yes: Display. No: Text.</li>
+      <li>If it goes somewhere: is it a title plus one supporting line plus an optional media slot, in a frame? Yes: Card. No: Link.</li>
+    </ol>
+    <p>Rules that follow: solid border means clickable; dashed means placeholder; one primary button per screen and one secondary style for everything else; tags go somewhere and filters change something, so they never share a shape; a destination appears once per page in one shape; frameworks are Display and are drawn once; process phases are one module; link lists look like link lists at rest; every block carries a label; the catalogue defines each unit, it does not only show it.</p>
+  </div>
+  
+    <section class="tax-class">
+      <h2>Five units, one shape</h2>
+      <p class="tax-note">As built today. Only the first is clickable. This is the "cards vs random boxes" problem in one row.</p>
+      <div class="lookalike">
+        <div><span class="cat-label">Offer card (link)</span><a class="card offer" href="services/growth-strategy/index.html"><strong>Growth Strategy</strong><span>Where to focus and how to win</span></a></div>
+        <div><span class="cat-label">Frame cell (display)</span><div class="civd-cell"><strong>Customer</strong><span>Who you grow with.</span></div></div>
+        <div><span class="cat-label">Metric (display)</span><div class="metric"><strong>3x</strong><span>EBITDA return</span></div></div>
+        <div><span class="cat-label">Numbers line (display)</span><p class="numbers" style="margin:0">4 weeks to audit. 6 weeks to first agents.</p></div>
+        <div><span class="cat-label">Filter chip (control, inert)</span><div class="filters" style="margin:0"><span class="filter">Growth Strategy</span></div></div>
+      </div>
+      <p class="tax-note" style="margin-top:22px">Proposed, using the rules in section 5.3 of the review. Page-local CSS; nothing on the site is changed by this.</p>
+      <div class="lookalike proposed">
+        <div><span class="cat-label">Offer card (link)</span><a class="card offer" href="services/growth-strategy/index.html"><strong>Growth Strategy</strong><span>Where to focus and how to win</span></a></div>
+        <div><span class="cat-label">Frame cell (display)</span><div class="p-cell"><strong>Customer</strong><span>Who you grow with.</span></div></div>
+        <div><span class="cat-label">Metric (display)</span><div class="p-metric"><strong>3x</strong><span>EBITDA return</span></div></div>
+        <div><span class="cat-label">Primary and secondary button</span><a class="btn p-primary" href="contact/index.html">Contact</a> <span class="btn p-secondary">Accept</span></div>
+        <div><span class="cat-label">Filter chip (control)</span><span class="p-filter on">Growth Strategy</span> <span class="p-filter">Experience Engineering</span></div>
+      </div>
+    </section>
+  
+    <section class="tax-class">
+      <h2>Link units</h2>
+      <p class="tax-note">The whole unit goes somewhere. Text, never a box. Underline or arrow at rest.</p>
+      <table class="tax">
+        <thead><tr><th>Unit</th><th>Use it when</th><th>Wireframe shape</th><th>Interaction</th><th>Never</th><th>Live example (as built today)</th></tr></thead>
+        <tbody>
+      <tr>
+        <th scope="row">Nav link</th>
+        <td>Header, footer, dropdown rows, mega-nav strands</td>
+        <td>Plain text; bold in the header; strand plus grey subtitle in the mega-nav</td>
+        <td>Goes to a page or anchor; hover underline</td>
+        <td class="never">Boxed</td>
+        <td class="ex"><div class="pillar" style="max-width:240px"><ul><li><a href="services/experience-engineering/index.html">Experience Engineering<small>Customer experience and websites</small></a></li></ul></div></td>
+      </tr>
+      <tr>
+        <th scope="row">Hub link</th>
+        <td>Mega-nav column heading; pillar H3 on the Services hub</td>
+        <td>Heading text, trailing arrow, rule beneath</td>
+        <td>Goes to the hub page</td>
+        <td class="never">Repeated as a child row to the same URL</td>
+        <td class="ex"><h3 style="margin:0;font-size:19px"><a class="pillar-hub" href="services/growth-strategy/index.html">Growth Strategy <span class="hub-chevron" aria-hidden="true">&#8594;</span></a></h3></td>
+      </tr>
+      <tr>
+        <th scope="row">Inline link</th>
+        <td>Inside a sentence</td>
+        <td>Underlined, same colour as the text</td>
+        <td>Goes to a page</td>
+        <td class="never">Grey without underline</td>
+        <td class="ex"><p class="pillar-note" style="margin:0">The frame lives on Growth Strategy. Next: <a href="services/proposition-innovation/index.html">Proposition Innovation</a>.</p></td>
+      </tr>
+      <tr>
+        <th scope="row">Row link</th>
+        <td>A list of destinations with an optional meta value: Related thinking, Where we help, situation lines</td>
+        <td>Full-width row, thin rule above, title left, meta right in grey; whole row clickable</td>
+        <td>Goes to a page. Title underlined at rest (today: hover only)</td>
+        <td class="never">Boxed; mixed with non-clickable rows</td>
+        <td class="ex"><ul class="list" style="max-width:320px"><li><a href="insights/pricing-paradox/index.html">The Pricing Paradox</a><span>Report</span></li><li><a href="insights/loyalty-without-the-discount/index.html">Loyalty without the discount</a><span>Article</span></li></ul></td>
+      </tr>
+      <tr>
+        <th scope="row">More link</th>
+        <td>End of a block: All work, All thinking, Our advisors</td>
+        <td>Small underlined grey text after the list or grid</td>
+        <td>Goes to a listing</td>
+        <td class="never">Dressed as a card</td>
+        <td class="ex"><a class="more" href="work/index.html" style="margin-top:0">All work</a></td>
+      </tr>
+      <tr>
+        <th scope="row">Tag</th>
+        <td>Related expertise on a service page; services on a case hero; theme on an insight hero. One dimension, three visible</td>
+        <td>Small pill, thin border, underlined text</td>
+        <td>Goes to the theme or service page</td>
+        <td class="never">Used as a filter; used as a sidebar note</td>
+        <td class="ex"><div class="page-tags"><a href="expertise/loyalty/index.html">Loyalty</a><a href="expertise/pricing/index.html">Pricing</a></div></td>
+      </tr></tbody>
+      </table>
+    </section>
+  
+    <section class="tax-class">
+      <h2>Card units</h2>
+      <p class="tax-note">The whole unit goes somewhere and has a title, one supporting line and an optional media slot, in a solid frame. If it is not clickable as a whole, it is not a card.</p>
+      <table class="tax">
+        <thead><tr><th>Unit</th><th>Use it when</th><th>Wireframe shape</th><th>Interaction</th><th>Never</th><th>Live example (as built today)</th></tr></thead>
+        <tbody>
+      <tr>
+        <th scope="row">Offer card</th>
+        <td>A service as a destination: Related services, Expertise hub, Activation six</td>
+        <td>Grey fill, solid border, title plus one line, no media</td>
+        <td>Goes to one page; title underlines on hover</td>
+        <td class="never">Non-clickable copies (see Frame cell)</td>
+        <td class="ex"><div class="cards two" style="max-width:420px"><a class="card offer" href="services/proposition-innovation/index.html"><strong>Proposition Innovation</strong><span>Value proposition design</span></a></div></td>
+      </tr>
+      <tr>
+        <th scope="row">Pillar block</th>
+        <td>The triangle, drawn once per page</td>
+        <td>White fill, solid border, large title, three in a row</td>
+        <td>Goes to the pillar page</td>
+        <td class="never">On the same page as an offer card for the same URL</td>
+        <td class="ex"><div class="tri" style="max-width:420px;grid-template-columns:1fr"><a href="services/growth-strategy/index.html"><strong>Growth Strategy</strong><span>Where and how you grow</span></a></div></td>
+      </tr>
+      <tr>
+        <th scope="row">Case card</th>
+        <td>A case study as a destination</td>
+        <td>Image slot 16:10, client, one-line result. Proposed: one bold impact figure</td>
+        <td>Goes to the case</td>
+        <td class="never">A More link dressed as a case card</td>
+        <td class="ex"><div class="cards two" style="max-width:420px"><a class="card" href="work/dayinsure/index.html"><div class="ph">Image</div><strong>Dayinsure</strong><span>One-line result</span></a></div></td>
+      </tr>
+      <tr>
+        <th scope="row">Report card</th>
+        <td>A report or article as a destination</td>
+        <td>Document slot 3:4 for reports; no media for articles; title and meta line</td>
+        <td>Goes to the item</td>
+        <td class="never">Doubling as a gate</td>
+        <td class="ex"><div class="cards two" style="max-width:420px"><a class="card" href="insights/pricing-paradox/index.html"><div class="doc">Report</div><strong>The Pricing Paradox</strong><span>Report</span></a></div></td>
+      </tr>
+      <tr>
+        <th scope="row">Person card</th>
+        <td>Leadership, consultants, associates, community</td>
+        <td>Avatar, name, role</td>
+        <td>Goes to the profile</td>
+        <td class="never">Used for Side-by-Side advisors (see Advisor card)</td>
+        <td class="ex"><div class="cards two" style="max-width:420px"><a class="card person" href="about/team/advisor-one/index.html"><div class="avatar"></div><strong>Name</strong><span>Role</span></a></div></td>
+      </tr>
+      <tr>
+        <th scope="row">Advisor card</th>
+        <td>Side-by-Side advisors on CEO Advisory, the hub and Team</td>
+        <td>Proposed: portrait slot 4:5, name, former role and company, one-line focus. Larger than a person card</td>
+        <td>Goes to the profile</td>
+        <td class="never">Same size as a consultant card</td>
+        <td class="ex"><p class="tax-today">Today: drawn with the Person card. No distinct unit exists.</p></td>
+      </tr>
+      <tr>
+        <th scope="row">Situation line</th>
+        <td>Where are you starting from? and the three lines opening a service Why</td>
+        <td>Row link in the visitor's voice, two columns</td>
+        <td>Goes to the service</td>
+        <td class="never">Rendered as boxes</td>
+        <td class="ex"><ul class="situations" style="columns:1;max-width:320px"><li><a href="services/growth-strategy/index.html">We need to decide where and how to grow</a></li><li><a href="services/ceo-advisory/index.html">I want a sounding board I trust</a></li></ul></td>
+      </tr></tbody>
+      </table>
+    </section>
+  
+    <section class="tax-class">
+      <h2>Control units</h2>
+      <p class="tax-note">The unit does something on this page. Buttons are controls; the one exception is the primary call to action, which may navigate to Contact.</p>
+      <table class="tax">
+        <thead><tr><th>Unit</th><th>Use it when</th><th>Wireframe shape</th><th>Interaction</th><th>Never</th><th>Live example (as built today)</th></tr></thead>
+        <tbody>
+      <tr>
+        <th scope="row">Primary button</th>
+        <td>The one primary CTA on a screen; form submit</td>
+        <td>Solid fill (proposed). Today: outlined, same as every other button</td>
+        <td>Navigates to Contact or submits a form</td>
+        <td class="never">Two on one screen; used for Accept, Clear, Read</td>
+        <td class="ex"><a class="btn" href="contact/index.html">Contact</a></td>
+      </tr>
+      <tr>
+        <th scope="row">Secondary button</th>
+        <td>Actions that stay on the page: Accept cookies, Clear filters</td>
+        <td>Outlined, no fill</td>
+        <td>Does something; URL does not change</td>
+        <td class="never">Navigating to an unrelated page</td>
+        <td class="ex"><p class="tax-today">Today: Accept is <code>&lt;a class="btn"&gt;</code> to the cookie policy page; Clear filters is a link to the listing. No <code>&lt;button&gt;</code> element exists anywhere in the wireframe.</p></td>
+      </tr>
+      <tr>
+        <th scope="row">Filter chip</th>
+        <td>Work and Insights listings; More filters</td>
+        <td>Pill with a state (tick or pressed fill); no underline</td>
+        <td>Toggles; updates results and the URL query</td>
+        <td class="never">Inert span; identical to a Tag</td>
+        <td class="ex"><div class="filters" style="margin:0"><span class="filter on">Growth Strategy</span><span class="filter">Experience Engineering</span><span class="filter more">More filters</span></div><p class="tax-today">Today: <code>&lt;span&gt;</code>, no behaviour, same pill as the Tag above.</p></td>
+      </tr>
+      <tr>
+        <th scope="row">Pagination</th>
+        <td>Under listings</td>
+        <td>Numbered squares plus Next; current one filled</td>
+        <td>Changes page</td>
+        <td class="never">Inert</td>
+        <td class="ex"><div class="pagination" style="margin:0"><span class="on">1</span><span>2</span><span>Next</span></div></td>
+      </tr>
+      <tr>
+        <th scope="row">Field</th>
+        <td>Forms and search</td>
+        <td>Label above, box, helper text; submit is a Primary button</td>
+        <td>Accepts input</td>
+        <td class="never">A div beside a link dressed as a button</td>
+        <td class="ex"><div class="form" style="max-width:260px"><div class="field" style="margin:0"><label>Email</label><div class="box"></div></div></div></td>
+      </tr>
+      <tr>
+        <th scope="row">Menu toggle (mobile)</th>
+        <td>Header below about 1024 px</td>
+        <td>Menu word plus icon; Contact button pinned; full-screen panel with expand rows</td>
+        <td>Opens and closes the panel</td>
+        <td class="never">Absent</td>
+        <td class="ex"><p class="tax-today">Today: not drawn. The desktop header wraps onto three lines at 390 px and the mega-nav opens on hover only.</p></td>
+      </tr></tbody>
+      </table>
+    </section>
+  
+    <section class="tax-class">
+      <h2>Display units</h2>
+      <p class="tax-note">Framed or set-apart content that does nothing when clicked. Must not borrow the card's solid border.</p>
+      <table class="tax">
+        <thead><tr><th>Unit</th><th>Use it when</th><th>Wireframe shape</th><th>Interaction</th><th>Never</th><th>Live example (as built today)</th></tr></thead>
+        <tbody>
+      <tr>
+        <th scope="row">Metric</th>
+        <td>At a glance; numbers line; stats</td>
+        <td>Proposed: large figure over a small grey label, no border. Today: solid border, same as a card</td>
+        <td>None</td>
+        <td class="never">Bordered like a card</td>
+        <td class="ex"><div class="metrics" style="grid-template-columns:1fr 1fr;max-width:260px"><div class="metric"><strong>3x</strong><span>EBITDA return</span></div><div class="metric"><strong>TBC</strong><span>NPS</span></div></div></td>
+      </tr>
+      <tr>
+        <th scope="row">Frame cell</th>
+        <td>A named framework shown as parts: CIVD; four qualities; Culture, Capability, Value</td>
+        <td>Proposed: cells on one tinted band, no per-cell border, one caption with anchor. Today: grey fill and border, same as an offer card</td>
+        <td>None, except the caption link</td>
+        <td class="never">Repeated as H3s beneath; styled as offer cards</td>
+        <td class="ex"><div class="civd-grid compact" style="grid-template-columns:1fr 1fr;max-width:300px" aria-label="Customer, Innovation, Value and Delivery"><div class="civd-cell"><strong>Customer</strong><span>Who you grow with.</span></div><div class="civd-cell"><strong>Innovation</strong><span>What you offer next.</span></div><div class="civd-cell"><strong>Value</strong><span>Where the economics move.</span></div><div class="civd-cell"><strong>Delivery</strong><span>Whether it can be executed.</span></div></div></td>
+      </tr>
+      <tr>
+        <th scope="row">Process steps</th>
+        <td>How it works phases: Find, Redesign, Test, Scale; interim then embed; 4 weeks then 6 weeks</td>
+        <td>One horizontal row of numbered steps inside one How it works block</td>
+        <td>None</td>
+        <td class="never">Four separate page sections</td>
+        <td class="ex"><p class="tax-today">Today: each phase is its own page section with a rule between, at the same level as Proof and Why.</p></td>
+      </tr>
+      <tr>
+        <th scope="row">Quote</th>
+        <td>Testimonial inside Work, cases and hub pillar 3</td>
+        <td>Left rule, larger text, cite line</td>
+        <td>None</td>
+        <td class="never">Framed like a card</td>
+        <td class="ex"><blockquote class="quote" style="margin:0;max-width:320px">"The work changed how we think about growth."<cite>Dayinsure</cite></blockquote></td>
+      </tr>
+      <tr>
+        <th scope="row">Logo tile</th>
+        <td>Trusted partners, Awards, sector Clients</td>
+        <td>Dashed tile in a row of eight; if linked, shows a hover state</td>
+        <td>Optional link to a case</td>
+        <td class="never">Same shape whether linked or not</td>
+        <td class="ex"><div class="logos" style="max-width:320px" aria-label="Logos"><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span></div></td>
+      </tr>
+      <tr>
+        <th scope="row">Media slot</th>
+        <td>Showreel, case film, report cover, portrait</td>
+        <td>Dashed placeholder with a ratio label</td>
+        <td>None in the wireframe</td>
+        <td class="never">Solid border</td>
+        <td class="ex"><div class="video-ph" style="max-width:220px;margin:0"><span>Showreel 16:9</span></div></td>
+      </tr>
+      <tr>
+        <th scope="row">Empty state</th>
+        <td>No results; no open roles</td>
+        <td>Dashed frame, message, one Secondary button</td>
+        <td>Button clears or routes</td>
+        <td class="never">Same frame as content</td>
+        <td class="ex"><div class="empty-state" style="max-width:320px;padding:14px"><p>No case studies match these filters.</p><a class="btn" href="work/index.html">Clear filters</a></div></td>
+      </tr></tbody>
+      </table>
+    </section>
+  
+    <section class="tax-class">
+      <h2>Text and annotation units</h2>
+      <p class="tax-note">Headings and prose follow one rule: heading A for primary blocks, heading B for related and utility blocks. Annotations are for reviewers and must not look like page units.</p>
+      <table class="tax">
+        <thead><tr><th>Unit</th><th>Use it when</th><th>Wireframe shape</th><th>Interaction</th><th>Never</th><th>Live example (as built today)</th></tr></thead>
+        <tbody>
+      <tr>
+        <th scope="row">Section heading A</th>
+        <td>A primary content block: Why this, now; What we do; Proof</td>
+        <td>22 px plain</td>
+        <td>None</td>
+        <td class="never">Eyebrow style</td>
+        <td class="ex"><h2 class="plain" style="margin:0">Why this, now</h2></td>
+      </tr>
+      <tr>
+        <th scope="row">Section heading B</th>
+        <td>A related or utility block: Related expertise; Awards; Our thinking teaser</td>
+        <td>Small uppercase eyebrow</td>
+        <td>None</td>
+        <td class="never">Used for primary blocks</td>
+        <td class="ex"><h2 class="sec" style="margin:0">Related thinking</h2></td>
+      </tr>
+      <tr>
+        <th scope="row">Working note</th>
+        <td>Sidebar only: weight, keyword, MURAL notes</td>
+        <td>Proposed: dotted border, italic. Today: the same pill as a Tag</td>
+        <td>None</td>
+        <td class="never">The Tag pill shape</td>
+        <td class="ex"><div class="chips"><span class="chip weight">Canonical</span><span class="chip kw">Primary: growth strategy (~480)</span></div></td>
+      </tr>
+      <tr>
+        <th scope="row">Block label</th>
+        <td>Top-left of every block: template ID, block name, Always / Conditional / Editorial</td>
+        <td>Small monospace label, hidden by one review toggle</td>
+        <td>None</td>
+        <td class="never">Confused with an eyebrow heading</td>
+        <td class="ex"><p class="tax-today"><code>T3.6 Proof (Always)</code>. Today: not drawn on any page.</p></td>
+      </tr></tbody>
+      </table>
+    </section>
+</div>
+</body>
+</html>

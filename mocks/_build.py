@@ -2222,6 +2222,7 @@ def body_for(page: dict) -> str:
         <section class="block hero">
           <h1>Page modules</h1>
           <p>Index of the live page modules and blocks used in this wireframe. Working notes are not shown here.</p>
+          <p class="prose">Definitions for each unit (use, shape, interaction, what it must never be) are in the draft <a href="../modules-taxonomy.html">page module taxonomy</a>.</p>
         </section>
         <section class="block">
           <h2 class="plain">On-page tags</h2>
@@ -2604,6 +2605,10 @@ def write_sitemap_html() -> None:
             inner.append(
                 f'<li><a href="{href}"><span class="u">{u}</span> {p["h1"]}</a> <span class="w">{p["weight"]}</span></li>'
             )
+        if heading == "Wireframe tools":
+            inner.append(
+                '<li><a href="modules-taxonomy.html"><span class="u">/modules-taxonomy.html</span> Page module taxonomy (draft)</a> <span class="w">Utility</span></li>'
+            )
         lis.append(f'<li class="sec">{heading}<ul>{"".join(inner)}</ul></li>')
     html = f"""<!DOCTYPE html>
 <html lang="en-GB">
@@ -2626,6 +2631,226 @@ def write_sitemap_html() -> None:
 </html>
 """
     (MOCKS / "sitemap.html").write_text(html, encoding="utf-8")
+
+
+def write_taxonomy_html() -> None:
+    """Wireframe tool: the page-module taxonomy with a live example of each unit.
+
+    Draft for review (docs/wireframe-fresh-review.md, section 5). Examples use the
+    shared wireframe CSS so they show what ships today. The Proposed row at the end
+    uses page-local CSS only, so nothing on the site changes.
+    """
+    h = lambda u: rel_href("/", u)
+
+    def row(unit, use, shape, interaction, never, example):
+        return f"""
+      <tr>
+        <th scope="row">{unit}</th>
+        <td>{use}</td>
+        <td>{shape}</td>
+        <td>{interaction}</td>
+        <td class="never">{never}</td>
+        <td class="ex">{example}</td>
+      </tr>"""
+
+    def table(cls_name, note, rows):
+        return f"""
+    <section class="tax-class">
+      <h2>{cls_name}</h2>
+      <p class="tax-note">{note}</p>
+      <table class="tax">
+        <thead><tr><th>Unit</th><th>Use it when</th><th>Wireframe shape</th><th>Interaction</th><th>Never</th><th>Live example (as built today)</th></tr></thead>
+        <tbody>{"".join(rows)}</tbody>
+      </table>
+    </section>"""
+
+    links = table(
+        "Link units",
+        "The whole unit goes somewhere. Text, never a box. Underline or arrow at rest.",
+        [
+            row("Nav link", "Header, footer, dropdown rows, mega-nav strands", "Plain text; bold in the header; strand plus grey subtitle in the mega-nav", "Goes to a page or anchor; hover underline", "Boxed",
+                f'<div class="pillar" style="max-width:240px"><ul><li><a href="{h("/services/experience-engineering/")}">Experience Engineering<small>Customer experience and websites</small></a></li></ul></div>'),
+            row("Hub link", "Mega-nav column heading; pillar H3 on the Services hub", "Heading text, trailing arrow, rule beneath", "Goes to the hub page", "Repeated as a child row to the same URL",
+                f'<h3 style="margin:0;font-size:19px"><a class="pillar-hub" href="{h("/services/growth-strategy/")}">Growth Strategy <span class="hub-chevron" aria-hidden="true">&#8594;</span></a></h3>'),
+            row("Inline link", "Inside a sentence", "Underlined, same colour as the text", "Goes to a page", "Grey without underline",
+                f'<p class="pillar-note" style="margin:0">The frame lives on Growth Strategy. Next: <a href="{h("/services/proposition-innovation/")}">Proposition Innovation</a>.</p>'),
+            row("Row link", "A list of destinations with an optional meta value: Related thinking, Where we help, situation lines", "Full-width row, thin rule above, title left, meta right in grey; whole row clickable", "Goes to a page. Title underlined at rest (today: hover only)", "Boxed; mixed with non-clickable rows",
+                f'<ul class="list" style="max-width:320px"><li><a href="{h("/insights/pricing-paradox/")}">The Pricing Paradox</a><span>Report</span></li><li><a href="{h("/insights/loyalty-without-the-discount/")}">Loyalty without the discount</a><span>Article</span></li></ul>'),
+            row("More link", "End of a block: All work, All thinking, Our advisors", "Small underlined grey text after the list or grid", "Goes to a listing", "Dressed as a card",
+                f'<a class="more" href="{h("/work/")}" style="margin-top:0">All work</a>'),
+            row("Tag", "Related expertise on a service page; services on a case hero; theme on an insight hero. One dimension, three visible", "Small pill, thin border, underlined text", "Goes to the theme or service page", "Used as a filter; used as a sidebar note",
+                f'<div class="page-tags"><a href="{h("/expertise/loyalty/")}">Loyalty</a><a href="{h("/expertise/pricing/")}">Pricing</a></div>'),
+        ],
+    )
+
+    cards = table(
+        "Card units",
+        "The whole unit goes somewhere and has a title, one supporting line and an optional media slot, in a solid frame. If it is not clickable as a whole, it is not a card.",
+        [
+            row("Offer card", "A service as a destination: Related services, Expertise hub, Activation six", "Grey fill, solid border, title plus one line, no media", "Goes to one page; title underlines on hover", "Non-clickable copies (see Frame cell)",
+                f'<div class="cards two" style="max-width:420px">{card(h, "/services/proposition-innovation/", "Proposition Innovation", "Value proposition design", "offer")}</div>'),
+            row("Pillar block", "The triangle, drawn once per page", "White fill, solid border, large title, three in a row", "Goes to the pillar page", "On the same page as an offer card for the same URL",
+                f'<div class="tri" style="max-width:420px;grid-template-columns:1fr"><a href="{h("/services/growth-strategy/")}"><strong>Growth Strategy</strong><span>Where and how you grow</span></a></div>'),
+            row("Case card", "A case study as a destination", "Image slot 16:10, client, one-line result. Proposed: one bold impact figure", "Goes to the case", "A More link dressed as a case card",
+                f'<div class="cards two" style="max-width:420px">{card(h, "/work/dayinsure/", "Dayinsure", "One-line result", "ph")}</div>'),
+            row("Report card", "A report or article as a destination", "Document slot 3:4 for reports; no media for articles; title and meta line", "Goes to the item", "Doubling as a gate",
+                f'<div class="cards two" style="max-width:420px">{card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "Report", "doc")}</div>'),
+            row("Person card", "Leadership, consultants, associates, community", "Avatar, name, role", "Goes to the profile", "Used for Side-by-Side advisors (see Advisor card)",
+                f'<div class="cards two" style="max-width:420px">{card(h, "/about/team/advisor-one/", "Name", "Role", "person")}</div>'),
+            row("Advisor card", "Side-by-Side advisors on CEO Advisory, the hub and Team", "Proposed: portrait slot 4:5, name, former role and company, one-line focus. Larger than a person card", "Goes to the profile", "Same size as a consultant card",
+                '<p class="tax-today">Today: drawn with the Person card. No distinct unit exists.</p>'),
+            row("Situation line", "Where are you starting from? and the three lines opening a service Why", "Row link in the visitor\'s voice, two columns", "Goes to the service", "Rendered as boxes",
+                f'<ul class="situations" style="columns:1;max-width:320px"><li><a href="{h("/services/growth-strategy/")}">We need to decide where and how to grow</a></li><li><a href="{h("/services/ceo-advisory/")}">I want a sounding board I trust</a></li></ul>'),
+        ],
+    )
+
+    controls = table(
+        "Control units",
+        "The unit does something on this page. Buttons are controls; the one exception is the primary call to action, which may navigate to Contact.",
+        [
+            row("Primary button", "The one primary CTA on a screen; form submit", "Solid fill (proposed). Today: outlined, same as every other button", "Navigates to Contact or submits a form", "Two on one screen; used for Accept, Clear, Read",
+                f'<a class="btn" href="{h("/contact/")}">Contact</a>'),
+            row("Secondary button", "Actions that stay on the page: Accept cookies, Clear filters", "Outlined, no fill", "Does something; URL does not change", "Navigating to an unrelated page",
+                f'<p class="tax-today">Today: Accept is <code>&lt;a class="btn"&gt;</code> to the cookie policy page; Clear filters is a link to the listing. No <code>&lt;button&gt;</code> element exists anywhere in the wireframe.</p>'),
+            row("Filter chip", "Work and Insights listings; More filters", "Pill with a state (tick or pressed fill); no underline", "Toggles; updates results and the URL query", "Inert span; identical to a Tag",
+                '<div class="filters" style="margin:0"><span class="filter on">Growth Strategy</span><span class="filter">Experience Engineering</span><span class="filter more">More filters</span></div><p class="tax-today">Today: <code>&lt;span&gt;</code>, no behaviour, same pill as the Tag above.</p>'),
+            row("Pagination", "Under listings", "Numbered squares plus Next; current one filled", "Changes page", "Inert",
+                '<div class="pagination" style="margin:0"><span class="on">1</span><span>2</span><span>Next</span></div>'),
+            row("Field", "Forms and search", "Label above, box, helper text; submit is a Primary button", "Accepts input", "A div beside a link dressed as a button",
+                f'<div class="form" style="max-width:260px"><div class="field" style="margin:0"><label>Email</label><div class="box"></div></div></div>'),
+            row("Menu toggle (mobile)", "Header below about 1024 px", "Menu word plus icon; Contact button pinned; full-screen panel with expand rows", "Opens and closes the panel", "Absent",
+                '<p class="tax-today">Today: not drawn. The desktop header wraps onto three lines at 390 px and the mega-nav opens on hover only.</p>'),
+        ],
+    )
+
+    display = table(
+        "Display units",
+        "Framed or set-apart content that does nothing when clicked. Must not borrow the card\'s solid border.",
+        [
+            row("Metric", "At a glance; numbers line; stats", "Proposed: large figure over a small grey label, no border. Today: solid border, same as a card", "None", "Bordered like a card",
+                metrics_html([("3x", "EBITDA return"), ("TBC", "NPS")]).replace('class="metrics"', 'class="metrics" style="grid-template-columns:1fr 1fr;max-width:260px"')),
+            row("Frame cell", "A named framework shown as parts: CIVD; four qualities; Culture, Capability, Value", "Proposed: cells on one tinted band, no per-cell border, one caption with anchor. Today: grey fill and border, same as an offer card", "None, except the caption link", "Repeated as H3s beneath; styled as offer cards",
+                civd_html(compact=True).replace('class="civd-grid compact"', 'class="civd-grid compact" style="grid-template-columns:1fr 1fr;max-width:300px"')),
+            row("Process steps", "How it works phases: Find, Redesign, Test, Scale; interim then embed; 4 weeks then 6 weeks", "One horizontal row of numbered steps inside one How it works block", "None", "Four separate page sections",
+                '<p class="tax-today">Today: each phase is its own page section with a rule between, at the same level as Proof and Why.</p>'),
+            row("Quote", "Testimonial inside Work, cases and hub pillar 3", "Left rule, larger text, cite line", "None", "Framed like a card",
+                '<blockquote class="quote" style="margin:0;max-width:320px">"The work changed how we think about growth."<cite>Dayinsure</cite></blockquote>'),
+            row("Logo tile", "Trusted partners, Awards, sector Clients", "Dashed tile in a row of eight; if linked, shows a hover state", "Optional link to a case", "Same shape whether linked or not",
+                logos_html(3, "Logo").replace('class="logos"', 'class="logos" style="max-width:320px"')),
+            row("Media slot", "Showreel, case film, report cover, portrait", "Dashed placeholder with a ratio label", "None in the wireframe", "Solid border",
+                '<div class="video-ph" style="max-width:220px;margin:0"><span>Showreel 16:9</span></div>'),
+            row("Empty state", "No results; no open roles", "Dashed frame, message, one Secondary button", "Button clears or routes", "Same frame as content",
+                f'<div class="empty-state" style="max-width:320px;padding:14px"><p>No case studies match these filters.</p><a class="btn" href="{h("/work/")}">Clear filters</a></div>'),
+        ],
+    )
+
+    text_units = table(
+        "Text and annotation units",
+        "Headings and prose follow one rule: heading A for primary blocks, heading B for related and utility blocks. Annotations are for reviewers and must not look like page units.",
+        [
+            row("Section heading A", "A primary content block: Why this, now; What we do; Proof", "22 px plain", "None", "Eyebrow style",
+                '<h2 class="plain" style="margin:0">Why this, now</h2>'),
+            row("Section heading B", "A related or utility block: Related expertise; Awards; Our thinking teaser", "Small uppercase eyebrow", "None", "Used for primary blocks",
+                '<h2 class="sec" style="margin:0">Related thinking</h2>'),
+            row("Working note", "Sidebar only: weight, keyword, MURAL notes", "Proposed: dotted border, italic. Today: the same pill as a Tag", "None", "The Tag pill shape",
+                '<div class="chips"><span class="chip weight">Canonical</span><span class="chip kw">Primary: growth strategy (~480)</span></div>'),
+            row("Block label", "Top-left of every block: template ID, block name, Always / Conditional / Editorial", "Small monospace label, hidden by one review toggle", "None", "Confused with an eyebrow heading",
+                '<p class="tax-today"><code>T3.6 Proof (Always)</code>. Today: not drawn on any page.</p>'),
+        ],
+    )
+
+    lookalikes = f"""
+    <section class="tax-class">
+      <h2>Five units, one shape</h2>
+      <p class="tax-note">As built today. Only the first is clickable. This is the "cards vs random boxes" problem in one row.</p>
+      <div class="lookalike">
+        <div><span class="cat-label">Offer card (link)</span>{card(h, "/services/growth-strategy/", "Growth Strategy", "Where to focus and how to win", "offer")}</div>
+        <div><span class="cat-label">Frame cell (display)</span><div class="civd-cell"><strong>Customer</strong><span>Who you grow with.</span></div></div>
+        <div><span class="cat-label">Metric (display)</span><div class="metric"><strong>3x</strong><span>EBITDA return</span></div></div>
+        <div><span class="cat-label">Numbers line (display)</span><p class="numbers" style="margin:0">4 weeks to audit. 6 weeks to first agents.</p></div>
+        <div><span class="cat-label">Filter chip (control, inert)</span><div class="filters" style="margin:0"><span class="filter">Growth Strategy</span></div></div>
+      </div>
+      <p class="tax-note" style="margin-top:22px">Proposed, using the rules in section 5.3 of the review. Page-local CSS; nothing on the site is changed by this.</p>
+      <div class="lookalike proposed">
+        <div><span class="cat-label">Offer card (link)</span>{card(h, "/services/growth-strategy/", "Growth Strategy", "Where to focus and how to win", "offer")}</div>
+        <div><span class="cat-label">Frame cell (display)</span><div class="p-cell"><strong>Customer</strong><span>Who you grow with.</span></div></div>
+        <div><span class="cat-label">Metric (display)</span><div class="p-metric"><strong>3x</strong><span>EBITDA return</span></div></div>
+        <div><span class="cat-label">Primary and secondary button</span><a class="btn p-primary" href="{h("/contact/")}">Contact</a> <span class="btn p-secondary">Accept</span></div>
+        <div><span class="cat-label">Filter chip (control)</span><span class="p-filter on">Growth Strategy</span> <span class="p-filter">Experience Engineering</span></div>
+      </div>
+    </section>"""
+
+    html = f"""<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page module taxonomy (draft) | Manifesto Growth Architects</title>
+<link rel="stylesheet" href="assets/wireframe.css">
+<style>
+  .tax-wrap {{ max-width: 1280px; margin: 24px auto 48px; padding: 0 12px; }}
+  .tax-wrap .intro {{ background: var(--paper); border: 1px solid var(--line); padding: 24px 28px; }}
+  .tax-wrap .intro h1 {{ margin: 0 0 8px; font-size: 26px; }}
+  .tax-wrap .intro p, .tax-wrap .intro li {{ font-size: 14px; color: #444; max-width: 860px; }}
+  .tax-wrap .intro ol {{ padding-left: 20px; }}
+  .tax-wrap .intro a {{ text-decoration: underline; }}
+  .tax-class {{ background: var(--paper); border: 1px solid var(--line); padding: 20px 28px 24px; margin-top: 16px; }}
+  .tax-class h2 {{ margin: 0 0 6px; font-size: 20px; }}
+  .tax-note {{ margin: 0 0 14px; font-size: 13px; color: var(--mid); max-width: 860px; }}
+  table.tax {{ width: 100%; border-collapse: collapse; font-size: 13px; }}
+  table.tax th, table.tax td {{ text-align: left; vertical-align: top; padding: 10px 10px 12px 0; border-top: 1px solid var(--soft); }}
+  table.tax thead th {{ font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--mid); border-top: 0; }}
+  table.tax tbody th {{ font-weight: 600; white-space: nowrap; width: 11%; }}
+  table.tax td {{ width: 15%; color: #444; }}
+  table.tax td.never {{ color: var(--mid); }}
+  table.tax td.ex {{ width: 29%; color: inherit; }}
+  .tax-today {{ margin: 0; font-size: 12px; color: var(--mid); }}
+  .tax-today code {{ font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; }}
+  .lookalike {{ display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; align-items: start; }}
+  .lookalike .cat-label {{ display: block; margin: 0 0 8px; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--mid); }}
+  .lookalike .card, .lookalike .civd-cell, .lookalike .metric {{ min-height: 96px; }}
+  /* Proposed shapes: page-local only */
+  .p-cell {{ background: #f0f0f0; padding: 16px 14px; min-height: 96px; }}
+  .p-cell strong {{ display: block; margin-bottom: 6px; }}
+  .p-cell span {{ font-size: 13px; color: var(--mid); }}
+  .p-metric {{ padding: 8px 0; border-top: 2px solid var(--ink); }}
+  .p-metric strong {{ display: block; font-size: 30px; line-height: 1.1; margin-bottom: 4px; }}
+  .p-metric span {{ font-size: 12px; color: var(--mid); }}
+  .btn.p-primary {{ background: var(--ink); color: #fff; }}
+  .btn.p-secondary {{ color: var(--ink); }}
+  .p-filter {{ display: inline-block; padding: 6px 10px 6px 26px; border: 1px solid var(--line); font-size: 13px; background: var(--paper); position: relative; margin: 0 4px 6px 0; }}
+  .p-filter::before {{ content: ""; position: absolute; left: 8px; top: 9px; width: 11px; height: 11px; border: 1px solid var(--ink); background: #fff; }}
+  .p-filter.on {{ border-color: var(--ink); font-weight: 600; }}
+  .p-filter.on::before {{ background: var(--ink); }}
+  @media (max-width: 1000px) {{ .lookalike {{ grid-template-columns: repeat(2, 1fr); }} table.tax, table.tax thead, table.tax tbody, table.tax tr, table.tax th, table.tax td {{ display: block; width: auto; }} table.tax thead {{ display: none; }} }}
+</style>
+</head>
+<body>
+<div class="tax-wrap">
+  <p class="map-note" style="margin:0 0 16px"><a href="index.html">Home</a> · <a href="sitemap.html">All pages</a> · <a href="catalogue/index.html">Page modules</a></p>
+  <div class="intro">
+    <h1>Page module taxonomy (draft for review)</h1>
+    <p>Wireframe tool, not a live URL. One row per unit type: what it is for, what shape it takes in the wireframe, what it does when clicked, and what it must never be. The example column renders each unit with the shared wireframe CSS, so it shows what ships today, including the places where today\'s shape breaks the rule. Full reasoning and the scorecard are in <code>docs/wireframe-fresh-review.md</code>, section 5.</p>
+    <p>A unit is classified by four questions, in order:</p>
+    <ol>
+      <li>Does the whole unit go somewhere when clicked? Yes: Link or Card. No: next question.</li>
+      <li>Does it do something on this page (submit, filter, toggle, page, accept)? Yes: Control. No: next question.</li>
+      <li>Is it framed content that stands alone (a number, a quote, a figure, a placeholder)? Yes: Display. No: Text.</li>
+      <li>If it goes somewhere: is it a title plus one supporting line plus an optional media slot, in a frame? Yes: Card. No: Link.</li>
+    </ol>
+    <p>Rules that follow: solid border means clickable; dashed means placeholder; one primary button per screen and one secondary style for everything else; tags go somewhere and filters change something, so they never share a shape; a destination appears once per page in one shape; frameworks are Display and are drawn once; process phases are one module; link lists look like link lists at rest; every block carries a label; the catalogue defines each unit, it does not only show it.</p>
+  </div>
+  {lookalikes}
+  {links}
+  {cards}
+  {controls}
+  {display}
+  {text_units}
+</div>
+</body>
+</html>
+"""
+    (MOCKS / "modules-taxonomy.html").write_text(html, encoding="utf-8")
 
 
 def write_heading_map_md() -> None:
@@ -2694,5 +2919,6 @@ def write_pages() -> None:
 if __name__ == "__main__":
     write_pages()
     write_sitemap_html()
+    write_taxonomy_html()
     write_heading_map_md()
     print(f"pages: {len(PAGES)}")
