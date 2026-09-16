@@ -16,7 +16,7 @@ Gary's v4 feedback: page tags were too busy. The cause was structural. The IA ha
 
 The rule: **each page type shows tags from one dimension only, capped at three visible.** The other dimensions still exist as CMS tags, drive filters and auto modules, and appear as blocks (a list of cards, a "Where we help" list) where the template calls for them. They are not displayed as a second tag row.
 
-Working notes in the wireframe sidebar (weight, primary keyword, related URLs) are review annotations. They are not live page modules. The **Page modules** catalogue (`/catalogue/`) shows live blocks only (D-59). Do not call these "chips" in UI copy.
+The wireframe sidebar (page fundamentals and the component inventory) is review annotation. Nothing in it is a live component. The **Component library** (`/catalogue/`) shows live components only (D-59, D-60). Do not call these "chips" in UI copy.
 
 | Page type | Tag dimension | Cap | Not shown as tags |
 |---|---|---|---|
@@ -359,13 +359,13 @@ Thank-you page: confirmation, then three curated links (a service, a case study,
 
 ---
 
-## T17. Page modules catalogue (`/catalogue/`)
+## T17. Component library (`/catalogue/`)
 
-Wireframe utility only. Not a live client URL. No working-notes sidebar.
+Wireframe utility only. Not a live client URL. No sidebar.
 
-Each live unit is named and given one interaction type (Button, Text link, Card, Tag, Filter, Static). The catalogue page is the index. The named set, random-box list, and link-versus-button rules live in `docs/wireframe-fresh-review.md` §2.
+Every reusable block on the site is a named component with one shape and one interaction type (Band, Button, Text link, Card, Tag, Filter, Static). The library page is the index; the vocabulary lives in `mocks/_build.py` (`COMPONENTS`) and every page's sidebar lists the components on its canvas by the same names.
 
-Ordered live blocks: header Contact, mega-nav hub and strands, breadcrumb, cookie bar, hero CTA pair, closing CTA band, metric box, service / theme / case / report / article / person / role cards, triangle tile, page tag, filter bar, situations list, row of text links, related list, case line, pagination, empty state, logo strip, quote, video 16:9, CIVD four-cell, article body, Work with us / Work for us forms.
+Components, by group: Chrome (Header Contact, Mega-nav hub and strands, Breadcrumb, Cookie bar); Heroes and bands (Hero, CTA pair, Closing CTA band, Prose, Metric box); Cards (Offer, Theme, Case, Report, Article, Person, Role, Triangle tile); Lists and locators (Page tag, Filter bar, Situations list, Row of text links, Link list, Case line, Link line, Pagination, Empty state); Proof and media (Logo strip, Quote, Video 16:9, CIVD four-cell, Article body); Forms (Form).
 
 ---
 
@@ -400,5 +400,5 @@ Ordered live blocks: header Contact, mega-nav hub and strands, breadcrumb, cooki
 | T14 Values and culture | `/about/values/` |
 | T15 Careers and Role | `/careers/`, `/careers/{role}/` |
 | T16 Contact | `/contact/`, `/contact/thank-you/` |
-| T17 Page modules catalogue | `/catalogue/` (wireframe only) |
+| T17 Component library | `/catalogue/` (wireframe only) |
 | T18 Utility stubs | `/privacy-policy/`, `/cookie-policy/`, `/terms/`, `/accessibility/`, `/search/`, `/newsletter/`, `/404/` |

@@ -253,6 +253,6 @@ Anchors that other pages link to (not pages): `/services/growth-strategy/#civd`,
 | Author, tag and category archives | Filters and team profiles cover these needs without thin pages. |
 | A separate AgentLab microsite or `/agentlab/` page | AgentLab is the named product inside AI Agents for Marketing. `/agentlab/` redirects to `/services/ai-agents-for-marketing/#agentlab`. Prophet and Ekimetrics give their labs a page under About; MGA's is a section with an anchor, which is enough for a catalogue of twelve entries. |
 | A "frameworks" or "our approach" page under `/services/` | The named frameworks are listed once on `/about/how-we-work/` with links to their anchored homes on service pages (v5, R3). Ellipsis makes its method a top-level page; Source A says method is not a service. |
-| `/catalogue/` as a live client URL | Wireframe-only index of page modules and blocks. Linked from All pages and the sitemap's Wireframe tools group. No working-notes sidebar. Not in the header or footer. |
+| `/catalogue/` as a live client URL | Wireframe-only component library. Linked from every sidebar and the sitemap's Wireframe tools group. No sidebar of its own. Not in the header or footer. |
 | A "problems we solve" page or section | Problem entry is a block on the Services hub (v5, R1), the way Prophet puts "what is your context?" on its service pages. A separate page would compete with the expertise themes. |
 | Separate Life at Manifesto, Benefits and Open roles pages | Sections of `/careers/` at current scale. |

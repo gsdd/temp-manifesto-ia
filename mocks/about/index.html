@@ -90,7 +90,7 @@
     <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Home</a></li><li>About</li></ol></nav>
     <main class="page" id="main">
       
-        <section class="block hero">
+        <section class="block hero" data-module="Hero" title="Hero">
           <h1>About Manifesto Growth Architects</h1>
           <p>Sustainable, customer-led growth. Strategy plus AI-powered activation.</p>
         </section>
@@ -106,8 +106,8 @@
         <section class="block">
           <h2 class="plain">Leadership</h2>
           <div class="cards">
-            <a class="card person" href="team/advisor-one/index.html"><div class="avatar"></div><strong>Partner name</strong><span>Role</span></a>
-            <a class="card person" href="team/index.html"><div class="avatar"></div><strong>Our people</strong><span>Everyone client-facing</span></a>
+            <a class="card person" data-module="Person card" title="Person card" href="team/advisor-one/index.html"><div class="avatar"></div><strong>Partner name</strong><span>Role</span></a>
+            <a class="card person" data-module="Person card" title="Person card" href="team/index.html"><div class="avatar"></div><strong>Our people</strong><span>Everyone client-facing</span></a>
           </div>
         </section>
         <section class="block">
@@ -119,7 +119,7 @@
           <p class="prose">A named group. Detail on <a href="team/index.html">Our people</a>.</p>
         </section>
         
-        <section class="block closing">
+        <section class="block closing" data-module="Closing CTA band" title="Closing CTA band">
           <p>Tell us about your growth challenge</p>
           <div class="cta">
             <a class="btn" href="../contact/index.html">Contact</a>
@@ -202,21 +202,18 @@
 
   </div>
   
-  <aside class="sidebar" aria-label="Working notes">
-    <div class="ia-notes"><span class="label">Working notes</span><div class="notes"><span class="note weight">Supporting</span><span class="note kw">Primary: Manifesto Growth Architects (brand)</span><span class="note">Services: <a href="../services/index.html">Our Growth Architecture</a></span></div><span class="label">Modules</span><div class="notes"><span class="note muted">Origins / history</span><span class="note muted">How we are distinct</span><span class="note muted">People combo of agency, client and strategy</span><span class="note muted">Do not duplicate Life at Manifesto</span><span class="note muted">C and N members section</span></div></div>
-    
-<div class="heading-map">
-  <h2>Heading map</h2>
-  <p class="map-note"><a href="../sitemap.html">All pages</a> · <a href="../catalogue/index.html">Page modules</a></p>
-  <p class="k"><strong>URL</strong><code>/about/</code></p>
-  <p class="k"><strong>H1 (one)</strong>About Manifesto Growth Architects</p>
-  <p class="k"><strong>Primary keyword</strong>Manifesto Growth Architects (brand)</p>
-  <div class="k"><strong>Alts (2 to 4)</strong><ul><li>Growth Architecture as named system lives on /services/</li></ul></div>
-  <div class="k"><strong>H2s (ordered)</strong><ol><li>Who we are and our story</li><li>How we are distinct</li><li>Leadership</li><li>Our approach</li></ol></div>
-  <div class="k"><strong>H3s where useful</strong><ul><li>Origins</li><li>C and N members</li></ul></div>
-  <p class="intent"><strong>Intent.</strong> Story, origins, and how the people mix of agency, client and strategy is distinct. Life at Manifesto is Careers, not duplicated here. Method teases Our approach.</p>
-</div>
-
+  <aside class="sidebar" aria-label="Page fundamentals and components">
+    <section class="panel">
+      <h2>Page fundamentals</h2>
+      <p class="map-note"><a href="../sitemap.html">All pages</a> · <a href="../catalogue/index.html">Component library</a></p>
+      <p class="k"><strong>URL</strong><code>/about/</code></p><p class="k"><strong>Template</strong>About. Supporting: supports a canonical page and links up to it.</p><p class="k"><strong>H1</strong>About Manifesto Growth Architects</p><div class="k"><strong>Keywords</strong><p>Primary: Manifesto Growth Architects (brand)</p><ul><li>Growth Architecture as named system lives on /services/</li></ul></div><div class="k"><strong>H2s (ordered)</strong><ol><li>Who we are and our story</li><li>How we are distinct</li><li>Leadership</li><li>Our approach</li></ol></div><div class="k"><strong>H3s</strong><ul><li>Origins</li><li>C and N members</li></ul></div><p class="k"><strong>Intent</strong>Story, origins, and how the people mix of agency, client and strategy is distinct. Teases Our approach.</p><div class="k"><strong>Content notes</strong><ul><li>Life at Manifesto lives on Careers; About links to it</li><li>C and N members are a named group, detailed on Our people</li></ul></div><p class="k"><strong>Links to</strong>Services: <a href="../services/index.html">Our Growth Architecture</a></p>
+    </section>
+    <section class="panel">
+      <h2>Components on this page</h2>
+      <p class="map-note">In canvas order. Block heading on the right where the block has one.</p>
+      <ol class="comp"><li><span class="mods">Hero</span></li><li><span class="mods">Prose</span><span class="blk">Who we are and our story</span></li><li><span class="mods">Prose</span><span class="blk">How we are distinct</span></li><li><span class="mods">Person card ×2</span><span class="blk">Leadership</span></li><li><span class="mods">Prose</span><span class="blk">Our approach</span></li><li><span class="mods">Prose</span><span class="blk">C and N members</span></li><li><span class="mods">Closing CTA band</span></li></ol>
+      <p class="map-note">Header Contact, Mega-nav hub and strands, Breadcrumb, Cookie bar and the footer are on every page. Names match the <a href="../catalogue/index.html">component library</a>.</p>
+    </section>
   </aside>
 </div>
 <script src="../assets/nav.js"></script>

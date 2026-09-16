@@ -90,7 +90,7 @@
     <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Home</a></li><li>Our thinking</li></ol></nav>
     <main class="page" id="main">
       
-        <section class="block hero">
+        <section class="block hero" data-module="Hero" title="Hero">
           <h1>Our thinking</h1>
           <p>Reports, articles, events and news.</p>
         </section>
@@ -98,23 +98,24 @@
           <h2 class="plain">Reports</h2>
           <p class="prose">Long-form reports, read on the page.</p>
           <div class="cards two">
-          <a class="card" href="pricing-paradox/index.html"><div class="doc">Report</div><strong>The Pricing Paradox</strong><span>Report. From tactical lever to growth engine</span></a>
+          <a class="card" data-module="Report card" title="Report card" href="pricing-paradox/index.html"><div class="doc">Report</div><strong>The Pricing Paradox</strong><span>Report. From tactical lever to growth engine</span></a>
           </div>
         </section>
         <section class="block" id="articles">
           <h2 class="plain">Articles</h2>
-          <div class="filters"><button type="button" class="filter on">All types</button><button type="button" class="filter">Article</button><button type="button" class="filter">Report</button><button type="button" class="filter">Event</button></div>
-          <span class="wf-label">Revealed state: Expertise, Service and Sector (More filters)</span>
-          <div class="filters"><button type="button" class="filter">Loyalty</button><button type="button" class="filter">Pricing</button><button type="button" class="filter">Growth Strategy</button><button type="button" class="filter">Financial services</button></div>
+          <div class="filters" data-module="Filter bar" title="Filter bar"><button type="button" class="filter on">All types</button><button type="button" class="filter">Article</button><button type="button" class="filter">Report</button><button type="button" class="filter">Event</button><button type="button" class="filter more">More filters</button></div>
+          <span class="wf-label">Revealed by More filters: Expertise, Service and Sector</span>
+          <div class="filters" data-module="Filter bar" title="Filter bar"><button type="button" class="filter">Loyalty</button><button type="button" class="filter">Pricing</button><button type="button" class="filter">Growth Strategy</button><button type="button" class="filter">Financial services</button></div>
           <div class="cards two">
-            <a class="card article" href="loyalty-without-the-discount/index.html"><strong>Loyalty without the discount</strong><span>Article · Loyalty</span></a>
+            <a class="card article" data-module="Article card" title="Article card" href="loyalty-without-the-discount/index.html"><strong>Loyalty without the discount</strong><span>Article · Loyalty</span></a>
           </div>
-          <div class="pagination" aria-label="Pagination"><span class="on">1</span><a href="#">2</a><a href="#">Next</a></div>
+          <div class="pagination" data-module="Pagination" title="Pagination" aria-label="Pagination"><span class="on">1</span><a href="#">2</a><a href="#">Next</a></div>
         </section>
         
         <section class="block">
-          <span class="wf-label">Empty state (stub: hide when results exist)</span>
-          <div class="empty-state">
+          <span class="wf-label">Conditional: shown only when there are no results</span>
+          
+          <div class="empty-state" data-module="Empty state" title="Empty state">
             <p>No thinking matches these filters.</p>
             <a class="btn" href="index.html">Clear filters</a>
           </div>
@@ -123,22 +124,20 @@
         <section class="block" id="events">
           <h2 class="plain">Events and news</h2>
           <p class="prose">Launch events and recaps. A separate events page only if there is enough recap content to sustain it.</p>
-          <ul class="list">
-            <li><a href="pricing-paradox/index.html">Pricing Paradox launch event</a><span>Event</span></li>
-          </ul>
+          <ul class="list" data-module="Link list" title="Link list"><li><a href="pricing-paradox/index.html">Pricing Paradox launch event</a><span>Event</span></li></ul>
           <h3 class="plain">The Nutshell</h3>
           <p class="prose">Events, thought leadership and what has caught our attention. <a href="../newsletter/index.html">Sign up to The Nutshell</a></p>
         </section>
         <section class="block">
           <h2 class="sec">Related services</h2>
-          <div class="row-links">
+          <div class="row-links" data-module="Row of text links" title="Row of text links">
             <a href="../services/index.html">What we do</a>
             <a href="../expertise/index.html">Expertise</a>
             <a href="../work/index.html">Our work</a>
           </div>
         </section>
         
-        <section class="block closing">
+        <section class="block closing" data-module="Closing CTA band" title="Closing CTA band">
           <p>Tell us about your growth challenge</p>
           <div class="cta">
             <a class="btn" href="../contact/index.html">Contact</a>
@@ -221,21 +220,18 @@
 
   </div>
   
-  <aside class="sidebar" aria-label="Working notes">
-    <div class="ia-notes"><span class="label">Working notes</span><div class="notes"><span class="note weight">Supporting</span><span class="note kw">Primary: thought leadership hub (long-tail lives on articles and reports)</span><span class="note">Themes: <a href="../expertise/loyalty/index.html">Loyalty</a>, <a href="../expertise/pricing/index.html">Pricing</a></span></div><span class="label">Modules</span><div class="notes"><span class="note muted">Reports at the top, blogs underneath</span><span class="note muted">Merged into Our thinking</span><span class="note muted">Events + latest news</span><span class="note muted">No more PDFs</span><span class="note muted">Do not replicate on Home</span></div></div>
-    
-<div class="heading-map">
-  <h2>Heading map</h2>
-  <p class="map-note"><a href="../sitemap.html">All pages</a> · <a href="../catalogue/index.html">Page modules</a></p>
-  <p class="k"><strong>URL</strong><code>/insights/</code></p>
-  <p class="k"><strong>H1 (one)</strong>Our thinking</p>
-  <p class="k"><strong>Primary keyword</strong>thought leadership hub (long-tail lives on articles and reports)</p>
-  <div class="k"><strong>Alts (2 to 4)</strong><ul><li>Our thinking is the nav label; URL stays /insights/</li><li>reports, articles, events are types, not extra top-nav items</li></ul></div>
-  <div class="k"><strong>H2s (ordered)</strong><ol><li>Reports</li><li>Articles</li><li>Events and news</li></ol></div>
-  <div class="k"><strong>H3s where useful</strong><ul><li>The Nutshell (newsletter)</li></ul></div>
-  <p class="intent"><strong>Intent.</strong> MURAL: merge blogs into Our thinking. Reports at the top, articles underneath. Events and news as a section (separate page only if resource allows). No PDFs: expand on the page.</p>
-</div>
-
+  <aside class="sidebar" aria-label="Page fundamentals and components">
+    <section class="panel">
+      <h2>Page fundamentals</h2>
+      <p class="map-note"><a href="../sitemap.html">All pages</a> · <a href="../catalogue/index.html">Component library</a></p>
+      <p class="k"><strong>URL</strong><code>/insights/</code></p><p class="k"><strong>Template</strong>Thinking hub. Supporting: supports a canonical page and links up to it.</p><p class="k"><strong>H1</strong>Our thinking</p><div class="k"><strong>Keywords</strong><p>Primary: thought leadership hub (long-tail lives on articles and reports)</p><ul><li>Our thinking is the nav label; URL stays /insights/</li><li>reports, articles, events are types, not extra top-nav items</li></ul></div><div class="k"><strong>H2s (ordered)</strong><ol><li>Reports</li><li>Articles</li><li>Events and news</li></ol></div><div class="k"><strong>H3s</strong><ul><li>The Nutshell (newsletter)</li></ul></div><p class="k"><strong>Intent</strong>Home of all thinking: reports first, then articles, then events and news. Reports read on the page.</p><div class="k"><strong>Content notes</strong><ul><li>Articles and blog posts are one type here; there is no separate blog</li><li>Events and news is a section; a separate events page only if recap content sustains it</li><li>Reports expand on the page; no PDFs</li><li>Home shows one featured report and one article, not this grid</li></ul></div><p class="k"><strong>Links to</strong>Expertise: <a href="../expertise/loyalty/index.html">Loyalty</a>, <a href="../expertise/pricing/index.html">Pricing</a></p>
+    </section>
+    <section class="panel">
+      <h2>Components on this page</h2>
+      <p class="map-note">In canvas order. Block heading on the right where the block has one.</p>
+      <ol class="comp"><li><span class="mods">Hero</span></li><li><span class="mods">Report card</span><span class="blk">Reports</span></li><li><span class="mods">Filter bar ×2, Article card, Pagination</span><span class="blk">Articles</span></li><li><span class="mods">Empty state</span></li><li><span class="mods">Link list</span><span class="blk">Events and news</span></li><li><span class="mods">Row of text links</span><span class="blk">Related services</span></li><li><span class="mods">Closing CTA band</span></li></ol>
+      <p class="map-note">Header Contact, Mega-nav hub and strands, Breadcrumb, Cookie bar and the footer are on every page. Names match the <a href="../catalogue/index.html">component library</a>.</p>
+    </section>
   </aside>
 </div>
 <script src="../assets/nav.js"></script>

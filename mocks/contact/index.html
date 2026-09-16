@@ -90,29 +90,25 @@
     <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Home</a></li><li>Contact</li></ol></nav>
     <main class="page" id="main">
       
-        <section class="block hero">
+        <section class="block hero" data-module="Hero" title="Hero">
           <h1>Contact</h1>
           <p>Tell us about your growth challenge, or about joining the team.</p>
         </section>
         <section class="block" id="work-with-us">
           <h2 class="plain">Work with us</h2>
           <p class="prose">Tell us about your growth challenge.</p>
-          <div class="form">
-            <div class="field"><label>Name</label><div class="box"></div></div>
-            <div class="field"><label>Company</label><div class="box"></div></div>
-            <div class="field"><label>Email</label><div class="box"></div></div>
-            <div class="field"><label>Topic</label><div class="box"></div></div>
-            <div class="field"><label>Message</label><div class="box tall"></div></div>
+          
+          <div class="form" data-module="Form" title="Form">
+            <div class="field"><label>Name</label><div class="box"></div></div><div class="field"><label>Company</label><div class="box"></div></div><div class="field"><label>Email</label><div class="box"></div></div><div class="field"><label>Topic</label><div class="box select">Select a service</div></div><div class="field"><label>Message</label><div class="box tall"></div></div>
             <a class="btn" href="thank-you/index.html">Send</a>
           </div>
         </section>
         <section class="block" id="work-for-us">
           <h2 class="plain">Work for us</h2>
           <p class="prose">Roles, Life at Manifesto, DEI and benefits live on <a href="../careers/index.html">Careers</a>. Speculative applications are welcome.</p>
-          <div class="form">
-            <div class="field"><label>Name</label><div class="box"></div></div>
-            <div class="field"><label>Email</label><div class="box"></div></div>
-            <div class="field"><label>Message</label><div class="box tall"></div></div>
+          
+          <div class="form" data-module="Form" title="Form">
+            <div class="field"><label>Name</label><div class="box"></div></div><div class="field"><label>Email</label><div class="box"></div></div><div class="field"><label>Message</label><div class="box tall"></div></div>
             <a class="btn" href="thank-you/index.html">Send</a>
           </div>
         </section>
@@ -197,21 +193,18 @@
 
   </div>
   
-  <aside class="sidebar" aria-label="Working notes">
-    <div class="ia-notes"><span class="label">Working notes</span><div class="notes"><span class="note weight">Utility</span><span class="note kw">Primary: none</span></div><span class="label">Modules</span><div class="notes"><span class="note muted">Split work with us / work for us</span><span class="note muted">The Nutshell</span><span class="note muted">Keep Email Mark as one tracked route</span></div></div>
-    
-<div class="heading-map">
-  <h2>Heading map</h2>
-  <p class="map-note"><a href="../sitemap.html">All pages</a> · <a href="../catalogue/index.html">Page modules</a></p>
-  <p class="k"><strong>URL</strong><code>/contact/</code></p>
-  <p class="k"><strong>H1 (one)</strong>Contact</p>
-  <p class="k"><strong>Primary keyword</strong>none</p>
-  <div class="k"><strong>Alts (2 to 4)</strong><p class="map-note">None.</p></div>
-  <div class="k"><strong>H2s (ordered)</strong><ol><li>Work with us</li><li>Work for us</li><li>Direct contact</li></ol></div>
-  <div class="k"><strong>H3s where useful</strong><ul><li>The Nutshell</li></ul></div>
-  <p class="intent"><strong>Intent.</strong> Split: work with us (this form) and work for us (Careers). Newsletter is The Nutshell. FT awards are not here.</p>
-</div>
-
+  <aside class="sidebar" aria-label="Page fundamentals and components">
+    <section class="panel">
+      <h2>Page fundamentals</h2>
+      <p class="map-note"><a href="../sitemap.html">All pages</a> · <a href="../catalogue/index.html">Component library</a></p>
+      <p class="k"><strong>URL</strong><code>/contact/</code></p><p class="k"><strong>Template</strong>Contact. Utility: functional page; not a search destination.</p><p class="k"><strong>H1</strong>Contact</p><div class="k"><strong>Keywords</strong><p>Primary: none</p></div><div class="k"><strong>H2s (ordered)</strong><ol><li>Work with us</li><li>Work for us</li><li>Direct contact</li></ol></div><div class="k"><strong>H3s</strong><ul><li>The Nutshell</li></ul></div><p class="k"><strong>Intent</strong>Two routes: work with us (the client form) and work for us (a speculative form; roles stay on Careers). Links to The Nutshell sign-up.</p><div class="k"><strong>Content notes</strong><ul><li>Email Mark stays as one tracked direct route</li><li>Topic is a select, pre-filled from ?topic= where a service page linked here</li></ul></div>
+    </section>
+    <section class="panel">
+      <h2>Components on this page</h2>
+      <p class="map-note">In canvas order. Block heading on the right where the block has one.</p>
+      <ol class="comp"><li><span class="mods">Hero</span></li><li><span class="mods">Form</span><span class="blk">Work with us</span></li><li><span class="mods">Form</span><span class="blk">Work for us</span></li><li><span class="mods">Prose</span><span class="blk">Direct contact</span></li></ol>
+      <p class="map-note">Header Contact, Mega-nav hub and strands, Breadcrumb, Cookie bar and the footer are on every page. Names match the <a href="../catalogue/index.html">component library</a>.</p>
+    </section>
   </aside>
 </div>
 <script src="../assets/nav.js"></script>

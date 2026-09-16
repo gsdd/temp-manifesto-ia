@@ -16,8 +16,8 @@ This extends the v5 IA (`docs/01-primary-navigation.md`, `docs/02-sitemap.md`, `
    - **About** opens a small dropdown (Our people, Our approach, Values and culture). The label goes to `/about/`.
    - **Careers** is a plain first-class link.
    - **Contact** is the header button.
-4. Every sitemap URL is a real HTML page. **All pages** in the heading map opens `sitemap.html`. **Page modules** opens the wireframe catalogue.
-5. The **main column** is the page layout (hero, modules, footer). Supplementary IA lives in the **sidebar** on most pages: working notes (weight, primary keyword, strand subtitle, related themes / sectors / services, MURAL modules) plus the **heading map**. The catalogue page has no sidebar.
+4. Every sitemap URL is a real HTML page. **All pages** in the sidebar opens `sitemap.html`. **Component library** opens the wireframe catalogue at `catalogue/`.
+5. The **main column** is the page canvas: header, breadcrumb, the page's components with scant placeholder copy, cookie bar, footer. The **sidebar** on every page except the catalogue holds the page fundamentals and the component inventory (see below).
 
 From GitHub: use the preview or raw HTML, or enable GitHub Pages and visit `/mocks/index.html`.
 
@@ -46,19 +46,24 @@ Footer row: All services | Expertise | Our work. Contact is not repeated (the he
 
 ## Pages included
 
-Home; Services hub; Growth Strategy; Proposition Innovation; Activation group and the six activation services; CEO Advisory (Side-by-Side + Our advisors); Expertise hub and Loyalty / Membership / Subscriptions / Pricing / Customer Value; four light sectors (Financial Services, Media, Consumer, Retail); Work hub plus Dayinsure and Key Group shells; Our thinking hub plus one article and one report shell; About (story, Our people, Our approach, values); Careers (Life at Manifesto + one role shell); Contact (work with us / work for us, plus thank-you); The Nutshell and legal / 404 / search utilities so every footer link resolves; **Page modules** (`catalogue/`) as a wireframe-only index of live blocks.
+Home; Services hub; Growth Strategy; Proposition Innovation; Activation group and the six activation services; CEO Advisory (Side-by-Side + Our advisors); Expertise hub and Loyalty / Membership / Subscriptions / Pricing / Customer Value; four light sectors (Financial Services, Media, Consumer, Retail); Work hub plus Dayinsure and Key Group shells; Our thinking hub plus one article and one report shell; About (story, Our people, Our approach, values); Careers (Life at Manifesto + one role shell); Contact (work with us / work for us, plus thank-you); The Nutshell and legal / 404 / search utilities so every footer link resolves; the **Component library** (`catalogue/`) as a wireframe-only index of the reusable blocks.
 
-## Page notes, heading map and on-page shapes
+## Sidebar: page fundamentals and components
 
-- **Working notes** (sidebar) are an IA annotation, not the live-site tag rule in `docs/03-page-layouts.md`. They show canonical weight, the primary keyword target (with UK monthly volume when this pull has it), the strand subtitle if the page has one, and related themes / sectors / services. A Modules row lists MURAL keep/drop notes when that page absorbed one.
-- **Heading map** (sidebar) lists the recommended H1 (one), H2s in order, H3s where useful, primary keyword, two to four alts, and a one-line intent note. It is not body copy. The same content is consolidated in `docs/heading-map.md`.
-- **On-page modules** in the main column use named shapes: service cards, case cards, article cards, person cards, triangle tiles, logo strips, quotes, 16:9 video, metric boxes, CIVD cells (static, dashed), tags, filter buttons, empty states, pagination links, forms. See **Page modules** (`catalogue/`) for the six interaction types (Button, Text link, Card, Tag, Filter, Static). Related-theme tags that would appear on the live page stay in the body as page tags, not as working notes.
+The sidebar is annotation for this wireframe. Nothing in it is a live component. It has two panels in one visual language (small grey label, plain value):
+
+- **Page fundamentals**: URL; template and weight, with the weight explained in plain English; H1; keywords (primary target with UK monthly volume where the pull has it, then two to four alts); menu subtitle where the page has one; H2s in order; H3s where useful; intent (what the page is for, one or two sentences); content notes, present tense, only where they change what a designer builds; and the pages this one links to. The same content is consolidated in `docs/heading-map.md`.
+- **Components on this page**: an inventory of the reusable blocks on the canvas, in order, with a count where a block repeats (Offer card ×6) and the block heading on the right. The list is generated from the canvas itself: every component in the HTML carries `data-module="<name>"` and the builder reads those back, so the sidebar cannot disagree with the page. Hover any block on the canvas to see its name.
+
+## Components
+
+Every block on every page is one of the named components in the **Component library** (`catalogue/`): one name, one shape, one interaction type. The seven interaction types are Band, Button, Text link, Card, Tag, Filter and Static. Cards are visually distinct by type: Offer card (grey fill), Theme card and Role card (outline; Role has a top rule), Article card (no fill, no image), Case card (image placeholder), Report card (portrait document), Person card (avatar). Tags are small squared labels; filters are pills; pagination is numbered squares; buttons are 1.5px outlined. The library is generated from the same vocabulary the pages use, and the build fails if a page names a component the library does not have.
 
 Keyword rules applied here: Manifesto labels stay in the nav (Proposition Innovation, Experience Engineering, Growth Office, CEO Advisory). Buyer language is in strand subtitles and on the page. AI phrases stay marketing-qualified. Growth Office SEO is interim / embedded growth team (interim CMO where accurate), not "growth office" as primary.
 
 ## Regenerating
 
-Pages are generated from `mocks/_build.py` so HTML and `docs/heading-map.md` cannot drift.
+Pages, the component library, `sitemap.html` and `docs/heading-map.md` are all generated from `mocks/_build.py` so they cannot drift. The page registry (`PAGES`) holds the fundamentals; `COMPONENTS` holds the vocabulary; `body_for()` lays out each template from the shared component helpers.
 
 ```
 python3 mocks/_build.py

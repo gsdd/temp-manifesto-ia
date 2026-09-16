@@ -7,11 +7,12 @@ Header chrome is MURAL-informed (see `docs/mural-gap-check.md`). Mega-nav group 
 Volumes are average monthly Google Ads search volume for the United Kingdom. Exact Manifesto product phrases are often thin; adjacent demand is the useful signal.
 
 Source of truth for structure: `docs/02-sitemap.md` and the IA report. This file is the SEO heading layer on top of that IA, not a competing sitemap.
-MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `docs/mural-gap-check.md`.
+Each page also lists the reusable components on its canvas, in order, by the names in the component library (`mocks/catalogue/`).
 
 ## `/`: Home
 
-- **Weight:** Canonical
+- **Template:** Home
+- **Weight:** Canonical (owns its topic; other pages on the topic link here)
 - **Primary keyword:** growth architecture (~50) / brand
 - **Alts:**
   - Manifesto Growth Architects (brand)
@@ -24,13 +25,29 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   4. Our work
   5. Awards
   6. Growth problems we know best
-- **Intent:** Brand and router. Trusted partners sit high. Featured thinking sits after the triangle, not as a strip at the foot. FT awards sit lower, not in the hero. Do not replicate the reports grid here.
-- **MURAL modules:** Trusted partners banner up; FT not at the top; No homepage reports grid; Showreel visual at launch; Client quotes with work; Thinking after the offer, not only at the bottom
+- **Intent:** Brand and router. Says who Manifesto is for, shows the Growth Architecture triangle once, and routes into services, thinking, work and expertise. Everything here exists in full on another page.
+- **Content notes:**
+  - Showreel film sits in the hero
+  - Trusted partners sit directly under the hero
+  - Featured thinking (one report, one article) sits after the triangle and before Our work
+  - Client quote sits with the work cards
+  - Awards sit after Work
+  - No long copy, no tags on cards, no reports grid
+- **Components (canvas order):**
+  - Hero, CTA pair, Video 16:9
+  - Logo strip (Trusted partners)
+  - Triangle tile ×3 (What we do)
+  - Report card, Article card (Our thinking)
+  - Case card ×2, Quote (Our work)
+  - Logo strip (Awards)
+  - Row of text links (Growth problems we know best)
+  - Closing CTA band
 - **Related:** themes: Loyalty, Membership, Subscriptions, Pricing, Customer Value; services: Growth Strategy, Activation Services, CEO Advisory
 
 ## `/services/`: What we do: our Growth Architecture
 
-- **Weight:** Canonical
+- **Template:** Services hub
+- **Weight:** Canonical (owns its topic; other pages on the topic link here)
 - **Primary keyword:** growth architecture (~50)
 - **Alts:**
   - strategy that works / execution that delivers (strapline, not a volume target)
@@ -42,14 +59,27 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   3. Growth Strategy
   4. Activation Services
   5. CEO Advisory
-- **Intent:** Name the system. Two ways in: capability (triangle) and problem (seven situations). Do not target individual service terms here.
+- **Intent:** Names the Growth Architecture system and routes to every service. Two ways in: by capability (the triangle) and by problem (seven situations).
+- **Content notes:**
+  - Keyword targets for individual services stay on the service pages
+  - One case line per pillar; the CIVD frame is shown compact and links to its home on Growth Strategy
+- **Components (canvas order):**
+  - Hero
+  - Triangle tile ×3 (Three ways we work with you)
+  - Situations list (Where are you starting from?)
+  - CIVD four-cell, Link line, Offer card ×2, Case line (Growth Strategy)
+  - Offer card ×6, Case line (Activation Services)
+  - Person card ×3 (CEO Advisory)
+  - Link line
+  - Closing CTA band
 - **Related:** themes: Expertise hub; services: Growth Strategy, Activation Services, CEO Advisory
 
 ## `/services/growth-strategy/`: Growth Strategy
 
-- **Weight:** Canonical
+- **Template:** Service detail
+- **Weight:** Canonical (owns its topic; other pages on the topic link here)
 - **Primary keyword:** growth strategy (~480)
-- **Strand subtitle:** Where to grow and how to win
+- **Menu subtitle:** Where to grow and how to win
 - **Alts:**
   - growth strategy consultancy / consultant (~70)
   - brand strategy consulting (~390) where true to the offer
@@ -70,15 +100,30 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   - Innovation
   - Value
   - Delivery
-- **Intent:** Lead offer. Keep the nav label. H2s take brand / GTM language only where the work is truly that. CIVD is the named frame. MURAL: keep CIVD, new visuals; it is the strategy frame, not Side-by-Side.
-- **MURAL modules:** Keep CIVD, different visuals; CIVD is strategy, not Side-by-Side
+- **Intent:** Lead offer. Owns growth strategy search. CIVD (Customer, Innovation, Value and Delivery) is the named frame and lives on this page.
+- **Content notes:**
+  - Brand and go-to-market language appears in H2s only where the work is truly that
+  - CIVD belongs to Growth Strategy, not to Side-by-Side
+- **Components (canvas order):**
+  - Hero, CTA pair
+  - Situations list (Why this, now)
+  - Prose (What we do)
+  - Case card ×2 (Proof)
+  - Prose (North Star / Growth priorities / Demand signals / Scenario planning)
+  - CIVD four-cell (Customer, Innovation, Value and Delivery)
+  - Prose (How it works)
+  - Page tag ×3 (Related expertise)
+  - Offer card ×3 (Related services)
+  - Link list (Related thinking)
+  - Closing CTA band
 - **Related:** themes: Customer Value, Loyalty, Pricing; sectors: Financial services, Media, Consumer; services: Proposition Innovation, Activation Services, CEO Advisory
 
 ## `/services/proposition-innovation/`: Proposition Innovation
 
-- **Weight:** Canonical
+- **Template:** Service detail
+- **Weight:** Canonical (owns its topic; other pages on the topic link here)
 - **Primary keyword:** value proposition design (~140)
-- **Strand subtitle:** Value proposition design
+- **Menu subtitle:** Value proposition design
 - **Alts:**
   - value proposition (broad, noisy)
   - proposition design (~20)
@@ -93,14 +138,25 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   6. Direct-to-consumer propositions
   7. Proof
   8. How it works
-- **Intent:** Keep Manifesto label in the H1. Put value / proposition design in the strand subtitle, hero and H2s so search can see it. Each proposition type hands off to its theme.
+- **Intent:** Manifesto label in the H1; value proposition design in the menu subtitle, hero and H2s so search can see it. Each proposition type hands off to its expertise theme.
+- **Components (canvas order):**
+  - Hero, CTA pair
+  - Situations list (Why this, now)
+  - Prose (Value proposition design)
+  - Case card ×2 (Proof)
+  - Prose (Loyalty propositions / Membership propositions / Subscription propositions / Direct-to-consumer propositions / How it works)
+  - Page tag ×3 (Related expertise)
+  - Offer card ×2 (Related services)
+  - Link list (Related thinking)
+  - Closing CTA band
 - **Related:** themes: Loyalty, Membership, Subscriptions; sectors: Retail, Consumer, Financial services; services: Growth Strategy, Customer Research and Insight
 
 ## `/services/activation/`: Activation Services
 
-- **Weight:** Supporting
+- **Template:** Activation group
+- **Weight:** Supporting (supports a canonical page and links up to it)
 - **Primary keyword:** strategy to execution (group page; no single volume target)
-- **Strand subtitle:** Hands-on delivery, six services
+- **Menu subtitle:** Hands-on delivery, six services
 - **Alts:**
   - customer journey mapping (~2,900) in the Experience Engineering line
   - operating model (~880) in the Operating Model Design line
@@ -110,14 +166,23 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   1. The bridge from strategy to results
   2. Which of the six do you need?
   3. The six Activation services
-- **Intent:** Explain Activation and route. Catch problem-minded searchers in the six lines (journey mapping, operating model, interim leadership) without owning those terms.
+- **Intent:** Explains Activation and routes to the six services. Catches problem-minded searchers in the six lines (journey mapping, operating model, interim leadership) without owning those terms.
+- **Components (canvas order):**
+  - Hero, CTA pair
+  - Prose (The bridge from strategy to results)
+  - Link list (Which of the six do you need?)
+  - Offer card ×6 (The six Activation services)
+  - Case card ×2 (Proof)
+  - Link list (Related thinking)
+  - Closing CTA band
 - **Related:** services: Customer Research and Insight, Experience Engineering, AI Agents for Marketing, Operating Model Design, Growth Office, AI Enablement
 
 ## `/services/customer-research/`: Customer Research and Insight
 
-- **Weight:** Canonical
+- **Template:** Service detail
+- **Weight:** Canonical (owns its topic; other pages on the topic link here)
 - **Primary keyword:** customer research methods / companies (~720)
-- **Strand subtitle:** Research methods and journey mapping
+- **Menu subtitle:** Research methods and journey mapping
 - **Alts:**
   - customer journey mapping (~2,900)
   - customer research techniques (~880)
@@ -138,15 +203,26 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   - Customer data analytics
   - Internal knowledge
   - External market data
-- **Intent:** Label stays. Lead with methods, journey mapping and insight outcomes, not only the consultancy noun. Customer Intelligence is the practice name on the page. MURAL: qual and quant evidence lives here.
-- **MURAL modules:** Qual and quant evidence
+- **Intent:** Leads with research methods, journey mapping and insight outcomes, not only the consultancy noun. Customer Intelligence is the practice name on the page. Qualitative and quantitative evidence lives here.
+- **Content notes:**
+  - Analytical journey mapping lives here; design research lives on Experience Engineering
+- **Components (canvas order):**
+  - Hero, CTA pair
+  - Situations list (Why this, now)
+  - Case card ×2 (Proof)
+  - Prose (Customer research methods / Customer journey mapping / Research projects / Always-on customer insight / How it works)
+  - Page tag ×2 (Related expertise)
+  - Offer card ×3 (Related services)
+  - Link list (Related thinking)
+  - Closing CTA band
 - **Related:** themes: Customer Value, Loyalty; sectors: Financial services, Media, Consumer; services: Experience Engineering, Proposition Innovation, AI Agents for Marketing
 
 ## `/services/experience-engineering/`: Experience Engineering: customer experience and websites
 
-- **Weight:** Canonical
+- **Template:** Service detail
+- **Weight:** Canonical (owns its topic; other pages on the topic link here)
 - **Primary keyword:** experience engineering (~90), with CX / journey H2s
-- **Strand subtitle:** Customer experience and websites
+- **Menu subtitle:** Customer experience and websites
 - **Alts:**
   - customer journey mapping (~2,900)
   - cx consultancy (~70)
@@ -165,14 +241,27 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   9. Proof
 - **H3s:**
   - Customer and value analytics (under research and testing)
-- **Intent:** Keep the Manifesto label. Strand subtitle and H2s do the CX, website and journey-mapping job (Dayinsure / Key Group pattern). Find / Redesign / Test / Scale is How it works from the deck.
+- **Intent:** Manifesto label in the H1; the menu subtitle and H2s carry the CX, website and journey-mapping search terms (Dayinsure and Key Group are the proof). Find, Redesign, Test, Scale is the How it works sequence.
+- **Components (canvas order):**
+  - Hero, Metric box, CTA pair
+  - Situations list (Why this, now)
+  - Case card ×2 (Proof)
+  - Prose (Find / Redesign / Test / Scale)
+  - Prose (Customer experience (CX) design)
+  - Prose (Website and digital product)
+  - Prose (User research and testing)
+  - Page tag ×2 (Related expertise)
+  - Offer card ×2 (Related services)
+  - Link list (Related thinking)
+  - Closing CTA band
 - **Related:** themes: Customer Value, Loyalty; sectors: Financial services, Consumer; services: Customer Research and Insight, AI Agents for Marketing
 
 ## `/services/ai-agents-for-marketing/`: AI Agents for Marketing
 
-- **Weight:** Canonical
+- **Template:** Service detail
+- **Weight:** Canonical (owns its topic; other pages on the topic link here)
 - **Primary keyword:** ai marketing agents (~390)
-- **Strand subtitle:** AI marketing agents, guided by experts
+- **Menu subtitle:** AI marketing agents, guided by experts
 - **Alts:**
   - ai agents for marketing (~70)
   - marketing automation consultancy (~90)
@@ -189,14 +278,26 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   - Data and Infrastructure
   - Strategy and Planning
   - Automation and Execution
-- **Intent:** Stay marketing-qualified. AgentLab is the named catalogue on this page, not in the nav. Bare 'AI agents' is too generic to be the sole target.
+- **Intent:** Marketing-qualified AI page. AgentLab is the named agent catalogue on this page. Bare 'AI agents' is too generic to be the sole target.
+- **Components (canvas order):**
+  - Hero, Metric box ×2, CTA pair
+  - Situations list (Why this, now)
+  - Prose (What we do)
+  - Case card ×2 (Proof)
+  - Prose (AgentLab)
+  - Prose (How it works)
+  - Page tag ×2 (Related expertise)
+  - Offer card ×3 (Related services)
+  - Link list (Related thinking)
+  - Closing CTA band
 - **Related:** themes: Customer Value, Loyalty; sectors: Financial services, Media, Consumer; services: AI Enablement, Operating Model Design, Customer Research and Insight
 
 ## `/services/operating-model-design/`: Operating Model Design
 
-- **Weight:** Canonical
+- **Template:** Service detail
+- **Weight:** Canonical (owns its topic; other pages on the topic link here)
 - **Primary keyword:** operating model (~880)
-- **Strand subtitle:** Target operating model
+- **Menu subtitle:** Target operating model
 - **Alts:**
   - target operating model (~1,600)
   - operating model design (~140)
@@ -213,14 +314,26 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   - High-quality data and tools
   - New work units
   - Orchestration: culture, value, capability
-- **Intent:** Strongest Activation volume case after journey / CX. Use operating model / target operating model language in H1 support and H2s. Operating Architecture is the framework name on the page.
+- **Intent:** Strongest Activation search volume after journey and CX. Operating model and target operating model language in the H1 support line and H2s. Operating Architecture is the framework name on the page.
+- **Components (canvas order):**
+  - Hero, CTA pair
+  - Situations list (Why this, now)
+  - Case card ×2 (Proof)
+  - Prose (Target operating model / Adaptive operating model)
+  - Prose (Our Operating Architecture framework)
+  - Prose (How it works)
+  - Page tag (Related expertise)
+  - Offer card ×3 (Related services)
+  - Link list (Related thinking)
+  - Closing CTA band
 - **Related:** themes: Customer Value; sectors: Financial services, Media; services: Growth Office, AI Enablement, AI Agents for Marketing
 
 ## `/services/growth-office/`: Growth Office: interim growth team and programme office
 
-- **Weight:** Canonical
+- **Template:** Service detail
+- **Weight:** Canonical (owns its topic; other pages on the topic link here)
 - **Primary keyword:** interim cmo / interim growth team (~110 to 140)
-- **Strand subtitle:** Interim growth team
+- **Menu subtitle:** Interim growth team
 - **Alts:**
   - growth office (~10, weak; do not primary-target)
   - programme office / PMO (hero language)
@@ -237,14 +350,24 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   8. How it works
 - **H3s:**
   - Interim CMO and senior cover (where the engagement needs it)
-- **Intent:** Keep Growth Office as the label. Strand subtitle and body must say interim / embedded growth team, and interim CMO where accurate. Do not SEO-target 'growth office' as the primary phrase.
+- **Intent:** Growth Office is the label; the menu subtitle and body say interim or embedded growth team, and interim CMO where accurate. The primary search phrase is interim growth team, not growth office.
+- **Components (canvas order):**
+  - Hero, CTA pair
+  - Situations list (Why this, now)
+  - Case card ×2 (Proof)
+  - Prose (Interim growth team / Then embed / Culture / Capability / Value / How it works)
+  - Page tag (Related expertise)
+  - Offer card ×3 (Related services)
+  - Link list (Related thinking)
+  - Closing CTA band
 - **Related:** themes: Customer Value; sectors: Media, Consumer; services: Operating Model Design, CEO Advisory, AI Enablement
 
 ## `/services/ai-enablement/`: AI Enablement
 
-- **Weight:** Canonical
+- **Template:** Service detail
+- **Weight:** Canonical (owns its topic; other pages on the topic link here)
 - **Primary keyword:** ai enablement (~170)
-- **Strand subtitle:** AI skills and adoption
+- **Menu subtitle:** AI skills and adoption
 - **Alts:**
   - ai transformation consultancy (~10)
   - ai adoption / skills (supporting copy; no volume in this pull for 'ai adoption consultancy')
@@ -257,14 +380,24 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   4. New business models with AI
   5. Proof
   6. How it works
-- **Intent:** Thin but real niche. Own 'AI enablement' as primary. Support with adoption, skills and operating-change copy. Expert network named in body.
+- **Intent:** Thin but real niche. Owns 'AI enablement' as primary, supported by adoption, skills and operating-change copy. The expert network is named in the body.
+- **Components (canvas order):**
+  - Hero, CTA pair
+  - Situations list (Why this, now)
+  - Case card ×2 (Proof)
+  - Prose (AI skills and adoption / Finding where AI pays off / New business models with AI / How it works)
+  - Page tag (Related expertise)
+  - Offer card ×2 (Related services)
+  - Link list (Related thinking)
+  - Closing CTA band
 - **Related:** themes: Customer Value; sectors: Consumer, Media; services: AI Agents for Marketing, Operating Model Design
 
 ## `/services/ceo-advisory/`: CEO Advisory
 
-- **Weight:** Supporting
+- **Template:** CEO Advisory
+- **Weight:** Supporting (supports a canonical page and links up to it)
 - **Primary keyword:** ceo advisory (~10)  /  relationship page, not volume-led
-- **Strand subtitle:** One-to-one advisory retainer
+- **Menu subtitle:** One-to-one advisory retainer
 - **Alts:**
   - board advisor (~90), adjacent
   - ceo coach (~320), adjacent only, not identical to Side-by-Side
@@ -277,12 +410,24 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   4. How the retainer works
 - **H3s:**
   - The named product (hero and this section, not a second URL)
-- **Intent:** Nav stays CEO Advisory. Two mega-nav strands: Side-by-Side (the retainer) and Our advisors (the people). Proof is the people. Coaching language is adjacent, not the offer. SxS is not used on the site.
+- **Intent:** Relationship page at full weight. Two menu strands land here: Side-by-Side (the retainer) and Our advisors (the people). Proof is the people. Coaching language is adjacent, not the offer.
+- **Content notes:**
+  - Side-by-Side is always written in full
+  - Quieter call to action: Arrange a conversation
+- **Components (canvas order):**
+  - Hero, CTA pair
+  - Situations list (Why this, now)
+  - Prose (Side-by-Side)
+  - Person card ×3 (Our advisors)
+  - Prose (How the retainer works)
+  - Link list (Related thinking)
+  - Closing CTA band
 - **Related:** services: Growth Strategy, Growth Office
 
 ## `/expertise/`: Expertise
 
-- **Weight:** Supporting
+- **Template:** Expertise hub
+- **Weight:** Supporting (supports a canonical page and links up to it)
 - **Primary keyword:** growth problems we know best (hub; theme titles not fully keyworded in this pull)
 - **Alts:**
   - loyalty / membership / subscriptions / pricing / customer value (second pass before URLs lock if they need a search job)
@@ -290,12 +435,20 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
 - **H2s (ordered):**
   1. The growth problems we know best
   2. Latest insights across themes
-- **Intent:** Index the five themes. Do not restate how services are delivered. Themes were not fully keyworded in the Sep 2026 pull.
+- **Intent:** Indexes the five expertise themes. Describes the growth problems, not how services are delivered.
+- **Content notes:**
+  - Theme titles were not fully keyworded in the Sep 2026 pull; second pass before URLs lock
+- **Components (canvas order):**
+  - Hero
+  - Theme card ×5 (The growth problems we know best)
+  - Link list (Latest thinking across themes)
+  - Closing CTA band
 - **Related:** themes: Loyalty, Membership, Subscriptions, Pricing, Customer Value; services: All services
 
 ## `/expertise/loyalty/`: Loyalty
 
-- **Weight:** Supporting
+- **Template:** Expertise theme
+- **Weight:** Supporting (supports a canonical page and links up to it)
 - **Primary keyword:** loyalty strategy / loyalty programme (not in this UK pull)
 - **Alts:**
   - loyalty economics (theme POV, not a service)
@@ -306,12 +459,23 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   2. Where we help
   3. Proof
   4. Insights
-- **Intent:** Prove we understand the problem, then hand off to services. Never describe how a service is delivered. Theme titles were not fully keyworded in this pull.
+- **Intent:** Proves we understand the problem, then hands off to services. Describes the problem, never how a service is delivered.
+- **Content notes:**
+  - Theme titles were not fully keyworded in the Sep 2026 pull
+- **Components (canvas order):**
+  - Hero, CTA pair
+  - Prose (Our view)
+  - Link list (Where we help)
+  - Case card ×2 (Proof)
+  - Link list (Insights)
+  - Row of text links (Related themes)
+  - Closing CTA band
 - **Related:** services: Proposition Innovation, Customer Research and Insight, Experience Engineering
 
 ## `/expertise/membership/`: Membership
 
-- **Weight:** Supporting
+- **Template:** Expertise theme
+- **Weight:** Supporting (supports a canonical page and links up to it)
 - **Primary keyword:** membership models / member economics (not in this UK pull)
 - **Alts:**
   - hands off 'how we design the offer' to Proposition Innovation
@@ -321,12 +485,23 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   2. Where we help
   3. Proof
   4. Insights
-- **Intent:** Prove we understand the problem, then hand off to services. Never describe how a service is delivered. Theme titles were not fully keyworded in this pull.
+- **Intent:** Proves we understand the problem, then hands off to services. Describes the problem, never how a service is delivered.
+- **Content notes:**
+  - Theme titles were not fully keyworded in the Sep 2026 pull
+- **Components (canvas order):**
+  - Hero, CTA pair
+  - Prose (Our view)
+  - Link list (Where we help)
+  - Case card ×2 (Proof)
+  - Link list (Insights)
+  - Row of text links (Related themes)
+  - Closing CTA band
 - **Related:** services: Proposition Innovation, Customer Research and Insight, Growth Strategy
 
 ## `/expertise/subscriptions/`: Subscriptions
 
-- **Weight:** Supporting
+- **Template:** Expertise theme
+- **Weight:** Supporting (supports a canonical page and links up to it)
 - **Primary keyword:** subscription growth / churn / retention (not in this UK pull)
 - **Alts:**
   - theme owns the problem; services own the how
@@ -336,12 +511,23 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   2. Where we help
   3. Proof
   4. Insights
-- **Intent:** Prove we understand the problem, then hand off to services. Never describe how a service is delivered. Theme titles were not fully keyworded in this pull.
+- **Intent:** Proves we understand the problem, then hands off to services. Describes the problem, never how a service is delivered.
+- **Content notes:**
+  - Theme titles were not fully keyworded in the Sep 2026 pull
+- **Components (canvas order):**
+  - Hero, CTA pair
+  - Prose (Our view)
+  - Link list (Where we help)
+  - Case card ×2 (Proof)
+  - Link list (Insights)
+  - Row of text links (Related themes)
+  - Closing CTA band
 - **Related:** services: Proposition Innovation, Customer Research and Insight, Experience Engineering
 
 ## `/expertise/pricing/`: Pricing
 
-- **Weight:** Supporting
+- **Template:** Expertise theme
+- **Weight:** Supporting (supports a canonical page and links up to it)
 - **Primary keyword:** pricing strategy / value-based pricing (not in this UK pull)
 - **Alts:**
   - do not turn this into a pricing-consultancy product page
@@ -351,12 +537,23 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   2. Where we help
   3. Proof
   4. Insights
-- **Intent:** Prove we understand the problem, then hand off to services. Never describe how a service is delivered. Theme titles were not fully keyworded in this pull.
+- **Intent:** Proves we understand the problem, then hands off to services. Describes the problem, never how a service is delivered.
+- **Content notes:**
+  - Theme titles were not fully keyworded in the Sep 2026 pull
+- **Components (canvas order):**
+  - Hero, CTA pair
+  - Prose (Our view)
+  - Link list (Where we help)
+  - Case card ×2 (Proof)
+  - Link list (Insights)
+  - Row of text links (Related themes)
+  - Closing CTA band
 - **Related:** services: Growth Strategy, Proposition Innovation, Customer Research and Insight
 
 ## `/expertise/customer-value/`: Customer Value
 
-- **Weight:** Supporting
+- **Template:** Expertise theme
+- **Weight:** Supporting (supports a canonical page and links up to it)
 - **Primary keyword:** customer lifetime value / customer value management (not in this UK pull)
 - **Alts:**
   - customer-led growth language also lives on Growth Strategy
@@ -366,12 +563,23 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   2. Where we help
   3. Proof
   4. Insights
-- **Intent:** Prove we understand the problem, then hand off to services. Never describe how a service is delivered. Theme titles were not fully keyworded in this pull.
+- **Intent:** Proves we understand the problem, then hands off to services. Describes the problem, never how a service is delivered.
+- **Content notes:**
+  - Theme titles were not fully keyworded in the Sep 2026 pull
+- **Components (canvas order):**
+  - Hero, CTA pair
+  - Prose (Our view)
+  - Link list (Where we help)
+  - Case card ×2 (Proof)
+  - Link list (Insights)
+  - Row of text links (Related themes)
+  - Closing CTA band
 - **Related:** services: Growth Strategy, Customer Research and Insight, Experience Engineering
 
 ## `/sectors/financial-services/`: Financial services
 
-- **Weight:** Light
+- **Template:** Sector landing
+- **Weight:** Light (short landing; proof lives elsewhere)
 - **Primary keyword:** no dedicated keyword target (light landing)
 - **Alts:**
   - sector + consultancy queries are opportunistic only
@@ -381,12 +589,22 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   1. Clients
   2. Case studies
   3. Services most used here
-- **Intent:** Reassure 'businesses like mine'. Short intro plus filtered proof. No sector POV essay. No sector-specific service descriptions.
+- **Intent:** Reassures 'businesses like mine': a short intro plus filtered proof.
+- **Content notes:**
+  - Light landing: no sector point-of-view essay and no sector-specific service descriptions
+- **Components (canvas order):**
+  - Hero
+  - Logo strip (Clients)
+  - Case card ×2 (Case studies)
+  - Link list (Services most used here)
+  - Link list (Related thinking)
+  - Closing CTA band
 - **Related:** services: Experience Engineering, Customer Research and Insight, AI Agents for Marketing
 
 ## `/sectors/media/`: Media
 
-- **Weight:** Light
+- **Template:** Sector landing
+- **Weight:** Light (short landing; proof lives elsewhere)
 - **Primary keyword:** no dedicated keyword target (light landing)
 - **Alts:**
   - sector + consultancy queries are opportunistic only
@@ -396,12 +614,22 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   1. Clients
   2. Case studies
   3. Services most used here
-- **Intent:** Reassure 'businesses like mine'. Short intro plus filtered proof. No sector POV essay. No sector-specific service descriptions.
+- **Intent:** Reassures 'businesses like mine': a short intro plus filtered proof.
+- **Content notes:**
+  - Light landing: no sector point-of-view essay and no sector-specific service descriptions
+- **Components (canvas order):**
+  - Hero
+  - Logo strip (Clients)
+  - Case card ×2 (Case studies)
+  - Link list (Services most used here)
+  - Link list (Related thinking)
+  - Closing CTA band
 - **Related:** services: Growth Office, Operating Model Design, Proposition Innovation
 
 ## `/sectors/consumer/`: Consumer
 
-- **Weight:** Light
+- **Template:** Sector landing
+- **Weight:** Light (short landing; proof lives elsewhere)
 - **Primary keyword:** no dedicated keyword target (light landing)
 - **Alts:**
   - sector + consultancy queries are opportunistic only
@@ -411,12 +639,22 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   1. Clients
   2. Case studies
   3. Services most used here
-- **Intent:** Reassure 'businesses like mine'. Short intro plus filtered proof. No sector POV essay. No sector-specific service descriptions.
+- **Intent:** Reassures 'businesses like mine': a short intro plus filtered proof.
+- **Content notes:**
+  - Light landing: no sector point-of-view essay and no sector-specific service descriptions
+- **Components (canvas order):**
+  - Hero
+  - Logo strip (Clients)
+  - Case card ×2 (Case studies)
+  - Link list (Services most used here)
+  - Link list (Related thinking)
+  - Closing CTA band
 - **Related:** services: Experience Engineering, AI Agents for Marketing, Growth Office
 
 ## `/sectors/retail/`: Retail
 
-- **Weight:** Light
+- **Template:** Sector landing
+- **Weight:** Light (short landing; proof lives elsewhere)
 - **Primary keyword:** no dedicated keyword target (light landing)
 - **Alts:**
   - sector + consultancy queries are opportunistic only
@@ -426,12 +664,22 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   1. Clients
   2. Case studies
   3. Services most used here
-- **Intent:** Reassure 'businesses like mine'. Short intro plus filtered proof. No sector POV essay. No sector-specific service descriptions.
+- **Intent:** Reassures 'businesses like mine': a short intro plus filtered proof.
+- **Content notes:**
+  - Light landing: no sector point-of-view essay and no sector-specific service descriptions
+- **Components (canvas order):**
+  - Hero
+  - Logo strip (Clients)
+  - Case card ×2 (Case studies)
+  - Link list (Services most used here)
+  - Link list (Related thinking)
+  - Closing CTA band
 - **Related:** services: Proposition Innovation, Customer Research and Insight, Experience Engineering
 
 ## `/work/`: Our work
 
-- **Weight:** Canonical
+- **Template:** Work hub
+- **Weight:** Canonical (owns its topic; other pages on the topic link here)
 - **Primary keyword:** case studies (proof engine; not a service keyword)
 - **Alts:**
   - client-name searches land on individual case studies
@@ -441,13 +689,24 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   2. All case studies
 - **H3s:**
   - Client quote (inside the case, not a testimonials page)
-- **Intent:** Proof hub. Our clients is not a top-level nav item: proof lives here, sectors in the footer. Quotes and video snippets live in the case, not on Home.
-- **MURAL modules:** Case studies pulled up; Quotes in cases; Video snippets from the approach film; Tagging
+- **Intent:** Proof hub: every case study in one place, filterable by service first, then expertise and sector.
+- **Content notes:**
+  - Sectors are filters here and links in the footer, not a nav item
+  - Client quotes and film snippets live inside each case
+  - Cases are tagged by service, expertise and sector; the tags drive these filters and the proof blocks on service, theme and sector pages
+- **Components (canvas order):**
+  - Hero
+  - Case card, Quote (Featured)
+  - Filter bar ×2, Case card ×2, Pagination (All case studies)
+  - Empty state
+  - Link list (Related thinking)
+  - Closing CTA band
 - **Related:** sectors: Financial services, Media, Consumer, Retail; services: Experience Engineering, Growth Strategy
 
 ## `/work/dayinsure/`: Dayinsure
 
-- **Weight:** Supporting
+- **Template:** Case study
+- **Weight:** Supporting (supports a canonical page and links up to it)
 - **Primary keyword:** client-name / proof (not a service keyword)
 - **Alts:**
   - Experience Engineering is the canonical for the capability
@@ -457,13 +716,25 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   2. The challenge
   3. What we did
   4. The result
-- **Intent:** Shell for an Experience Engineering engagement. Links to service, theme and sector. Testimonials live here. No PDF.
-- **MURAL modules:** Integrate quotes; Video snippet if it applies
+- **Intent:** Case study shell for an Experience Engineering engagement. Links to the service, theme and sector. The testimonial and film live here.
+- **Content notes:**
+  - Client quote and film snippet sit in The result
+  - Read on the page; no PDF download
+- **Components (canvas order):**
+  - Hero, Page tag ×2
+  - Metric box ×4 (At a glance)
+  - Prose (The challenge)
+  - Prose (What we did)
+  - Quote, Video 16:9 (The result)
+  - Page tag (Related expertise)
+  - Link list (Related thinking)
+  - Closing CTA band
 - **Related:** themes: Customer Value; sectors: Financial services; services: Experience Engineering, Customer Research and Insight
 
 ## `/work/key-group/`: Key Group
 
-- **Weight:** Supporting
+- **Template:** Case study
+- **Weight:** Supporting (supports a canonical page and links up to it)
 - **Primary keyword:** client-name / proof (not a service keyword)
 - **Alts:**
   - Experience Engineering is the canonical for the capability
@@ -473,13 +744,25 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   2. The challenge
   3. What we did
   4. The result
-- **Intent:** Second case-study shell. Same template as Dayinsure. Tags drive the auto modules on service, theme and sector pages.
-- **MURAL modules:** Integrate quotes; Video snippet if it applies
+- **Intent:** Second case study shell, same template as Dayinsure. Its tags place it in the proof blocks on service, theme and sector pages.
+- **Content notes:**
+  - Client quote and film snippet sit in The result
+  - Read on the page; no PDF download
+- **Components (canvas order):**
+  - Hero, Page tag ×2
+  - Metric box ×4 (At a glance)
+  - Prose (The challenge)
+  - Prose (What we did)
+  - Quote, Video 16:9 (The result)
+  - Page tag ×2 (Related expertise)
+  - Link list (Related thinking)
+  - Closing CTA band
 - **Related:** themes: Loyalty, Customer Value; sectors: Financial services; services: Experience Engineering, Proposition Innovation
 
 ## `/insights/`: Our thinking
 
-- **Weight:** Supporting
+- **Template:** Thinking hub
+- **Weight:** Supporting (supports a canonical page and links up to it)
 - **Primary keyword:** thought leadership hub (long-tail lives on articles and reports)
 - **Alts:**
   - Our thinking is the nav label; URL stays /insights/
@@ -491,13 +774,26 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   3. Events and news
 - **H3s:**
   - The Nutshell (newsletter)
-- **Intent:** MURAL: merge blogs into Our thinking. Reports at the top, articles underneath. Events and news as a section (separate page only if resource allows). No PDFs: expand on the page.
-- **MURAL modules:** Reports at the top, blogs underneath; Merged into Our thinking; Events + latest news; No more PDFs; Do not replicate on Home
+- **Intent:** Home of all thinking: reports first, then articles, then events and news. Reports read on the page.
+- **Content notes:**
+  - Articles and blog posts are one type here; there is no separate blog
+  - Events and news is a section; a separate events page only if recap content sustains it
+  - Reports expand on the page; no PDFs
+  - Home shows one featured report and one article, not this grid
+- **Components (canvas order):**
+  - Hero
+  - Report card (Reports)
+  - Filter bar ×2, Article card, Pagination (Articles)
+  - Empty state
+  - Link list (Events and news)
+  - Row of text links (Related services)
+  - Closing CTA band
 - **Related:** themes: Loyalty, Pricing
 
 ## `/insights/loyalty-without-the-discount/`: Loyalty without the discount
 
-- **Weight:** Supporting
+- **Template:** Article
+- **Weight:** Supporting (supports a canonical page and links up to it)
 - **Primary keyword:** long-tail loyalty thinking (hands off to the theme)
 - **Alts:**
   - canonical problem page is /expertise/loyalty/
@@ -506,13 +802,21 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   1. The problem
   2. What we think
   3. How we help
-- **Intent:** Article shell. Dated point of view. Theme page stays the evergreen position. Related services as a block, not extra nav.
-- **MURAL modules:** Article under Our thinking, not a separate blog nav
+- **Intent:** Article shell. A dated point of view; the theme page holds the evergreen position. Related services are a block, not extra nav.
+- **Content notes:**
+  - Lives under Our thinking; there is no separate blog section
+- **Components (canvas order):**
+  - Hero, Page tag
+  - Article body (The problem)
+  - Prose (What we think)
+  - Prose (How we help)
+  - Closing CTA band
 - **Related:** themes: Loyalty; sectors: Retail; services: Proposition Innovation
 
 ## `/insights/pricing-paradox/`: The Pricing Paradox
 
-- **Weight:** Supporting
+- **Template:** Report
+- **Weight:** Supporting (supports a canonical page and links up to it)
 - **Primary keyword:** pricing thought leadership (hands off to /expertise/pricing/)
 - **Alts:**
   - no PDF download
@@ -522,13 +826,22 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   1. What this report covers
   2. Read it on this page
   3. How we help
-- **Intent:** Report shell. MURAL: no more PDFs; expand within the page. Gated download is a form if needed, not a file.
-- **MURAL modules:** No more PDFs; Expand within the page; Reports at the top of Our thinking
+- **Intent:** Report shell. The report reads on the page; an optional email form offers a copy.
+- **Content notes:**
+  - No PDF download; gating, if used, is a form not a file
+  - Reports lead the Our thinking hub
+- **Components (canvas order):**
+  - Hero, Page tag
+  - Article body (What this report covers)
+  - Form (Read it on this page)
+  - Prose (How we help)
+  - Closing CTA band
 - **Related:** themes: Pricing; services: Growth Strategy, Proposition Innovation
 
 ## `/about/`: About
 
-- **Weight:** Supporting
+- **Template:** About
+- **Weight:** Supporting (supports a canonical page and links up to it)
 - **Primary keyword:** Manifesto Growth Architects (brand)
 - **Alts:**
   - Growth Architecture as named system lives on /services/
@@ -541,13 +854,24 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
 - **H3s:**
   - Origins
   - C and N members
-- **Intent:** Story, origins, and how the people mix of agency, client and strategy is distinct. Life at Manifesto is Careers, not duplicated here. Method teases Our approach.
-- **MURAL modules:** Origins / history; How we are distinct; People combo of agency, client and strategy; Do not duplicate Life at Manifesto; C and N members section
+- **Intent:** Story, origins, and how the people mix of agency, client and strategy is distinct. Teases Our approach.
+- **Content notes:**
+  - Life at Manifesto lives on Careers; About links to it
+  - C and N members are a named group, detailed on Our people
+- **Components (canvas order):**
+  - Hero
+  - Prose (Who we are and our story)
+  - Prose (How we are distinct)
+  - Person card ×2 (Leadership)
+  - Prose (Our approach)
+  - Prose (C and N members)
+  - Closing CTA band
 - **Related:** services: Our Growth Architecture
 
 ## `/about/team/`: Our people
 
-- **Weight:** Supporting
+- **Template:** People listing
+- **Weight:** Supporting (supports a canonical page and links up to it)
 - **Primary keyword:** named-person search (profiles); this page is the listing
 - **Alts:**
   - Our advisors in the mega-nav land on CEO Advisory, not here
@@ -559,13 +883,23 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   4. Associates, expert network and C and N members
 - **H3s:**
   - Culture over headshots (visual note)
-- **Intent:** Meet the team. MURAL asked to merge with Life at Manifesto; Source A keeps Careers separate. Cross-link instead. Mega-nav Our advisors still lands on CEO Advisory.
-- **MURAL modules:** Meet the team; Culture over headshots; Not merged with Life at Manifesto (see gap check); Link to current opportunities
+- **Intent:** Meet the team: client-facing people grouped by role. Cross-links to Careers for Life at Manifesto and current opportunities.
+- **Content notes:**
+  - Culture over headshots in the visual treatment
+  - The menu strand Our advisors lands on CEO Advisory, not here
+- **Components (canvas order):**
+  - Hero
+  - Person card (Leadership)
+  - Person card (Consultants)
+  - Person card (Side-by-Side advisors)
+  - Prose (Associates, expert network and C and N members)
+  - Link line
 - **Related:** services: CEO Advisory
 
 ## `/about/team/advisor-one/`: Advisor name
 
-- **Weight:** Light
+- **Template:** Profile
+- **Weight:** Light (short landing; proof lives elsewhere)
 - **Primary keyword:** named-person search
 - **Alts:**
   - offer described on CEO Advisory, not here
@@ -575,13 +909,20 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   2. Focus
   3. Selected work
 - **Intent:** Profile shell. Advisor note links back to Side-by-Side on the CEO Advisory page.
+- **Components (canvas order):**
+  - Hero
+  - Prose (Biography)
+  - Prose (Focus)
+  - Case card (Selected work)
+  - Closing CTA band
 - **Related:** services: CEO Advisory
 
 ## `/about/how-we-work/`: Our approach
 
-- **Weight:** Supporting
+- **Template:** Our approach
+- **Weight:** Supporting (supports a canonical page and links up to it)
 - **Primary keyword:** methodology (not a product; no service keyword)
-- **Strand subtitle:** How we partner with clients
+- **Menu subtitle:** How we partner with clients
 - **Alts:**
   - Growth Architecture, CIVD, Operating Architecture, AgentLab, Side-by-Side each have one anchored home
 - **H1:** Our approach
@@ -598,13 +939,25 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   - Operating Architecture
   - AgentLab
   - Side-by-Side
-- **Intent:** Nav label Our approach. Method is never a product. Growth partner videos live here, not on Home. CIVD kept.
-- **MURAL modules:** Our approach, how we partner; Move video here; Growth partner videos; Keep CIVD; Qual and quant evidence
+- **Intent:** Method page: how we partner, principles, engagement shapes, and the five named frameworks, each pointing to its home page. Method is never a product.
+- **Content notes:**
+  - Growth partner films live here
+  - Qualitative and quantitative evidence is described on Customer Research and Insight
+- **Components (canvas order):**
+  - Hero
+  - Prose (How we partner)
+  - Video 16:9 (Growth partner videos)
+  - Prose (Principles)
+  - Link list (Engagement shapes)
+  - Prose (Frameworks and tools)
+  - Prose (Working with AI)
+  - Closing CTA band
 - **Related:** services: Growth Strategy, AI Agents for Marketing, CEO Advisory
 
 ## `/about/values/`: Values and culture
 
-- **Weight:** Light
+- **Template:** Values and culture
+- **Weight:** Light (short landing; proof lives elsewhere)
 - **Primary keyword:** none
 - **H1:** Values and culture
 - **H2s (ordered):**
@@ -612,11 +965,18 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   2. Culture
   3. Diversity, equity and inclusion
 - **Intent:** Light culture page. Careers is the jobs destination.
-- **MURAL modules:** DEI commitments; detail and hiring context also on Careers
+- **Content notes:**
+  - DEI commitments here; hiring context on Careers
+- **Components (canvas order):**
+  - Hero
+  - Prose (Values)
+  - Prose (Culture)
+  - Prose (Diversity, equity and inclusion)
 
 ## `/careers/`: Careers
 
-- **Weight:** Light
+- **Template:** Careers
+- **Weight:** Light (short landing; proof lives elsewhere)
 - **Primary keyword:** none
 - **Alts:**
   - Life at Manifesto is a section here, not a competing About page
@@ -631,23 +991,43 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   - Career change framing
   - We hire from multiple backgrounds
   - Pioneers / recent joiners
-- **Intent:** First-class nav item so Contact can be work-with-us and this page work-for-us. Life at Manifesto + roles on one page. No PDFs: expand role descriptions on the page.
-- **MURAL modules:** Life at Manifesto; DEI; Benefits; Career change framing; No more PDFs; Reach out if no open role; Office visuals
+- **Intent:** First-class nav item: Contact is work with us, this page is work for us. Life at Manifesto and the open roles sit on one page.
+- **Content notes:**
+  - Life at Manifesto, DEI and benefits sit above the roles
+  - Career-change framing and multiple backgrounds in the copy
+  - Role descriptions expand on the role page; no PDFs
+  - Speculative applications go through Work for us on Contact
+  - Studio film in the hero
+- **Components (canvas order):**
+  - Hero, Video 16:9
+  - Person card ×3 (Life at Manifesto)
+  - Prose (Diversity, equity and inclusion)
+  - Prose (Benefits)
+  - Role card (Open roles)
+  - Prose (Not hiring for a listed role?)
+  - Closing CTA band
 
 ## `/careers/growth-architect/`: Growth Architect
 
-- **Weight:** Light
+- **Template:** Role
+- **Weight:** Light (short landing; proof lives elsewhere)
 - **Primary keyword:** none
 - **H1:** Growth Architect
 - **H2s (ordered):**
   1. About the role
   2. How to apply
-- **Intent:** Role shell. Expand the description on this page. No PDF. noindex when closed.
-- **MURAL modules:** No more PDFs; Expand description on the page
+- **Intent:** Role shell. The description reads on this page. noindex when the role closes.
+- **Content notes:**
+  - No PDF job description
+- **Components (canvas order):**
+  - Hero
+  - Prose (About the role)
+  - CTA pair (How to apply)
 
 ## `/contact/`: Contact
 
-- **Weight:** Utility
+- **Template:** Contact
+- **Weight:** Utility (functional page; not a search destination)
 - **Primary keyword:** none
 - **H1:** Contact
 - **H2s (ordered):**
@@ -656,81 +1036,123 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   3. Direct contact
 - **H3s:**
   - The Nutshell
-- **Intent:** Split: work with us (this form) and work for us (Careers). Newsletter is The Nutshell. FT awards are not here.
-- **MURAL modules:** Split work with us / work for us; The Nutshell; Keep Email Mark as one tracked route
+- **Intent:** Two routes: work with us (the client form) and work for us (a speculative form; roles stay on Careers). Links to The Nutshell sign-up.
+- **Content notes:**
+  - Email Mark stays as one tracked direct route
+  - Topic is a select, pre-filled from ?topic= where a service page linked here
+- **Components (canvas order):**
+  - Hero
+  - Form (Work with us)
+  - Form (Work for us)
+  - Prose (Direct contact)
 
 ## `/contact/thank-you/`: Thank you
 
-- **Weight:** Utility
+- **Template:** Confirmation
+- **Weight:** Utility (functional page; not a search destination)
 - **Primary keyword:** none (noindex)
 - **H1:** Thank you
 - **H2s (ordered):**
   1. While you wait
 - **Intent:** Confirmation only. Suggest a service, a case and an insight.
+- **Components (canvas order):**
+  - Hero
+  - Offer card, Case card, Article card (While you wait)
 - **Related:** services: What we do, Our work
 
 ## `/newsletter/`: The Nutshell
 
-- **Weight:** Utility
+- **Template:** Utility page
+- **Weight:** Utility (functional page; not a search destination)
 - **Primary keyword:** none
 - **H1:** The Nutshell
 - **H2s (ordered):**
   1. Sign up
-- **Intent:** Email capture. Current site name for the newsletter. Indexed utility.
-- **MURAL modules:** Named newsletter from the current contact form
+- **Intent:** Email capture for the newsletter, which is called The Nutshell. Indexed utility page.
+- **Components (canvas order):**
+  - Hero
+  - Form (Sign up)
 
 ## `/privacy-policy/`: Privacy policy
 
-- **Weight:** Utility
+- **Template:** Utility page
+- **Weight:** Utility (functional page; not a search destination)
 - **Primary keyword:** none
 - **H1:** Privacy policy
 - **Intent:** How we use personal information. Not a search destination.
+- **Components (canvas order):**
+  - Hero
+  - Prose (Summary)
 
 ## `/cookie-policy/`: Cookie policy
 
-- **Weight:** Utility
+- **Template:** Utility page
+- **Weight:** Utility (functional page; not a search destination)
 - **Primary keyword:** none
 - **H1:** Cookie policy
 - **Intent:** Cookies and how to manage them. Not a search destination.
+- **Components (canvas order):**
+  - Hero
+  - Prose (Summary)
+  - Prose (Cookie notice)
 
 ## `/terms/`: Terms
 
-- **Weight:** Utility
+- **Template:** Utility page
+- **Weight:** Utility (functional page; not a search destination)
 - **Primary keyword:** none
 - **H1:** Terms
 - **Intent:** Website terms of use. Not a search destination.
+- **Components (canvas order):**
+  - Hero
+  - Prose (Summary)
 
 ## `/accessibility/`: Accessibility statement
 
-- **Weight:** Utility
+- **Template:** Utility page
+- **Weight:** Utility (functional page; not a search destination)
 - **Primary keyword:** none
 - **H1:** Accessibility statement
 - **Intent:** How we work to make this site usable. Not a search destination.
+- **Components (canvas order):**
+  - Hero
+  - Prose (Summary)
 
 ## `/search/`: Search
 
-- **Weight:** Utility
+- **Template:** Utility page
+- **Weight:** Utility (functional page; not a search destination)
 - **Primary keyword:** none
 - **H1:** Search
 - **Intent:** Search results. Not a search destination.
+- **Components (canvas order):**
+  - Hero
+  - Form (Search)
+  - Link list (Results)
+  - Empty state
 
 ## `/404/`: Page not found
 
-- **Weight:** Utility
+- **Template:** Not found
+- **Weight:** Utility (functional page; not a search destination)
 - **Primary keyword:** none (noindex)
 - **H1:** Page not found
 - **Intent:** Error page with routes to Services, Work and Contact.
+- **Components (canvas order):**
+  - Hero, CTA pair
+  - Form (Search)
 - **Related:** services: What we do, Our work, Contact
 
-## `/catalogue/`: Page modules
+## `/catalogue/`: Component library
 
-- **Weight:** Utility
+- **Template:** Component library
+- **Weight:** Utility (functional page; not a search destination)
 - **Primary keyword:** none (wireframe index, not a live URL)
 - **Alts:**
-  - Not a client sitemap item. Linked from All pages.
-- **H1:** Page modules
+  - Not a client sitemap item. Linked from All pages and from every sidebar.
+- **H1:** Component library
 - **H2s (ordered):**
-  1. How to read these units
+  1. How to read this library
   2. Chrome
   3. Heroes and bands
   4. Cards
@@ -738,4 +1160,4 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
   6. Proof and media
   7. Forms
   8. Do not mix
-- **Intent:** Wireframe index of live page modules and blocks. Not a proposed live client URL. No working notes sidebar.
+- **Intent:** Wireframe-only index of the reusable components used on every page: one name and one shape per component. Not a proposed live client URL.

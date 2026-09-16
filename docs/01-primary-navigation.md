@@ -277,6 +277,6 @@ Header items, About dropdown, footer, breadcrumbs, labels and slugs are unchange
 | CEO Advisory: heading + Our advisors (reads as one strand), greyed or quieter type | Hub heading + Side-by-Side + Our advisors, same contrast as the other pillars (D-57) |
 | Two quiet lines only (Experience Engineering, Growth Office) | Keyword-led subtitle under every strand (D-58) |
 | Latest thinking at the foot of Home | Featured thinking after the triangle (`thinking-placement.md`) |
-| Chips catalogue with working-notes sidebar | Page modules catalogue, live blocks only (D-59) |
+| Chips catalogue with working-notes sidebar | Component library, live components only (D-59, D-60) |
 
 Top-level header stays at six items. Services remain the spine. See D-54.
