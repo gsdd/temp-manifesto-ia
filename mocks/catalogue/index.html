@@ -92,16 +92,120 @@
       
         <section class="block hero">
           <h1>Page modules</h1>
-          <p>Index of the live page modules and blocks used in this wireframe. Working notes are not shown here.</p>
+          <p>Wireframe-only index of live units, labelled with the proposed names. Not a client URL. Spec: docs/module-system.md.</p>
         </section>
         <section class="block">
-          <h2 class="plain">On-page tags</h2>
+          <h2 class="plain">How to read this catalogue</h2>
+          <div class="mod-key">
+            <p>Each sample is one module. The grey label names the module and the action. Cards are destinations. Tiles are pillar entries. Boxes (CIVD, metrics, logos) are not cards. Tags navigate. Filter chips toggle.</p>
+            <p>Primary action: button-styled <strong>page link</strong> when the target is a URL (Contact). True <strong>buttons</strong> submit, accept cookies, or clear filters. Secondary is always a text link.</p>
+            <p>Four cards only: Offer, Case, Thinking, Person. CEO Advisory uses the same ink as the other pillars.</p>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Page hero and action pair</h2>
           <div class="catalogue-item">
-            <span class="cat-label">Page tags</span>
+            <span class="mod-anno">Module: Action pair | Action: primary = page link to Contact | Secondary = text link</span>
+            <div class="cta">
+              <a class="btn" href="../contact/index.html">Contact</a>
+              <a class="text" href="../work/index.html">See our work</a>
+            </div>
+          </div>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Action pair | Action: primary = page link (CEO Advisory label) | Secondary = text link</span>
+            <div class="cta">
+              <a class="btn" href="../contact/index.html">Arrange a conversation</a>
+              <a class="text" href="../work/index.html">See our work</a>
+            </div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Pillar tile</h2>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Pillar tile | Action: whole-tile link | Note: equal ink, including CEO Advisory | Not an offer card</span>
+            <div class="tri">
+              <a href="../services/growth-strategy/index.html"><strong>Growth Strategy</strong><span>Where and how you grow</span></a>
+              <a href="../services/activation/index.html"><strong>Activation Services</strong><span>Turning strategy into results</span></a>
+              <a href="../services/ceo-advisory/index.html"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
+            </div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Offer card</h2>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Offer card | Action: whole-card link | Use: buyable service only</span>
+            <div class="cards two">
+              <a class="card offer" href="../services/growth-strategy/index.html"><strong>Growth Strategy</strong><span>Customer-led growth strategy: where to focus and how to win</span></a>
+              <a class="card offer" href="../services/proposition-innovation/index.html"><strong>Proposition Innovation</strong><span>Value proposition design</span></a>
+            </div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Case card</h2>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Case card | Action: whole-card link | Not for More work shortcuts</span>
+            <div class="cards two">
+              <a class="card" href="../work/dayinsure/index.html"><div class="ph">Image</div><strong>Dayinsure</strong><span>One-line result</span></a>
+              <a class="card" href="../work/key-group/index.html"><div class="ph">Image</div><strong>Key Group</strong><span>One-line result</span></a>
+            </div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Thinking card</h2>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Thinking card | Variant: report | Action: whole-card link</span>
+            <div class="cards two">
+              <a class="card" href="../insights/pricing-paradox/index.html"><div class="doc">Report</div><strong>The Pricing Paradox</strong><span>Report</span></a>
+            </div>
+          </div>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Thinking card | Variant: article | Action: whole-card link | Not an offer card</span>
+            <div class="cards two">
+              <a class="card thinking" href="../insights/loyalty-without-the-discount/index.html"><strong>Loyalty without the discount</strong><span>Article · Loyalty</span></a>
+            </div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Person card</h2>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Person card | Action: whole-card link | A person only, not a listing shortcut</span>
+            <div class="cards">
+              <a class="card person" href="../about/team/advisor-one/index.html"><div class="avatar"></div><strong>Advisor name</strong><span>Former role, one line</span></a>
+            </div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Situation row and chooser row</h2>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Situation row | Mode: link (hub) | Action: row link</span>
+            <ul class="situations">
+              <li><a href="../services/growth-strategy/index.html">We need to decide where and how to grow</a></li>
+              <li><a href="../services/ceo-advisory/index.html">I want a sounding board I trust</a></li>
+            </ul>
+          </div>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Situation row | Mode: static (service Why) | Action: none</span>
+            <ul class="situations">
+              <li>We need to decide where and how to grow</li>
+              <li>Growth is uneven and we cannot agree the bets</li>
+            </ul>
+          </div>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Chooser row | Action: row link | Use: sibling services, not a second offer-card grid of the same lines</span>
+            <ul class="list">
+              <li><a href="../services/experience-engineering/index.html"><strong>Experience Engineering.</strong> A journey, product or website is underperforming.</a></li>
+              <li><a href="../services/growth-office/index.html"><strong>Growth Office.</strong> You need an interim growth team to get the strategy delivered.</a></li>
+            </ul>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Theme tag and filter chip</h2>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Theme tag | Action: text link | Not a filter</span>
             <div class="page-tags"><a href="../expertise/loyalty/index.html">Loyalty</a><a href="../expertise/pricing/index.html">Pricing</a></div>
           </div>
           <div class="catalogue-item">
-            <span class="cat-label">Filters</span>
+            <span class="mod-anno">Module: Filter chip | Action: toggle button in production | Not a tag | Current wireframe: inert span</span>
             <div class="filters">
               <span class="filter on">Growth Strategy</span>
               <span class="filter">Experience Engineering</span>
@@ -110,111 +214,50 @@
           </div>
         </section>
         <section class="block">
-          <h2 class="plain">Cards</h2>
+          <h2 class="plain">Quote, logo strip, video, metrics</h2>
           <div class="catalogue-item">
-            <span class="cat-label">Service cards</span>
-            <div class="cards two">
-              <a class="card offer" href="../services/growth-strategy/index.html"><strong>Growth Strategy</strong><span>Customer-led growth strategy: where to focus and how to win</span></a>
-              <a class="card offer" href="../services/proposition-innovation/index.html"><strong>Proposition Innovation</strong><span>Value proposition design</span></a>
-            </div>
-          </div>
-          <div class="catalogue-item">
-            <span class="cat-label">Case cards</span>
-            <div class="cards two">
-              <a class="card" href="../work/dayinsure/index.html"><div class="ph">Image</div><strong>Dayinsure</strong><span>One-line result</span></a>
-              <a class="card" href="../work/key-group/index.html"><div class="ph">Image</div><strong>Key Group</strong><span>One-line result</span></a>
-            </div>
-          </div>
-          <div class="catalogue-item">
-            <span class="cat-label">Report cards</span>
-            <div class="cards two">
-              <a class="card" href="../insights/pricing-paradox/index.html"><div class="doc">Report</div><strong>The Pricing Paradox</strong><span>Report</span></a>
-            </div>
-          </div>
-          <div class="catalogue-item">
-            <span class="cat-label">Person cards</span>
-            <div class="cards">
-              <a class="card person" href="../about/team/advisor-one/index.html"><div class="avatar"></div><strong>Advisor name</strong><span>Former role, one line</span></a>
-            </div>
-          </div>
-        </section>
-        <section class="block">
-          <h2 class="plain">Proof and media</h2>
-          <div class="catalogue-item">
-            <span class="cat-label">Logo placeholders</span>
-            <div class="logos" aria-label="Logos"><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span></div>
-          </div>
-          <div class="catalogue-item">
-            <span class="cat-label">Quote</span>
+            <span class="mod-anno">Module: Quote | Action: none | Cite may link the case</span>
             <blockquote class="quote">"The work changed how we think about growth."<cite>Dayinsure</cite></blockquote>
           </div>
           <div class="catalogue-item">
-            <span class="cat-label">Video 16:9</span>
+            <span class="mod-anno">Module: Logo strip | Action: link to a case only if a case exists | Box, not a card</span>
+            <div class="logos" aria-label="Logos"><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span><span class="logo-ph">Logo</span></div>
+          </div>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Video frame | Action: none</span>
             <div class="video-ph" aria-label="Showreel"><span>Showreel</span></div>
           </div>
           <div class="catalogue-item">
-            <span class="cat-label">Stats</span>
+            <span class="mod-anno">Module: Metric set | Action: none | Box, not a card | Only where the deck gives a figure</span>
             <div class="metrics"><div class="metric"><strong>3x</strong><span>EBITDA return</span></div><div class="metric"><strong>4 wks</strong><span>Data audit</span></div><div class="metric"><strong>6 wks</strong><span>First agents</span></div><div class="metric"><strong>TBC</strong><span>NPS</span></div></div>
           </div>
         </section>
         <section class="block">
-          <h2 class="plain">Article blocks</h2>
-          
-        <div class="article-body">
-          <p class="prose">Opening argument. Two or three sentences that set the problem.</p>
-          <p class="prose">The view we take, and why the usual response fails.</p>
-          <p class="prose">What we would do next, in brief, with a link to the relevant service.</p>
-        </div>
-
-        </section>
-        <section class="block">
-          <h2 class="plain">CIVD four-cell</h2>
-          <div class="civd-grid" aria-label="Customer, Innovation, Value and Delivery"><div class="civd-cell"><strong>Customer</strong><span>Who you grow with.</span></div><div class="civd-cell"><strong>Innovation</strong><span>What you offer next.</span></div><div class="civd-cell"><strong>Value</strong><span>Where the economics move.</span></div><div class="civd-cell"><strong>Delivery</strong><span>Whether it can be executed.</span></div></div>
-        </section>
-        <section class="block">
-          <h2 class="plain">Triangle blocks</h2>
-          <div class="tri">
-            <a href="../services/growth-strategy/index.html"><strong>Growth Strategy</strong><span>Where and how you grow</span></a>
-            <a href="../services/activation/index.html"><strong>Activation Services</strong><span>Turning strategy into results</span></a>
-            <a href="../services/ceo-advisory/index.html"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
-          </div>
-        </section>
-        <section class="block">
-          <h2 class="plain">Mega-nav hub and strands</h2>
-          <p class="prose">Example of one group: linked hub title with chevron, strand label, and a keyword-led subtitle. Full panel is under What we do.</p>
-          <div class="pillar" style="max-width:280px">
-            <h3><a class="pillar-hub" href="../services/growth-strategy/index.html">Growth Strategy <span class="hub-chevron" aria-hidden="true">&#8594;</span></a></h3>
-            <p class="line">Where and how you grow</p>
-            <ul>
-              <li><a class="strand-overview" href="../services/growth-strategy/index.html">Overview<small>Where to grow and how to win</small></a></li>
-              <li><a href="../services/proposition-innovation/index.html">Proposition Innovation<small>Value proposition design</small></a></li>
-            </ul>
-          </div>
-        </section>
-        <section class="block">
-          <h2 class="plain">Situations list</h2>
-          <ul class="situations">
-            <li><a href="../services/growth-strategy/index.html">We need to decide where and how to grow</a></li>
-            <li><a href="../services/ceo-advisory/index.html">I want a sounding board I trust</a></li>
-          </ul>
-        </section>
-        <section class="block">
-          <h2 class="plain">Empty state</h2>
-          <div class="empty-state">
-            <p>No case studies match these filters.</p>
-            <a class="btn" href="../work/index.html">Clear filters</a>
-          </div>
-        </section>
-        <section class="block">
-          <h2 class="plain">Pagination</h2>
-          <div class="pagination" aria-label="Pagination">
-            <span class="on">1</span><span>2</span><span>3</span><span>Next</span>
-          </div>
-        </section>
-        <section class="block">
-          <h2 class="plain">Forms</h2>
+          <h2 class="plain">CIVD frame</h2>
           <div class="catalogue-item">
-            <span class="cat-label">Work with us</span>
+            <span class="mod-anno">Module: CIVD frame | Action: none on cells | Box, not a card | Home of CIVD is Growth Strategy, not the nav</span>
+            <div class="civd-grid" aria-label="Customer, Innovation, Value and Delivery"><div class="civd-cell"><strong>Customer</strong><span>Who you grow with.</span></div><div class="civd-cell"><strong>Innovation</strong><span>What you offer next.</span></div><div class="civd-cell"><strong>Value</strong><span>Where the economics move.</span></div><div class="civd-cell"><strong>Delivery</strong><span>Whether it can be executed.</span></div></div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Mega-nav hub and strand</h2>
+          <p class="prose">Chrome, not a page module. Hub is a link. Strand is a link plus a keyword subtitle. CEO Advisory uses the same ink.</p>
+          <div class="catalogue-item">
+            <span class="mod-anno">Chrome: hub link + strand links | Subtitle = keyword layer | Equal ink</span>
+            <div class="pillar" style="max-width:280px">
+              <h3><a class="pillar-hub" href="../services/growth-strategy/index.html">Growth Strategy <span class="hub-chevron" aria-hidden="true">&#8594;</span></a></h3>
+              <p class="line">Where and how you grow</p>
+              <ul>
+                <li><a class="strand-overview" href="../services/growth-strategy/index.html">Overview<small>Where to grow and how to win</small></a></li>
+                <li><a href="../services/proposition-innovation/index.html">Proposition Innovation<small>Value proposition design</small></a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Form, empty state, pagination, cookie bar</h2>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Form | Action: submit is a true button | Current wireframe: page link to thank-you</span>
             <div class="form">
               <div class="field"><label>Name</label><div class="box"></div></div>
               <div class="field"><label>Company</label><div class="box"></div></div>
@@ -223,27 +266,24 @@
             </div>
           </div>
           <div class="catalogue-item">
-            <span class="cat-label">Work for us</span>
-            <div class="form">
-              <div class="field"><label>Name</label><div class="box"></div></div>
-              <div class="field"><label>Email</label><div class="box"></div></div>
-              <div class="field"><label>Message</label><div class="box tall"></div></div>
-              <a class="btn" href="../contact/thank-you/index.html">Send</a>
+            <span class="mod-anno">Module: Empty state | Action: Clear filters = true button | Show only when the set is empty</span>
+            <div class="empty-state">
+              <p>No case studies match these filters.</p>
+              <a class="btn" href="../work/index.html">Clear filters</a>
             </div>
           </div>
-        </section>
-        <section class="block">
-          <h2 class="plain">Primary and secondary CTA</h2>
-          <div class="cta">
-            <a class="btn" href="../contact/index.html">Contact</a>
-            <a class="text" href="../work/index.html">See our work</a>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Pagination | Action: page links | Current wireframe: inert spans</span>
+            <div class="pagination" aria-label="Pagination">
+              <span class="on">1</span><span>2</span><span>3</span><span>Next</span>
+            </div>
           </div>
-        </section>
-        <section class="block">
-          <h2 class="plain">Cookie bar</h2>
-          <div class="cookie-bar">
-            <span>We use cookies to run this site. <a href="../cookie-policy/index.html">Cookie policy</a></span>
-            <a class="btn" href="../cookie-policy/index.html">Accept</a>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Cookie bar | Action: Accept = true button | Policy = text link</span>
+            <div class="cookie-bar">
+              <span>We use cookies to run this site. <a href="../cookie-policy/index.html">Cookie policy</a></span>
+              <a class="btn" href="../cookie-policy/index.html">Accept</a>
+            </div>
           </div>
         </section>
         

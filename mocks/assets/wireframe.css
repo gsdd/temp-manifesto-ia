@@ -203,6 +203,27 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   display: block; margin: 0 0 8px; font-size: 11px; font-weight: 600;
   letter-spacing: .06em; text-transform: uppercase; color: var(--mid);
 }
+.mod-key {
+  border: 1px dashed var(--line);
+  padding: 14px 16px 16px;
+  margin: 0 0 12px;
+  max-width: 760px;
+  font-size: 14px;
+  color: #444;
+}
+.mod-key p { margin: 0 0 8px; }
+.mod-key p:last-child { margin: 0; }
+.mod-anno {
+  display: block;
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+.card.thinking { padding: 18px; min-height: 120px; }
+.card.thinking strong, .card.thinking span { padding: 0; margin-left: 0; margin-right: 0; }
 
 .situations { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 40px; max-width: 900px; }
 .situations li { break-inside: avoid; padding: 7px 0; border-top: 1px solid var(--soft); }

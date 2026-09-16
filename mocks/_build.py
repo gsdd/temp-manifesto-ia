@@ -327,6 +327,8 @@ def card(h, href, title, sub, extra=""):
         inner = '<div class="ph">Image</div>'
     elif extra == "doc":
         inner = '<div class="doc">Report</div>'
+    elif extra == "thinking":
+        cls = "card thinking"
     return f'<a class="{cls}" href="{h(href)}">{inner}<strong>{title}</strong><span>{sub}</span></a>'
 
 
@@ -1269,26 +1271,22 @@ PAGES.append(dict(
     services=[],
     h1="Page modules",
     h2s=[
-        "On-page tags",
-        "Service and offer cards",
-        "Logo placeholders",
-        "Case cards",
-        "Quote",
-        "Video 16:9",
-        "Stats",
-        "Report cards",
-        "Article blocks",
-        "CIVD four-cell",
-        "Triangle blocks",
-        "Mega-nav hub and strands",
-        "Empty state",
-        "Pagination",
-        "Forms",
-        "Primary and secondary CTA",
-        "Cookie bar",
+        "How to read this catalogue",
+        "Page hero and action pair",
+        "Pillar tile",
+        "Offer card",
+        "Case card",
+        "Thinking card",
+        "Person card",
+        "Situation row and chooser row",
+        "Theme tag and filter chip",
+        "Quote, logo strip, video, metrics",
+        "CIVD frame",
+        "Mega-nav hub and strand",
+        "Form, empty state, pagination, cookie bar",
     ],
     h3s=[],
-    intent="Wireframe index of live page modules and blocks. Not a proposed live client URL. No working notes sidebar.",
+    intent="Wireframe-only catalogue of named modules. Labels follow docs/module-system.md. Not a live client URL. No working notes sidebar.",
     crumbs=[("Home", "/"), ("Page modules", None)],
     kind="catalogue",
 ))
@@ -2221,16 +2219,120 @@ def body_for(page: dict) -> str:
         return f"""
         <section class="block hero">
           <h1>Page modules</h1>
-          <p>Index of the live page modules and blocks used in this wireframe. Working notes are not shown here.</p>
+          <p>Wireframe-only index of live units, labelled with the proposed names. Not a client URL. Spec: docs/module-system.md.</p>
         </section>
         <section class="block">
-          <h2 class="plain">On-page tags</h2>
+          <h2 class="plain">How to read this catalogue</h2>
+          <div class="mod-key">
+            <p>Each sample is one module. The grey label names the module and the action. Cards are destinations. Tiles are pillar entries. Boxes (CIVD, metrics, logos) are not cards. Tags navigate. Filter chips toggle.</p>
+            <p>Primary action: button-styled <strong>page link</strong> when the target is a URL (Contact). True <strong>buttons</strong> submit, accept cookies, or clear filters. Secondary is always a text link.</p>
+            <p>Four cards only: Offer, Case, Thinking, Person. CEO Advisory uses the same ink as the other pillars.</p>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Page hero and action pair</h2>
           <div class="catalogue-item">
-            <span class="cat-label">Page tags</span>
+            <span class="mod-anno">Module: Action pair | Action: primary = page link to Contact | Secondary = text link</span>
+            <div class="cta">
+              <a class="btn" href="{h("/contact/")}">Contact</a>
+              <a class="text" href="{h("/work/")}">See our work</a>
+            </div>
+          </div>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Action pair | Action: primary = page link (CEO Advisory label) | Secondary = text link</span>
+            <div class="cta">
+              <a class="btn" href="{h("/contact/")}">Arrange a conversation</a>
+              <a class="text" href="{h("/work/")}">See our work</a>
+            </div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Pillar tile</h2>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Pillar tile | Action: whole-tile link | Note: equal ink, including CEO Advisory | Not an offer card</span>
+            <div class="tri">
+              <a href="{h("/services/growth-strategy/")}"><strong>Growth Strategy</strong><span>Where and how you grow</span></a>
+              <a href="{h("/services/activation/")}"><strong>Activation Services</strong><span>Turning strategy into results</span></a>
+              <a href="{h("/services/ceo-advisory/")}"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
+            </div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Offer card</h2>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Offer card | Action: whole-card link | Use: buyable service only</span>
+            <div class="cards two">
+              {card(h, "/services/growth-strategy/", "Growth Strategy", "Customer-led growth strategy: where to focus and how to win", "offer")}
+              {card(h, "/services/proposition-innovation/", "Proposition Innovation", "Value proposition design", "offer")}
+            </div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Case card</h2>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Case card | Action: whole-card link | Not for More work shortcuts</span>
+            <div class="cards two">
+              {card(h, "/work/dayinsure/", "Dayinsure", "One-line result", "ph")}
+              {card(h, "/work/key-group/", "Key Group", "One-line result", "ph")}
+            </div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Thinking card</h2>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Thinking card | Variant: report | Action: whole-card link</span>
+            <div class="cards two">
+              {card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "Report", "doc")}
+            </div>
+          </div>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Thinking card | Variant: article | Action: whole-card link | Not an offer card</span>
+            <div class="cards two">
+              {card(h, "/insights/loyalty-without-the-discount/", "Loyalty without the discount", "Article · Loyalty", "thinking")}
+            </div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Person card</h2>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Person card | Action: whole-card link | A person only, not a listing shortcut</span>
+            <div class="cards">
+              {card(h, "/about/team/advisor-one/", "Advisor name", "Former role, one line", "person")}
+            </div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Situation row and chooser row</h2>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Situation row | Mode: link (hub) | Action: row link</span>
+            <ul class="situations">
+              <li><a href="{h("/services/growth-strategy/")}">We need to decide where and how to grow</a></li>
+              <li><a href="{h("/services/ceo-advisory/")}">I want a sounding board I trust</a></li>
+            </ul>
+          </div>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Situation row | Mode: static (service Why) | Action: none</span>
+            <ul class="situations">
+              <li>We need to decide where and how to grow</li>
+              <li>Growth is uneven and we cannot agree the bets</li>
+            </ul>
+          </div>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Chooser row | Action: row link | Use: sibling services, not a second offer-card grid of the same lines</span>
+            <ul class="list">
+              <li><a href="{h("/services/experience-engineering/")}"><strong>Experience Engineering.</strong> A journey, product or website is underperforming.</a></li>
+              <li><a href="{h("/services/growth-office/")}"><strong>Growth Office.</strong> You need an interim growth team to get the strategy delivered.</a></li>
+            </ul>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Theme tag and filter chip</h2>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Theme tag | Action: text link | Not a filter</span>
             <div class="page-tags"><a href="{h("/expertise/loyalty/")}">Loyalty</a><a href="{h("/expertise/pricing/")}">Pricing</a></div>
           </div>
           <div class="catalogue-item">
-            <span class="cat-label">Filters</span>
+            <span class="mod-anno">Module: Filter chip | Action: toggle button in production | Not a tag | Current wireframe: inert span</span>
             <div class="filters">
               <span class="filter on">Growth Strategy</span>
               <span class="filter">Experience Engineering</span>
@@ -2239,105 +2341,50 @@ def body_for(page: dict) -> str:
           </div>
         </section>
         <section class="block">
-          <h2 class="plain">Cards</h2>
+          <h2 class="plain">Quote, logo strip, video, metrics</h2>
           <div class="catalogue-item">
-            <span class="cat-label">Service cards</span>
-            <div class="cards two">
-              {card(h, "/services/growth-strategy/", "Growth Strategy", "Customer-led growth strategy: where to focus and how to win", "flat")}
-              {card(h, "/services/proposition-innovation/", "Proposition Innovation", "Value proposition design", "offer")}
-            </div>
-          </div>
-          <div class="catalogue-item">
-            <span class="cat-label">Case cards</span>
-            <div class="cards two">
-              {card(h, "/work/dayinsure/", "Dayinsure", "One-line result", "ph")}
-              {card(h, "/work/key-group/", "Key Group", "One-line result", "ph")}
-            </div>
-          </div>
-          <div class="catalogue-item">
-            <span class="cat-label">Report cards</span>
-            <div class="cards two">
-              {card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "Report", "doc")}
-            </div>
-          </div>
-          <div class="catalogue-item">
-            <span class="cat-label">Person cards</span>
-            <div class="cards">
-              {card(h, "/about/team/advisor-one/", "Advisor name", "Former role, one line", "person")}
-            </div>
-          </div>
-        </section>
-        <section class="block">
-          <h2 class="plain">Proof and media</h2>
-          <div class="catalogue-item">
-            <span class="cat-label">Logo placeholders</span>
-            {logos_html(6, "Logo")}
-          </div>
-          <div class="catalogue-item">
-            <span class="cat-label">Quote</span>
+            <span class="mod-anno">Module: Quote | Action: none | Cite may link the case</span>
             <blockquote class="quote">"The work changed how we think about growth."<cite>Dayinsure</cite></blockquote>
           </div>
           <div class="catalogue-item">
-            <span class="cat-label">Video 16:9</span>
+            <span class="mod-anno">Module: Logo strip | Action: link to a case only if a case exists | Box, not a card</span>
+            {logos_html(6, "Logo")}
+          </div>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Video frame | Action: none</span>
             {video_html("Showreel")}
           </div>
           <div class="catalogue-item">
-            <span class="cat-label">Stats</span>
+            <span class="mod-anno">Module: Metric set | Action: none | Box, not a card | Only where the deck gives a figure</span>
             {metrics_html([("3x", "EBITDA return"), ("4 wks", "Data audit"), ("6 wks", "First agents"), ("TBC", "NPS")])}
           </div>
         </section>
         <section class="block">
-          <h2 class="plain">Article blocks</h2>
-          {article_body()}
-        </section>
-        <section class="block">
-          <h2 class="plain">CIVD four-cell</h2>
-          {civd_html()}
-        </section>
-        <section class="block">
-          <h2 class="plain">Triangle blocks</h2>
-          <div class="tri">
-            <a href="{h("/services/growth-strategy/")}"><strong>Growth Strategy</strong><span>Where and how you grow</span></a>
-            <a href="{h("/services/activation/")}"><strong>Activation Services</strong><span>Turning strategy into results</span></a>
-            <a href="{h("/services/ceo-advisory/")}"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
-          </div>
-        </section>
-        <section class="block">
-          <h2 class="plain">Mega-nav hub and strands</h2>
-          <p class="prose">Example of one group: linked hub title with chevron, strand label, and a keyword-led subtitle. Full panel is under What we do.</p>
-          <div class="pillar" style="max-width:280px">
-            <h3><a class="pillar-hub" href="{h("/services/growth-strategy/")}">Growth Strategy <span class="hub-chevron" aria-hidden="true">&#8594;</span></a></h3>
-            <p class="line">Where and how you grow</p>
-            <ul>
-              <li><a class="strand-overview" href="{h("/services/growth-strategy/")}">Overview<small>Where to grow and how to win</small></a></li>
-              <li><a href="{h("/services/proposition-innovation/")}">Proposition Innovation<small>Value proposition design</small></a></li>
-            </ul>
-          </div>
-        </section>
-        <section class="block">
-          <h2 class="plain">Situations list</h2>
-          <ul class="situations">
-            <li><a href="{h("/services/growth-strategy/")}">We need to decide where and how to grow</a></li>
-            <li><a href="{h("/services/ceo-advisory/")}">I want a sounding board I trust</a></li>
-          </ul>
-        </section>
-        <section class="block">
-          <h2 class="plain">Empty state</h2>
-          <div class="empty-state">
-            <p>No case studies match these filters.</p>
-            <a class="btn" href="{h("/work/")}">Clear filters</a>
-          </div>
-        </section>
-        <section class="block">
-          <h2 class="plain">Pagination</h2>
-          <div class="pagination" aria-label="Pagination">
-            <span class="on">1</span><span>2</span><span>3</span><span>Next</span>
-          </div>
-        </section>
-        <section class="block">
-          <h2 class="plain">Forms</h2>
+          <h2 class="plain">CIVD frame</h2>
           <div class="catalogue-item">
-            <span class="cat-label">Work with us</span>
+            <span class="mod-anno">Module: CIVD frame | Action: none on cells | Box, not a card | Home of CIVD is Growth Strategy, not the nav</span>
+            {civd_html()}
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Mega-nav hub and strand</h2>
+          <p class="prose">Chrome, not a page module. Hub is a link. Strand is a link plus a keyword subtitle. CEO Advisory uses the same ink.</p>
+          <div class="catalogue-item">
+            <span class="mod-anno">Chrome: hub link + strand links | Subtitle = keyword layer | Equal ink</span>
+            <div class="pillar" style="max-width:280px">
+              <h3><a class="pillar-hub" href="{h("/services/growth-strategy/")}">Growth Strategy <span class="hub-chevron" aria-hidden="true">&#8594;</span></a></h3>
+              <p class="line">Where and how you grow</p>
+              <ul>
+                <li><a class="strand-overview" href="{h("/services/growth-strategy/")}">Overview<small>Where to grow and how to win</small></a></li>
+                <li><a href="{h("/services/proposition-innovation/")}">Proposition Innovation<small>Value proposition design</small></a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Form, empty state, pagination, cookie bar</h2>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Form | Action: submit is a true button | Current wireframe: page link to thank-you</span>
             <div class="form">
               <div class="field"><label>Name</label><div class="box"></div></div>
               <div class="field"><label>Company</label><div class="box"></div></div>
@@ -2346,27 +2393,24 @@ def body_for(page: dict) -> str:
             </div>
           </div>
           <div class="catalogue-item">
-            <span class="cat-label">Work for us</span>
-            <div class="form">
-              <div class="field"><label>Name</label><div class="box"></div></div>
-              <div class="field"><label>Email</label><div class="box"></div></div>
-              <div class="field"><label>Message</label><div class="box tall"></div></div>
-              <a class="btn" href="{h("/contact/thank-you/")}">Send</a>
+            <span class="mod-anno">Module: Empty state | Action: Clear filters = true button | Show only when the set is empty</span>
+            <div class="empty-state">
+              <p>No case studies match these filters.</p>
+              <a class="btn" href="{h("/work/")}">Clear filters</a>
             </div>
           </div>
-        </section>
-        <section class="block">
-          <h2 class="plain">Primary and secondary CTA</h2>
-          <div class="cta">
-            <a class="btn" href="{h("/contact/")}">Contact</a>
-            <a class="text" href="{h("/work/")}">See our work</a>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Pagination | Action: page links | Current wireframe: inert spans</span>
+            <div class="pagination" aria-label="Pagination">
+              <span class="on">1</span><span>2</span><span>3</span><span>Next</span>
+            </div>
           </div>
-        </section>
-        <section class="block">
-          <h2 class="plain">Cookie bar</h2>
-          <div class="cookie-bar">
-            <span>We use cookies to run this site. <a href="{h("/cookie-policy/")}">Cookie policy</a></span>
-            <a class="btn" href="{h("/cookie-policy/")}">Accept</a>
+          <div class="catalogue-item">
+            <span class="mod-anno">Module: Cookie bar | Action: Accept = true button | Policy = text link</span>
+            <div class="cookie-bar">
+              <span>We use cookies to run this site. <a href="{h("/cookie-policy/")}">Cookie policy</a></span>
+              <a class="btn" href="{h("/cookie-policy/")}">Accept</a>
+            </div>
           </div>
         </section>
         {closing(h)}
