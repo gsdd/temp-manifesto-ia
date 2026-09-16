@@ -521,10 +521,11 @@ def empty_html(message, btn_href, btn_label="Clear filters"):
           </div>"""
 
 
-def empty_stub(message, btn_href, btn_label="Clear filters"):
+def empty_stub(message, btn_href, btn_label="Clear filters", annotate=False):
+    note = ann("Static + button") if annotate else ""
     return f"""
         <section class="block">
-          <span class="wf-label">Conditional: shown only when there are no results</span>
+          <span class="wf-label">Conditional: shown only when there are no results</span>{note}
           {empty_html(message, btn_href, btn_label)}
         </section>
 """
@@ -540,6 +541,13 @@ def form_html(fields, submit, href, extra=""):
             {rows}{extra}
             <a class="btn" href="{href}">{submit}</a>
           </div>"""
+
+
+def ann(label: str) -> str:
+    """Wireframe annotation: the interaction type or component name, set as a tiny
+    caps label outside the block. Convention for reading the mock, not shipping UI.
+    Must sit inside a block so the sidebar inventory does not count it as Prose."""
+    return f'<span class="wf-type" aria-hidden="true">{esc(label)}</span>'
 
 
 def unit(name, sample):
@@ -595,10 +603,11 @@ def article_body():
 """
 
 
-def closing(h, line="Tell us about your growth challenge", cta="Contact", dest="/contact/", secondary_label="See our work", secondary_url="/work/"):
+def closing(h, line="Tell us about your growth challenge", cta="Contact", dest="/contact/", secondary_label="See our work", secondary_url="/work/", annotate=False):
+    note = ann("Band: button + text link") if annotate else ""
     return f"""
         <section class="block closing" {mod("Closing CTA band")}>
-          <p>{line}</p>
+          {note}<p>{line}</p>
           <div class="cta">
             <a class="btn" href="{h(dest)}">{cta}</a>
             <a class="text" href="{h(secondary_url)}">{secondary_label}</a>
@@ -634,10 +643,11 @@ def civd_html(compact=False):
     return f'<div class="{cls}" {mod("CIVD four-cell")} aria-label="Customer, Innovation, Value and Delivery">{inner}</div>'
 
 
-def thinking_feature(h):
+def thinking_feature(h, annotate=False):
+    note = ann("Report card + article card") if annotate else ""
     return f"""
         <section class="block">
-          <h2 class="sec">Our thinking</h2>
+          <h2 class="sec">Our thinking</h2>{note}
           <div class="thinking-split">
             {card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "Featured report. From tactical lever to growth engine", "doc")}
             <div class="thinking-side">
@@ -1566,35 +1576,44 @@ def body_for(page: dict) -> str:
     if kind == "home":
         return f"""
         {hero_open()}
+          {ann("Band: hero")}
           <h1>{page["h1"]}</h1>
           <p>Strategy that works. Execution that delivers.</p>
+          {ann("Button + text link")}
           {cta_html(h, ("Contact", "/contact/"), ("What we do", "/services/"))}
+          {ann("Static")}
           {video_html("Showreel")}
         </section>
         <section class="block">
           <h2 class="sec">Trusted partners</h2>
+          {ann("Static")}
           {logos_html(8, "Logo")}
         </section>
         <section class="block">
           <h2 class="sec">What we do</h2>
+          {ann("Triangle tile: card")}
           {tri_html(h, PILLAR_TILES, f'<p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside. <a href="{h("/services/")}">Our Growth Architecture</a></p>')}
         </section>
-        {thinking_feature(h)}
+        {thinking_feature(h, annotate=True)}
         <section class="block">
           <h2 class="sec">Our work</h2>
+          {ann("Case card")}
           <div class="cards two">
             {card(h, "/work/dayinsure/", "Dayinsure", "One-line result", "ph")}
             {card(h, "/work/key-group/", "Key Group", "One-line result", "ph")}
           </div>
           {quote_html(cite="Dayinsure")}
+          {ann("Text link")}
           <a class="more" href="{h("/work/")}">All work</a>
         </section>
         <section class="block">
           <h2 class="sec">Awards</h2>
+          {ann("Static")}
           {logos_html(3, "Award")}
         </section>
         <section class="block">
           <h2 class="sec">Growth problems we know best</h2>
+          {ann("Text link")}
           <div class="row-links" {mod("Row of text links")}>
             <a href="{h("/expertise/loyalty/")}">Loyalty</a>
             <a href="{h("/expertise/membership/")}">Membership</a>
@@ -1603,12 +1622,13 @@ def body_for(page: dict) -> str:
             <a href="{h("/expertise/customer-value/")}">Customer Value</a>
           </div>
         </section>
-        {closing(h)}
+        {closing(h, annotate=True)}
 """
 
     if kind == "hub":
         return f"""
         {hero_open()}
+          {ann("Band: hero")}
           <span class="eyebrow">What we do</span>
           <h1>Our Growth Architecture</h1>
           <p>Strategy that works. Execution that delivers.</p>
@@ -1617,10 +1637,12 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="sec">Three ways we work with you</h2>
+          {ann("Triangle tile: card")}
           {tri_html(h, [(n, a, s) for (n, _, s), a in zip(PILLAR_TILES, ("#hub-gs", "#hub-act", "#hub-ceo"))], '<p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside.</p>')}
         </section>
         <section class="block">
           <h2 class="plain">Where are you starting from?</h2>
+          {ann("Text link")}
           <ul class="situations" {mod("Situations list")}>
             <li><a href="{h("/services/growth-strategy/")}">We need to decide where and how to grow</a></li>
             <li><a href="{h("/services/proposition-innovation/")}">We need a new proposition, loyalty or membership offer</a></li>
@@ -1635,8 +1657,10 @@ def body_for(page: dict) -> str:
           <h2 class="plain"><a href="{h("/services/growth-strategy/")}">Growth Strategy</a></h2>
           <p class="line">Where and how you grow</p>
           <p class="sentence">We work out where the growth is and design the propositions that win it, using our <a href="{h("/services/growth-strategy/#civd")}">Customer, Innovation, Value and Delivery</a> frame.</p>
+          {ann("Static")}
           {civd_html(compact=True)}
           <p class="link-line" {mod("Link line")}>The frame lives on Growth Strategy. <a href="{h("/services/growth-strategy/#civd")}">See the CIVD frame</a></p>
+          {ann("Offer card")}
           <div class="cards two">
             {card(h, "/services/growth-strategy/", "Growth Strategy", "Customer-led growth strategy: where to focus and how to win", "offer")}
             {card(h, "/services/proposition-innovation/", "Proposition Innovation", "Value proposition design: loyalty, membership, subscription, direct-to-consumer", "offer")}
@@ -1647,6 +1671,7 @@ def body_for(page: dict) -> str:
           <h2 class="plain"><a href="{h("/services/activation/")}">Activation Services</a></h2>
           <p class="line">Turning strategy into results</p>
           <p class="sentence">We build the bridge from strategy to results: new operating models and AI-powered, human-led delivery. <a href="{h("/services/activation/")}">Which of the six do you need?</a></p>
+          {ann("Offer card")}
           <div class="cards">
             {card(h, "/services/customer-research/", "Customer Research and Insight", "Research, surveys, analytics and customer listening, faster with AI", "offer")}
             {card(h, "/services/experience-engineering/", "Experience Engineering", "Customer experience (CX), website and digital design, build and testing", "offer")}
@@ -1661,17 +1686,19 @@ def body_for(page: dict) -> str:
           <h2 class="plain"><a href="{h("/services/ceo-advisory/")}">CEO Advisory</a></h2>
           <p class="line">One-to-one support for leaders</p>
           <p class="sentence">Experienced growth leaders alongside you, on retainer, to help you make good decisions.</p>
+          {ann("Person card")}
           <div class="cards">
             {card(h, "/about/team/advisor-one/", "Advisor name", "Former role, one line", "person")}
             {card(h, "/about/team/advisor-one/", "Advisor name", "Former role, one line", "person")}
             {card(h, "/about/team/advisor-one/", "Advisor name", "Former role, one line", "person")}
           </div>
+          {ann("Text link")}
           <a class="more" href="{h("/services/ceo-advisory/#advisors")}">Our advisors</a>
         </section>
         <section class="block">
           <p class="one-line" {mod("Link line")}>We apply these services to the growth problems we know best. <a href="{h("/expertise/")}">Our expertise</a></p>
         </section>
-        {closing(h)}
+        {closing(h, annotate=True)}
 """
 
     if kind == "activation":
@@ -1925,30 +1952,36 @@ def body_for(page: dict) -> str:
     if kind == "work-hub":
         return f"""
         {hero_open()}
+          {ann("Band: hero")}
           <h1>Our work</h1>
           <p>Case studies from recent engagements.</p>
         </section>
         <section class="block">
           <h2 class="plain">Featured</h2>
+          {ann("Case card")}
           <div class="cards two">
             {card(h, "/work/dayinsure/", "Dayinsure", "Quote journey rebuilt", "ph")}
           </div>
+          {ann("Static")}
           {quote_html()}
         </section>
         <section class="block">
           <h2 class="plain">All case studies</h2>
+          {ann("Filter")}
           {filter_bar(["All services", "Growth Strategy", "Experience Engineering", "Customer Research and Insight"], on="All services", more=True)}
           <span class="wf-label">Revealed by More filters: Expertise and Sector</span>
           {filter_bar(["Loyalty", "Pricing", "Financial services", "Consumer"])}
+          {ann("Case card")}
           <div class="cards">
             {card(h, "/work/dayinsure/", "Dayinsure", "Experience Engineering", "ph")}
             {card(h, "/work/key-group/", "Key Group", "Experience Engineering", "ph")}
           </div>
+          {ann("Text link")}
           {pagination_html()}
         </section>
-        {empty_stub("No case studies match these filters.", h("/work/"))}
+        {empty_stub("No case studies match these filters.", h("/work/"), annotate=True)}
         {related_thinking(h)}
-        {closing(h)}
+        {closing(h, annotate=True)}
 """
 
     if kind == "case":
@@ -2400,7 +2433,7 @@ def catalogue_samples(h) -> dict[str, str]:
               <li><a href="{h("/services/proposition-innovation/")}">Proposition Innovation<small>Value proposition design</small></a></li>
             </ul>
           </div>'''
-    hero = f'''<div class="hero" style="padding:0">
+    hero = f'''<div class="block hero" style="padding-top:24px;padding-bottom:24px">
             <span class="eyebrow">Eyebrow (optional)</span>
             <h1 style="font-size:24px">H1: one per page</h1>
             <p>One support line. Who this is for.</p>
@@ -2424,7 +2457,7 @@ def catalogue_samples(h) -> dict[str, str]:
           </div>''',
         "Hero": hero,
         "CTA pair": cta_html(h),
-        "Closing CTA band": f'<div class="closing" style="border:0;padding:0"><p>Tell us about your growth challenge</p><div class="cta"><a class="btn" href="{h("/contact/")}">Contact</a><a class="text" href="{h("/work/")}">See our work</a></div></div>',
+        "Closing CTA band": f'<div class="block closing" style="padding-top:24px;padding-bottom:24px"><p>Tell us about your growth challenge</p><div class="cta"><a class="btn" href="{h("/contact/")}">Contact</a><a class="text" href="{h("/work/")}">See our work</a></div></div>',
         "Prose": '<h2 class="plain" style="font-size:18px">Heading</h2><p class="prose">One to four short paragraphs. Body copy carries the keyword language the H2 promises.</p>',
         "Metric box": metrics_html([("3x", "EBITDA return"), ("4 wks", "Data audit"), ("6 wks", "First agents")]),
         "Offer card": '<div class="cards two">' + card(h, "/services/growth-strategy/", "Growth Strategy", "Customer-led growth strategy: where to focus and how to win", "offer") + card(h, "/services/proposition-innovation/", "Proposition Innovation", "Value proposition design", "offer") + "</div>",
@@ -2468,17 +2501,26 @@ def catalogue_body(h) -> str:
         <section class="block">
           <h2 class="plain">{group}</h2>{units}
         </section>"""
+    # Each interaction type is drawn as a miniature of its real shape, never as a name badge.
     kinds = [
-        ("Band", "A full-width block that composes other components: Hero, Closing CTA band."),
-        ("Button", "An action: Send, Accept, Clear filters, Search, header Contact, the primary of a CTA pair. Outlined control, 1.5px ink. Never a content-page link except header Contact."),
-        ("Text link", "Navigate: See our work, All thinking, situations, breadcrumbs, footer, mega-nav strands. Underlined or plain text, never a box."),
-        ("Card", "Whole unit is a hit area to one destination page. Solid 1px box. Title plus support line. Seven card types, one shape each."),
-        ("Tag", "Small linked label. One dimension, max three. Squared corners, quiet border. Not a filter."),
-        ("Filter", "Toggle on a listing. Pill-shaped button, not a link. Selected uses a heavier border."),
-        ("Static", "Not clickable. Dashed box or plain text: logos, metrics, CIVD, form fields, video, quote, empty message, prose."),
+        ("Band", '<span class="spec-band" aria-hidden="true"><i></i><b></b><em></em></span>',
+         "A full-width block that composes other components: Hero, Closing CTA band. Bleeds to the edge with a rule top and bottom."),
+        ("Button", '<span class="btn" aria-hidden="true">Send</span>',
+         "An action: Send, Accept, Clear filters, Search, header Contact, the primary of a CTA pair. Heavy 2px ink frame, light fill, verb only. Never a content-page link except header Contact."),
+        ("Text link", '<span class="spec-link" aria-hidden="true">See our work</span>',
+         "Navigate: See our work, All thinking, situations, breadcrumbs, footer, mega-nav strands, pagination. Underlined or plain text, never a box."),
+        ("Card", '<span class="card" aria-hidden="true"><strong>Title</strong><span>Support line</span></span>',
+         "Whole unit is a hit area to one destination page. Solid 1px box. Title plus support line. Seven card types, one shape each."),
+        ("Tag", '<span class="page-tags" aria-hidden="true"><span>Loyalty</span><span>Pricing</span></span>',
+         "Small linked label. One dimension, max three. Squared corners, quiet border. Not a filter."),
+        ("Filter", '<span class="filter on" aria-hidden="true">All</span><span class="filter" aria-hidden="true">Loyalty</span>',
+         "Toggle on a listing. Pill-shaped button, not a link. Selected uses a heavier border."),
+        ("Static", '<span class="spec-static" aria-hidden="true">Metric</span><span aria-hidden="true" style="color:#555">Prose</span>',
+         "Not clickable. Dashed box or plain text: logos, metrics, CIVD, form fields, video, quote, empty message, prose."),
     ]
     legend = "".join(
-        f'<li><span class="unit-kind unit-{k.lower().replace(" ", "-")}">{k}</span> {t}</li>' for k, t in kinds
+        f'<li><span class="spec">{shape}</span><span class="spec-text"><strong>{k}.</strong> {t}</span></li>'
+        for k, shape, t in kinds
     )
     return f"""
         <section class="block hero" {mod("Hero")}>
@@ -2489,7 +2531,7 @@ def catalogue_body(h) -> str:
           <h2 class="plain">How to read this library</h2>
           <div class="legend">
             <p class="unit-purpose">Seven interaction types. If a rectangle cannot be named from this library, it is a random box and should not be on a page.</p>
-            <ul class="legend-list">{legend}</ul>
+            <ul class="legend-list spec-list">{legend}</ul>
           </div>
         </section>
         {groups}

@@ -6,7 +6,13 @@
   --soft: #ececec;
   --paper: #fff;
   --note: #6a6a6a;
+  --frame: #9a9a9a;
 }
+/* Interaction grammar, one silhouette each. Button: 2px ink frame plus light
+   fill. Text link: underlined or plain text, never a box. Card: solid 1px
+   --frame box, title and support. Tag: tiny squared outline in --line.
+   Filter: pill. Band: full-bleed region with a rule top and bottom.
+   Static: dashed box or plain text. */
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 body {
@@ -43,7 +49,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .top-link { display: inline-flex; align-items: center; gap: 6px; padding: 21px 10px; font-weight: 600; border-bottom: 2px solid transparent; }
 .top-link[aria-expanded="true"], .top-link:hover, .top-link[aria-current="page"] { border-bottom-color: var(--ink); }
 .top-link .caret { font-size: 9px; color: var(--mid); }
-.btn { display: inline-block; padding: 9px 18px; border: 1.5px solid var(--ink); font-weight: 600; }
+.btn {
+  display: inline-block; padding: 8px 18px; border: 2px solid var(--ink); font-weight: 600;
+  background: var(--soft); line-height: 1.3;
+}
+.btn:hover { background: #e0e0e0; }
 
 .dropdown { display: none; position: absolute; top: 100%; left: 0; min-width: 220px; background: var(--paper); border: 1px solid var(--line); padding: 8px 0; z-index: 30; }
 .primary-nav > li[data-open="true"] .dropdown { display: block; }
@@ -114,6 +124,14 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .block h2.plain { margin: 0 0 12px; font-size: 22px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--ink); }
 .block h3.plain { margin: 18px 0 8px; font-size: 17px; font-weight: 600; }
+/* Band: the region bleeds to the browser edge with a rule top and bottom. */
+.block.hero, .block.closing {
+  margin: 0 -32px; padding-left: 32px; padding-right: 32px;
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.block.hero { margin-top: 10px; }
+.header-zone + .page > .block.hero:first-child { margin-top: 0; border-top: 0; }
+.block.closing:last-child { border-bottom: 0; } /* the cookie bar rule closes the band */
 .hero h1 { margin: 0 0 8px; font-size: 30px; line-height: 1.2; font-weight: 600; max-width: 760px; }
 .hero p { margin: 0 0 12px; color: var(--mid); font-size: 17px; }
 .hero .cta, .cta { display: flex; align-items: center; gap: 22px; margin-top: 8px; }
@@ -123,7 +141,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hero .aka { font-size: 13px; color: var(--mid); margin: 0 0 10px; }
 .hero .who { font-size: 14px; color: #555; margin: 0 0 8px; }
 .numbers {
-  margin: 14px 0 0; padding: 10px 12px; border: 1px solid var(--line); font-size: 14px; max-width: 640px;
+  margin: 14px 0 0; padding: 10px 12px; border: 1px dashed var(--line); font-size: 14px; max-width: 640px;
 }
 .pillar-note { font-size: 13px; color: var(--mid); margin: 0 0 8px; }
 .pillar-note a { text-decoration: underline; }
@@ -152,24 +170,23 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .metric span { font-size: 12px; color: var(--mid); }
 .article-body { max-width: 680px; }
 .article-body .prose { min-height: 3.2em; }
-/* Tag: small squared label. Filter: pill-shaped button. Never the same shape. */
-.page-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.page-tags a {
-  display: inline-block; padding: 2px 8px; border: 1px solid var(--line); font-size: 12px; color: #444; background: #fff;
+/* Tag: tiny squared label, quiet. Filter: pill-shaped button. Never the same shape. */
+.page-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.page-tags > * {
+  display: inline-block; padding: 0 6px; border: 1px solid var(--line); font-size: 11px; line-height: 18px;
+  color: #555; background: #fff; letter-spacing: .02em;
 }
 .page-tags a:hover { text-decoration: underline; }
 
 .tri { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-.tri a { display: block; border: 1px solid var(--line); padding: 22px 20px; min-height: 120px; }
+.tri a { display: block; border: 1px solid var(--frame); padding: 22px 20px; min-height: 120px; background: #fff; }
 .tri a strong { display: block; font-size: 19px; margin-bottom: 6px; }
 .tri a span { font-size: 13px; color: var(--mid); }
-.pagination { display: flex; gap: 8px; margin-top: 16px; font-size: 13px; }
-.pagination span, .pagination a {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-width: 32px; height: 32px; border: 1px solid var(--line); padding: 0 8px;
-}
-.pagination a:hover { text-decoration: underline; }
-.pagination .on { border-color: var(--ink); font-weight: 600; }
+.tri a:hover strong { text-decoration: underline; }
+/* Pagination is text links: no boxes. Current page is plain bold text. */
+.pagination { display: flex; align-items: baseline; gap: 18px; margin-top: 16px; font-size: 14px; }
+.pagination a { text-decoration: underline; }
+.pagination .on { font-weight: 600; color: var(--ink); }
 .empty-state {
   border: 1px dashed var(--line); padding: 28px 20px; text-align: center; color: var(--mid);
 }
@@ -183,6 +200,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   display: block; margin: 0 0 8px; font-size: 11px; font-weight: 600;
   letter-spacing: .06em; text-transform: uppercase; color: var(--mid);
 }
+/* Wireframe annotation: interaction type or component name, outside the block it
+   describes. Convention only, not shipping UI. */
+.wf-type {
+  display: flex; align-items: center; gap: 6px; margin: 0 0 6px;
+  font-size: 10px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: #8a8a8a;
+}
+.wf-type::before { content: ""; width: 10px; border-top: 1px dashed #aaa; }
+.hero .wf-type { margin-bottom: 10px; }
+.cta + .wf-type, .cards + .wf-type, .tri + .wf-type, .filters + .wf-type, .quote + .wf-type, .thinking-split + .wf-type { margin-top: 18px; }
+.wf-type + .cta, .wf-type + .video-ph, .wf-type + .more, .wf-type + .quote, .wf-type + .pagination { margin-top: 0; }
 .tri-line { margin: 14px 0 0; font-size: 13px; color: var(--mid); }
 .tri-line a { text-decoration: underline; margin-left: 10px; }
 
@@ -208,21 +235,36 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   display: block; margin: 0; font-size: 11px; font-weight: 600;
   letter-spacing: .06em; text-transform: uppercase; color: var(--mid);
 }
-.unit-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 8px; }
+.unit-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 10px; margin: 0 0 8px; }
+/* Interaction type beside the component name: a plain caps annotation, not a box. */
 .unit-kind {
-  display: inline-block; padding: 2px 7px; border: 1px solid var(--line);
-  font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--mid);
+  display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: #8a8a8a;
 }
-.unit-kind.unit-button { border-color: var(--ink); color: var(--ink); }
-.unit-kind.unit-band { border-style: double; border-width: 3px; padding-top: 1px; padding-bottom: 1px; }
-.unit-kind.unit-static { border-style: dashed; }
-.unit-kind.unit-filter { border-radius: 999px; }
+.unit-kind::before { content: "\00b7"; margin-right: 8px; color: #bbb; }
 .unit-purpose { font-size: 13px; color: #555; max-width: 760px; margin: 0 0 10px; }
 .legend { border: 1px dashed var(--line); padding: 16px 18px; background: #fafafa; }
 .legend-list { list-style: none; margin: 0; padding: 0; max-width: 760px; }
 .legend-list li { padding: 8px 0; border-top: 1px solid var(--soft); font-size: 14px; }
 .legend-list li:first-child { border-top: 0; padding-top: 0; }
-.legend-list .unit-kind { margin-right: 8px; vertical-align: middle; }
+
+/* Legend specimens: each interaction type drawn at miniature scale, in its real shape. */
+.spec-list { max-width: 860px; }
+.spec-list li { display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: 0 18px; align-items: center; padding: 12px 0; }
+.spec-list li:first-child { padding-top: 4px; }
+.spec-list .spec-text { font-size: 14px; color: #444; }
+.spec-list .spec-text strong { color: var(--ink); }
+.spec { display: flex; align-items: center; gap: 8px; min-height: 36px; font-size: 12px; line-height: 1.3; }
+.spec .btn { font-size: 12px; padding: 5px 12px; }
+.spec-band { display: block; width: 100%; padding: 6px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #fff; }
+.spec-band i { display: block; width: 46%; height: 6px; background: #d5d5d5; margin: 2px 0 6px; }
+.spec-band b { display: inline-block; width: 30px; height: 12px; border: 2px solid var(--ink); background: var(--soft); vertical-align: top; }
+.spec-band em { display: inline-block; width: 26px; border-bottom: 1px solid var(--ink); margin: 0 0 3px 6px; vertical-align: bottom; }
+.spec-link { text-decoration: underline; color: var(--ink); font-size: 13px; }
+.spec .card { padding: 9px 11px; min-height: 0; width: 100%; }
+.spec .card strong { font-size: 12px; padding: 0; }
+.spec .card span { display: block; font-size: 10px; margin: 2px 0 0; }
+.spec .filter { padding: 3px 10px; font-size: 11px; }
+.spec-static { display: inline-block; padding: 6px 10px; border: 1px dashed var(--line); background: #fafafa; color: var(--mid); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
 
 .situations { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 40px; max-width: 900px; }
 .situations li { break-inside: avoid; padding: 7px 0; border-top: 1px solid var(--soft); }
@@ -237,7 +279,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .pillar-sec .sentence a { text-decoration: underline; }
 .footer-search { display: flex; align-items: center; gap: 8px; }
 .footer-search label { font-size: 12px; }
-.footer-search .box { width: 160px; height: 28px; border: 1px solid var(--line); background: #fff; }
+.footer-search .box { width: 160px; height: 28px; border: 1px dashed var(--line); background: #fff; }
 .footer-search a { text-decoration: underline; }
 .case-line, .link-line { margin: 18px 0 0; font-size: 13px; color: var(--mid); }
 .case-line a, .link-line a { text-decoration: underline; }
@@ -246,12 +288,14 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .cards.two { grid-template-columns: 1fr 1fr; max-width: 760px; }
 .cards.four { grid-template-columns: repeat(4, 1fr); }
-.card { border: 1px solid var(--line); padding: 0 0 16px; min-height: 110px; display: block; }
+/* Card: solid 1px --frame box, whole unit is the hit area. Card types keep their
+   own cues (fill, image, document, avatar, top rule, lighter frame). */
+.card { border: 1px solid var(--frame); padding: 0 0 16px; min-height: 110px; display: block; background: #fff; }
 .card.offer { padding: 18px; min-height: 120px; background: #f7f7f7; }
 .card.theme { padding: 18px; min-height: 100px; background: #fff; }
 .card.role { padding: 18px; min-height: 90px; background: #fff; border-top: 3px solid var(--ink); }
-.card.article { padding: 18px; min-height: 90px; background: #fff; border-style: solid; border-color: var(--soft); }
-.card.person { padding: 18px; border-color: var(--soft); background: #fafafa; min-height: 0; }
+.card.article { padding: 18px; min-height: 90px; background: #fff; border-style: solid; border-color: var(--line); }
+.card.person { padding: 18px; border-color: var(--line); background: #fafafa; min-height: 0; }
 .card .ph {
   aspect-ratio: 16 / 10; height: auto; border: 0; border-bottom: 1px dashed var(--line);
   margin-bottom: 12px; background: #f3f3f3;
@@ -283,22 +327,25 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .list li span { color: var(--mid); font-size: 13px; white-space: nowrap; }
 .list a:hover { text-decoration: underline; }
 
-.closing { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.closing { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+.closing .wf-type { flex: 0 0 100%; margin: 0 0 -12px; }
 .closing p { margin: 0; font-size: 20px; font-weight: 600; }
 .closing .cta { margin-top: 0; }
 
 .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
+/* Filter: pill. Selected carries a heavier frame (inset shadow adds the second pixel without a layout shift). */
 .filter {
-  padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; font-size: 13px; background: var(--paper);
+  display: inline-block; padding: 6px 14px; border: 1px solid var(--frame); border-radius: 999px; font-size: 13px; background: var(--paper);
 }
-button.filter { font: inherit; color: inherit; }
-.filter.on { border-color: var(--ink); font-weight: 600; }
-.filter.more { color: var(--mid); }
+button.filter { font: inherit; color: inherit; cursor: pointer; }
+.filter:hover { background: #f4f4f4; }
+.filter.on { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); font-weight: 600; }
+.filter.more { color: var(--mid); margin-top: 0; text-decoration: none; }
 
 .form { max-width: 520px; }
 .field { margin: 0 0 12px; }
 .field label { display: block; font-size: 13px; margin: 0 0 4px; }
-.field .box { height: 36px; border: 1px solid var(--line); background: #fafafa; }
+.field .box { height: 36px; border: 1px dashed var(--line); background: #fafafa; }
 .field .box.tall { height: 88px; }
 .field .box.select { display: flex; align-items: center; padding: 0 10px; color: var(--mid); font-size: 13px; }
 .field .box.error { border-color: var(--ink); }
@@ -333,5 +380,7 @@ button.filter { font: inherit; color: inherit; }
   .site-header { padding: 0 16px; height: auto; flex-wrap: wrap; }
   .primary-nav { flex-wrap: wrap; }
   .page, .crumbs, .site-footer { padding-left: 16px; padding-right: 16px; }
+  .block.hero, .block.closing { margin-left: -16px; margin-right: -16px; padding-left: 16px; padding-right: 16px; }
   .cards, .cards.two, .cards.four, .tri, .footer-cols, .mega-cols, .metrics, .thinking-split, .civd-grid { grid-template-columns: 1fr; }
+  .spec-list li { grid-template-columns: 1fr; gap: 8px; }
 }
