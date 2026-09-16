@@ -1,131 +1,346 @@
-# Proposed website information architecture
+# Information architecture recommendations
 
-**To:** Andy
-**From:** Gary
-**Re:** Manifesto Growth Architects site structure, navigation and wireframe
+**Manifesto Growth Architects**  
+Shed Collective · September 2026
 
-This is the proposed information architecture for the new site: what it contains, how it is organised, how people move through it, and which page owns which topic. It is built around your Growth Architecture triangle, in language a prospect who has never heard of Manifesto would actually use.
-
-The current site works as a credibility check after a referral. This rebuild has to originate enquiries from people who have not.
-
-A clickable wireframe of the whole sitemap sits in the repo. How to open it is at the end.
+This report recommends the information architecture for the new Manifesto Growth Architects website: hierarchy, navigation, sitemap, mega-nav, page templates, and search language. It is the client-facing summary of the IA package. The clickable wireframe is the working model of the same recommendations (`mocks/index.html`).
 
 ---
 
-## Primary navigation
+## 1. Executive summary
 
-Six items in the header, plus the logo and a Contact button:
+We recommend a services-led site organised around Andy's Growth Architecture triangle: **Growth Strategy**, **Activation Services**, and **CEO Advisory**. Six items sit in the header. What we do is the only mega-nav. Our work, Our thinking, About, Careers and Contact complete the chrome. Expertise and sectors are real dimensions with their own pages, but they do not compete with services in the top bar.
+
+The current site works as a credibility check after a referral. The rebuild has to originate enquiries from people who have never heard of Manifesto. That means the first screen must answer "what can you do for me?", then "do you understand my problem?", then "have you done this for businesses like mine?"
+
+CEO Advisory is a full-weight third pillar. Same contrast and heading weight as Growth Strategy and Activation. It is quieter only because the column is slightly narrower and holds two strands rather than six. Greying it out makes it look like a second-class offer. It is not.
+
+Every strand in the mega-nav now carries a short, keyword-led subtitle so a prospect can see what they get. Manifesto labels stay. Search language sits under the label and on the page. Volumes cited in this report are UK Google Ads averages from DataForSEO, 16 September 2026. None are invented.
+
+CIVD stays as an on-page module on Growth Strategy, not a nav item. Named frameworks each have one home. Cross-links run Services ↔ Expertise ↔ Work ↔ Thinking. Footer, forms, listing filters, empty states, pagination, search, 404 and legal pages are in the wireframe as stubs or full templates.
+
+**Evidence**
+
+- Andy's deck (Source B): the offer is the triangle of Growth Strategy, Activation Services and CEO Advisory; the hub name is Growth Architecture Services.
+- 7 September Otter check-in (Source C): Growth Strategy first, Activation second, CEO Advisory third; do not design the whole site around advisory; the deck is not website copy.
+- MURAL keep/drop: six-item chrome (Our thinking, Careers first-class); no homepage reports grid; CIVD keep, new visuals; The Nutshell named from the current contact form.
+- Competitor review (`docs/competitor-nav-review.md`): Prophet's What We Do panel is about 25 links; Elixirr's Services panel about 60. A sparse triangle menu is already calmer than the peer set. The gap to best in class is on the pages, not extra nav items.
+- UK keyword findings (`docs/keyword-findings.md`): exact Manifesto phrases are often thin; adjacent demand (journey mapping, value proposition design, target operating model, interim CMO) belongs in subtitles and H2s, not as extra top-nav labels.
+
+---
+
+## 2. Recommended hierarchy and primary navigation
+
+**Header (six items, plus logo and Contact button)**
 
 **What we do** | **Our work** | **Our thinking** | **About** | **Careers** | **Contact**
 
-That is the cap. Nothing else joins the top bar. Careers is first-class so Contact can honestly split “work with us” from “work for us”. Our thinking is Manifesto’s name for the insights library. About is a small dropdown: Our people, Our approach, Values and culture.
+That is the cap. Nothing else joins the top bar.
 
-What we do is the only mega-nav. It is your triangle, laid flat, in the order we agreed: Growth Strategy first, Activation Services second, CEO Advisory third and quieter.
+| Item | Behaviour | Lands on |
+|---|---|---|
+| Logo | Home | `/` |
+| What we do | Mega-nav on hover; click goes to the hub | `/services/` |
+| Our work | Plain link | `/work/` |
+| Our thinking | Small type dropdown: Reports, Articles, Events and news, All thinking | `/insights/` |
+| About | Small dropdown: Our people, Our approach, Values and culture | `/about/` |
+| Careers | Plain first-class link | `/careers/` |
+| Contact | Button | `/contact/` |
+
+**Rationale**
+
+- Services are the spine. A prospect's first question is what Manifesto can do.
+- Careers is first-class so Contact can honestly split Work with us from Work for us.
+- Our thinking is Manifesto's name for the insights library (MURAL). The URL stays `/insights/`.
+- Sectors stay out of the header. They live in the footer, in Work and Thinking filters, and as light landings.
+- Search is a footer field plus `/search/`, not a seventh header item.
+
+**Primary and secondary CTAs**
+
+- Primary: Contact button (Work with us). Careers routes use Work for us.
+- Secondary: text link, usually See our work or What we do.
+- Forms: Contact has two blocks, `#work-with-us` and `#work-for-us`. Careers still owns roles, Life at Manifesto, DEI and benefits.
+
+**Evidence**
+
+- Source A: three intersecting dimensions (services, expertise, sectors) with one canonical home per topic; Home is a page, not a hub.
+- Source D / F: simplify the mega-nav; make the triangle obvious; five to six header items, not seven content peers.
+- MURAL: Our thinking, Our people, Our approach, Careers first-class, split work-with-us / work-for-us.
+- Competitor pattern: "What we do" is the services label at Prophet, Yonder and Deloitte Digital. Lippincott runs a four-item header. No peer in the set puts sectors in a services mega-nav as equals.
 
 ---
 
-## What we do: the triangle as a menu
+## 3. Full sitemap
 
-Each column is a **hub**. The group title is a link, with a visible arrow, so it is obvious you can open the pillar page. Under it, **strands** sit as siblings.
+URL pattern: trailing slash, kebab-case slugs, **flat services** under `/services/` even when the menu groups them. Grouping is a menu concern. URLs survive if the packaging changes.
+
+### Canonical and supporting pages
+
+| URL | Page | Weight |
+|---|---|---|
+| `/` | Home | Canonical |
+| `/services/` | Our Growth Architecture (services hub) | Canonical |
+| `/services/growth-strategy/` | Growth Strategy (includes `#civd`) | Canonical |
+| `/services/proposition-innovation/` | Proposition Innovation | Canonical |
+| `/services/activation/` | Activation Services group | Supporting |
+| `/services/customer-research/` | Customer Research and Insight | Canonical |
+| `/services/experience-engineering/` | Experience Engineering | Canonical |
+| `/services/ai-agents-for-marketing/` | AI Agents for Marketing (`#agentlab`) | Canonical |
+| `/services/operating-model-design/` | Operating Model Design | Canonical |
+| `/services/growth-office/` | Growth Office | Canonical |
+| `/services/ai-enablement/` | AI Enablement | Canonical |
+| `/services/ceo-advisory/` | CEO Advisory (`#side-by-side`, `#advisors`) | Supporting |
+| `/expertise/` | Expertise hub | Supporting |
+| `/expertise/{loyalty,membership,subscriptions,pricing,customer-value}/` | Theme pages | Supporting |
+| `/sectors/{financial-services,media,consumer,retail}/` | Light sector landings | Light |
+| `/work/` | Our work listing | Canonical |
+| `/work/{client}/` | Case study | Supporting |
+| `/insights/` | Our thinking listing | Supporting |
+| `/insights/{slug}/` | Article or report | Supporting |
+| `/about/` | About | Supporting |
+| `/about/team/` | Our people | Supporting |
+| `/about/team/{name}/` | Profile | Light |
+| `/about/how-we-work/` | Our approach | Supporting |
+| `/about/values/` | Values and culture | Light |
+| `/careers/` | Careers | Light |
+| `/careers/{role}/` | Role | Light |
+| `/contact/` | Contact | Utility |
+| `/contact/thank-you/` | Thank you | Utility |
+| `/newsletter/` | The Nutshell | Utility |
+| `/search/` | Search | Utility |
+| `/privacy-policy/`, `/cookie-policy/`, `/terms/`, `/accessibility/` | Legal stubs | Utility |
+| `/404/` | Page not found | Utility |
+| `/catalogue/` | Page modules (wireframe only) | Not a live URL |
+
+There is no `/sectors/` index. `/sectors/` redirects to `/work/`. There is no separate `/side-by-side/`, `/civd/`, `/agentlab/` or events URL unless Decision 8 (Events) later warrants one.
+
+**Evidence**
+
+- Source A: one canonical home per topic; themes under `/expertise/`; sectors light.
+- Source B: eight buyable services plus the Activation grouping and CEO Advisory as the third pillar.
+- Source C: sector-agnostic services; four sectors; travel and leisure under Consumer.
+- MURAL: The Nutshell; no more PDFs (reports expand on the page); blogs merged into articles.
+
+---
+
+## 4. Mega-nav / What we do
+
+The panel is the triangle laid flat. Three linked hub headings, each with a trailing arrow. Strands sit as siblings under the hub. Growth Strategy and Activation start with Overview so the heading never looks like a fake label over a lonely child. CEO Advisory shows both named strands.
 
 | Growth Strategy | Activation Services | CEO Advisory |
 |---|---|---|
 | Where and how you grow | Turning strategy into results | One-to-one support for leaders |
-| Overview | Overview | Side-by-Side |
-| Proposition Innovation | Customer Research and Insight | Our advisors |
-| | Experience Engineering *(Customer experience and websites)* | |
-| | AI Agents for Marketing | |
-| | Operating Model Design | |
-| | Growth Office *(Interim growth team)* | |
-| | AI Enablement | |
+| Overview · Where to grow and how to win | Overview · Hands-on delivery, six services | Side-by-Side · One-to-one advisory retainer |
+| Proposition Innovation · Value proposition design | Customer Research and Insight · Research methods and journey mapping | Our advisors · Experienced growth leaders |
+| | Experience Engineering · Customer experience and websites | |
+| | AI Agents for Marketing · AI marketing agents, guided by experts | |
+| | Operating Model Design · Target operating model | |
+| | Growth Office · Interim growth team | |
+| | AI Enablement · AI skills and adoption | |
 
-A thin row under the three columns: All services, Expertise.
+Footer row under the columns: **All services** · **Expertise** · **Our work**.
 
-Growth Strategy is both the pillar and the lead service: Overview is the hub page, Proposition Innovation is the child. Activation is the fat column because that is where most of the buyable work lives; Overview goes to the group page that explains the bridge from strategy to results and helps someone pick which of the six they need. CEO Advisory shows both strands: **Side-by-Side** (the retainer) and **Our advisors** (the people). The column is still quieter by width and type. We are not designing the site around it, but it is visibly a pillar.
+CEO Advisory uses the same ink and heading weight as the other pillars. The column is slightly narrower because it holds two strands, not because it is de-emphasised.
 
-Experience Engineering and Growth Office keep a short quiet line (websites, CX; interim growth team). Everything else stands alone. Deck one-liners, the AgentLab catalogue and methodology live on pages, not in the menu.
+CIVD is not in this menu. AgentLab is not in this menu. Growth Partner is not a sold-service label. Those live on pages.
 
-Services stay **flat** under `/services/`. Grouping is a menu concern. URLs survive if the packaging changes.
+**Evidence**
 
----
-
-## How the rest of the site is organised
-
-Three dimensions, one home each.
-
-**Services are the spine.** Every capability topic has one canonical page. The services hub is the Growth Architecture page: it names the system, shows how the three pillars connect (“Strategy first. Activation to deliver it. Advisors alongside.”), and offers a second way in by problem (“Where are you starting from?” with seven situations).
-
-**Expertise themes are supporting.** Loyalty, Membership, Subscriptions, Pricing, Customer Value. Real pages and cross-links, one Expertise link in the menu footer, and a row of five names on Home. They prove you understand the growth problem, then hand off to services. They are not a second mega-nav column.
-
-**Sectors are light.** Financial services, Media, Consumer, Retail. Footer, filters, and a short landing each. Not in the header. Proof that you have worked with businesses like mine lives in case studies, not in a clients section competing with work.
-
-Our work is the proof engine. Testimonials live inside cases. Our thinking is reports, articles, events and news. Method (how you partner, named frameworks, engagement shapes) sits on Our approach, not in What we do.
-
-One rule throughout: one canonical page per important topic. Everything else links in and out.
+- Source B slide 2: triangle of CEO Advisory, Growth Strategy, Activation Services; strapline "Strategy that works. Execution that delivers."
+- Source B slide 3: six Activation services in deck order; Proposition Innovation under Growth Strategy; Side-by-Side as the CEO Advisory product.
+- Source C (Otter): Experience Engineering must map to "can you build a website?"; Growth Office terminology is hard; order of prominence Growth Strategy, then Activation, then CEO Advisory.
+- D-02 originally chose a quieter type treatment. Client review of the wireframe: grey reads as second-class. D-57 replaces type-quieting with width-only quieting.
+- D-35 had retired item subtitles except two quiet lines. Client review: those lines mostly said nothing useful, except Experience Engineering. D-58 restores a short subtitle on every strand, drawn from keyword findings, not from deck one-liners.
+- Competitor review: Elixirr uses "Target Operating Model"; frog uses "Customer Research & Insights"; Prophet uses "Agentic Deployment". Manifesto labels stay; those phrases inform subtitles and H2s.
 
 ---
 
-## Home, and where thinking sits
+## 5. Page-type structures
 
-Home is a page, not a hub. It should answer, in order: who you are for, what you do, that you have a point of view, that you can prove it.
+Each template is an ordered list of modules. Shapes stay consistent: offer cards for services, image cards for cases, document cards for reports, person cards for people, logo rows for clients and awards, quote blocks for testimonials, 16:9 for film, four-cell for CIVD, metric boxes for numbers.
 
-1. **Hero** with the positioning line from the deck, plus a showreel placeholder (still or visual at launch; film later).
-2. **Trusted partners**, high: client logos, not buried.
-3. **What we do**: the three pillars, the connecting line, a link through to Growth Architecture.
-4. **Our thinking**: one featured report and one article, then “All thinking”.
-5. **Our work**, with a quote sitting with the cases.
-6. **Awards**, including FT, lower on the page, not in the hero.
-7. **Growth problems we know best**: the five theme names as plain links.
-8. **Contact**.
+### Home (`/`)
 
-Thinking is not a dump at the bottom. After the offer and before cases is the point: you have a view, then you can prove delivery. It is still a teaser. The library lives on Our thinking. We are not replicating a reports grid on Home.
+1. Hero: positioning H1, strapline, primary Contact, secondary What we do, showreel placeholder.
+2. Trusted partners: logo row.
+3. What we do: three equal-weight triangle blocks plus the triangle line and a link to Our Growth Architecture.
+4. Our thinking: featured report + article, All thinking. After the triangle, not a strip at the foot.
+5. Our work: three case cards, quote, All work.
+6. Awards: logo row (FT sits here, not in the hero).
+7. Growth problems we know best: five theme names as text links.
+8. Closing CTA: Contact + See our work.
+
+### Services hub (`/services/`)
+
+1. Hero: eyebrow What we do, H1 Our Growth Architecture.
+2. Three ways we work with you: equal-weight triangle.
+3. Where are you starting from?: seven situation lines.
+4. Growth Strategy pillar: sentence, compact CIVD, two service cards, one case line.
+5. Activation Services pillar: sentence, six service cards, one case line.
+6. CEO Advisory pillar: sentence, advisor cards, Our advisors.
+7. Link through to Expertise.
+8. Closing CTA.
+
+### Service page (canonical services)
+
+1. Hero: H1 (Manifesto label), optional also-known-as, hero line, who it is for, numbers where the deck gives a figure, primary Contact, secondary See our work.
+2. Why this, now: three situations plus short copy.
+3. What we do / named modules (CIVD, AgentLab, Find-Redesign-Test-Scale, target operating model, interim growth team, and so on).
+4. Proof: case cards.
+5. Related expertise (tags, max three).
+6. Related services (cards).
+7. Related thinking (report + article).
+8. Closing CTA.
+
+Activation group page adds "Which of the six do you need?" and proof, then related thinking. CEO Advisory adds Side-by-Side, Our advisors, how the retainer works, then related thinking. Primary CTA on CEO Advisory is Arrange a conversation.
+
+### Expertise hub and theme
+
+Hub: five theme cards, latest thinking, closing CTA.  
+Theme: Our view, Where we help (service list), Proof, Insights, related themes, closing CTA.
+
+### Work listing and case
+
+Listing: featured case + quote; filters (Service open, Expertise and Sector behind More filters); results; pagination; empty state; related thinking; closing CTA.  
+Case: result hero with service tags; at a glance metrics; challenge; what we did; result + quote + optional film; related expertise; related thinking; closing CTA.
+
+### Thinking listing and article
+
+Listing: Reports; Articles with type filters plus More filters; pagination; empty state; Events and news + The Nutshell; related services / expertise / work; closing CTA.  
+Article or report: hero with theme tags; body; optional email gate on reports; how we help (service + theme); closing CTA.
+
+### About, people, approach
+
+About: story, what makes us different, leadership, how we work teaser, clients, values and careers teaser, CTA.  
+Our people: role groups, Side-by-Side advisors, optional associates.  
+Our approach: principles, engagement shapes, the five named frameworks (each linked to its home), working with AI, CTA. Growth partner language and partner films live here, not in the mega-nav.
+
+### Careers and Contact
+
+Careers: Life at Manifesto, DEI, benefits, open roles, speculative route to Work for us, closing CTA.  
+Contact: Work with us form, Work for us form, direct contact, The Nutshell. Thank-you: three onward links.
+
+### Page modules catalogue (`/catalogue/`)
+
+Wireframe only. Live blocks in order, no working-notes sidebar. Title and nav labels say Page modules, not chips.
+
+**Evidence**
+
+- Source B slide 5: CIVD (Customer, Innovation, Value, Delivery) still on the Growth Strategy slide, marked "to be updated" as copy, not retirement. MURAL: keep CIVD, different visuals; it is the strategy frame, not Side-by-Side. Placement: on-page module, not nav (`docs/strand-gap-check.md`).
+- Source B slides 7 to 12: each Activation service has a named structure (methods, Find/Redesign/Test/Scale, AgentLab groups, Operating Architecture, interim then embed, AI skills). Those are page modules.
+- Competitor review: Prophet and Yonder give two ways in (problem and capability); Elsewhen and Baringa put proof under the offer; Lippincott and Ellipsis give named systems a visible home. That is why the hub has situations plus the triangle, and why proof sits high on service pages.
+- MURAL: Trusted partners high; FT not at the top; no homepage reports grid; quotes with work; reports at the top of Our thinking; no more PDFs.
 
 ---
 
-## Modules worth calling out
+## 6. Evidence blocks
 
-**Showreel and trusted partners.** Social proof sits high. Awards do not. FT is real; it is just not the first thing.
+This section indexes the sources behind the recommendations. Individual **Evidence** blocks also sit under sections 1 to 5 and 7. Nothing here is an invented quote or volume.
 
-**CIVD.** Customer, Innovation, Value and Delivery is still in the deck as the Growth Strategy frame. It is an on-page module: a four-part diagram on Growth Strategy, and a compact version on the Services hub under that pillar. It is named once, with a link, on Our approach. It is not a nav item, not a Home block, and not a page of its own. If the frame is later replaced, those modules change and no URL has to.
+### Andy's Growth Architecture triangle / deck (Source B)
 
-**Named frameworks** each have one home: Growth Architecture on the services hub, CIVD on Growth Strategy, Operating Architecture on Operating Model Design, AgentLab on AI Agents for Marketing, Side-by-Side on CEO Advisory. Our approach lists them once. Method is never sold as a product. Growth partner language and the partner films live there too, not as a sold service in the menu.
+- Working draft "Manifesto's Growth Architecture Services", confirmed current against the Drive file on 16 September 2026 (`docs/andy-deck-coverage.md`).
+- Slide 1: the whole offer is named Growth Architecture Services.
+- Slide 2: triangle of CEO Advisory, Growth Strategy, Activation Services; positioning line "Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth"; "Strategy that works. Execution that delivers."
+- Slide 3: services on the triangle, including six Activation services.
+- Slide 4: Side-by-Side as the named CEO Advisory product (retainer, virtual or in person). SxS is not used on the site.
+- Slide 5: CIVD frame still present.
+- AgentLab: named catalogue of marketing and data agents on the AI Agents for Marketing page, not a nav item.
+
+### Otter notes (Source C)
+
+- Shed x Manifesto check-in, 7 September 2026. Recorded in `docs/00-sources.md` and cited through `docs/06-decisions-log.md`.
+- Weighting: Growth Strategy first, Activation second, CEO Advisory third.
+- Language: the deck is not website copy; plain searched language wins in the nav.
+- Experience Engineering needs to be understandable as websites / CX. Growth Office terminology is hard.
+- Sectors are proof, not a second services taxonomy.
+
+### MURAL keep / drop (`docs/mural-gap-check.md`)
+
+- Keep: Trusted partners high; case studies pulled up; reports at the top of thinking; The Nutshell; CIVD with new visuals; Life at Manifesto on Careers; Work with us / Work for us split.
+- Drop: homepage reports grid; FT in the hero; PDFs as the reading format; Our clients as a top-level item; Our blog as a separate nav item; old seven-item sitemap as peers.
+
+### Competitor nav patterns (`docs/competitor-nav-review.md`)
+
+Read from live sites on 15 September 2026.
+
+- Prophet: What We Do mega-nav, about 25 links; Growth Strategy as a service name; two ways into services.
+- Elixirr: large Services panel (about 60 links); "Target Operating Model"; "Execution Edge" as the nearest peer to Growth Office.
+- frog: "Customer Research & Insights".
+- Elsewhen: proof under digital / CX offers; website and product build.
+- Lippincott / Ellipsis: named frameworks on a hub, not in the primary nav.
+- Yonder, frog, Lippincott: some peers have no mega-nav at all. Manifesto's triangle panel is already sparse relative to Prophet and Elixirr.
+
+### UK keyword findings (`docs/keyword-findings.md`)
+
+DataForSEO Google Ads Search Volume plus Labs Keyword Suggestions. United Kingdom, 16 September 2026. Average monthly volumes.
+
+| Phrase | UK vol (approx.) | Used as |
+|---|---|---|
+| growth strategy | ~480 | Growth Strategy primary; Overview subtitle "Where to grow and how to win" |
+| value proposition design | ~140 | Proposition Innovation subtitle |
+| customer research methods / companies | ~720 | Customer Research subtitle (with journey mapping ~2,900) |
+| experience engineering | ~90 | Keep label; subtitle "Customer experience and websites" |
+| ai marketing agents | ~390 | AI Agents subtitle (not bare "ai agents" ~9,900) |
+| target operating model | ~1,600 | Operating Model Design subtitle |
+| interim cmo / interim growth team | ~110 to 140 | Growth Office subtitle (growth office itself ~10) |
+| ai enablement | ~170 | AI Enablement subtitle |
+| ceo advisory | ~10 | Keep label; relationship page, not volume-led |
+
+Exact product phrases are often thin. That is normal for senior B2B consultancy. Adjacent demand informs subtitles and H2s. It does not rename the triangle.
 
 ---
 
-## Careers and Contact
+## 7. Naming and search language decisions
 
-Careers is in the header so it is not nested under About and then asked to do employer and client jobs at once.
+| Visible label | Why it stays | Where search language lives |
+|---|---|---|
+| What we do | Prospect language; peer pattern | Hub H1 is Our Growth Architecture |
+| Our thinking | MURAL / current-site name | URL `/insights/`; H2s Reports, Articles, Events and news |
+| Our people / Our approach | MURAL labels | URLs stay `/about/team/` and `/about/how-we-work/` |
+| Proposition Innovation | Manifesto offer name | Subtitle and H2: value proposition design |
+| Experience Engineering | Manifesto offer name | Subtitle: customer experience and websites |
+| Growth Office | Manifesto offer name | Subtitle: interim growth team |
+| AI Agents for Marketing | Marketing-qualified, not generic AI | Subtitle: AI marketing agents, guided by experts. AgentLab on the page. |
+| Operating Model Design | Searched term from v3 wording pass | Subtitle: target operating model |
+| Customer Research and Insight | Searched term from v3 wording pass | Subtitle: research methods and journey mapping |
+| CEO Advisory | Triangle pillar name | Subtitles: one-to-one advisory retainer; experienced growth leaders. Coaching is adjacent, not the offer. |
+| Side-by-Side | Named product | On-page and as a strand. Never SxS. |
 
-**Our people** is the client-facing listing, including Side-by-Side advisors. **Careers** is Life at Manifesto, DEI, benefits and open roles, plus a route for people who want to join even if a listed role is not open. **Contact** splits **Work with us** and **Work for us**. The Nutshell sits in the footer and on Contact.
+Do not retitle Growth Strategy to Brand Strategy (~1,600) even though volume is higher. Brand / GTM language may appear in H2s where the work is truly that.
 
-Life at Manifesto and Meet the team stay on separate pages, with a cross-link.
+**Evidence**
 
----
-
-## The wireframe
-
-There is a full-site clickable wireframe so you can walk the structure rather than imagine it.
-
-In the repo: open `mocks/index.html` in a browser. No build step, no login. Click through as you would on the live site. Greyscale placeholders, not a visual design. The left column is the page. The right column is working notes for us (weight, keywords, headings). Those notes are not a proposal for the live site.
-
-Useful starting clicks: Home, What we do (hover the mega-nav, then land on All services), Growth Strategy (CIVD), CEO Advisory (Side-by-Side and advisors), Our thinking, Careers, Contact.
-
----
-
-## Language and search
-
-Nav labels are Manifesto labels, in plain English: what a prospect would type, not coined names where those names fight search. Customer Research and Insight, AI Agents for Marketing and Operating Model Design sit in the menu; Customer Intelligence, Data Agents and Operating Architecture are named on the page. Side-by-Side is a strand and a page term; SxS is not used on the site.
-
-UK search demand has informed quiet lines, H1 support and H2s (CX and websites under Experience Engineering; interim growth team under Growth Office). It has not been allowed to rewrite the top nav.
+- `docs/nav-wording-decisions.md`: v3 renamed three deck terms to searched terms (Customer Research and Insight, AI Agents for Marketing, Operating Model Design) and kept coined names with supporting copy.
+- Keyword findings: "Do not rename the triangle for volume."
+- Source C: Andy agreed the deck is not website copy.
 
 ---
 
-## Open questions
+## 8. Open decisions still needing client input
 
-Three that still need a view from you. Everything else can be decided in copy and CMS.
+These are decisions, not a covering letter. The IA can launch without them; the wireframe already has a default.
 
-1. **C and N members.** Placeholder on About and Our people. Named network, membership body, or internal group? We will not invent a sold service around it.
-2. **Growth Collective.** On the current site. Footer, a strand under Our thinking, or drop? Out of the header on purpose.
-3. **Events.** Recaps sit as a section on Our thinking for now. A separate page only if there is enough content to sustain it.
+### C&N
 
-Happy to walk the wireframe with you. The structure is stable enough to brief content, design and build against; the open items above do not block that.
+The AI Enablement examples in the deck say "including c&n". The phrase is not expanded on the slide. **Decision:** confirm what C&N refers to before that name is used in client-facing lists (About, AI Enablement, or a membership block). Default in the wireframe: a labelled stub on About, no invented expansion.
+
+### Growth Collective
+
+Not a current sitemap URL. If it is a live offer or community, it needs a home (likely under About or Our thinking), a label, and a weight. If it is internal, it stays off the public IA. **Decision:** is Growth Collective a public destination, a footer line, or off-site?
+
+### Events
+
+Our thinking already has an Events and news section and a dropdown link. A separate `/events/` page is only justified if there is enough recap and forthcoming content to sustain it. **Decision:** section on the hub (current default) or a first-class listing? The CEO Advisory event noted for October can launch from the hub or the CEO page without a new URL.
+
+Related confirmations that affect copy more than structure: whether interim CMO language is accurate for Growth Office; whether Growth Strategy should also target brand strategy consulting; a second keyword pass on theme titles (Loyalty, Membership, Subscriptions, Pricing, Customer Value); advisor profiles ready at launch.
+
+---
+
+## 9. How to open the clickable wireframe
+
+1. Open `mocks/index.html` in a browser. No build step or server is required. From the `mocks/` folder, `python3 -m http.server` is optional.
+2. Home loads with the menu closed. Hover **What we do** to open the mega-nav. Check that all three pillar headings share the same contrast, and that every strand has a subtitle.
+3. Use **All pages** (heading map) or `mocks/sitemap.html` to reach every URL. **Page modules** (`mocks/catalogue/index.html`) lists live blocks only. It does not show working notes.
+4. Footer links (The Nutshell, sectors, legal, search) all resolve. Cookie bar sits above the footer. Contact shows both forms. Our work and Our thinking show filters, pagination and an empty state.
+5. Spec documents behind the mock: `docs/01-primary-navigation.md`, `docs/02-sitemap.md`, `docs/03-page-layouts.md`, `docs/keyword-findings.md`, `docs/06-decisions-log.md`.

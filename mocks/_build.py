@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate the clickable full-site IA wireframe and docs/heading-map.md.
 
-Single source of heading maps, chips and page shells so the HTML and the
+Single source of heading maps, page notes and page shells so the HTML and the
 markdown map cannot drift. Run from repo root: python3 mocks/_build.py
 """
 from __future__ import annotations
@@ -55,7 +55,7 @@ def chips_html(page: dict) -> str:
     else:
         chips.append('<span class="chip muted">Primary: no keyword target</span>')
     if page.get("quiet"):
-        chips.append(f'<span class="chip quiet">Quiet line: {page["quiet"]}</span>')
+        chips.append(f'<span class="chip quiet">Strand subtitle: {page["quiet"]}</span>')
     for label, items in (
         ("Themes", page.get("themes") or []),
         ("Sectors", page.get("sectors") or []),
@@ -77,7 +77,7 @@ def chips_html(page: dict) -> str:
         )
     return (
         '<div class="ia-chips">'
-        '<span class="label">Notes</span>'
+        '<span class="label">Working notes</span>'
         f'<div class="chips">{"".join(chips)}</div>'
         f"{mural_row}"
         "</div>"
@@ -101,7 +101,7 @@ def heading_map_html(page: dict) -> str:
     return f"""
 <div class="heading-map">
   <h2>Heading map</h2>
-  <p class="map-note"><a href="{sitemap}">All pages</a> · <a href="{catalogue}">Chips and modules</a></p>
+  <p class="map-note"><a href="{sitemap}">All pages</a> · <a href="{catalogue}">Page modules</a></p>
   <p class="k"><strong>URL</strong><code>{page["url"]}</code></p>
   <p class="k"><strong>H1 (one)</strong>{page["h1"]}</p>
   <p class="k"><strong>Primary keyword</strong>{primary}</p>
@@ -160,35 +160,36 @@ def header_html(from_url: str, section: str) -> str:
                 <h3><a class="pillar-hub" href="{h("/services/growth-strategy/")}">Growth Strategy <span class="hub-chevron" aria-hidden="true">&#8594;</span></a></h3>
                 <p class="line">Where and how you grow</p>
                 <ul>
-                  <li><a class="strand-overview" href="{h("/services/growth-strategy/")}">Overview</a></li>
-                  <li><a href="{h("/services/proposition-innovation/")}">Proposition Innovation</a></li>
+                  <li><a class="strand-overview" href="{h("/services/growth-strategy/")}">Overview<small>Where to grow and how to win</small></a></li>
+                  <li><a href="{h("/services/proposition-innovation/")}">Proposition Innovation<small>Value proposition design</small></a></li>
                 </ul>
               </div>
               <div class="pillar">
                 <h3><a class="pillar-hub" href="{h("/services/activation/")}">Activation Services <span class="hub-chevron" aria-hidden="true">&#8594;</span></a></h3>
                 <p class="line">Turning strategy into results</p>
                 <ul>
-                  <li><a class="strand-overview" href="{h("/services/activation/")}">Overview</a></li>
-                  <li><a href="{h("/services/customer-research/")}">Customer Research and Insight</a></li>
+                  <li><a class="strand-overview" href="{h("/services/activation/")}">Overview<small>Hands-on delivery, six services</small></a></li>
+                  <li><a href="{h("/services/customer-research/")}">Customer Research and Insight<small>Research methods and journey mapping</small></a></li>
                   <li><a href="{h("/services/experience-engineering/")}">Experience Engineering<small>Customer experience and websites</small></a></li>
-                  <li><a href="{h("/services/ai-agents-for-marketing/")}">AI Agents for Marketing</a></li>
-                  <li><a href="{h("/services/operating-model-design/")}">Operating Model Design</a></li>
+                  <li><a href="{h("/services/ai-agents-for-marketing/")}">AI Agents for Marketing<small>AI marketing agents, guided by experts</small></a></li>
+                  <li><a href="{h("/services/operating-model-design/")}">Operating Model Design<small>Target operating model</small></a></li>
                   <li><a href="{h("/services/growth-office/")}">Growth Office<small>Interim growth team</small></a></li>
-                  <li><a href="{h("/services/ai-enablement/")}">AI Enablement</a></li>
+                  <li><a href="{h("/services/ai-enablement/")}">AI Enablement<small>AI skills and adoption</small></a></li>
                 </ul>
               </div>
-              <div class="pillar quiet">
+              <div class="pillar">
                 <h3><a class="pillar-hub" href="{h("/services/ceo-advisory/")}">CEO Advisory <span class="hub-chevron" aria-hidden="true">&#8594;</span></a></h3>
                 <p class="line">One-to-one support for leaders</p>
                 <ul>
-                  <li><a href="{h("/services/ceo-advisory/#side-by-side")}">Side-by-Side</a></li>
-                  <li><a href="{h("/services/ceo-advisory/#advisors")}">Our advisors</a></li>
+                  <li><a href="{h("/services/ceo-advisory/#side-by-side")}">Side-by-Side<small>One-to-one advisory retainer</small></a></li>
+                  <li><a href="{h("/services/ceo-advisory/#advisors")}">Our advisors<small>Experienced growth leaders</small></a></li>
                 </ul>
               </div>
             </div>
             <div class="mega-row">
               <a href="{h("/services/")}">All services</a>
               <a href="{h("/expertise/")}">Expertise</a>
+              <a href="{h("/work/")}">Our work</a>
             </div>
           </div>
         </div>
@@ -199,6 +200,10 @@ def header_html(from_url: str, section: str) -> str:
 def footer_html(from_url: str) -> str:
     h = lambda u: rel_href(from_url, u)
     return f"""
+      <div class="cookie-bar">
+        <span>We use cookies to run this site. <a href="{h("/cookie-policy/")}">Cookie policy</a></span>
+        <a class="btn" href="{h("/cookie-policy/")}">Accept</a>
+      </div>
       <footer class="site-footer">
         <div class="footer-cols">
           <div>
@@ -252,6 +257,11 @@ def footer_html(from_url: str) -> str:
         </div>
         <div class="footer-bottom">
           <span>Company registration line</span>
+          <form class="footer-search" action="{h("/search/")}" method="get">
+            <label for="footer-q">Search</label>
+            <span class="box" aria-hidden="true"></span>
+            <a href="{h("/search/")}">Go</a>
+          </form>
           <a href="{h("/privacy-policy/")}">Privacy policy</a>
           <a href="{h("/cookie-policy/")}">Cookie policy</a>
           <a href="{h("/terms/")}">Terms</a>
@@ -268,6 +278,15 @@ def wrap(page: dict, body: str) -> str:
     title = page["title"]
     css = asset(url, "wireframe.css")
     js = asset(url, "nav.js")
+    solo = page.get("kind") == "catalogue" or page.get("no_sidebar")
+    layout_cls = "layout layout-solo" if solo else "layout"
+    sidebar = ""
+    if not solo:
+        sidebar = f"""
+  <aside class="sidebar" aria-label="Working notes">
+    {chips_html(page)}
+    {heading_map_html(page)}
+  </aside>"""
     return f"""<!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -278,7 +297,7 @@ def wrap(page: dict, body: str) -> str:
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="layout">
+<div class="{layout_cls}">
   <div class="browser" id="browser" data-mega-open="false">
     <div class="scrim"></div>
     {header_html(url, section)}
@@ -288,10 +307,7 @@ def wrap(page: dict, body: str) -> str:
     </main>
     {footer_html(url)}
   </div>
-  <aside class="sidebar" aria-label="Page notes">
-    {chips_html(page)}
-    {heading_map_html(page)}
-  </aside>
+  {sidebar}
 </div>
 <script src="{js}"></script>
 </body>
@@ -340,11 +356,27 @@ def article_body():
 """
 
 
-def closing(h, line="Tell us about your growth challenge"):
+def closing(h, line="Tell us about your growth challenge", cta="Contact", dest="/contact/", secondary_label="See our work", secondary_url="/work/"):
     return f"""
         <section class="block closing">
           <p>{line}</p>
-          <a class="btn" href="{h("/contact/")}">Contact</a>
+          <div class="cta">
+            <a class="btn" href="{h(dest)}">{cta}</a>
+            <a class="text" href="{h(secondary_url)}">{secondary_label}</a>
+          </div>
+        </section>
+"""
+
+
+def related_thinking(h):
+    return f"""
+        <section class="block">
+          <h2 class="sec">Related thinking</h2>
+          <ul class="list">
+            <li><a href="{h("/insights/pricing-paradox/")}">The Pricing Paradox</a><span>Report</span></li>
+            <li><a href="{h("/insights/loyalty-without-the-discount/")}">Loyalty without the discount</a><span>Article</span></li>
+          </ul>
+          <a class="more" href="{h("/insights/")}">All thinking</a>
         </section>
 """
 
@@ -377,7 +409,7 @@ def thinking_feature(h):
 
 
 # ---------------------------------------------------------------------------
-# Page registry: heading maps + chips. Bodies are built in body_for().
+# Page registry: heading maps + page notes. Bodies are built in body_for().
 # ---------------------------------------------------------------------------
 
 T = lambda n, u: (n, u)
@@ -427,7 +459,7 @@ PAGES: list[dict] = [
         weight="Canonical",
         primary="growth strategy (~480)",
         alts=["growth strategy consultancy / consultant (~70)", "brand strategy consulting (~390) where true to the offer", "go to market strategy (~880) where true to the offer"],
-        quiet=None,
+        quiet="Where to grow and how to win",
         themes=[T("Customer Value", "/expertise/customer-value/"), T("Loyalty", "/expertise/loyalty/"), T("Pricing", "/expertise/pricing/")],
         sectors=[T("Financial services", "/sectors/financial-services/"), T("Media", "/sectors/media/"), T("Consumer", "/sectors/consumer/")],
         services=[T("Proposition Innovation", "/services/proposition-innovation/"), T("Activation Services", "/services/activation/"), T("CEO Advisory", "/services/ceo-advisory/")],
@@ -463,7 +495,7 @@ PAGES: list[dict] = [
         h1="Proposition Innovation",
         h2s=["Why this, now", "Value proposition design", "Loyalty propositions", "Membership propositions", "Subscription propositions", "Direct-to-consumer propositions", "Proof", "How it works"],
         h3s=[],
-        intent="Keep Manifesto label in the H1. Put value / proposition design in the quiet line, hero and H2s so search can see it. Each proposition type hands off to its theme.",
+        intent="Keep Manifesto label in the H1. Put value / proposition design in the strand subtitle, hero and H2s so search can see it. Each proposition type hands off to its theme.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Proposition Innovation", None)],
         kind="service",
         hero="New offers and business models: loyalty, membership, subscription, direct-to-consumer",
@@ -484,7 +516,7 @@ PAGES: list[dict] = [
         weight="Supporting",
         primary="strategy to execution (group page; no single volume target)",
         alts=["customer journey mapping (~2,900) in the Experience Engineering line", "operating model (~880) in the Operating Model Design line", "interim CMO / interim growth team (~110 to 140) in the Growth Office line"],
-        quiet=None,
+        quiet="Hands-on delivery, six services",
         themes=[],
         sectors=[],
         services=[
@@ -511,7 +543,7 @@ PAGES: list[dict] = [
         weight="Canonical",
         primary="customer research methods / companies (~720)",
         alts=["customer journey mapping (~2,900)", "customer research techniques (~880)", "customer research agency (~20)"],
-        quiet=None,
+        quiet="Research methods and journey mapping",
         themes=[T("Customer Value", "/expertise/customer-value/"), T("Loyalty", "/expertise/loyalty/")],
         sectors=[T("Financial services", "/sectors/financial-services/"), T("Media", "/sectors/media/"), T("Consumer", "/sectors/consumer/")],
         services=[T("Experience Engineering", "/services/experience-engineering/"), T("Proposition Innovation", "/services/proposition-innovation/"), T("AI Agents for Marketing", "/services/ai-agents-for-marketing/")],
@@ -547,7 +579,7 @@ PAGES: list[dict] = [
         h1="Experience Engineering",
         h2s=["Why this, now", "Find", "Redesign", "Test", "Scale", "Customer experience (CX) design", "Website and digital product", "User research and testing", "Proof"],
         h3s=["Customer and value analytics (under research and testing)"],
-        intent="Keep the Manifesto label. Quiet line and H2s do the CX, website and journey-mapping job (Dayinsure / Key Group pattern). Find / Redesign / Test / Scale is How it works from the deck.",
+        intent="Keep the Manifesto label. Strand subtitle and H2s do the CX, website and journey-mapping job (Dayinsure / Key Group pattern). Find / Redesign / Test / Scale is How it works from the deck.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", "/services/activation/"), ("Experience Engineering", None)],
         kind="service",
         hero="Customer experience (CX), website and digital design, build and testing",
@@ -568,7 +600,7 @@ PAGES: list[dict] = [
         weight="Canonical",
         primary="ai marketing agents (~390)",
         alts=["ai agents for marketing (~70)", "marketing automation consultancy (~90)", "do not use bare ai agents (~9,900) as the sole target"],
-        quiet=None,
+        quiet="AI marketing agents, guided by experts",
         themes=[T("Customer Value", "/expertise/customer-value/"), T("Loyalty", "/expertise/loyalty/")],
         sectors=[T("Financial services", "/sectors/financial-services/"), T("Media", "/sectors/media/"), T("Consumer", "/sectors/consumer/")],
         services=[T("AI Enablement", "/services/ai-enablement/"), T("Operating Model Design", "/services/operating-model-design/"), T("Customer Research and Insight", "/services/customer-research/")],
@@ -596,7 +628,7 @@ PAGES: list[dict] = [
         weight="Canonical",
         primary="operating model (~880)",
         alts=["target operating model (~1,600)", "operating model design (~140)", "operating model consultancy (~10)"],
-        quiet=None,
+        quiet="Target operating model",
         themes=[T("Customer Value", "/expertise/customer-value/")],
         sectors=[T("Financial services", "/sectors/financial-services/"), T("Media", "/sectors/media/")],
         services=[T("Growth Office", "/services/growth-office/"), T("AI Enablement", "/services/ai-enablement/"), T("AI Agents for Marketing", "/services/ai-agents-for-marketing/")],
@@ -631,7 +663,7 @@ PAGES: list[dict] = [
         h1="Growth Office",
         h2s=["Why this, now", "Interim growth team", "Then embed", "Culture", "Capability", "Value", "Proof", "How it works"],
         h3s=["Interim CMO and senior cover (where the engagement needs it)"],
-        intent="Keep Growth Office as the label. Quiet line and body must say interim / embedded growth team, and interim CMO where accurate. Do not SEO-target 'growth office' as the primary phrase.",
+        intent="Keep Growth Office as the label. Strand subtitle and body must say interim / embedded growth team, and interim CMO where accurate. Do not SEO-target 'growth office' as the primary phrase.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", "/services/activation/"), ("Growth Office", None)],
         kind="service",
         hero="Interim growth team and programme office that gets strategy delivered",
@@ -652,7 +684,7 @@ PAGES: list[dict] = [
         weight="Canonical",
         primary="ai enablement (~170)",
         alts=["ai transformation consultancy (~10)", "ai adoption / skills (supporting copy; no volume in this pull for 'ai adoption consultancy')", "where AI pays off (value cases, plain language)"],
-        quiet=None,
+        quiet="AI skills and adoption",
         themes=[T("Customer Value", "/expertise/customer-value/")],
         sectors=[T("Consumer", "/sectors/consumer/"), T("Media", "/sectors/media/")],
         services=[T("AI Agents for Marketing", "/services/ai-agents-for-marketing/"), T("Operating Model Design", "/services/operating-model-design/")],
@@ -680,7 +712,7 @@ PAGES: list[dict] = [
         weight="Supporting",
         primary="ceo advisory (~10)  /  relationship page, not volume-led",
         alts=["board advisor (~90), adjacent", "ceo coach (~320), adjacent only, not identical to Side-by-Side", "executive advisor (~30)"],
-        quiet=None,
+        quiet="One-to-one advisory retainer",
         themes=[],
         sectors=[],
         services=[T("Growth Strategy", "/services/growth-strategy/"), T("Growth Office", "/services/growth-office/")],
@@ -1226,18 +1258,18 @@ PAGES.append(dict(
 
 PAGES.append(dict(
     url="/catalogue/",
-    title="Chips and modules",
+    title="Page modules",
     section="home",
     weight="Utility",
     primary="none (wireframe index, not a live URL)",
-    alts=["Not a client sitemap item. Linked from All pages and the sidebar."],
-    quiet="Quiet line example",
-    themes=[T("Loyalty", "/expertise/loyalty/")],
+    alts=["Not a client sitemap item. Linked from All pages."],
+    quiet=None,
+    themes=[],
     sectors=[],
-    services=[T("Growth Strategy", "/services/growth-strategy/")],
-    h1="Chips and modules",
+    services=[],
+    h1="Page modules",
     h2s=[
-        "Sidebar chips",
+        "On-page tags",
         "Service and offer cards",
         "Logo placeholders",
         "Case cards",
@@ -1246,16 +1278,19 @@ PAGES.append(dict(
         "Stats",
         "Report cards",
         "Article blocks",
-        "MURAL modules row",
         "CIVD four-cell",
         "Triangle blocks",
         "Mega-nav hub and strands",
+        "Empty state",
+        "Pagination",
+        "Forms",
+        "Primary and secondary CTA",
+        "Cookie bar",
     ],
     h3s=[],
-    intent="Wireframe design-system index. One example of each module shape used in the mock. Not a proposed live client URL.",
-    crumbs=[("Home", "/"), ("Chips and modules", None)],
+    intent="Wireframe index of live page modules and blocks. Not a proposed live client URL. No working notes sidebar.",
+    crumbs=[("Home", "/"), ("Page modules", None)],
     kind="catalogue",
-    mural=["Example MURAL module chip"],
 ))
 
 
@@ -1284,7 +1319,7 @@ def body_for(page: dict) -> str:
           <div class="tri">
             <a href="{h("/services/growth-strategy/")}"><strong>Growth Strategy</strong><span>Where and how you grow</span></a>
             <a href="{h("/services/activation/")}"><strong>Activation Services</strong><span>Turning strategy into results</span></a>
-            <a class="quiet" href="{h("/services/ceo-advisory/")}"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
+            <a href="{h("/services/ceo-advisory/")}"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
           </div>
           <p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside. <a href="{h("/services/")}">Our Growth Architecture</a></p>
         </section>
@@ -1330,7 +1365,7 @@ def body_for(page: dict) -> str:
           <div class="tri">
             <a href="#hub-gs"><strong>Growth Strategy</strong><span>Where and how you grow</span></a>
             <a href="#hub-act"><strong>Activation Services</strong><span>Turning strategy into results</span></a>
-            <a class="quiet" href="#hub-ceo"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
+            <a href="#hub-ceo"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
           </div>
           <p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside.</p>
         </section>
@@ -1372,7 +1407,7 @@ def body_for(page: dict) -> str:
           </div>
           <p class="case-line">Dayinsure, one-line result. <a href="{h("/work/dayinsure/")}">Read the case study</a></p>
         </section>
-        <section class="block pillar-sec quiet" id="hub-ceo">
+        <section class="block pillar-sec" id="hub-ceo">
           <h2 class="plain"><a href="{h("/services/ceo-advisory/")}">CEO Advisory</a></h2>
           <p class="line">One-to-one support for leaders</p>
           <p class="sentence">Experienced growth leaders alongside you, on retainer, to help you make good decisions.</p>
@@ -1406,7 +1441,7 @@ def body_for(page: dict) -> str:
           <h1>Activation Services</h1>
           <p>{page["hero"]}</p>
           <p class="who">{page["who"]}</p>
-          <div class="cta"><a class="btn" href="{h("/contact/")}">Contact</a></div>
+          <div class="cta"><a class="btn" href="{h("/contact/")}">Contact</a><a class="text" href="{h("/work/")}">See our work</a></div>
         </section>
         <section class="block">
           <h2 class="plain">The bridge from strategy to results</h2>
@@ -1420,6 +1455,15 @@ def body_for(page: dict) -> str:
           <h2 class="plain">The six Activation services</h2>
           <div class="cards">{cards}</div>
         </section>
+        <section class="block">
+          <h2 class="plain">Proof</h2>
+          <div class="cards two">
+            {card(h, "/work/dayinsure/", "Dayinsure", "One-line result", "ph")}
+            {card(h, "/work/key-group/", "Key Group", "One-line result", "ph")}
+          </div>
+          <a class="more" href="{h("/work/")}">All work</a>
+        </section>
+        {related_thinking(h)}
         {closing(h)}
 """
 
@@ -1459,7 +1503,7 @@ def body_for(page: dict) -> str:
           <p class="who">{page["who"]}</p>
           {nums}
           {pillar}
-          <div class="cta"><a class="btn" href="{h("/contact/")}">Contact</a></div>
+          <div class="cta"><a class="btn" href="{h("/contact/")}">Contact</a><a class="text" href="{h("/work/")}">See our work</a></div>
         </section>
         <section class="block">
           <h2 class="plain">Why this, now</h2>
@@ -1473,6 +1517,7 @@ def body_for(page: dict) -> str:
             {card(h, "/work/dayinsure/", "Dayinsure", "One-line result", "ph")}
             {card(h, "/work/key-group/", "Key Group", "One-line result", "ph")}
           </div>
+          <a class="more" href="{h("/work/")}">All work</a>
         </section>
         {extra}
         <section class="block">
@@ -1483,6 +1528,13 @@ def body_for(page: dict) -> str:
           <h2 class="sec">Related services</h2>
           <div class="cards two">{rel_svcs}</div>
         </section>
+        <section class="block">
+          <h2 class="sec">Related thinking</h2>
+          <ul class="list">
+            <li><a href="{h("/insights/pricing-paradox/")}">The Pricing Paradox</a><span>Report</span></li>
+            <li><a href="{h("/insights/loyalty-without-the-discount/")}">Loyalty without the discount</a><span>Article</span></li>
+          </ul>
+        </section>
         {closing(h)}
 """
 
@@ -1492,7 +1544,7 @@ def body_for(page: dict) -> str:
           <h1>CEO Advisory</h1>
           <p>{page["hero"]}</p>
           <p class="who">{page["who"]}</p>
-          <div class="cta"><a class="btn" href="{h("/contact/")}">Arrange a conversation</a></div>
+          <div class="cta"><a class="btn" href="{h("/contact/")}">Arrange a conversation</a><a class="text" href="{h("/work/")}">See our work</a></div>
         </section>
         <section class="block">
           <h2 class="plain">Why this, now</h2>
@@ -1521,6 +1573,7 @@ def body_for(page: dict) -> str:
           <h2 class="plain">How the retainer works</h2>
           <p class="prose">Disciplined yet flexible. Virtual or in person. Personality-led. The product name is Side-by-Side.</p>
         </section>
+        {related_thinking(h)}
         {closing(h, "Arrange a conversation")}
 """
 
@@ -1574,7 +1627,7 @@ def body_for(page: dict) -> str:
         <section class="block hero">
           <h1>{page["h1"]}</h1>
           <p>{page["view"]}</p>
-          <div class="cta"><a class="btn" href="{h("/contact/")}">Contact</a></div>
+          <div class="cta"><a class="btn" href="{h("/contact/")}">Contact</a><a class="text" href="{h("/work/")}">See our work</a></div>
         </section>
         <section class="block">
           <h2 class="plain">Our view</h2>
@@ -1628,6 +1681,7 @@ def body_for(page: dict) -> str:
           <h2 class="plain">Services most used here</h2>
           <ul class="list">{used}</ul>
         </section>
+        {related_thinking(h)}
         {closing(h)}
 """
 
@@ -1647,17 +1701,34 @@ def body_for(page: dict) -> str:
         <section class="block">
           <h2 class="plain">All case studies</h2>
           <div class="filters">
-            <span class="filter on">Growth Strategy</span>
-            <span class="filter on">Proposition Innovation</span>
-            <span class="filter on">Experience Engineering</span>
+            <span class="filter on">All services</span>
+            <span class="filter">Growth Strategy</span>
+            <span class="filter">Experience Engineering</span>
             <span class="filter">Customer Research and Insight</span>
-            <span class="filter more">More filters</span>
+          </div>
+          <div class="filters">
+            <span class="wf-label">More filters</span>
+            <span class="filter">Loyalty</span>
+            <span class="filter">Pricing</span>
+            <span class="filter">Financial services</span>
+            <span class="filter">Consumer</span>
           </div>
           <div class="cards">
             {card(h, "/work/dayinsure/", "Dayinsure", "Experience Engineering", "ph")}
             {card(h, "/work/key-group/", "Key Group", "Experience Engineering", "ph")}
           </div>
+          <div class="pagination" aria-label="Pagination">
+            <span class="on">1</span><span>2</span><span>3</span><span>Next</span>
+          </div>
         </section>
+        <section class="block">
+          <span class="wf-label">Empty state</span>
+          <div class="empty-state">
+            <p>No case studies match these filters.</p>
+            <a class="btn" href="{h("/work/")}">Clear filters</a>
+          </div>
+        </section>
+        {related_thinking(h)}
         {closing(h)}
 """
 
@@ -1697,6 +1768,7 @@ def body_for(page: dict) -> str:
           <h2 class="sec">Related expertise</h2>
           <div class="page-tags">{theme_tags}</div>
         </section>
+        {related_thinking(h)}
         {closing(h)}
 """
 
@@ -1716,24 +1788,50 @@ def body_for(page: dict) -> str:
         <section class="block" id="articles">
           <h2 class="plain">Articles</h2>
           <div class="filters">
-            <span class="filter on">Article</span>
+            <span class="filter on">All types</span>
+            <span class="filter">Article</span>
             <span class="filter">Report</span>
             <span class="filter">Event</span>
-            <span class="filter more">More filters</span>
+          </div>
+          <div class="filters">
+            <span class="wf-label">More filters</span>
+            <span class="filter">Loyalty</span>
+            <span class="filter">Pricing</span>
+            <span class="filter">Growth Strategy</span>
+            <span class="filter">Financial services</span>
           </div>
           <div class="cards two">
             {card(h, "/insights/loyalty-without-the-discount/", "Loyalty without the discount", "Article · Loyalty", "flat")}
           </div>
+          <div class="pagination" aria-label="Pagination">
+            <span class="on">1</span><span>2</span><span>Next</span>
+          </div>
+        </section>
+        <section class="block">
+          <span class="wf-label">Empty state</span>
+          <div class="empty-state">
+            <p>No thinking matches these filters.</p>
+            <a class="btn" href="{h("/insights/")}">Clear filters</a>
+          </div>
         </section>
         <section class="block" id="events">
           <h2 class="plain">Events and news</h2>
-          <p class="prose">Launch events and recaps.</p>
+          <p class="prose">Launch events and recaps. A separate events page only if there is enough recap content to sustain it.</p>
           <ul class="list">
             <li><a href="{h("/insights/pricing-paradox/")}">Pricing Paradox launch event</a><span>Event</span></li>
           </ul>
           <h3 class="plain">The Nutshell</h3>
           <p class="prose">Events, thought leadership and what has caught our attention. <a href="{h("/newsletter/")}">Sign up to The Nutshell</a></p>
         </section>
+        <section class="block">
+          <h2 class="sec">Related services</h2>
+          <div class="row-links">
+            <a href="{h("/services/")}">What we do</a>
+            <a href="{h("/expertise/")}">Expertise</a>
+            <a href="{h("/work/")}">Our work</a>
+          </div>
+        </section>
+        {closing(h)}
 """
 
     if kind == "insight":
@@ -1970,6 +2068,7 @@ def body_for(page: dict) -> str:
           <h2 class="plain">Not hiring for a listed role?</h2>
           <p class="prose">Reach out if you are interested in working here even if a position does not say it is open. <a href="{h("/contact/#work-for-us")}">Work for us</a>.</p>
         </section>
+        {closing(h, "Interested in joining the team?", "Work for us", "/contact/#work-for-us", "Our people", "/about/team/")}
 """
 
     if kind == "role":
@@ -2009,6 +2108,12 @@ def body_for(page: dict) -> str:
         <section class="block" id="work-for-us">
           <h2 class="plain">Work for us</h2>
           <p class="prose">Roles, Life at Manifesto, DEI and benefits live on <a href="{h("/careers/")}">Careers</a>. Speculative applications are welcome.</p>
+          <div class="form">
+            <div class="field"><label>Name</label><div class="box"></div></div>
+            <div class="field"><label>Email</label><div class="box"></div></div>
+            <div class="field"><label>Message</label><div class="box tall"></div></div>
+            <a class="btn" href="{h("/contact/thank-you/")}">Send</a>
+          </div>
         </section>
         <section class="block">
           <h2 class="plain">Direct contact</h2>
@@ -2035,11 +2140,61 @@ def body_for(page: dict) -> str:
 """
 
     if kind == "legal":
+        extra = ""
+        if page["url"] == "/search/":
+            extra = f"""
+        <section class="block">
+          <h2 class="plain">Search</h2>
+          <div class="form">
+            <div class="field"><label>Query</label><div class="box"></div></div>
+            <a class="btn" href="{h("/search/")}">Search</a>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Results</h2>
+          <ul class="list">
+            <li><a href="{h("/services/growth-strategy/")}">Growth Strategy</a><span>Service</span></li>
+            <li><a href="{h("/insights/pricing-paradox/")}">The Pricing Paradox</a><span>Report</span></li>
+          </ul>
+        </section>
+        <section class="block">
+          <span class="wf-label">Empty state</span>
+          <div class="empty-state">
+            <p>No results for this query.</p>
+            <a class="btn" href="{h("/services/")}">Browse services</a>
+          </div>
+        </section>
+"""
+        elif page["url"] == "/newsletter/":
+            extra = f"""
+        <section class="block">
+          <h2 class="plain">Sign up</h2>
+          <div class="form">
+            <div class="field"><label>Email</label><div class="box"></div></div>
+            <a class="btn" href="{h("/contact/thank-you/")}">Subscribe</a>
+          </div>
+        </section>
+"""
+        elif page["url"] in {"/privacy-policy/", "/cookie-policy/", "/terms/", "/accessibility/"}:
+            extra = f"""
+        <section class="block">
+          <h2 class="plain">Summary</h2>
+          <p class="prose">Stub copy for this utility page. Legal review before launch.</p>
+        </section>
+"""
+            if page["url"] == "/cookie-policy/":
+                extra += """
+        <section class="block">
+          <h2 class="plain">Cookie notice</h2>
+          <p class="prose">The site-wide cookie bar sits above the footer on every page. Accept links here.</p>
+        </section>
+"""
         return f"""
         <section class="block hero">
           <h1>{page["h1"]}</h1>
           <p class="body">{page.get("blurb") or ""}</p>
         </section>
+        {extra}
 """
 
     if kind == "notfound":
@@ -2053,36 +2208,20 @@ def body_for(page: dict) -> str:
             <a class="text" href="{h("/contact/")}">Contact</a>
           </div>
         </section>
+        <section class="block">
+          <h2 class="plain">Search</h2>
+          <div class="form">
+            <div class="field"><label>Query</label><div class="box"></div></div>
+            <a class="btn" href="{h("/search/")}">Search</a>
+          </div>
+        </section>
 """
 
     if kind == "catalogue":
         return f"""
         <section class="block hero">
-          <h1>Chips and modules</h1>
-          <p>Wireframe index of every chip, widget and module shape in this mock. Not a live client URL.</p>
-        </section>
-        <section class="block">
-          <h2 class="plain">Sidebar chips</h2>
-          <div class="catalogue-item">
-            <span class="cat-label">Canonical weight</span>
-            <div class="chips"><span class="chip weight">Canonical</span></div>
-          </div>
-          <div class="catalogue-item">
-            <span class="cat-label">Keyword</span>
-            <div class="chips"><span class="chip kw">Primary: growth strategy (~480)</span></div>
-          </div>
-          <div class="catalogue-item">
-            <span class="cat-label">Quiet line</span>
-            <div class="chips"><span class="chip quiet">Quiet line: Interim growth team</span></div>
-          </div>
-          <div class="catalogue-item">
-            <span class="cat-label">Related services or themes</span>
-            <div class="chips"><span class="chip">Services: <a href="{h("/services/growth-strategy/")}">Growth Strategy</a></span></div>
-          </div>
-          <div class="catalogue-item">
-            <span class="cat-label">MURAL modules row</span>
-            <div class="chips"><span class="chip muted">Keep CIVD, different visuals</span><span class="chip muted">Showreel visual at launch</span></div>
-          </div>
+          <h1>Page modules</h1>
+          <p>Index of the live page modules and blocks used in this wireframe. Working notes are not shown here.</p>
         </section>
         <section class="block">
           <h2 class="plain">On-page tags</h2>
@@ -2160,18 +2299,18 @@ def body_for(page: dict) -> str:
           <div class="tri">
             <a href="{h("/services/growth-strategy/")}"><strong>Growth Strategy</strong><span>Where and how you grow</span></a>
             <a href="{h("/services/activation/")}"><strong>Activation Services</strong><span>Turning strategy into results</span></a>
-            <a class="quiet" href="{h("/services/ceo-advisory/")}"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
+            <a href="{h("/services/ceo-advisory/")}"><strong>CEO Advisory</strong><span>One-to-one support for leaders</span></a>
           </div>
         </section>
         <section class="block">
           <h2 class="plain">Mega-nav hub and strands</h2>
-          <p class="prose">Example of one group: linked hub title with chevron, then Overview plus a strand. Full panel is under What we do.</p>
+          <p class="prose">Example of one group: linked hub title with chevron, strand label, and a keyword-led subtitle. Full panel is under What we do.</p>
           <div class="pillar" style="max-width:280px">
             <h3><a class="pillar-hub" href="{h("/services/growth-strategy/")}">Growth Strategy <span class="hub-chevron" aria-hidden="true">&#8594;</span></a></h3>
             <p class="line">Where and how you grow</p>
             <ul>
-              <li><a class="strand-overview" href="{h("/services/growth-strategy/")}">Overview</a></li>
-              <li><a href="{h("/services/proposition-innovation/")}">Proposition Innovation</a></li>
+              <li><a class="strand-overview" href="{h("/services/growth-strategy/")}">Overview<small>Where to grow and how to win</small></a></li>
+              <li><a href="{h("/services/proposition-innovation/")}">Proposition Innovation<small>Value proposition design</small></a></li>
             </ul>
           </div>
         </section>
@@ -2183,10 +2322,51 @@ def body_for(page: dict) -> str:
           </ul>
         </section>
         <section class="block">
-          <h2 class="plain">Form fields</h2>
-          <div class="form">
-            <div class="field"><label>Name</label><div class="box"></div></div>
-            <div class="field"><label>Message</label><div class="box tall"></div></div>
+          <h2 class="plain">Empty state</h2>
+          <div class="empty-state">
+            <p>No case studies match these filters.</p>
+            <a class="btn" href="{h("/work/")}">Clear filters</a>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Pagination</h2>
+          <div class="pagination" aria-label="Pagination">
+            <span class="on">1</span><span>2</span><span>3</span><span>Next</span>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Forms</h2>
+          <div class="catalogue-item">
+            <span class="cat-label">Work with us</span>
+            <div class="form">
+              <div class="field"><label>Name</label><div class="box"></div></div>
+              <div class="field"><label>Company</label><div class="box"></div></div>
+              <div class="field"><label>Message</label><div class="box tall"></div></div>
+              <a class="btn" href="{h("/contact/thank-you/")}">Send</a>
+            </div>
+          </div>
+          <div class="catalogue-item">
+            <span class="cat-label">Work for us</span>
+            <div class="form">
+              <div class="field"><label>Name</label><div class="box"></div></div>
+              <div class="field"><label>Email</label><div class="box"></div></div>
+              <div class="field"><label>Message</label><div class="box tall"></div></div>
+              <a class="btn" href="{h("/contact/thank-you/")}">Send</a>
+            </div>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Primary and secondary CTA</h2>
+          <div class="cta">
+            <a class="btn" href="{h("/contact/")}">Contact</a>
+            <a class="text" href="{h("/work/")}">See our work</a>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Cookie bar</h2>
+          <div class="cookie-bar">
+            <span>We use cookies to run this site. <a href="{h("/cookie-policy/")}">Cookie policy</a></span>
+            <a class="btn" href="{h("/cookie-policy/")}">Accept</a>
           </div>
         </section>
         {closing(h)}
@@ -2435,7 +2615,7 @@ def write_sitemap_html() -> None:
 </head>
 <body>
 <div class="wrap" style="max-width:900px;margin:24px auto 48px;padding:0 12px">
-  <p class="map-note" style="margin:0 0 16px"><a href="index.html">Home</a> · <a href="catalogue/index.html">Chips and modules</a></p>
+  <p class="map-note" style="margin:0 0 16px"><a href="index.html">Home</a> · <a href="catalogue/index.html">Page modules</a></p>
   <div class="sitemap">
     <ul>
       {"".join(lis)}
@@ -2454,7 +2634,7 @@ def write_heading_map_md() -> None:
         "",
         "Recommended H1 (one), H2s (ordered) and H3s for every URL in the clickable wireframe.",
         "Tied to UK DataForSEO volumes (Sep 2026) and Andy's Growth Architecture Services deck.",
-        "Header chrome is MURAL-informed (see `docs/mural-gap-check.md`). Mega-nav group titles are linked hubs with Overview or strand children. Buyer language sits in quiet lines, H1 support, H2/H3s and page chips.",
+        "Header chrome is MURAL-informed (see `docs/mural-gap-check.md`). Mega-nav group titles are linked hubs with Overview or strand children. Buyer language sits in strand subtitles, H1 support, H2/H3s and page notes.",
         "",
         "Volumes are average monthly Google Ads search volume for the United Kingdom. Exact Manifesto product phrases are often thin; adjacent demand is the useful signal.",
         "",
@@ -2468,7 +2648,7 @@ def write_heading_map_md() -> None:
         lines.append(f"- **Weight:** {p['weight']}")
         lines.append(f"- **Primary keyword:** {p.get('primary') or 'none'}")
         if p.get("quiet"):
-            lines.append(f"- **Quiet line:** {p['quiet']}")
+            lines.append(f"- **Strand subtitle:** {p['quiet']}")
         if p.get("alts"):
             lines.append("- **Alts:**")
             for a in p["alts"]:
