@@ -16,8 +16,8 @@ This extends the v5 IA (`docs/01-primary-navigation.md`, `docs/02-sitemap.md`, `
    - **About** opens a small dropdown (Our people, Our approach, Values and culture). The label goes to `/about/`.
    - **Careers** is a plain first-class link.
    - **Contact** is the header button.
-4. Every sitemap URL is a real HTML page. **All pages** in the heading map opens `sitemap.html`.
-5. The **main column** is the page layout (hero, modules, footer). Supplementary IA lives in the **sidebar**: page notes (weight, primary keyword, quiet line, related themes / sectors / services, MURAL modules) plus the **heading map**. **All pages** in the heading map opens `sitemap.html`.
+4. Every sitemap URL is a real HTML page. **All pages** in the heading map opens `sitemap.html`. **Chips and modules** opens the wireframe catalogue.
+5. The **main column** is the page layout (hero, modules, footer). Supplementary IA lives in the **sidebar**: page notes (weight, primary keyword, quiet line, related themes / sectors / services, MURAL modules) plus the **heading map**. **All pages** in the heading map opens `sitemap.html`. **Chips and modules** opens `/catalogue/`.
 
 From GitHub: use the preview or raw HTML, or enable GitHub Pages and visit `/mocks/index.html`.
 
@@ -27,13 +27,14 @@ Home loads with the menu closed. Open **What we do**. Without reading anything i
 
 Then go to **All services**. Without scrolling, see **Our Growth Architecture** and the three pillars. In the next screen, find your own situation in seven lines.
 
-## What is in the mega-nav (unchanged from v5)
+## What is in the mega-nav (hub titles + strands)
 
-Three columns, in call order, plus a thin footer row. About 50 words. Thirteen links.
+Three columns, in call order, plus a thin footer row. Group titles are linked hubs with a trailing arrow. Growth Strategy and Activation start with Overview. CEO Advisory shows both strands.
 
 | Growth Strategy | Activation Services | CEO Advisory (quieter) |
 |---|---|---|
 | Where and how you grow | Turning strategy into results | One-to-one support for leaders |
+| Overview | Overview | Side-by-Side |
 | Proposition Innovation | Customer Research and Insight | Our advisors |
 | | Experience Engineering, *Customer experience and websites* | |
 | | AI Agents for Marketing | |
@@ -45,7 +46,7 @@ Footer row: All services | Expertise. Contact is not repeated (the header button
 
 ## Pages included
 
-Home; Services hub; Growth Strategy; Proposition Innovation; Activation group and the six activation services; CEO Advisory (Side-by-Side + Our advisors); Expertise hub and Loyalty / Membership / Subscriptions / Pricing / Customer Value; four light sectors (Financial Services, Media, Consumer, Retail); Work hub plus Dayinsure and Key Group shells; Our thinking hub plus one article and one report shell; About (story, Our people, Our approach, values); Careers (Life at Manifesto + one role shell); Contact (work with us / work for us, plus thank-you); The Nutshell and legal / 404 / search utilities so every footer link resolves.
+Home; Services hub; Growth Strategy; Proposition Innovation; Activation group and the six activation services; CEO Advisory (Side-by-Side + Our advisors); Expertise hub and Loyalty / Membership / Subscriptions / Pricing / Customer Value; four light sectors (Financial Services, Media, Consumer, Retail); Work hub plus Dayinsure and Key Group shells; Our thinking hub plus one article and one report shell; About (story, Our people, Our approach, values); Careers (Life at Manifesto + one role shell); Contact (work with us / work for us, plus thank-you); The Nutshell and legal / 404 / search utilities so every footer link resolves; **Chips and modules** (`catalogue/`) as a wireframe-only index.
 
 ## Page notes, heading map and on-page shapes
 
@@ -68,6 +69,6 @@ Shared CSS and JS live in `mocks/assets/`. Do not edit generated `index.html` fi
 ## Rules for editing
 
 - Labels, order, pillar lines, quiet lines, the triangle line, the seven situation lines and URLs must match `docs/01-primary-navigation.md`, `docs/03-page-layouts.md` and `docs/02-sitemap.md`. Change the document first, then the builder.
-- The open mega-nav stays at fifty words or fewer. Adding a subtitle or a link to it is an IA decision to log in `docs/06-decisions-log.md`, and the default answer is no.
+- The open mega-nav keeps the triangle. Adding a subtitle or a sold-service link to it is an IA decision to log in `docs/06-decisions-log.md`. Overview rows and the two CEO strands are the current pattern (D-54).
 - No visual brand redesign. Keep it greyscale and dependency-free: no external CSS, JavaScript, fonts or images.
 - No em dashes in any copy. British English.

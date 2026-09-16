@@ -2,7 +2,7 @@
 
 Recommended H1 (one), H2s (ordered) and H3s for every URL in the clickable wireframe.
 Tied to UK DataForSEO volumes (Sep 2026) and Andy's Growth Architecture Services deck.
-Header chrome is MURAL-informed (see `docs/mural-gap-check.md`). Mega-nav labels are unchanged. Buyer language sits in quiet lines, H1 support, H2/H3s and page chips.
+Header chrome is MURAL-informed (see `docs/mural-gap-check.md`). Mega-nav group titles are linked hubs with Overview or strand children. Buyer language sits in quiet lines, H1 support, H2/H3s and page chips.
 
 Volumes are average monthly Google Ads search volume for the United Kingdom. Exact Manifesto product phrases are often thin; adjacent demand is the useful signal.
 
@@ -20,12 +20,12 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
 - **H2s (ordered):**
   1. Trusted partners
   2. What we do
-  3. Our work
-  4. Awards
-  5. Growth problems we know best
-  6. Latest thinking
-- **Intent:** Brand and router. Trusted partners sit high. FT awards sit lower, not in the hero. Do not replicate the reports grid here. Thinking is a teaser to Our thinking.
-- **MURAL modules:** Trusted partners banner up; FT not at the top; No homepage reports grid; Showreel visual at launch; Client quotes with work
+  3. Our thinking
+  4. Our work
+  5. Awards
+  6. Growth problems we know best
+- **Intent:** Brand and router. Trusted partners sit high. Featured thinking sits after the triangle, not as a strip at the foot. FT awards sit lower, not in the hero. Do not replicate the reports grid here.
+- **MURAL modules:** Trusted partners banner up; FT not at the top; No homepage reports grid; Showreel visual at launch; Client quotes with work; Thinking after the offer, not only at the bottom
 - **Related:** themes: Loyalty, Membership, Subscriptions, Pricing, Customer Value; services: Growth Strategy, Activation Services, CEO Advisory
 
 ## `/services/`: What we do: our Growth Architecture
@@ -265,12 +265,12 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
 - **H1:** CEO Advisory
 - **H2s (ordered):**
   1. Why this, now
-  2. What we do
+  2. Side-by-Side
   3. Our advisors
   4. How the retainer works
 - **H3s:**
-  - Side-by-Side (named in the hero and this section, not in the nav)
-- **Intent:** Nav stays CEO Advisory. Proof is the people. Coaching language is adjacent, not the offer. SxS is not used on the site.
+  - The named product (hero and this section, not a second URL)
+- **Intent:** Nav stays CEO Advisory. Two mega-nav strands: Side-by-Side (the retainer) and Our advisors (the people). Proof is the people. Coaching language is adjacent, not the offer. SxS is not used on the site.
 - **Related:** services: Growth Strategy, Growth Office
 
 ## `/expertise/`: Expertise
@@ -714,3 +714,29 @@ MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `
 - **H1:** Page not found
 - **Intent:** Error page with routes to Services, Work and Contact.
 - **Related:** services: What we do, Our work, Contact
+
+## `/catalogue/`: Chips and modules
+
+- **Weight:** Utility
+- **Primary keyword:** none (wireframe index, not a live URL)
+- **Quiet line:** Quiet line example
+- **Alts:**
+  - Not a client sitemap item. Linked from All pages and the sidebar.
+- **H1:** Chips and modules
+- **H2s (ordered):**
+  1. Sidebar chips
+  2. Service and offer cards
+  3. Logo placeholders
+  4. Case cards
+  5. Quote
+  6. Video 16:9
+  7. Stats
+  8. Report cards
+  9. Article blocks
+  10. MURAL modules row
+  11. CIVD four-cell
+  12. Triangle blocks
+  13. Mega-nav hub and strands
+- **Intent:** Wireframe design-system index. One example of each module shape used in the mock. Not a proposed live client URL.
+- **MURAL modules:** Example MURAL module chip
+- **Related:** themes: Loyalty; services: Growth Strategy

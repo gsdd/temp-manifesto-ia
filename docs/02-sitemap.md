@@ -63,7 +63,7 @@ Source A suggested a separate Growth Architecture page alongside a services hub.
 | `/services/operating-model-design/` | Service detail | Activation Services | **Operating Model Design** (deck: Operating Architecture / Operating Models). How teams, data and AI agents work together: grounded in customer value, fuelled by data, redesigned around humans and AI agents, orchestrated for impact (Source B). The framework figure is anchored `#operating-architecture`. Owns "operating model design / operating model consultancy / operating architecture". | Canonical |
 | `/services/growth-office/` | Service detail | Activation Services | **Growth Office**. Interim growth team and programme office bridging strategy and delivery through culture, capability and value (Source B); two phases, interim then embedded, as the How it works block (R6). Owns "growth office / interim growth leadership / transformation programme office". | Canonical |
 | `/services/ai-enablement/` | Service detail | Activation Services | **AI Enablement**. AI skills, training and adoption; finding where AI pays off; business model innovation (Source B). Names the expert network in body copy. Owns "AI enablement / AI adoption / AI training for leadership teams". | Canonical |
-| `/services/ceo-advisory/` | Service detail (third pillar, quieter) | CEO Advisory | **CEO Advisory**. Side-by-Side named in the hero. One-to-one advice for CEOs and senior leaders from experienced growth leaders, retainer-based, virtual or in person (Source B). Advisor profiles are the main block, anchored `#advisors`; the mega-nav item "Our advisors" lands here (v5, D-49). Present and visible as the third pillar; not promoted above the other two. "SxS" is not used on the site. | Supporting |
+| `/services/ceo-advisory/` | Service detail (third pillar, quieter) | CEO Advisory | **CEO Advisory**. Two strands: Side-by-Side (named product, anchored `#side-by-side`) and Our advisors (people, anchored `#advisors`). One-to-one advice for CEOs and senior leaders from experienced growth leaders, retainer-based, virtual or in person (Source B). Both strands are in the mega-nav (D-54). Present and visible as the third pillar; not promoted above the other two. "SxS" is not used on the site. | Supporting |
 
 Notes:
 - `/services/activation/` is a group page, not a service. It exists because "Activation" is MGA's own term and needs explaining, and because the six services are sold as a set as often as individually. It is Supporting because it owns no capability topic of its own.
@@ -228,7 +228,7 @@ Notes:
 
 Fixed pages at launch (excluding case studies, insights, profiles, roles and filter patterns): 40, of which 11 are Canonical. v3 had 41; the sector index was cut in v4; v5 adds none.
 
-Anchors that other pages link to (not pages): `/services/growth-strategy/#civd`, `/services/operating-model-design/#operating-architecture`, `/services/ai-agents-for-marketing/#agentlab`, `/services/ceo-advisory/#advisors`, `/about/team/#advisors`, and the three Experience Engineering sections (`#customer-experience`, `#website-and-digital`, `#research-and-testing`).
+Anchors that other pages link to (not pages): `/services/growth-strategy/#civd`, `/services/operating-model-design/#operating-architecture`, `/services/ai-agents-for-marketing/#agentlab`, `/services/ceo-advisory/#side-by-side`, `/services/ceo-advisory/#advisors`, `/about/team/#advisors`, and the three Experience Engineering sections (`#customer-experience`, `#website-and-digital`, `#research-and-testing`).
 
 ---
 
@@ -253,5 +253,6 @@ Anchors that other pages link to (not pages): `/services/growth-strategy/#civd`,
 | Author, tag and category archives | Filters and team profiles cover these needs without thin pages. |
 | A separate AgentLab microsite or `/agentlab/` page | AgentLab is the named product inside AI Agents for Marketing. `/agentlab/` redirects to `/services/ai-agents-for-marketing/#agentlab`. Prophet and Ekimetrics give their labs a page under About; MGA's is a section with an anchor, which is enough for a catalogue of twelve entries. |
 | A "frameworks" or "our approach" page under `/services/` | The named frameworks are listed once on `/about/how-we-work/` with links to their anchored homes on service pages (v5, R3). Ellipsis makes its method a top-level page; Source A says method is not a service. |
+| `/catalogue/` as a live client URL | Wireframe-only index of chips and modules. Linked from All pages and the sidebar. Not in the header or footer. |
 | A "problems we solve" page or section | Problem entry is a block on the Services hub (v5, R1), the way Prophet puts "what is your context?" on its service pages. A separate page would compete with the expertise themes. |
 | Separate Life at Manifesto, Benefits and Open roles pages | Sections of `/careers/` at current scale. |

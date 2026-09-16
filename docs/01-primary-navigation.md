@@ -2,7 +2,7 @@
 
 This document describes everything a visitor can click in the site header and footer, in the order it appears, and what happens when they do. It is written so that someone who is not a designer or developer can picture the navigation without a wireframe.
 
-**Wireframe chrome (MURAL pass, pending sign-off).** The clickable mock in `mocks/` currently shows six header items, logo aside: **What we do** | **Our work** | **Our thinking** | **About** | **Careers** | **Contact**. Our thinking is the Insights hub (`/insights/`) with a type dropdown (Reports, Articles, Events and news, All thinking). About dropdown labels: Our people, Our approach, Values and culture. Careers is first-class so Contact can split work-with-us / work-for-us. The tables below remain the v5 IA spec until that chrome is signed. See `docs/mural-gap-check.md`.
+**Wireframe chrome (MURAL pass, pending sign-off).** The clickable mock in `mocks/` currently shows six header items, logo aside: **What we do** | **Our work** | **Our thinking** | **About** | **Careers** | **Contact**. Our thinking is the Insights hub (`/insights/`) with a type dropdown (Reports, Articles, Events and news, All thinking). About dropdown labels: Our people, Our approach, Values and culture. Careers is first-class so Contact can split work-with-us / work-for-us. The tables below remain the v5 IA spec until that chrome is signed, **except the mega-nav group pattern in section 3**, which this pass updates so pillar hubs are obviously clickable and CEO Advisory shows both strands. See `docs/mural-gap-check.md`, `docs/thinking-placement.md`, `docs/strand-gap-check.md`.
 
 v2 gave the mega-nav its shape: three columns, one per pillar of Andy's Growth Architecture triangle. v3 rewrote the words in plain, search-friendly language. v4 stripped the concept back to labels, three short pillar lines and two quiet lines (`v4-simplification.md`). **v5 makes two small changes after the competitor review** (`competitor-nav-review.md`, `v5-refinements.md` R4): the CEO Advisory column carries one quiet link to the advisors, and the panel footer row drops the Contact link that duplicated the header button. Everything else in the header, menu and footer is as v4. The larger v5 changes are on the pages (`03-page-layouts.md`).
 
@@ -61,9 +61,11 @@ This is the only mega-nav on the site. It is a full-width panel below the header
 
 The panel is Andy's Growth Architecture triangle (Source B) laid flat, in the order of prominence agreed on the 7 September call (Source C): Growth Strategy first, Activation Services second, CEO Advisory third and quieter. A prospect should be able to name the three pillars within two seconds of the panel opening without reading anything in smaller type (Source D, Source F).
 
+Each **group title is a hub**: a linked heading with a trailing arrow, so it never reads as a static label. Under the title, **strands are siblings**. Where a pillar has only one child service, an **Overview** row is the second visible strand so the header does not look like a fake heading over a lonely child. CEO Advisory always shows **two named strands**: Side-by-Side and Our advisors. Activation already has six services; it still gets Overview so every column uses the same hub-plus-strands pattern.
+
 The panel carries labels, not copy. Explanation lives on the pages. The only supporting text is one short line per pillar and one quiet line under each of the two coined service names that Andy flagged as opaque.
 
-Against the peer set this is already the sparsest services panel that still uses a mega-nav: 13 links where Prophet has about 25 and Elixirr about 60 (`competitor-nav-review.md`, 3.2). v5 keeps the count at 13: one quiet link is added in column 3 and one duplicate is cut from the footer row.
+Against the peer set this is still a sparse services panel. The hub-and-strands pattern adds Overview rows and restores Side-by-Side as a strand (D-54). Deck one-liners do not return.
 
 ### 3.2 The panel, exactly as it appears
 
@@ -71,36 +73,39 @@ Against the peer set this is already the sparsest services panel that still uses
 
 | Element | Text | Links to |
 |---|---|---|
-| Heading | **Growth Strategy** | `/services/growth-strategy/` |
+| Heading (hub) | **Growth Strategy →** | `/services/growth-strategy/` |
 | Pillar line | Where and how you grow | not a link |
-| Item 1 | Proposition Innovation | `/services/proposition-innovation/` |
+| Strand 1 | Overview | `/services/growth-strategy/` |
+| Strand 2 | Proposition Innovation | `/services/proposition-innovation/` |
 
-The heading is the pillar and the lead service in one (D-11). v3 repeated "Growth Strategy" as an item beneath the heading, pointing at the same page; v4 cuts the duplicate (D-36).
+The heading is the pillar hub (D-11, D-54). Overview is the same destination, labelled so the column always shows two strands: the hub page and the child service. v4 cut a duplicate "Growth Strategy" item (D-36); Overview is the replacement that makes the hub clickable without repeating the group name as a child.
 
 **Column 2: Activation Services** (centre, full weight)
 
 | Element | Text | Quiet line (small, grey) | Links to |
 |---|---|---|---|
-| Heading | **Activation Services** | | `/services/activation/` |
+| Heading (hub) | **Activation Services →** | | `/services/activation/` |
 | Pillar line | Turning strategy into results | | not a link |
-| Item 1 | Customer Research and Insight | | `/services/customer-research/` |
-| Item 2 | Experience Engineering | Customer experience and websites | `/services/experience-engineering/` |
-| Item 3 | AI Agents for Marketing | | `/services/ai-agents-for-marketing/` |
-| Item 4 | Operating Model Design | | `/services/operating-model-design/` |
-| Item 5 | Growth Office | Interim growth team | `/services/growth-office/` |
-| Item 6 | AI Enablement | | `/services/ai-enablement/` |
+| Strand 1 | Overview | | `/services/activation/` |
+| Strand 2 | Customer Research and Insight | | `/services/customer-research/` |
+| Strand 3 | Experience Engineering | Customer experience and websites | `/services/experience-engineering/` |
+| Strand 4 | AI Agents for Marketing | | `/services/ai-agents-for-marketing/` |
+| Strand 5 | Operating Model Design | | `/services/operating-model-design/` |
+| Strand 6 | Growth Office | Interim growth team | `/services/growth-office/` |
+| Strand 7 | AI Enablement | | `/services/ai-enablement/` |
 
-Order follows the Source B deck. Labels are the v3 labels (`nav-wording-decisions.md`), unchanged. The two quiet lines are the only item-level text in the panel: Experience Engineering and Growth Office are the two names Andy said need a plain keyword beside them (Source C: "can you build a website?" must map; Growth Office "terminology hard"). Every other label is the searched term or close to it and stands alone (D-35).
+Order of the six services follows the Source B deck. Overview is the group page. Labels are the v3 labels (`nav-wording-decisions.md`), unchanged. The two quiet lines are the only item-level text in the panel: Experience Engineering and Growth Office are the two names Andy said need a plain keyword beside them (Source C).
 
 **Column 3: CEO Advisory** (rightmost, narrower, quieter type)
 
 | Element | Text | Links to |
 |---|---|---|
-| Heading | **CEO Advisory** | `/services/ceo-advisory/` |
+| Heading (hub) | **CEO Advisory →** | `/services/ceo-advisory/` |
 | Pillar line | One-to-one support for leaders | not a link |
-| Item 1 | Our advisors | `/services/ceo-advisory/#advisors` |
+| Strand 1 | Side-by-Side | `/services/ceo-advisory/#side-by-side` |
+| Strand 2 | Our advisors | `/services/ceo-advisory/#advisors` |
 
-One item, in the same quiet type as the heading. The heading is the pillar link; the item lands on the advisor profile block that is the heart of the CEO Advisory page. v3 had "Side-by-Side" (same page as the heading) and "Meet the advisors" (`/about/team/#advisors`); v4 cut both (D-36). v5 adds back one link, to the offer page rather than to Our team, on new evidence (D-49): a senior advisory offer sells on its people (Criticaleye leads with its mentors; Baringa puts partners on the capability page; The Foundation makes its team a first-class section), Andy asked for heavyweight advisor profiles to be showcased (Source C), and a heading with nothing under it read as an afterthought rather than a pillar (Source D). Side-by-Side is still named in the hero of the CEO Advisory page, not in the menu. The column stays quieter by width and type weight, not by being empty.
+Two strands, both visible (D-54). The heading is the pillar hub. Side-by-Side is the named retainer product (Source B slide 4); Our advisors is the people. v4/v5 had collapsed this column to heading plus one child, which read as a single strand. Side-by-Side is not a second URL and not an acronym (SxS stays off the site, D-31). The column stays quieter by width and type weight.
 
 **Panel footer row** (full width, one thin line, small text, separated by a rule)
 
@@ -117,7 +122,7 @@ Two short links. Expertise is the only place expertise appears in the header. v3
 - No acronyms or internal shorthand in the nav.
 - **One pillar line per column**, four to six words, no full stop. The same three lines are used on the Home and Services hub triangle blocks (shared data, `05-content-matrix.md`).
 - **No item subtitles**, with two exceptions: a quiet line of two to four words under Experience Engineering and Growth Office. Adding a third quiet line is an IA decision, not a content edit, and the default answer is no: put the explanation on the page.
-- **Column 3 has one item and no more.** "Our advisors" is the people behind the offer, not a second description of it. Adding "Side-by-Side" or a description back is an IA decision with the same default: no.
+- **Column 3 has two strands and no more.** Side-by-Side is the named product; Our advisors is the people. Adding a third child or putting SxS in the menu is an IA decision with the default: no.
 - The search vocabulary that v3 carried in subtitles (customer experience, website, research, surveys, loyalty, membership, subscription, AI, operating model, interim, programme office, retainer) lives in service page H1s, H2s, title tags and FAQs (`04-canonicals-and-seo.md`, section 6). The menu does not have to carry it.
 - No "Column 1", "Pillar 1" or similar labels in the live nav.
 
@@ -127,7 +132,7 @@ Two short links. Expertise is the only place expertise appears in the header. v3
 - Column headings align on one baseline. Reading left to right gives Growth Strategy, Activation Services, CEO Advisory.
 - Column 3 uses the same structure (heading, pillar line, item) with lighter type weight and a slightly smaller heading. The item is set in the same quiet grey as the pillar line.
 - The footer row is separated by a rule and uses smaller text. It must not grow beyond three links; v5 uses two.
-- Word budget for the whole open panel: fifty words or fewer. v4 was forty-nine; v5 is fifty (minus "Contact", plus "Our advisors").
+- Word budget for the whole open panel: labels, three pillar lines, two quiet lines, Overview (twice), Side-by-Side, Our advisors, footer row. Hub rows are the cost of making group titles obviously clickable (D-54). Fifty words is no longer a hard cap.
 
 ### 3.5 Mobile and tablet behaviour (below roughly 1024 px)
 
@@ -136,9 +141,9 @@ The header collapses to: logo (left), Contact button (right, kept visible), and 
 Inside the panel, five rows in order:
 
 1. **What we do** (expands; open by default when the menu opens). One flat list, two levels deep in total:
-   - small label **Growth Strategy** (link to `/services/growth-strategy/`), then Proposition Innovation
-   - small label **Activation Services** (link to `/services/activation/`), then the six services in desktop order, with the same two quiet lines
-   - small label **CEO Advisory** (link to `/services/ceo-advisory/`), quieter, then Our advisors (`/services/ceo-advisory/#advisors`)
+   - small label **Growth Strategy** (hub link to `/services/growth-strategy/`), then Overview, then Proposition Innovation
+   - small label **Activation Services** (hub link to `/services/activation/`), then Overview, then the six services in desktop order, with the same two quiet lines
+   - small label **CEO Advisory** (hub link to `/services/ceo-advisory/`), quieter, then Side-by-Side (`#side-by-side`) and Our advisors (`#advisors`)
    - then one thin row of two links: All services, Expertise (the same two as the desktop footer row)
 2. **Our work**: plain row
 3. **Insights**: plain row
@@ -229,7 +234,7 @@ Breadcrumbs are marked up with `BreadcrumbList` structured data (see `04-canonic
 | Expertise themes (shown as "Expertise") | One link in the mega-nav footer row | Column 2 | Our work and Insights (More filters) | `/expertise/...` (Supporting) |
 | Sectors | Not in the header | Column 3 | Our work and Insights (More filters) | `/sectors/{sector}/` (Light); no index page |
 | Methodology | About dropdown | Column 4 | None | `/about/how-we-work/` (Supporting) |
-| CEO Advisory | Mega-nav column 3 (quieter): heading and "Our advisors" | Column 1, last service | Our work (service filter value) | `/services/ceo-advisory/` (Supporting) with `#advisors`; advisor profiles under `/about/team/` |
+| CEO Advisory | Mega-nav column 3 (quieter): hub heading, Side-by-Side, Our advisors | Column 1, last service | Our work (service filter value) | `/services/ceo-advisory/` (Supporting) with `#side-by-side` and `#advisors`; advisor profiles under `/about/team/` |
 
 ## 9. v1 to v5 header comparison
 
@@ -259,3 +264,15 @@ For scale: Prophet's What We Do panel has about 25 links, Elixirr's Services pan
 | Mobile: CEO Advisory small label only | Small label plus Our advisors |
 
 Header items, About dropdown, footer, breadcrumbs, labels and slugs are unchanged from v4. The v3 to v4 changes are in `v4-simplification.md`.
+
+## 11. This pass: hub titles and two CEO strands
+
+| v5 menu | This pass |
+|---|---|
+| Group titles look like headings; Growth Strategy has one child | Group titles are linked hubs with a trailing arrow. Growth Strategy shows Overview + Proposition Innovation |
+| Activation: six children, no Overview | Overview + the six |
+| CEO Advisory: heading + Our advisors (reads as one strand) | Hub heading + Side-by-Side + Our advisors |
+| Word budget: fifty or fewer | Hub rows are allowed; fifty is no longer a hard cap |
+| Latest thinking at the foot of Home | Featured thinking after the triangle (`thinking-placement.md`) |
+
+Top-level header stays at six items. Services remain the spine. See D-54.

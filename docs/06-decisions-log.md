@@ -762,18 +762,54 @@ Result: column 1 is a heading and one item; column 3 is a heading and its pillar
 
 ---
 
+## D-54. Mega-nav group titles are hubs; strands are siblings
+
+**Options**
+1. Overview row under each group plus strand links.
+2. Group label as a link with a chevron, and a child list that always shows at least two strands where the IA has at least two.
+3. Card-per-strand under a linked group title.
+4. Leave v5 as it is (heading plus children; Growth Strategy has one child; CEO Advisory has one child).
+
+**Chosen**: Combine 1 and 2. Group titles are linked hubs with a trailing arrow. Growth Strategy and Activation start with an Overview row. CEO Advisory shows both named strands: Side-by-Side (`#side-by-side`) and Our advisors (`#advisors`). No card-per-strand in the menu (that is a page pattern).
+
+**Rationale**: Gary's feedback after the shaped-module pass: Growth Strategy looked like one heading plus one child, so it was unclear the heading was a hub. CEO Advisory should have two strands but read as one. Activation was already clear because it has more children. Option 4 fails that test. Option 3 is heavier than the menu is allowed to be. Overview on columns 1 and 2 makes the hub a visible row without repeating the group name as a child (the duplicate D-36 cut). Restoring Side-by-Side as a strand is not a second URL and does not put SxS in the menu (D-31 stands). Top-level header stays at six items; services remain the spine.
+
+**Word count**: Fifty is no longer a hard cap. Hub rows are the cost of the pattern.
+
+**Fallback**: Drop Overview on Activation only (the six children already make that column read as a group). Do not drop Side-by-Side from column 3.
+
+---
+
+## D-55. Our thinking on Home sits after the triangle
+
+**Chosen**: Home block order is Hero, Trusted partners, What we do, **Our thinking** (one featured report, one article, All thinking), Our work, Awards, Expertise, Closing CTA. Thinking is not a strip at the foot. The header item and `/insights/` hub are unchanged. Six-item nav is unchanged.
+
+**Rationale**: Gary: "all thinking at the bottom feels off." A reports grid on Home is still out (MURAL). Moving a short teaser to follow the offer answers who we are, what we do, that we have a point of view, then proof. Detail in `thinking-placement.md`.
+
+**Fallback**: Return the teaser to the foot. Do not add a seventh header item.
+
+---
+
+## D-56. Chips and modules catalogue is a wireframe utility
+
+**Chosen**: `/catalogue/` in the mock lists one example of each chip and module shape. Linked from All pages, the sidebar, and the sitemap's Wireframe tools group. Not a live client URL, not in the header or footer.
+
+**Rationale**: Chips are deployed across pages; a single index lets Gary and Andy judge weight, keyword, quiet line, cards, logos, quotes, video, stats, reports, articles and MURAL rows without hunting.
+
+---
+
 ## Open items for the next stage (wireframes)
 
 | Item | Note |
 |---|---|
 | **Andy's sign-off on the three renames** | Customer Research and Insight, AI Agents for Marketing, Operating Model Design change how three offers are described to the market. The competitor review supports all three (frog "Customer Research & Insights"; Elixirr "Target Operating Model"; Prophet "Agentic Deployment"). Confirm before wireframes lock. Fallback if any is refused: revert that one label and slug to the deck term, with a quiet line as Growth Office has. |
 | **Two labels flagged for Andy by the competitor review** | No peer uses "Experience Engineering" (all say "Customer Experience") or "Growth Office" (Elixirr coined "Execution Edge" for the same space). The deck argues to keep both; competitors argue for plainer labels. v5 keeps both with their quiet lines and does not decide. If Andy prefers plain, the candidates are "Customer Experience and Digital" and "Interim Growth Team"; slugs would follow (`04-canonicals-and-seo.md`, section 7). |
-| **Gary's confirmation of the v5 nav tweaks** | "Our advisors" in column 3 (D-49) and the two-link footer row (D-50) are the only menu changes. Fallback: remove the item, restore Contact; the panel is v4 exactly. |
+| **Gary's confirmation of the v5 nav tweaks** | "Our advisors" in column 3 (D-49) stands and is now one of two CEO strands (D-54). Two-link footer row (D-50) stands. |
 | **Gary's confirmation of the v4 cuts** | Insights as a plain link (D-38) and the sector index cut (D-44) stand. The v4 "column 3 as heading only" question is answered by D-49. |
 | **Proposed fixed text for Andy** | The triangle line, the three pillar sentences, the seven situation lines and the six "which of the six" lines (`v5-refinements.md` R1, R2, R5) are proposals. The rules to keep: plain, in the visitor's words, one line each, no Manifesto shorthand. |
 | **"c&n" on slide 12** | The AI Enablement examples say "including c&n". Not expanded on the slide; Andy to confirm what it refers to before the client list is used. |
 | **Agent grouping in AgentLab** | The deck lists twelve agents under four group headings without assigning them. The assignment in `03-page-layouts.md` T3 is a reading of the slide for Andy to confirm. |
-| **Whether CIVD is still current** | Slide 5 is marked "to be updated". The IA keeps CIVD as the Growth Strategy frame and names it in the hub's pillar 1 sentence. If Andy retires it, the sentence loses its clause and the module is replaced by whatever the new frame is; no URL changes. |
+| **Whether CIVD is still current** | Rechecked against Andy's deck and the old IA columns. Slide 5 still carries Customer, Innovation, Delivery, Value and is marked "to be updated" (copy, not retirement). MURAL: keep CIVD. This pass restores it as a four-cell module on Growth Strategy and a compact four-cell on the Services hub. If Andy retires it, drop those modules; no URL changes. See `strand-gap-check.md`. |
 | Growth Strategy and Proposition Innovation copy | Source B marks both slides "to be updated from existing content". Andy is sourcing (Source C action). |
 | CEO Advisory event | Pushed to October (Source C). The page can launch with advisor profiles and the Why / What copy from Source B before the event. |
 | Advisor profiles | The CEO Advisory page's main block is advisor profiles. Until at least one profile is flagged as advisor, the block shows the Why / What copy only. |

@@ -26,23 +26,28 @@ flowchart TB
 
         subgraph C1["Growth Strategy → /services/growth-strategy/<br/><i>Where and how you grow</i>"]
             direction TB
+            C1o["Overview → /services/growth-strategy/"]
             C1a["Proposition Innovation → /services/proposition-innovation/"]
+            C1o --> C1a
         end
 
         subgraph C2["Activation Services → /services/activation/<br/><i>Turning strategy into results</i>"]
             direction TB
+            C2o["Overview → /services/activation/"]
             C2a["Customer Research and Insight → /services/customer-research/"]
             C2b["Experience Engineering → /services/experience-engineering/<br/><i>Customer experience and websites</i>"]
             C2c["AI Agents for Marketing → /services/ai-agents-for-marketing/"]
             C2d["Operating Model Design → /services/operating-model-design/"]
             C2e["Growth Office → /services/growth-office/<br/><i>Interim growth team</i>"]
             C2f["AI Enablement → /services/ai-enablement/"]
-            C2a --> C2b --> C2c --> C2d --> C2e --> C2f
+            C2o --> C2a --> C2b --> C2c --> C2d --> C2e --> C2f
         end
 
         subgraph C3["CEO Advisory (quieter) → /services/ceo-advisory/<br/><i>One-to-one support for leaders</i>"]
             direction TB
-            C3a["Our advisors → /services/ceo-advisory/#advisors"]
+            C3a["Side-by-Side → /services/ceo-advisory/#side-by-side"]
+            C3b["Our advisors → /services/ceo-advisory/#advisors"]
+            C3a --> C3b
         end
     end
 
@@ -56,7 +61,7 @@ flowchart TB
     Panel --> Row
 ```
 
-Column headings are the pillar links. Italic lines under the headings are the three pillar lines; the two italic lines under Experience Engineering and Growth Office are the only item-level text in the panel. There is no heading line above the columns. 13 links, 13 distinct destinations, 50 words. v5 added the one quiet item in column 3 and cut Contact from the footer row (D-49, D-50); see `../v5-refinements.md`. See `../v4-simplification.md` for what v4 removed from v3.
+Column headings are linked hubs with a trailing arrow. Each column lists strands as siblings. Growth Strategy and Activation start with Overview so the hub is visible as a row, not only as a heading. CEO Advisory shows both strands: Side-by-Side and Our advisors. Italic lines under the headings are the three pillar lines; the two italic lines under Experience Engineering and Growth Office are the only item-level text in the panel. There is no heading line above the columns. See D-54 and `../strand-gap-check.md`.
 
 ## The triangle as Andy draws it (Source B) and how it maps to the nav
 
@@ -90,9 +95,9 @@ Clicking About itself goes to `/about/`.
 flowchart TB
     M["Menu (full-screen panel)"]
     M --> M1["What we do (expands; open by default)"]
-    M1 --> M1a["Growth Strategy (small label, link): Proposition Innovation"]
-    M1 --> M1b["Activation Services (small label, link): 6 services, two quiet lines"]
-    M1 --> M1c["CEO Advisory (small label, link, quieter): Our advisors"]
+    M1 --> M1a["Growth Strategy (hub label, link): Overview, Proposition Innovation"]
+    M1 --> M1b["Activation Services (hub label, link): Overview, 6 services, two quiet lines"]
+    M1 --> M1c["CEO Advisory (hub label, link, quieter): Side-by-Side, Our advisors"]
     M1 --> M1d["All services / Expertise"]
     M --> M2["Our work"]
     M --> M3["Insights"]
