@@ -25,18 +25,28 @@
               <a class="top-link" href="services/index.html" aria-haspopup="true" aria-expanded="false">What we do <span class="caret">&#9660;</span></a>
             </li>
             <li><a class="top-link plain" href="work/index.html">Our work</a></li>
-            <li><a class="top-link plain" href="insights/index.html">Insights</a></li>
+            <li data-menu="thinking">
+              <a class="top-link" href="insights/index.html" aria-haspopup="true" aria-expanded="false">Our thinking <span class="caret">&#9660;</span></a>
+              <div class="dropdown" role="region" aria-label="Our thinking menu">
+                <ul>
+                  <li><a href="insights/index.html#reports">Reports</a></li>
+                  <li><a href="insights/index.html#articles">Articles</a></li>
+                  <li><a href="insights/index.html#events">Events and news</a></li>
+                  <li><a href="insights/index.html">All thinking</a></li>
+                </ul>
+              </div>
+            </li>
             <li data-menu="about">
               <a class="top-link" href="about/index.html" aria-haspopup="true" aria-expanded="false">About <span class="caret">&#9660;</span></a>
               <div class="dropdown" role="region" aria-label="About menu">
                 <ul>
-                  <li><a href="about/team/index.html">Our team</a></li>
-                  <li><a href="about/how-we-work/index.html">How we work</a></li>
+                  <li><a href="about/team/index.html">Our people</a></li>
+                  <li><a href="about/how-we-work/index.html">Our approach</a></li>
                   <li><a href="about/values/index.html">Values and culture</a></li>
-                  <li><a href="careers/index.html">Careers</a></li>
                 </ul>
               </div>
             </li>
+            <li><a class="top-link plain" href="careers/index.html">Careers</a></li>
           </ul>
           <a class="btn" href="contact/index.html">Contact</a>
         </header>
@@ -79,7 +89,7 @@
       </div>
 
     
-    <div class="ia-chips" aria-label="Page chips"><span class="label">Page chips</span><div class="chips"><span class="chip weight">Canonical</span><span class="chip kw">Primary: growth architecture (~50) / brand</span><span class="chip">Themes: <a href="expertise/loyalty/index.html">Loyalty</a>, <a href="expertise/membership/index.html">Membership</a>, <a href="expertise/subscriptions/index.html">Subscriptions</a>, <a href="expertise/pricing/index.html">Pricing</a>, <a href="expertise/customer-value/index.html">Customer Value</a></span><span class="chip">Services: <a href="services/growth-strategy/index.html">Growth Strategy</a>, <a href="services/activation/index.html">Activation Services</a>, <a href="services/ceo-advisory/index.html">CEO Advisory</a></span></div></div>
+    <div class="ia-chips" aria-label="Page chips"><span class="label">Page chips</span><div class="chips"><span class="chip weight">Canonical</span><span class="chip kw">Primary: growth architecture (~50) / brand</span><span class="chip">Themes: <a href="expertise/loyalty/index.html">Loyalty</a>, <a href="expertise/membership/index.html">Membership</a>, <a href="expertise/subscriptions/index.html">Subscriptions</a>, <a href="expertise/pricing/index.html">Pricing</a>, <a href="expertise/customer-value/index.html">Customer Value</a></span><span class="chip">Services: <a href="services/growth-strategy/index.html">Growth Strategy</a>, <a href="services/activation/index.html">Activation Services</a>, <a href="services/ceo-advisory/index.html">CEO Advisory</a></span></div><span class="label">MURAL modules on this page</span><div class="chips"><span class="chip muted">Trusted partners banner up</span><span class="chip muted">FT not at the top</span><span class="chip muted">No homepage reports grid</span><span class="chip muted">Showreel visual at launch</span><span class="chip muted">Client quotes with work</span></div></div>
     <main class="page" id="main">
       
         <section class="block hero">
@@ -89,7 +99,12 @@
             <a class="btn" href="contact/index.html">Contact</a>
             <a class="text" href="services/index.html">What we do</a>
           </div>
-          <div class="logos" aria-label="Client logos"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="video-ph" aria-label="Showreel visual">Showreel visual at launch. Film later.</div>
+        </section>
+        <section class="block">
+          <h2 class="sec">Trusted partners</h2>
+          <p class="prose">Client logos sit here, high on the page. Not a separate Our clients nav item. Link a logo to its case only when a case exists.</p>
+          <div class="logos partners" aria-label="Trusted partner logos"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
         </section>
         <section class="block">
           <h2 class="sec">What we do</h2>
@@ -107,7 +122,13 @@
             <a class="card" href="work/key-group/index.html"><div class="ph"></div><strong>Key Group</strong><span>One-line result</span></a>
             <a class="card" href="work/index.html"><div class="ph"></div><strong>More work</strong><span>All case studies</span></a>
           </div>
+          <p class="quote">Client quote lives with the work, not in a testimonials block. <a href="work/dayinsure/index.html">Read the case</a></p>
           <a class="more" href="work/index.html">All work</a>
+        </section>
+        <section class="block">
+          <h2 class="sec">Awards</h2>
+          <p class="prose">Keep FT and other awards, not in the hero. Video or photos sit here, below the work.</p>
+          <div class="awards" aria-label="Awards"><div class="ph"></div><div class="ph"></div><div class="ph"></div></div>
         </section>
         <section class="block">
           <h2 class="sec">Growth problems we know best</h2>
@@ -120,13 +141,14 @@
           </div>
         </section>
         <section class="block">
-          <h2 class="sec">Latest insights</h2>
+          <h2 class="sec">Latest thinking</h2>
           <ul class="list">
-            <li><a href="insights/loyalty-without-the-discount/index.html">Loyalty without the discount</a><span>Date</span></li>
-            <li><a href="insights/index.html">Insight title</a><span>Date</span></li>
-            <li><a href="insights/index.html">Insight title</a><span>Date</span></li>
+            <li><a href="insights/pricing-paradox/index.html">The Pricing Paradox</a><span>Report</span></li>
+            <li><a href="insights/loyalty-without-the-discount/index.html">Loyalty without the discount</a><span>Article</span></li>
+            <li><a href="insights/index.html#events">Event or news title</a><span>Event</span></li>
           </ul>
-          <a class="more" href="insights/index.html">All insights</a>
+          <p class="prose">Teaser only. Do not replicate the reports grid here.</p>
+          <a class="more" href="insights/index.html">All thinking</a>
         </section>
         
         <section class="block closing">
@@ -177,13 +199,13 @@
             <h4>Company</h4>
             <ul>
               <li><a href="about/index.html">About</a></li>
-              <li><a href="about/team/index.html">Our team</a></li>
-              <li><a href="about/how-we-work/index.html">How we work</a></li>
+              <li><a href="about/team/index.html">Our people</a></li>
+              <li><a href="about/how-we-work/index.html">Our approach</a></li>
               <li><a href="about/values/index.html">Values and culture</a></li>
               <li><a href="careers/index.html">Careers</a></li>
               <li><a href="work/index.html">Our work</a></li>
-              <li><a href="insights/index.html">Insights</a></li>
-              <li><a href="newsletter/index.html">Newsletter</a></li>
+              <li><a href="insights/index.html">Our thinking</a></li>
+              <li><a href="newsletter/index.html">The Nutshell</a></li>
               <li><a href="contact/index.html">Contact</a></li>
             </ul>
           </div>
@@ -207,9 +229,9 @@
   <p class="k"><strong>H1 (one)</strong>Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth.</p>
   <p class="k"><strong>Primary keyword</strong>growth architecture (~50) / brand</p>
   <div class="k"><strong>Alts (2 to 4)</strong><ul><li>Manifesto Growth Architects (brand)</li><li>customer-led growth (positioning, not a target)</li></ul></div>
-  <div class="k"><strong>H2s (ordered)</strong><ol><li>What we do</li><li>Our work</li><li>Growth problems we know best</li><li>Latest insights</li></ol></div>
+  <div class="k"><strong>H2s (ordered)</strong><ol><li>Trusted partners</li><li>What we do</li><li>Our work</li><li>Awards</li><li>Growth problems we know best</li><li>Latest thinking</li></ol></div>
   <div class="k"><strong>H3s where useful</strong><p class="map-note">None required.</p></div>
-  <p class="intent"><strong>Intent.</strong> Brand and router. Name who you are for, show the triangle, send people into services, work and insights. Not a service keyword page.</p>
+  <p class="intent"><strong>Intent.</strong> Brand and router. Trusted partners sit high. FT awards sit lower, not in the hero. Do not replicate the reports grid here. Thinking is a teaser to Our thinking.</p>
 </aside>
 
 </div>

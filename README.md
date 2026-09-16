@@ -10,7 +10,7 @@ This repository holds the Information Architecture (IA) package for the new Mani
 
 **v5 takes the pages to best in class on evidence.** Gary's feedback on v4 (16 September) was that the navigation was calm but not yet best in class, and that Andy's deck might not be fully reflected. v5 reviewed the live navigation of ten real peers and six pattern references (`docs/competitor-nav-review.md`), audited the deck slide by slide (`docs/andy-deck-coverage.md`), and made eight refinements (`docs/v5-refinements.md`). The finding: the menu was already sparser than any peer's; the gap was on the pages. So v5 rebuilds the Services hub as the Growth Architecture story with a way in by problem, puts proof under each offer, names the system and its frameworks where a buyer can see them, and adds exactly one quiet link to the menu.
 
-**This pass does not change the IA.** It extends the v5 mock into a clickable full-site wireframe covering the sitemap, with page chips and an outside SEO heading map shaped by UK keyword intel (`docs/heading-map.md`).
+**This pass does not replace the v5 IA.** It extends the v5 mock into a clickable full-site wireframe covering the sitemap, with page chips and an outside SEO heading map shaped by UK keyword intel (`docs/heading-map.md`). A later MURAL pass folded current-site labels and keep/drop modules into the chrome (six header items, Our thinking, Careers first-class) without adopting the old sitemap. See `docs/mural-gap-check.md`.
 
 ## The one idea to hold in your head
 
@@ -62,6 +62,7 @@ Full summaries of all seven are in `docs/00-sources.md`. The competitor review i
 | `mocks/index.html` | Clickable full-site wireframe. Home is the entry. Primary nav, mega-nav and footer work on every sitemap page. Each page has chips and an outside SEO heading map. | Anyone. Start here. |
 | `mocks/README.md` | How to click through locally, what is in the mega-nav, how to regenerate | Anyone opening the mock |
 | `docs/heading-map.md` | Recommended H1 / H2 / H3 plus UK keyword targets for every URL | SEO, content |
+| `docs/mural-gap-check.md` | What the MURAL board added to nav, chips and headings; what was left out; open questions | Gary and Andy reviewing the wireframe chrome |
 | `docs/v5-refinements.md` | What v5 changes and why, with the competitor and deck evidence for each; old to new; the tests v5 has to pass | Gary and Andy reviewing v5 |
 | `docs/competitor-nav-review.md` | How ten real peers and six pattern references structure nav, services and IA; what is best in class; what to avoid; a patterns table against v4 | Anyone asking "is this best in class?" |
 | `docs/andy-deck-coverage.md` | Every element of Andy's deck, slide by slide: Present, Partial or Missing in the IA, and where v5 puts it | Andy, and Gary checking the deck is reflected |
@@ -101,7 +102,7 @@ Full summaries of all seven are in `docs/00-sources.md`. The competitor review i
 - CEO Advisory is visible as the third pillar, quieter than the other two.
 - The Services hub is the Growth Architecture story: name the system, connect the pillars, offer a way in by problem, put proof under each pillar. It is not a menu on a page.
 - Deck copy goes on pages, not in the menu. Named frameworks (Growth Architecture, CIVD, Operating Architecture, AgentLab, Side-by-Side) have anchored homes and are listed once on How we work.
-- One header mega-nav, one small dropdown (About). Our work and Insights are plain links.
+- One header mega-nav, one small dropdown for About, and (in the MURAL-informed mock) a type dropdown on Our thinking. Careers is first-class in the mock so Contact can split work-with-us / work-for-us. The v5 spec tables in `docs/01-primary-navigation.md` are unchanged until that chrome is signed (`docs/mural-gap-check.md`).
 - One chip dimension per page type, three visible. Sectors are never chips.
 - Nav labels use the words prospects search for. No acronyms in the nav.
 - No em dashes anywhere in the package. British English.

@@ -25,18 +25,28 @@
               <a class="top-link" href="../services/index.html" aria-haspopup="true" aria-expanded="false">What we do <span class="caret">&#9660;</span></a>
             </li>
             <li><a class="top-link plain" href="index.html" aria-current="page">Our work</a></li>
-            <li><a class="top-link plain" href="../insights/index.html">Insights</a></li>
+            <li data-menu="thinking">
+              <a class="top-link" href="../insights/index.html" aria-haspopup="true" aria-expanded="false">Our thinking <span class="caret">&#9660;</span></a>
+              <div class="dropdown" role="region" aria-label="Our thinking menu">
+                <ul>
+                  <li><a href="../insights/index.html#reports">Reports</a></li>
+                  <li><a href="../insights/index.html#articles">Articles</a></li>
+                  <li><a href="../insights/index.html#events">Events and news</a></li>
+                  <li><a href="../insights/index.html">All thinking</a></li>
+                </ul>
+              </div>
+            </li>
             <li data-menu="about">
               <a class="top-link" href="../about/index.html" aria-haspopup="true" aria-expanded="false">About <span class="caret">&#9660;</span></a>
               <div class="dropdown" role="region" aria-label="About menu">
                 <ul>
-                  <li><a href="../about/team/index.html">Our team</a></li>
-                  <li><a href="../about/how-we-work/index.html">How we work</a></li>
+                  <li><a href="../about/team/index.html">Our people</a></li>
+                  <li><a href="../about/how-we-work/index.html">Our approach</a></li>
                   <li><a href="../about/values/index.html">Values and culture</a></li>
-                  <li><a href="../careers/index.html">Careers</a></li>
                 </ul>
               </div>
             </li>
+            <li><a class="top-link plain" href="../careers/index.html">Careers</a></li>
           </ul>
           <a class="btn" href="../contact/index.html">Contact</a>
         </header>
@@ -79,16 +89,17 @@
       </div>
 
     <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Home</a></li><li>Our work</li></ol></nav>
-    <div class="ia-chips" aria-label="Page chips"><span class="label">Page chips</span><div class="chips"><span class="chip weight">Canonical</span><span class="chip kw">Primary: case studies (proof engine; not a service keyword)</span><span class="chip">Sectors: <a href="../sectors/financial-services/index.html">Financial services</a>, <a href="../sectors/media/index.html">Media</a>, <a href="../sectors/consumer/index.html">Consumer</a>, <a href="../sectors/retail/index.html">Retail</a></span><span class="chip">Services: <a href="../services/experience-engineering/index.html">Experience Engineering</a>, <a href="../services/growth-strategy/index.html">Growth Strategy</a></span></div></div>
+    <div class="ia-chips" aria-label="Page chips"><span class="label">Page chips</span><div class="chips"><span class="chip weight">Canonical</span><span class="chip kw">Primary: case studies (proof engine; not a service keyword)</span><span class="chip">Sectors: <a href="../sectors/financial-services/index.html">Financial services</a>, <a href="../sectors/media/index.html">Media</a>, <a href="../sectors/consumer/index.html">Consumer</a>, <a href="../sectors/retail/index.html">Retail</a></span><span class="chip">Services: <a href="../services/experience-engineering/index.html">Experience Engineering</a>, <a href="../services/growth-strategy/index.html">Growth Strategy</a></span></div><span class="label">MURAL modules on this page</span><div class="chips"><span class="chip muted">Case studies pulled up</span><span class="chip muted">Quotes in cases</span><span class="chip muted">Video snippets from the approach film</span><span class="chip muted">Tagging</span></div></div>
     <main class="page" id="main">
       
         <section class="block hero">
           <h1>Our work</h1>
-          <p>Case studies. Service filter open. Expertise and sector behind More filters.</p>
+          <p>Case studies pulled up. Our clients is not a top-level nav item: proof lives here, sectors in the footer.</p>
         </section>
         <section class="block">
           <h2 class="plain">Featured</h2>
           <a class="card" href="dayinsure/index.html"><div class="ph"></div><strong>Dayinsure</strong><span>Quote journey rebuilt</span></a>
+          <p class="quote">Client quote in the case, not a testimonials page.</p>
         </section>
         <section class="block">
           <h2 class="plain">All case studies</h2>
@@ -99,6 +110,7 @@
             <span class="filter">Customer Research and Insight</span>
             <span class="filter more">More filters</span>
           </div>
+          <p class="prose">Tagging drives filters. Video snippets from the approach film sit on the case, not here.</p>
           <div class="cards">
             <a class="card" href="dayinsure/index.html"><div class="ph"></div><strong>Dayinsure</strong><span>Experience Engineering</span></a>
             <a class="card" href="key-group/index.html"><div class="ph"></div><strong>Key Group</strong><span>Experience Engineering</span></a>
@@ -153,13 +165,13 @@
             <h4>Company</h4>
             <ul>
               <li><a href="../about/index.html">About</a></li>
-              <li><a href="../about/team/index.html">Our team</a></li>
-              <li><a href="../about/how-we-work/index.html">How we work</a></li>
+              <li><a href="../about/team/index.html">Our people</a></li>
+              <li><a href="../about/how-we-work/index.html">Our approach</a></li>
               <li><a href="../about/values/index.html">Values and culture</a></li>
               <li><a href="../careers/index.html">Careers</a></li>
               <li><a href="index.html">Our work</a></li>
-              <li><a href="../insights/index.html">Insights</a></li>
-              <li><a href="../newsletter/index.html">Newsletter</a></li>
+              <li><a href="../insights/index.html">Our thinking</a></li>
+              <li><a href="../newsletter/index.html">The Nutshell</a></li>
               <li><a href="../contact/index.html">Contact</a></li>
             </ul>
           </div>
@@ -184,8 +196,8 @@
   <p class="k"><strong>Primary keyword</strong>case studies (proof engine; not a service keyword)</p>
   <div class="k"><strong>Alts (2 to 4)</strong><ul><li>client-name searches land on individual case studies</li></ul></div>
   <div class="k"><strong>H2s (ordered)</strong><ol><li>Featured</li><li>All case studies</li></ol></div>
-  <div class="k"><strong>H3s where useful</strong><p class="map-note">None required.</p></div>
-  <p class="intent"><strong>Intent.</strong> Proof hub. Service filter open on load. Expertise and sector behind More filters. No testimonials page.</p>
+  <div class="k"><strong>H3s where useful</strong><ul><li>Client quote (inside the case, not a testimonials page)</li></ul></div>
+  <p class="intent"><strong>Intent.</strong> Proof hub. Our clients is not a top-level nav item: proof lives here, sectors in the footer. Quotes and video snippets live in the case, not on Home.</p>
 </aside>
 
 </div>

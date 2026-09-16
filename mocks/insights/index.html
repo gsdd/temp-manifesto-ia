@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insights | Manifesto Growth Architects (IA wireframe)</title>
+<title>Our thinking | Manifesto Growth Architects (IA wireframe)</title>
 <link rel="stylesheet" href="../assets/wireframe.css">
 </head>
 <body>
@@ -25,18 +25,28 @@
               <a class="top-link" href="../services/index.html" aria-haspopup="true" aria-expanded="false">What we do <span class="caret">&#9660;</span></a>
             </li>
             <li><a class="top-link plain" href="../work/index.html">Our work</a></li>
-            <li><a class="top-link plain" href="index.html" aria-current="page">Insights</a></li>
+            <li data-menu="thinking">
+              <a class="top-link" href="index.html" aria-haspopup="true" aria-expanded="false" aria-current="page">Our thinking <span class="caret">&#9660;</span></a>
+              <div class="dropdown" role="region" aria-label="Our thinking menu">
+                <ul>
+                  <li><a href="index.html#reports">Reports</a></li>
+                  <li><a href="index.html#articles">Articles</a></li>
+                  <li><a href="index.html#events">Events and news</a></li>
+                  <li><a href="index.html">All thinking</a></li>
+                </ul>
+              </div>
+            </li>
             <li data-menu="about">
               <a class="top-link" href="../about/index.html" aria-haspopup="true" aria-expanded="false">About <span class="caret">&#9660;</span></a>
               <div class="dropdown" role="region" aria-label="About menu">
                 <ul>
-                  <li><a href="../about/team/index.html">Our team</a></li>
-                  <li><a href="../about/how-we-work/index.html">How we work</a></li>
+                  <li><a href="../about/team/index.html">Our people</a></li>
+                  <li><a href="../about/how-we-work/index.html">Our approach</a></li>
                   <li><a href="../about/values/index.html">Values and culture</a></li>
-                  <li><a href="../careers/index.html">Careers</a></li>
                 </ul>
               </div>
             </li>
+            <li><a class="top-link plain" href="../careers/index.html">Careers</a></li>
           </ul>
           <a class="btn" href="../contact/index.html">Contact</a>
         </header>
@@ -78,20 +88,23 @@
         </div>
       </div>
 
-    <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Home</a></li><li>Insights</li></ol></nav>
-    <div class="ia-chips" aria-label="Page chips"><span class="label">Page chips</span><div class="chips"><span class="chip weight">Supporting</span><span class="chip kw">Primary: thought leadership hub (long-tail lives on articles)</span><span class="chip">Themes: <a href="../expertise/loyalty/index.html">Loyalty</a></span></div></div>
+    <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Home</a></li><li>Our thinking</li></ol></nav>
+    <div class="ia-chips" aria-label="Page chips"><span class="label">Page chips</span><div class="chips"><span class="chip weight">Supporting</span><span class="chip kw">Primary: thought leadership hub (long-tail lives on articles and reports)</span><span class="chip">Themes: <a href="../expertise/loyalty/index.html">Loyalty</a>, <a href="../expertise/pricing/index.html">Pricing</a></span></div><span class="label">MURAL modules on this page</span><div class="chips"><span class="chip muted">Reports at the top, blogs underneath</span><span class="chip muted">Merged into Our thinking</span><span class="chip muted">Events + latest news</span><span class="chip muted">No more PDFs</span><span class="chip muted">Do not replicate on Home</span></div></div>
     <main class="page" id="main">
       
         <section class="block hero">
-          <h1>Insights</h1>
-          <p>Articles, reports and events. Latest is a section, not a page.</p>
+          <h1>Our thinking</h1>
+          <p>Reports, articles, events and news. Blogs are merged here. Latest is a section, not a page. Do not replicate this grid on Home.</p>
         </section>
-        <section class="block">
-          <h2 class="plain">Latest</h2>
-          <a class="card flat" href="loyalty-without-the-discount/index.html"><strong>Loyalty without the discount</strong><span>Article · date</span></a>
+        <section class="block" id="reports">
+          <h2 class="plain">Reports</h2>
+          <p class="prose">Reports sit at the top. Expand on the page. No PDF downloads.</p>
+          <div class="cards two">
+            <a class="card flat" href="pricing-paradox/index.html"><strong>The Pricing Paradox</strong><span>Report · from tactical lever to growth engine</span></a>
+          </div>
         </section>
-        <section class="block">
-          <h2 class="plain">All insights</h2>
+        <section class="block" id="articles">
+          <h2 class="plain">Articles</h2>
           <div class="filters">
             <span class="filter on">Article</span>
             <span class="filter">Report</span>
@@ -101,7 +114,15 @@
           <ul class="list">
             <li><a href="loyalty-without-the-discount/index.html">Loyalty without the discount</a><span>Loyalty</span></li>
           </ul>
-          <a class="more" href="../newsletter/index.html">Newsletter</a>
+        </section>
+        <section class="block" id="events">
+          <h2 class="plain">Events and news</h2>
+          <p class="prose">Launch events and recaps. A separate events page only if resource allows. End state: copy about bringing people together.</p>
+          <ul class="list">
+            <li><a href="pricing-paradox/index.html">Pricing Paradox launch event</a><span>Event</span></li>
+          </ul>
+          <h3 class="plain">The Nutshell</h3>
+          <p class="prose">Events, thought leadership and what has caught our attention. <a href="../newsletter/index.html">Sign up to The Nutshell</a></p>
         </section>
 
     </main>
@@ -146,13 +167,13 @@
             <h4>Company</h4>
             <ul>
               <li><a href="../about/index.html">About</a></li>
-              <li><a href="../about/team/index.html">Our team</a></li>
-              <li><a href="../about/how-we-work/index.html">How we work</a></li>
+              <li><a href="../about/team/index.html">Our people</a></li>
+              <li><a href="../about/how-we-work/index.html">Our approach</a></li>
               <li><a href="../about/values/index.html">Values and culture</a></li>
               <li><a href="../careers/index.html">Careers</a></li>
               <li><a href="../work/index.html">Our work</a></li>
-              <li><a href="index.html">Insights</a></li>
-              <li><a href="../newsletter/index.html">Newsletter</a></li>
+              <li><a href="index.html">Our thinking</a></li>
+              <li><a href="../newsletter/index.html">The Nutshell</a></li>
               <li><a href="../contact/index.html">Contact</a></li>
             </ul>
           </div>
@@ -173,12 +194,12 @@
   <h2>Outside page / SEO heading map</h2>
   <p class="map-note">Annotation for content and SEO. Not part of the live page. UK volumes from DataForSEO, Sep 2026. One-line intent only; not body copy.</p>
   <p class="k"><strong>URL</strong><code>/insights/</code></p>
-  <p class="k"><strong>H1 (one)</strong>Insights</p>
-  <p class="k"><strong>Primary keyword</strong>thought leadership hub (long-tail lives on articles)</p>
-  <div class="k"><strong>Alts (2 to 4)</strong><ul><li>type filters are query strings, not pages</li></ul></div>
-  <div class="k"><strong>H2s (ordered)</strong><ol><li>Latest</li><li>All insights</li></ol></div>
-  <div class="k"><strong>H3s where useful</strong><p class="map-note">None required.</p></div>
-  <p class="intent"><strong>Intent.</strong> Filterable hub. Latest is a section, not a page. Type filter open on load.</p>
+  <p class="k"><strong>H1 (one)</strong>Our thinking</p>
+  <p class="k"><strong>Primary keyword</strong>thought leadership hub (long-tail lives on articles and reports)</p>
+  <div class="k"><strong>Alts (2 to 4)</strong><ul><li>Our thinking is the nav label; URL stays /insights/</li><li>reports, articles, events are types, not extra top-nav items</li></ul></div>
+  <div class="k"><strong>H2s (ordered)</strong><ol><li>Reports</li><li>Articles</li><li>Events and news</li></ol></div>
+  <div class="k"><strong>H3s where useful</strong><ul><li>The Nutshell (newsletter)</li></ul></div>
+  <p class="intent"><strong>Intent.</strong> MURAL: merge blogs into Our thinking. Reports at the top, articles underneath. Events and news as a section (separate page only if resource allows). No PDFs: expand on the page.</p>
 </aside>
 
 </div>

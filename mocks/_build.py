@@ -67,10 +67,19 @@ def chips_html(page: dict) -> str:
             f'<a href="{rel_href(page["url"], u)}">{n}</a>' for n, u in items
         )
         chips.append(f'<span class="chip">{label}: {links}</span>')
+    mural = page.get("mural") or []
+    mural_row = ""
+    if mural:
+        mural_chips = "".join(f'<span class="chip muted">{m}</span>' for m in mural)
+        mural_row = (
+            '<span class="label">MURAL modules on this page</span>'
+            f'<div class="chips">{mural_chips}</div>'
+        )
     return (
         '<div class="ia-chips" aria-label="Page chips">'
         '<span class="label">Page chips</span>'
         f'<div class="chips">{"".join(chips)}</div>'
+        f"{mural_row}"
         "</div>"
     )
 
@@ -117,18 +126,28 @@ def header_html(from_url: str, section: str) -> str:
               <a class="top-link" href="{h("/services/")}" aria-haspopup="true" aria-expanded="false"{current("services")}>What we do <span class="caret">&#9660;</span></a>
             </li>
             <li><a class="top-link plain" href="{h("/work/")}"{current("work")}>Our work</a></li>
-            <li><a class="top-link plain" href="{h("/insights/")}"{current("insights")}>Insights</a></li>
+            <li data-menu="thinking">
+              <a class="top-link" href="{h("/insights/")}" aria-haspopup="true" aria-expanded="false"{current("insights")}>Our thinking <span class="caret">&#9660;</span></a>
+              <div class="dropdown" role="region" aria-label="Our thinking menu">
+                <ul>
+                  <li><a href="{h("/insights/#reports")}">Reports</a></li>
+                  <li><a href="{h("/insights/#articles")}">Articles</a></li>
+                  <li><a href="{h("/insights/#events")}">Events and news</a></li>
+                  <li><a href="{h("/insights/")}">All thinking</a></li>
+                </ul>
+              </div>
+            </li>
             <li data-menu="about">
               <a class="top-link" href="{h("/about/")}" aria-haspopup="true" aria-expanded="false"{current("about")}>About <span class="caret">&#9660;</span></a>
               <div class="dropdown" role="region" aria-label="About menu">
                 <ul>
-                  <li><a href="{h("/about/team/")}">Our team</a></li>
-                  <li><a href="{h("/about/how-we-work/")}">How we work</a></li>
+                  <li><a href="{h("/about/team/")}">Our people</a></li>
+                  <li><a href="{h("/about/how-we-work/")}">Our approach</a></li>
                   <li><a href="{h("/about/values/")}">Values and culture</a></li>
-                  <li><a href="{h("/careers/")}">Careers</a></li>
                 </ul>
               </div>
             </li>
+            <li><a class="top-link plain" href="{h("/careers/")}"{current("careers")}>Careers</a></li>
           </ul>
           <a class="btn" href="{h("/contact/")}"{current("contact")}>Contact</a>
         </header>
@@ -215,13 +234,13 @@ def footer_html(from_url: str) -> str:
             <h4>Company</h4>
             <ul>
               <li><a href="{h("/about/")}">About</a></li>
-              <li><a href="{h("/about/team/")}">Our team</a></li>
-              <li><a href="{h("/about/how-we-work/")}">How we work</a></li>
+              <li><a href="{h("/about/team/")}">Our people</a></li>
+              <li><a href="{h("/about/how-we-work/")}">Our approach</a></li>
               <li><a href="{h("/about/values/")}">Values and culture</a></li>
               <li><a href="{h("/careers/")}">Careers</a></li>
               <li><a href="{h("/work/")}">Our work</a></li>
-              <li><a href="{h("/insights/")}">Insights</a></li>
-              <li><a href="{h("/newsletter/")}">Newsletter</a></li>
+              <li><a href="{h("/insights/")}">Our thinking</a></li>
+              <li><a href="{h("/newsletter/")}">The Nutshell</a></li>
               <li><a href="{h("/contact/")}">Contact</a></li>
             </ul>
           </div>
@@ -313,11 +332,12 @@ PAGES: list[dict] = [
         sectors=[],
         services=[T("Growth Strategy", "/services/growth-strategy/"), T("Activation Services", "/services/activation/"), T("CEO Advisory", "/services/ceo-advisory/")],
         h1="Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth.",
-        h2s=["What we do", "Our work", "Growth problems we know best", "Latest insights"],
+        h2s=["Trusted partners", "What we do", "Our work", "Awards", "Growth problems we know best", "Latest thinking"],
         h3s=[],
-        intent="Brand and router. Name who you are for, show the triangle, send people into services, work and insights. Not a service keyword page.",
+        intent="Brand and router. Trusted partners sit high. FT awards sit lower, not in the hero. Do not replicate the reports grid here. Thinking is a teaser to Our thinking.",
         crumbs=[],
         kind="home",
+        mural=["Trusted partners banner up", "FT not at the top", "No homepage reports grid", "Showreel visual at launch", "Client quotes with work"],
     ),
     dict(
         url="/services/",
@@ -351,9 +371,10 @@ PAGES: list[dict] = [
         h1="Growth Strategy",
         h2s=["Why this, now", "What we do", "North Star", "Growth priorities", "Demand signals", "Scenario planning", "Customer, Innovation, Value and Delivery", "Proof", "How it works"],
         h3s=["Customer", "Innovation", "Value", "Delivery"],
-        intent="Lead offer. Keep the nav label. H2s take brand / GTM language only where the work is truly that. CIVD is the named frame.",
+        intent="Lead offer. Keep the nav label. H2s take brand / GTM language only where the work is truly that. CIVD is the named frame. MURAL: keep CIVD, new visuals; it is the strategy frame, not Side-by-Side.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Growth Strategy", None)],
         kind="service",
+        mural=["Keep CIVD, different visuals", "CIVD is strategy, not Side-by-Side"],
         hero="Customer-led growth strategy: where to focus and how to win",
         who="For leadership teams deciding where and how to grow.",
         aka=None,
@@ -434,9 +455,10 @@ PAGES: list[dict] = [
         h1="Customer Research and Insight",
         h2s=["Why this, now", "Customer research methods", "Customer journey mapping", "Research projects", "Always-on customer insight", "Proof", "How it works"],
         h3s=["Digital listening", "Qualitative research", "Quantitative research", "Customer data analytics", "Internal knowledge", "External market data"],
-        intent="Label stays. Lead with methods, journey mapping and insight outcomes, not only the consultancy noun. Customer Intelligence is the practice name on the page.",
+        intent="Label stays. Lead with methods, journey mapping and insight outcomes, not only the consultancy noun. Customer Intelligence is the practice name on the page. MURAL: qual and quant evidence lives here.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", "/services/activation/"), ("Customer Research and Insight", None)],
         kind="service",
+        mural=["Qual and quant evidence"],
         hero="Research, surveys, analytics and customer listening, faster with AI",
         who="For teams who need one version of the customer truth.",
         aka="Our Customer Intelligence practice",
@@ -793,10 +815,11 @@ PAGES += [
         services=[T("Experience Engineering", "/services/experience-engineering/"), T("Growth Strategy", "/services/growth-strategy/")],
         h1="Our work",
         h2s=["Featured", "All case studies"],
-        h3s=[],
-        intent="Proof hub. Service filter open on load. Expertise and sector behind More filters. No testimonials page.",
+        h3s=["Client quote (inside the case, not a testimonials page)"],
+        intent="Proof hub. Our clients is not a top-level nav item: proof lives here, sectors in the footer. Quotes and video snippets live in the case, not on Home.",
         crumbs=[("Home", "/"), ("Our work", None)],
         kind="work-hub",
+        mural=["Case studies pulled up", "Quotes in cases", "Video snippets from the approach film", "Tagging"],
     ),
     dict(
         url="/work/dayinsure/",
@@ -812,9 +835,10 @@ PAGES += [
         h1="Dayinsure",
         h2s=["At a glance", "The challenge", "What we did", "The result"],
         h3s=[],
-        intent="Shell for an Experience Engineering engagement. Links to service, theme and sector. Testimonials live here.",
+        intent="Shell for an Experience Engineering engagement. Links to service, theme and sector. Testimonials live here. No PDF.",
         crumbs=[("Home", "/"), ("Our work", "/work/"), ("Dayinsure", None)],
         kind="case",
+        mural=["Integrate quotes", "Video snippet if it applies"],
         client="Dayinsure",
         result="Quote journey rebuilt; conversion and value up (figure TBC)",
         sector_name="Financial services",
@@ -837,6 +861,7 @@ PAGES += [
         intent="Second case-study shell. Same template as Dayinsure. Tags drive the auto modules on service, theme and sector pages.",
         crumbs=[("Home", "/"), ("Our work", "/work/"), ("Key Group", None)],
         kind="case",
+        mural=["Integrate quotes", "Video snippet if it applies"],
         client="Key Group",
         result="Experience and offer working as one (figure TBC)",
         sector_name="Financial services",
@@ -844,21 +869,22 @@ PAGES += [
     ),
     dict(
         url="/insights/",
-        title="Insights",
+        title="Our thinking",
         section="insights",
         weight="Supporting",
-        primary="thought leadership hub (long-tail lives on articles)",
-        alts=["type filters are query strings, not pages"],
+        primary="thought leadership hub (long-tail lives on articles and reports)",
+        alts=["Our thinking is the nav label; URL stays /insights/", "reports, articles, events are types, not extra top-nav items"],
         quiet=None,
-        themes=[T("Loyalty", "/expertise/loyalty/")],
+        themes=[T("Loyalty", "/expertise/loyalty/"), T("Pricing", "/expertise/pricing/")],
         sectors=[],
         services=[],
-        h1="Insights",
-        h2s=["Latest", "All insights"],
-        h3s=[],
-        intent="Filterable hub. Latest is a section, not a page. Type filter open on load.",
-        crumbs=[("Home", "/"), ("Insights", None)],
+        h1="Our thinking",
+        h2s=["Reports", "Articles", "Events and news"],
+        h3s=["The Nutshell (newsletter)"],
+        intent="MURAL: merge blogs into Our thinking. Reports at the top, articles underneath. Events and news as a section (separate page only if resource allows). No PDFs: expand on the page.",
+        crumbs=[("Home", "/"), ("Our thinking", None)],
         kind="insights-hub",
+        mural=["Reports at the top, blogs underneath", "Merged into Our thinking", "Events + latest news", "No more PDFs", "Do not replicate on Home"],
     ),
     dict(
         url="/insights/loyalty-without-the-discount/",
@@ -875,8 +901,28 @@ PAGES += [
         h2s=["The problem", "What we think", "How we help"],
         h3s=[],
         intent="Article shell. Dated point of view. Theme page stays the evergreen position. Related services as a block, not extra nav.",
-        crumbs=[("Home", "/"), ("Insights", "/insights/"), ("Loyalty without the discount", None)],
+        crumbs=[("Home", "/"), ("Our thinking", "/insights/"), ("Loyalty without the discount", None)],
         kind="insight",
+        mural=["Article under Our thinking, not a separate blog nav"],
+    ),
+    dict(
+        url="/insights/pricing-paradox/",
+        title="The Pricing Paradox",
+        section="insights",
+        weight="Supporting",
+        primary="pricing thought leadership (hands off to /expertise/pricing/)",
+        alts=["no PDF download", "report type of Our thinking"],
+        quiet=None,
+        themes=[T("Pricing", "/expertise/pricing/")],
+        sectors=[],
+        services=[T("Growth Strategy", "/services/growth-strategy/"), T("Proposition Innovation", "/services/proposition-innovation/")],
+        h1="The Pricing Paradox: from tactical lever to growth engine",
+        h2s=["What this report covers", "Read it on this page", "How we help"],
+        h3s=[],
+        intent="Report shell. MURAL: no more PDFs; expand within the page. Gated download is a form if needed, not a file.",
+        crumbs=[("Home", "/"), ("Our thinking", "/insights/"), ("The Pricing Paradox", None)],
+        kind="report",
+        mural=["No more PDFs", "Expand within the page", "Reports at the top of Our thinking"],
     ),
     dict(
         url="/about/",
@@ -890,15 +936,16 @@ PAGES += [
         sectors=[],
         services=[T("Our Growth Architecture", "/services/")],
         h1="About Manifesto Growth Architects",
-        h2s=["Who we are and our story", "What makes us different", "Leadership", "How we work"],
-        h3s=[],
-        intent="Story and positioning. Method is a teaser to How we work. Not a service page.",
+        h2s=["Who we are and our story", "How we are distinct", "Leadership", "Our approach"],
+        h3s=["Origins", "C and N members (open: confirm what C and N is)"],
+        intent="Story, origins, and how the people mix of agency, client and strategy is distinct. Life at Manifesto is Careers, not duplicated here. Method teases Our approach.",
         crumbs=[("Home", "/"), ("About", None)],
         kind="about",
+        mural=["Origins / history", "How we are distinct", "People combo of agency, client and strategy", "Do not duplicate Life at Manifesto", "C and N members section"],
     ),
     dict(
         url="/about/team/",
-        title="Our team",
+        title="Our people",
         section="about",
         weight="Supporting",
         primary="named-person search (profiles); this page is the listing",
@@ -907,12 +954,13 @@ PAGES += [
         themes=[],
         sectors=[],
         services=[T("CEO Advisory", "/services/ceo-advisory/")],
-        h1="Our team",
-        h2s=["Leadership", "Consultants", "Side-by-Side advisors", "Associates and expert network"],
-        h3s=[],
-        intent="Everyone client-facing. Advisors group is present; mega-nav Our advisors still lands on the offer page.",
-        crumbs=[("Home", "/"), ("About", "/about/"), ("Our team", None)],
+        h1="Our people",
+        h2s=["Leadership", "Consultants", "Side-by-Side advisors", "Associates, expert network and C and N members"],
+        h3s=["Culture over headshots (visual note)"],
+        intent="Meet the team. MURAL asked to merge with Life at Manifesto; Source A keeps Careers separate. Cross-link instead. Mega-nav Our advisors still lands on CEO Advisory.",
+        crumbs=[("Home", "/"), ("About", "/about/"), ("Our people", None)],
         kind="team",
+        mural=["Meet the team", "Culture over headshots", "Not merged with Life at Manifesto (see gap check)", "Link to current opportunities"],
     ),
     dict(
         url="/about/team/advisor-one/",
@@ -929,26 +977,27 @@ PAGES += [
         h2s=["Biography", "Focus", "Selected work"],
         h3s=[],
         intent="Profile shell. Advisor note links back to Side-by-Side on the CEO Advisory page.",
-        crumbs=[("Home", "/"), ("About", "/about/"), ("Our team", "/about/team/"), ("Advisor name", None)],
+        crumbs=[("Home", "/"), ("About", "/about/"), ("Our people", "/about/team/"), ("Advisor name", None)],
         kind="profile",
     ),
     dict(
         url="/about/how-we-work/",
-        title="How we work",
+        title="Our approach",
         section="about",
         weight="Supporting",
         primary="methodology (not a product; no service keyword)",
         alts=["Growth Architecture, CIVD, Operating Architecture, AgentLab, Side-by-Side each have one anchored home"],
-        quiet=None,
+        quiet="How we partner with clients",
         themes=[],
         sectors=[],
         services=[T("Growth Strategy", "/services/growth-strategy/"), T("AI Agents for Marketing", "/services/ai-agents-for-marketing/"), T("CEO Advisory", "/services/ceo-advisory/")],
-        h1="How we work",
-        h2s=["Principles", "Engagement shapes", "Frameworks and tools", "Working with AI"],
+        h1="Our approach",
+        h2s=["How we partner", "Growth partner videos", "Principles", "Engagement shapes", "Frameworks and tools", "Working with AI"],
         h3s=["Growth Architecture", "Customer, Innovation, Value and Delivery", "Operating Architecture", "AgentLab", "Side-by-Side"],
-        intent="Method is never a product. Named frameworks listed once here, each linking to its anchored service-page home.",
-        crumbs=[("Home", "/"), ("About", "/about/"), ("How we work", None)],
+        intent="Nav label Our approach. Method is never a product. Growth partner videos live here, not on Home. CIVD kept.",
+        crumbs=[("Home", "/"), ("About", "/about/"), ("Our approach", None)],
         kind="how",
+        mural=["Our approach, how we partner", "Move video here", "Growth partner videos", "Keep CIVD", "Qual and quant evidence"],
     ),
     dict(
         url="/about/values/",
@@ -967,29 +1016,31 @@ PAGES += [
         intent="Light culture page. Careers is the jobs destination.",
         crumbs=[("Home", "/"), ("About", "/about/"), ("Values and culture", None)],
         kind="values",
+        mural=["DEI commitments; detail and hiring context also on Careers"],
     ),
     dict(
         url="/careers/",
         title="Careers",
-        section="about",
+        section="careers",
         weight="Light",
         primary="none",
-        alts=[],
+        alts=["Life at Manifesto is a section here, not a competing About page"],
         quiet=None,
         themes=[],
         sectors=[],
         services=[],
         h1="Careers at Manifesto",
-        h2s=["Life at Manifesto", "Benefits", "Open roles"],
-        h3s=[],
-        intent="Life, benefits and roles on one page at current scale.",
+        h2s=["Life at Manifesto", "Diversity, equity and inclusion", "Benefits", "Open roles", "Not hiring for a listed role?"],
+        h3s=["Career change framing", "We hire from multiple backgrounds", "Pioneers / recent joiners"],
+        intent="First-class nav item so Contact can be work-with-us and this page work-for-us. Life at Manifesto + roles on one page. No PDFs: expand role descriptions on the page.",
         crumbs=[("Home", "/"), ("Careers", None)],
         kind="careers",
+        mural=["Life at Manifesto", "DEI", "Benefits", "Career change framing", "No more PDFs", "Reach out if no open role", "Office visuals"],
     ),
     dict(
         url="/careers/growth-architect/",
         title="Growth Architect",
-        section="about",
+        section="careers",
         weight="Light",
         primary="none",
         alts=[],
@@ -1000,9 +1051,10 @@ PAGES += [
         h1="Growth Architect",
         h2s=["About the role", "How to apply"],
         h3s=[],
-        intent="Role shell. noindex when closed.",
+        intent="Role shell. Expand the description on this page. No PDF. noindex when closed.",
         crumbs=[("Home", "/"), ("Careers", "/careers/"), ("Growth Architect", None)],
         kind="role",
+        mural=["No more PDFs", "Expand description on the page"],
     ),
     dict(
         url="/contact/",
@@ -1016,11 +1068,12 @@ PAGES += [
         sectors=[],
         services=[],
         h1="Contact",
-        h2s=["Get in touch", "Direct contact"],
-        h3s=[],
-        intent="Enquiry form. Topic selector can be pre-filled from ?topic=.",
+        h2s=["Work with us", "Work for us", "Direct contact"],
+        h3s=["The Nutshell"],
+        intent="Split: work with us (this form) and work for us (Careers). Newsletter is The Nutshell. FT awards are not here.",
         crumbs=[("Home", "/"), ("Contact", None)],
         kind="contact",
+        mural=["Split work with us / work for us", "The Nutshell", "Keep Email Mark as one tracked route"],
     ),
     dict(
         url="/contact/thank-you/",
@@ -1042,7 +1095,7 @@ PAGES += [
     ),
     dict(
         url="/newsletter/",
-        title="Newsletter",
+        title="The Nutshell",
         section="insights",
         weight="Utility",
         primary="none",
@@ -1051,13 +1104,14 @@ PAGES += [
         themes=[],
         sectors=[],
         services=[],
-        h1="Newsletter",
+        h1="The Nutshell",
         h2s=["Sign up"],
         h3s=[],
-        intent="Email capture. Indexed utility.",
-        crumbs=[("Home", "/"), ("Newsletter", None)],
+        intent="Email capture. Current site name for the newsletter. Indexed utility.",
+        crumbs=[("Home", "/"), ("The Nutshell", None)],
         kind="legal",
-        blurb="Short sign-up. Insights keep an inline route here.",
+        blurb="The Nutshell: events, thought leadership and what has caught our attention.",
+        mural=["Named newsletter from the current contact form"],
     ),
 ]
 
@@ -1122,7 +1176,12 @@ def body_for(page: dict) -> str:
             <a class="btn" href="{h("/contact/")}">Contact</a>
             <a class="text" href="{h("/services/")}">What we do</a>
           </div>
-          <div class="logos" aria-label="Client logos"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="video-ph" aria-label="Showreel visual">Showreel visual at launch. Film later.</div>
+        </section>
+        <section class="block">
+          <h2 class="sec">Trusted partners</h2>
+          <p class="prose">Client logos sit here, high on the page. Not a separate Our clients nav item. Link a logo to its case only when a case exists.</p>
+          <div class="logos partners" aria-label="Trusted partner logos"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
         </section>
         <section class="block">
           <h2 class="sec">What we do</h2>
@@ -1140,7 +1199,13 @@ def body_for(page: dict) -> str:
             {card(h, "/work/key-group/", "Key Group", "One-line result", "ph")}
             {card(h, "/work/", "More work", "All case studies", "ph")}
           </div>
+          <p class="quote">Client quote lives with the work, not in a testimonials block. <a href="{h("/work/dayinsure/")}">Read the case</a></p>
           <a class="more" href="{h("/work/")}">All work</a>
+        </section>
+        <section class="block">
+          <h2 class="sec">Awards</h2>
+          <p class="prose">Keep FT and other awards, not in the hero. Video or photos sit here, below the work.</p>
+          <div class="awards" aria-label="Awards"><div class="ph"></div><div class="ph"></div><div class="ph"></div></div>
         </section>
         <section class="block">
           <h2 class="sec">Growth problems we know best</h2>
@@ -1153,13 +1218,14 @@ def body_for(page: dict) -> str:
           </div>
         </section>
         <section class="block">
-          <h2 class="sec">Latest insights</h2>
+          <h2 class="sec">Latest thinking</h2>
           <ul class="list">
-            <li><a href="{h("/insights/loyalty-without-the-discount/")}">Loyalty without the discount</a><span>Date</span></li>
-            <li><a href="{h("/insights/")}">Insight title</a><span>Date</span></li>
-            <li><a href="{h("/insights/")}">Insight title</a><span>Date</span></li>
+            <li><a href="{h("/insights/pricing-paradox/")}">The Pricing Paradox</a><span>Report</span></li>
+            <li><a href="{h("/insights/loyalty-without-the-discount/")}">Loyalty without the discount</a><span>Article</span></li>
+            <li><a href="{h("/insights/#events")}">Event or news title</a><span>Event</span></li>
           </ul>
-          <a class="more" href="{h("/insights/")}">All insights</a>
+          <p class="prose">Teaser only. Do not replicate the reports grid here.</p>
+          <a class="more" href="{h("/insights/")}">All thinking</a>
         </section>
         {closing(h)}
 """
@@ -1348,13 +1414,13 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block" id="advisors">
           <h2 class="plain">Our advisors</h2>
-          <p class="prose">The mega-nav item 'Our advisors' lands here. Profiles are pulled from Our team.</p>
+          <p class="prose">The mega-nav item 'Our advisors' lands here. Profiles are pulled from Our people.</p>
           <div class="cards">
             {card(h, "/about/team/advisor-one/", "Advisor name", "Former role, one line", "person")}
             {card(h, "/about/team/advisor-one/", "Advisor name", "Former role, one line", "person")}
             {card(h, "/about/team/advisor-one/", "Advisor name", "Former role, one line", "person")}
           </div>
-          <a class="more" href="{h("/about/team/")}">All of our team</a>
+          <a class="more" href="{h("/about/team/")}">Our people</a>
         </section>
         <section class="block">
           <h2 class="plain">How the retainer works</h2>
@@ -1384,10 +1450,10 @@ def body_for(page: dict) -> str:
           <div class="cards">{cards}</div>
         </section>
         <section class="block">
-          <h2 class="plain">Latest insights across themes</h2>
+          <h2 class="plain">Latest thinking across themes</h2>
           <ul class="list">
             <li><a href="{h("/insights/loyalty-without-the-discount/")}">Loyalty without the discount</a><span>Article</span></li>
-            <li><a href="{h("/insights/")}">Insight title</a><span>Article</span></li>
+            <li><a href="{h("/insights/pricing-paradox/")}">The Pricing Paradox</a><span>Report</span></li>
           </ul>
         </section>
         {closing(h)}
@@ -1435,7 +1501,7 @@ def body_for(page: dict) -> str:
           <ul class="list">
             <li><a href="{h("/insights/loyalty-without-the-discount/")}">Loyalty without the discount</a><span>Article</span></li>
           </ul>
-          <a class="more" href="{h("/insights/")}">All insights</a>
+          <a class="more" href="{h("/insights/")}">All thinking</a>
         </section>
         <section class="block">
           <h2 class="sec">Related themes</h2>
@@ -1474,11 +1540,12 @@ def body_for(page: dict) -> str:
         return f"""
         <section class="block hero">
           <h1>Our work</h1>
-          <p>Case studies. Service filter open. Expertise and sector behind More filters.</p>
+          <p>Case studies pulled up. Our clients is not a top-level nav item: proof lives here, sectors in the footer.</p>
         </section>
         <section class="block">
           <h2 class="plain">Featured</h2>
           {card(h, "/work/dayinsure/", "Dayinsure", "Quote journey rebuilt", "ph")}
+          <p class="quote">Client quote in the case, not a testimonials page.</p>
         </section>
         <section class="block">
           <h2 class="plain">All case studies</h2>
@@ -1489,6 +1556,7 @@ def body_for(page: dict) -> str:
             <span class="filter">Customer Research and Insight</span>
             <span class="filter more">More filters</span>
           </div>
+          <p class="prose">Tagging drives filters. Video snippets from the approach film sit on the case, not here.</p>
           <div class="cards">
             {card(h, "/work/dayinsure/", "Dayinsure", "Experience Engineering", "ph")}
             {card(h, "/work/key-group/", "Key Group", "Experience Engineering", "ph")}
@@ -1524,7 +1592,10 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="plain">The result</h2>
-          <p class="prose">Outcomes, quantified where permitted. Client quote lives here.</p>
+          <p class="prose">Outcomes, quantified where permitted. No PDF download.</p>
+          <h3 class="plain">Client quote</h3>
+          <p class="quote">Attributed testimonial lives inside the case, not on Home or a testimonials page.</p>
+          <div class="video-ph">Video snippet from the approach film, if it applies to this work.</div>
         </section>
         <section class="block">
           <h2 class="sec">Related expertise</h2>
@@ -1536,15 +1607,18 @@ def body_for(page: dict) -> str:
     if kind == "insights-hub":
         return f"""
         <section class="block hero">
-          <h1>Insights</h1>
-          <p>Articles, reports and events. Latest is a section, not a page.</p>
+          <h1>Our thinking</h1>
+          <p>Reports, articles, events and news. Blogs are merged here. Latest is a section, not a page. Do not replicate this grid on Home.</p>
         </section>
-        <section class="block">
-          <h2 class="plain">Latest</h2>
-          {card(h, "/insights/loyalty-without-the-discount/", "Loyalty without the discount", "Article · date", "flat")}
+        <section class="block" id="reports">
+          <h2 class="plain">Reports</h2>
+          <p class="prose">Reports sit at the top. Expand on the page. No PDF downloads.</p>
+          <div class="cards two">
+            {card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "Report · from tactical lever to growth engine", "flat")}
+          </div>
         </section>
-        <section class="block">
-          <h2 class="plain">All insights</h2>
+        <section class="block" id="articles">
+          <h2 class="plain">Articles</h2>
           <div class="filters">
             <span class="filter on">Article</span>
             <span class="filter">Report</span>
@@ -1554,20 +1628,28 @@ def body_for(page: dict) -> str:
           <ul class="list">
             <li><a href="{h("/insights/loyalty-without-the-discount/")}">Loyalty without the discount</a><span>Loyalty</span></li>
           </ul>
-          <a class="more" href="{h("/newsletter/")}">Newsletter</a>
+        </section>
+        <section class="block" id="events">
+          <h2 class="plain">Events and news</h2>
+          <p class="prose">Launch events and recaps. A separate events page only if resource allows. End state: copy about bringing people together.</p>
+          <ul class="list">
+            <li><a href="{h("/insights/pricing-paradox/")}">Pricing Paradox launch event</a><span>Event</span></li>
+          </ul>
+          <h3 class="plain">The Nutshell</h3>
+          <p class="prose">Events, thought leadership and what has caught our attention. <a href="{h("/newsletter/")}">Sign up to The Nutshell</a></p>
         </section>
 """
 
     if kind == "insight":
         return f"""
         <section class="block hero">
-          <h1>Loyalty without the discount</h1>
+          <h1>{page["h1"]}</h1>
           <p class="who">Article · Date · 6 min · Author</p>
           <div class="chips"><a class="chip" href="{h("/expertise/loyalty/")}">Loyalty</a></div>
         </section>
         <section class="block">
           <h2 class="plain">The problem</h2>
-          <p class="prose">Wireframe body. Dated point of view. The evergreen position stays on the Loyalty theme page.</p>
+          <p class="prose">Wireframe body. Dated point of view. The evergreen position stays on the Loyalty theme page. This is an article under Our thinking, not a separate blog nav.</p>
         </section>
         <section class="block">
           <h2 class="plain">What we think</h2>
@@ -1580,6 +1662,32 @@ def body_for(page: dict) -> str:
         {closing(h)}
 """
 
+    if kind == "report":
+        return f"""
+        <section class="block hero">
+          <h1>{page["h1"]}</h1>
+          <p class="who">Report · Date · Author</p>
+          <div class="chips"><a class="chip" href="{h("/expertise/pricing/")}">Pricing</a></div>
+        </section>
+        <section class="block">
+          <h2 class="plain">What this report covers</h2>
+          <p class="prose">Wireframe: the argument of the report. Sector pills if the report is sector-specific. Not a PDF cover.</p>
+        </section>
+        <section class="block">
+          <h2 class="plain">Read it on this page</h2>
+          <p class="prose">MURAL: no more PDFs. Expand the report within the page. A gated email capture is a form if needed, not a file download.</p>
+          <div class="form">
+            <div class="field"><label>Email (optional gate)</label><div class="box"></div></div>
+            <a class="btn" href="{h("/newsletter/")}">Read on this page</a>
+          </div>
+        </section>
+        <section class="block">
+          <h2 class="plain">How we help</h2>
+          <p class="prose">Hand-off: <a href="{h("/services/growth-strategy/")}">Growth Strategy</a> and <a href="{h("/expertise/pricing/")}">Pricing</a>.</p>
+        </section>
+        {closing(h)}
+"""
+
     if kind == "about":
         return f"""
         <section class="block hero">
@@ -1588,22 +1696,27 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="plain">Who we are and our story</h2>
-          <p class="prose">Origin, what we believe about growth, why customer-led. Full version lives here; Home only teases it.</p>
+          <h3 class="plain">Origins</h3>
+          <p class="prose">Origin, history and Manifesto's story. Full version lives here; Home only teases it. Life at Manifesto is on <a href="{h("/careers/")}">Careers</a>, not duplicated here.</p>
         </section>
         <section class="block">
-          <h2 class="plain">What makes us different</h2>
-          <p class="prose">One of the points is the Growth Architecture model. The system itself is on <a href="{h("/services/")}">What we do</a>.</p>
+          <h2 class="plain">How we are distinct</h2>
+          <p class="prose">The people mix of agency, client and strategy. One of the points is the Growth Architecture model. The system itself is on <a href="{h("/services/")}">What we do</a>.</p>
         </section>
         <section class="block">
           <h2 class="plain">Leadership</h2>
           <div class="cards">
             {card(h, "/about/team/advisor-one/", "Partner name", "Role", "person")}
-            {card(h, "/about/team/", "Our team", "Everyone client-facing", "person")}
+            {card(h, "/about/team/", "Our people", "Everyone client-facing", "person")}
           </div>
         </section>
         <section class="block">
-          <h2 class="plain">How we work</h2>
-          <p class="prose">Method is separate from services. <a href="{h("/about/how-we-work/")}">How we work</a>. <a href="{h("/about/values/")}">Values and culture</a>. <a href="{h("/careers/")}">Careers</a>.</p>
+          <h2 class="plain">Our approach</h2>
+          <p class="prose">Method is separate from services. <a href="{h("/about/how-we-work/")}">Our approach</a>. <a href="{h("/about/values/")}">Values and culture</a>.</p>
+        </section>
+        <section class="block">
+          <h3 class="plain">C and N members</h3>
+          <p class="prose">MURAL asked for a C and N members section. Confirm what C and N is before this ships as a named group. Placeholder here and on <a href="{h("/about/team/")}">Our people</a>.</p>
         </section>
         {closing(h)}
 """
@@ -1611,8 +1724,8 @@ def body_for(page: dict) -> str:
     if kind == "team":
         return f"""
         <section class="block hero">
-          <h1>Our team</h1>
-          <p>Our Growth Architects. Client-facing people, grouped by role.</p>
+          <h1>Our people</h1>
+          <p>Meet the team. Culture over headshots. Not merged with Life at Manifesto: that section lives on <a href="{h("/careers/")}">Careers</a>.</p>
         </section>
         <section class="block">
           <h2 class="plain">Leadership</h2>
@@ -1628,10 +1741,10 @@ def body_for(page: dict) -> str:
           <div class="cards">{card(h, "/about/team/advisor-one/", "Advisor name", "Former role", "person")}</div>
         </section>
         <section class="block">
-          <h2 class="plain">Associates and expert network</h2>
-          <p class="prose">Optional. AI practitioners for AI Enablement, and associate advisors.</p>
+          <h2 class="plain">Associates, expert network and C and N members</h2>
+          <p class="prose">Optional. AI practitioners for AI Enablement, associate advisors, and a C and N members group (open: confirm what C and N is).</p>
         </section>
-        <p class="one-line" style="padding:0 0 36px"><a href="{h("/careers/")}">Careers</a></p>
+        <p class="one-line" style="padding:0 0 36px"><a href="{h("/careers/")}">Current opportunities</a></p>
 """
 
     if kind == "profile":
@@ -1658,8 +1771,17 @@ def body_for(page: dict) -> str:
     if kind == "how":
         return f"""
         <section class="block hero">
-          <h1>How we work</h1>
-          <p>Method, not a product. Frameworks are listed once here and live on their service pages.</p>
+          <h1>Our approach</h1>
+          <p>How we partner with clients. Method, not a product. Frameworks are listed once here and live on their service pages.</p>
+        </section>
+        <section class="block">
+          <h2 class="plain">How we partner</h2>
+          <p class="prose">Softer ways of working as a growth partner. Qual and quant evidence is delivered through <a href="{h("/services/customer-research/")}">Customer Research and Insight</a>, not as a second method product.</p>
+        </section>
+        <section class="block">
+          <h2 class="plain">Growth partner videos</h2>
+          <p class="prose">The how-we-work / client-testimonial film lives here, not on Home. Take snippets from it for case studies where they apply.</p>
+          <div class="video-ph">Growth partner videos: working with Manifesto</div>
         </section>
         <section class="block">
           <h2 class="plain">Principles</h2>
@@ -1679,7 +1801,7 @@ def body_for(page: dict) -> str:
           <h3 class="plain">Growth Architecture</h3>
           <p class="prose">The system: strategy, activation, advisory. Home: <a href="{h("/services/")}">What we do</a>.</p>
           <h3 class="plain">Customer, Innovation, Value and Delivery</h3>
-          <p class="prose">The Growth Strategy frame. Home: <a href="{h("/services/growth-strategy/#civd")}">Growth Strategy</a>.</p>
+          <p class="prose">Keep CIVD. The Growth Strategy frame, not Side-by-Side. Home: <a href="{h("/services/growth-strategy/#civd")}">Growth Strategy</a>.</p>
           <h3 class="plain">Operating Architecture</h3>
           <p class="prose">The adaptive operating model. Home: <a href="{h("/services/operating-model-design/#operating-architecture")}">Operating Model Design</a>.</p>
           <h3 class="plain">AgentLab</h3>
@@ -1718,18 +1840,35 @@ def body_for(page: dict) -> str:
         return f"""
         <section class="block hero">
           <h1>Careers at Manifesto</h1>
+          <p>Work for us. First-class nav so Contact can stay work-with-us. Life at Manifesto lives here, not on About or Our people.</p>
+          <div class="video-ph">Office visuals. Film later if useful.</div>
         </section>
         <section class="block">
           <h2 class="plain">Life at Manifesto</h2>
-          <p class="prose">What it is like to work here. <a href="{h("/about/values/")}">Values and culture</a>.</p>
+          <p class="prose">What it is like to work here. Lighter and more fun than a corporate people page. <a href="{h("/about/values/")}">Values and culture</a>. Meet the team: <a href="{h("/about/team/")}">Our people</a>.</p>
+          <h3 class="plain">Career change framing</h3>
+          <p class="prose">We hire people who are changing direction, not only those already in the craft.</p>
+          <h3 class="plain">We hire from multiple backgrounds</h3>
+          <p class="prose">Agency, client and strategy. The same mix that About claims as distinct.</p>
+          <h3 class="plain">Pioneers / recent joiners</h3>
+          <p class="prose">Optional portraits of people who joined recently, with culture over headshots.</p>
+        </section>
+        <section class="block">
+          <h2 class="plain">Diversity, equity and inclusion</h2>
+          <p class="prose">Commitments in the hiring context. Values and culture also carries a shorter DEI block.</p>
         </section>
         <section class="block">
           <h2 class="plain">Benefits</h2>
-          <p class="prose">List. Wireframe only.</p>
+          <p class="prose">Employee benefits. Wireframe only.</p>
         </section>
         <section class="block">
           <h2 class="plain">Open roles</h2>
-          <div class="cards two">{card(h, "/careers/growth-architect/", "Growth Architect", "Location · type", "flat")}</div>
+          <p class="prose">Highlight roles that are actively hiring. Descriptions expand on the role page. No PDF downloads.</p>
+          <div class="cards two">{card(h, "/careers/growth-architect/", "Growth Architect", "Location · type · actively hiring", "flat")}</div>
+        </section>
+        <section class="block">
+          <h2 class="plain">Not hiring for a listed role?</h2>
+          <p class="prose">Reach out if you are interested in working here even if a position does not say it is open. <a href="{h("/contact/#work-for-us")}">Work for us</a> on Contact, or email.</p>
         </section>
 """
 
@@ -1737,11 +1876,11 @@ def body_for(page: dict) -> str:
         return f"""
         <section class="block hero">
           <h1>Growth Architect</h1>
-          <p>Location · type</p>
+          <p>Location · type. Actively hiring.</p>
         </section>
         <section class="block">
           <h2 class="plain">About the role</h2>
-          <p class="prose">Description, responsibilities, what we look for.</p>
+          <p class="prose">Description, responsibilities, what we look for. Expand on this page. No PDF to download.</p>
         </section>
         <section class="block">
           <h2 class="plain">How to apply</h2>
@@ -1753,10 +1892,11 @@ def body_for(page: dict) -> str:
         return f"""
         <section class="block hero">
           <h1>Contact</h1>
-          <p>Tell us about your growth challenge. We will come back to you.</p>
+          <p>Two routes: work with us, or work for us. Awards are not on this page.</p>
         </section>
-        <section class="block">
-          <h2 class="plain">Get in touch</h2>
+        <section class="block" id="work-with-us">
+          <h2 class="plain">Work with us</h2>
+          <p class="prose">Tell us about your growth challenge. Keep Email Mark as one tracked route if that button stays.</p>
           <div class="form">
             <div class="field"><label>Name</label><div class="box"></div></div>
             <div class="field"><label>Company</label><div class="box"></div></div>
@@ -1766,9 +1906,15 @@ def body_for(page: dict) -> str:
             <a class="btn" href="{h("/contact/thank-you/")}">Send</a>
           </div>
         </section>
+        <section class="block" id="work-for-us">
+          <h2 class="plain">Work for us</h2>
+          <p class="prose">Roles, Life at Manifesto, DEI and benefits live on <a href="{h("/careers/")}">Careers</a>. Speculative applications are welcome even when a role is not listed as open.</p>
+        </section>
         <section class="block">
           <h2 class="plain">Direct contact</h2>
           <p class="prose">Email, phone, office address. Response time and confidentiality.</p>
+          <h3 class="plain">The Nutshell</h3>
+          <p class="prose"><a href="{h("/newsletter/")}">Sign up to The Nutshell</a>: events, thought leadership and what has caught our attention.</p>
         </section>
 """
 
@@ -1843,7 +1989,7 @@ def service_module(page: dict, h) -> str:
         </section>
         <section class="block">
           <h2 class="plain">How it works</h2>
-          <p class="prose">Shape of a strategy engagement. Method detail: <a href="{h("/about/how-we-work/")}">How we work</a>.</p>
+          <p class="prose">Shape of a strategy engagement. Method detail: <a href="{h("/about/how-we-work/")}">Our approach</a>.</p>
         </section>
 """
     if url == "/services/proposition-innovation/":
@@ -2021,7 +2167,7 @@ def write_sitemap_html() -> None:
         ("Expertise", [p["url"] for p in PAGES if p["url"].startswith("/expertise/")]),
         ("Sectors", [p["url"] for p in PAGES if p["url"].startswith("/sectors/")]),
         ("Work", [p["url"] for p in PAGES if p["url"].startswith("/work/")]),
-        ("Insights", [p["url"] for p in PAGES if p["url"].startswith("/insights/") or p["url"] == "/newsletter/"]),
+        ("Our thinking", [p["url"] for p in PAGES if p["url"].startswith("/insights/") or p["url"] == "/newsletter/"]),
         ("About", [p["url"] for p in PAGES if p["url"].startswith("/about/")]),
         ("Careers", [p["url"] for p in PAGES if p["url"].startswith("/careers/")]),
         ("Contact", [p["url"] for p in PAGES if p["url"].startswith("/contact/")]),
@@ -2076,11 +2222,12 @@ def write_heading_map_md() -> None:
         "",
         "Recommended H1 (one), H2s (ordered) and H3s for every URL in the clickable wireframe.",
         "Tied to UK DataForSEO volumes (Sep 2026) and Andy's Growth Architecture Services deck.",
-        "Nav labels are unchanged. Buyer language sits in quiet lines, H1 support, H2/H3s and page chips.",
+        "Header chrome is MURAL-informed (see `docs/mural-gap-check.md`). Mega-nav labels are unchanged. Buyer language sits in quiet lines, H1 support, H2/H3s and page chips.",
         "",
         "Volumes are average monthly Google Ads search volume for the United Kingdom. Exact Manifesto product phrases are often thin; adjacent demand is the useful signal.",
         "",
         "Source of truth for structure: `docs/02-sitemap.md` and the IA report. This file is the SEO heading layer on top of that IA, not a competing sitemap.",
+        "MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `docs/mural-gap-check.md`.",
         "",
     ]
     for p in PAGES:
@@ -2104,6 +2251,8 @@ def write_heading_map_md() -> None:
             for h3 in p["h3s"]:
                 lines.append(f"  - {h3}")
         lines.append(f"- **Intent:** {p['intent']}")
+        if p.get("mural"):
+            lines.append("- **MURAL modules:** " + "; ".join(p["mural"]))
         rels = []
         if p.get("themes"):
             rels.append("themes: " + ", ".join(n for n, _ in p["themes"]))

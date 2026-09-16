@@ -25,18 +25,28 @@
               <a class="top-link" href="../services/index.html" aria-haspopup="true" aria-expanded="false">What we do <span class="caret">&#9660;</span></a>
             </li>
             <li><a class="top-link plain" href="../work/index.html">Our work</a></li>
-            <li><a class="top-link plain" href="../insights/index.html">Insights</a></li>
+            <li data-menu="thinking">
+              <a class="top-link" href="../insights/index.html" aria-haspopup="true" aria-expanded="false">Our thinking <span class="caret">&#9660;</span></a>
+              <div class="dropdown" role="region" aria-label="Our thinking menu">
+                <ul>
+                  <li><a href="../insights/index.html#reports">Reports</a></li>
+                  <li><a href="../insights/index.html#articles">Articles</a></li>
+                  <li><a href="../insights/index.html#events">Events and news</a></li>
+                  <li><a href="../insights/index.html">All thinking</a></li>
+                </ul>
+              </div>
+            </li>
             <li data-menu="about">
               <a class="top-link" href="../about/index.html" aria-haspopup="true" aria-expanded="false">About <span class="caret">&#9660;</span></a>
               <div class="dropdown" role="region" aria-label="About menu">
                 <ul>
-                  <li><a href="../about/team/index.html">Our team</a></li>
-                  <li><a href="../about/how-we-work/index.html">How we work</a></li>
+                  <li><a href="../about/team/index.html">Our people</a></li>
+                  <li><a href="../about/how-we-work/index.html">Our approach</a></li>
                   <li><a href="../about/values/index.html">Values and culture</a></li>
-                  <li><a href="../careers/index.html">Careers</a></li>
                 </ul>
               </div>
             </li>
+            <li><a class="top-link plain" href="../careers/index.html">Careers</a></li>
           </ul>
           <a class="btn" href="index.html" aria-current="page">Contact</a>
         </header>
@@ -79,15 +89,16 @@
       </div>
 
     <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Home</a></li><li>Contact</li></ol></nav>
-    <div class="ia-chips" aria-label="Page chips"><span class="label">Page chips</span><div class="chips"><span class="chip weight">Utility</span><span class="chip kw">Primary: none</span></div></div>
+    <div class="ia-chips" aria-label="Page chips"><span class="label">Page chips</span><div class="chips"><span class="chip weight">Utility</span><span class="chip kw">Primary: none</span></div><span class="label">MURAL modules on this page</span><div class="chips"><span class="chip muted">Split work with us / work for us</span><span class="chip muted">The Nutshell</span><span class="chip muted">Keep Email Mark as one tracked route</span></div></div>
     <main class="page" id="main">
       
         <section class="block hero">
           <h1>Contact</h1>
-          <p>Tell us about your growth challenge. We will come back to you.</p>
+          <p>Two routes: work with us, or work for us. Awards are not on this page.</p>
         </section>
-        <section class="block">
-          <h2 class="plain">Get in touch</h2>
+        <section class="block" id="work-with-us">
+          <h2 class="plain">Work with us</h2>
+          <p class="prose">Tell us about your growth challenge. Keep Email Mark as one tracked route if that button stays.</p>
           <div class="form">
             <div class="field"><label>Name</label><div class="box"></div></div>
             <div class="field"><label>Company</label><div class="box"></div></div>
@@ -97,9 +108,15 @@
             <a class="btn" href="thank-you/index.html">Send</a>
           </div>
         </section>
+        <section class="block" id="work-for-us">
+          <h2 class="plain">Work for us</h2>
+          <p class="prose">Roles, Life at Manifesto, DEI and benefits live on <a href="../careers/index.html">Careers</a>. Speculative applications are welcome even when a role is not listed as open.</p>
+        </section>
         <section class="block">
           <h2 class="plain">Direct contact</h2>
           <p class="prose">Email, phone, office address. Response time and confidentiality.</p>
+          <h3 class="plain">The Nutshell</h3>
+          <p class="prose"><a href="../newsletter/index.html">Sign up to The Nutshell</a>: events, thought leadership and what has caught our attention.</p>
         </section>
 
     </main>
@@ -144,13 +161,13 @@
             <h4>Company</h4>
             <ul>
               <li><a href="../about/index.html">About</a></li>
-              <li><a href="../about/team/index.html">Our team</a></li>
-              <li><a href="../about/how-we-work/index.html">How we work</a></li>
+              <li><a href="../about/team/index.html">Our people</a></li>
+              <li><a href="../about/how-we-work/index.html">Our approach</a></li>
               <li><a href="../about/values/index.html">Values and culture</a></li>
               <li><a href="../careers/index.html">Careers</a></li>
               <li><a href="../work/index.html">Our work</a></li>
-              <li><a href="../insights/index.html">Insights</a></li>
-              <li><a href="../newsletter/index.html">Newsletter</a></li>
+              <li><a href="../insights/index.html">Our thinking</a></li>
+              <li><a href="../newsletter/index.html">The Nutshell</a></li>
               <li><a href="index.html">Contact</a></li>
             </ul>
           </div>
@@ -174,9 +191,9 @@
   <p class="k"><strong>H1 (one)</strong>Contact</p>
   <p class="k"><strong>Primary keyword</strong>none</p>
   <div class="k"><strong>Alts (2 to 4)</strong><p class="map-note">None in this pull, or not a search page.</p></div>
-  <div class="k"><strong>H2s (ordered)</strong><ol><li>Get in touch</li><li>Direct contact</li></ol></div>
-  <div class="k"><strong>H3s where useful</strong><p class="map-note">None required.</p></div>
-  <p class="intent"><strong>Intent.</strong> Enquiry form. Topic selector can be pre-filled from ?topic=.</p>
+  <div class="k"><strong>H2s (ordered)</strong><ol><li>Work with us</li><li>Work for us</li><li>Direct contact</li></ol></div>
+  <div class="k"><strong>H3s where useful</strong><ul><li>The Nutshell</li></ul></div>
+  <p class="intent"><strong>Intent.</strong> Split: work with us (this form) and work for us (Careers). Newsletter is The Nutshell. FT awards are not here.</p>
 </aside>
 
 </div>

@@ -2,11 +2,12 @@
 
 Recommended H1 (one), H2s (ordered) and H3s for every URL in the clickable wireframe.
 Tied to UK DataForSEO volumes (Sep 2026) and Andy's Growth Architecture Services deck.
-Nav labels are unchanged. Buyer language sits in quiet lines, H1 support, H2/H3s and page chips.
+Header chrome is MURAL-informed (see `docs/mural-gap-check.md`). Mega-nav labels are unchanged. Buyer language sits in quiet lines, H1 support, H2/H3s and page chips.
 
 Volumes are average monthly Google Ads search volume for the United Kingdom. Exact Manifesto product phrases are often thin; adjacent demand is the useful signal.
 
 Source of truth for structure: `docs/02-sitemap.md` and the IA report. This file is the SEO heading layer on top of that IA, not a competing sitemap.
+MURAL keep/drop modules that landed on a page are listed as MURAL modules. See `docs/mural-gap-check.md`.
 
 ## `/`: Home
 
@@ -17,11 +18,14 @@ Source of truth for structure: `docs/02-sitemap.md` and the IA report. This file
   - customer-led growth (positioning, not a target)
 - **H1:** Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth.
 - **H2s (ordered):**
-  1. What we do
-  2. Our work
-  3. Growth problems we know best
-  4. Latest insights
-- **Intent:** Brand and router. Name who you are for, show the triangle, send people into services, work and insights. Not a service keyword page.
+  1. Trusted partners
+  2. What we do
+  3. Our work
+  4. Awards
+  5. Growth problems we know best
+  6. Latest thinking
+- **Intent:** Brand and router. Trusted partners sit high. FT awards sit lower, not in the hero. Do not replicate the reports grid here. Thinking is a teaser to Our thinking.
+- **MURAL modules:** Trusted partners banner up; FT not at the top; No homepage reports grid; Showreel visual at launch; Client quotes with work
 - **Related:** themes: Loyalty, Membership, Subscriptions, Pricing, Customer Value; services: Growth Strategy, Activation Services, CEO Advisory
 
 ## `/services/`: What we do: our Growth Architecture
@@ -65,7 +69,8 @@ Source of truth for structure: `docs/02-sitemap.md` and the IA report. This file
   - Innovation
   - Value
   - Delivery
-- **Intent:** Lead offer. Keep the nav label. H2s take brand / GTM language only where the work is truly that. CIVD is the named frame.
+- **Intent:** Lead offer. Keep the nav label. H2s take brand / GTM language only where the work is truly that. CIVD is the named frame. MURAL: keep CIVD, new visuals; it is the strategy frame, not Side-by-Side.
+- **MURAL modules:** Keep CIVD, different visuals; CIVD is strategy, not Side-by-Side
 - **Related:** themes: Customer Value, Loyalty, Pricing; sectors: Financial services, Media, Consumer; services: Proposition Innovation, Activation Services, CEO Advisory
 
 ## `/services/proposition-innovation/`: Proposition Innovation
@@ -130,7 +135,8 @@ Source of truth for structure: `docs/02-sitemap.md` and the IA report. This file
   - Customer data analytics
   - Internal knowledge
   - External market data
-- **Intent:** Label stays. Lead with methods, journey mapping and insight outcomes, not only the consultancy noun. Customer Intelligence is the practice name on the page.
+- **Intent:** Label stays. Lead with methods, journey mapping and insight outcomes, not only the consultancy noun. Customer Intelligence is the practice name on the page. MURAL: qual and quant evidence lives here.
+- **MURAL modules:** Qual and quant evidence
 - **Related:** themes: Customer Value, Loyalty; sectors: Financial services, Media, Consumer; services: Experience Engineering, Proposition Innovation, AI Agents for Marketing
 
 ## `/services/experience-engineering/`: Experience Engineering: customer experience and websites
@@ -426,7 +432,10 @@ Source of truth for structure: `docs/02-sitemap.md` and the IA report. This file
 - **H2s (ordered):**
   1. Featured
   2. All case studies
-- **Intent:** Proof hub. Service filter open on load. Expertise and sector behind More filters. No testimonials page.
+- **H3s:**
+  - Client quote (inside the case, not a testimonials page)
+- **Intent:** Proof hub. Our clients is not a top-level nav item: proof lives here, sectors in the footer. Quotes and video snippets live in the case, not on Home.
+- **MURAL modules:** Case studies pulled up; Quotes in cases; Video snippets from the approach film; Tagging
 - **Related:** sectors: Financial services, Media, Consumer, Retail; services: Experience Engineering, Growth Strategy
 
 ## `/work/dayinsure/`: Dayinsure
@@ -441,7 +450,8 @@ Source of truth for structure: `docs/02-sitemap.md` and the IA report. This file
   2. The challenge
   3. What we did
   4. The result
-- **Intent:** Shell for an Experience Engineering engagement. Links to service, theme and sector. Testimonials live here.
+- **Intent:** Shell for an Experience Engineering engagement. Links to service, theme and sector. Testimonials live here. No PDF.
+- **MURAL modules:** Integrate quotes; Video snippet if it applies
 - **Related:** themes: Customer Value; sectors: Financial services; services: Experience Engineering, Customer Research and Insight
 
 ## `/work/key-group/`: Key Group
@@ -457,20 +467,26 @@ Source of truth for structure: `docs/02-sitemap.md` and the IA report. This file
   3. What we did
   4. The result
 - **Intent:** Second case-study shell. Same template as Dayinsure. Tags drive the auto modules on service, theme and sector pages.
+- **MURAL modules:** Integrate quotes; Video snippet if it applies
 - **Related:** themes: Loyalty, Customer Value; sectors: Financial services; services: Experience Engineering, Proposition Innovation
 
-## `/insights/`: Insights
+## `/insights/`: Our thinking
 
 - **Weight:** Supporting
-- **Primary keyword:** thought leadership hub (long-tail lives on articles)
+- **Primary keyword:** thought leadership hub (long-tail lives on articles and reports)
 - **Alts:**
-  - type filters are query strings, not pages
-- **H1:** Insights
+  - Our thinking is the nav label; URL stays /insights/
+  - reports, articles, events are types, not extra top-nav items
+- **H1:** Our thinking
 - **H2s (ordered):**
-  1. Latest
-  2. All insights
-- **Intent:** Filterable hub. Latest is a section, not a page. Type filter open on load.
-- **Related:** themes: Loyalty
+  1. Reports
+  2. Articles
+  3. Events and news
+- **H3s:**
+  - The Nutshell (newsletter)
+- **Intent:** MURAL: merge blogs into Our thinking. Reports at the top, articles underneath. Events and news as a section (separate page only if resource allows). No PDFs: expand on the page.
+- **MURAL modules:** Reports at the top, blogs underneath; Merged into Our thinking; Events + latest news; No more PDFs; Do not replicate on Home
+- **Related:** themes: Loyalty, Pricing
 
 ## `/insights/loyalty-without-the-discount/`: Loyalty without the discount
 
@@ -484,7 +500,24 @@ Source of truth for structure: `docs/02-sitemap.md` and the IA report. This file
   2. What we think
   3. How we help
 - **Intent:** Article shell. Dated point of view. Theme page stays the evergreen position. Related services as a block, not extra nav.
+- **MURAL modules:** Article under Our thinking, not a separate blog nav
 - **Related:** themes: Loyalty; sectors: Retail; services: Proposition Innovation
+
+## `/insights/pricing-paradox/`: The Pricing Paradox
+
+- **Weight:** Supporting
+- **Primary keyword:** pricing thought leadership (hands off to /expertise/pricing/)
+- **Alts:**
+  - no PDF download
+  - report type of Our thinking
+- **H1:** The Pricing Paradox: from tactical lever to growth engine
+- **H2s (ordered):**
+  1. What this report covers
+  2. Read it on this page
+  3. How we help
+- **Intent:** Report shell. MURAL: no more PDFs; expand within the page. Gated download is a form if needed, not a file.
+- **MURAL modules:** No more PDFs; Expand within the page; Reports at the top of Our thinking
+- **Related:** themes: Pricing; services: Growth Strategy, Proposition Innovation
 
 ## `/about/`: About
 
@@ -495,25 +528,32 @@ Source of truth for structure: `docs/02-sitemap.md` and the IA report. This file
 - **H1:** About Manifesto Growth Architects
 - **H2s (ordered):**
   1. Who we are and our story
-  2. What makes us different
+  2. How we are distinct
   3. Leadership
-  4. How we work
-- **Intent:** Story and positioning. Method is a teaser to How we work. Not a service page.
+  4. Our approach
+- **H3s:**
+  - Origins
+  - C and N members (open: confirm what C and N is)
+- **Intent:** Story, origins, and how the people mix of agency, client and strategy is distinct. Life at Manifesto is Careers, not duplicated here. Method teases Our approach.
+- **MURAL modules:** Origins / history; How we are distinct; People combo of agency, client and strategy; Do not duplicate Life at Manifesto; C and N members section
 - **Related:** services: Our Growth Architecture
 
-## `/about/team/`: Our team
+## `/about/team/`: Our people
 
 - **Weight:** Supporting
 - **Primary keyword:** named-person search (profiles); this page is the listing
 - **Alts:**
   - Our advisors in the mega-nav land on CEO Advisory, not here
-- **H1:** Our team
+- **H1:** Our people
 - **H2s (ordered):**
   1. Leadership
   2. Consultants
   3. Side-by-Side advisors
-  4. Associates and expert network
-- **Intent:** Everyone client-facing. Advisors group is present; mega-nav Our advisors still lands on the offer page.
+  4. Associates, expert network and C and N members
+- **H3s:**
+  - Culture over headshots (visual note)
+- **Intent:** Meet the team. MURAL asked to merge with Life at Manifesto; Source A keeps Careers separate. Cross-link instead. Mega-nav Our advisors still lands on CEO Advisory.
+- **MURAL modules:** Meet the team; Culture over headshots; Not merged with Life at Manifesto (see gap check); Link to current opportunities
 - **Related:** services: CEO Advisory
 
 ## `/about/team/advisor-one/`: Advisor name
@@ -530,25 +570,29 @@ Source of truth for structure: `docs/02-sitemap.md` and the IA report. This file
 - **Intent:** Profile shell. Advisor note links back to Side-by-Side on the CEO Advisory page.
 - **Related:** services: CEO Advisory
 
-## `/about/how-we-work/`: How we work
+## `/about/how-we-work/`: Our approach
 
 - **Weight:** Supporting
 - **Primary keyword:** methodology (not a product; no service keyword)
+- **Quiet line:** How we partner with clients
 - **Alts:**
   - Growth Architecture, CIVD, Operating Architecture, AgentLab, Side-by-Side each have one anchored home
-- **H1:** How we work
+- **H1:** Our approach
 - **H2s (ordered):**
-  1. Principles
-  2. Engagement shapes
-  3. Frameworks and tools
-  4. Working with AI
+  1. How we partner
+  2. Growth partner videos
+  3. Principles
+  4. Engagement shapes
+  5. Frameworks and tools
+  6. Working with AI
 - **H3s:**
   - Growth Architecture
   - Customer, Innovation, Value and Delivery
   - Operating Architecture
   - AgentLab
   - Side-by-Side
-- **Intent:** Method is never a product. Named frameworks listed once here, each linking to its anchored service-page home.
+- **Intent:** Nav label Our approach. Method is never a product. Growth partner videos live here, not on Home. CIVD kept.
+- **MURAL modules:** Our approach, how we partner; Move video here; Growth partner videos; Keep CIVD; Qual and quant evidence
 - **Related:** services: Growth Strategy, AI Agents for Marketing, CEO Advisory
 
 ## `/about/values/`: Values and culture
@@ -561,17 +605,27 @@ Source of truth for structure: `docs/02-sitemap.md` and the IA report. This file
   2. Culture
   3. Diversity, equity and inclusion
 - **Intent:** Light culture page. Careers is the jobs destination.
+- **MURAL modules:** DEI commitments; detail and hiring context also on Careers
 
 ## `/careers/`: Careers
 
 - **Weight:** Light
 - **Primary keyword:** none
+- **Alts:**
+  - Life at Manifesto is a section here, not a competing About page
 - **H1:** Careers at Manifesto
 - **H2s (ordered):**
   1. Life at Manifesto
-  2. Benefits
-  3. Open roles
-- **Intent:** Life, benefits and roles on one page at current scale.
+  2. Diversity, equity and inclusion
+  3. Benefits
+  4. Open roles
+  5. Not hiring for a listed role?
+- **H3s:**
+  - Career change framing
+  - We hire from multiple backgrounds
+  - Pioneers / recent joiners
+- **Intent:** First-class nav item so Contact can be work-with-us and this page work-for-us. Life at Manifesto + roles on one page. No PDFs: expand role descriptions on the page.
+- **MURAL modules:** Life at Manifesto; DEI; Benefits; Career change framing; No more PDFs; Reach out if no open role; Office visuals
 
 ## `/careers/growth-architect/`: Growth Architect
 
@@ -581,7 +635,8 @@ Source of truth for structure: `docs/02-sitemap.md` and the IA report. This file
 - **H2s (ordered):**
   1. About the role
   2. How to apply
-- **Intent:** Role shell. noindex when closed.
+- **Intent:** Role shell. Expand the description on this page. No PDF. noindex when closed.
+- **MURAL modules:** No more PDFs; Expand description on the page
 
 ## `/contact/`: Contact
 
@@ -589,9 +644,13 @@ Source of truth for structure: `docs/02-sitemap.md` and the IA report. This file
 - **Primary keyword:** none
 - **H1:** Contact
 - **H2s (ordered):**
-  1. Get in touch
-  2. Direct contact
-- **Intent:** Enquiry form. Topic selector can be pre-filled from ?topic=.
+  1. Work with us
+  2. Work for us
+  3. Direct contact
+- **H3s:**
+  - The Nutshell
+- **Intent:** Split: work with us (this form) and work for us (Careers). Newsletter is The Nutshell. FT awards are not here.
+- **MURAL modules:** Split work with us / work for us; The Nutshell; Keep Email Mark as one tracked route
 
 ## `/contact/thank-you/`: Thank you
 
@@ -603,14 +662,15 @@ Source of truth for structure: `docs/02-sitemap.md` and the IA report. This file
 - **Intent:** Confirmation only. Suggest a service, a case and an insight.
 - **Related:** services: What we do, Our work
 
-## `/newsletter/`: Newsletter
+## `/newsletter/`: The Nutshell
 
 - **Weight:** Utility
 - **Primary keyword:** none
-- **H1:** Newsletter
+- **H1:** The Nutshell
 - **H2s (ordered):**
   1. Sign up
-- **Intent:** Email capture. Indexed utility.
+- **Intent:** Email capture. Current site name for the newsletter. Indexed utility.
+- **MURAL modules:** Named newsletter from the current contact form
 
 ## `/privacy-policy/`: Privacy policy
 

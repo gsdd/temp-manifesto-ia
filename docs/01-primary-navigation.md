@@ -2,6 +2,8 @@
 
 This document describes everything a visitor can click in the site header and footer, in the order it appears, and what happens when they do. It is written so that someone who is not a designer or developer can picture the navigation without a wireframe.
 
+**Wireframe chrome (MURAL pass, pending sign-off).** The clickable mock in `mocks/` currently shows six header items, logo aside: **What we do** | **Our work** | **Our thinking** | **About** | **Careers** | **Contact**. Our thinking is the Insights hub (`/insights/`) with a type dropdown (Reports, Articles, Events and news, All thinking). About dropdown labels: Our people, Our approach, Values and culture. Careers is first-class so Contact can split work-with-us / work-for-us. The tables below remain the v5 IA spec until that chrome is signed. See `docs/mural-gap-check.md`.
+
 v2 gave the mega-nav its shape: three columns, one per pillar of Andy's Growth Architecture triangle. v3 rewrote the words in plain, search-friendly language. v4 stripped the concept back to labels, three short pillar lines and two quiet lines (`v4-simplification.md`). **v5 makes two small changes after the competitor review** (`competitor-nav-review.md`, `v5-refinements.md` R4): the CEO Advisory column carries one quiet link to the advisors, and the panel footer row drops the Contact link that duplicated the header button. Everything else in the header, menu and footer is as v4. The larger v5 changes are on the pages (`03-page-layouts.md`).
 
 Related: `02-sitemap.md` lists every URL referenced here. `diagrams/mega-nav.md` shows the same mega-nav as a diagram. `../mocks/index.html` is the wireframe.

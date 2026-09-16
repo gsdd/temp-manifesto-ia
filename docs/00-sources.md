@@ -166,3 +166,9 @@ v1 was produced from a brief that summarised these sources rather than supplying
 ## Competitor evidence (used by v5, not a lettered source)
 
 `competitor-nav-review.md` records the live navigation of ten peers (Prophet, Yonder Consulting, The Foundation, Simon-Kucher, Elixirr, Baringa, Ellipsis, Ekimetrics, Elsewhen, Mando) and six pattern references (Deloitte Digital, Bain Customer Strategy and Marketing, frog, Lippincott, Valtech, Criticaleye), read on 15 September 2026. It is evidence for how G's "best in class" should be read. Where it conflicts with a lettered source, the lettered source wins; the review only ever proposes changes that A to F permit.
+
+## Manifesto MURAL board (chrome and modules, not a competing IA)
+
+The current-website review and old suggested sitemaps on Manifesto's MURAL board (export of 16 September 2026) are an input to the **clickable wireframe chrome and page modules**, not a replacement for Sources A to G. Gary's instruction: do not adopt the old sitemap wholesale; keep the v5 services spine / triangle mega-nav / themes supporting / sectors light; fold useful old-nav labels by renaming, nesting or chips; primary nav stays at seven items or fewer.
+
+What was absorbed, what was left out, and open questions are in `docs/mural-gap-check.md`. The tables in `01-primary-navigation.md` remain the v5 IA spec. The mock in `mocks/` currently shows the MURAL-informed chrome pending sign-off.
