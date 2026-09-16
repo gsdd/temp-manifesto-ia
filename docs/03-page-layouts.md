@@ -363,7 +363,9 @@ Thank-you page: confirmation, then three curated links (a service, a case study,
 
 Wireframe utility only. Not a live client URL. No working-notes sidebar.
 
-Ordered live blocks: on-page tags, filters, service/offer/case/report/person cards, logos, quote, 16:9 video, stats, article body, CIVD four-cell, triangle, mega-nav hub and strands, situations list, empty state, pagination, Work with us / Work for us forms, primary and secondary CTA, cookie bar.
+Each live unit is named and given one interaction type (Button, Text link, Card, Tag, Filter, Static). The catalogue page is the index. The named set, random-box list, and link-versus-button rules live in `docs/wireframe-fresh-review.md` §2.
+
+Ordered live blocks: header Contact, mega-nav hub and strands, breadcrumb, cookie bar, hero CTA pair, closing CTA band, metric box, service / theme / case / report / article / person / role cards, triangle tile, page tag, filter bar, situations list, row of text links, related list, case line, pagination, empty state, logo strip, quote, video 16:9, CIVD four-cell, article body, Work with us / Work for us forms.
 
 ---
 
