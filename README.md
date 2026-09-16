@@ -63,6 +63,7 @@ Full summaries of all seven are in `docs/00-sources.md`. The competitor review i
 | `mocks/index.html` | Clickable full-site wireframe. Home is the entry. Primary nav, mega-nav and footer work on every sitemap page. Each page has working notes and an outside SEO heading map (catalogue has no sidebar). | Anyone. Start here. |
 | `mocks/README.md` | How to click through locally, what is in the mega-nav, how to regenerate | Anyone opening the mock |
 | `docs/client-report-andy.md` | Client-facing IA recommendations report | Client review |
+| `docs/wireframe-fresh-review.md` | Independent review of the live wireframe: gaps vs wireframe practice, gaps vs inputs, a page-module taxonomy with a scorecard, prioritised fixes and a next-iteration checklist. Draft taxonomy page at `mocks/modules-taxonomy.html`. | Gary, before the next mock iteration |
 | `docs/keyword-findings.md` | UK DataForSEO volumes (16 Sep 2026) used for strand subtitles and H2s | SEO, content |
 | `docs/heading-map.md` | Recommended H1 / H2 / H3 plus UK keyword targets for every URL | SEO, content |
 | `docs/thinking-placement.md` | Why Latest thinking moved up the homepage | Gary reviewing Home |

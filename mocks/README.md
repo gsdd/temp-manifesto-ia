@@ -16,7 +16,7 @@ This extends the v5 IA (`docs/01-primary-navigation.md`, `docs/02-sitemap.md`, `
    - **About** opens a small dropdown (Our people, Our approach, Values and culture). The label goes to `/about/`.
    - **Careers** is a plain first-class link.
    - **Contact** is the header button.
-4. Every sitemap URL is a real HTML page. **All pages** in the heading map opens `sitemap.html`. **Page modules** opens the wireframe catalogue.
+4. Every sitemap URL is a real HTML page. **All pages** in the heading map opens `sitemap.html`. **Page modules** opens the wireframe catalogue. `modules-taxonomy.html` (linked from both) is a draft definition of every unit type: use, shape, interaction, and what it must never be. It is a review tool from `docs/wireframe-fresh-review.md`, not a live URL.
 5. The **main column** is the page layout (hero, modules, footer). Supplementary IA lives in the **sidebar** on most pages: working notes (weight, primary keyword, strand subtitle, related themes / sectors / services, MURAL modules) plus the **heading map**. The catalogue page has no sidebar.
 
 From GitHub: use the preview or raw HTML, or enable GitHub Pages and visit `/mocks/index.html`.
