@@ -1,6 +1,6 @@
 # 00. Sources
 
-The seven inputs the package is built from, what each one contributed, and how conflicts between them were resolved. Read this before the decisions log.
+The eight inputs the package is built from, what each one contributed, and how conflicts between them were resolved. Read this before the decisions log. Source H (Andy's feedback of 1 October) is the newest and touches three pages only.
 
 v1 was produced from a brief that summarised these sources rather than supplying them. v2 was produced from the full text of A, B and C plus Gary's direction D. v3 added Gary's wording brief E, which changed how B is used: B decides what the services are and how they group, not what they are called in the nav. v4 added Gary's feedback F, which changed how much the nav, the pages and the mock are allowed to say. v5 adds Gary's brief G, which asks for outside evidence: how real competitors structure navigation and services, and whether B is fully reflected. The competitor review itself is recorded in `competitor-nav-review.md` and is cited as evidence, not as a source with its own letter.
 
@@ -16,6 +16,7 @@ v1 was produced from a brief that summarised these sources rather than supplying
 | Which services lead, how sectors and themes are weighted | **C** (Otter call) | It is where Gary and Andy agreed the weighting |
 | How simple the mega-nav must be, and that CEO Advisory must be visible as a pillar | **D** (Gary, 14 Sept) | It is the instruction behind the v2 redo |
 | How much the menu, page chrome, homepage and mock may say | **F** (Gary, 15 Sept evening) over **E** | E asked for subtitles on coined terms; F says the whole concept is too complicated and to prefer bare labels. F wins in the menu; E's words move to the pages. C decides which two coined names still get a quiet line. |
+| What Home's hero film is, how About is framed, and how the team is grouped | **H** (Andy via Gary, 1 Oct) | It is the client's own direction on three pages; it changes nothing else |
 | Where the pages should go beyond the peer set, and whether every piece of B has a home | **G** (Gary, 16 Sept), evidenced by the competitor review | G asks for best in class and full deck fidelity within F's calmness. Where a competitor pattern and F pull apart (a fuller third column, problem entry), the change lands on the page or as one quiet link, never as a new column or subtitle. B is checked slide by slide in `andy-deck-coverage.md`. |
 
 ---
@@ -162,6 +163,21 @@ v1 was produced from a brief that summarised these sources rather than supplying
 - Success: concrete competitor evidence, not vibes; an explicit deck coverage matrix; a nav closer to best-in-class peers while staying simpler than v3; a mock Gary can judge at a glance.
 
 **How v5 uses it**: The three review documents; the hub as the Growth Architecture story, problem entry, proof under offers, the quiet advisors link and the two-link footer row (`01-primary-navigation.md`, `03-page-layouts.md`); anchors and title tag (`04-canonicals-and-seo.md`); new content types (`05-content-matrix.md`); decisions D-46 to D-53 (`06-decisions-log.md`); the fifth mock view.
+
+## Source H: Andy Bacon's IA feedback, relayed by Gary (1 October)
+
+**What it is**: Andy's review of the wires, passed on by Gary with instructions to apply it without inventing new IA and to hold the templates Andy has not yet commented on.
+
+**Key points used**
+
+- **Homepage**: yes to the existing showreel / client video. Add it to the wires.
+- **About**: reposition About to focus on Growth Architecture. Content will come from the current brand work later; frame the page that way now, no new copy.
+- **Our team**: three key sections: **Growth Architects** (the core Manifesto team), **Expert Community** (C and N / growth collective profiles), **SxS Advisors** (Side-by-Side profiles).
+- **Hold, do not redesign**: Our services and Our work (Andy will send proposed templates), Our thinking and Careers (existing structure).
+
+**How this pass uses it**: Home hero block 1 carries the existing showreel / client video as a confirmed asset, not a placeholder (`03-page-layouts.md` T1; D-61). About is reframed around Growth Architecture without redrawing the triangle or moving the system off `/services/` (T11; D-63). The Team listing becomes three sections with anchors, and the former Leadership, Consultants, Side-by-Side advisors and Associates groups map onto them (T12; D-62). It also settles the open "c&n" question as far as placement goes: C and N sits inside Expert Community. What the letters stand for is still Andy's to confirm before the name is used in client-facing copy.
+
+**Precedence**: H changes three pages. It does not reopen the mega-nav, the services spine, the sitemap or any template on the hold list. Where H and an earlier source differ on those three pages (for example D-53's optional Associates group), H wins because it is the client's own instruction about the client's own people.
 
 ## Competitor evidence (used by v5, not a lettered source)
 

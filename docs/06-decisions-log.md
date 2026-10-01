@@ -1,6 +1,6 @@
 # 06. Decisions log (v5)
 
-Every significant IA decision, the options considered, what was chosen, and the trade-off. Each entry names the sources it rests on. The seven sources are summarised in `00-sources.md`:
+Every significant IA decision, the options considered, what was chosen, and the trade-off. Each entry names the sources it rests on. The eight sources are summarised in `00-sources.md`:
 
 - **Source A**: Gary's IA feedback document (structure, three intersecting dimensions, one canonical home per topic, About and Careers split).
 - **Source B**: Andy's Growth Architecture Services deck, working draft Sept 26 (the triangle, service grouping, Why and What copy per service).
@@ -9,6 +9,7 @@ Every significant IA decision, the options considered, what was chosen, and the 
 - **Source E**: Gary's v3 wording brief of 15 September (plain, search-friendly labels; subtitles for coined terms; deck is not website copy).
 - **Source F**: Gary's v4 feedback of 15 September, evening (the whole concept is still too complicated; simplify the idea, then the UI; calm mocks; quiet homepage chips).
 - **Source G**: Gary's v5 brief of 16 September (not yet best in class; review real competitors; check the deck is fully reflected; no deck copy back in the mega-nav).
+- **Source H**: Andy Bacon's IA feedback relayed by Gary, 1 October (showreel on Home; About framed around Growth Architecture; team in three sections; hold Services, Work, Thinking and Careers templates).
 
 Precedence: structure from A; service taxonomy from B; weight and order from C; simplification from D and F; nav wording from C and E; where the pages go beyond the peer set from G, evidenced by `competitor-nav-review.md`. Where E's "add a subtitle" and F's "fewer words" conflict, F wins in the menu and E's words move to the page. Where G's "best in class" and F's calmness pull apart, the change lands on a page or as one quiet link, never as a column or a subtitle.
 
@@ -860,6 +861,54 @@ Result: column 1 is a heading and one item; column 3 is a heading and its pillar
 
 ---
 
+## Andy's feedback pass (1 October, Source H): D-61 to D-63
+
+Andy reviewed the wires and asked for three changes and nothing else. Gary's instruction: apply them, do not invent IA beyond them, and hold Our services, Our work, Our thinking and Careers at their existing structure until Andy sends the proposed templates. The three decisions below are the whole of this pass. The mega-nav, sitemap, weights and every other template are untouched.
+
+| ID | Decision | Sources |
+|---|---|---|
+| D-61 | Home hero carries the existing Manifesto showreel / client video as a confirmed asset, not a placeholder | H, F |
+| D-62 | Team listing is three sections: Growth Architects, Expert Community, SxS Advisors; the `#advisors` anchor is kept | H, B, C |
+| D-63 | About is framed around Growth Architecture (why, what a Growth Architect does, the story, the people); the system stays canonical on `/services/` | H, A, B |
+
+## D-61. The existing showreel / client video sits in the Home hero
+
+**Chosen**: Home block 1 embeds the existing Manifesto showreel / client video. In the wireframe the Video 16:9 component gains an "existing asset" state (solid frame, play glyph, caption naming the film) alongside its dashed placeholder state, so a reviewer can tell confirmed content from a film still to be made.
+
+**Rejected**: Keeping the dashed "film later" placeholder (the MURAL pass's assumption, `mural-gap-check.md` open question 6); moving the film below Trusted partners.
+
+**Rationale**: Source H: Andy said yes to the existing showreel / client video on the homepage. That closes the MURAL open question. The hero was already the film's slot in T1, so nothing moves; the block changes from assumption to fact. Source F's calm-homepage rule is respected: Home still has one film, no autoplay implied by the wireframe, and no second video anywhere on the page. Growth partner films stay on How we work (D-51 pass) and are not promoted to Home.
+
+**Trade-off**: None structural. Content note for build: the film needs a poster frame and a transcript or captions for accessibility; the wireframe does not decide player behaviour.
+
+## D-62. Our people is three sections: Growth Architects, Expert Community, SxS Advisors
+
+**Chosen**: `/about/team/` has exactly three H2 sections, in this order, each with an anchor, a one-line intro and Person cards:
+
+1. **Growth Architects** (`#growth-architects`): the core Manifesto team. Leadership first, then consultants, as an ordering inside one section.
+2. **Expert Community** (`#expert-community`): the C and N and growth collective profiles, specialist practitioners who work alongside the core team, including the AI practitioners the deck names for AI Enablement (Source B, slide 12).
+3. **SxS Advisors** (`#advisors`): the Side-by-Side profiles. The anchor name is unchanged so the CEO Advisory page, the sitemap's anchor list and every existing link still land here.
+
+Group membership is one CMS field on the profile, and every profile shows its group in its Focus block. About previews the three groups as three cards (D-63).
+
+**Rejected**: Keeping Leadership and Consultants as separate H2s with the three new groups added beneath (five sections, which is not what Andy asked for); making Expert Community conditional on a published profile as D-53's Associates group was (Andy has named it as a key section, so the heading is Always and shows its intro line until profiles exist); renaming "SxS Advisors" to spell out the acronym (Andy's label is used as given; the intro line under it says "Side-by-Side advisors" so the page is still readable to someone who does not know the shorthand).
+
+**Rationale**: Source H names the three sections and what each contains. Source C said "showcase advisor profiles, heavyweight", which the SxS Advisors section does with the same anchor the CEO Advisory page already uses. Source B slide 10 calls the core team "our Growth Architects", so the first section's label is the deck's own term. The former groups map onto the new ones without losing anyone: Leadership and Consultants into Growth Architects; Associates, the expert network and the C and N placeholder into Expert Community; Side-by-Side advisors into SxS Advisors. D-53's optional Associates group is superseded by Expert Community; the lead flag that D-53 introduced for service People blocks is unchanged.
+
+**Trade-off vs the nav rule on acronyms**: "No acronyms in the nav" (v3, E) applies to the mega-nav and header, not to on-page H2s. SxS appears nowhere in the chrome: the mega-nav strand is still "Our advisors" and the offer is still "Side-by-Side" on CEO Advisory. If Andy later prefers "Side-by-Side Advisors" as the H2, it is a one-word change with no URL or anchor impact.
+
+## D-63. About is framed around Growth Architecture
+
+**Chosen**: `/about/` keeps its URL, weight (Supporting) and brand H1, and is reframed so every block is about Growth Architecture: Why Growth Architecture; What a Growth Architect does; Our Growth Architecture (one line and three pillar links to the pillar pages and `/services/`); Our story; Our people (three cards, one per team group, linking to the anchors of D-62); Our approach (links to How we work, Values and culture, and Life at Manifesto on Careers). Headings are framing only. Copy comes from the current brand work later.
+
+**Rejected**: Drawing the triangle tiles again on About (T1 draws the triangle once; D-47 and the Home guardrail say no second rendering); moving the Growth Architecture page off `/services/` to About (D-03 and D-51 make `/services/` the system's canonical home with H1 "Our Growth Architecture"; About saying *why* and *who* does not compete with Services saying *what*); keeping the Leadership card block and the client logo wall (leadership now leads the Growth Architects section of Our people; logos have their home in Trusted partners on Home).
+
+**Rationale**: Source H: Andy wants About to focus on Growth Architecture, with content from the brand work to follow. Source A's About hub (who we are, story, team, values) is intact: each of those is still a block, now told through the lens of Growth Architecture. Source B's slide 2 gives the "why" (the path from strategy to execution has become complex and fragmented) and slide 1 the strapline, so the framing uses words Andy has already written rather than new copy. The canonical rule holds: Services owns the system, About owns the reason and the people.
+
+**Trade-off**: About and the Services hub now both lead with the words "Growth Architecture". The split is deliberate and written into both pages' intent lines: Services is the system (pillars, services, proof); About is why Manifesto built it and who the Growth Architects are. Title tags should reflect that split ("About Manifesto Growth Architects" versus "Our Growth Architecture: what we do").
+
+---
+
 ## Open items for the next stage (wireframes)
 
 | Item | Note |
@@ -869,7 +918,10 @@ Result: column 1 is a heading and one item; column 3 is a heading and its pillar
 | **Gary's confirmation of the v5 nav tweaks** | "Our advisors" in column 3 (D-49) stands and is now one of two CEO strands (D-54). Two-link footer row (D-50) stands. |
 | **Gary's confirmation of the v4 cuts** | Insights as a plain link (D-38) and the sector index cut (D-44) stand. The v4 "column 3 as heading only" question is answered by D-49. |
 | **Proposed fixed text for Andy** | The triangle line, the three pillar sentences, the seven situation lines and the six "which of the six" lines (`v5-refinements.md` R1, R2, R5) are proposals. The rules to keep: plain, in the visitor's words, one line each, no Manifesto shorthand. |
-| **"c&n" on slide 12** | The AI Enablement examples say "including c&n". Not expanded on the slide; Andy to confirm what it refers to before the client list is used. |
+| **"c&n" on slide 12** | Placement is settled: C and N members sit inside the Expert Community section of Our people (Source H, D-62). Still open: what the letters stand for, so the name can be written out in client-facing copy, and whether "c&n" in the AI Enablement client examples refers to the same group. |
+| **Services and Work templates (Andy)** | Andy is sending proposed templates for Our services and Our work. Both are held at their existing structure until then (Source H). Our thinking and Careers are also held. |
+| **About copy** | About is framed around Growth Architecture (D-63). Copy comes from the current brand work; the brand team to supply it against the six block headings in T11. |
+| **Showreel accessibility** | The existing showreel / client video is confirmed for the Home hero (D-61). Needs a poster frame and captions or a transcript before launch. Player behaviour (autoplay, sound) is a design decision, not IA. |
 | **Agent grouping in AgentLab** | The deck lists twelve agents under four group headings without assigning them. The assignment in `03-page-layouts.md` T3 is a reading of the slide for Andy to confirm. |
 | **Whether CIVD is still current** | Rechecked against Andy's deck and the old IA columns. Slide 5 still carries Customer, Innovation, Delivery, Value and is marked "to be updated" (copy, not retirement). MURAL: keep CIVD. This pass restores it as a four-cell module on Growth Strategy and a compact four-cell on the Services hub. If Andy retires it, drop those modules; no URL changes. See `strand-gap-check.md`. |
 | Growth Strategy and Proposition Innovation copy | Source B marks both slides "to be updated from existing content". Andy is sourcing (Source C action). |

@@ -6,6 +6,8 @@ v4 changes (`v4-simplification.md`): Home goes from seven blocks to six; every t
 
 **v5 changes** (`v5-refinements.md`): the pages catch up with the best of the peer set without the chrome growing. Home block 2 gains one line under the triangle (R2). The Services hub (T2) becomes the Growth Architecture story: H1 "Our Growth Architecture", a "Where are you starting from?" block, and one plain sentence, service cards and one case per pillar; the separate Proof block goes (R1 to R3). Service pages (T3) open the Why with three situations, move Proof up to follow What we do, add a numbers line where the deck gives a number, and tighten each service module so every slide's structure has a stated home (R6). The Activation group page adds "Which of the six do you need?" (R5). People becomes Always when a lead is flagged, and the Team listing gains an optional Associates group (R7). How we work names the five frameworks and tools explicitly (R3). The chip rule, filters, and every other template are unchanged.
 
+**Andy's feedback pass, 1 October** (Source H, D-61 to D-63): three templates change and nothing else. T1 Home confirms the existing showreel / client video in the hero. T11 About is reframed around Growth Architecture. T12 Team listing becomes three sections (Growth Architects, Expert Community, SxS Advisors), superseding the v5 Associates group. Services, Work, Thinking and Careers templates are held at their existing structure until Andy sends his proposed templates.
+
 Related: `05-content-matrix.md` shows the same information as a grid; `04-canonicals-and-seo.md` sets the linking rules the "Related" blocks follow.
 
 ---
@@ -60,7 +62,7 @@ Purpose: say who MGA is for, show the Growth Architecture triangle once, and rou
 
 | # | Block | Content | Rule |
 |---|---|---|---|
-| 1 | Hero | Positioning statement from Source B ("Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth"), the line "Strategy that works. Execution that delivers.", one primary CTA to Contact, one text link to `/services/` ("What we do"). Showreel placeholder beneath (film later). | Always. |
+| 1 | Hero | Positioning statement from Source B ("Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth"), the line "Strategy that works. Execution that delivers.", one primary CTA to Contact, one text link to `/services/` ("What we do"). The existing Manifesto showreel / client video embedded beneath as a Video 16:9 in its existing-asset state (confirmed by Andy, 1 October; not a placeholder for a future film). | Always. |
 | 2 | Trusted partners | Heading "Trusted partners" and a thin row of 8 client logos. | Always. Logos link to the case study if one exists, otherwise to `/work/`. High, before What we do (MURAL). |
 | 3 | Growth Architecture triangle | Three blocks, each with the pillar label and the same short pillar line as the mega-nav: Growth Strategy ("Where and how you grow"), Activation Services ("Turning strategy into results"), CEO Advisory ("One-to-one support for leaders"). Each block links to its pillar page. All three pillars use the same contrast and weight. CEO Advisory is not greyed out. Section heading "What we do". Beneath the three blocks, one line in small type, the **triangle line**: "Strategy first. Activation to deliver it. Advisors alongside." (v5, R2), with a text link "Our Growth Architecture" to `/services/`. | Always. The triangle is drawn once, here. No pyramid diagram, no Source B one-liners, no second rendering. The three pillar lines and the triangle line are shared data with the mega-nav and the Services hub (`05-content-matrix.md`). The triangle line is the only sentence in this block. |
 | 4 | Our thinking | Heading "Our thinking". One featured report card and one article card, then a text link "All thinking" to `/insights/`. | Always. Placed after the triangle and before Our work so thinking is not a strip at the foot (`thinking-placement.md`). Not a reports grid. |
@@ -132,7 +134,7 @@ Service-specific module (block 8) and named How it works phases (block 7), drawn
 | AI Agents for Marketing | **Timeline from the deck: 4 weeks audit, 6 weeks first agents, ongoing portfolio.** | H2 "AgentLab", anchored `#agentlab`: the catalogue grouped as in Source B, with the deck's named agents as entries. Reporting and Analytics: Effectiveness agent, Attribution mapping agent, Performance planning agent. Data and Infrastructure: CDP data clean-up agent, Tagging and data collection agent, Integration discovery agent. Strategy and Planning: Segmentation builder agent, Customer journey mapping agent, Audience opportunity agent. Automation and Execution: Channel optimisation agent, Test and learn agent, QA and deployment agent. Agents are entries, not pages (D-15). "Data Agents" and "AgentLab" are named in the heading. The grouping of individual agents is Andy's to confirm. |
 | Operating Model Design | Diagnose the current model, design the adaptive model, implement; durations to confirm | The four qualities of an adaptive operating model (grounded in customer value growth; fuelled by high-quality data; redesigned around humans and AI agents; orchestrated and linked to impact) and the Source B appendix diagram (Growth Strategy; Data and Tools; New Work Units; Orchestration with Culture, Value, Capability; value streams of AI agents and humans) as a captioned figure titled "Our Operating Architecture framework", anchored `#operating-architecture`. The caption links Orchestration to Growth Office, which is the same three words. |
 | Growth Office | **Two phases from the deck: interim activation support, then establishing the new ways of working.** | The three connected elements from Source B (Culture, Capability, Value) as sub-sections. Body copy uses the plain terms "interim growth team" and "programme office" alongside the label. |
-| AI Enablement | Maturity assessment, then a bespoke programme across the three areas | Three programmes as sub-sections with plain H2s (AI skills and adoption; Finding where AI pays off (value cases); New business models with AI) with the maturity assessment as the entry step. Body copy names the expert network ("AI practitioners from our expert network") and links to the Team listing's Associates group when published. Cross-link to AI Agents for Marketing for tooling. |
+| AI Enablement | Maturity assessment, then a bespoke programme across the three areas | Three programmes as sub-sections with plain H2s (AI skills and adoption; Finding where AI pays off (value cases); New business models with AI) with the maturity assessment as the entry step. Body copy names the expert network ("AI practitioners from our expert network") and links to the Expert Community section of the Team listing (`/about/team/#expert-community`). Cross-link to AI Agents for Marketing for tooling. |
 | CEO Advisory (Side-by-Side) | How the retainer works: virtual or in person, disciplined but flexible, personality-led | **Side-by-Side**, anchored `#side-by-side`: Why (driving customer-led growth is demanding and lonely) and What (a select group of senior leaders armed with Manifesto thinking and frameworks; adaptive and personality-led; retainer-based so practitioners focus on delivering value, not selling). This is mega-nav strand 1. **Advisor profiles**, anchored `#advisors`, pulled from `/about/team/` where the person is flagged as advisor: this block is mega-nav strand 2. No FAQ module. Quieter CTA ("Arrange a conversation"). |
 | Activation group page | n/a | Replaces blocks 4 to 8 with: the bridge in one line, in plain words ("A brilliant strategy only counts if it gets executed and the value shows up. Activation is how we get you there: hands-on, AI-powered, human-led, and not ongoing operations"); then **"Which of the six do you need?"**, one line per service (v5, R5, D-52): Customer Research and Insight, "you need to understand customers faster and agree one version of the truth"; Experience Engineering, "a journey, product or website is underperforming and you want it found, fixed, tested and scaled"; AI Agents for Marketing, "your customer data is holding marketing back and you want agents doing the work"; Operating Model Design, "you need to redesign how teams, data and AI agents work together"; Growth Office, "you need an interim team to get the strategy delivered and the value tracked"; AI Enablement, "you want your people to use AI well and to find where it pays off". Then six service cards, each with a one-line summary. Blocks 9 to 14 as standard. |
 
@@ -253,33 +255,36 @@ Anonymised case studies use the same template with the client name replaced by a
 
 ## T11. About (`/about/`)
 
+Purpose (Andy, 1 October): About is framed around **Growth Architecture**. It answers why Manifesto built it, what a Growth Architect does, and who the Growth Architects are. It does not restate the system: the pillars and services stay canonical on `/services/` (D-03, D-51), and About links there. Headings here are framing only; the copy comes from the current brand work.
+
 | # | Block | Content | Rule |
 |---|---|---|---|
-| 1 | Hero | "About Manifesto Growth Architects", positioning statement | Always |
-| 2 | Who we are and our story | Origin, what MGA believes about growth, why customer-led | Always |
-| 3 | What makes us different | Three to four points, one of which is the Growth Architecture model (strategy plus AI-powered activation) | Always |
-| 4 | Leadership | Founders and partners with links to profiles | Always |
-| 5 | How we work teaser | Paragraph plus link to `/about/how-we-work/` | Always |
-| 6 | Clients | Logo wall | Always |
-| 7 | Values and careers teaser | Two links: `/about/values/`, `/careers/` | Always |
+| 1 | Hero | "About Manifesto Growth Architects", support line "We are Growth Architects. Strategy that works. Execution that delivers." | Always |
+| 2 | Why Growth Architecture | The problem (the path from strategy to execution has become complex and fragmented, Source B slide 2) and Manifesto's answer (strategic thinking joined to AI-powered, human-led activation). Copy from the brand work. | Always |
+| 3 | What a Growth Architect does | The people mix of agency, client and strategy backgrounds and what it lets Manifesto do for a leadership team. Copy from the brand work. | Always |
+| 4 | Our Growth Architecture | One line ("Three connected ways we work with you") and a link list of the three pillars with their pillar lines, each linking to its pillar page, plus a text link to `/services/`. The triangle is **not** drawn again here (T1 draws it once). | Always |
+| 5 | Our story | Origins and how Growth Architecture grew out of the work. Copy from the brand work. | Always |
+| 6 | Our people | One line and three Person cards, one per team group, linking to the anchors on `/about/team/`: Growth Architects (`#growth-architects`), Expert Community (`#expert-community`), SxS Advisors (`#advisors`). | Always |
+| 7 | Our approach | Links to `/about/how-we-work/`, `/about/values/`, and `/careers/` (Life at Manifesto). | Always |
 | 8 | CTA | Contact | Always |
+
+Removed from the previous T11: the Leadership card block (leadership is the first part of Growth Architects on `/about/team/`), the Clients logo wall (Trusted partners on Home is the logo home), and the C and N placeholder (absorbed into Expert Community).
 
 ---
 
 ## T12. Team listing (`/about/team/`) and Team profile (`/about/team/{name}/`)
 
-Team listing:
+Team listing (three sections, Andy, 1 October; D-62):
 
 | # | Block | Content | Rule |
 |---|---|---|---|
-| 1 | Intro | Heading, one paragraph | Always |
-| 2 | Leadership | Profile cards | Always |
-| 3 | Consultants | Profile cards | Always |
-| 4 | Side-by-Side advisors | Anchor `#advisors`. Profile cards for advisors, with a one-line note and link to `/services/ceo-advisory/`. The CEO Advisory page links here. The mega-nav's "Our advisors" (v5, D-49) lands on the CEO Advisory page's own advisor block, not here. | Conditional: at least one advisor is flagged. |
-| 5 | Associates and expert network | Profile cards for associates: the AI practitioners of the AI Enablement expert network (Source B, slide 12) and any Side-by-Side advisor who is an associate rather than staff. One-line intro. The Foundation's team page uses the same group. | Conditional: at least one profile is flagged as associate (v5, R7, D-53). |
-| 6 | Careers CTA | Link to `/careers/` | Always |
+| 1 | Intro | Heading "Our people", one line naming the three groups, a row of three in-page text links to the sections, and a link to Life at Manifesto on `/careers/`. | Always |
+| 2 | Growth Architects | Anchor `#growth-architects`. The core Manifesto team. Person cards, leadership first, then consultants; ordering within one section, not two sub-sections. One-line intro. | Always |
+| 3 | Expert Community | Anchor `#expert-community`. The C and N and growth collective profiles: specialist practitioners who work alongside the core team, including the AI practitioners for AI Enablement (Source B, slide 12). One-line intro, Person cards. AI Enablement body copy links here. | Always. If no profile is published yet, the section shows the intro line only. |
+| 4 | SxS Advisors | Anchor `#advisors` (kept, so the CEO Advisory page and existing links still land here). The Side-by-Side advisor profiles, with a one-line note and link to `/services/ceo-advisory/#advisors`. The mega-nav's "Our advisors" (D-49) lands on the CEO Advisory page's own advisor block, not here. | Always. Until at least one advisor is flagged, the section shows the intro line only. |
+| 5 | Careers CTA | Link to `/careers/` | Always |
 
-The intro (block 1) may call the team "our Growth Architects" once, the deck's own term (slide 10). Optional.
+Group membership is a single CMS field on the profile (Growth Architect, Expert Community, SxS Advisor). The former Leadership, Consultants, Side-by-Side advisors and Associates groups map onto these three without any profile being lost: leadership and consultants into Growth Architects; associates, the expert network and C and N into Expert Community; advisors into SxS Advisors. The intro may call the core team "our Growth Architects", the deck's own term (slide 10).
 
 Team profile:
 
@@ -287,7 +292,7 @@ Team profile:
 |---|---|---|---|
 | 1 | Hero | Name, role, one-line focus, contact route (LinkedIn or contact form) | Always |
 | 2 | Biography | Two to five paragraphs | Always. Under 100 words means noindex. |
-| 3 | Focus | Services and themes this person leads on, linked. A profile flagged as **lead** for a service surfaces in that service's People block (T3 block 12). | Always |
+| 3 | Focus | The person's group (Growth Architects, Expert Community or SxS Advisors) linking to that section of `/about/team/`, then the services and themes this person leads on, linked. A profile flagged as **lead** for a service surfaces in that service's People block (T3 block 12). | Always |
 | 4 | Selected work | Case studies this person is tagged on | Conditional |
 | 5 | Insights | Articles authored | Conditional |
 | 6 | Advisor note | "Available through Side-by-Side" with link to `/services/ceo-advisory/` | Conditional: person is flagged as advisor |

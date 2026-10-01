@@ -159,6 +159,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   display: flex; align-items: center; justify-content: center;
   color: var(--mid); font-size: 13px; background: #fafafa;
 }
+.video-ph.asset { border-style: solid; border-color: var(--ink); background: #f0f0f0; flex-direction: column; gap: 6px; position: relative; }
+.video-ph.asset .play { font-size: 28px; color: var(--ink); }
+.video-ph.asset figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 6px 10px; font-size: 11px; color: var(--mid); background: #fafafa; border-top: 1px solid var(--line); }
 .quote {
   margin: 16px 0 0; padding: 16px 18px; border-left: 3px solid var(--ink);
   color: #444; font-size: 16px; max-width: 640px; background: #fafafa;

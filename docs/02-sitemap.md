@@ -4,7 +4,7 @@ Every URL on the site, grouped by section. Each entry has a slug, a page type (w
 
 The structure follows Source A (Gary's suggested IA). The services taxonomy follows Source B (Andy's Growth Architecture triangle). Weighting follows Source C and Source D: Growth Strategy first, Activation second, CEO Advisory third (full visual weight, quieter only by column width and number of strands), themes real but calm, sectors light. Service names and slugs follow the v3 wording pass (Source C, Source E). See `nav-wording-decisions.md`.
 
-v4 (Source F, `v4-simplification.md`) cut one page, the sector index (D-44), leaving 40 fixed pages. **v5 (Source G, `v5-refinements.md`) adds no URL and removes none.** It changes what four existing pages carry: the Services hub becomes the Growth Architecture story with problem entry (R1 to R3), the Activation group page explains which of the six a visitor needs (R5), service pages gain anchored sections for the named frameworks (R3, R6), and the Team listing gains an optional Associates group (R7). Anchors are listed where they matter for linking; they are not pages.
+v4 (Source F, `v4-simplification.md`) cut one page, the sector index (D-44), leaving 40 fixed pages. **v5 (Source G, `v5-refinements.md`) adds no URL and removes none.** It changes what four existing pages carry: the Services hub becomes the Growth Architecture story with problem entry (R1 to R3), the Activation group page explains which of the six a visitor needs (R5), service pages gain anchored sections for the named frameworks (R3, R6), and the Team listing gains an optional Associates group (R7). **Andy's feedback pass (1 October, Source H) adds no URL and removes none**; it changes what `/`, `/about/` and `/about/team/` carry and adds two anchors on the Team listing. Anchors are listed where they matter for linking; they are not pages.
 
 Related: `diagrams/sitemap.md` shows this structure as a tree.
 
@@ -160,9 +160,9 @@ Source A asked for a clear About hub and a clear Careers hub instead of "Life at
 
 | URL | Page type | Purpose | Weight |
 |---|---|---|---|
-| `/about/` | About | Who we are and our story: the positioning (sustainable customer-led growth, strategy plus AI-powered activation), what makes MGA different, senior team preview. | Supporting |
-| `/about/team/` | Team listing | Everyone client-facing, grouped by role: Leadership, Consultants, Side-by-Side advisors (anchor `#advisors`, linked from the CEO Advisory page), and an optional Associates and expert network group (v5, R7; Conditional on at least one profile flagged as associate). The mega-nav's "Our advisors" link lands on the CEO Advisory page, not here. | Supporting |
-| `/about/team/{name}/` | Team profile | One person: role, focus, selected work, insights authored, contact route. Advisor profiles carry the Side-by-Side link. Profiles flagged as lead for a service surface in that service's People block (R7). | Light |
+| `/about/` | About | Framed around Growth Architecture (Andy, 1 October): why Manifesto built it, what a Growth Architect does, three pillar links to What we do, the story, the three team groups, the approach. The system itself stays canonical on `/services/`. | Supporting |
+| `/about/team/` | Team listing | Three sections (Andy, 1 October): Growth Architects (`#growth-architects`, the core team), Expert Community (`#expert-community`, C and N and growth collective profiles), SxS Advisors (`#advisors`, kept so the CEO Advisory page still lands here). The mega-nav's "Our advisors" link lands on the CEO Advisory page, not here. | Supporting |
+| `/about/team/{name}/` | Team profile | One person: group, role, focus, selected work, insights authored, contact route. Advisor profiles carry the Side-by-Side link. Profiles flagged as lead for a service surface in that service's People block (R7). | Light |
 | `/about/how-we-work/` | Methodology | Ways of working, frameworks, engagement models. Kept separate from services so method is never mistaken for product (Source A). | Supporting |
 | `/about/values/` | Values and culture | Values, culture and DEI on one page (Source A lists Values / Culture and DEI; combined to avoid two thin pages). | Light |
 
@@ -228,7 +228,7 @@ Notes:
 
 Fixed pages at launch (excluding case studies, insights, profiles, roles and filter patterns): 40, of which 11 are Canonical. v3 had 41; the sector index was cut in v4; v5 adds none.
 
-Anchors that other pages link to (not pages): `/services/growth-strategy/#civd`, `/services/operating-model-design/#operating-architecture`, `/services/ai-agents-for-marketing/#agentlab`, `/services/ceo-advisory/#side-by-side`, `/services/ceo-advisory/#advisors`, `/about/team/#advisors`, and the three Experience Engineering sections (`#customer-experience`, `#website-and-digital`, `#research-and-testing`).
+Anchors that other pages link to (not pages): `/services/growth-strategy/#civd`, `/services/operating-model-design/#operating-architecture`, `/services/ai-agents-for-marketing/#agentlab`, `/services/ceo-advisory/#side-by-side`, `/services/ceo-advisory/#advisors`, `/about/team/#growth-architects`, `/about/team/#expert-community`, `/about/team/#advisors`, and the three Experience Engineering sections (`#customer-experience`, `#website-and-digital`, `#research-and-testing`).
 
 ---
 

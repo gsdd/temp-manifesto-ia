@@ -87,7 +87,7 @@ COMPONENTS: dict[str, tuple[str, str, str]] = {
     "Empty state": ("Lists and locators", "Static", "No results for this filter or query. Hide when results exist. Clear filters is a Button."),
     "Logo strip": ("Proof and media", "Static", "Trusted partners, awards, or sector clients. Link a logo only if a case exists."),
     "Quote": ("Proof and media", "Static", "Testimonial. Lives with work. Not a testimonials page."),
-    "Video 16:9": ("Proof and media", "Static", "Showreel, partner film, or case film. Placeholder until film exists."),
+    "Video 16:9": ("Proof and media", "Static", "Showreel, partner film, or case film. Two states: existing asset (solid frame, caption naming the film; the Home showreel / client video) or placeholder (dashed) until a film exists."),
     "CIVD four-cell": ("Proof and media", "Static", "Growth Strategy frame. Dashed cells. The text link sits beside it, not on the cells."),
     "Article body": ("Proof and media", "Static", "Long-form paragraphs on a report or article."),
     "Form": ("Forms", "Button", "Stacked fields with labels. Submit is a Button. Variants: Work with us, Work for us, email capture, search, report copy."),
@@ -569,7 +569,15 @@ def logos_html(n=8, label="Logo"):
     return f'<div class="logos" {mod("Logo strip")} aria-label="{label}s">{cells}</div>'
 
 
-def video_html(label="Video"):
+def video_html(label="Video", asset: str | None = None):
+    """A 16:9 video block. With `asset`, the film already exists: solid frame, play glyph,
+    and a caption naming the asset. Without it, a dashed placeholder for a film to come."""
+    if asset:
+        return (
+            f'<figure class="video-ph asset" {mod("Video 16:9")} aria-label="{label}">'
+            f'<span class="play" aria-hidden="true">&#9654;</span><span>{label}</span>'
+            f'<figcaption>{asset}</figcaption></figure>'
+        )
     return f'<div class="video-ph" {mod("Video 16:9")} aria-label="{label}"><span>{label}</span></div>'
 
 
@@ -699,7 +707,7 @@ PAGES: list[dict] = [
         crumbs=[],
         kind="home",
         notes=[
-            "Showreel film sits in the hero",
+            "The existing Manifesto showreel / client video is embedded in the hero (confirmed by Andy, 1 October). It is a live asset, not a placeholder for a future film",
             "Trusted partners sit directly under the hero",
             "Featured thinking (one report, one article) sits after the triangle and before Our work",
             "Client quote sits with the work cards",
@@ -1312,18 +1320,23 @@ PAGES += [
         section="about",
         weight="Supporting",
         primary="Manifesto Growth Architects (brand)",
-        alts=["Growth Architecture as named system lives on /services/"],
+        alts=["growth architects (who we are). The system itself, pillars and services, stays canonical on /services/"],
         quiet=None,
         themes=[],
         sectors=[],
-        services=[T("Our Growth Architecture", "/services/")],
+        services=[T("Our Growth Architecture", "/services/"), T("Growth Strategy", "/services/growth-strategy/"), T("Activation Services", "/services/activation/"), T("CEO Advisory", "/services/ceo-advisory/")],
         h1="About Manifesto Growth Architects",
-        h2s=["Who we are and our story", "How we are distinct", "Leadership", "Our approach"],
-        h3s=["Origins", "C and N members"],
-        intent="Story, origins, and how the people mix of agency, client and strategy is distinct. Teases Our approach.",
+        h2s=["Why Growth Architecture", "What a Growth Architect does", "Our Growth Architecture", "Our story", "Our people", "Our approach"],
+        h3s=["Growth Architects", "Expert Community", "SxS Advisors"],
+        intent="About is framed around Growth Architecture: why Manifesto built it, what a Growth Architect does, and who the Growth Architects are. The system itself (pillars and services) stays canonical on What we do; About says why and who, and links there.",
         crumbs=[("Home", "/"), ("About", None)],
         kind="about",
-        notes=["Life at Manifesto lives on Careers; About links to it", "C and N members are a named group, detailed on Our people"],
+        notes=[
+            "Framing only (Andy, 1 October). Copy comes from the current brand work; no new copy is written here",
+            "The triangle is not drawn again on About. Three pillar links and one line point to What we do",
+            "Our people previews the three team groups: Growth Architects, Expert Community, SxS Advisors",
+            "Life at Manifesto lives on Careers; About links to it",
+        ],
     ),
     dict(
         url="/about/team/",
@@ -1335,14 +1348,20 @@ PAGES += [
         quiet=None,
         themes=[],
         sectors=[],
-        services=[T("CEO Advisory", "/services/ceo-advisory/")],
+        services=[T("CEO Advisory", "/services/ceo-advisory/"), T("AI Enablement", "/services/ai-enablement/")],
         h1="Our people",
-        h2s=["Leadership", "Consultants", "Side-by-Side advisors", "Associates, expert network and C and N members"],
+        h2s=["Growth Architects", "Expert Community", "SxS Advisors"],
         h3s=["Culture over headshots (visual note)"],
-        intent="Meet the team: client-facing people grouped by role. Cross-links to Careers for Life at Manifesto and current opportunities.",
+        intent="Meet the team in three groups (Andy, 1 October): Growth Architects, the core Manifesto team; Expert Community, the C and N and growth collective profiles; SxS Advisors, the Side-by-Side profiles. Each group has an anchor, an intro line and Person cards. Cross-links to Careers for Life at Manifesto and current opportunities.",
         crumbs=[("Home", "/"), ("About", "/about/"), ("Our people", None)],
         kind="team",
-        notes=["Culture over headshots in the visual treatment", "The menu strand Our advisors lands on CEO Advisory, not here"],
+        notes=[
+            "Three sections replace Leadership, Consultants, Side-by-Side advisors and Associates. Leadership and consultants are ordered within Growth Architects, not split into sub-sections",
+            "Expert Community absorbs the former Associates and expert network group and the C and N placeholder. AI Enablement body copy links here",
+            "SxS Advisors keeps the #advisors anchor so the CEO Advisory page and existing links still land on it",
+            "Culture over headshots in the visual treatment",
+            "The menu strand Our advisors lands on CEO Advisory, not here",
+        ],
     ),
     dict(
         url="/about/team/advisor-one/",
@@ -1358,7 +1377,7 @@ PAGES += [
         h1="Advisor name",
         h2s=["Biography", "Focus", "Selected work"],
         h3s=[],
-        intent="Profile shell. Advisor note links back to Side-by-Side on the CEO Advisory page.",
+        intent="Profile shell. Every profile names its group (Growth Architects, Expert Community or SxS Advisors) and links to that section of Our people. Advisor note links back to Side-by-Side on the CEO Advisory page.",
         crumbs=[("Home", "/"), ("About", "/about/"), ("Our people", "/about/team/"), ("Advisor name", None)],
         kind="profile",
     ),
@@ -1581,8 +1600,8 @@ def body_for(page: dict) -> str:
           <p>Strategy that works. Execution that delivers.</p>
           {ann("Button + text link")}
           {cta_html(h, ("Contact", "/contact/"), ("What we do", "/services/"))}
-          {ann("Static")}
-          {video_html("Showreel")}
+          {ann("Static: existing asset")}
+          {video_html("Manifesto showreel / client video", asset="Existing film, confirmed for Home (Andy, 1 October). Embedded in the hero, not a placeholder.")}
         </section>
         <section class="block">
           <h2 class="sec">Trusted partners</h2>
@@ -2111,31 +2130,41 @@ def body_for(page: dict) -> str:
         return f"""
         {hero_open()}
           <h1>About Manifesto Growth Architects</h1>
-          <p>Sustainable, customer-led growth. Strategy plus AI-powered activation.</p>
+          <p>We are Growth Architects. Strategy that works. Execution that delivers.</p>
         </section>
         <section class="block">
-          <h2 class="plain">Who we are and our story</h2>
-          <h3 class="plain">Origins</h3>
-          <p class="prose">How Manifesto started, and the story we tell about customer-led growth.</p>
+          <h2 class="plain">Why Growth Architecture</h2>
+          <p class="prose">The path from strategy to execution has become complex and fragmented. Growth Architecture is Manifesto's answer: strategic thinking joined to AI-powered, human-led activation. Copy from the current brand work.</p>
         </section>
         <section class="block">
-          <h2 class="plain">How we are distinct</h2>
-          <p class="prose">The people mix of agency, client and strategy. Growth Architecture is on <a href="{h("/services/")}">What we do</a>.</p>
+          <h2 class="plain">What a Growth Architect does</h2>
+          <p class="prose">The people mix of agency, client and strategy backgrounds, and what that lets us do for a leadership team. Copy from the current brand work.</p>
         </section>
         <section class="block">
-          <h2 class="plain">Leadership</h2>
+          <h2 class="plain">Our Growth Architecture</h2>
+          <p class="prose">Three connected ways we work with you. The system itself lives on <a href="{h("/services/")}">What we do</a>.</p>
+          {link_list([
+              ("Growth Strategy", h("/services/growth-strategy/"), "Where and how you grow"),
+              ("Activation Services", h("/services/activation/"), "Turning strategy into results"),
+              ("CEO Advisory", h("/services/ceo-advisory/"), "One-to-one support for leaders"),
+          ])}
+        </section>
+        <section class="block">
+          <h2 class="plain">Our story</h2>
+          <p class="prose">How Manifesto started and how Growth Architecture grew out of the work. Copy from the current brand work.</p>
+        </section>
+        <section class="block">
+          <h2 class="plain">Our people</h2>
+          <p class="prose">Three groups, all on <a href="{h("/about/team/")}">Our people</a>.</p>
           <div class="cards">
-            {card(h, "/about/team/advisor-one/", "Partner name", "Role", "person")}
-            {card(h, "/about/team/", "Our people", "Everyone client-facing", "person")}
+            {card(h, "/about/team/#growth-architects", "Growth Architects", "Core Manifesto team", "person")}
+            {card(h, "/about/team/#expert-community", "Expert Community", "C and N and growth collective", "person")}
+            {card(h, "/about/team/#advisors", "SxS Advisors", "Side-by-Side advisors", "person")}
           </div>
         </section>
         <section class="block">
           <h2 class="plain">Our approach</h2>
-          <p class="prose"><a href="{h("/about/how-we-work/")}">Our approach</a>. <a href="{h("/about/values/")}">Values and culture</a>.</p>
-        </section>
-        <section class="block">
-          <h3 class="plain">C and N members</h3>
-          <p class="prose">A named group. Detail on <a href="{h("/about/team/")}">Our people</a>.</p>
+          <p class="prose"><a href="{h("/about/how-we-work/")}">Our approach</a>. <a href="{h("/about/values/")}">Values and culture</a>. <a href="{h("/careers/")}">Life at Manifesto</a> is on Careers.</p>
         </section>
         {closing(h)}
 """
@@ -2144,24 +2173,39 @@ def body_for(page: dict) -> str:
         return f"""
         {hero_open()}
           <h1>Our people</h1>
-          <p>Client-facing people, grouped by role. <a href="{h("/careers/")}">Life at Manifesto</a> is on Careers.</p>
+          <p>Three groups: Growth Architects, Expert Community, SxS Advisors. <a href="{h("/careers/")}">Life at Manifesto</a> is on Careers.</p>
+          <div class="row-links" {mod("Row of text links")}>
+            <a href="#growth-architects">Growth Architects</a>
+            <a href="#expert-community">Expert Community</a>
+            <a href="#advisors">SxS Advisors</a>
+          </div>
         </section>
-        <section class="block">
-          <h2 class="plain">Leadership</h2>
-          <div class="cards">{card(h, "/about/team/advisor-one/", "Name", "Role", "person")}</div>
+        <section class="block" id="growth-architects">
+          <h2 class="plain">Growth Architects</h2>
+          <p class="prose">The core Manifesto team. Leadership first, then consultants.</p>
+          <div class="cards">
+            {card(h, "/about/team/advisor-one/", "Name", "Partner", "person")}
+            {card(h, "/about/team/advisor-one/", "Name", "Partner", "person")}
+            {card(h, "/about/team/advisor-one/", "Name", "Growth Architect", "person")}
+            {card(h, "/about/team/advisor-one/", "Name", "Growth Architect", "person")}
+          </div>
         </section>
-        <section class="block">
-          <h2 class="plain">Consultants</h2>
-          <div class="cards">{card(h, "/about/team/advisor-one/", "Name", "Role", "person")}</div>
+        <section class="block" id="expert-community">
+          <h2 class="plain">Expert Community</h2>
+          <p class="prose">C and N members and the growth collective: specialist practitioners who work alongside the core team, including the AI practitioners for <a href="{h("/services/ai-enablement/")}">AI Enablement</a>.</p>
+          <div class="cards">
+            {card(h, "/about/team/advisor-one/", "Name", "Specialism", "person")}
+            {card(h, "/about/team/advisor-one/", "Name", "Specialism", "person")}
+            {card(h, "/about/team/advisor-one/", "Name", "Specialism", "person")}
+          </div>
         </section>
         <section class="block" id="advisors">
-          <h2 class="plain">Side-by-Side advisors</h2>
-          <p class="prose">The same people as <a href="{h("/services/ceo-advisory/#advisors")}">Our advisors</a> on CEO Advisory.</p>
-          <div class="cards">{card(h, "/about/team/advisor-one/", "Advisor name", "Former role", "person")}</div>
-        </section>
-        <section class="block">
-          <h2 class="plain">Associates, expert network and C and N members</h2>
-          <p class="prose">AI practitioners for AI Enablement, associate advisors, and C and N members.</p>
+          <h2 class="plain">SxS Advisors</h2>
+          <p class="prose">Side-by-Side advisors: the same people as <a href="{h("/services/ceo-advisory/#advisors")}">Our advisors</a> on CEO Advisory.</p>
+          <div class="cards">
+            {card(h, "/about/team/advisor-one/", "Advisor name", "Former role", "person")}
+            {card(h, "/about/team/advisor-one/", "Advisor name", "Former role", "person")}
+          </div>
         </section>
         <section class="block">
           <p class="one-line" {mod("Link line")}>Interested in joining the team? <a href="{h("/careers/")}">Current opportunities</a></p>
@@ -2180,7 +2224,7 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="plain">Focus</h2>
-          <p class="prose">Leads on <a href="{h("/services/ceo-advisory/")}">CEO Advisory</a>. Available through Side-by-Side.</p>
+          <p class="prose">Group: <a href="{h("/about/team/#advisors")}">SxS Advisors</a>. Leads on <a href="{h("/services/ceo-advisory/")}">CEO Advisory</a>. Available through Side-by-Side.</p>
         </section>
         <section class="block">
           <h2 class="plain">Selected work</h2>

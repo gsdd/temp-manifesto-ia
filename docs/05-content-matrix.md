@@ -6,6 +6,8 @@ v4 changes: the mega-nav carries three pillar lines and two quiet lines instead 
 
 v5 changes (`v5-refinements.md`): four new fixed-text content types (the triangle line, three pillar sentences, seven situation lines, six "which of the six" lines); a numbers line on two service pages; the frameworks list on How we work; case studies surfaced inside the hub's pillar sections instead of a separate Proof block; People on service pages driven by a lead flag; an optional Associates group on the Team listing.
 
+Andy's feedback pass (1 October, Source H): the Film content type is named, with the existing showreel / client video confirmed on Home; the Team group field replaces the associate flag and places every profile in one of three sections (Growth Architects, Expert Community, SxS Advisors); About surfaces the three groups and no longer carries a logo wall.
+
 ---
 
 ## Key
@@ -41,11 +43,13 @@ v5 changes (`v5-refinements.md`): four new fixed-text content types (the triangl
 | Outcome statistic | A single quantified result | Case study (source), surfaced elsewhere |
 | Client logo | Logo with link | CMS asset, surfaced on many pages |
 | Client quote | Attributed testimonial | Case study (Source A: testimonials inside case studies) or How we work |
+| Film | The existing Manifesto showreel / client video (Home hero, confirmed by Andy, 1 October); growth partner films (How we work); optional case films | Home (showreel); How we work (partner films); Case study (case film) |
 | Insight | Article, report or event | Insight |
 | Team profile | Biography and focus | Team profile |
-| Advisor profile | A team profile flagged as advisor, with a Side-by-Side note | Team profile (surfaced on CEO Advisory `#advisors`, Services hub pillar 3, Team listing `#advisors`) |
+| Team group | Which of the three Our people sections a profile belongs to: Growth Architects, Expert Community or SxS Advisors (Andy, 1 October). One CMS field per profile | Team profile (drives the three sections of the Team listing and the three cards on About) |
+| Advisor profile | A team profile in the SxS Advisors group, with a Side-by-Side note | Team profile (surfaced on CEO Advisory `#advisors`, Services hub pillar 3, Team listing `#advisors`) |
 | Service lead flag | A team profile flagged as lead for one or more services (v5) | Team profile (surfaced in that service's People block) |
-| Associate profile | A team profile flagged as associate: the expert network (v5) | Team profile (surfaced in the Team listing's Associates group) |
+| Expert Community profile | A team profile in the Expert Community group: C and N members, the growth collective and the AI Enablement expert network (replaces the v5 Associate profile) | Team profile (surfaced in the Team listing's Expert Community section) |
 | Methodology and frameworks | Ways of working, engagement shapes, and the list of five named frameworks and tools with links to their anchored homes (v5) | How we work |
 | Values, culture and DEI | Values and commitments | Values and culture |
 | FAQ | Question and answer pairs | Service detail |
@@ -75,12 +79,13 @@ Pages across the top, content types down the side.
 | Sector intro | | | | | | | | **P** | | | | | | | | | | | |
 | Case study | S (Featured) | S (one per pillar section) | S (Proof, auto, after What we do) | S (Proof) | S (Proof) | | S (Proof, auto) | S (auto) | S (all, filterable) | **P** | | | | | S (Selected work) | | | | |
 | Outcome statistic | | | S (in cards) | | | | | | S (cards) | **P** (At a glance) | | | | | | | | | |
-| Client logo | S | | S (fallback) | | | | | S | | S (hero) | | | S (Clients) | | | | | | |
+| Client logo | S | | S (fallback) | | | | | S | | S (hero) | | | | | | | | | |
 | Client quote | | | | | S | | | | | **P** | | | | | | S | | | |
+| Film | **P** (existing showreel / client video in the hero) | | | | | | | | | S (optional case film) | | | | | | **P** (partner films) | | | |
 | Insight | S (Latest) | | S (auto, max 3) | | | S (Latest across themes) | S (auto, max 6) | S (auto, max 3) | | | S (all, filterable) | **P** | | | S (authored) | | | | |
-| Team profile | | S (pillar 3 advisors) | S (People, when a lead is flagged) | | S (Advisors) | | S (People) | | | S (Team) | | S (Author box) | S (Leadership) | S (cards) | **P** | | | | |
-| Advisor profile | | S | | | S (`#advisors`) | | | | | | | | | S (`#advisors` group) | **P** (flag and note) | | | | |
-| Associate profile | | | T (AI Enablement body copy) | | | | | | | | | | | S (Associates group) | **P** (flag) | | | | |
+| Team profile | | S (pillar 3 advisors) | S (People, when a lead is flagged) | | S (Advisors) | | S (People) | | | S (Team) | | S (Author box) | S (three group cards) | S (cards in three sections) | **P** | | | | |
+| Advisor profile | | S | | | S (`#advisors`) | | | | | | | | S (SxS Advisors card) | S (SxS Advisors, `#advisors`) | **P** (group and note) | | | | |
+| Expert Community profile | | | T (AI Enablement body copy) | | | | | | | | | | S (Expert Community card) | S (Expert Community, `#expert-community`) | **P** (group) | | | | |
 | Methodology and frameworks | | | T (How it works) | T | T | | | | | | | | T | | | **P** | | | |
 | Values, culture and DEI | | | | | | | | | | | | | T | | | | **P** | T | |
 | FAQ | | | **P** | | | | | | | | | | | | | | | | |
@@ -123,9 +128,9 @@ How much of each content type the site needs at launch, so the pages above are n
 | Sector intros | 4 (no index page) | Footer links must land on something; noindex until threshold |
 | Case studies | 12 minimum, tagged so that every service has at least one and every theme has at least two | Source B names example clients per service: Mars, Trojan Energy, BBC, PEX, Skillshare, TransferGo, Dayinsure, Merlin, WSJ, Key Group, Parkdean, TSB, Standard Chartered, Post Office, Meta, IAG, Microsoft, Dowds, News Corp. |
 | Insights | 10 minimum, tagged so that every theme has at least two | Theme pages cannot publish with fewer than two |
-| Team profiles | All leadership and all advisors, at least 100 words each; one profile flagged as lead per canonical service | CEO Advisory and the Services hub pillar 3 depend on advisor profiles; the People block on every service page depends on the lead flag (v5) |
-| Associate profiles | Optional at launch | The Associates group on the Team listing appears only when at least one is published (v5) |
-| Client logos | 12 to 16 with permissions | Home strip, About wall, sector landings |
+| Team profiles | All Growth Architects (leadership and consultants) and all SxS Advisors, at least 100 words each; one profile flagged as lead per canonical service | CEO Advisory and the Services hub pillar 3 depend on advisor profiles; the People block on every service page depends on the lead flag (v5); every profile carries its group |
+| Expert Community profiles | At least three at launch so the section is not an empty heading | The Expert Community section on the Team listing shows its intro line only until profiles are published |
+| Client logos | 12 to 16 with permissions | Home Trusted partners, sector landings (the About logo wall was removed when About was reframed around Growth Architecture) |
 | Client quotes | 4 to 6 | Case studies and How we work |
 | FAQs | 3 to 6 per canonical service | Long-tail search |
 | Methodology | 1 full page | Referenced from every service |
@@ -141,7 +146,7 @@ How much of each content type the site needs at launch, so the pages above are n
 | Pillar lines, quiet lines and the triangle line | Global navigation settings (shared by mega-nav, mobile menu, Home and Services hub) | Direct |
 | Pillar sentences and the seven situation lines | The Services hub page in the CMS. Adding an eighth situation, or a descriptor under one, is an IA decision. | Direct |
 | Service hero lines, per-page situation lines, numbers line | The service page in the CMS | Direct |
-| Lead and associate flags | Team profile entry | Surface in the service People block and the Team listing Associates group |
+| Team group and lead flag | Team profile entry | Group places the profile in one of the three Team listing sections and on the matching About card; lead surfaces in the service People block |
 | Service, theme, sector, about, methodology, values copy | Its own page in the CMS | Direct |
 | Case studies, insights, team profiles, roles | Their own entries | Tags drive surfacing everywhere else |
 | Advisor flag | Team profile entry | Surfaces on CEO Advisory, Services hub pillar 3, Team listing |
