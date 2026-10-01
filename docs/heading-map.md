@@ -27,7 +27,7 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   6. Growth problems we know best
 - **Intent:** Brand and router. Says who Manifesto is for, shows the Growth Architecture triangle once, and routes into services, thinking, work and expertise. Everything here exists in full on another page.
 - **Content notes:**
-  - Showreel film sits in the hero
+  - The existing Manifesto showreel / client video is embedded in the hero (confirmed by Andy, 1 October). It is a live asset, not a placeholder for a future film
   - Trusted partners sit directly under the hero
   - Featured thinking (one report, one article) sits after the triangle and before Our work
   - Client quote sits with the work cards
@@ -844,29 +844,35 @@ Each page also lists the reusable components on its canvas, in order, by the nam
 - **Weight:** Supporting (supports a canonical page and links up to it)
 - **Primary keyword:** Manifesto Growth Architects (brand)
 - **Alts:**
-  - Growth Architecture as named system lives on /services/
+  - growth architects (who we are). The system itself, pillars and services, stays canonical on /services/
 - **H1:** About Manifesto Growth Architects
 - **H2s (ordered):**
-  1. Who we are and our story
-  2. How we are distinct
-  3. Leadership
-  4. Our approach
+  1. Why Growth Architecture
+  2. What a Growth Architect does
+  3. Our Growth Architecture
+  4. Our story
+  5. Our people
+  6. Our approach
 - **H3s:**
-  - Origins
-  - C and N members
-- **Intent:** Story, origins, and how the people mix of agency, client and strategy is distinct. Teases Our approach.
+  - Growth Architects
+  - Expert Community
+  - SxS Advisors
+- **Intent:** About is framed around Growth Architecture: why Manifesto built it, what a Growth Architect does, and who the Growth Architects are. The system itself (pillars and services) stays canonical on What we do; About says why and who, and links there.
 - **Content notes:**
+  - Framing only (Andy, 1 October). Copy comes from the current brand work; no new copy is written here
+  - The triangle is not drawn again on About. Three pillar links and one line point to What we do
+  - Our people previews the three team groups: Growth Architects, Expert Community, SxS Advisors
   - Life at Manifesto lives on Careers; About links to it
-  - C and N members are a named group, detailed on Our people
 - **Components (canvas order):**
   - Hero
-  - Prose (Who we are and our story)
-  - Prose (How we are distinct)
-  - Person card ×2 (Leadership)
+  - Prose (Why Growth Architecture)
+  - Prose (What a Growth Architect does)
+  - Link list (Our Growth Architecture)
+  - Prose (Our story)
+  - Person card ×3 (Our people)
   - Prose (Our approach)
-  - Prose (C and N members)
   - Closing CTA band
-- **Related:** services: Our Growth Architecture
+- **Related:** services: Our Growth Architecture, Growth Strategy, Activation Services, CEO Advisory
 
 ## `/about/team/`: Our people
 
@@ -877,24 +883,25 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - Our advisors in the mega-nav land on CEO Advisory, not here
 - **H1:** Our people
 - **H2s (ordered):**
-  1. Leadership
-  2. Consultants
-  3. Side-by-Side advisors
-  4. Associates, expert network and C and N members
+  1. Growth Architects
+  2. Expert Community
+  3. SxS Advisors
 - **H3s:**
   - Culture over headshots (visual note)
-- **Intent:** Meet the team: client-facing people grouped by role. Cross-links to Careers for Life at Manifesto and current opportunities.
+- **Intent:** Meet the team in three groups (Andy, 1 October): Growth Architects, the core Manifesto team; Expert Community, the C and N and growth collective profiles; SxS Advisors, the Side-by-Side profiles. Each group has an anchor, an intro line and Person cards. Cross-links to Careers for Life at Manifesto and current opportunities.
 - **Content notes:**
+  - Three sections replace Leadership, Consultants, Side-by-Side advisors and Associates. Leadership and consultants are ordered within Growth Architects, not split into sub-sections
+  - Expert Community absorbs the former Associates and expert network group and the C and N placeholder. AI Enablement body copy links here
+  - SxS Advisors keeps the #advisors anchor so the CEO Advisory page and existing links still land on it
   - Culture over headshots in the visual treatment
   - The menu strand Our advisors lands on CEO Advisory, not here
 - **Components (canvas order):**
-  - Hero
-  - Person card (Leadership)
-  - Person card (Consultants)
-  - Person card (Side-by-Side advisors)
-  - Prose (Associates, expert network and C and N members)
+  - Hero, Row of text links
+  - Person card ×4 (Growth Architects)
+  - Person card ×3 (Expert Community)
+  - Person card ×2 (SxS Advisors)
   - Link line
-- **Related:** services: CEO Advisory
+- **Related:** services: CEO Advisory, AI Enablement
 
 ## `/about/team/advisor-one/`: Advisor name
 
@@ -908,7 +915,7 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   1. Biography
   2. Focus
   3. Selected work
-- **Intent:** Profile shell. Advisor note links back to Side-by-Side on the CEO Advisory page.
+- **Intent:** Profile shell. Every profile names its group (Growth Architects, Expert Community or SxS Advisors) and links to that section of Our people. Advisor note links back to Side-by-Side on the CEO Advisory page.
 - **Components (canvas order):**
   - Hero
   - Prose (Biography)
