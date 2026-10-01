@@ -10,7 +10,9 @@ This repository holds the Information Architecture (IA) package for the new Mani
 
 **v5 takes the pages to best in class on evidence.** Gary's feedback on v4 (16 September) was that the navigation was calm but not yet best in class, and that Andy's deck might not be fully reflected. v5 reviewed the live navigation of ten real peers and six pattern references (`docs/competitor-nav-review.md`), audited the deck slide by slide (`docs/andy-deck-coverage.md`), and made eight refinements (`docs/v5-refinements.md`). The finding: the menu was already sparser than any peer's; the gap was on the pages. So v5 rebuilds the Services hub as the Growth Architecture story with a way in by problem, puts proof under each offer, names the system and its frameworks where a buyer can see them, and adds exactly one quiet link to the menu.
 
-**This pass does not replace the v5 IA.** It extends the v5 mock into a clickable full-site wireframe covering the sitemap, with page notes, heading maps, and UK keyword intel (`docs/heading-map.md`, `docs/keyword-findings.md`). A MURAL pass folded current-site labels and keep/drop modules into the chrome (six header items, Our thinking, Careers first-class) without adopting the old sitemap. This pass: makes mega-nav group titles obvious hubs; treats CEO Advisory as a full-weight pillar; puts a keyword-led subtitle under every strand; moves Our thinking up the homepage; indexes live **page modules** (not working notes) at `/catalogue/`; fills footer, forms, listing states and utility stubs. See `docs/thinking-placement.md` and `docs/strand-gap-check.md`. The client-facing recommendations are in `docs/ia-recommendations-report.md`.
+**Andy's feedback pass (1 October, Source H)** applies three changes from Andy Bacon's review of the wires and nothing else: the existing showreel / client video is confirmed in the Home hero (D-61); About is reframed around Growth Architecture, with copy to come from the brand work (D-63); Our people becomes three sections, Growth Architects, Expert Community and SxS Advisors (D-62). Our services, Our work, Our thinking and Careers are held at their existing structure until Andy sends the proposed templates.
+
+**The wireframe pass before it does not replace the v5 IA.** It extends the v5 mock into a clickable full-site wireframe covering the sitemap, with page notes, heading maps, and UK keyword intel (`docs/heading-map.md`, `docs/keyword-findings.md`). A MURAL pass folded current-site labels and keep/drop modules into the chrome (six header items, Our thinking, Careers first-class) without adopting the old sitemap. This pass: makes mega-nav group titles obvious hubs; treats CEO Advisory as a full-weight pillar; puts a keyword-led subtitle under every strand; moves Our thinking up the homepage; indexes live **page modules** (not working notes) at `/catalogue/`; fills footer, forms, listing states and utility stubs. See `docs/thinking-placement.md` and `docs/strand-gap-check.md`. The client-facing recommendations are in `docs/ia-recommendations-report.md`.
 
 ## The one idea to hold in your head
 
@@ -53,8 +55,9 @@ Services are the spine of the site and the canonical home for every capability t
 | E: Gary's v3 wording brief, 15 Sept | Search-friendly labels; deck is not website copy | The mega-nav's words |
 | F: Gary's v4 feedback, 15 Sept evening | Simplify the whole concept; fewer words; sparse chips; calm homepage; clean mock | How much the chrome may say |
 | G: Gary's v5 brief, 16 Sept | Best in class on competitor evidence; full deck fidelity; no deck copy in the mega-nav | Where the pages go beyond the peer set |
+| H: Andy's feedback via Gary, 1 Oct | Showreel on Home; About framed around Growth Architecture; team in three sections; hold the other templates | Those three pages |
 
-Full summaries of all seven are in `docs/00-sources.md`. The competitor review is cited as evidence for G, not as a source of its own.
+Full summaries of all eight are in `docs/00-sources.md`. The competitor review is cited as evidence for G, not as a source of its own.
 
 ## How to read the package
 
@@ -102,7 +105,8 @@ Full summaries of all seven are in `docs/00-sources.md`. The competitor review i
 
 ## Scope guardrails
 
-- Home is a page, not a hub. Six blocks. One row of expertise links, no other tags.
+- Home is a page, not a hub. Six blocks. One row of expertise links, no other tags. The existing showreel / client video is in the hero (D-61).
+- About is framed around Growth Architecture: why, what a Growth Architect does, the story, the people. The system itself stays canonical on `/services/` (D-63). Our people is three sections: Growth Architects, Expert Community, SxS Advisors (D-62).
 - Services are canonical and flat under `/services/`. No heavy sector point-of-view pages.
 - The mega-nav shows the triangle and only the triangle, in the order Growth Strategy, Activation Services, CEO Advisory. Group titles are linked hubs. Growth Strategy and Activation start with Overview. CEO Advisory shows Side-by-Side and Our advisors at full visual weight. Labels, three pillar lines, a strand subtitle under every strand, footer row (All services, Expertise, Our work).
 - Home places Our thinking after the triangle, not as a strip at the foot (`docs/thinking-placement.md`).

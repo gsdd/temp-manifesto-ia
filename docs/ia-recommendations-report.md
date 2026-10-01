@@ -292,7 +292,7 @@ Each page type shows tags from one dimension only, three visible at most. The ot
 
 H1: "Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth."
 
-1. **Hero**: H1, strapline "Strategy that works. Execution that delivers.", CTA pair (Contact; What we do), Video 16:9 showreel placeholder.
+1. **Hero**: H1, strapline "Strategy that works. Execution that delivers.", CTA pair (Contact; What we do), Video 16:9 carrying the existing Manifesto showreel / client video (confirmed by Andy Bacon, 1 October).
 2. **Trusted partners**: Logo strip. A logo links only where a case study exists.
 3. **What we do**: three Triangle tiles with their pillar lines, then the triangle line "Strategy first. Activation to deliver it. Advisors alongside." with a text link to Our Growth Architecture.
 4. **Our thinking**: one Report card, one Article card, All thinking. After the offer and before the proof. Not a reports grid.
@@ -378,9 +378,9 @@ Report: Hero with tags; Article body read on the page; an optional Form to recei
 
 ### 5.12 About, Our people, Our approach, Values
 
-About (`/about/`): **Who we are and our story** (with Origins); **How we are distinct** (the mix of agency, client and strategy backgrounds; the Growth Architecture model); **Leadership** (Person cards); **Our approach** teaser; C and N members as a labelled placeholder; Closing CTA band.
+About (`/about/`), framed around Growth Architecture at Andy Bacon's request (1 October): **Why Growth Architecture**; **What a Growth Architect does** (the mix of agency, client and strategy backgrounds); **Our Growth Architecture** (one line and the three pillar links; the system itself stays on What we do and the triangle is not drawn again); **Our story**; **Our people** (three Person cards, one per team group); **Our approach** (links to Our approach, Values and culture, Life at Manifesto); Closing CTA band. Headings are framing only; copy comes from the current brand work.
 
-Our people (`/about/team/`): **Leadership**; **Consultants**; **Side-by-Side advisors** (`#advisors`); **Associates, expert network and C and N members**; Link line to Careers. Culture over headshots. The mega-nav's Our advisors strand lands on the CEO Advisory page, not here.
+Our people (`/about/team/`), three sections at Andy Bacon's request (1 October): **Growth Architects** (`#growth-architects`, the core Manifesto team, leadership first); **Expert Community** (`#expert-community`, the C and N and growth collective profiles, including the AI Enablement expert network); **SxS Advisors** (`#advisors`, the Side-by-Side profiles; the anchor is unchanged so CEO Advisory still lands here); Link line to Careers. Culture over headshots. The mega-nav's Our advisors strand lands on the CEO Advisory page, not here. Every profile names its group.
 
 Our approach (`/about/how-we-work/`): **How we partner**; **Growth partner videos** (Video 16:9; the partner films live here, not on Home); **Principles**; **Engagement shapes** (strategy project, strategy into activation, embedded growth office, advisory retainer); **Frameworks and tools**, the one place all five named things are listed together, each linking to its anchored home: Growth Architecture, Customer, Innovation, Value and Delivery, Operating Architecture, AgentLab, Side-by-Side; **Working with AI**; Closing CTA band. Method is never a product.
 
@@ -552,8 +552,8 @@ The IA launches without any of these. The wireframe carries a default for each.
 
 **Decisions**
 
-1. **C and N members.** The AI Enablement examples in the deck say "including c&n" and the MURAL board asks for a section. Confirm what C and N refers to before the name is used in client-facing lists. Default: a labelled placeholder on About and Our people, no invented expansion, not a sold service.
-2. **Growth Collective.** A current-site nav item with no home in the recommended sitemap. Decide whether it is a public destination (a footer line, a strand under Our thinking or About) or off the public site. Default: not in the header.
+1. **C and N members.** Placement is settled: C and N profiles sit in the Expert Community section of Our people (Andy Bacon, 1 October). Still to confirm: what the letters stand for, so the name can be written out in client-facing copy, and whether "including c&n" in the AI Enablement client examples refers to the same group.
+2. **Growth Collective.** Settled as far as the people go: growth collective profiles sit in the Expert Community section of Our people (Andy Bacon, 1 October). Still to decide: whether Growth Collective also needs a public destination of its own (a footer line or a strand under Our thinking). Default: not in the header; Our people is its home.
 3. **Events.** Our thinking carries an Events and news section and a dropdown link. A first-class `/events/` page is justified only if there is enough recap and forthcoming content to sustain it. The October CEO Advisory event launches from the hub or the CEO Advisory page without a new URL. Default: section, not page.
 4. **Three service names.** Customer Research and Insight (deck: Customer Intelligence), AI Agents for Marketing (deck: Data Agents) and Operating Model Design (deck: Operating Architecture) describe three offers to the market in searched terms. Peers use the same plain phrases. Fallback if any is refused: that one label and slug takes the deck term, with a subtitle carrying the searched words.
 5. **Two coined labels.** No peer uses Experience Engineering or Growth Office. The deck argues for both; competitors argue for Customer Experience and Digital, and Interim Growth Team. Default: keep both with their subtitles.
