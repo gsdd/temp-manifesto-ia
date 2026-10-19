@@ -857,11 +857,11 @@ Each page also lists the reusable components on its canvas, in order, by the nam
 - **H2s (ordered):**
   1. All thinking
   2. The Nutshell
-- **Intent:** Home of all thinking as one grid with one card design (client layout): type tabs with All first (Articles, Reports, News, Events), a tag filter, the type shown on every card, no dates on cards. Each filter state is a crawlable URL, so the nav dropdown items (Reports, Articles, Events and news) land on the right state and nothing is hidden from search.
+- **Intent:** Home of all thinking as one grid with one card design (client layout): type tabs in the order All, Reports, Articles, News and events, then a tag filter, with the type shown on every card. The filters work in this wireframe: tabs and tag pills hide and show cards client-side, and deep links (?type=reports or #reports) from the nav dropdown open the matching state. Every card stays in the HTML, so nothing is hidden from search.
 - **Content notes:**
   - Articles and blog posts are one type here; there is no separate blog
+  - News and Events are one merged type: News and events
   - No downloads from the grid: reports open their own page, where the email gate lives
-  - Cards carry no dates; reports are evergreen
   - The grid runs one, two or three across depending on how many items a filter returns
   - Home shows one featured report and one article, not this grid
 - **Components (canvas order):**

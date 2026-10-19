@@ -38,6 +38,13 @@ def asset(from_url: str, name: str) -> str:
     return os.path.relpath("assets/" + name, file_dir(from_url))
 
 
+def slugify(label: str) -> str:
+    out = "".join(c if c.isalnum() else "-" for c in label.lower())
+    while "--" in out:
+        out = out.replace("--", "-")
+    return out.strip("-")
+
+
 def crumbs_html(from_url: str, crumbs: list[tuple[str, str | None]]) -> str:
     if not crumbs:
         return ""
@@ -76,12 +83,12 @@ COMPONENTS: dict[str, tuple[str, str, str]] = {
     "Person card": ("Cards", "Card", "Someone. Avatar, name, one line."),
     "Role card": ("Cards", "Card", "Open role. Outline with a top rule: location, type, hiring state."),
     "Triangle tile": ("Cards", "Card", "Pillar, not a service. Three tiles plus the triangle line. Links to the pillar page or an in-page anchor. Not an Offer card."),
-    "Thought leadership card": ("Cards", "Card", "The one listing card for thinking and case studies (client layout). Rounded frame, image on top, one primary service tag pill, title, short excerpt, a row of small uppercase secondary tags (industry or expertise), Read more link. No dates: reports are evergreen."),
+    "Thought leadership card": ("Cards", "Card", "The one listing card for thinking and case studies (client layout). Rounded frame, image on top, one primary service tag pill, title, short excerpt, a row of small uppercase secondary tags (industry or expertise), Read more link. On Our thinking the tags also drive the live tag filter."),
     "Related trio": ("Cards", "Card", "Three related items in one row at the foot of an article: one article, one service, one report (client layout)."),
     "Culture card": ("Cards", "Card", "Values and culture on Careers (client layout). Four outline cards, one value each, linking to Values and culture."),
     "Page tag": ("Lists and locators", "Tag", "One dimension, max three, except case study heroes, which show service, industry and expertise pills so cross-linking survives (client layout). Small linked label. Not a filter."),
     "Filter bar": ("Lists and locators", "Filter", "Toggle a listing. Pill-shaped buttons, not links. More filters is also a Filter. On Our work the two groups are Industry and Service (client layout)."),
-    "Type filter tabs": ("Lists and locators", "Filter", "Listing tabs on Our thinking: All first, then the content types (client layout). Each state is a crawlable URL; the grid always links every item, so nothing is hidden from search."),
+    "Type filter tabs": ("Lists and locators", "Filter", "Listing tabs on Our thinking, in the order All, Reports, Articles, News and events (client layout). The tabs filter the grid in place and each state is a deep-linkable URL; the grid always links every item, so nothing is hidden from search."),
     "Role toggle": ("Lists and locators", "Filter", "Open positions / All on the Careers roles list (client layout). Defaults to Open positions."),
     "Application steps": ("Lists and locators", "Static", "The five hiring steps on Careers (client layout): Application, Interview with Partners, Case study, References, Decision."),
     "Situations list": ("Lists and locators", "Text link", "Prospect language in. Links on the services hub. On a service page the three lines are static text."),
@@ -310,10 +317,10 @@ def header_html(from_url: str, section: str) -> str:
               <a class="top-link" href="{h("/insights/")}" aria-haspopup="true" aria-expanded="false"{current("insights")}>Our thinking <span class="caret">&#9660;</span></a>
               <div class="dropdown" role="region" aria-label="Our thinking menu">
                 <ul>
+                  <li><a href="{h("/insights/")}">All thinking</a></li>
                   <li><a href="{h("/insights/#reports")}">Reports</a></li>
                   <li><a href="{h("/insights/#articles")}">Articles</a></li>
-                  <li><a href="{h("/insights/#events")}">Events and news</a></li>
-                  <li><a href="{h("/insights/")}">All thinking</a></li>
+                  <li><a href="{h("/insights/#news-events")}">News and events</a></li>
                 </ul>
               </div>
             </li>
@@ -457,6 +464,7 @@ def wrap(page: dict, body: str) -> str:
     title = page["title"]
     css = asset(url, "wireframe.css")
     js = asset(url, "nav.js")
+    filter_js = f'\n<script src="{asset(url, "filter.js")}"></script>' if page.get("kind") == "insights-hub" else ""
     solo = page.get("kind") == "catalogue" or page.get("no_sidebar")
     layout_cls = "layout layout-solo" if solo else "layout"
     sidebar = "" if solo else sidebar_html(page, body)
@@ -482,7 +490,7 @@ def wrap(page: dict, body: str) -> str:
   </div>
   {sidebar}
 </div>
-<script src="{js}"></script>
+<script src="{js}"></script>{filter_js}
 </body>
 </html>
 """
@@ -510,26 +518,34 @@ def tags_html(h, items):
     return f'<div class="page-tags">{inner}</div>'
 
 
-def filter_bar(items, on=None, more=False):
+def filter_bar(items, on=None, more=False, data_attr=None):
+    """With data_attr set (for example "data-tag"), each pill carries that
+    attribute with the slug of its label, for client-side filtering."""
     bits = []
     for label in items:
         cls = "filter on" if label == on else "filter"
-        bits.append(f'<button type="button" class="{cls}">{label}</button>')
+        da = f' {data_attr}="{slugify(label)}"' if data_attr else ""
+        bits.append(f'<button type="button" class="{cls}"{da}>{label}</button>')
     if more:
         bits.append('<button type="button" class="filter more">More filters</button>')
     return f'<div class="filters" {mod("Filter bar")}>{"".join(bits)}</div>'
 
 
-def tl_card(h, href, title, excerpt, primary, secondary=(), type_label=None):
+def tl_card(h, href, title, excerpt, primary, secondary=(), type_label=None, type_slug=None):
     """Thought leadership card (client layout): image, primary tag pill, title,
-    excerpt, small uppercase secondary tags, Read more. Type shown where given."""
+    excerpt, small uppercase secondary tags, Read more. Type shown where given.
+    With type_slug set, the card carries data attributes for client-side filtering."""
     pill = f'<span class="tl-pill">{esc(primary)}</span>'
     kind = f'<span class="tl-type">{esc(type_label)}</span>' if type_label else ""
     tags = ""
     if secondary:
         tags = '<span class="tl-tags">' + "".join(f"<em>{esc(t)}</em>" for t in secondary) + "</span>"
+    data = ""
+    if type_slug:
+        tag_slugs = " ".join(slugify(t) for t in (primary, *secondary))
+        data = f' data-type="{type_slug}" data-tags="{tag_slugs}"'
     return (
-        f'<a class="card tl" {mod("Thought leadership card")} href="{h(href)}">'
+        f'<a class="card tl" {mod("Thought leadership card")}{data} href="{h(href)}">'
         f'<div class="ph">Image</div><span class="tl-head">{pill}{kind}</span>'
         f'<strong>{title}</strong><span class="tl-excerpt">{excerpt}</span>'
         f'{tags}<span class="tl-more">Read more &#8594;</span></a>'
@@ -582,7 +598,8 @@ def type_tabs_html(items, on="All"):
     for label, anchor in items:
         cls = "type-tab on" if label == on else "type-tab"
         aid = f' id="{anchor}"' if anchor else ""
-        bits.append(f'<button type="button" class="{cls}"{aid}>{label}</button>')
+        dt = f' data-type="{anchor or slugify(label)}"'
+        bits.append(f'<button type="button" class="{cls}"{aid}{dt}>{label}</button>')
     return f'<div class="type-tabs" {mod("Type filter tabs")}>{"".join(bits)}</div>'
 
 
@@ -624,11 +641,17 @@ def empty_html(message, btn_href, btn_label="Clear filters"):
           </div>"""
 
 
-def empty_stub(message, btn_href, btn_label="Clear filters", annotate=False):
+def empty_stub(message, btn_href, btn_label="Clear filters", annotate=False, filter_hook=False):
     note = ann("Static + button") if annotate else ""
+    hook = " data-filter-empty" if filter_hook else ""
+    label = (
+        "Appears when the live filters return no results; Clear filters resets them"
+        if filter_hook
+        else "Conditional: shown only when there are no results"
+    )
     return f"""
-        <section class="block">
-          <span class="wf-label">Conditional: shown only when there are no results</span>{note}
+        <section class="block"{hook}>
+          <span class="wf-label">{label}</span>{note}
           {empty_html(message, btn_href, btn_label)}
         </section>
 """
@@ -1406,17 +1429,17 @@ PAGES += [
         h1="Our thinking",
         h2s=["All thinking", "The Nutshell"],
         h3s=[],
-        intent="Home of all thinking as one grid with one card design (client layout): type tabs with All first (Articles, Reports, News, Events), a tag filter, the type shown on every card, no dates on cards. Each filter state is a crawlable URL, so the nav dropdown items (Reports, Articles, Events and news) land on the right state and nothing is hidden from search.",
+        intent="Home of all thinking as one grid with one card design (client layout): type tabs in the order All, Reports, Articles, News and events, then a tag filter, with the type shown on every card. The filters work in this wireframe: tabs and tag pills hide and show cards client-side, and deep links (?type=reports or #reports) from the nav dropdown open the matching state. Every card stays in the HTML, so nothing is hidden from search.",
         crumbs=[("Home", "/"), ("Our thinking", None)],
         kind="insights-hub",
         notes=[
             "Articles and blog posts are one type here; there is no separate blog",
+            "News and Events are one merged type: News and events",
             "No downloads from the grid: reports open their own page, where the email gate lives",
-            "Cards carry no dates; reports are evergreen",
             "The grid runs one, two or three across depending on how many items a filter returns",
             "Home shows one featured report and one article, not this grid",
         ],
-        mural=["Type tabs: All, Articles, Reports, News, Events", "Tag filter", "One card design, type on card", "1 to 3 across grid", "Report gate on the report page, not the grid"],
+        mural=["Type tabs: All, Reports, Articles, News and events", "Tag filter", "One card design, type on card", "1 to 3 across grid", "Report gate on the report page, not the grid"],
     ),
     dict(
         url="/insights/loyalty-without-the-discount/",
@@ -2254,21 +2277,20 @@ def body_for(page: dict) -> str:
         <section class="block">
           <h2 class="plain">All thinking</h2>
           {ann("Filter: type tabs, All first")}
-          {type_tabs_html([("All", None), ("Articles", "articles"), ("Reports", "reports"), ("News", "news"), ("Events", "events")], on="All")}
-          <span class="wf-label">Each tab is a crawlable URL state (for example ?type=reports); the nav dropdown items land on these states. The grid below always links every item, so no content is hidden from search</span>
+          {type_tabs_html([("All", None), ("Reports", "reports"), ("Articles", "articles"), ("News and events", "news-events")], on="All")}
+          <span class="wf-label">Live in this wireframe: tabs and tag pills filter the grid in place (small script, no framework). Deep links such as ?type=reports or #reports open the matching state. Every card stays in the HTML, so nothing is hidden from search</span>
           {ann("Filter: tags")}
-          {filter_bar(["Loyalty", "Pricing", "Customer Value", "Growth Strategy", "Financial services"], more=True)}
+          {filter_bar(["Loyalty", "Pricing", "Customer Value", "Growth Strategy", "Financial services"], more=True, data_attr="data-tag")}
           {ann("Thought leadership card")}
-          <div class="cards">
-            {tl_card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "From tactical lever to growth engine. Read on its page; no download here.", "Growth Strategy", ("Pricing",), "Report")}
-            {tl_card(h, "/insights/loyalty-without-the-discount/", "Loyalty without the discount", "Short excerpt of the argument (placeholder).", "Proposition Innovation", ("Loyalty",), "Article")}
-            {tl_card(h, "/insights/pricing-paradox/", "Pricing Paradox launch event", "Recap and what was discussed (placeholder).", "Growth Strategy", ("Pricing",), "Event")}
+          <div class="cards" data-filter-grid>
+            {tl_card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "From tactical lever to growth engine. Read on its page; no download here.", "Growth Strategy", ("Pricing",), "Report", type_slug="reports")}
+            {tl_card(h, "/insights/loyalty-without-the-discount/", "Loyalty without the discount", "Short excerpt of the argument (placeholder).", "Proposition Innovation", ("Loyalty",), "Article", type_slug="articles")}
+            {tl_card(h, "/insights/pricing-paradox/", "Pricing Paradox launch event", "Recap and what was discussed (placeholder).", "Growth Strategy", ("Pricing",), "News and events", type_slug="news-events")}
           </div>
-          <span class="wf-label">No dates on cards (reports are evergreen). Grid runs one, two or three across depending on how many items the filter returns</span>
           {ann("Text link")}
           <a class="more" href="#">See more</a>
         </section>
-        {empty_stub("No thinking matches these filters.", h("/insights/"))}
+        {empty_stub("No thinking matches these filters.", h("/insights/"), filter_hook=True)}
         <section class="block">
           <h2 class="plain">The Nutshell</h2>
           <p class="prose">Events, thought leadership and what has caught our attention. <a href="{h("/newsletter/")}">Sign up to The Nutshell</a></p>
@@ -2744,7 +2766,7 @@ def catalogue_samples(h) -> dict[str, str]:
         "Triangle tile": tri_html(h, PILLAR_TILES, '<p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside.</p>'),
         "Page tag": tags_html(h, [("Loyalty", "/expertise/loyalty/"), ("Pricing", "/expertise/pricing/")]),
         "Filter bar": filter_bar(["All services", "Growth Strategy", "Experience Engineering"], on="All services", more=True),
-        "Type filter tabs": type_tabs_html([("All", None), ("Articles", None), ("Reports", None), ("News", None), ("Events", None)], on="All"),
+        "Type filter tabs": type_tabs_html([("All", None), ("Reports", None), ("Articles", None), ("News and events", None)], on="All"),
         "Role toggle": role_toggle_html(),
         "Application steps": steps_html(["Application", "Interview with Partners", "Case study", "References", "Decision"]),
         "Situations list": f'''<ul class="situations" {mod("Situations list")}>

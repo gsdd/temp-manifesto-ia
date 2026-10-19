@@ -24,10 +24,10 @@
               <a class="top-link" href="index.html" aria-haspopup="true" aria-expanded="false" aria-current="page">Our thinking <span class="caret">&#9660;</span></a>
               <div class="dropdown" role="region" aria-label="Our thinking menu">
                 <ul>
+                  <li><a href="index.html">All thinking</a></li>
                   <li><a href="index.html#reports">Reports</a></li>
                   <li><a href="index.html#articles">Articles</a></li>
-                  <li><a href="index.html#events">Events and news</a></li>
-                  <li><a href="index.html">All thinking</a></li>
+                  <li><a href="index.html#news-events">News and events</a></li>
                 </ul>
               </div>
             </li>
@@ -97,23 +97,22 @@
         <section class="block">
           <h2 class="plain">All thinking</h2>
           <span class="wf-type" aria-hidden="true">Filter: type tabs, All first</span>
-          <div class="type-tabs" data-module="Type filter tabs" title="Type filter tabs"><button type="button" class="type-tab on">All</button><button type="button" class="type-tab" id="articles">Articles</button><button type="button" class="type-tab" id="reports">Reports</button><button type="button" class="type-tab" id="news">News</button><button type="button" class="type-tab" id="events">Events</button></div>
-          <span class="wf-label">Each tab is a crawlable URL state (for example ?type=reports); the nav dropdown items land on these states. The grid below always links every item, so no content is hidden from search</span>
+          <div class="type-tabs" data-module="Type filter tabs" title="Type filter tabs"><button type="button" class="type-tab on" data-type="all">All</button><button type="button" class="type-tab" id="reports" data-type="reports">Reports</button><button type="button" class="type-tab" id="articles" data-type="articles">Articles</button><button type="button" class="type-tab" id="news-events" data-type="news-events">News and events</button></div>
+          <span class="wf-label">Live in this wireframe: tabs and tag pills filter the grid in place (small script, no framework). Deep links such as ?type=reports or #reports open the matching state. Every card stays in the HTML, so nothing is hidden from search</span>
           <span class="wf-type" aria-hidden="true">Filter: tags</span>
-          <div class="filters" data-module="Filter bar" title="Filter bar"><button type="button" class="filter">Loyalty</button><button type="button" class="filter">Pricing</button><button type="button" class="filter">Customer Value</button><button type="button" class="filter">Growth Strategy</button><button type="button" class="filter">Financial services</button><button type="button" class="filter more">More filters</button></div>
+          <div class="filters" data-module="Filter bar" title="Filter bar"><button type="button" class="filter" data-tag="loyalty">Loyalty</button><button type="button" class="filter" data-tag="pricing">Pricing</button><button type="button" class="filter" data-tag="customer-value">Customer Value</button><button type="button" class="filter" data-tag="growth-strategy">Growth Strategy</button><button type="button" class="filter" data-tag="financial-services">Financial services</button><button type="button" class="filter more">More filters</button></div>
           <span class="wf-type" aria-hidden="true">Thought leadership card</span>
-          <div class="cards">
-            <a class="card tl" data-module="Thought leadership card" title="Thought leadership card" href="pricing-paradox/index.html"><div class="ph">Image</div><span class="tl-head"><span class="tl-pill">Growth Strategy</span><span class="tl-type">Report</span></span><strong>The Pricing Paradox</strong><span class="tl-excerpt">From tactical lever to growth engine. Read on its page; no download here.</span><span class="tl-tags"><em>Pricing</em></span><span class="tl-more">Read more &#8594;</span></a>
-            <a class="card tl" data-module="Thought leadership card" title="Thought leadership card" href="loyalty-without-the-discount/index.html"><div class="ph">Image</div><span class="tl-head"><span class="tl-pill">Proposition Innovation</span><span class="tl-type">Article</span></span><strong>Loyalty without the discount</strong><span class="tl-excerpt">Short excerpt of the argument (placeholder).</span><span class="tl-tags"><em>Loyalty</em></span><span class="tl-more">Read more &#8594;</span></a>
-            <a class="card tl" data-module="Thought leadership card" title="Thought leadership card" href="pricing-paradox/index.html"><div class="ph">Image</div><span class="tl-head"><span class="tl-pill">Growth Strategy</span><span class="tl-type">Event</span></span><strong>Pricing Paradox launch event</strong><span class="tl-excerpt">Recap and what was discussed (placeholder).</span><span class="tl-tags"><em>Pricing</em></span><span class="tl-more">Read more &#8594;</span></a>
+          <div class="cards" data-filter-grid>
+            <a class="card tl" data-module="Thought leadership card" title="Thought leadership card" data-type="reports" data-tags="growth-strategy pricing" href="pricing-paradox/index.html"><div class="ph">Image</div><span class="tl-head"><span class="tl-pill">Growth Strategy</span><span class="tl-type">Report</span></span><strong>The Pricing Paradox</strong><span class="tl-excerpt">From tactical lever to growth engine. Read on its page; no download here.</span><span class="tl-tags"><em>Pricing</em></span><span class="tl-more">Read more &#8594;</span></a>
+            <a class="card tl" data-module="Thought leadership card" title="Thought leadership card" data-type="articles" data-tags="proposition-innovation loyalty" href="loyalty-without-the-discount/index.html"><div class="ph">Image</div><span class="tl-head"><span class="tl-pill">Proposition Innovation</span><span class="tl-type">Article</span></span><strong>Loyalty without the discount</strong><span class="tl-excerpt">Short excerpt of the argument (placeholder).</span><span class="tl-tags"><em>Loyalty</em></span><span class="tl-more">Read more &#8594;</span></a>
+            <a class="card tl" data-module="Thought leadership card" title="Thought leadership card" data-type="news-events" data-tags="growth-strategy pricing" href="pricing-paradox/index.html"><div class="ph">Image</div><span class="tl-head"><span class="tl-pill">Growth Strategy</span><span class="tl-type">News and events</span></span><strong>Pricing Paradox launch event</strong><span class="tl-excerpt">Recap and what was discussed (placeholder).</span><span class="tl-tags"><em>Pricing</em></span><span class="tl-more">Read more &#8594;</span></a>
           </div>
-          <span class="wf-label">No dates on cards (reports are evergreen). Grid runs one, two or three across depending on how many items the filter returns</span>
           <span class="wf-type" aria-hidden="true">Text link</span>
           <a class="more" href="#">See more</a>
         </section>
         
-        <section class="block">
-          <span class="wf-label">Conditional: shown only when there are no results</span>
+        <section class="block" data-filter-empty>
+          <span class="wf-label">Appears when the live filters return no results; Clear filters resets them</span>
           
           <div class="empty-state" data-module="Empty state" title="Empty state">
             <p>No thinking matches these filters.</p>
@@ -222,7 +221,7 @@
     <section class="panel">
       <h2>Page fundamentals</h2>
       <p class="map-note"><a href="../sitemap.html">All pages</a> · <a href="../catalogue/index.html">Component library</a></p>
-      <p class="k"><strong>URL</strong><code>/insights/</code></p><p class="k"><strong>Template</strong>Thinking hub. Supporting: supports a canonical page and links up to it.</p><p class="k"><strong>H1</strong>Our thinking</p><div class="k"><strong>Keywords</strong><p>Primary: thought leadership hub (long-tail lives on articles and reports)</p><ul><li>Our thinking is the nav label; URL stays /insights/</li><li>reports, articles, events are types, not extra top-nav items</li></ul></div><div class="k"><strong>H2s (ordered)</strong><ol><li>All thinking</li><li>The Nutshell</li></ol></div><p class="k"><strong>Intent</strong>Home of all thinking as one grid with one card design (client layout): type tabs with All first (Articles, Reports, News, Events), a tag filter, the type shown on every card, no dates on cards. Each filter state is a crawlable URL, so the nav dropdown items (Reports, Articles, Events and news) land on the right state and nothing is hidden from search.</p><div class="k"><strong>Content notes</strong><ul><li>Articles and blog posts are one type here; there is no separate blog</li><li>No downloads from the grid: reports open their own page, where the email gate lives</li><li>Cards carry no dates; reports are evergreen</li><li>The grid runs one, two or three across depending on how many items a filter returns</li><li>Home shows one featured report and one article, not this grid</li></ul></div><div class="k"><strong>Client layout (Mural, 15 Oct)</strong><div class="cmods"><span>Type tabs: All, Articles, Reports, News, Events</span><span>Tag filter</span><span>One card design, type on card</span><span>1 to 3 across grid</span><span>Report gate on the report page, not the grid</span></div></div><p class="k"><strong>Links to</strong>Expertise: <a href="../expertise/loyalty/index.html">Loyalty</a>, <a href="../expertise/pricing/index.html">Pricing</a></p>
+      <p class="k"><strong>URL</strong><code>/insights/</code></p><p class="k"><strong>Template</strong>Thinking hub. Supporting: supports a canonical page and links up to it.</p><p class="k"><strong>H1</strong>Our thinking</p><div class="k"><strong>Keywords</strong><p>Primary: thought leadership hub (long-tail lives on articles and reports)</p><ul><li>Our thinking is the nav label; URL stays /insights/</li><li>reports, articles, events are types, not extra top-nav items</li></ul></div><div class="k"><strong>H2s (ordered)</strong><ol><li>All thinking</li><li>The Nutshell</li></ol></div><p class="k"><strong>Intent</strong>Home of all thinking as one grid with one card design (client layout): type tabs in the order All, Reports, Articles, News and events, then a tag filter, with the type shown on every card. The filters work in this wireframe: tabs and tag pills hide and show cards client-side, and deep links (?type=reports or #reports) from the nav dropdown open the matching state. Every card stays in the HTML, so nothing is hidden from search.</p><div class="k"><strong>Content notes</strong><ul><li>Articles and blog posts are one type here; there is no separate blog</li><li>News and Events are one merged type: News and events</li><li>No downloads from the grid: reports open their own page, where the email gate lives</li><li>The grid runs one, two or three across depending on how many items a filter returns</li><li>Home shows one featured report and one article, not this grid</li></ul></div><div class="k"><strong>Client layout (Mural, 15 Oct)</strong><div class="cmods"><span>Type tabs: All, Reports, Articles, News and events</span><span>Tag filter</span><span>One card design, type on card</span><span>1 to 3 across grid</span><span>Report gate on the report page, not the grid</span></div></div><p class="k"><strong>Links to</strong>Expertise: <a href="../expertise/loyalty/index.html">Loyalty</a>, <a href="../expertise/pricing/index.html">Pricing</a></p>
     </section>
     <section class="panel">
       <h2>Components on this page</h2>
@@ -233,5 +232,6 @@
   </aside>
 </div>
 <script src="../assets/nav.js"></script>
+<script src="../assets/filter.js"></script>
 </body>
 </html>

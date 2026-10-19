@@ -12,7 +12,7 @@ This extends the v5 IA (`docs/01-primary-navigation.md`, `docs/02-sitemap.md`, `
    - **Logo** returns to Home.
    - **What we do** opens the mega-nav on hover (three columns plus a footer row). The label itself goes to `/services/`.
    - **Our work** is a plain link.
-   - **Our thinking** opens a small dropdown (Reports, Articles, Events and news, All thinking). The label goes to `/insights/`.
+   - **Our thinking** opens a small dropdown (All thinking, Reports, Articles, News and events). The label goes to `/insights/`; the type items open the matching live filter state on the hub.
    - **About** opens a small dropdown (Our people, Our approach, Values and culture). The label goes to `/about/`.
    - **Careers** is a plain first-class link.
    - **Contact** is the header button.

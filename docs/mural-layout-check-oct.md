@@ -91,10 +91,12 @@ Title, description, and **How to apply via LinkedIn**: the apply button links to
 
 ### Our thinking (`/insights/`)
 
-- **Type filter tabs** with **All first**, then Articles, Reports, News, Events, plus a tag filter.
-- **One card design for every item** (the thought leadership card) with the type shown on the card. **No dates on cards**: reports are evergreen.
+- **Type filter tabs** in the order **All, Reports, Articles, News and events**, plus a tag filter. News and Events are one merged type.
+- **One card design for every item** (the thought leadership card) with the type shown on the card.
 - Grid runs one, two or three across depending on what the filter returns.
-- Every tab is a crawlable URL state (for example `?type=reports`), and the nav dropdown's Reports, Articles and Events items land on the matching state. The grid always links every item, so the filters hide nothing from crawlers.
+- **The filters work in the wireframe** (Gary, 19 October): tabs and tag pills hide and show cards client-side with a small vanilla script (`mocks/assets/filter.js`, no framework), with the active state shown. The tag pills on the cards drive the same tag filter. Deep links (`?type=reports` or `#reports`) from the nav dropdown open the matching state, and the empty state appears only when a combination returns nothing. Every card stays in the HTML, so the filters hide nothing from crawlers.
+- The nav dropdown is ordered to match: All thinking, Reports, Articles, News and events.
+- **No dates on cards** (reports are evergreen). The decision stands; the visible note about it was removed from the page itself and lives only here and in D-68.
 - **No downloads from the grid.** Reports get their own single pages with the **email gate there** (full name, work email, company, an optional-updates tick).
 
 ### Article page (`/insights/loyalty-without-the-discount/`)

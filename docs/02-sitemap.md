@@ -141,15 +141,15 @@ Notes:
 
 | URL | Page type | Purpose | Weight |
 |---|---|---|---|
-| `/insights/` | Insights hub (filterable) | All articles, reports, news and events in one grid (client layout, Source I; D-68): type filter tabs with All first, then a tag filter; one thought leadership card for every item with its type on the card and no dates. Each tab is a crawlable URL state and the nav dropdown's type links land on these states (D-38). | Supporting |
+| `/insights/` | Insights hub (filterable) | All articles, reports, news and events in one grid (client layout, Source I; D-68): type filter tabs in the order All, Reports, Articles, News and events, then a tag filter; one thought leadership card for every item with its type on the card. The filters work client-side over a fully linked grid; each tab is a deep-linkable URL state and the nav dropdown's type links land on these states (D-38). | Supporting |
 | `/insights/{slug}/` | Insight | One article, report or event. Tagged to services, themes and sectors. | Supporting (Light if under 500 words or an event listing) |
-| `/insights/?type={article\|report\|event}` | Filtered view | Insights of one type. Canonical to `/insights/`. | Utility (noindex) |
+| `/insights/?type={reports\|articles\|news-events}` | Filtered view | Insights of one type (News and Events are one merged type). Canonical to `/insights/`. | Utility (noindex) |
 | `/insights/?expertise={slug}` | Filtered view | Insights for one theme. Canonical to `/insights/`. | Utility (noindex) |
 | `/newsletter/` | Newsletter sign-up | Capture email sign-ups. | Utility (indexed) |
 
 Notes:
 - Reports get their own single pages on the same `/insights/{slug}/` template, with the email gate on that page; nothing downloads from the grid (Source I). No separate `/resources/` section.
-- Events are insights of type "event" and drop out of the default list after the event date, remaining reachable by URL.
+- Events sit inside the merged "News and events" type and drop out of the default list after the event date, remaining reachable by URL.
 - No author, tag or category archive pages. Filters and team profiles cover these.
 - Any insight on loyalty links back to `/expertise/loyalty/` (Source A).
 
