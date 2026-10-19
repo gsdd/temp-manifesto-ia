@@ -929,6 +929,8 @@ Manifesto confirmed page layouts on their Mural boards for five page families: c
 
 ## D-64. The interim growth team service is renamed Value Orchestration
 
+**Superseded by D-72** (Andy, 19 October): the working name is Growth Office again while naming is finalised; the Value Orchestration URL now redirects the other way.
+
 **Chosen**: The eighth activation service is **Value Orchestration** everywhere: nav strand, mega-nav quiet line context, page title ("Value Orchestration: interim growth team and programme office"), H1, slug `/services/value-orchestration/`, every internal link, and every document in this package. The old slug should 301 to the new one at build. The retired label is written out only in `mural-layout-check-oct.md` (the change log, which records the rename and the redirect) and in the wireframe build's banned-words guard, which fails the build if it reappears.
 
 **Rejected**: Keeping the old label with "Value Orchestration" as a subtitle; running both labels during a transition.
@@ -997,12 +999,31 @@ Manifesto confirmed page layouts on their Mural boards for five page families: c
 
 ---
 
+## Naming follow-up (19 October, Andy Bacon): D-72
+
+| ID | Decision | Sources |
+|---|---|---|
+| D-72 | Growth Office is the working name for the interim growth team service while naming is finalised; `/services/growth-office/` is the URL and `/services/value-orchestration/` 301s to it; the name is one constant in the builder for an easy later swap | Andy, 19 Oct |
+
+## D-72. Growth Office is the working name while naming is finalised
+
+**Chosen**: Andy Bacon (19 October): "Naming still being finalised, but let's go with Growth Office for now." The wires revert to **Growth Office** everywhere: label, H1, title tag, nav strand, mega-nav, Activation hub, breadcrumbs, catalogue and every internal link. The URL is `/services/growth-office/` again, and `/services/value-orchestration/` 301s to it via `mocks/_redirects`, which the build regenerates. Because another change may follow, the name lives as one constant in the builder (`GO_NAME` in `mocks/_build.py`): swapping later is one change plus a rebuild. The build fails if the retired alternative appears in generated HTML.
+
+**Rejected**: Keeping Value Orchestration until the final decision (the client's instruction is explicit: Growth Office for now); running both labels side by side.
+
+**Rationale**: The client owns the name. D-64 applied the Mural boards' Value Orchestration on 15 October; Andy's 19 October direction supersedes it. The quiet line "Interim growth team" and the search strategy are unchanged either way: neither label has meaningful volume, so the plain term carries the intent on the page (Source E's rule, as before).
+
+**Trade-off**: Per the same instruction, only the wires, the change log and this log were touched in the revert. The wider IA docs still read the 15 October name in places; they will be trued up once naming is final, and the wires lead until then. Supersedes D-64.
+
+---
+
 ## Open items for the next stage (wireframes)
 
 | Item | Note |
 |---|---|
 | **Andy's sign-off on the three renames** | Customer Research and Insight, AI Agents for Marketing, Operating Model Design change how three offers are described to the market. The competitor review supports all three (frog "Customer Research & Insights"; Elixirr "Target Operating Model"; Prophet "Agentic Deployment"). Confirm before wireframes lock. Fallback if any is refused: revert that one label and slug to the deck term, with a quiet line as Value Orchestration has. |
-| **Experience Engineering label** | No peer uses "Experience Engineering" (all say "Customer Experience"). The deck argues to keep it; competitors argue for plainer. It keeps its quiet line and is not decided. If Andy prefers plain, the candidate is "Customer Experience and Digital"; the slug would follow (`04-canonicals-and-seo.md`, section 7). The second label this item used to carry was settled by the Mural pass: the interim growth team service is now Value Orchestration (D-64). |
+| **Experience Engineering label** | No peer uses "Experience Engineering" (all say "Customer Experience"). The deck argues to keep it; competitors argue for plainer. It keeps its quiet line and is not decided. If Andy prefers plain, the candidate is "Customer Experience and Digital"; the slug would follow (`04-canonicals-and-seo.md`, section 7). |
+| **Interim growth team service name** | Growth Office is the working name (Andy, 19 Oct; D-72, superseding D-64's Value Orchestration). Naming is still being finalised; the name is one constant in the builder so the final swap is one change. |
 | **Gary's confirmation of the v5 nav tweaks** | "Our advisors" in column 3 (D-49) stands and is now one of two CEO strands (D-54). Two-link footer row (D-50) stands. |
 | **Gary's confirmation of the v4 cuts** | Insights as a plain link (D-38) and the sector index cut (D-44) stand. The v4 "column 3 as heading only" question is answered by D-49. |
 | **Proposed fixed text for Andy** | The triangle line, the three pillar sentences, the seven situation lines and the six "which of the six" lines (`v5-refinements.md` R1, R2, R5) are proposals. The rules to keep: plain, in the visitor's words, one line each, no Manifesto shorthand. |

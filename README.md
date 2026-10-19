@@ -28,7 +28,7 @@ The What we do menu **is** Andy's triangle: three linked hub headings (each with
 | | Experience Engineering *Customer experience and websites* | |
 | | AI Agents for Marketing *AI marketing agents, guided by experts* | |
 | | Operating Model Design *Target operating model* | |
-| | Value Orchestration *Interim growth team* | |
+| | Growth Office *Interim growth team* | |
 | | AI Enablement *AI skills and adoption* | |
 
 Column headings are the pillar hubs. Under the columns, one thin row: All services, Expertise, Our work. Hub rows (Overview) make the group titles obviously clickable. CEO Advisory is full visual weight (same contrast as the other pillars). The v3 panel had about 200; Prophet's has about 25 links and Elixirr's about 60 against our panel.
