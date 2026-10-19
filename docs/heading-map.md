@@ -86,31 +86,37 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - go to market strategy (~880) where true to the offer
 - **H1:** Growth Strategy
 - **H2s (ordered):**
-  1. Why this, now
-  2. What we do
-  3. North Star
-  4. Growth priorities
-  5. Demand signals
-  6. Scenario planning
-  7. Customer, Innovation, Value and Delivery
-  8. Proof
-  9. How it works
+  1. Overview
+  2. Why now?
+  3. How can we help you?
+  4. Customer, Innovation, Value and Delivery
+  5. Related case studies
+  6. Why us?
+  7. Our experts
+  8. How it works
 - **H3s:**
+  - North Star
+  - Growth priorities
+  - Demand signals
+  - Scenario planning
   - Customer
   - Innovation
   - Value
   - Delivery
-- **Intent:** Lead offer. Owns growth strategy search. CIVD (Customer, Innovation, Value and Delivery) is the named frame and lives on this page.
+- **Intent:** Lead offer. Owns growth strategy search. CIVD (Customer, Innovation, Value and Delivery) is the named frame and lives on this page. Client service template applied: every section is a visible H2 or H3, no accordion.
 - **Content notes:**
   - Brand and go-to-market language appears in H2s only where the work is truly that
   - CIVD belongs to Growth Strategy, not to Side-by-Side
+  - Capability headings sit as H3s under How can we help you?; the CIVD frame keeps its anchored H2 home
 - **Components (canvas order):**
   - Hero, CTA pair
-  - Situations list (Why this, now)
-  - Prose (What we do)
-  - Case card ×2 (Proof)
-  - Prose (North Star / Growth priorities / Demand signals / Scenario planning)
+  - Prose (Overview)
+  - Situations list (Why now?)
+  - Prose (How can we help you?)
   - CIVD four-cell (Customer, Innovation, Value and Delivery)
+  - Thought leadership card ×2 (Related case studies)
+  - Prose (Why us?)
+  - Person card ×3, Profile pop-up (Our experts)
   - Prose (How it works)
   - Page tag ×3 (Related expertise)
   - Offer card ×3 (Related services)
@@ -130,21 +136,29 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - brand proposition (~90)
 - **H1:** Proposition Innovation
 - **H2s (ordered):**
-  1. Why this, now
-  2. Value proposition design
-  3. Loyalty propositions
-  4. Membership propositions
-  5. Subscription propositions
-  6. Direct-to-consumer propositions
-  7. Proof
-  8. How it works
-- **Intent:** Manifesto label in the H1; value proposition design in the menu subtitle, hero and H2s so search can see it. Each proposition type hands off to its expertise theme.
+  1. Overview
+  2. Why now?
+  3. How can we help you?
+  4. Related case studies
+  5. Why us?
+  6. Our experts
+  7. How it works
+- **H3s:**
+  - Value proposition design
+  - Loyalty propositions
+  - Membership propositions
+  - Subscription propositions
+  - Direct-to-consumer propositions
+- **Intent:** Manifesto label in the H1; value proposition design in the menu subtitle, hero and headings so search can see it. Each proposition type hands off to its expertise theme. Client service template applied: every section visible, no accordion.
 - **Components (canvas order):**
   - Hero, CTA pair
-  - Situations list (Why this, now)
-  - Prose (Value proposition design)
-  - Case card ×2 (Proof)
-  - Prose (Loyalty propositions / Membership propositions / Subscription propositions / Direct-to-consumer propositions / How it works)
+  - Prose (Overview)
+  - Situations list (Why now?)
+  - Prose (How can we help you?)
+  - Thought leadership card ×2 (Related case studies)
+  - Prose (Why us?)
+  - Person card ×3, Profile pop-up (Our experts)
+  - Prose (How it works)
   - Page tag ×3 (Related expertise)
   - Offer card ×2 (Related services)
   - Link list (Related thinking)
@@ -160,7 +174,7 @@ Each page also lists the reusable components on its canvas, in order, by the nam
 - **Alts:**
   - customer journey mapping (~2,900) in the Experience Engineering line
   - operating model (~880) in the Operating Model Design line
-  - interim CMO / interim growth team (~110 to 140) in the Growth Office line
+  - interim CMO / interim growth team (~110 to 140) in the Value Orchestration line
 - **H1:** Activation Services
 - **H2s (ordered):**
   1. The bridge from strategy to results
@@ -175,7 +189,7 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - Case card ×2 (Proof)
   - Link list (Related thinking)
   - Closing CTA band
-- **Related:** services: Customer Research and Insight, Experience Engineering, AI Agents for Marketing, Operating Model Design, Growth Office, AI Enablement
+- **Related:** services: Customer Research and Insight, Experience Engineering, AI Agents for Marketing, Operating Model Design, Value Orchestration, AI Enablement
 
 ## `/services/customer-research/`: Customer Research and Insight
 
@@ -189,28 +203,31 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - customer research agency (~20)
 - **H1:** Customer Research and Insight
 - **H2s (ordered):**
-  1. Why this, now
-  2. Customer research methods
-  3. Customer journey mapping
-  4. Research projects
-  5. Always-on customer insight
-  6. Proof
+  1. Overview
+  2. Why now?
+  3. How can we help you?
+  4. Related case studies
+  5. Why us?
+  6. Our experts
   7. How it works
 - **H3s:**
-  - Digital listening
-  - Qualitative research
-  - Quantitative research
-  - Customer data analytics
-  - Internal knowledge
-  - External market data
-- **Intent:** Leads with research methods, journey mapping and insight outcomes, not only the consultancy noun. Customer Intelligence is the practice name on the page. Qualitative and quantitative evidence lives here.
+  - Customer research methods
+  - Customer journey mapping
+  - Research projects
+  - Always-on customer insight
+- **Intent:** Leads with research methods, journey mapping and insight outcomes, not only the consultancy noun. Customer Intelligence is the practice name on the page. Qualitative and quantitative evidence lives here. Client service template applied.
 - **Content notes:**
   - Analytical journey mapping lives here; design research lives on Experience Engineering
+  - The six method names (digital listening, qualitative, quantitative, data analytics, internal knowledge, external market data) are a list under Research projects
 - **Components (canvas order):**
   - Hero, CTA pair
-  - Situations list (Why this, now)
-  - Case card ×2 (Proof)
-  - Prose (Customer research methods / Customer journey mapping / Research projects / Always-on customer insight / How it works)
+  - Prose (Overview)
+  - Situations list (Why now?)
+  - Prose (How can we help you?)
+  - Thought leadership card ×2 (Related case studies)
+  - Prose (Why us?)
+  - Person card ×3, Profile pop-up (Our experts)
+  - Prose (How it works)
   - Page tag ×2 (Related expertise)
   - Offer card ×3 (Related services)
   - Link list (Related thinking)
@@ -230,26 +247,31 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - experience design agency (~110)
 - **H1:** Experience Engineering
 - **H2s (ordered):**
-  1. Why this, now
-  2. Find
-  3. Redesign
-  4. Test
-  5. Scale
-  6. Customer experience (CX) design
-  7. Website and digital product
-  8. User research and testing
-  9. Proof
+  1. Overview
+  2. Why now?
+  3. How can we help you?
+  4. Related case studies
+  5. Why us?
+  6. Our experts
+  7. How it works
 - **H3s:**
-  - Customer and value analytics (under research and testing)
-- **Intent:** Manifesto label in the H1; the menu subtitle and H2s carry the CX, website and journey-mapping search terms (Dayinsure and Key Group are the proof). Find, Redesign, Test, Scale is the How it works sequence.
+  - Find
+  - Redesign
+  - Test
+  - Scale
+  - Customer experience (CX) design
+  - Website and digital product
+  - User research and testing
+- **Intent:** Manifesto label in the H1; the menu subtitle and headings carry the CX, website and journey-mapping search terms (Dayinsure and Key Group are the proof). Find, Redesign, Test, Scale is the How it works sequence. Client service template applied.
 - **Components (canvas order):**
   - Hero, Metric box, CTA pair
-  - Situations list (Why this, now)
-  - Case card ×2 (Proof)
-  - Prose (Find / Redesign / Test / Scale)
-  - Prose (Customer experience (CX) design)
-  - Prose (Website and digital product)
-  - Prose (User research and testing)
+  - Prose (Overview)
+  - Situations list (Why now?)
+  - Prose (How can we help you?)
+  - Thought leadership card ×2 (Related case studies)
+  - Prose (Why us?)
+  - Person card ×3, Profile pop-up (Our experts)
+  - Prose (How it works)
   - Page tag ×2 (Related expertise)
   - Offer card ×2 (Related services)
   - Link list (Related thinking)
@@ -268,23 +290,29 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - do not use bare ai agents (~9,900) as the sole target
 - **H1:** AI Agents for Marketing
 - **H2s (ordered):**
-  1. Why this, now
-  2. What we do
-  3. AgentLab
-  4. How it works
-  5. Proof
+  1. Overview
+  2. Why now?
+  3. How can we help you?
+  4. AgentLab
+  5. Related case studies
+  6. Why us?
+  7. Our experts
+  8. How it works
 - **H3s:**
   - Reporting and Analytics
   - Data and Infrastructure
   - Strategy and Planning
   - Automation and Execution
-- **Intent:** Marketing-qualified AI page. AgentLab is the named agent catalogue on this page. Bare 'AI agents' is too generic to be the sole target.
+- **Intent:** Marketing-qualified AI page. AgentLab is the named agent catalogue on this page. Bare 'AI agents' is too generic to be the sole target. Client service template applied; AgentLab keeps its anchored H2 home.
 - **Components (canvas order):**
   - Hero, Metric box ×2, CTA pair
-  - Situations list (Why this, now)
-  - Prose (What we do)
-  - Case card ×2 (Proof)
+  - Prose (Overview)
+  - Situations list (Why now?)
+  - Prose (How can we help you?)
   - Prose (AgentLab)
+  - Thought leadership card ×2 (Related case studies)
+  - Prose (Why us?)
+  - Person card ×3, Profile pop-up (Our experts)
   - Prose (How it works)
   - Page tag ×2 (Related expertise)
   - Offer card ×3 (Related services)
@@ -304,58 +332,74 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - operating model consultancy (~10)
 - **H1:** Operating Model Design
 - **H2s (ordered):**
-  1. Why this, now
-  2. Target operating model
-  3. Adaptive operating model
+  1. Overview
+  2. Why now?
+  3. How can we help you?
   4. Our Operating Architecture framework
-  5. Proof
-  6. How it works
+  5. Related case studies
+  6. Why us?
+  7. Our experts
+  8. How it works
 - **H3s:**
+  - Target operating model
+  - Adaptive operating model
   - High-quality data and tools
   - New work units
   - Orchestration: culture, value, capability
-- **Intent:** Strongest Activation search volume after journey and CX. Operating model and target operating model language in the H1 support line and H2s. Operating Architecture is the framework name on the page.
+- **Intent:** Strongest Activation search volume after journey and CX. Operating model and target operating model language in the H1 support line and headings. Operating Architecture is the framework name on the page. Client service template applied; the framework keeps its anchored H2 home.
 - **Components (canvas order):**
   - Hero, CTA pair
-  - Situations list (Why this, now)
-  - Case card ×2 (Proof)
-  - Prose (Target operating model / Adaptive operating model)
+  - Prose (Overview)
+  - Situations list (Why now?)
+  - Prose (How can we help you?)
   - Prose (Our Operating Architecture framework)
+  - Thought leadership card ×2 (Related case studies)
+  - Prose (Why us?)
+  - Person card ×3, Profile pop-up (Our experts)
   - Prose (How it works)
   - Page tag (Related expertise)
   - Offer card ×3 (Related services)
   - Link list (Related thinking)
   - Closing CTA band
-- **Related:** themes: Customer Value; sectors: Financial services, Media; services: Growth Office, AI Enablement, AI Agents for Marketing
+- **Related:** themes: Customer Value; sectors: Financial services, Media; services: Value Orchestration, AI Enablement, AI Agents for Marketing
 
-## `/services/growth-office/`: Growth Office: interim growth team and programme office
+## `/services/value-orchestration/`: Value Orchestration: interim growth team and programme office
 
 - **Template:** Service detail
 - **Weight:** Canonical (owns its topic; other pages on the topic link here)
 - **Primary keyword:** interim cmo / interim growth team (~110 to 140)
 - **Menu subtitle:** Interim growth team
 - **Alts:**
-  - growth office (~10, weak; do not primary-target)
+  - value orchestration (coined; no measured volume. The retired label polled ~10, weak)
   - programme office / PMO (hero language)
   - interim activation then embed (deck shape)
-- **H1:** Growth Office
+- **H1:** Value Orchestration
 - **H2s (ordered):**
-  1. Why this, now
-  2. Interim growth team
-  3. Then embed
-  4. Culture
-  5. Capability
-  6. Value
-  7. Proof
-  8. How it works
+  1. Overview
+  2. Why now?
+  3. How can we help you?
+  4. Related case studies
+  5. Why us?
+  6. Our experts
+  7. How it works
 - **H3s:**
-  - Interim CMO and senior cover (where the engagement needs it)
-- **Intent:** Growth Office is the label; the menu subtitle and body say interim or embedded growth team, and interim CMO where accurate. The primary search phrase is interim growth team, not growth office.
+  - Interim growth team
+  - Then embed
+  - Culture
+  - Capability
+  - Value
+- **Intent:** Value Orchestration is the label (renamed from the earlier coined name, 15 Oct; the old slug should 301 here). The menu subtitle and body say interim or embedded growth team, and interim CMO where accurate. The primary search phrase is interim growth team, not the coined label. Client service template applied.
+- **Content notes:**
+  - Renamed on the client's instruction (Mural pass, 15 Oct). The former name and the redirect note are logged in docs/mural-layout-check-oct.md
 - **Components (canvas order):**
   - Hero, CTA pair
-  - Situations list (Why this, now)
-  - Case card ×2 (Proof)
-  - Prose (Interim growth team / Then embed / Culture / Capability / Value / How it works)
+  - Prose (Overview)
+  - Situations list (Why now?)
+  - Prose (How can we help you?)
+  - Thought leadership card ×2 (Related case studies)
+  - Prose (Why us?)
+  - Person card ×3, Profile pop-up (Our experts)
+  - Prose (How it works)
   - Page tag (Related expertise)
   - Offer card ×3 (Related services)
   - Link list (Related thinking)
@@ -374,18 +418,27 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - where AI pays off (value cases, plain language)
 - **H1:** AI Enablement
 - **H2s (ordered):**
-  1. Why this, now
-  2. AI skills and adoption
-  3. Finding where AI pays off
-  4. New business models with AI
-  5. Proof
-  6. How it works
-- **Intent:** Thin but real niche. Owns 'AI enablement' as primary, supported by adoption, skills and operating-change copy. The expert network is named in the body.
+  1. Overview
+  2. Why now?
+  3. How can we help you?
+  4. Related case studies
+  5. Why us?
+  6. Our experts
+  7. How it works
+- **H3s:**
+  - AI skills and adoption
+  - Finding where AI pays off
+  - New business models with AI
+- **Intent:** Thin but real niche. Owns 'AI enablement' as primary, supported by adoption, skills and operating-change copy. The expert network is named in the body. Client service template applied.
 - **Components (canvas order):**
   - Hero, CTA pair
-  - Situations list (Why this, now)
-  - Case card ×2 (Proof)
-  - Prose (AI skills and adoption / Finding where AI pays off / New business models with AI / How it works)
+  - Prose (Overview)
+  - Situations list (Why now?)
+  - Prose (How can we help you?)
+  - Thought leadership card ×2 (Related case studies)
+  - Prose (Why us?)
+  - Person card ×3, Profile pop-up (Our experts)
+  - Prose (How it works)
   - Page tag (Related expertise)
   - Offer card ×2 (Related services)
   - Link list (Related thinking)
@@ -404,25 +457,30 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - executive advisor (~30)
 - **H1:** CEO Advisory
 - **H2s (ordered):**
-  1. Why this, now
-  2. Side-by-Side
-  3. Our advisors
-  4. How the retainer works
+  1. Overview
+  2. Why now?
+  3. How can we help you?
+  4. Our advisors
+  5. Related case studies
+  6. Why us?
 - **H3s:**
-  - The named product (hero and this section, not a second URL)
-- **Intent:** Relationship page at full weight. Two menu strands land here: Side-by-Side (the retainer) and Our advisors (the people). Proof is the people. Coaching language is adjacent, not the offer.
+  - Side-by-Side (the named product, hero and this section, not a second URL)
+  - How the retainer works
+- **Intent:** Relationship page at full weight. Two menu strands land here: Side-by-Side (the retainer) and Our advisors (the people). Proof is the people. Coaching language is adjacent, not the offer. Client service template applied where sensible; the #side-by-side and #advisors anchors are unchanged.
 - **Content notes:**
   - Side-by-Side is always written in full
   - Quieter call to action: Arrange a conversation
 - **Components (canvas order):**
   - Hero, CTA pair
-  - Situations list (Why this, now)
-  - Prose (Side-by-Side)
-  - Person card ×3 (Our advisors)
-  - Prose (How the retainer works)
+  - Prose (Overview)
+  - Situations list (Why now?)
+  - Prose (How can we help you?)
+  - Person card ×3, Profile pop-up (Our advisors)
+  - Thought leadership card ×2 (Related case studies)
+  - Prose (Why us?)
   - Link list (Related thinking)
   - Closing CTA band
-- **Related:** services: Growth Strategy, Growth Office
+- **Related:** services: Growth Strategy, Value Orchestration
 
 ## `/expertise/`: Expertise
 
@@ -624,7 +682,7 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - Link list (Services most used here)
   - Link list (Related thinking)
   - Closing CTA band
-- **Related:** services: Growth Office, Operating Model Design, Proposition Innovation
+- **Related:** services: Value Orchestration, Operating Model Design, Proposition Innovation
 
 ## `/sectors/consumer/`: Consumer
 
@@ -649,7 +707,7 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - Link list (Services most used here)
   - Link list (Related thinking)
   - Closing CTA band
-- **Related:** services: Experience Engineering, AI Agents for Marketing, Growth Office
+- **Related:** services: Experience Engineering, AI Agents for Marketing, Value Orchestration
 
 ## `/sectors/retail/`: Retail
 
@@ -676,6 +734,32 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - Closing CTA band
 - **Related:** services: Proposition Innovation, Customer Research and Insight, Experience Engineering
 
+## `/sectors/energy/`: Energy
+
+- **Template:** Sector landing
+- **Weight:** Light (short landing; proof lives elsewhere)
+- **Primary keyword:** no dedicated keyword target (light landing)
+- **Alts:**
+  - sector + consultancy queries are opportunistic only
+  - proof lives on case studies
+- **H1:** Energy
+- **H2s (ordered):**
+  1. Clients
+  2. Case studies
+  3. Services most used here
+- **Intent:** Reassures 'businesses like mine': a short intro plus filtered proof.
+- **Content notes:**
+  - Light landing: no sector point-of-view essay and no sector-specific service descriptions
+  - New sector from the unified industry taxonomy (client list merged with ours, Mural pass 15 Oct): Finance folds into Financial services, CPG folds into Consumer, Energy is added
+- **Components (canvas order):**
+  - Hero
+  - Logo strip (Clients)
+  - Case card ×2 (Case studies)
+  - Link list (Services most used here)
+  - Link list (Related thinking)
+  - Closing CTA band
+- **Related:** services: Proposition Innovation, Growth Strategy, Customer Research and Insight
+
 ## `/work/`: Our work
 
 - **Template:** Work hub
@@ -685,23 +769,24 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - client-name searches land on individual case studies
 - **H1:** Our work
 - **H2s (ordered):**
-  1. Featured
+  1. Our clients
   2. All case studies
-- **H3s:**
-  - Client quote (inside the case, not a testimonials page)
-- **Intent:** Proof hub: every case study in one place, filterable by service first, then expertise and sector.
+  3. Client testimony
+- **Intent:** Proof hub: every case study in one place. One grid with an Industry and Service filter bar and See more (client layout); the nav label and H1 stay Our work, with the client's Our clients idea as the support line and logo band.
 - **Content notes:**
-  - Sectors are filters here and links in the footer, not a nav item
-  - Client quotes and film snippets live inside each case
+  - The separate Featured / All split is removed so one grid does the work
+  - Industries are the unified taxonomy: Financial services, Consumer, Media, Retail, Energy
+  - Client quotes and film snippets live inside each case; the hub carries one testimony video
   - Cases are tagged by service, expertise and sector; the tags drive these filters and the proof blocks on service, theme and sector pages
 - **Components (canvas order):**
   - Hero
-  - Case card, Quote (Featured)
-  - Filter bar ×2, Case card ×2, Pagination (All case studies)
+  - Logo band (Our clients)
+  - Filter bar ×2, Thought leadership card ×2 (All case studies)
   - Empty state
+  - Testimony video (Client testimony)
   - Link list (Related thinking)
   - Closing CTA band
-- **Related:** sectors: Financial services, Media, Consumer, Retail; services: Experience Engineering, Growth Strategy
+- **Related:** sectors: Financial services, Media, Consumer, Retail, Energy; services: Experience Engineering, Growth Strategy
 
 ## `/work/dayinsure/`: Dayinsure
 
@@ -712,21 +797,22 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - Experience Engineering is the canonical for the capability
 - **H1:** Dayinsure
 - **H2s (ordered):**
-  1. At a glance
-  2. The challenge
-  3. What we did
-  4. The result
-- **Intent:** Case study shell for an Experience Engineering engagement. Links to the service, theme and sector. The testimonial and film live here.
+  1. The Opportunity
+  2. The Solution
+  3. The Impact
+  4. See more of our case studies
+- **H3s:**
+  - Client testimonial (attributed, beside the stat rail)
+- **Intent:** Case study shell for an Experience Engineering engagement (client layout): hero with tag pills, sticky stat rail with Contact us, attributed testimonial, then Opportunity, Solution and Impact. Tag pills link the service, sector and expertise pages so cross-linking survives.
 - **Content notes:**
-  - Client quote and film snippet sit in The result
+  - Stats and the quote are placeholders; no client facts are invented
+  - Impact is written as bullets
+  - Film snippet sits with the testimonial where one exists
   - Read on the page; no PDF download
 - **Components (canvas order):**
-  - Hero, Page tag ×2
-  - Metric box ×4 (At a glance)
-  - Prose (The challenge)
-  - Prose (What we did)
-  - Quote, Video 16:9 (The result)
-  - Page tag (Related expertise)
+  - Hero, Page tag ×4
+  - Sticky stat rail, Metric box ×2, Quote, Video 16:9 (The Opportunity / The Solution / The Impact)
+  - Thought leadership card (See more of our case studies)
   - Link list (Related thinking)
   - Closing CTA band
 - **Related:** themes: Customer Value; sectors: Financial services; services: Experience Engineering, Customer Research and Insight
@@ -740,21 +826,21 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - Experience Engineering is the canonical for the capability
 - **H1:** Key Group
 - **H2s (ordered):**
-  1. At a glance
-  2. The challenge
-  3. What we did
-  4. The result
-- **Intent:** Second case study shell, same template as Dayinsure. Its tags place it in the proof blocks on service, theme and sector pages.
+  1. The Opportunity
+  2. The Solution
+  3. The Impact
+  4. See more of our case studies
+- **H3s:**
+  - Client testimonial (attributed, beside the stat rail)
+- **Intent:** Second case study shell, same client-layout template as Dayinsure. Its tags place it in the proof blocks on service, theme and sector pages.
 - **Content notes:**
-  - Client quote and film snippet sit in The result
+  - Stats and the quote are placeholders; no client facts are invented
+  - Impact is written as bullets
   - Read on the page; no PDF download
 - **Components (canvas order):**
-  - Hero, Page tag ×2
-  - Metric box ×4 (At a glance)
-  - Prose (The challenge)
-  - Prose (What we did)
-  - Quote, Video 16:9 (The result)
-  - Page tag ×2 (Related expertise)
+  - Hero, Page tag ×4
+  - Sticky stat rail, Metric box ×2, Quote, Video 16:9 (The Opportunity / The Solution / The Impact)
+  - Thought leadership card (See more of our case studies)
   - Link list (Related thinking)
   - Closing CTA band
 - **Related:** themes: Loyalty, Customer Value; sectors: Financial services; services: Experience Engineering, Proposition Innovation
@@ -769,23 +855,20 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - reports, articles, events are types, not extra top-nav items
 - **H1:** Our thinking
 - **H2s (ordered):**
-  1. Reports
-  2. Articles
-  3. Events and news
-- **H3s:**
-  - The Nutshell (newsletter)
-- **Intent:** Home of all thinking: reports first, then articles, then events and news. Reports read on the page.
+  1. All thinking
+  2. The Nutshell
+- **Intent:** Home of all thinking as one grid with one card design (client layout): type tabs in the order All, Reports, Articles, News and events, then a tag filter, with the type shown on every card. The filters work in this wireframe: tabs and tag pills hide and show cards client-side, and deep links (?type=reports or #reports) from the nav dropdown open the matching state. Every card stays in the HTML, so nothing is hidden from search.
 - **Content notes:**
   - Articles and blog posts are one type here; there is no separate blog
-  - Events and news is a section; a separate events page only if recap content sustains it
-  - Reports expand on the page; no PDFs
+  - News and Events are one merged type: News and events
+  - No downloads from the grid: reports open their own page, where the email gate lives
+  - The grid runs one, two or three across depending on how many items a filter returns
   - Home shows one featured report and one article, not this grid
 - **Components (canvas order):**
   - Hero
-  - Report card (Reports)
-  - Filter bar ×2, Article card, Pagination (Articles)
+  - Type filter tabs, Filter bar, Thought leadership card ×3 (All thinking)
   - Empty state
-  - Link list (Events and news)
+  - Prose (The Nutshell)
   - Row of text links (Related services)
   - Closing CTA band
 - **Related:** themes: Loyalty, Pricing
@@ -801,15 +884,16 @@ Each page also lists the reusable components on its canvas, in order, by the nam
 - **H2s (ordered):**
   1. The problem
   2. What we think
-  3. How we help
-- **Intent:** Article shell. A dated point of view; the theme page holds the evergreen position. Related services are a block, not extra nav.
+  3. Related
+- **Intent:** Article shell (client layout): title and image hero, body, then a Related trio of one article, one service and one report. The theme page holds the evergreen position.
 - **Content notes:**
   - Lives under Our thinking; there is no separate blog section
+  - The Related trio replaces the former How we help block; the service link moves into the trio
 - **Components (canvas order):**
   - Hero, Page tag
   - Article body (The problem)
   - Prose (What we think)
-  - Prose (How we help)
+  - Related trio, Article card, Offer card, Report card (Related)
   - Closing CTA band
 - **Related:** themes: Loyalty; sectors: Retail; services: Proposition Innovation
 
@@ -826,10 +910,11 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   1. What this report covers
   2. Read it on this page
   3. How we help
-- **Intent:** Report shell. The report reads on the page; an optional email form offers a copy.
+- **Intent:** Report shell. The report reads on the page; the email gate (full name, work email, company, newsletter opt-in) lives here, never on the grid.
 - **Content notes:**
   - No PDF download; gating, if used, is a form not a file
-  - Reports lead the Our thinking hub
+  - Gated versus read-on-page detail is an open item with the client
+  - Reports share the one grid on Our thinking, shown by their type on the card
 - **Components (canvas order):**
   - Hero, Page tag
   - Article body (What this report covers)
@@ -990,28 +1075,31 @@ Each page also lists the reusable components on its canvas, in order, by the nam
 - **H1:** Careers at Manifesto
 - **H2s (ordered):**
   1. Life at Manifesto
-  2. Diversity, equity and inclusion
-  3. Benefits
-  4. Open roles
-  5. Not hiring for a listed role?
+  2. Values and culture
+  3. Diversity, equity and inclusion
+  4. Benefits
+  5. Application process
+  6. Roles
 - **H3s:**
   - Career change framing
   - We hire from multiple backgrounds
   - Pioneers / recent joiners
-- **Intent:** First-class nav item: Contact is work with us, this page is work for us. Life at Manifesto and the open roles sit on one page.
+- **Intent:** First-class nav item: Contact is work with us, this page is work for us. Client layout applied: hero with a See open positions anchor button, four values and culture cards, the five-step application process, and a Roles section with an Open positions / All toggle. Life at Manifesto, DEI and Benefits are kept.
 - **Content notes:**
-  - Life at Manifesto, DEI and benefits sit above the roles
+  - Life at Manifesto stays on Careers and separate from Our people
+  - The Roles intro says to get in touch even if no role fits (folds in the former Not hiring for a listed role? section)
+  - The roles toggle defaults to Open positions
   - Career-change framing and multiple backgrounds in the copy
   - Role descriptions expand on the role page; no PDFs
-  - Speculative applications go through Work for us on Contact
   - Studio film in the hero
 - **Components (canvas order):**
-  - Hero, Video 16:9
+  - Hero, CTA pair, Video 16:9
   - Person card ×3 (Life at Manifesto)
+  - Culture card ×4 (Values and culture)
   - Prose (Diversity, equity and inclusion)
   - Prose (Benefits)
-  - Role card (Open roles)
-  - Prose (Not hiring for a listed role?)
+  - Application steps (Application process)
+  - Role toggle, Role card (Roles)
   - Closing CTA band
 
 ## `/careers/growth-architect/`: Growth Architect
@@ -1023,9 +1111,10 @@ Each page also lists the reusable components on its canvas, in order, by the nam
 - **H2s (ordered):**
   1. About the role
   2. How to apply
-- **Intent:** Role shell. The description reads on this page. noindex when the role closes.
+- **Intent:** Role shell (client layout): title, description, then How to apply via LinkedIn, linking to the application page. noindex when the role closes.
 - **Content notes:**
   - No PDF job description
+  - Applications go through LinkedIn; the wireframe shows the link as a placeholder
 - **Components (canvas order):**
   - Hero
   - Prose (About the role)

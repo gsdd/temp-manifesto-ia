@@ -27,7 +27,7 @@ Andy's feedback pass (1 October, Source H): the Film content type is named, with
 |---|---|---|
 | Positioning statement | The one-line and one-paragraph description of what MGA is and does (Source B: "Manifesto partner with ambitious leaders to deliver sustainable, customer-led growth") | About (full), Home (short) |
 | Growth Architecture triangle | The three pillars with their pillar lines (the same lines as the mega-nav), drawn as three blocks | Services hub (full), Home (compact) |
-| Pillar lines and quiet lines | Three pillar lines ("Where and how you grow", "Turning strategy into results", "One-to-one support for leaders") and two quiet lines (Experience Engineering, Growth Office) | Global navigation settings; rendered in the mega-nav, mobile menu, Home and Services hub |
+| Pillar lines and quiet lines | Three pillar lines ("Where and how you grow", "Turning strategy into results", "One-to-one support for leaders") and two quiet lines (Experience Engineering, Value Orchestration) | Global navigation settings; rendered in the mega-nav, mobile menu, Home and Services hub |
 | Triangle line | One line under the three pillar blocks: "Strategy first. Activation to deliver it. Advisors alongside." (v5) | Global navigation settings; rendered on Home and the Services hub |
 | Pillar sentences | One plain sentence per pillar, derived from the deck's slide 3 one-liners (v5) | Services hub, pillar sections |
 | Situation lines | Seven one-line situations, each linking to a service or pillar ("Where are you starting from?"); three per service page at the top of Why (v5) | Services hub (the seven); Service detail (its three) |
@@ -125,7 +125,7 @@ How much of each content type the site needs at launch, so the pages above are n
 | Frameworks and tools list | 5 entries with a paragraph each, on How we work | Growth Architecture, CIVD, Operating Architecture framework, AgentLab, Side-by-Side (v5). |
 | "Also known as" lines | 3 (Customer Research and Insight, AI Agents for Marketing, Operating Model Design) | One line each under the H1 naming the deck term so referred visitors recognise the offer |
 | Theme points of view | 5 | All five themes are linked from Home and the footer |
-| Sector intros | 4 (no index page) | Footer links must land on something; noindex until threshold |
+| Sector intros | 5 (no index page) | Footer links must land on something; noindex until threshold |
 | Case studies | 12 minimum, tagged so that every service has at least one and every theme has at least two | Source B names example clients per service: Mars, Trojan Energy, BBC, PEX, Skillshare, TransferGo, Dayinsure, Merlin, WSJ, Key Group, Parkdean, TSB, Standard Chartered, Post Office, Meta, IAG, Microsoft, Dowds, News Corp. |
 | Insights | 10 minimum, tagged so that every theme has at least two | Theme pages cannot publish with fewer than two |
 | Team profiles | All Growth Architects (leadership and consultants) and all SxS Advisors, at least 100 words each; one profile flagged as lead per canonical service | CEO Advisory and the Services hub pillar 3 depend on advisor profiles; the People block on every service page depends on the lead flag (v5); every profile carries its group |

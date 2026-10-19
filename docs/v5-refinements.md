@@ -111,12 +111,12 @@ Nothing else changes. Labels, slugs, weights, the five header items, the About d
 | Experience Engineering | A journey, product or website is underperforming and you want it found, fixed, tested and scaled |
 | AI Agents for Marketing | Your customer data is holding marketing back and you want agents doing the work |
 | Operating Model Design | You need to redesign how teams, data and AI agents work together |
-| Growth Office | You need an interim team to get the strategy delivered and the value tracked |
+| Value Orchestration | You need an interim team to get the strategy delivered and the value tracked |
 | AI Enablement | You want your people to use AI well and to find where it pays off |
 
 Then the six service cards as v4, and the standard blocks from Proof onward.
 
-**Why**: Gary's worry about the operating model versus activation distinction. In v4 the distinction was an internal ruling in `04-canonicals-and-seo.md` (Operating Model Design designs, Growth Office staffs, AI Agents supplies the agents) and was never said to a visitor. Elixirr's Execution Edge page is the peer example: the coined family name is explained in its first sentence, then the capabilities are listed with a line each. The deck's Growth Office "Why" ("a brilliant strategy only counts if it gets executed and the value shows up") is the plainest bridge sentence Andy has written; it belongs here.
+**Why**: Gary's worry about the operating model versus activation distinction. In v4 the distinction was an internal ruling in `04-canonicals-and-seo.md` (Operating Model Design designs, Value Orchestration staffs, AI Agents supplies the agents) and was never said to a visitor. Elixirr's Execution Edge page is the peer example: the coined family name is explained in its first sentence, then the capabilities are listed with a line each. The deck's Value Orchestration "Why" ("a brilliant strategy only counts if it gets executed and the value shows up") is the plainest bridge sentence Andy has written; it belongs here.
 
 ---
 
@@ -135,8 +135,8 @@ Then the six service cards as v4, and the standard blocks from Proof onward.
 | Customer Research and Insight | Why block hook is the deck's "So What": the problem is multiple versions of the truth; the promise is getting to the so-what faster. Body copy, not nav |
 | Experience Engineering | How it works block is the deck's four phases: Find, Redesign, Test, Scale. "Squad" allowed in body copy once glossed |
 | AI Agents for Marketing | Hero line requirement gains "guided by experts". AgentLab H2 anchored `#agentlab`; the four groups and twelve named agents listed in the spec as catalogue entries (not pages) |
-| Operating Model Design | Figure anchored `#operating-architecture`; caption cross-links Orchestration (Culture, Value, Capability) to Growth Office |
-| Growth Office | How it works block is two phases: interim activation support, then establishing the new ways of working |
+| Operating Model Design | Figure anchored `#operating-architecture`; caption cross-links Orchestration (Culture, Value, Capability) to Value Orchestration |
+| Value Orchestration | How it works block is two phases: interim activation support, then establishing the new ways of working |
 | AI Enablement | "Expert network" in What we do body copy; links to the optional Associates group if published |
 | CEO Advisory | Advisor block anchored `#advisors`; quieter CTA unchanged |
 
@@ -174,7 +174,7 @@ Part A gives the first outside evidence on the v3 labels. Verdicts, with the rea
 | CEO Advisory | Baringa "CFO Advisory"; Elixirr "Define C-Suite Agenda" | Confirmed by the parallel |
 | Growth Strategy | Prophet "Growth Strategy" | Confirmed |
 | Experience Engineering | No peer uses it. Bain, Elixirr, Baringa, Simon-Kucher all say "Customer Experience"; Elixirr "Digital Design & Build" | **Flag for Andy.** The deck argues to keep it (it is the Dayinsure and Key Group model he wants to be known for); competitors argue for "Customer Experience and Digital". v5 keeps the label and the quiet line and does not decide this |
-| Growth Office | No peer uses it. Elixirr coined "Execution Edge" for the same space, with "Transformation Management" as its plain sibling | **Flag for Andy.** Same treatment: kept with the quiet line "Interim growth team" |
+| Value Orchestration | No peer uses it. Elixirr coined "Execution Edge" for the same space, with "Transformation Management" as its plain sibling | **Flag for Andy.** Same treatment: kept with the quiet line "Interim growth team" |
 | Proposition Innovation | The Foundation tags case studies "Proposition Development"; Simon-Kucher "value proposition design" | Confirmed; "proposition" is the UK term |
 | What we do / Our work / Insights | Prophet, Yonder, Deloitte Digital "What we do"; Prophet, Yonder, frog, Mando "Work"; frog, Baringa "Insights", Prophet and Yonder "Thinking" | Confirmed |
 

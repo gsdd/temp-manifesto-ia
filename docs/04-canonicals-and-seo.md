@@ -40,16 +40,16 @@ The canonical home for each topic cluster, and the pages that may reference but 
 | Customer research, customer insight, market research, surveys, segmentation, voice of the customer, digital listening, customer intelligence | `/services/customer-research/` | Experience Engineering (research for design), Customer Value theme | A separate research or market research page |
 | Experience engineering, customer experience design, CX consultancy, website design and build, digital product design, user research, usability testing | `/services/experience-engineering/` | Customer Research and Insight (for analytical research), case studies | Separate CX, UX, website or research pages. All of these are H2 sections of this page. |
 | AI agents for marketing, marketing AI, data agents, AgentLab, marketing automation agents, attribution, CDP clean-up, customer data quality, tagging | `/services/ai-agents-for-marketing/` (AgentLab anchored `#agentlab`) | AI Enablement, Operating Model Design, How we work (frameworks list) | Individual agent pages; `/agentlab/` or `/data-agents/` as pages (redirects only) |
-| Operating model design, operating model consultancy, operating architecture, adaptive operating model, value streams | `/services/operating-model-design/` (framework figure anchored `#operating-architecture`) | Growth Office, AI Enablement, How we work (framework explanation only) | |
-| Growth office, interim growth leadership, embedded growth team, programme office, modern PMO, fractional CMO or CGO | `/services/growth-office/` | Operating Model Design, CEO Advisory | |
+| Operating model design, operating model consultancy, operating architecture, adaptive operating model, value streams | `/services/operating-model-design/` (framework figure anchored `#operating-architecture`) | Value Orchestration, AI Enablement, How we work (framework explanation only) | |
+| Value orchestration, interim growth leadership, embedded growth team, programme office, modern PMO, fractional CMO or CGO | `/services/value-orchestration/` | Operating Model Design, CEO Advisory | |
 | AI enablement, AI adoption, AI training, AI maturity, AI value cases, AI business model innovation | `/services/ai-enablement/` | AI Agents for Marketing, Operating Model Design | A generic "AI" page |
-| CEO advisory, Side-by-Side, SxS, executive advisor retainer, the advisors | `/services/ceo-advisory/` (advisor block anchored `#advisors`; the mega-nav's "Our advisors" lands here) | Team profiles flagged as advisor, Team listing `#advisors`, Growth Office, How we work (frameworks list) | A separate `/side-by-side/` page (redirect only) |
+| CEO advisory, Side-by-Side, SxS, executive advisor retainer, the advisors | `/services/ceo-advisory/` (advisor block anchored `#advisors`; the mega-nav's "Our advisors" lands here) | Team profiles flagged as advisor, Team listing `#advisors`, Value Orchestration, How we work (frameworks list) | A separate `/side-by-side/` page (redirect only) |
 | Loyalty strategy, loyalty programme design, loyalty economics | `/expertise/loyalty/` | Services (as related theme), case studies, insights, sectors | `/services/loyalty/`, `/sectors/retail/loyalty/` |
 | Membership models, member economics | `/expertise/membership/` | As above | |
 | Subscription growth, churn, retention | `/expertise/subscriptions/` | As above | |
 | Pricing strategy, value-based pricing | `/expertise/pricing/` | As above | |
 | Customer lifetime value, customer value management | `/expertise/customer-value/` | Customer Research and Insight (analytics), Growth Strategy | |
-| Financial services, media, consumer, retail (as "consultancy for X" queries) | `/sectors/{sector}/` (Light, no keyword targets) | Case studies, Home logo strip | Sector points of view, sector-specific service pages, a sector index (cut in v4) |
+| Financial services, media, consumer, retail, energy (as "consultancy for X" queries) | `/sectors/{sector}/` (Light, no keyword targets) | Case studies, Home logo strip | Sector points of view, sector-specific service pages, a sector index (cut in v4) |
 | Ways of working, frameworks, engagement models | `/about/how-we-work/` | Every service page (block 5) | Method pages under `/services/` |
 | Values, culture, DEI | `/about/values/` | About, Careers | Separate DEI page at launch |
 | Careers, life at Manifesto, benefits, open roles | `/careers/` | About, Values, Team listing | A "Life at Manifesto" page competing with About (Source A) |
@@ -97,7 +97,7 @@ Result: one loyalty page, one retail page, two service pages, and the proof and 
 | Experience Engineering vs separate CX / website / research pages | No separate pages. Experience Engineering carries three H2 sections, each with its own anchor (`#customer-experience`, `#website-and-digital`, `#research-and-testing`). Metadata, FAQ and internal anchor text use the plain terms so that the page ranks for them. |
 | AI Agents for Marketing vs AI Enablement | AI Agents for Marketing is the tooling: specific agents doing specific jobs. AI Enablement is adoption and value strategy. AI Enablement links to AI Agents for Marketing as "the tooling side"; AI Agents for Marketing links to AI Enablement as "if you are earlier in the journey". Both labels carry "AI" so a visitor with an AI intent sees two doors; the labels themselves ("for Marketing" versus "Enablement") tell them which, and the page hero lines confirm it. |
 | AI Agents for Marketing vs Operating Model Design | Operating Model Design designs the model in which humans and agents work. AI Agents for Marketing supplies the agents. Cross-linked once each. |
-| Growth Office vs Operating Model Design | Operating Model Design designs; Growth Office staffs. Cross-linked once each. |
+| Value Orchestration vs Operating Model Design | Operating Model Design designs; Value Orchestration staffs. Cross-linked once each. |
 | Nav label vs deck name (renamed services) | The nav label is the H1 and the slug. The deck name (Customer Intelligence, Data Agents, Operating Architecture) appears once in the hero as an "also known as" line and may be used in body copy as the practice, product or framework name. It is never a second page. |
 | Expertise theme vs a service that mainly serves it (for example Customer Value vs Customer Research and Insight) | The theme page states the problem and links to the service for the analytics. The service page lists the theme under Related expertise. If a service page is found to be mostly about one theme, its copy is corrected, not the theme page. |
 | Sector landing vs sector case studies | Landing aggregates; case studies hold the substance. The landing never summarises case studies in prose beyond the hero paragraph. |
@@ -113,7 +113,7 @@ Result: one loyalty page, one retail page, two service pages, and the proof and 
 | All Canonical pages | index, follow | Self | Core targets |
 | All Supporting pages | index, follow | Self | Secondary and long-tail targets |
 | Sector landings | index, follow when threshold met; otherwise noindex, follow | Self | Threshold: at least 150 words of unique intro, three published case studies, two insights tagged to the sector. Prevents thin pages competing with services. |
-| `/sectors/` | 301 to `/work/` | | No index page in v4 (D-44). The footer lists the four sectors directly. |
+| `/sectors/` | 301 to `/work/` | | No index page in v4 (D-44). The footer lists the five sectors directly. |
 | Team profiles | index, follow when biography is at least 100 words; otherwise noindex, follow | Self | Named-person search is a real path; thin stubs are not useful. Advisor profiles are a priority because CEO Advisory depends on them. |
 | `/careers/{role}/` | index, follow while open; noindex or 301 to `/careers/` when closed | Self | Roles expire |
 | Case studies | index, follow | Self | Proof pages earn brand and client-name searches |
@@ -167,7 +167,7 @@ Internal links are how the three dimensions intersect without duplicate pages. T
 ### 5.3 Anchor text
 
 - Link to a service using its nav label exactly ("Customer Research and Insight", "AI Agents for Marketing", "Operating Model Design", "Experience Engineering"). Never link using a retired deck label on its own.
-- Where the nav label is a Manifesto term (Experience Engineering, Growth Office, Side-by-Side, Proposition Innovation), follow it with a plain gloss in the sentence the first time it appears on a page ("Experience Engineering, our customer experience and website practice").
+- Where the nav label is a Manifesto term (Experience Engineering, Value Orchestration, Side-by-Side, Proposition Innovation), follow it with a plain gloss in the sentence the first time it appears on a page ("Experience Engineering, our customer experience and website practice").
 - Link to a theme using the theme name.
 - Never use "click here" or "read more" as the only link text.
 - Anchor links into Experience Engineering sections may use the plain terms ("website design and build").
@@ -198,11 +198,11 @@ v3 put a plain-English subtitle under every mega-nav item so that "customer expe
 | Experience Engineering | customer experience (CX), website design and build, digital product, user research and testing (H2 per section, as in `03-page-layouts.md` T3) |
 | AI Agents for Marketing | AI agents, marketing performance, customer data quality, data agents, AgentLab, guided by experts (v5: the deck's "AI-powered performance marketing, guided by experts" is the hero line's second half) |
 | Operating Model Design | operating model, teams, data and AI agents working together, operating architecture |
-| Growth Office | interim growth team, programme office, PMO, strategy delivered |
+| Value Orchestration | interim growth team, programme office, PMO, strategy delivered |
 | AI Enablement | AI skills, AI training, AI adoption, where AI pays off |
 | CEO Advisory | CEO advisor, senior leaders, advisory retainer, Side-by-Side, advisor profiles, our advisors |
 
-The two quiet lines that remain in the menu (Experience Engineering: "Customer experience and websites"; Growth Office: "Interim growth team") are a courtesy for the two labels Andy flagged as opaque, not the primary carrier of these terms.
+The two quiet lines that remain in the menu (Experience Engineering: "Customer experience and websites"; Value Orchestration: "Interim growth team") are a courtesy for the two labels Andy flagged as opaque, not the primary carrier of these terms.
 
 The Services hub (v5) carries: Growth Architecture (H1), the strapline, the seven situation lines in the visitor's words (decide where to grow, new proposition, understand customers, journeys or website not converting, strategy not turning into results, AI to pay off, sounding board), and the three pillar sentences. These are the hub's own terms; it does not target any service's terms.
 
@@ -210,7 +210,7 @@ The Services hub (v5) carries: Growth Architecture (H1), the strapline, the seve
 
 | Item | Rule |
 |---|---|
-| Title tags | `{Page title} \| Manifesto Growth Architects`. Service titles carry the plain-language term where the label is a Manifesto term, for example `Experience Engineering: customer experience and websites \| Manifesto Growth Architects`, `Growth Office: interim growth team and programme office \| Manifesto Growth Architects`, `Proposition Innovation: loyalty, membership and subscription propositions \| Manifesto Growth Architects`. Renamed services already carry the searched term in the label. The Services hub uses `What we do: our Growth Architecture \| Manifesto Growth Architects` (v5). Our work uses `Case studies \| Manifesto Growth Architects`. Under 60 characters where practical. |
+| Title tags | `{Page title} \| Manifesto Growth Architects`. Service titles carry the plain-language term where the label is a Manifesto term, for example `Experience Engineering: customer experience and websites \| Manifesto Growth Architects`, `Value Orchestration: interim growth team and programme office \| Manifesto Growth Architects`, `Proposition Innovation: loyalty, membership and subscription propositions \| Manifesto Growth Architects`. Renamed services already carry the searched term in the label. The Services hub uses `What we do: our Growth Architecture \| Manifesto Growth Architects` (v5). Our work uses `Case studies \| Manifesto Growth Architects`. Under 60 characters where practical. |
 | Meta descriptions | Unique per page, 140 to 160 characters, written as an answer to the visitor's question and carrying the page's terms from 6.1. |
 | H1 | One per page, matching the page's nav label or title. Service H1s use the exact nav label. Renamed services carry a one-line "also known as" under the H1 naming the deck term. The Services hub is the one exception to "H1 matches the nav label": its H1 is "Our Growth Architecture" with the nav label "What we do" as an eyebrow above it (v5, D-51). |
 | Section anchors | Stable, lowercase, hyphenated, on the H2 of the module: `#civd`, `#operating-architecture`, `#agentlab`, `#advisors`, `#customer-experience`, `#website-and-digital`, `#research-and-testing`. Anchors are linked from How we work, the Services hub, the mega-nav ("Our advisors") and the marketing redirects. They are not separate URLs for indexing. |
@@ -240,6 +240,7 @@ The current site's URLs are not listed in the sources, so this section sets the 
 | Marketing shortcuts | `/growth-architecture/` 301 to `/services/`. `/agentlab/` 301 to `/services/ai-agents-for-marketing/#agentlab` and `/data-agents/` 301 to `/services/ai-agents-for-marketing/`. `/side-by-side/` 301 to `/services/ceo-advisory/`. `/advisors/` (if used in print or at the October event) 301 to `/services/ceo-advisory/#advisors`. `/life-at-manifesto/` (if it exists today) 301 to `/careers/`. |
 | `/sectors/` | 301 to `/work/`. The v3 sector index page was cut in v4 (D-44); the Work hub with its sector filter is the nearest destination. |
 | v2 service slugs (deck names) | `/services/customer-intelligence/` 301 to `/services/customer-research/`. `/services/data-agents/` 301 to `/services/ai-agents-for-marketing/`. `/services/operating-architecture/` 301 to `/services/operating-model-design/`. Nothing is live, so these matter only if the v2 URLs were shared; they cost nothing to keep. |
+| The Value Orchestration rename (D-64) | The retired slug for the interim growth team service 301s to `/services/value-orchestration/` (the old and new names are recorded in `mural-layout-check-oct.md`). Same single-redirect rule as any service rename. |
 | Repackaging later | If services are renamed or regrouped (Source C notes the deck is a subset and may change), the old `/services/{slug}/` 301s to the new one. Flat service URLs make this a single redirect per service. v3 is the first use of this rule. |
 | Testing | Redirect map is tested before go-live and monitored for 404s for 90 days after. |
 

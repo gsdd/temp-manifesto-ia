@@ -43,7 +43,7 @@ Related: `competitor-nav-review.md` (Part A), `v5-refinements.md` (Part C), `00-
 | Data Agents | **Present, renamed** | AI Agents for Marketing (D-28); "Data Agents, built in AgentLab" as the also-known-as line | Unchanged; rename still pending Andy's sign-off |
 | Customer Intelligence | **Present, renamed** | Customer Research and Insight (D-27); "Our Customer Intelligence practice" as the also-known-as line | Unchanged; pending sign-off |
 | Operating Models / Operating Architecture | **Present, renamed** | Operating Model Design (D-29); "Our Operating Architecture framework" as the also-known-as line | Unchanged; pending sign-off |
-| Growth Office | **Present** | Column 2 with quiet line "Interim growth team" | Unchanged |
+| Value Orchestration | **Present** | Column 2 with quiet line "Interim growth team" | Unchanged |
 | AI Enablement | **Present** | Column 2 | Unchanged |
 | Experience Engineering | **Present** | Column 2 with quiet line "Customer experience and websites" | Unchanged. Competitor labels all use "Customer Experience"; flagged for Andy in `nav-wording-decisions.md`, not changed |
 | Side by Side (SxS) | **Present** | Named in the CEO Advisory hero; "SxS" not used on the site (D-31); menu item cut (D-36) | One quiet link "Our advisors" under CEO Advisory in the menu, to the advisor block on the CEO Advisory page (R4). Side-by-Side itself stays a page term |
@@ -121,13 +121,13 @@ Related: `competitor-nav-review.md` (Part A), `v5-refinements.md` (Part C), `00-
 | "Our Growth Architects design and implement adaptive operating models" | **Partial** | "Growth Architects" as the name for MGA's people is not used anywhere | Optional: Team listing intro may use it once ("Our Growth Architects"). Noted, not required (R7) |
 | Four qualities: grounded in customer value growth; fuelled by high-quality data; redesigned around humans and AI agents; orchestrated and linked to impact | **Present** | T3 module | Unchanged |
 | Examples: Post Office, BBC, TSB, WSJ, Meta, IAG, Microsoft | **Present** | Proof block; launch plan | Unchanged |
-| **Operating model vs activation distinction** (Gary's worry) | **Partial** | Overlap rulings in `04-canonicals-and-seo.md` 3.1 (Operating Model Design designs; Growth Office staffs; AI Agents supplies the agents). Not said to the visitor anywhere | The Activation group page gains a "Which of the six do you need?" list, one line per service, that makes the design / staff / tool / skills distinction explicit (R5) |
+| **Operating model vs activation distinction** (Gary's worry) | **Partial** | Overlap rulings in `04-canonicals-and-seo.md` 3.1 (Operating Model Design designs; Value Orchestration staffs; AI Agents supplies the agents). Not said to the visitor anywhere | The Activation group page gains a "Which of the six do you need?" list, one line per service, that makes the design / staff / tool / skills distinction explicit (R5) |
 
-### Slide 11: Activation Services: Growth Office
+### Slide 11: Activation Services: Value Orchestration
 
 | Deck element | Status in v4 | Where | v5 |
 |---|---|---|---|
-| "Lean teams of interim growth experts armed with proven tools to bridge the gap between strategy and execution" | **Present** | Growth Office purpose; quiet line "Interim growth team"; hero line carries "programme office" | Unchanged |
+| "Lean teams of interim growth experts armed with proven tools to bridge the gap between strategy and execution" | **Present** | Value Orchestration purpose; quiet line "Interim growth team"; hero line carries "programme office" | Unchanged |
 | Why: "A brilliant strategy only counts if it gets executed and the value shows up"; AI speeds deployment but creates uncertainty that stalls progress | **Present** | T3 Why | Unchanged. Also the natural opening line for the Activation group page |
 | Three connected elements: Culture, Capability, Value | **Present** | T3 module sub-sections | Unchanged |
 | "Interim activation support then establish the new ways of working" | **Present** | T3 module note | Becomes the two-phase How it works block for this page (R6) |
@@ -152,7 +152,7 @@ Related: `competitor-nav-review.md` (Part A), `v5-refinements.md` (Part C), `00-
 | Diagram: Growth Strategy; Data and Tools; New Work Units; Orchestration (or Value Realisation) with Culture, Value, Capability; Value Streams A to D; AI-Agent and Human; Customers; Partners | **Present** | T3 Operating Model Design module: captioned figure "Our Operating Architecture framework"; explained once in How we work | Unchanged |
 | Growth Strategy layer: North Star; Growth Priorities; Demand Signals; Scenario Planning | **Missing** | These terms are not in the Growth Strategy page spec | Listed as candidate H2s for the Growth Strategy What we do block, pending Andy's copy (R6) |
 | Data and Tools: data quality, security and governance; data and knowledge architecture; tech platforms; AI tools | **Present** | Figure; AI Agents for Marketing vocabulary (data quality, CDP) | Unchanged |
-| Orchestration: Culture, Value, Capability | **Present** | Growth Office module (same three words) | Cross-link from the figure caption to Growth Office made explicit (R6) |
+| Orchestration: Culture, Value, Capability | **Present** | Value Orchestration module (same three words) | Cross-link from the figure caption to Value Orchestration made explicit (R6) |
 | Value streams with mixed AI-agent and human work units | **Present** | Figure | Unchanged |
 
 ---

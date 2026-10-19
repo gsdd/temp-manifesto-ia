@@ -38,6 +38,13 @@ def asset(from_url: str, name: str) -> str:
     return os.path.relpath("assets/" + name, file_dir(from_url))
 
 
+def slugify(label: str) -> str:
+    out = "".join(c if c.isalnum() else "-" for c in label.lower())
+    while "--" in out:
+        out = out.replace("--", "-")
+    return out.strip("-")
+
+
 def crumbs_html(from_url: str, crumbs: list[tuple[str, str | None]]) -> str:
     if not crumbs:
         return ""
@@ -63,7 +70,7 @@ COMPONENTS: dict[str, tuple[str, str, str]] = {
     "Mega-nav hub and strands": ("Chrome", "Text link", "Triangle laid flat. Hub title with chevron, strand, keyword subtitle. Not cards."),
     "Breadcrumb": ("Chrome", "Text link", "Ancestors link. Current page is text. Every page except Home."),
     "Cookie bar": ("Chrome", "Button", "Accept dismisses. Cookie policy is the text link, not the button."),
-    "Hero": ("Heroes and bands", "Band", "First block. H1, one support line, optional eyebrow, also-known-as, who-for and metric boxes. Composes a CTA pair and, where a film exists, a Video 16:9."),
+    "Hero": ("Heroes and bands", "Band", "First block. H1, one support line, optional eyebrow, also-known-as, who-for and metric boxes. Composes a CTA pair and, where a film exists, a Video 16:9. Service and case heroes carry an image placeholder (client layout)."),
     "CTA pair": ("Heroes and bands", "Button", "Primary Button plus secondary Text link. Header Contact is the same Button."),
     "Closing CTA band": ("Heroes and bands", "Band", "Last enquire on the page. One line, a Button and a Text link. Careers uses Work for us."),
     "Prose": ("Heroes and bands", "Static", "Heading plus one to four short paragraphs. Body copy, not a card and not a box."),
@@ -76,8 +83,14 @@ COMPONENTS: dict[str, tuple[str, str, str]] = {
     "Person card": ("Cards", "Card", "Someone. Avatar, name, one line."),
     "Role card": ("Cards", "Card", "Open role. Outline with a top rule: location, type, hiring state."),
     "Triangle tile": ("Cards", "Card", "Pillar, not a service. Three tiles plus the triangle line. Links to the pillar page or an in-page anchor. Not an Offer card."),
-    "Page tag": ("Lists and locators", "Tag", "One dimension, max three. Small linked label. Service pages show expertise. Cases show services. Not a filter."),
-    "Filter bar": ("Lists and locators", "Filter", "Toggle a listing. Pill-shaped buttons, not links. More filters is also a Filter."),
+    "Thought leadership card": ("Cards", "Card", "The one listing card for thinking and case studies (client layout). Rounded frame, image on top, one primary service tag pill, title, short excerpt, a row of small uppercase secondary tags (industry or expertise), Read more link. On Our thinking the tags also drive the live tag filter."),
+    "Related trio": ("Cards", "Card", "Three related items in one row at the foot of an article: one article, one service, one report (client layout)."),
+    "Culture card": ("Cards", "Card", "Values and culture on Careers (client layout). Four outline cards, one value each, linking to Values and culture."),
+    "Page tag": ("Lists and locators", "Tag", "One dimension, max three, except case study heroes, which show service, industry and expertise pills so cross-linking survives (client layout). Small linked label. Not a filter."),
+    "Filter bar": ("Lists and locators", "Filter", "Toggle a listing. Pill-shaped buttons, not links. More filters is also a Filter. On Our work the two groups are Industry and Service (client layout)."),
+    "Type filter tabs": ("Lists and locators", "Filter", "Listing tabs on Our thinking, in the order All, Reports, Articles, News and events (client layout). The tabs filter the grid in place and each state is a deep-linkable URL; the grid always links every item, so nothing is hidden from search."),
+    "Role toggle": ("Lists and locators", "Filter", "Open positions / All on the Careers roles list (client layout). Defaults to Open positions."),
+    "Application steps": ("Lists and locators", "Static", "The five hiring steps on Careers (client layout): Application, Interview with Partners, Case study, References, Decision."),
     "Situations list": ("Lists and locators", "Text link", "Prospect language in. Links on the services hub. On a service page the three lines are static text."),
     "Row of text links": ("Lists and locators", "Text link", "Names only, in one row. Home Growth problems we know best. Not cards, not tags."),
     "Link list": ("Lists and locators", "Text link", "Compact list of links: related thinking, which of the six, engagement shapes, search hits. Title left, type right."),
@@ -86,8 +99,12 @@ COMPONENTS: dict[str, tuple[str, str, str]] = {
     "Pagination": ("Lists and locators", "Text link", "Current page is text. Others are page links. Not buttons."),
     "Empty state": ("Lists and locators", "Static", "No results for this filter or query. Hide when results exist. Clear filters is a Button."),
     "Logo strip": ("Proof and media", "Static", "Trusted partners, awards, or sector clients. Link a logo only if a case exists."),
-    "Quote": ("Proof and media", "Static", "Testimonial. Lives with work. Not a testimonials page."),
+    "Logo band": ("Proof and media", "Static", "Auto-scrolling client logo band on Our work (client layout). Constant speed, pauses on hover and under reduced motion. Link a logo only if a case exists."),
+    "Quote": ("Proof and media", "Static", "Testimonial, attributed with name and role. Lives with work. Not a testimonials page."),
+    "Sticky stat rail": ("Proof and media", "Static", "Case study rail (client layout): two Metric boxes and a Contact us Button, pinned on the left while the story scrolls."),
     "Video 16:9": ("Proof and media", "Static", "Showreel, partner film, or case film. Two states: existing asset (solid frame, caption naming the film; the Home showreel / client video) or placeholder (dashed) until a film exists."),
+    "Testimony video": ("Proof and media", "Static", "Attributed client testimony as a film on Our work (client layout). 16:9 placeholder with the speaker named beneath."),
+    "Profile pop-up": ("Proof and media", "Static", "Overlay profile opened from an expert's Person card (client layout): biography, focus and a link to the full profile page, whose URL keeps working for search."),
     "CIVD four-cell": ("Proof and media", "Static", "Growth Strategy frame. Dashed cells. The text link sits beside it, not on the cells."),
     "Article body": ("Proof and media", "Static", "Long-form paragraphs on a report or article."),
     "Form": ("Forms", "Button", "Stacked fields with labels. Submit is a Button. Variants: Work with us, Work for us, email capture, search, report copy."),
@@ -244,6 +261,13 @@ def sidebar_html(page: dict, body: str) -> str:
     notes = page.get("notes") or []
     if notes:
         rows.append('<div class="k"><strong>Content notes</strong><ul>' + "".join(f"<li>{e(n)}</li>" for n in notes) + "</ul></div>")
+    mural = page.get("mural") or []
+    if mural:
+        rows.append(
+            '<div class="k"><strong>Client layout (Mural, 15 Oct)</strong><div class="cmods">'
+            + "".join(f"<span>{e(m)}</span>" for m in mural)
+            + "</div></div>"
+        )
     rel = []
     for label, items in (("Expertise", page.get("themes")), ("Sectors", page.get("sectors")), ("Services", page.get("services"))):
         if items:
@@ -293,10 +317,10 @@ def header_html(from_url: str, section: str) -> str:
               <a class="top-link" href="{h("/insights/")}" aria-haspopup="true" aria-expanded="false"{current("insights")}>Our thinking <span class="caret">&#9660;</span></a>
               <div class="dropdown" role="region" aria-label="Our thinking menu">
                 <ul>
+                  <li><a href="{h("/insights/")}">All thinking</a></li>
                   <li><a href="{h("/insights/#reports")}">Reports</a></li>
                   <li><a href="{h("/insights/#articles")}">Articles</a></li>
-                  <li><a href="{h("/insights/#events")}">Events and news</a></li>
-                  <li><a href="{h("/insights/")}">All thinking</a></li>
+                  <li><a href="{h("/insights/#news-events")}">News and events</a></li>
                 </ul>
               </div>
             </li>
@@ -334,7 +358,7 @@ def header_html(from_url: str, section: str) -> str:
                   <li><a href="{h("/services/experience-engineering/")}">Experience Engineering<small>Customer experience and websites</small></a></li>
                   <li><a href="{h("/services/ai-agents-for-marketing/")}">AI Agents for Marketing<small>AI marketing agents, guided by experts</small></a></li>
                   <li><a href="{h("/services/operating-model-design/")}">Operating Model Design<small>Target operating model</small></a></li>
-                  <li><a href="{h("/services/growth-office/")}">Growth Office<small>Interim growth team</small></a></li>
+                  <li><a href="{h("/services/value-orchestration/")}">Value Orchestration<small>Interim growth team</small></a></li>
                   <li><a href="{h("/services/ai-enablement/")}">AI Enablement<small>AI skills and adoption</small></a></li>
                 </ul>
               </div>
@@ -376,7 +400,7 @@ def footer_html(from_url: str) -> str:
               <li><a href="{h("/services/experience-engineering/")}">Experience Engineering</a></li>
               <li><a href="{h("/services/ai-agents-for-marketing/")}">AI Agents for Marketing</a></li>
               <li><a href="{h("/services/operating-model-design/")}">Operating Model Design</a></li>
-              <li><a href="{h("/services/growth-office/")}">Growth Office</a></li>
+              <li><a href="{h("/services/value-orchestration/")}">Value Orchestration</a></li>
               <li><a href="{h("/services/ai-enablement/")}">AI Enablement</a></li>
               <li><a href="{h("/services/ceo-advisory/")}">CEO Advisory</a></li>
               <li><a href="{h("/services/")}">All services</a></li>
@@ -399,6 +423,7 @@ def footer_html(from_url: str) -> str:
               <li><a href="{h("/sectors/media/")}">Media</a></li>
               <li><a href="{h("/sectors/consumer/")}">Consumer</a></li>
               <li><a href="{h("/sectors/retail/")}">Retail</a></li>
+              <li><a href="{h("/sectors/energy/")}">Energy</a></li>
             </ul>
           </div>
           <div>
@@ -439,6 +464,7 @@ def wrap(page: dict, body: str) -> str:
     title = page["title"]
     css = asset(url, "wireframe.css")
     js = asset(url, "nav.js")
+    filter_js = f'\n<script src="{asset(url, "filter.js")}"></script>' if page.get("kind") == "insights-hub" else ""
     solo = page.get("kind") == "catalogue" or page.get("no_sidebar")
     layout_cls = "layout layout-solo" if solo else "layout"
     sidebar = "" if solo else sidebar_html(page, body)
@@ -464,7 +490,7 @@ def wrap(page: dict, body: str) -> str:
   </div>
   {sidebar}
 </div>
-<script src="{js}"></script>
+<script src="{js}"></script>{filter_js}
 </body>
 </html>
 """
@@ -492,14 +518,108 @@ def tags_html(h, items):
     return f'<div class="page-tags">{inner}</div>'
 
 
-def filter_bar(items, on=None, more=False):
+def filter_bar(items, on=None, more=False, data_attr=None):
+    """With data_attr set (for example "data-tag"), each pill carries that
+    attribute with the slug of its label, for client-side filtering."""
     bits = []
     for label in items:
         cls = "filter on" if label == on else "filter"
-        bits.append(f'<button type="button" class="{cls}">{label}</button>')
+        da = f' {data_attr}="{slugify(label)}"' if data_attr else ""
+        bits.append(f'<button type="button" class="{cls}"{da}>{label}</button>')
     if more:
         bits.append('<button type="button" class="filter more">More filters</button>')
     return f'<div class="filters" {mod("Filter bar")}>{"".join(bits)}</div>'
+
+
+def tl_card(h, href, title, excerpt, primary, secondary=(), type_label=None, type_slug=None):
+    """Thought leadership card (client layout): image, primary tag pill, title,
+    excerpt, small uppercase secondary tags, Read more. Type shown where given.
+    With type_slug set, the card carries data attributes for client-side filtering."""
+    pill = f'<span class="tl-pill">{esc(primary)}</span>'
+    kind = f'<span class="tl-type">{esc(type_label)}</span>' if type_label else ""
+    tags = ""
+    if secondary:
+        tags = '<span class="tl-tags">' + "".join(f"<em>{esc(t)}</em>" for t in secondary) + "</span>"
+    data = ""
+    if type_slug:
+        tag_slugs = " ".join(slugify(t) for t in (primary, *secondary))
+        data = f' data-type="{type_slug}" data-tags="{tag_slugs}"'
+    return (
+        f'<a class="card tl" {mod("Thought leadership card")}{data} href="{h(href)}">'
+        f'<div class="ph">Image</div><span class="tl-head">{pill}{kind}</span>'
+        f'<strong>{title}</strong><span class="tl-excerpt">{excerpt}</span>'
+        f'{tags}<span class="tl-more">Read more &#8594;</span></a>'
+    )
+
+
+def logo_band_html(n=10, label="Logo"):
+    cells = "".join(f'<span class="logo-ph">{label}</span>' for _ in range(n))
+    return (
+        f'<div class="logo-band" {mod("Logo band")} aria-label="Client logos">'
+        f'<span class="wf-label">Auto-scrolling, constant speed. Pauses on hover and under reduced motion</span>'
+        f'<div class="band-track">{cells}</div></div>'
+    )
+
+
+def stat_rail_html(h, stats, cta_label="Contact us", cta_line=None):
+    boxes = "".join(
+        f'<div class="metric" {mod("Metric box")}><strong>{v}</strong><span>{l}</span></div>' for v, l in stats
+    )
+    line = f'<p class="rail-line">{cta_line}</p>' if cta_line else ""
+    return (
+        f'<aside class="stat-rail" {mod("Sticky stat rail")}>'
+        f'<span class="wf-label">Static block, pinned while the story scrolls</span>'
+        f'{boxes}{line}<a class="btn" href="{h("/contact/")}">{cta_label}</a></aside>'
+    )
+
+
+def testimony_video_html(label="Client testimony film", speaker="Name, role, client (to be confirmed)"):
+    return (
+        f'<figure class="video-ph testimony" {mod("Testimony video")} aria-label="{label}">'
+        f'<span>{label}</span><figcaption>{speaker}</figcaption></figure>'
+    )
+
+
+def steps_html(items):
+    inner = "".join(f"<li><span>{esc(s)}</span></li>" for s in items)
+    return f'<ol class="steps" {mod("Application steps")}>{inner}</ol>'
+
+
+def role_toggle_html(on="Open positions"):
+    bits = []
+    for label in ("Open positions", "All"):
+        cls = "filter on" if label == on else "filter"
+        bits.append(f'<button type="button" class="{cls}">{label}</button>')
+    return f'<div class="filters role-toggle" {mod("Role toggle")}>{"".join(bits)}<span class="wf-label">Defaults to Open positions</span></div>'
+
+
+def type_tabs_html(items, on="All"):
+    bits = []
+    for label, anchor in items:
+        cls = "type-tab on" if label == on else "type-tab"
+        aid = f' id="{anchor}"' if anchor else ""
+        dt = f' data-type="{anchor or slugify(label)}"'
+        bits.append(f'<button type="button" class="{cls}"{aid}{dt}>{label}</button>')
+    return f'<div class="type-tabs" {mod("Type filter tabs")}>{"".join(bits)}</div>'
+
+
+def popup_html(h, name="Expert name", focus="Focus, one line"):
+    return (
+        f'<div class="popup-sample" {mod("Profile pop-up")}>'
+        f'<span class="wf-label">Pop-up: opens over the page from the Person card. Escape or close to dismiss</span>'
+        f'<div class="popup-frame"><div class="avatar"></div><strong>{name}</strong>'
+        f'<p>{focus}. Short biography, two or three lines.</p>'
+        f'<a href="{h("/about/team/advisor-one/")}">Full profile</a></div></div>'
+    )
+
+
+def related_trio_html(h, article, service, report):
+    inner = (
+        card(h, article[1], article[0], "Article", "article")
+        + card(h, service[1], service[0], "Service", "offer")
+        + card(h, report[1], report[0], "Report", "doc")
+    )
+    return f'<div class="cards trio" {mod("Related trio")}>{inner}</div>'
 
 
 def pagination_html(pages=("1", "2", "3"), next_label="Next"):
@@ -521,11 +641,17 @@ def empty_html(message, btn_href, btn_label="Clear filters"):
           </div>"""
 
 
-def empty_stub(message, btn_href, btn_label="Clear filters", annotate=False):
+def empty_stub(message, btn_href, btn_label="Clear filters", annotate=False, filter_hook=False):
     note = ann("Static + button") if annotate else ""
+    hook = " data-filter-empty" if filter_hook else ""
+    label = (
+        "Appears when the live filters return no results; Clear filters resets them"
+        if filter_hook
+        else "Conditional: shown only when there are no results"
+    )
     return f"""
-        <section class="block">
-          <span class="wf-label">Conditional: shown only when there are no results</span>{note}
+        <section class="block"{hook}>
+          <span class="wf-label">{label}</span>{note}
           {empty_html(message, btn_href, btn_label)}
         </section>
 """
@@ -688,6 +814,18 @@ PILLAR_TILES = [
 
 T = lambda n, u: (n, u)
 
+# Client modules used by the service-detail template (Mural, 15 Oct), shown in the sidebar.
+SERVICE_MURAL = [
+    "Hero: name, strapline, image",
+    "Overview",
+    "Why now?",
+    "How can we help you?",
+    "Why us?",
+    "Our experts + profile pop-up",
+    "Related case studies carousel",
+    "Contact us band",
+]
+
 PAGES: list[dict] = [
     dict(
         url="/",
@@ -746,12 +884,13 @@ PAGES: list[dict] = [
         sectors=[T("Financial services", "/sectors/financial-services/"), T("Media", "/sectors/media/"), T("Consumer", "/sectors/consumer/")],
         services=[T("Proposition Innovation", "/services/proposition-innovation/"), T("Activation Services", "/services/activation/"), T("CEO Advisory", "/services/ceo-advisory/")],
         h1="Growth Strategy",
-        h2s=["Why this, now", "What we do", "North Star", "Growth priorities", "Demand signals", "Scenario planning", "Customer, Innovation, Value and Delivery", "Proof", "How it works"],
-        h3s=["Customer", "Innovation", "Value", "Delivery"],
-        intent="Lead offer. Owns growth strategy search. CIVD (Customer, Innovation, Value and Delivery) is the named frame and lives on this page.",
+        h2s=["Overview", "Why now?", "How can we help you?", "Customer, Innovation, Value and Delivery", "Related case studies", "Why us?", "Our experts", "How it works"],
+        h3s=["North Star", "Growth priorities", "Demand signals", "Scenario planning", "Customer", "Innovation", "Value", "Delivery"],
+        intent="Lead offer. Owns growth strategy search. CIVD (Customer, Innovation, Value and Delivery) is the named frame and lives on this page. Client service template applied: every section is a visible H2 or H3, no accordion.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Growth Strategy", None)],
         kind="service",
-        notes=["Brand and go-to-market language appears in H2s only where the work is truly that", "CIVD belongs to Growth Strategy, not to Side-by-Side"],
+        notes=["Brand and go-to-market language appears in H2s only where the work is truly that", "CIVD belongs to Growth Strategy, not to Side-by-Side", "Capability headings sit as H3s under How can we help you?; the CIVD frame keeps its anchored H2 home"],
+        mural=SERVICE_MURAL,
         hero="Customer-led growth strategy: where to focus and how to win",
         who="For leadership teams deciding where and how to grow.",
         aka=None,
@@ -775,11 +914,12 @@ PAGES: list[dict] = [
         sectors=[T("Retail", "/sectors/retail/"), T("Consumer", "/sectors/consumer/"), T("Financial services", "/sectors/financial-services/")],
         services=[T("Growth Strategy", "/services/growth-strategy/"), T("Customer Research and Insight", "/services/customer-research/")],
         h1="Proposition Innovation",
-        h2s=["Why this, now", "Value proposition design", "Loyalty propositions", "Membership propositions", "Subscription propositions", "Direct-to-consumer propositions", "Proof", "How it works"],
-        h3s=[],
-        intent="Manifesto label in the H1; value proposition design in the menu subtitle, hero and H2s so search can see it. Each proposition type hands off to its expertise theme.",
+        h2s=["Overview", "Why now?", "How can we help you?", "Related case studies", "Why us?", "Our experts", "How it works"],
+        h3s=["Value proposition design", "Loyalty propositions", "Membership propositions", "Subscription propositions", "Direct-to-consumer propositions"],
+        intent="Manifesto label in the H1; value proposition design in the menu subtitle, hero and headings so search can see it. Each proposition type hands off to its expertise theme. Client service template applied: every section visible, no accordion.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Proposition Innovation", None)],
         kind="service",
+        mural=SERVICE_MURAL,
         hero="New offers and business models: loyalty, membership, subscription, direct-to-consumer",
         who="For teams who need a new offer, not only a new campaign.",
         aka=None,
@@ -797,7 +937,7 @@ PAGES: list[dict] = [
         section="services",
         weight="Supporting",
         primary="strategy to execution (group page; no single volume target)",
-        alts=["customer journey mapping (~2,900) in the Experience Engineering line", "operating model (~880) in the Operating Model Design line", "interim CMO / interim growth team (~110 to 140) in the Growth Office line"],
+        alts=["customer journey mapping (~2,900) in the Experience Engineering line", "operating model (~880) in the Operating Model Design line", "interim CMO / interim growth team (~110 to 140) in the Value Orchestration line"],
         quiet="Hands-on delivery, six services",
         themes=[],
         sectors=[],
@@ -806,7 +946,7 @@ PAGES: list[dict] = [
             T("Experience Engineering", "/services/experience-engineering/"),
             T("AI Agents for Marketing", "/services/ai-agents-for-marketing/"),
             T("Operating Model Design", "/services/operating-model-design/"),
-            T("Growth Office", "/services/growth-office/"),
+            T("Value Orchestration", "/services/value-orchestration/"),
             T("AI Enablement", "/services/ai-enablement/"),
         ],
         h1="Activation Services",
@@ -830,12 +970,13 @@ PAGES: list[dict] = [
         sectors=[T("Financial services", "/sectors/financial-services/"), T("Media", "/sectors/media/"), T("Consumer", "/sectors/consumer/")],
         services=[T("Experience Engineering", "/services/experience-engineering/"), T("Proposition Innovation", "/services/proposition-innovation/"), T("AI Agents for Marketing", "/services/ai-agents-for-marketing/")],
         h1="Customer Research and Insight",
-        h2s=["Why this, now", "Customer research methods", "Customer journey mapping", "Research projects", "Always-on customer insight", "Proof", "How it works"],
-        h3s=["Digital listening", "Qualitative research", "Quantitative research", "Customer data analytics", "Internal knowledge", "External market data"],
-        intent="Leads with research methods, journey mapping and insight outcomes, not only the consultancy noun. Customer Intelligence is the practice name on the page. Qualitative and quantitative evidence lives here.",
+        h2s=["Overview", "Why now?", "How can we help you?", "Related case studies", "Why us?", "Our experts", "How it works"],
+        h3s=["Customer research methods", "Customer journey mapping", "Research projects", "Always-on customer insight"],
+        intent="Leads with research methods, journey mapping and insight outcomes, not only the consultancy noun. Customer Intelligence is the practice name on the page. Qualitative and quantitative evidence lives here. Client service template applied.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", "/services/activation/"), ("Customer Research and Insight", None)],
         kind="service",
-        notes=["Analytical journey mapping lives here; design research lives on Experience Engineering"],
+        notes=["Analytical journey mapping lives here; design research lives on Experience Engineering", "The six method names (digital listening, qualitative, quantitative, data analytics, internal knowledge, external market data) are a list under Research projects"],
+        mural=SERVICE_MURAL,
         hero="Research, surveys, analytics and customer listening, faster with AI",
         who="For teams who need one version of the customer truth.",
         aka="Our Customer Intelligence practice",
@@ -859,11 +1000,12 @@ PAGES: list[dict] = [
         sectors=[T("Financial services", "/sectors/financial-services/"), T("Consumer", "/sectors/consumer/")],
         services=[T("Customer Research and Insight", "/services/customer-research/"), T("AI Agents for Marketing", "/services/ai-agents-for-marketing/")],
         h1="Experience Engineering",
-        h2s=["Why this, now", "Find", "Redesign", "Test", "Scale", "Customer experience (CX) design", "Website and digital product", "User research and testing", "Proof"],
-        h3s=["Customer and value analytics (under research and testing)"],
-        intent="Manifesto label in the H1; the menu subtitle and H2s carry the CX, website and journey-mapping search terms (Dayinsure and Key Group are the proof). Find, Redesign, Test, Scale is the How it works sequence.",
+        h2s=["Overview", "Why now?", "How can we help you?", "Related case studies", "Why us?", "Our experts", "How it works"],
+        h3s=["Find", "Redesign", "Test", "Scale", "Customer experience (CX) design", "Website and digital product", "User research and testing"],
+        intent="Manifesto label in the H1; the menu subtitle and headings carry the CX, website and journey-mapping search terms (Dayinsure and Key Group are the proof). Find, Redesign, Test, Scale is the How it works sequence. Client service template applied.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", "/services/activation/"), ("Experience Engineering", None)],
         kind="service",
+        mural=SERVICE_MURAL,
         hero="Customer experience (CX), website and digital design, build and testing",
         who="For teams whose journeys or website are not converting.",
         aka=None,
@@ -887,11 +1029,12 @@ PAGES: list[dict] = [
         sectors=[T("Financial services", "/sectors/financial-services/"), T("Media", "/sectors/media/"), T("Consumer", "/sectors/consumer/")],
         services=[T("AI Enablement", "/services/ai-enablement/"), T("Operating Model Design", "/services/operating-model-design/"), T("Customer Research and Insight", "/services/customer-research/")],
         h1="AI Agents for Marketing",
-        h2s=["Why this, now", "What we do", "AgentLab", "How it works", "Proof"],
+        h2s=["Overview", "Why now?", "How can we help you?", "AgentLab", "Related case studies", "Why us?", "Our experts", "How it works"],
         h3s=["Reporting and Analytics", "Data and Infrastructure", "Strategy and Planning", "Automation and Execution"],
-        intent="Marketing-qualified AI page. AgentLab is the named agent catalogue on this page. Bare 'AI agents' is too generic to be the sole target.",
+        intent="Marketing-qualified AI page. AgentLab is the named agent catalogue on this page. Bare 'AI agents' is too generic to be the sole target. Client service template applied; AgentLab keeps its anchored H2 home.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", "/services/activation/"), ("AI Agents for Marketing", None)],
         kind="service",
+        mural=SERVICE_MURAL,
         hero="AI-powered performance marketing, guided by experts",
         who="For marketing teams whose customer data is holding performance back.",
         aka="Data Agents, built in AgentLab",
@@ -913,13 +1056,14 @@ PAGES: list[dict] = [
         quiet="Target operating model",
         themes=[T("Customer Value", "/expertise/customer-value/")],
         sectors=[T("Financial services", "/sectors/financial-services/"), T("Media", "/sectors/media/")],
-        services=[T("Growth Office", "/services/growth-office/"), T("AI Enablement", "/services/ai-enablement/"), T("AI Agents for Marketing", "/services/ai-agents-for-marketing/")],
+        services=[T("Value Orchestration", "/services/value-orchestration/"), T("AI Enablement", "/services/ai-enablement/"), T("AI Agents for Marketing", "/services/ai-agents-for-marketing/")],
         h1="Operating Model Design",
-        h2s=["Why this, now", "Target operating model", "Adaptive operating model", "Our Operating Architecture framework", "Proof", "How it works"],
-        h3s=["High-quality data and tools", "New work units", "Orchestration: culture, value, capability"],
-        intent="Strongest Activation search volume after journey and CX. Operating model and target operating model language in the H1 support line and H2s. Operating Architecture is the framework name on the page.",
+        h2s=["Overview", "Why now?", "How can we help you?", "Our Operating Architecture framework", "Related case studies", "Why us?", "Our experts", "How it works"],
+        h3s=["Target operating model", "Adaptive operating model", "High-quality data and tools", "New work units", "Orchestration: culture, value, capability"],
+        intent="Strongest Activation search volume after journey and CX. Operating model and target operating model language in the H1 support line and headings. Operating Architecture is the framework name on the page. Client service template applied; the framework keeps its anchored H2 home.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", "/services/activation/"), ("Operating Model Design", None)],
         kind="service",
+        mural=SERVICE_MURAL,
         hero="How your teams, data and AI agents should work together",
         who="For leaders who need a new way of working, not a new tool.",
         aka="Our Operating Architecture framework",
@@ -932,22 +1076,24 @@ PAGES: list[dict] = [
         ],
     ),
     dict(
-        url="/services/growth-office/",
-        title="Growth Office: interim growth team and programme office",
+        url="/services/value-orchestration/",
+        title="Value Orchestration: interim growth team and programme office",
         section="services",
         weight="Canonical",
         primary="interim cmo / interim growth team (~110 to 140)",
-        alts=["growth office (~10, weak; do not primary-target)", "programme office / PMO (hero language)", "interim activation then embed (deck shape)"],
+        alts=["value orchestration (coined; no measured volume. The retired label polled ~10, weak)", "programme office / PMO (hero language)", "interim activation then embed (deck shape)"],
         quiet="Interim growth team",
         themes=[T("Customer Value", "/expertise/customer-value/")],
         sectors=[T("Media", "/sectors/media/"), T("Consumer", "/sectors/consumer/")],
         services=[T("Operating Model Design", "/services/operating-model-design/"), T("CEO Advisory", "/services/ceo-advisory/"), T("AI Enablement", "/services/ai-enablement/")],
-        h1="Growth Office",
-        h2s=["Why this, now", "Interim growth team", "Then embed", "Culture", "Capability", "Value", "Proof", "How it works"],
-        h3s=["Interim CMO and senior cover (where the engagement needs it)"],
-        intent="Growth Office is the label; the menu subtitle and body say interim or embedded growth team, and interim CMO where accurate. The primary search phrase is interim growth team, not growth office.",
-        crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", "/services/activation/"), ("Growth Office", None)],
+        h1="Value Orchestration",
+        h2s=["Overview", "Why now?", "How can we help you?", "Related case studies", "Why us?", "Our experts", "How it works"],
+        h3s=["Interim growth team", "Then embed", "Culture", "Capability", "Value"],
+        intent="Value Orchestration is the label (renamed from the earlier coined name, 15 Oct; the old slug should 301 here). The menu subtitle and body say interim or embedded growth team, and interim CMO where accurate. The primary search phrase is interim growth team, not the coined label. Client service template applied.",
+        crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", "/services/activation/"), ("Value Orchestration", None)],
         kind="service",
+        notes=["Renamed on the client's instruction (Mural pass, 15 Oct). The former name and the redirect note are logged in docs/mural-layout-check-oct.md"],
+        mural=SERVICE_MURAL,
         hero="Interim growth team and programme office that gets strategy delivered",
         who="For leadership teams who need strategy executed and the value tracked.",
         aka=None,
@@ -971,11 +1117,12 @@ PAGES: list[dict] = [
         sectors=[T("Consumer", "/sectors/consumer/"), T("Media", "/sectors/media/")],
         services=[T("AI Agents for Marketing", "/services/ai-agents-for-marketing/"), T("Operating Model Design", "/services/operating-model-design/")],
         h1="AI Enablement",
-        h2s=["Why this, now", "AI skills and adoption", "Finding where AI pays off", "New business models with AI", "Proof", "How it works"],
-        h3s=[],
-        intent="Thin but real niche. Owns 'AI enablement' as primary, supported by adoption, skills and operating-change copy. The expert network is named in the body.",
+        h2s=["Overview", "Why now?", "How can we help you?", "Related case studies", "Why us?", "Our experts", "How it works"],
+        h3s=["AI skills and adoption", "Finding where AI pays off", "New business models with AI"],
+        intent="Thin but real niche. Owns 'AI enablement' as primary, supported by adoption, skills and operating-change copy. The expert network is named in the body. Client service template applied.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", "/services/activation/"), ("AI Enablement", None)],
         kind="service",
+        mural=SERVICE_MURAL,
         hero="AI skills, training and adoption: finding where AI pays off",
         who="For organisations experimenting with AI who need a structured path to value.",
         aka=None,
@@ -997,14 +1144,15 @@ PAGES: list[dict] = [
         quiet="One-to-one advisory retainer",
         themes=[],
         sectors=[],
-        services=[T("Growth Strategy", "/services/growth-strategy/"), T("Growth Office", "/services/growth-office/")],
+        services=[T("Growth Strategy", "/services/growth-strategy/"), T("Value Orchestration", "/services/value-orchestration/")],
         h1="CEO Advisory",
-        h2s=["Why this, now", "Side-by-Side", "Our advisors", "How the retainer works"],
-        h3s=["The named product (hero and this section, not a second URL)"],
-        intent="Relationship page at full weight. Two menu strands land here: Side-by-Side (the retainer) and Our advisors (the people). Proof is the people. Coaching language is adjacent, not the offer.",
+        h2s=["Overview", "Why now?", "How can we help you?", "Our advisors", "Related case studies", "Why us?"],
+        h3s=["Side-by-Side (the named product, hero and this section, not a second URL)", "How the retainer works"],
+        intent="Relationship page at full weight. Two menu strands land here: Side-by-Side (the retainer) and Our advisors (the people). Proof is the people. Coaching language is adjacent, not the offer. Client service template applied where sensible; the #side-by-side and #advisors anchors are unchanged.",
         crumbs=[("Home", "/"), ("What we do", "/services/"), ("CEO Advisory", None)],
         kind="ceo",
         notes=["Side-by-Side is always written in full", "Quieter call to action: Arrange a conversation"],
+        mural=SERVICE_MURAL,
         hero="One-to-one support for leaders. Side-by-Side.",
         who="For CEOs and senior leaders who want a sounding board they trust.",
     ),
@@ -1135,7 +1283,7 @@ for slug, name, intro, used in [
         "Media",
         "Publishers and media groups. Subscriptions, membership, and getting strategy delivered in newsroom-adjacent businesses.",
         [
-            ("Growth Office", "/services/growth-office/"),
+            ("Value Orchestration", "/services/value-orchestration/"),
             ("Operating Model Design", "/services/operating-model-design/"),
             ("Proposition Innovation", "/services/proposition-innovation/"),
         ],
@@ -1147,7 +1295,7 @@ for slug, name, intro, used in [
         [
             ("Experience Engineering", "/services/experience-engineering/"),
             ("AI Agents for Marketing", "/services/ai-agents-for-marketing/"),
-            ("Growth Office", "/services/growth-office/"),
+            ("Value Orchestration", "/services/value-orchestration/"),
         ],
     ),
     (
@@ -1158,6 +1306,16 @@ for slug, name, intro, used in [
             ("Proposition Innovation", "/services/proposition-innovation/"),
             ("Customer Research and Insight", "/services/customer-research/"),
             ("Experience Engineering", "/services/experience-engineering/"),
+        ],
+    ),
+    (
+        "energy",
+        "Energy",
+        "Energy providers and the businesses around them. Customer propositions, utilisation economics and the journeys that win and keep customers.",
+        [
+            ("Proposition Innovation", "/services/proposition-innovation/"),
+            ("Growth Strategy", "/services/growth-strategy/"),
+            ("Customer Research and Insight", "/services/customer-research/"),
         ],
     ),
 ]:
@@ -1178,7 +1336,8 @@ for slug, name, intro, used in [
         intent="Reassures 'businesses like mine': a short intro plus filtered proof.",
         crumbs=[("Home", "/"), (name, None)],
         kind="sector",
-        notes=["Light landing: no sector point-of-view essay and no sector-specific service descriptions"],
+        notes=["Light landing: no sector point-of-view essay and no sector-specific service descriptions"]
+        + (["New sector from the unified industry taxonomy (client list merged with ours, Mural pass 15 Oct): Finance folds into Financial services, CPG folds into Consumer, Energy is added"] if slug == "energy" else []),
         intro=intro,
     ))
 
@@ -1192,19 +1351,21 @@ PAGES += [
         alts=["client-name searches land on individual case studies"],
         quiet=None,
         themes=[],
-        sectors=[T("Financial services", "/sectors/financial-services/"), T("Media", "/sectors/media/"), T("Consumer", "/sectors/consumer/"), T("Retail", "/sectors/retail/")],
+        sectors=[T("Financial services", "/sectors/financial-services/"), T("Media", "/sectors/media/"), T("Consumer", "/sectors/consumer/"), T("Retail", "/sectors/retail/"), T("Energy", "/sectors/energy/")],
         services=[T("Experience Engineering", "/services/experience-engineering/"), T("Growth Strategy", "/services/growth-strategy/")],
         h1="Our work",
-        h2s=["Featured", "All case studies"],
-        h3s=["Client quote (inside the case, not a testimonials page)"],
-        intent="Proof hub: every case study in one place, filterable by service first, then expertise and sector.",
+        h2s=["Our clients", "All case studies", "Client testimony"],
+        h3s=[],
+        intent="Proof hub: every case study in one place. One grid with an Industry and Service filter bar and See more (client layout); the nav label and H1 stay Our work, with the client's Our clients idea as the support line and logo band.",
         crumbs=[("Home", "/"), ("Our work", None)],
         kind="work-hub",
         notes=[
-            "Sectors are filters here and links in the footer, not a nav item",
-            "Client quotes and film snippets live inside each case",
+            "The separate Featured / All split is removed so one grid does the work",
+            "Industries are the unified taxonomy: Financial services, Consumer, Media, Retail, Energy",
+            "Client quotes and film snippets live inside each case; the hub carries one testimony video",
             "Cases are tagged by service, expertise and sector; the tags drive these filters and the proof blocks on service, theme and sector pages",
         ],
+        mural=["Our clients support line", "Short intro", "Auto-scrolling logo band", "Filter: Industry, Service", "Card grid + See more", "Testimony video", "Contact us band"],
     ),
     dict(
         url="/work/dayinsure/",
@@ -1218,12 +1379,13 @@ PAGES += [
         sectors=[T("Financial services", "/sectors/financial-services/")],
         services=[T("Experience Engineering", "/services/experience-engineering/"), T("Customer Research and Insight", "/services/customer-research/")],
         h1="Dayinsure",
-        h2s=["At a glance", "The challenge", "What we did", "The result"],
-        h3s=[],
-        intent="Case study shell for an Experience Engineering engagement. Links to the service, theme and sector. The testimonial and film live here.",
+        h2s=["The Opportunity", "The Solution", "The Impact", "See more of our case studies"],
+        h3s=["Client testimonial (attributed, beside the stat rail)"],
+        intent="Case study shell for an Experience Engineering engagement (client layout): hero with tag pills, sticky stat rail with Contact us, attributed testimonial, then Opportunity, Solution and Impact. Tag pills link the service, sector and expertise pages so cross-linking survives.",
         crumbs=[("Home", "/"), ("Our work", "/work/"), ("Dayinsure", None)],
         kind="case",
-        notes=["Client quote and film snippet sit in The result", "Read on the page; no PDF download"],
+        notes=["Stats and the quote are placeholders; no client facts are invented", "Impact is written as bullets", "Film snippet sits with the testimonial where one exists", "Read on the page; no PDF download"],
+        mural=["Hero: project name, title, tag pills, image", "Sticky stat rail + Contact us", "Attributed testimonial", "The Opportunity", "The Solution", "The Impact (bullets)", "See more of our case studies"],
         client="Dayinsure",
         result="Quote journey rebuilt; conversion and value up (figure TBC)",
         sector_name="Financial services",
@@ -1241,12 +1403,13 @@ PAGES += [
         sectors=[T("Financial services", "/sectors/financial-services/")],
         services=[T("Experience Engineering", "/services/experience-engineering/"), T("Proposition Innovation", "/services/proposition-innovation/")],
         h1="Key Group",
-        h2s=["At a glance", "The challenge", "What we did", "The result"],
-        h3s=[],
-        intent="Second case study shell, same template as Dayinsure. Its tags place it in the proof blocks on service, theme and sector pages.",
+        h2s=["The Opportunity", "The Solution", "The Impact", "See more of our case studies"],
+        h3s=["Client testimonial (attributed, beside the stat rail)"],
+        intent="Second case study shell, same client-layout template as Dayinsure. Its tags place it in the proof blocks on service, theme and sector pages.",
         crumbs=[("Home", "/"), ("Our work", "/work/"), ("Key Group", None)],
         kind="case",
-        notes=["Client quote and film snippet sit in The result", "Read on the page; no PDF download"],
+        notes=["Stats and the quote are placeholders; no client facts are invented", "Impact is written as bullets", "Read on the page; no PDF download"],
+        mural=["Hero: project name, title, tag pills, image", "Sticky stat rail + Contact us", "Attributed testimonial", "The Opportunity", "The Solution", "The Impact (bullets)", "See more of our case studies"],
         client="Key Group",
         result="Experience and offer working as one (figure TBC)",
         sector_name="Financial services",
@@ -1264,17 +1427,19 @@ PAGES += [
         sectors=[],
         services=[],
         h1="Our thinking",
-        h2s=["Reports", "Articles", "Events and news"],
-        h3s=["The Nutshell (newsletter)"],
-        intent="Home of all thinking: reports first, then articles, then events and news. Reports read on the page.",
+        h2s=["All thinking", "The Nutshell"],
+        h3s=[],
+        intent="Home of all thinking as one grid with one card design (client layout): type tabs in the order All, Reports, Articles, News and events, then a tag filter, with the type shown on every card. The filters work in this wireframe: tabs and tag pills hide and show cards client-side, and deep links (?type=reports or #reports) from the nav dropdown open the matching state. Every card stays in the HTML, so nothing is hidden from search.",
         crumbs=[("Home", "/"), ("Our thinking", None)],
         kind="insights-hub",
         notes=[
             "Articles and blog posts are one type here; there is no separate blog",
-            "Events and news is a section; a separate events page only if recap content sustains it",
-            "Reports expand on the page; no PDFs",
+            "News and Events are one merged type: News and events",
+            "No downloads from the grid: reports open their own page, where the email gate lives",
+            "The grid runs one, two or three across depending on how many items a filter returns",
             "Home shows one featured report and one article, not this grid",
         ],
+        mural=["Type tabs: All, Reports, Articles, News and events", "Tag filter", "One card design, type on card", "1 to 3 across grid", "Report gate on the report page, not the grid"],
     ),
     dict(
         url="/insights/loyalty-without-the-discount/",
@@ -1288,12 +1453,13 @@ PAGES += [
         sectors=[T("Retail", "/sectors/retail/")],
         services=[T("Proposition Innovation", "/services/proposition-innovation/")],
         h1="Loyalty without the discount",
-        h2s=["The problem", "What we think", "How we help"],
+        h2s=["The problem", "What we think", "Related"],
         h3s=[],
-        intent="Article shell. A dated point of view; the theme page holds the evergreen position. Related services are a block, not extra nav.",
+        intent="Article shell (client layout): title and image hero, body, then a Related trio of one article, one service and one report. The theme page holds the evergreen position.",
         crumbs=[("Home", "/"), ("Our thinking", "/insights/"), ("Loyalty without the discount", None)],
         kind="insight",
-        notes=["Lives under Our thinking; there is no separate blog section"],
+        notes=["Lives under Our thinking; there is no separate blog section", "The Related trio replaces the former How we help block; the service link moves into the trio"],
+        mural=["Hero: title + image", "Article body", "Related trio: article, service, report"],
     ),
     dict(
         url="/insights/pricing-paradox/",
@@ -1309,10 +1475,11 @@ PAGES += [
         h1="The Pricing Paradox: from tactical lever to growth engine",
         h2s=["What this report covers", "Read it on this page", "How we help"],
         h3s=[],
-        intent="Report shell. The report reads on the page; an optional email form offers a copy.",
+        intent="Report shell. The report reads on the page; the email gate (full name, work email, company, newsletter opt-in) lives here, never on the grid.",
         crumbs=[("Home", "/"), ("Our thinking", "/insights/"), ("The Pricing Paradox", None)],
         kind="report",
-        notes=["No PDF download; gating, if used, is a form not a file", "Reports lead the Our thinking hub"],
+        notes=["No PDF download; gating, if used, is a form not a file", "Gated versus read-on-page detail is an open item with the client", "Reports share the one grid on Our thinking, shown by their type on the card"],
+        mural=["Email gate form: full name, work email, company, newsletter opt-in"],
     ),
     dict(
         url="/about/",
@@ -1431,18 +1598,20 @@ PAGES += [
         sectors=[],
         services=[],
         h1="Careers at Manifesto",
-        h2s=["Life at Manifesto", "Diversity, equity and inclusion", "Benefits", "Open roles", "Not hiring for a listed role?"],
+        h2s=["Life at Manifesto", "Values and culture", "Diversity, equity and inclusion", "Benefits", "Application process", "Roles"],
         h3s=["Career change framing", "We hire from multiple backgrounds", "Pioneers / recent joiners"],
-        intent="First-class nav item: Contact is work with us, this page is work for us. Life at Manifesto and the open roles sit on one page.",
+        intent="First-class nav item: Contact is work with us, this page is work for us. Client layout applied: hero with a See open positions anchor button, four values and culture cards, the five-step application process, and a Roles section with an Open positions / All toggle. Life at Manifesto, DEI and Benefits are kept.",
         crumbs=[("Home", "/"), ("Careers", None)],
         kind="careers",
         notes=[
-            "Life at Manifesto, DEI and benefits sit above the roles",
+            "Life at Manifesto stays on Careers and separate from Our people",
+            "The Roles intro says to get in touch even if no role fits (folds in the former Not hiring for a listed role? section)",
+            "The roles toggle defaults to Open positions",
             "Career-change framing and multiple backgrounds in the copy",
             "Role descriptions expand on the role page; no PDFs",
-            "Speculative applications go through Work for us on Contact",
             "Studio film in the hero",
         ],
+        mural=["Hero + See open positions button", "Brief description", "Values and culture cards (4)", "Application process (5 steps)", "Roles + Open positions / All toggle", "Reach-out line"],
     ),
     dict(
         url="/careers/growth-architect/",
@@ -1458,10 +1627,11 @@ PAGES += [
         h1="Growth Architect",
         h2s=["About the role", "How to apply"],
         h3s=[],
-        intent="Role shell. The description reads on this page. noindex when the role closes.",
+        intent="Role shell (client layout): title, description, then How to apply via LinkedIn, linking to the application page. noindex when the role closes.",
         crumbs=[("Home", "/"), ("Careers", "/careers/"), ("Growth Architect", None)],
         kind="role",
-        notes=["No PDF job description"],
+        notes=["No PDF job description", "Applications go through LinkedIn; the wireframe shows the link as a placeholder"],
+        mural=["Position title", "Description", "How to apply via LinkedIn"],
     ),
     dict(
         url="/contact/",
@@ -1696,7 +1866,7 @@ def body_for(page: dict) -> str:
             {card(h, "/services/experience-engineering/", "Experience Engineering", "Customer experience (CX), website and digital design, build and testing", "offer")}
             {card(h, "/services/ai-agents-for-marketing/", "AI Agents for Marketing", "AI marketing agents that clean data and improve performance, guided by experts", "offer")}
             {card(h, "/services/operating-model-design/", "Operating Model Design", "Target operating model: how teams, data and AI agents work together", "offer")}
-            {card(h, "/services/growth-office/", "Growth Office", "Interim growth team and programme office that gets strategy delivered", "offer")}
+            {card(h, "/services/value-orchestration/", "Value Orchestration", "Interim growth team and programme office that gets strategy delivered", "offer")}
             {card(h, "/services/ai-enablement/", "AI Enablement", "AI skills, training and adoption: finding where AI pays off", "offer")}
           </div>
           <p class="case-line" {mod("Case line")}>Dayinsure, one-line result. <a href="{h("/work/dayinsure/")}">Read the case study</a></p>
@@ -1726,7 +1896,7 @@ def body_for(page: dict) -> str:
             ("Experience Engineering", "/services/experience-engineering/", "A journey, product or website is underperforming and you want it found, fixed, tested and scaled."),
             ("AI Agents for Marketing", "/services/ai-agents-for-marketing/", "Your customer data is holding marketing back and you want AI marketing agents doing the work."),
             ("Operating Model Design", "/services/operating-model-design/", "You need to redesign how teams, data and AI agents work together: a target operating model."),
-            ("Growth Office", "/services/growth-office/", "You need an interim growth team, and sometimes an interim CMO, to get the strategy delivered and the value tracked."),
+            ("Value Orchestration", "/services/value-orchestration/", "You need an interim growth team, and sometimes an interim CMO, to get the strategy delivered and the value tracked."),
             ("AI Enablement", "/services/ai-enablement/", "You want your people to use AI well and to find where it pays off."),
         ]
         lines = link_list([(f"<strong>{n}.</strong> {t}", h(u), "") for n, u, t in six])
@@ -1781,14 +1951,6 @@ def body_for(page: dict) -> str:
         extra = service_module(page, h)
         theme_tags = tags_html(h, (page.get("themes") or [])[:3])
         rel_svcs = "".join(card(h, u, n, "Often bought alongside", "offer") for n, u in (page.get("services") or [])[:3])
-        what_h2 = page["h2s"][1]
-        what_block = ""
-        if what_h2 in ("What we do", "Value proposition design"):
-            what_block = f"""
-        <section class="block">
-          <h2 class="plain">{what_h2}</h2>
-          <p class="prose">What we do in this service, in plain words.</p>
-        </section>"""
         return f"""
         {hero_open()}
           <h1>{page["h1"]}</h1>
@@ -1798,22 +1960,46 @@ def body_for(page: dict) -> str:
           {nums}
           {pillar}
           {cta_html(h)}
+          <div class="hero-img" aria-hidden="true">Image</div>
         </section>
         <section class="block">
-          <h2 class="plain">Why this, now</h2>
+          <h2 class="plain">Overview</h2>
+          <p class="prose">What this service is and the value it creates, in two or three plain sentences.</p>
+        </section>
+        <section class="block">
+          <h2 class="plain">Why now?</h2>
           <ul class="situations" {mod("Situations list")}>{sits}</ul>
           <p class="prose">Two to four short paragraphs on why this matters now.</p>
         </section>
-        {what_block}
         <section class="block">
-          <h2 class="plain">Proof</h2>
-          <div class="cards two">
-            {card(h, "/work/dayinsure/", "Dayinsure", "One-line result", "ph")}
-            {card(h, "/work/key-group/", "Key Group", "One-line result", "ph")}
+          <h2 class="plain">How can we help you?</h2>
+          <span class="wf-label">Every section visible on the page: real H3s, no accordion or tabs</span>
+          {extra["help"]}
+        </section>
+        {extra["modules"]}
+        <section class="block">
+          <h2 class="plain">Related case studies</h2>
+          <span class="wf-label">Constant speed carousel; pauses on hover</span>
+          <div class="carousel">
+            {tl_card(h, "/work/dayinsure/", "Dayinsure", "One-line result (placeholder)", "Experience Engineering", ("Financial services", "Customer value"))}
+            {tl_card(h, "/work/key-group/", "Key Group", "One-line result (placeholder)", "Experience Engineering", ("Financial services", "Loyalty"))}
           </div>
           <a class="more" href="{h("/work/")}">All work</a>
         </section>
-        {extra}
+        <section class="block">
+          <h2 class="plain">Why us?</h2>
+          <p class="prose">Why Manifesto for this work: the team, the method, the results. Plain words, no claims we cannot prove. <a href="{h("/about/how-we-work/")}">Our approach</a>.</p>
+        </section>
+        <section class="block">
+          <h2 class="plain">Our experts</h2>
+          <div class="cards">
+            {card(h, "/about/team/advisor-one/", "Expert name", "Role, one line", "person")}
+            {card(h, "/about/team/advisor-one/", "Expert name", "Role, one line", "person")}
+            {card(h, "/about/team/advisor-one/", "Expert name", "Role, one line", "person")}
+          </div>
+          {popup_html(h)}
+        </section>
+        {extra["how"]}
         <section class="block">
           <h2 class="sec">Related expertise</h2>
           {theme_tags}
@@ -1836,9 +2022,14 @@ def body_for(page: dict) -> str:
           <p>{page["hero"]}</p>
           <p class="who">{page["who"]}</p>
           {cta_html(h, ("Arrange a conversation", "/contact/"))}
+          <div class="hero-img" aria-hidden="true">Image</div>
         </section>
         <section class="block">
-          <h2 class="plain">Why this, now</h2>
+          <h2 class="plain">Overview</h2>
+          <p class="prose">One-to-one support for leaders, on retainer, through the Side-by-Side product. What it is and who it is for, in two plain sentences.</p>
+        </section>
+        <section class="block">
+          <h2 class="plain">Why now?</h2>
           <ul class="situations" {mod("Situations list")}>
             <li>I want a sounding board I trust</li>
             <li>Driving customer-led growth is demanding and lonely</li>
@@ -1846,23 +2037,39 @@ def body_for(page: dict) -> str:
           </ul>
           <p class="prose">Senior leaders who work with you on retainer.</p>
         </section>
-        <section class="block" id="side-by-side">
-          <h2 class="plain">Side-by-Side</h2>
+        <section class="block">
+          <h2 class="plain">How can we help you?</h2>
+          <span class="wf-label">Every section visible on the page: real H3s, no accordion or tabs</span>
+          <div id="side-by-side">
+          <h3 class="plain">Side-by-Side</h3>
           <p class="prose">A select group of senior leaders, armed with Manifesto thinking and frameworks. Adaptive and personality-led. Retainer-based, virtual or in person, so practitioners focus on delivering value, not on selling. This is the named product inside CEO Advisory.</p>
+          </div>
+          <h3 class="plain">How the retainer works</h3>
+          <p class="prose">Disciplined yet flexible. Virtual or in person. Personality-led. The product name is Side-by-Side.</p>
         </section>
         <section class="block" id="advisors">
           <h2 class="plain">Our advisors</h2>
-          <p class="prose">Profiles live with <a href="{h("/about/team/")}">Our people</a>.</p>
+          <p class="prose">The experts on this offer. Profiles live with <a href="{h("/about/team/")}">Our people</a>.</p>
           <div class="cards">
             {card(h, "/about/team/advisor-one/", "Advisor name", "Former role, one line", "person")}
             {card(h, "/about/team/advisor-one/", "Advisor name", "Former role, one line", "person")}
             {card(h, "/about/team/advisor-one/", "Advisor name", "Former role, one line", "person")}
           </div>
+          {popup_html(h, "Advisor name", "Former role, one line")}
           <a class="more" href="{h("/about/team/")}">Our people</a>
         </section>
         <section class="block">
-          <h2 class="plain">How the retainer works</h2>
-          <p class="prose">Disciplined yet flexible. Virtual or in person. Personality-led. The product name is Side-by-Side.</p>
+          <h2 class="plain">Related case studies</h2>
+          <span class="wf-label">Constant speed carousel; pauses on hover</span>
+          <div class="carousel">
+            {tl_card(h, "/work/key-group/", "Key Group", "One-line result (placeholder)", "Experience Engineering", ("Financial services", "Loyalty"))}
+            {tl_card(h, "/work/dayinsure/", "Dayinsure", "One-line result (placeholder)", "Experience Engineering", ("Financial services", "Customer value"))}
+          </div>
+          <a class="more" href="{h("/work/")}">All work</a>
+        </section>
+        <section class="block">
+          <h2 class="plain">Why us?</h2>
+          <p class="prose">The advisors are the proof: experienced growth leaders who have sat in the chair. Plain words, no claims we cannot prove.</p>
         </section>
         {related_thinking(h)}
         {closing(h, "Arrange a conversation")}
@@ -1973,67 +2180,89 @@ def body_for(page: dict) -> str:
         {hero_open()}
           {ann("Band: hero")}
           <h1>Our work</h1>
-          <p>Case studies from recent engagements.</p>
+          <p>Our clients: ambitious leaders who want sustainable, customer-led growth.</p>
+          <p class="body">Short intro. What the work has in common, in two plain sentences.</p>
         </section>
         <section class="block">
-          <h2 class="plain">Featured</h2>
-          {ann("Case card")}
-          <div class="cards two">
-            {card(h, "/work/dayinsure/", "Dayinsure", "Quote journey rebuilt", "ph")}
-          </div>
-          {ann("Static")}
-          {quote_html()}
+          <h2 class="sec">Our clients</h2>
+          {ann("Static: auto-scrolling")}
+          {logo_band_html(10, "Logo")}
         </section>
         <section class="block">
           <h2 class="plain">All case studies</h2>
-          {ann("Filter")}
-          {filter_bar(["All services", "Growth Strategy", "Experience Engineering", "Customer Research and Insight"], on="All services", more=True)}
-          <span class="wf-label">Revealed by More filters: Expertise and Sector</span>
-          {filter_bar(["Loyalty", "Pricing", "Financial services", "Consumer"])}
-          {ann("Case card")}
+          {ann("Filter: industry")}
+          {filter_bar(["All industries", "Financial services", "Consumer", "Media", "Retail", "Energy"], on="All industries")}
+          {ann("Filter: service")}
+          {filter_bar(["All services", "Growth Strategy", "Proposition Innovation", "Experience Engineering", "Customer Research and Insight"], on="All services", more=True)}
+          <span class="wf-label">Revealed by More filters: Expertise</span>
+          {ann("Thought leadership card")}
           <div class="cards">
-            {card(h, "/work/dayinsure/", "Dayinsure", "Experience Engineering", "ph")}
-            {card(h, "/work/key-group/", "Key Group", "Experience Engineering", "ph")}
+            {tl_card(h, "/work/dayinsure/", "Dayinsure", "One-line result or testimony (placeholder)", "Experience Engineering", ("Financial services", "Customer value"))}
+            {tl_card(h, "/work/key-group/", "Key Group", "One-line result or testimony (placeholder)", "Experience Engineering", ("Financial services", "Loyalty"))}
           </div>
           {ann("Text link")}
-          {pagination_html()}
+          <a class="more" href="#">See more</a>
         </section>
         {empty_stub("No case studies match these filters.", h("/work/"), annotate=True)}
+        <section class="block">
+          <h2 class="plain">Client testimony</h2>
+          {ann("Static")}
+          {testimony_video_html()}
+        </section>
         {related_thinking(h)}
         {closing(h, annotate=True)}
 """
 
     if kind == "case":
-        svc_tags = tags_html(h, (page.get("services") or [])[:3])
-        theme_tags = tags_html(h, (page.get("themes") or [])[:3])
+        pills = tags_html(
+            h,
+            (page.get("services") or [])[:2]
+            + [(page["sector_name"], page["sector_url"])]
+            + (page.get("themes") or [])[:1],
+        )
+        other = "/work/key-group/" if page["url"] == "/work/dayinsure/" else "/work/dayinsure/"
+        other_name = "Key Group" if page["url"] == "/work/dayinsure/" else "Dayinsure"
         return f"""
         {hero_open()}
+          <span class="eyebrow">Case study</span>
           <h1>{page["client"]}</h1>
-          <p>{page["result"]}</p>
-          {svc_tags}
+          <p>Project title: the proposition and the outcome in one line (placeholder).</p>
+          {ann("Tag: service, industry, expertise")}
+          {pills}
+          <div class="hero-img" aria-hidden="true">Case study main image</div>
         </section>
+        <div class="case-layout">
+          {stat_rail_html(h, [("Stat TBC", "Outcome measure, with the client's words"), ("Stat TBC", "Outcome measure, with the client's words")], "Contact us", "Got a growth challenge like this one?")}
+          <div class="case-story">
+            <section class="block case-quote">
+              <h3 class="plain">Client testimonial</h3>
+              {quote_html('"Attributed client quote: what changed and why it mattered. Placeholder, no invented facts."', "Name, role, " + page["client"] + " (to be confirmed)")}
+              {video_html("Film snippet, where one exists")}
+            </section>
+            <section class="block">
+              <h2 class="plain">The Opportunity</h2>
+              <p class="prose">The challenge the client faced and what they needed, in plain words. Sector: <a href="{h(page["sector_url"])}">{page["sector_name"]}</a>.</p>
+            </section>
+            <section class="block">
+              <h2 class="plain">The Solution</h2>
+              <p class="prose">The approach we took, step by step, with the services linked from the work.</p>
+            </section>
+            <section class="block">
+              <h2 class="plain">The Impact</h2>
+              <ul class="impact-list">
+                <li><strong>Outcome one:</strong> what improved, quantified where permitted (placeholder).</li>
+                <li><strong>Outcome two:</strong> what it opened up for the client (placeholder).</li>
+                <li><strong>Outcome three:</strong> where the client is now (placeholder).</li>
+              </ul>
+            </section>
+          </div>
+        </div>
         <section class="block">
-          <h2 class="plain">At a glance</h2>
-          {metrics_html([("TBC", "Conversion"), ("TBC", "Value"), ("TBC", "Time"), ("TBC", "NPS")])}
-        </section>
-        <section class="block">
-          <h2 class="plain">The challenge</h2>
-          <p class="prose">What the client needed. Sector: <a href="{h(page["sector_url"])}">{page["sector_name"]}</a>.</p>
-        </section>
-        <section class="block">
-          <h2 class="plain">What we did</h2>
-          <p class="prose">The approach we took, with services linked from the work.</p>
-        </section>
-        <section class="block">
-          <h2 class="plain">The result</h2>
-          <p class="prose">Outcomes, quantified where permitted.</p>
-          <h3 class="plain">Client quote</h3>
-          {quote_html()}
-          {video_html("Film")}
-        </section>
-        <section class="block">
-          <h2 class="sec">Related expertise</h2>
-          {theme_tags}
+          <h2 class="plain">See more of our case studies</h2>
+          <div class="cards two">
+            {tl_card(h, other, other_name, "One-line result or testimony (placeholder)", "Experience Engineering", ("Financial services",))}
+          </div>
+          <a class="more" href="{h("/work/")}">All work</a>
         </section>
         {related_thinking(h)}
         {closing(h)}
@@ -2043,31 +2272,27 @@ def body_for(page: dict) -> str:
         return f"""
         {hero_open()}
           <h1>Our thinking</h1>
-          <p>Reports, articles, events and news.</p>
+          <p>Reports, articles, news and events: one grid, one card.</p>
         </section>
-        <section class="block" id="reports">
-          <h2 class="plain">Reports</h2>
-          <p class="prose">Long-form reports, read on the page.</p>
-          <div class="cards two">
-          {card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "Report. From tactical lever to growth engine", "doc")}
+        <section class="block">
+          <h2 class="plain">All thinking</h2>
+          {ann("Filter: type tabs, All first")}
+          {type_tabs_html([("All", None), ("Reports", "reports"), ("Articles", "articles"), ("News and events", "news-events")], on="All")}
+          <span class="wf-label">Live in this wireframe: tabs and tag pills filter the grid in place (small script, no framework). Deep links such as ?type=reports or #reports open the matching state. Every card stays in the HTML, so nothing is hidden from search</span>
+          {ann("Filter: tags")}
+          {filter_bar(["Loyalty", "Pricing", "Customer Value", "Growth Strategy", "Financial services"], more=True, data_attr="data-tag")}
+          {ann("Thought leadership card")}
+          <div class="cards" data-filter-grid>
+            {tl_card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "From tactical lever to growth engine. Read on its page; no download here.", "Growth Strategy", ("Pricing",), "Report", type_slug="reports")}
+            {tl_card(h, "/insights/loyalty-without-the-discount/", "Loyalty without the discount", "Short excerpt of the argument (placeholder).", "Proposition Innovation", ("Loyalty",), "Article", type_slug="articles")}
+            {tl_card(h, "/insights/pricing-paradox/", "Pricing Paradox launch event", "Recap and what was discussed (placeholder).", "Growth Strategy", ("Pricing",), "News and events", type_slug="news-events")}
           </div>
+          {ann("Text link")}
+          <a class="more" href="#">See more</a>
         </section>
-        <section class="block" id="articles">
-          <h2 class="plain">Articles</h2>
-          {filter_bar(["All types", "Article", "Report", "Event"], on="All types", more=True)}
-          <span class="wf-label">Revealed by More filters: Expertise, Service and Sector</span>
-          {filter_bar(["Loyalty", "Pricing", "Growth Strategy", "Financial services"])}
-          <div class="cards two">
-            {card(h, "/insights/loyalty-without-the-discount/", "Loyalty without the discount", "Article · Loyalty", "article")}
-          </div>
-          {pagination_html(("1", "2"))}
-        </section>
-        {empty_stub("No thinking matches these filters.", h("/insights/"))}
-        <section class="block" id="events">
-          <h2 class="plain">Events and news</h2>
-          <p class="prose">Launch events and recaps. A separate events page only if there is enough recap content to sustain it.</p>
-          {link_list([("Pricing Paradox launch event", h("/insights/pricing-paradox/"), "Event")])}
-          <h3 class="plain">The Nutshell</h3>
+        {empty_stub("No thinking matches these filters.", h("/insights/"), filter_hook=True)}
+        <section class="block">
+          <h2 class="plain">The Nutshell</h2>
           <p class="prose">Events, thought leadership and what has caught our attention. <a href="{h("/newsletter/")}">Sign up to The Nutshell</a></p>
         </section>
         <section class="block">
@@ -2085,8 +2310,9 @@ def body_for(page: dict) -> str:
         return f"""
         {hero_open()}
           <h1>{page["h1"]}</h1>
-          <p class="who">Article · Date · 6 min · Author</p>
+          <p class="who">Article · 6 min · Author</p>
           {tags_html(h, [("Loyalty", "/expertise/loyalty/")])}
+          <div class="hero-img" aria-hidden="true">Image</div>
         </section>
         <section class="block">
           <h2 class="plain">The problem</h2>
@@ -2094,11 +2320,11 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="plain">What we think</h2>
-          <p class="prose">One or two arguments.</p>
+          <p class="prose">One or two arguments. In-line links to <a href="{h("/expertise/loyalty/")}">Loyalty</a> where the argument touches it.</p>
         </section>
         <section class="block">
-          <h2 class="plain">How we help</h2>
-          <p class="prose">Related: <a href="{h("/services/proposition-innovation/")}">Proposition Innovation</a> and <a href="{h("/expertise/loyalty/")}">Loyalty</a>.</p>
+          <h2 class="plain">Related</h2>
+          {related_trio_html(h, ("Next article (placeholder)", "/insights/"), ("Proposition Innovation", "/services/proposition-innovation/"), ("The Pricing Paradox", "/insights/pricing-paradox/"))}
         </section>
         {closing(h)}
 """
@@ -2116,8 +2342,8 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="plain">Read it on this page</h2>
-          <p class="prose">The full report continues here. Optional: leave an email to receive a copy.</p>
-          {form_html([("Email", "", "")], "Send me a copy", h("/contact/thank-you/"))}
+          <p class="prose">The full report continues here. The email gate lives on this page, never on the grid. Whether the body is gated or reads in full on the page is an open item with the client.</p>
+          {form_html([("Full name", "", ""), ("Work email", "", ""), ("Company", "", "")], "Submit", h("/contact/thank-you/"), '<p class="field-msg">Optional tick: receive updates on events, thought leadership and The Nutshell.</p>')}
         </section>
         <section class="block">
           <h2 class="plain">How we help</h2>
@@ -2257,7 +2483,7 @@ def body_for(page: dict) -> str:
           {link_list([
               ("Strategy project", h("/services/growth-strategy/"), ""),
               ("Strategy into activation", h("/services/activation/"), ""),
-              ("Embedded growth office / interim growth team", h("/services/growth-office/"), ""),
+              ("Embedded interim growth team (Value Orchestration)", h("/services/value-orchestration/"), ""),
               ("Advisory retainer", h("/services/ceo-advisory/"), ""),
           ])}
         </section>
@@ -2302,13 +2528,18 @@ def body_for(page: dict) -> str:
 """
 
     if kind == "careers":
+        values = "".join(
+            f'<a class="card theme" {mod("Culture card")} href="{h("/about/values/")}"><strong>Value {i}</strong><span>One line on what it means here (placeholder)</span></a>'
+            for i in range(1, 5)
+        )
         return f"""
         {hero_open()}
           <h1>Careers at Manifesto</h1>
-          <p>What it is like to work here, and the roles we are hiring for.</p>
+          <p>Brief description: what it is like to work here, and the roles we are hiring for.</p>
+          {cta_html(h, ("See open positions", "/careers/#roles"), ("Life at Manifesto", "/careers/#life"))}
           {video_html("Studio")}
         </section>
-        <section class="block">
+        <section class="block" id="life">
           <h2 class="plain">Life at Manifesto</h2>
           <p class="prose">What it is like to work here. <a href="{h("/about/values/")}">Values and culture</a>. Meet the team: <a href="{h("/about/team/")}">Our people</a>.</p>
           <h3 class="plain">Career change framing</h3>
@@ -2324,6 +2555,10 @@ def body_for(page: dict) -> str:
           </div>
         </section>
         <section class="block">
+          <h2 class="plain">Values and culture</h2>
+          <div class="cards four">{values}</div>
+        </section>
+        <section class="block">
           <h2 class="plain">Diversity, equity and inclusion</h2>
           <p class="prose">Commitments in the hiring context.</p>
         </section>
@@ -2332,13 +2567,15 @@ def body_for(page: dict) -> str:
           <p class="prose">Employee benefits.</p>
         </section>
         <section class="block">
-          <h2 class="plain">Open roles</h2>
-          <p class="prose">Roles we are actively hiring for. Full descriptions on the role page.</p>
-          <div class="cards two">{card(h, "/careers/growth-architect/", "Growth Architect", "Location · type · actively hiring", "role")}</div>
+          <h2 class="plain">Application process</h2>
+          {steps_html(["Application", "Interview with Partners", "Case study", "References", "Decision"])}
         </section>
-        <section class="block">
-          <h2 class="plain">Not hiring for a listed role?</h2>
-          <p class="prose">Reach out if you are interested in working here even if a position does not say it is open. <a href="{h("/contact/#work-for-us")}">Work for us</a>.</p>
+        <section class="block" id="roles">
+          <h2 class="plain">Roles</h2>
+          <p class="prose">Reach out even if the open roles are not what you are after: <a href="{h("/contact/#work-for-us")}">Work for us</a>.</p>
+          {role_toggle_html()}
+          <div class="cards two">{card(h, "/careers/growth-architect/", "Growth Architect", "Location · type · actively hiring", "role")}</div>
+          <span class="wf-label">All shows every role, including those not actively hiring. Full descriptions on the role page</span>
         </section>
         {closing(h, "Interested in joining the team?", "Work for us", "/contact/#work-for-us", "Our people", "/about/team/")}
 """
@@ -2355,8 +2592,9 @@ def body_for(page: dict) -> str:
         </section>
         <section class="block">
           <h2 class="plain">How to apply</h2>
-          <p class="prose">Apply through Work for us on Contact, or by email. <a href="{h("/careers/")}">All roles</a>.</p>
-          {cta_html(h, ("Apply", "/contact/#work-for-us"), ("All roles", "/careers/"))}
+          <p class="prose">Applications go through LinkedIn. <a href="{h("/careers/")}">All roles</a>.</p>
+          <div class="cta" {mod("CTA pair")}><a class="btn" href="#">Apply on LinkedIn</a><a class="text" href="{h("/careers/")}">All roles</a></div>
+          <span class="wf-label">Button links to the role's application page on LinkedIn (external)</span>
         </section>
 """
 
@@ -2511,9 +2749,26 @@ def catalogue_samples(h) -> dict[str, str]:
         "Article card": '<div class="cards two">' + card(h, "/insights/loyalty-without-the-discount/", "Loyalty without the discount", "Article · Loyalty", "article") + "</div>",
         "Person card": '<div class="cards">' + card(h, "/about/team/advisor-one/", "Advisor name", "Former role, one line", "person") + "</div>",
         "Role card": '<div class="cards two">' + card(h, "/careers/growth-architect/", "Growth Architect", "Location · type · actively hiring", "role") + "</div>",
+        "Thought leadership card": '<div class="cards two">'
+        + tl_card(h, "/insights/pricing-paradox/", "The Pricing Paradox", "Short excerpt, one or two lines (placeholder)", "Growth Strategy", ("Financial services", "Pricing"), type_label="Report")
+        + tl_card(h, "/work/dayinsure/", "Dayinsure", "One-line result or testimony (placeholder)", "Experience Engineering", ("Consumer", "Loyalty"))
+        + "</div>",
+        "Related trio": related_trio_html(
+            h,
+            ("Loyalty without the discount", "/insights/loyalty-without-the-discount/"),
+            ("Proposition Innovation", "/services/proposition-innovation/"),
+            ("The Pricing Paradox", "/insights/pricing-paradox/"),
+        ),
+        "Culture card": '<div class="cards two">'
+        + f'<a class="card theme" {mod("Culture card")} href="{h("/about/values/")}"><strong>Value 1</strong><span>One line on what it means here (placeholder)</span></a>'
+        + f'<a class="card theme" {mod("Culture card")} href="{h("/about/values/")}"><strong>Value 2</strong><span>One line on what it means here (placeholder)</span></a>'
+        + "</div>",
         "Triangle tile": tri_html(h, PILLAR_TILES, '<p class="tri-line">Strategy first. Activation to deliver it. Advisors alongside.</p>'),
         "Page tag": tags_html(h, [("Loyalty", "/expertise/loyalty/"), ("Pricing", "/expertise/pricing/")]),
         "Filter bar": filter_bar(["All services", "Growth Strategy", "Experience Engineering"], on="All services", more=True),
+        "Type filter tabs": type_tabs_html([("All", None), ("Reports", None), ("Articles", None), ("News and events", None)], on="All"),
+        "Role toggle": role_toggle_html(),
+        "Application steps": steps_html(["Application", "Interview with Partners", "Case study", "References", "Decision"]),
         "Situations list": f'''<ul class="situations" {mod("Situations list")}>
             <li><a href="{h("/services/growth-strategy/")}">We need to decide where and how to grow</a></li>
             <li><a href="{h("/services/ceo-advisory/")}">I want a sounding board I trust</a></li>
@@ -2525,8 +2780,12 @@ def catalogue_samples(h) -> dict[str, str]:
         "Pagination": pagination_html(),
         "Empty state": empty_html("No case studies match these filters.", h("/work/")),
         "Logo strip": logos_html(6, "Logo"),
+        "Logo band": logo_band_html(6),
+        "Sticky stat rail": '<div style="max-width:280px">' + stat_rail_html(h, [("Stat TBC", "Outcome measure, with the client's words"), ("Stat TBC", "Outcome measure, with the client's words")], "Contact us", "Got a growth challenge like this one?") + "</div>",
         "Quote": quote_html(cite="Dayinsure"),
         "Video 16:9": video_html("Showreel"),
+        "Testimony video": testimony_video_html(),
+        "Profile pop-up": popup_html(h),
         "CIVD four-cell": civd_html(),
         "Article body": article_body(),
         "Form": forms,
@@ -2596,20 +2855,32 @@ def catalogue_body(h) -> str:
 """
 
 
-def service_module(page: dict, h) -> str:
+def service_module(page: dict, h) -> dict:
+    """Per-service content for the client service template. Returns three parts:
+    `help` (H3 blocks under How can we help you?), `modules` (anchored framework
+    sections that keep their H2 homes, D-51) and `how` (the How it works section)."""
     url = page["url"]
-    if url == "/services/growth-strategy/":
+
+    def how_section(text: str) -> str:
         return f"""
         <section class="block">
-          <h2 class="plain">North Star</h2>
-          <p class="prose">The North Star the business will follow.</p>
-          <h2 class="plain">Growth priorities</h2>
-          <p class="prose">Where the bets sit.</p>
-          <h2 class="plain">Demand signals</h2>
-          <p class="prose">What you watch to know the strategy is working.</p>
-          <h2 class="plain">Scenario planning</h2>
-          <p class="prose">How the strategy holds when the market moves.</p>
+          <h2 class="plain">How it works</h2>
+          <p class="prose">{text}</p>
         </section>
+"""
+
+    if url == "/services/growth-strategy/":
+        return dict(
+            help=f"""
+          <h3 class="plain">North Star</h3>
+          <p class="prose">The North Star the business will follow.</p>
+          <h3 class="plain">Growth priorities</h3>
+          <p class="prose">Where the bets sit.</p>
+          <h3 class="plain">Demand signals</h3>
+          <p class="prose">What you watch to know the strategy is working.</p>
+          <h3 class="plain">Scenario planning</h3>
+          <p class="prose">How the strategy holds when the market moves.</p>""",
+            modules=f"""
         <section class="block" id="civd">
           <h2 class="plain">Customer, Innovation, Value and Delivery</h2>
           <p class="prose">The CIVD frame. Customer, Innovation, Value and Delivery. Next: <a href="{h("/services/proposition-innovation/")}">Proposition Innovation</a>.</p>
@@ -2623,11 +2894,9 @@ def service_module(page: dict, h) -> str:
           <h3 class="plain">Delivery</h3>
           <p class="prose">Whether it can be executed. Hands off to Activation.</p>
         </section>
-        <section class="block">
-          <h2 class="plain">How it works</h2>
-          <p class="prose">Shape of a strategy engagement. Method detail: <a href="{h("/about/how-we-work/")}">Our approach</a>.</p>
-        </section>
-"""
+""",
+            how=how_section(f'Shape of a strategy engagement. Method detail: <a href="{h("/about/how-we-work/")}">Our approach</a>.'),
+        )
     if url == "/services/proposition-innovation/":
         items = [
             ("Loyalty propositions", "/expertise/loyalty/"),
@@ -2636,64 +2905,61 @@ def service_module(page: dict, h) -> str:
             ("Direct-to-consumer propositions", "/expertise/customer-value/"),
         ]
         blocks = "".join(
-            f'<h2 class="plain">{n}</h2><p class="prose">How we design {n.lower()}. See <a href="{h(u)}">{n.split()[0]}</a>.</p>'
+            f'<h3 class="plain">{n}</h3><p class="prose">How we design {n.lower()}. See <a href="{h(u)}">{n.split()[0]}</a>.</p>'
             for n, u in items
         )
-        return f"""
-        <section class="block">{blocks}
-          <h2 class="plain">How it works</h2>
-          <p class="prose">Shape of a proposition engagement.</p>
-        </section>
-"""
+        return dict(
+            help=f"""
+          <h3 class="plain">Value proposition design</h3>
+          <p class="prose">What we do in this service, in plain words.</p>{blocks}""",
+            modules="",
+            how=how_section("Shape of a proposition engagement."),
+        )
     if url == "/services/customer-research/":
-        return f"""
-        <section class="block">
-          <h2 class="plain">Customer research methods</h2>
+        return dict(
+            help=f"""
+          <h3 class="plain">Customer research methods</h3>
           <p class="prose">Techniques, companies, and how the work is done.</p>
-          <h2 class="plain">Customer journey mapping</h2>
+          <h3 class="plain">Customer journey mapping</h3>
           <p class="prose">Analytical mapping lives here. Design research lives on <a href="{h("/services/experience-engineering/#research-and-testing")}">Experience Engineering</a>.</p>
-          <h2 class="plain">Research projects</h2>
-          <p class="prose">Bespoke qualitative, quantitative, surveys and digital listening.</p>
-          <h3 class="plain">Digital listening</h3>
-          <h3 class="plain">Qualitative research</h3>
-          <h3 class="plain">Quantitative research</h3>
-          <h3 class="plain">Customer data analytics</h3>
-          <h3 class="plain">Internal knowledge</h3>
-          <h3 class="plain">External market data</h3>
-          <h2 class="plain">Always-on customer insight</h2>
-          <p class="prose">Voice of the customer tools, panels and intelligence platforms.</p>
-          <h2 class="plain">How it works</h2>
-          <p class="prose">Insight project or capability build.</p>
-        </section>
-"""
+          <h3 class="plain">Research projects</h3>
+          <p class="prose">Bespoke qualitative, quantitative, surveys and digital listening. The methods: digital listening, qualitative research, quantitative research, customer data analytics, internal knowledge, external market data.</p>
+          <h3 class="plain">Always-on customer insight</h3>
+          <p class="prose">Voice of the customer tools, panels and intelligence platforms.</p>""",
+            modules="",
+            how=how_section("Insight project or capability build."),
+        )
     if url == "/services/experience-engineering/":
-        return f"""
-        <section class="block">
-          <h2 class="plain">Find</h2>
+        return dict(
+            help=f"""
+          <h3 class="plain">Find</h3>
           <p class="prose">Audit existing performance.</p>
-          <h2 class="plain">Redesign</h2>
+          <h3 class="plain">Redesign</h3>
           <p class="prose">Better journey flows, CX design and digital build.</p>
-          <h2 class="plain">Test</h2>
+          <h3 class="plain">Test</h3>
           <p class="prose">Build and test with target audiences.</p>
-          <h2 class="plain">Scale</h2>
+          <h3 class="plain">Scale</h3>
           <p class="prose">Roll out the journeys that move value.</p>
-        </section>
-        <section class="block" id="customer-experience">
-          <h2 class="plain">Customer experience (CX) design</h2>
+          <div id="customer-experience">
+          <h3 class="plain">Customer experience (CX) design</h3>
           <p class="prose">Customer experience design for the journeys that matter.</p>
-        </section>
-        <section class="block" id="website-and-digital">
-          <h2 class="plain">Website and digital product</h2>
+          </div>
+          <div id="website-and-digital">
+          <h3 class="plain">Website and digital product</h3>
           <p class="prose">Website and digital product design, build and testing.</p>
-        </section>
-        <section class="block" id="research-and-testing">
-          <h2 class="plain">User research and testing</h2>
-          <p class="prose">Journey research for design. <a href="{h("/services/customer-research/")}">Customer Research and Insight</a> owns analytical research.</p>
-          <h3 class="plain">Customer and value analytics</h3>
-        </section>
-"""
+          </div>
+          <div id="research-and-testing">
+          <h3 class="plain">User research and testing</h3>
+          <p class="prose">Journey research for design, with customer and value analytics. <a href="{h("/services/customer-research/")}">Customer Research and Insight</a> owns analytical research.</p>
+          </div>""",
+            modules="",
+            how=how_section("Find, Redesign, Test, Scale: the sequence an engagement runs in."),
+        )
     if url == "/services/ai-agents-for-marketing/":
-        return f"""
+        return dict(
+            help="""
+          <p class="prose">What we do in this service, in plain words: audit the customer data, then deploy marketing and data agents from AgentLab, guided by experts.</p>""",
+            modules="""
         <section class="block" id="agentlab">
           <h2 class="plain">AgentLab</h2>
           <p class="prose">Named catalogue of marketing and data agents.</p>
@@ -2706,19 +2972,17 @@ def service_module(page: dict, h) -> str:
           <h3 class="plain">Automation and Execution</h3>
           <p class="prose">Channel optimisation, test and learn, QA and deployment.</p>
         </section>
-        <section class="block">
-          <h2 class="plain">How it works</h2>
-          <p class="prose">4 weeks audit. 6 weeks first agents. Ongoing portfolio. <a href="{h("/services/ai-enablement/")}">AI Enablement</a> if you are earlier in the journey.</p>
-        </section>
-"""
+""",
+            how=how_section(f'4 weeks audit. 6 weeks first agents. Ongoing portfolio. <a href="{h("/services/ai-enablement/")}">AI Enablement</a> if you are earlier in the journey.'),
+        )
     if url == "/services/operating-model-design/":
-        return f"""
-        <section class="block">
-          <h2 class="plain">Target operating model</h2>
+        return dict(
+            help="""
+          <h3 class="plain">Target operating model</h3>
           <p class="prose">How teams should work when they need a new operating model.</p>
-          <h2 class="plain">Adaptive operating model</h2>
-          <p class="prose">Grounded in customer value growth. Fuelled by high-quality data. Redesigned around humans and AI agents. Orchestrated and linked to impact.</p>
-        </section>
+          <h3 class="plain">Adaptive operating model</h3>
+          <p class="prose">Grounded in customer value growth. Fuelled by high-quality data. Redesigned around humans and AI agents. Orchestrated and linked to impact.</p>""",
+            modules=f"""
         <section class="block" id="operating-architecture">
           <h2 class="plain">Our Operating Architecture framework</h2>
           <h3 class="plain">High-quality data and tools</h3>
@@ -2726,45 +2990,44 @@ def service_module(page: dict, h) -> str:
           <h3 class="plain">New work units</h3>
           <p class="prose">Key functions, capabilities and workflows.</p>
           <h3 class="plain">Orchestration: culture, value, capability</h3>
-          <p class="prose">The same three words as <a href="{h("/services/growth-office/")}">Growth Office</a>, which staffs what this page designs.</p>
+          <p class="prose">The same three words as <a href="{h("/services/value-orchestration/")}">Value Orchestration</a>, which staffs what this page designs.</p>
         </section>
-        <section class="block">
-          <h2 class="plain">How it works</h2>
-          <p class="prose">Diagnose the current model, design the adaptive model, implement.</p>
-        </section>
-"""
-    if url == "/services/growth-office/":
-        return f"""
-        <section class="block">
-          <h2 class="plain">Interim growth team</h2>
-          <p class="prose">Lean teams of interim growth experts. Interim CMO where the engagement needs senior cover.</p>
-          <h3 class="plain">Interim CMO and senior cover (where the engagement needs it)</h3>
-          <h2 class="plain">Then embed</h2>
+""",
+            how=how_section("Diagnose the current model, design the adaptive model, implement."),
+        )
+    if url == "/services/value-orchestration/":
+        return dict(
+            help="""
+          <h3 class="plain">Interim growth team</h3>
+          <p class="prose">Lean teams of interim growth experts. Interim CMO and senior cover where the engagement needs it.</p>
+          <h3 class="plain">Then embed</h3>
           <p class="prose">Establish the new ways of working required for ongoing delivery. Not a permanent outsource.</p>
-          <h2 class="plain">Culture</h2>
+          <h3 class="plain">Culture</h3>
           <p class="prose">Winning hearts and minds through engagement, proof points and AI literacy.</p>
-          <h2 class="plain">Capability</h2>
+          <h3 class="plain">Capability</h3>
           <p class="prose">Orchestrating delivery teams to build capabilities and automate priority workflows.</p>
-          <h2 class="plain">Value</h2>
-          <p class="prose">Tracking impact against baseline plans and course-correcting on lead indicators.</p>
-          <h2 class="plain">How it works</h2>
-          <p class="prose">Two phases: interim activation support, then embed. <a href="{h("/services/operating-model-design/")}">Operating Model Design</a> designs; this page staffs.</p>
-        </section>
-"""
+          <h3 class="plain">Value</h3>
+          <p class="prose">Tracking impact against baseline plans and course-correcting on lead indicators.</p>""",
+            modules="",
+            how=how_section(f'Two phases: interim activation support, then embed. <a href="{h("/services/operating-model-design/")}">Operating Model Design</a> designs; this page staffs.'),
+        )
     if url == "/services/ai-enablement/":
-        return f"""
-        <section class="block">
-          <h2 class="plain">AI skills and adoption</h2>
+        return dict(
+            help=f"""
+          <h3 class="plain">AI skills and adoption</h3>
           <p class="prose">Building the skills and tools for day-to-day AI use.</p>
-          <h2 class="plain">Finding where AI pays off</h2>
+          <h3 class="plain">Finding where AI pays off</h3>
           <p class="prose">Value case targeting and re-engineering key workflows.</p>
-          <h2 class="plain">New business models with AI</h2>
-          <p class="prose">Working with leadership to identify and qualify transformational opportunities.</p>
-          <h2 class="plain">How it works</h2>
-          <p class="prose">Maturity assessment, then a bespoke programme. Practitioners from our expert network. Tooling: <a href="{h("/services/ai-agents-for-marketing/")}">AI Agents for Marketing</a>.</p>
-        </section>
-"""
-    return '<section class="block"><h2 class="plain">How it works</h2><p class="prose">Engagement shape.</p></section>'
+          <h3 class="plain">New business models with AI</h3>
+          <p class="prose">Working with leadership to identify and qualify transformational opportunities.</p>""",
+            modules="",
+            how=how_section(f'Maturity assessment, then a bespoke programme. Practitioners from our expert network. Tooling: <a href="{h("/services/ai-agents-for-marketing/")}">AI Agents for Marketing</a>.'),
+        )
+    return dict(
+        help='<p class="prose">What we do in this service, in plain words.</p>',
+        modules="",
+        how=how_section("Engagement shape."),
+    )
 
 
 def sitemap_page() -> str:
@@ -2929,7 +3192,7 @@ def check_vocabulary() -> None:
     unused = [n for n, (g, _, _) in COMPONENTS.items() if g != "Chrome" and n not in used]
     if unused:
         print("note: in the library but on no page:", ", ".join(unused))
-    banned = ["chip", "MURAL", "previous build", "not at the top", "banner up", "Canonical<"]
+    banned = ["chip", "MURAL", "previous build", "not at the top", "banner up", "Canonical<", "Growth Office", "growth-office", "growth office"]
     for path in MOCKS.rglob("index.html"):
         text = path.read_text(encoding="utf-8")
         for b in banned:

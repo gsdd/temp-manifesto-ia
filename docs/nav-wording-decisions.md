@@ -19,14 +19,14 @@ v5 also brings the first outside evidence on the v3 labels, from the competitor 
 | AI Enablement | Prophet "AI-Enabled Culture"; Elsewhen "AI Strategy"; Baringa "Artificial Intelligence" | Confirmed |
 | Activation Services | Lippincott "Activation" (as a solution); Elixirr "Capability Activation", "Insights Activation" | Confirmed as a pillar name; the six labels beneath carry the searched words |
 | Experience Engineering | **No peer uses it.** Bain, Elixirr, Baringa and Simon-Kucher say "Customer Experience"; Elixirr "Digital Design & Build"; Elsewhen "User Research & CX Strategy" | **Flag for Andy.** The deck argues to keep it (the Dayinsure and Key Group model he wants to be known for); competitors argue for "Customer Experience and Digital". Kept, with the quiet line |
-| Growth Office | **No peer uses it.** Elixirr coined "Execution Edge" for the same space, with "Transformation Management" as its plain sibling | **Flag for Andy.** Kept, with the quiet line "Interim growth team" |
+| Value Orchestration | **No peer uses it.** Elixirr coined "Execution Edge" for the same space, with "Transformation Management" as its plain sibling | **Flag for Andy.** Kept, with the quiet line "Interim growth team" |
 | What we do; Our work; Insights | "What we do": Prophet, Yonder, Deloitte Digital. "Work": Prophet, Yonder, frog, Mando; "Our Work": Lippincott, Deloitte Digital; "Case Studies": Elsewhen, Elixirr. "Insights": frog, Baringa; "Thinking": Prophet, Yonder; "Ideas": Lippincott | Confirmed |
 
 ## v4 status of this document
 
 v4 (`v4-simplification.md`) changes **no label**. Every label decision below stands: the three renames, the coined names kept, the acronyms removed, "Expertise" as the visitor's word.
 
-What v4 changes is where the **subtitles** live. The thirteen v3 subtitles are retired from the menu (D-35). In their place: three pillar lines of four to six words ("Where and how you grow", "Turning strategy into results", "One-to-one support for leaders") and two quiet lines under the two labels Andy named as opaque (Experience Engineering: "Customer experience and websites"; Growth Office: "Interim growth team"). Each v3 subtitle becomes the **hero line** of its service page, and `04-canonicals-and-seo.md` section 6.1 makes the searched terms a per-page requirement. So the subtitle tables below are still the approved wording; they now describe page copy, not menu copy.
+What v4 changes is where the **subtitles** live. The thirteen v3 subtitles are retired from the menu (D-35). In their place: three pillar lines of four to six words ("Where and how you grow", "Turning strategy into results", "One-to-one support for leaders") and two quiet lines under the two labels Andy named as opaque (Experience Engineering: "Customer experience and websites"; Value Orchestration: "Interim growth team"). Each v3 subtitle becomes the **hero line** of its service page, and `04-canonicals-and-seo.md` section 6.1 makes the searched terms a per-page requirement. So the subtitle tables below are still the approved wording; they now describe page copy, not menu copy.
 
 Three v3 menu items no longer exist (D-36): the "Growth Strategy" item under its own heading, "Side-by-Side" under CEO Advisory (the heading is the link), and "Meet the advisors". The Insights dropdown is gone (D-38), so its Expertise column no longer exists either. The footer-row link reads "Expertise" without the five names (D-37).
 
@@ -57,7 +57,7 @@ For every label in the header, mega-nav and footer, ask: **what would a prospect
 | If | Then | Example |
 |---|---|---|
 | The deck label and the searched term are the same or close | Keep the deck label | Growth Strategy, CEO Advisory, AI Enablement |
-| The deck label is a Manifesto term or product name that Andy wants to be recognised for, and no single plain term replaces it | Keep the deck label as the primary label and add a plain one-line subtitle that carries the searched terms | Experience Engineering, Growth Office, Side-by-Side, Proposition Innovation, Activation Services |
+| The deck label is a Manifesto term or product name that Andy wants to be recognised for, and no single plain term replaces it | Keep the deck label as the primary label and add a plain one-line subtitle that carries the searched terms | Experience Engineering, Value Orchestration, Side-by-Side, Proposition Innovation, Activation Services |
 | The deck label and the searched term conflict, and the plain term is what the service actually is | Rename to the plain term. Keep the deck term on the service page (an "also known as" line) and as a redirect | Customer Intelligence, Data Agents, Operating Architecture |
 | The label is an acronym or internal shorthand | Remove it from the nav | (SxS), HPX |
 
@@ -110,7 +110,7 @@ No change to the five header items. The problem was inside the mega-nav, not the
 | Item 3 subtitle | "AI agents for performance marketing and customer data" | **"AI that cleans up customer data and improves marketing performance"** | Says what the agents do rather than repeating the label. Keeps "customer data" because fixing data is half the offer (the CDP clean-up, tagging and attribution agents). |
 | Item 4 label | Operating Architecture | **Operating Model Design** | Renamed. The deck itself uses both "Operating Models" (slide 3) and "Operating Architecture" (slide title). "Operating model design" is the searched phrase and the one clients use ("we need a new operating model"). "Architecture" is the brand metaphor, already carried by the company name and the Growth Architecture heading, so nothing is lost. "Operating Architecture" stays on the page as the name of the framework. |
 | Item 4 subtitle | "Adaptive operating models for the age of AI" | **"How your teams, data and AI agents should work together"** | "Adaptive" and "age of AI" are deck language. The new line describes the content of the deck's own diagram (work units, data and tools, AI agents and humans) in plain words. |
-| Item 5 label | Growth Office | **Growth Office** (kept, subtitle rewritten) | Andy said on the call the terminology is hard. Considered "Growth Delivery Team", "Interim Growth Team" and "Strategy Delivery". Kept because it is short, it parallels terms clients know (PMO, transformation office), and none of the alternatives captured culture plus capability plus value tracking. The subtitle carries the plain and searched terms. |
+| Item 5 label | Value Orchestration | **Value Orchestration** (kept, subtitle rewritten) | Andy said on the call the terminology is hard. Considered "Growth Delivery Team", "Interim Growth Team" and "Strategy Delivery". Kept because it is short, it parallels terms clients know (PMO, transformation office), and none of the alternatives captured culture plus capability plus value tracking. The subtitle carries the plain and searched terms. |
 | Item 5 subtitle | "Interim growth teams that get strategy delivered" | **"Interim growth team and programme office that gets strategy delivered"** | Adds "programme office", the phrase corporates search for when they want a PMO, which is the nearest common concept. |
 | Item 6 label | AI Enablement | **AI Enablement** (kept, subtitle rewritten) | "AI enablement" is now common B2B language and is searched. Considered "AI Adoption and Training"; the deck's three programmes (adoption, value cases, business model innovation) are wider than training, so the label stays and the subtitle names the plain parts. |
 | Item 6 subtitle | "AI skills, value cases and business model innovation" | **"AI skills, training and adoption: finding where AI pays off"** | "Value cases" and "business model innovation" are deck language. "Finding where AI pays off" says what a value case is. |
@@ -193,14 +193,14 @@ The test the v3 brief set: someone with one of these intents should be able to p
 | AI training, AI adoption, AI skills | AI Enablement | Label; page H2s |
 | customer data, data quality, CDP | AI Agents for Marketing | Page hero line "cleans up customer data" |
 | operating model, ways of working, org design | Operating Model Design | Label; page hero line |
-| PMO, programme office, interim, transformation office | Growth Office | Menu quiet line "Interim growth team"; page hero line and title tag carry "programme office" |
+| PMO, programme office, interim, transformation office | Value Orchestration | Menu quiet line "Interim growth team"; page hero line and title tag carry "programme office" |
 | growth strategy, growth consultancy, commercial strategy | Growth Strategy | Heading; pillar line "Where and how you grow" |
 | CEO advisor, executive coach, non-exec, retainer | CEO Advisory | Heading; pillar line "One-to-one support for leaders"; menu item "Our advisors" (v5); page names Side-by-Side and the retainer |
 | our strategy isn't landing, execution, delivery | Activation Services | Heading; pillar line "Turning strategy into results"; hub situation line "Our strategy is not turning into results" (v5) |
 | case studies, clients, results | Our work | Header |
-| financial services, media, consumer, retail | Footer: Who we work with; Work filters | Footer and More filters, by design |
+| financial services, media, consumer, retail, energy | Footer: Who we work with; Work filters | Footer and More filters, by design |
 
-Every row has a landing. Six of the seven service labels are themselves the searched term. The two that are not (Experience Engineering, Growth Office) carry a quiet line. No row depends on the visitor knowing a Manifesto term.
+Every row has a landing. Six of the seven service labels are themselves the searched term. The two that are not (Experience Engineering, Value Orchestration) carry a quiet line. No row depends on the visitor knowing a Manifesto term.
 
 ---
 
@@ -212,7 +212,7 @@ SxS, D2C, HPX, "so what", "where to play", "bridge from strategy to execution", 
 
 ("How to win" stays in the Growth Strategy subtitle: on its own it is plain English. It is the pairing "where to play and how to win" that is consultant shorthand.)
 
-Terms that remain but always with a subtitle: Experience Engineering, Growth Office, Proposition Innovation, Activation Services, Side-by-Side, Growth Architecture (brand).
+Terms that remain but always with a subtitle: Experience Engineering, Value Orchestration, Proposition Innovation, Activation Services, Side-by-Side, Growth Architecture (brand).
 
 ---
 

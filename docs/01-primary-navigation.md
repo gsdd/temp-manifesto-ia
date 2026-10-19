@@ -2,7 +2,7 @@
 
 This document describes everything a visitor can click in the site header and footer, in the order it appears, and what happens when they do. It is written so that someone who is not a designer or developer can picture the navigation without a wireframe.
 
-**Wireframe chrome (MURAL pass, pending sign-off).** The clickable mock in `mocks/` currently shows six header items, logo aside: **What we do** | **Our work** | **Our thinking** | **About** | **Careers** | **Contact**. Our thinking is the Insights hub (`/insights/`) with a type dropdown (Reports, Articles, Events and news, All thinking). About dropdown labels: Our people, Our approach, Values and culture. Careers is first-class so Contact can split work-with-us / work-for-us. The tables below remain the v5 IA spec until that chrome is signed, **except the mega-nav group pattern in section 3**, which this pass updates so pillar hubs are obviously clickable and CEO Advisory shows both strands. See `docs/mural-gap-check.md`, `docs/thinking-placement.md`, `docs/strand-gap-check.md`.
+**Wireframe chrome (MURAL pass, pending sign-off).** The clickable mock in `mocks/` currently shows six header items, logo aside: **What we do** | **Our work** | **Our thinking** | **About** | **Careers** | **Contact**. Our thinking is the Insights hub (`/insights/`) with a type dropdown in the order All thinking, Reports, Articles, News and events; the type items land on the matching live filter state on the hub. About dropdown labels: Our people, Our approach, Values and culture. Careers is first-class so Contact can split work-with-us / work-for-us. The tables below remain the v5 IA spec until that chrome is signed, **except the mega-nav group pattern in section 3**, which this pass updates so pillar hubs are obviously clickable and CEO Advisory shows both strands. See `docs/mural-gap-check.md`, `docs/thinking-placement.md`, `docs/strand-gap-check.md`.
 
 v2 gave the mega-nav its shape: three columns, one per pillar of Andy's Growth Architecture triangle. v3 rewrote the words in plain, search-friendly language. v4 stripped the concept back to labels, three short pillar lines and two quiet lines (`v4-simplification.md`). **v5 makes two small changes after the competitor review** (`competitor-nav-review.md`, `v5-refinements.md` R4): the CEO Advisory column carries one quiet link to the advisors, and the panel footer row drops the Contact link that duplicated the header button. Everything else in the header, menu and footer is as v4. The larger v5 changes are on the pages (`03-page-layouts.md`).
 
@@ -91,7 +91,7 @@ The heading is the pillar hub (D-11, D-54). Overview is the same destination, la
 | Strand 3 | Experience Engineering | Customer experience and websites | `/services/experience-engineering/` |
 | Strand 4 | AI Agents for Marketing | AI marketing agents, guided by experts | `/services/ai-agents-for-marketing/` |
 | Strand 5 | Operating Model Design | Target operating model | `/services/operating-model-design/` |
-| Strand 6 | Growth Office | Interim growth team | `/services/growth-office/` |
+| Strand 6 | Value Orchestration | Interim growth team | `/services/value-orchestration/` |
 | Strand 7 | AI Enablement | AI skills and adoption | `/services/ai-enablement/` |
 
 Order of the six services follows the Source B deck. Overview is the group page. Labels are the v3 labels (`nav-wording-decisions.md`), unchanged. Every strand has a short subtitle in buyer language (`docs/keyword-findings.md`). Deck one-liners still do not return.
@@ -189,13 +189,13 @@ v3 gave Insights a two-column dropdown (three type filters plus Expertise with f
 The footer is the second navigation system. It is identical on every page and carries the full site structure, including sectors and themes, which are kept out of the header.
 
 **Footer column 1: What we do**
-Growth Strategy, Proposition Innovation, Customer Research and Insight, Experience Engineering, AI Agents for Marketing, Operating Model Design, Growth Office, AI Enablement, CEO Advisory, All services
+Growth Strategy, Proposition Innovation, Customer Research and Insight, Experience Engineering, AI Agents for Marketing, Operating Model Design, Value Orchestration, AI Enablement, CEO Advisory, All services
 
 **Footer column 2: Expertise**
 Loyalty, Membership, Subscriptions, Pricing, Customer Value
 
 **Footer column 3: Who we work with** (heading is plain text; there is no sector index page in v4, D-44)
-Financial services, Media, Consumer, Retail (each to `/sectors/{slug}/`)
+Financial services, Media, Consumer, Retail, Energy (each to `/sectors/{slug}/`)
 
 **Footer column 4: Company**
 About, Our people, Our approach, Values and culture, Careers, Our work, Our thinking, The Nutshell, Contact
@@ -275,7 +275,7 @@ Header items, About dropdown, footer, breadcrumbs, labels and slugs are unchange
 | Group titles look like headings; Growth Strategy has one child | Group titles are linked hubs with a trailing arrow. Growth Strategy shows Overview + Proposition Innovation |
 | Activation: six children, no Overview | Overview + the six |
 | CEO Advisory: heading + Our advisors (reads as one strand), greyed or quieter type | Hub heading + Side-by-Side + Our advisors, same contrast as the other pillars (D-57) |
-| Two quiet lines only (Experience Engineering, Growth Office) | Keyword-led subtitle under every strand (D-58) |
+| Two quiet lines only (Experience Engineering, Value Orchestration) | Keyword-led subtitle under every strand (D-58) |
 | Latest thinking at the foot of Home | Featured thinking after the triangle (`thinking-placement.md`) |
 | Chips catalogue with working-notes sidebar | Component library, live components only (D-59, D-60) |
 

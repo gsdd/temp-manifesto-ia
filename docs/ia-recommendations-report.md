@@ -76,9 +76,9 @@ The footer is the second navigation system. It carries the full structure, inclu
 
 | Column | Links |
 |---|---|
-| What we do | Growth Strategy, Proposition Innovation, Customer Research and Insight, Experience Engineering, AI Agents for Marketing, Operating Model Design, Growth Office, AI Enablement, CEO Advisory, All services |
+| What we do | Growth Strategy, Proposition Innovation, Customer Research and Insight, Experience Engineering, AI Agents for Marketing, Operating Model Design, Value Orchestration, AI Enablement, CEO Advisory, All services |
 | Expertise | Loyalty, Membership, Subscriptions, Pricing, Customer Value |
-| Who we work with | Financial services, Media, Consumer, Retail (the heading is plain text; there is no sector index page) |
+| Who we work with | Financial services, Media, Consumer, Retail, Energy (the heading is plain text; there is no sector index page) |
 | Company | About, Our people, Our approach, Values and culture, Careers, Our work, Our thinking, The Nutshell, Contact |
 | Bottom row | Company registration, search field, Privacy policy, Cookie policy, Terms, Accessibility statement, social links |
 
@@ -131,12 +131,12 @@ Lowercase, hyphenated, trailing slash. No dates, IDs or file extensions. Maximum
 | `/services/experience-engineering/` | Experience Engineering (`#customer-experience`, `#website-and-digital`, `#research-and-testing`) | Canonical |
 | `/services/ai-agents-for-marketing/` | AI Agents for Marketing, with AgentLab at `#agentlab` | Canonical |
 | `/services/operating-model-design/` | Operating Model Design, with the Operating Architecture framework at `#operating-architecture` | Canonical |
-| `/services/growth-office/` | Growth Office | Canonical |
+| `/services/value-orchestration/` | Value Orchestration | Canonical |
 | `/services/ai-enablement/` | AI Enablement | Canonical |
 | `/services/ceo-advisory/` | CEO Advisory (`#side-by-side`, `#advisors`) | Supporting |
 | `/expertise/` | Expertise hub | Supporting |
 | `/expertise/loyalty/`, `/expertise/membership/`, `/expertise/subscriptions/`, `/expertise/pricing/`, `/expertise/customer-value/` | Expertise themes | Supporting |
-| `/sectors/financial-services/`, `/sectors/media/`, `/sectors/consumer/`, `/sectors/retail/` | Sector landings | Light |
+| `/sectors/financial-services/`, `/sectors/media/`, `/sectors/consumer/`, `/sectors/retail/`, `/sectors/energy/` | Sector landings | Light |
 | `/work/` | Our work | Canonical |
 | `/work/{client}/` | Case study | Supporting |
 | `/insights/` | Our thinking | Supporting |
@@ -160,7 +160,7 @@ Forty fixed pages at launch, of which eleven are Canonical: Home, the services h
 
 ### 3.4 Redirects, not pages
 
-- `/sectors/` redirects to `/work/`. The footer lists the four sectors; an index page would only repeat it.
+- `/sectors/` redirects to `/work/`. The footer lists the five sectors; an index page would only repeat it.
 - `/growth-architecture/` redirects to `/services/`. `/agentlab/` and `/data-agents/` redirect to `/services/ai-agents-for-marketing/#agentlab`. `/side-by-side/` redirects to `/services/ceo-advisory/`. `/advisors/`, if used in print or at the October event, redirects to `/services/ceo-advisory/#advisors`.
 - Deck-name slugs (`/services/customer-intelligence/`, `/services/data-agents/`, `/services/operating-architecture/`) redirect to the searched-term slugs.
 - Every URL on the current site that returns 200 gets a 301 to its closest new page before launch, followed by 90 days of 404 monitoring.
@@ -203,7 +203,7 @@ The What we do panel is the triangle laid flat, in order of prominence. Three li
 | | **Experience Engineering** Customer experience and websites | |
 | | **AI Agents for Marketing** AI marketing agents, guided by experts | |
 | | **Operating Model Design** Target operating model | |
-| | **Growth Office** Interim growth team | |
+| | **Value Orchestration** Interim growth team | |
 | | **AI Enablement** AI skills and adoption | |
 
 Footer row: **All services** · **Expertise** · **Our work**
@@ -230,7 +230,7 @@ Seventeen links to thirteen pages. The pillar headings land on `/services/growth
 | Experience Engineering | Customer experience and websites | The two intents Andy named on the call: CX, and "can you build a website?" |
 | AI Agents for Marketing | AI marketing agents, guided by experts | Marketing-qualified (~390) rather than bare "AI agents" (~9,900 and generic). "Guided by experts" is the deck's own human-led point. |
 | Operating Model Design | Target operating model | The strongest Activation phrase after journey mapping (~1,600). |
-| Growth Office | Interim growth team | "Growth office" has about 10 searches a month. Interim CMO has ~110 to 140. The subtitle carries the buyer's term. |
+| Value Orchestration | Interim growth team | The retired label polled about 10 searches a month. Interim CMO has ~110 to 140. The subtitle carries the buyer's term. |
 | AI Enablement | AI skills and adoption | The plain content of the deck's three programmes. |
 | Side-by-Side | One-to-one advisory retainer | Names the category before the product name. |
 | Our advisors | Experienced growth leaders | The people are the proof of the third pillar. |
@@ -238,9 +238,9 @@ Seventeen links to thirteen pages. The pillar headings land on `/services/growth
 **Evidence**
 
 - Source B slide 2: the triangle of CEO Advisory, Growth Strategy and Activation Services. Slide 3: Proposition Innovation under Growth Strategy; six Activation services in the order used here; Side-by-Side as the CEO Advisory product. Slide 4: retainer-based, virtual or in person, "a select group of senior leaders".
-- Source C: Growth Strategy first, Activation second, CEO Advisory third; CEOs will not find Manifesto through the website, so the pillar is present but not the lead; Experience Engineering must map to CX and websites; Growth Office terminology is hard; showcase heavyweight advisor profiles.
+- Source C: Growth Strategy first, Activation second, CEO Advisory third; CEOs will not find Manifesto through the website, so the pillar is present but not the lead; Experience Engineering must map to CX and websites; Value Orchestration terminology is hard; showcase heavyweight advisor profiles.
 - Wireframe review feedback: a greyed pillar reads as a second-class offer; pillar headings must be obviously clickable hubs; CEO Advisory has two strands and both should be visible; every strand needs a human-readable cue.
-- Competitor review: Prophet lists Growth Strategy as a service and gives its lab a home off the nav; Elixirr uses "Target Operating Model"; frog uses "Customer Research & Insights"; Baringa's "CFO Advisory" validates "CEO Advisory" as a plain label; Criticaleye sells its senior advisory model on the mentors. No peer uses "Experience Engineering" or "Growth Office", which is why both carry a subtitle that says what they are.
+- Competitor review: Prophet lists Growth Strategy as a service and gives its lab a home off the nav; Elixirr uses "Target Operating Model"; frog uses "Customer Research & Insights"; Baringa's "CFO Advisory" validates "CEO Advisory" as a plain label; Criticaleye sells its senior advisory model on the mentors. No peer uses "Experience Engineering" or "Value Orchestration", which is why both carry a subtitle that says what they are.
 - Keyword findings: "Do not rename the triangle for volume." Subtitles carry adjacent demand; labels stay Manifesto's.
 
 ---
@@ -340,8 +340,8 @@ People (lead profiles as Person cards) and an FAQ block are specified for every 
 | Customer Research and Insight | Customer research methods; Customer journey mapping; Research projects; Always-on customer insight; six input types as H3s (digital listening, qualitative, quantitative, customer data analytics, internal knowledge, external market data) |
 | Experience Engineering | Find, Redesign, Test, Scale as the How it works sequence; Customer experience (CX) design; Website and digital product; User research and testing, each anchored |
 | AI Agents for Marketing | AgentLab at `#agentlab`: twelve named agents in four groups (Reporting and Analytics; Data and Infrastructure; Strategy and Planning; Automation and Execution), entries not pages; 4 weeks, 6 weeks, ongoing as How it works |
-| Operating Model Design | Target operating model; Adaptive operating model; Our Operating Architecture framework at `#operating-architecture` as a captioned figure, whose caption links Orchestration (culture, value, capability) to Growth Office |
-| Growth Office | Interim growth team; Then embed; Culture, Capability, Value; interim CMO named where accurate |
+| Operating Model Design | Target operating model; Adaptive operating model; Our Operating Architecture framework at `#operating-architecture` as a captioned figure, whose caption links Orchestration (culture, value, capability) to Value Orchestration |
+| Value Orchestration | Interim growth team; Then embed; Culture, Capability, Value; interim CMO named where accurate |
 | AI Enablement | AI skills and adoption; Finding where AI pays off; New business models with AI; maturity assessment as the entry step; the expert network named in the body |
 
 ### 5.6 Activation Services group page (`/services/activation/`)
@@ -382,7 +382,7 @@ About (`/about/`), framed around Growth Architecture at Andy Bacon's request (1 
 
 Our people (`/about/team/`), three sections at Andy Bacon's request (1 October): **Growth Architects** (`#growth-architects`, the core Manifesto team, leadership first); **Expert Community** (`#expert-community`, the C and N and growth collective profiles, including the AI Enablement expert network); **SxS Advisors** (`#advisors`, the Side-by-Side profiles; the anchor is unchanged so CEO Advisory still lands here); Link line to Careers. Culture over headshots. The mega-nav's Our advisors strand lands on the CEO Advisory page, not here. Every profile names its group.
 
-Our approach (`/about/how-we-work/`): **How we partner**; **Growth partner videos** (Video 16:9; the partner films live here, not on Home); **Principles**; **Engagement shapes** (strategy project, strategy into activation, embedded growth office, advisory retainer); **Frameworks and tools**, the one place all five named things are listed together, each linking to its anchored home: Growth Architecture, Customer, Innovation, Value and Delivery, Operating Architecture, AgentLab, Side-by-Side; **Working with AI**; Closing CTA band. Method is never a product.
+Our approach (`/about/how-we-work/`): **How we partner**; **Growth partner videos** (Video 16:9; the partner films live here, not on Home); **Principles**; **Engagement shapes** (strategy project, strategy into activation, embedded interim growth team (Value Orchestration), advisory retainer); **Frameworks and tools**, the one place all five named things are listed together, each linking to its anchored home: Growth Architecture, Customer, Innovation, Value and Delivery, Operating Architecture, AgentLab, Side-by-Side; **Working with AI**; Closing CTA band. Method is never a product.
 
 Values and culture (`/about/values/`): Values; Culture; Diversity, equity and inclusion. Light.
 
@@ -441,7 +441,7 @@ Manifesto's labels stay in the header, mega-nav, footer and H1s. Search language
 | Experience Engineering | Manifesto offer name, the Dayinsure and Key Group model | Subtitle "Customer experience and websites"; H2s for CX, website and digital product, user research; title tag "Experience Engineering: customer experience and websites" |
 | AI Agents for Marketing | Searched, marketing-qualified term (deck: Data Agents) | Subtitle "AI marketing agents, guided by experts"; AgentLab as an H2 |
 | Operating Model Design | Searched term (deck: Operating Architecture) | Subtitle "Target operating model"; H2 Target operating model; Operating Architecture as the framework name |
-| Growth Office | Manifesto offer name | Subtitle "Interim growth team"; H2 Interim growth team; H3 Interim CMO where accurate; title tag "Growth Office: interim growth team and programme office" |
+| Value Orchestration | Manifesto offer name | Subtitle "Interim growth team"; H2 Interim growth team; H3 Interim CMO where accurate; title tag "Value Orchestration: interim growth team and programme office" |
 | AI Enablement | Label is the searched term (~170) | Subtitle "AI skills and adoption"; H2s for skills, value cases and business models |
 | CEO Advisory | Pillar name; parallels Baringa's CFO Advisory | Subtitles "One-to-one advisory retainer" and "Experienced growth leaders"; advisor and board language in body copy; coaching is adjacent, not the offer |
 | Side-by-Side | Named product | Strand and `#side-by-side`. Never SxS. |
@@ -460,7 +460,7 @@ DataForSEO Google Ads Search Volume and Labs Keyword Suggestions, United Kingdom
 | Experience Engineering | experience engineering ~90 | customer journey mapping ~2,900; experience design agency ~110; cx consultancy ~70; website design consultancy ~70 | Keep the label; subtitle and H2s carry CX and websites |
 | AI Agents for Marketing | ai marketing agents ~390 | ai agents for marketing ~70; marketing automation consultancy ~90; bare ai agents ~9,900 (too generic to target alone) | Subtitle; title and H1 keep "for Marketing" |
 | Operating Model Design | operating model ~880 | target operating model ~1,600; operating model design ~140; operating model consultancy ~10 | Subtitle; H2 |
-| Growth Office | interim cmo ~110 to 140 | growth office ~10 (weak; not the primary target) | Subtitle; H2; H3 |
+| Value Orchestration | interim cmo ~110 to 140 | the retired label ~10 (weak; not the primary target) | Subtitle; H2; H3 |
 | AI Enablement | ai enablement ~170 | ai transformation consultancy ~10 | The label owns the term |
 | CEO Advisory | ceo advisory ~10 | ceo coach ~320; board advisor ~90; executive advisor ~30 (all adjacent) | Relationship page, not volume-led |
 | Services hub | growth architecture ~50 | | Named-system and brand page |
@@ -478,12 +478,12 @@ Expertise theme titles (Loyalty, Membership, Subscriptions, Pricing, Customer Va
 | AI agents, marketing AI, customer data quality | AI Agents for Marketing |
 | AI training, AI adoption, AI skills | AI Enablement |
 | operating model, target operating model, ways of working | Operating Model Design |
-| interim CMO, programme office, PMO | Growth Office |
+| interim CMO, programme office, PMO | Value Orchestration |
 | our strategy isn't landing, execution, delivery | Activation Services, and the hub's situation line |
 | CEO advisor, sounding board, non-exec, retainer | CEO Advisory |
 | Growth Architecture, AgentLab, CIVD, Side-by-Side | Services hub H1; the anchored module on the owning page; Our approach |
 | a client name | The case study |
-| financial services, media, consumer, retail | Footer, Work filters, the sector landing |
+| financial services, media, consumer, retail, energy | Footer, Work filters, the sector landing |
 
 **Evidence**
 
@@ -518,7 +518,7 @@ Otter transcript of the Shed and Manifesto check-in, 37 minutes.
 
 - The deck is "a bit of the jigsaw": the packaged services Manifesto wants to be recognised for.
 - Weighting: Growth Strategy is the bread and butter; Activation is the bridge from strategy to execution, six offerings, not ongoing operations; CEO Advisory is new, relationship-led, low direct revenue, and "do not design the site around it".
-- Language: HPX failed; clients look for CX; Experience Engineering needs keywords so "can you build a website?" maps; Growth Office terminology is hard; the deck is not website copy.
+- Language: HPX failed; clients look for CX; Experience Engineering needs keywords so "can you build a website?" maps; Value Orchestration terminology is hard; the deck is not website copy.
 - Sectors and themes: services are sector-agnostic; no sector point-of-view pages; case studies organised by sector are fine for proof; themes are the expertise story ("loyalty and membership experts who work cross-sector"); light sector landings for search, discoverable through tagging.
 - Site role: today a post-referral credibility check; the rebuild has to originate and compete with consultancies.
 - Actions on Manifesto's side: services copy, case studies, testimonials, team and advisor profiles. Brand: name and logo stay; colour likely to change.
@@ -556,13 +556,13 @@ The IA launches without any of these. The wireframe carries a default for each.
 2. **Growth Collective.** Settled as far as the people go: growth collective profiles sit in the Expert Community section of Our people (Andy Bacon, 1 October). Still to decide: whether Growth Collective also needs a public destination of its own (a footer line or a strand under Our thinking). Default: not in the header; Our people is its home.
 3. **Events.** Our thinking carries an Events and news section and a dropdown link. A first-class `/events/` page is justified only if there is enough recap and forthcoming content to sustain it. The October CEO Advisory event launches from the hub or the CEO Advisory page without a new URL. Default: section, not page.
 4. **Three service names.** Customer Research and Insight (deck: Customer Intelligence), AI Agents for Marketing (deck: Data Agents) and Operating Model Design (deck: Operating Architecture) describe three offers to the market in searched terms. Peers use the same plain phrases. Fallback if any is refused: that one label and slug takes the deck term, with a subtitle carrying the searched words.
-5. **Two coined labels.** No peer uses Experience Engineering or Growth Office. The deck argues for both; competitors argue for Customer Experience and Digital, and Interim Growth Team. Default: keep both with their subtitles.
+5. **Two coined labels.** No peer uses Experience Engineering or Value Orchestration. The deck argues for both; competitors argue for Customer Experience and Digital, and Interim Growth Team. Default: keep both with their subtitles.
 6. **Careers as a header item.** Six items with Careers first-class keeps the Contact split honest. The alternative is five items plus Contact, with Careers under About. Default: first-class.
 7. **Our thinking versus Insights.** Confirm the label. The URL stays `/insights/` either way.
 
 **Confirmations that affect copy more than structure**
 
-- Whether interim CMO language is accurate for Growth Office.
+- Whether interim CMO language is accurate for Value Orchestration.
 - Whether Growth Strategy should also target brand strategy consulting language, and how that overlaps with Proposition Innovation.
 - The assignment of the twelve AgentLab agents to the four groups, which is a reading of slide 9.
 - Whether the CIVD frame stays current once slide 5 is rewritten. If it is retired, the four-cell modules come out and no URL changes.

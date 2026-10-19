@@ -42,10 +42,10 @@ Volumes are average monthly Google Ads search volume for UK.
 - Strong adjacent: **target operating model** (~1,600).
 - Recommendation: Strongest volume case in Activation after journey/CX. H1/H2 can include operating model / target operating model language.
 
-### Growth Office (interim growth team)
-- Exact **growth office** ~10 (and Labs suggestions are mostly irrelevant "Post Office" noise).
+### Value Orchestration (interim growth team)
+- Exact match for the retired label ~10 (and Labs suggestions are mostly irrelevant "Post Office" noise).
 - Better adjacent: **interim cmo** (~110 to 140). **interim growth director** / **transformation programme office** had no usable volume in this pull.
-- Recommendation: Keep Growth Office as Manifesto label; strand subtitle and body must say interim / embedded growth team (and interim CMO where accurate). Do not SEO-target "growth office" as the primary phrase.
+- Recommendation: Keep Value Orchestration as Manifesto label; strand subtitle and body must say interim / embedded growth team (and interim CMO where accurate). Do not SEO-target the coined label as the primary phrase.
 
 ### AI Enablement
 - **ai enablement** ~170; **ai transformation consultancy** ~10; **ai adoption consultancy** no volume in this pull.
@@ -58,8 +58,8 @@ Volumes are average monthly Google Ads search volume for UK.
 ## Cross-cutting recommendations for the IA
 
 1. **Services remain the spine.** Volume is highest on problem/method phrases (journey mapping, operating model, value proposition, brand strategy) that belong on service pages as H2s and intro copy - not as extra top-nav items.
-2. **Strand subtitles earn their keep.** Growth Office → interim growth team; Experience Engineering → customer experience and websites; these map to real search language. This pass extends a short subtitle to every strand.
-3. **Do not rename the triangle for volume.** Proposition Innovation, Growth Office, Experience Engineering, CEO Advisory are brand/offer labels. Search-friendly language sits on the page.
+2. **Strand subtitles earn their keep.** Value Orchestration → interim growth team; Experience Engineering → customer experience and websites; these map to real search language. This pass extends a short subtitle to every strand.
+3. **Do not rename the triangle for volume.** Proposition Innovation, Value Orchestration, Experience Engineering, CEO Advisory are brand/offer labels. Search-friendly language sits on the page.
 4. **Activation group page** can mention journey mapping, operating model, and interim leadership in the "which of the six" lines to catch problem-minded searchers who land on the hub.
 5. **Expertise themes** (Loyalty etc.) were not fully keyworded in this pass; do a second pass before locking theme titles if needed.
 
@@ -73,11 +73,11 @@ Volumes are average monthly Google Ads search volume for UK.
 | Experience Engineering | experience engineering (~90) + CX/journey H2s | customer journey mapping (~2,900); cx consultancy (~70); website design consultancy (~70) |
 | AI Agents for Marketing | ai marketing agents (~390) | ai agents for marketing (~70); avoid bare ai agents as sole target |
 | Operating Model Design | operating model (~880) | target operating model (~1,600); operating model design (~140) |
-| Growth Office | interim cmo / interim growth team (~110 to 140) | growth office (~10 - weak) |
+| Value Orchestration | interim cmo / interim growth team (~110 to 140) | retired label (~10 - weak) |
 | AI Enablement | ai enablement (~170) | thin alts |
 | CEO Advisory | ceo advisory (~10) - relationship page | board advisor (~90); ceo coach (~320) adjacent only |
 
 ## Open keyword questions
 - Confirm whether Growth Strategy page should also target brand strategy consulting language (overlap with Proposition?).
-- Confirm interim CMO language is accurate for Growth Office positioning.
+- Confirm interim CMO language is accurate for Value Orchestration positioning.
 - Second pass on Expertise theme titles (Loyalty, Membership, Subscriptions, Pricing, Customer Value) if those pages need search jobs at launch.
