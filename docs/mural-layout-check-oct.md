@@ -8,18 +8,24 @@ The decisions behind this pass are D-64 to D-71 in `06-decisions-log.md`. The Mu
 
 ---
 
-## 1. The rename: Growth Office is now Value Orchestration
+## 1. The name: Growth Office is the working name (updated 19 October)
 
-The client's boards use **Value Orchestration** for the interim growth team service. That retires the old label everywhere: nav strand, mega-nav, Activation hub, page title, H1, every internal link, and every document in this package.
+Two moves, newest first:
 
-| | Old | New |
+**19 October (Andy Bacon)**: "Naming still being finalised, but let's go with Growth Office for now." The wires are back on **Growth Office**: nav strand, mega-nav, Activation hub, page title, H1, breadcrumbs, catalogue and every internal link. The URL is back at `/services/growth-office/`, and `/services/value-orchestration/` now **redirects to it** via `mocks/_redirects` (Cloudflare Pages reads that file from the deployed folder; the build regenerates it). The decision is D-72.
+
+**15 October (the Mural boards)**: the client's boards used **Value Orchestration**, and that pass renamed the service accordingly (D-64, now superseded by D-72).
+
+| | 15 October pass | Now (working name) |
 |---|---|---|
-| Label | Growth Office | Value Orchestration |
-| Slug | `/services/growth-office/` | `/services/value-orchestration/` |
-| Title tag | Growth Office: interim growth team and programme office | Value Orchestration: interim growth team and programme office |
+| Label | Value Orchestration | **Growth Office** |
+| Slug | `/services/value-orchestration/` | `/services/growth-office/` (the old URL 301s here) |
+| Title tag | Value Orchestration: interim growth team and programme office | Growth Office: interim growth team and programme office |
 | Quiet line | Interim growth team | Interim growth team (unchanged) |
 
-At build, the old slug should **301 redirect** to the new one. The old label appears nowhere else in the package; the wireframe build now fails if it reappears in generated HTML. The quiet line stays because the new name is also coined: it has no measured search volume (the retired label polled about 10 a month), so "interim growth team" still carries the search intent on the page. One flag for copywriting: Ekimetrics markets "Customer Value Orchestration"; the labels are distinct but close.
+Because the naming is still being finalised, the name is **one constant in the builder** (`GO_NAME` in `mocks/_build.py`): a later swap is one change plus a rebuild, and the `_redirects` alias follows automatically. The wireframe build now fails if "Value Orchestration" appears in generated HTML. The quiet line stays either way: neither label has meaningful search volume (growth office polls about 10 a month), so "interim growth team" carries the search intent on the page.
+
+Scope note: per the 19 October instruction, only the wires, this change log and the decisions log were touched. The wider IA docs still read the 15 October name in places and will be trued up once the client finalises the naming; the wires lead.
 
 ## 2. The taxonomy: one industry list, with Energy added
 
@@ -74,7 +80,7 @@ The pillar hub pages (`/services/` and `/services/activation/`) keep their curre
 
 ### What we do landing (`/services/`)
 
-Light touch only: rename-related changes (the Value Orchestration card and links). The client's board shows two white frames (Option A and B) whose content is undecided; the page keeps its current structure until the client picks one.
+Light touch only: naming-related changes to the interim growth team card and links (section 1). The client's board shows two white frames (Option A and B) whose content is undecided; the page keeps its current structure until the client picks one.
 
 ### Careers (`/careers/`)
 

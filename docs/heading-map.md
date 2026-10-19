@@ -174,7 +174,7 @@ Each page also lists the reusable components on its canvas, in order, by the nam
 - **Alts:**
   - customer journey mapping (~2,900) in the Experience Engineering line
   - operating model (~880) in the Operating Model Design line
-  - interim CMO / interim growth team (~110 to 140) in the Value Orchestration line
+  - interim CMO / interim growth team (~110 to 140) in the Growth Office line
 - **H1:** Activation Services
 - **H2s (ordered):**
   1. The bridge from strategy to results
@@ -189,7 +189,7 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - Case card ×2 (Proof)
   - Link list (Related thinking)
   - Closing CTA band
-- **Related:** services: Customer Research and Insight, Experience Engineering, AI Agents for Marketing, Operating Model Design, Value Orchestration, AI Enablement
+- **Related:** services: Customer Research and Insight, Experience Engineering, AI Agents for Marketing, Operating Model Design, Growth Office, AI Enablement
 
 ## `/services/customer-research/`: Customer Research and Insight
 
@@ -361,19 +361,19 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - Offer card ×3 (Related services)
   - Link list (Related thinking)
   - Closing CTA band
-- **Related:** themes: Customer Value; sectors: Financial services, Media; services: Value Orchestration, AI Enablement, AI Agents for Marketing
+- **Related:** themes: Customer Value; sectors: Financial services, Media; services: Growth Office, AI Enablement, AI Agents for Marketing
 
-## `/services/value-orchestration/`: Value Orchestration: interim growth team and programme office
+## `/services/growth-office/`: Growth Office: interim growth team and programme office
 
 - **Template:** Service detail
 - **Weight:** Canonical (owns its topic; other pages on the topic link here)
 - **Primary keyword:** interim cmo / interim growth team (~110 to 140)
 - **Menu subtitle:** Interim growth team
 - **Alts:**
-  - value orchestration (coined; no measured volume. The retired label polled ~10, weak)
+  - growth office (~10, weak; not the primary target)
   - programme office / PMO (hero language)
   - interim activation then embed (deck shape)
-- **H1:** Value Orchestration
+- **H1:** Growth Office
 - **H2s (ordered):**
   1. Overview
   2. Why now?
@@ -388,9 +388,10 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - Culture
   - Capability
   - Value
-- **Intent:** Value Orchestration is the label (renamed from the earlier coined name, 15 Oct; the old slug should 301 here). The menu subtitle and body say interim or embedded growth team, and interim CMO where accurate. The primary search phrase is interim growth team, not the coined label. Client service template applied.
+- **Intent:** Growth Office is the working name (Andy, 19 Oct: naming still being finalised). The menu subtitle and body say interim or embedded growth team, and interim CMO where accurate. The primary search phrase is interim growth team, not the coined label. Client service template applied.
 - **Content notes:**
-  - Renamed on the client's instruction (Mural pass, 15 Oct). The former name and the redirect note are logged in docs/mural-layout-check-oct.md
+  - Working name per Andy (19 Oct); naming still being finalised. The name is one constant in the builder, so a later swap is one change
+  - The 15 Oct alternative name is retired; its URL redirects here (alias in mocks/_redirects; logged in docs/mural-layout-check-oct.md)
 - **Components (canvas order):**
   - Hero, CTA pair
   - Prose (Overview)
@@ -480,7 +481,7 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - Prose (Why us?)
   - Link list (Related thinking)
   - Closing CTA band
-- **Related:** services: Growth Strategy, Value Orchestration
+- **Related:** services: Growth Strategy, Growth Office
 
 ## `/expertise/`: Expertise
 
@@ -682,7 +683,7 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - Link list (Services most used here)
   - Link list (Related thinking)
   - Closing CTA band
-- **Related:** services: Value Orchestration, Operating Model Design, Proposition Innovation
+- **Related:** services: Growth Office, Operating Model Design, Proposition Innovation
 
 ## `/sectors/consumer/`: Consumer
 
@@ -707,7 +708,7 @@ Each page also lists the reusable components on its canvas, in order, by the nam
   - Link list (Services most used here)
   - Link list (Related thinking)
   - Closing CTA band
-- **Related:** services: Experience Engineering, AI Agents for Marketing, Value Orchestration
+- **Related:** services: Experience Engineering, AI Agents for Marketing, Growth Office
 
 ## `/sectors/retail/`: Retail
 

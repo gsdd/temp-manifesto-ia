@@ -45,6 +45,15 @@ def slugify(label: str) -> str:
     return out.strip("-")
 
 
+# The interim growth team service's name has one source. Andy Bacon (19 Oct):
+# naming still being finalised; Growth Office for now. To swap later, change
+# GO_NAME, set GO_ALIAS_URL to the outgoing URL, and rebuild: pages, nav,
+# links, catalogue, sitemap, heading map and the _redirects alias all follow.
+GO_NAME = "Growth Office"
+GO_URL = "/services/" + slugify(GO_NAME) + "/"
+GO_ALIAS_URL = "/services/value-orchestration/"
+
+
 def crumbs_html(from_url: str, crumbs: list[tuple[str, str | None]]) -> str:
     if not crumbs:
         return ""
@@ -358,7 +367,7 @@ def header_html(from_url: str, section: str) -> str:
                   <li><a href="{h("/services/experience-engineering/")}">Experience Engineering<small>Customer experience and websites</small></a></li>
                   <li><a href="{h("/services/ai-agents-for-marketing/")}">AI Agents for Marketing<small>AI marketing agents, guided by experts</small></a></li>
                   <li><a href="{h("/services/operating-model-design/")}">Operating Model Design<small>Target operating model</small></a></li>
-                  <li><a href="{h("/services/value-orchestration/")}">Value Orchestration<small>Interim growth team</small></a></li>
+                  <li><a href="{h(GO_URL)}">{GO_NAME}<small>Interim growth team</small></a></li>
                   <li><a href="{h("/services/ai-enablement/")}">AI Enablement<small>AI skills and adoption</small></a></li>
                 </ul>
               </div>
@@ -400,7 +409,7 @@ def footer_html(from_url: str) -> str:
               <li><a href="{h("/services/experience-engineering/")}">Experience Engineering</a></li>
               <li><a href="{h("/services/ai-agents-for-marketing/")}">AI Agents for Marketing</a></li>
               <li><a href="{h("/services/operating-model-design/")}">Operating Model Design</a></li>
-              <li><a href="{h("/services/value-orchestration/")}">Value Orchestration</a></li>
+              <li><a href="{h(GO_URL)}">{GO_NAME}</a></li>
               <li><a href="{h("/services/ai-enablement/")}">AI Enablement</a></li>
               <li><a href="{h("/services/ceo-advisory/")}">CEO Advisory</a></li>
               <li><a href="{h("/services/")}">All services</a></li>
@@ -937,7 +946,7 @@ PAGES: list[dict] = [
         section="services",
         weight="Supporting",
         primary="strategy to execution (group page; no single volume target)",
-        alts=["customer journey mapping (~2,900) in the Experience Engineering line", "operating model (~880) in the Operating Model Design line", "interim CMO / interim growth team (~110 to 140) in the Value Orchestration line"],
+        alts=["customer journey mapping (~2,900) in the Experience Engineering line", "operating model (~880) in the Operating Model Design line", f"interim CMO / interim growth team (~110 to 140) in the {GO_NAME} line"],
         quiet="Hands-on delivery, six services",
         themes=[],
         sectors=[],
@@ -946,7 +955,7 @@ PAGES: list[dict] = [
             T("Experience Engineering", "/services/experience-engineering/"),
             T("AI Agents for Marketing", "/services/ai-agents-for-marketing/"),
             T("Operating Model Design", "/services/operating-model-design/"),
-            T("Value Orchestration", "/services/value-orchestration/"),
+            T(GO_NAME, GO_URL),
             T("AI Enablement", "/services/ai-enablement/"),
         ],
         h1="Activation Services",
@@ -1056,7 +1065,7 @@ PAGES: list[dict] = [
         quiet="Target operating model",
         themes=[T("Customer Value", "/expertise/customer-value/")],
         sectors=[T("Financial services", "/sectors/financial-services/"), T("Media", "/sectors/media/")],
-        services=[T("Value Orchestration", "/services/value-orchestration/"), T("AI Enablement", "/services/ai-enablement/"), T("AI Agents for Marketing", "/services/ai-agents-for-marketing/")],
+        services=[T(GO_NAME, GO_URL), T("AI Enablement", "/services/ai-enablement/"), T("AI Agents for Marketing", "/services/ai-agents-for-marketing/")],
         h1="Operating Model Design",
         h2s=["Overview", "Why now?", "How can we help you?", "Our Operating Architecture framework", "Related case studies", "Why us?", "Our experts", "How it works"],
         h3s=["Target operating model", "Adaptive operating model", "High-quality data and tools", "New work units", "Orchestration: culture, value, capability"],
@@ -1076,23 +1085,23 @@ PAGES: list[dict] = [
         ],
     ),
     dict(
-        url="/services/value-orchestration/",
-        title="Value Orchestration: interim growth team and programme office",
+        url=GO_URL,
+        title=f"{GO_NAME}: interim growth team and programme office",
         section="services",
         weight="Canonical",
         primary="interim cmo / interim growth team (~110 to 140)",
-        alts=["value orchestration (coined; no measured volume. The retired label polled ~10, weak)", "programme office / PMO (hero language)", "interim activation then embed (deck shape)"],
+        alts=["growth office (~10, weak; not the primary target)", "programme office / PMO (hero language)", "interim activation then embed (deck shape)"],
         quiet="Interim growth team",
         themes=[T("Customer Value", "/expertise/customer-value/")],
         sectors=[T("Media", "/sectors/media/"), T("Consumer", "/sectors/consumer/")],
         services=[T("Operating Model Design", "/services/operating-model-design/"), T("CEO Advisory", "/services/ceo-advisory/"), T("AI Enablement", "/services/ai-enablement/")],
-        h1="Value Orchestration",
+        h1=GO_NAME,
         h2s=["Overview", "Why now?", "How can we help you?", "Related case studies", "Why us?", "Our experts", "How it works"],
         h3s=["Interim growth team", "Then embed", "Culture", "Capability", "Value"],
-        intent="Value Orchestration is the label (renamed from the earlier coined name, 15 Oct; the old slug should 301 here). The menu subtitle and body say interim or embedded growth team, and interim CMO where accurate. The primary search phrase is interim growth team, not the coined label. Client service template applied.",
-        crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", "/services/activation/"), ("Value Orchestration", None)],
+        intent=f"{GO_NAME} is the working name (Andy, 19 Oct: naming still being finalised). The menu subtitle and body say interim or embedded growth team, and interim CMO where accurate. The primary search phrase is interim growth team, not the coined label. Client service template applied.",
+        crumbs=[("Home", "/"), ("What we do", "/services/"), ("Activation Services", "/services/activation/"), (GO_NAME, None)],
         kind="service",
-        notes=["Renamed on the client's instruction (Mural pass, 15 Oct). The former name and the redirect note are logged in docs/mural-layout-check-oct.md"],
+        notes=["Working name per Andy (19 Oct); naming still being finalised. The name is one constant in the builder, so a later swap is one change", "The 15 Oct alternative name is retired; its URL redirects here (alias in mocks/_redirects; logged in docs/mural-layout-check-oct.md)"],
         mural=SERVICE_MURAL,
         hero="Interim growth team and programme office that gets strategy delivered",
         who="For leadership teams who need strategy executed and the value tracked.",
@@ -1144,7 +1153,7 @@ PAGES: list[dict] = [
         quiet="One-to-one advisory retainer",
         themes=[],
         sectors=[],
-        services=[T("Growth Strategy", "/services/growth-strategy/"), T("Value Orchestration", "/services/value-orchestration/")],
+        services=[T("Growth Strategy", "/services/growth-strategy/"), T(GO_NAME, GO_URL)],
         h1="CEO Advisory",
         h2s=["Overview", "Why now?", "How can we help you?", "Our advisors", "Related case studies", "Why us?"],
         h3s=["Side-by-Side (the named product, hero and this section, not a second URL)", "How the retainer works"],
@@ -1283,7 +1292,7 @@ for slug, name, intro, used in [
         "Media",
         "Publishers and media groups. Subscriptions, membership, and getting strategy delivered in newsroom-adjacent businesses.",
         [
-            ("Value Orchestration", "/services/value-orchestration/"),
+            (GO_NAME, GO_URL),
             ("Operating Model Design", "/services/operating-model-design/"),
             ("Proposition Innovation", "/services/proposition-innovation/"),
         ],
@@ -1295,7 +1304,7 @@ for slug, name, intro, used in [
         [
             ("Experience Engineering", "/services/experience-engineering/"),
             ("AI Agents for Marketing", "/services/ai-agents-for-marketing/"),
-            ("Value Orchestration", "/services/value-orchestration/"),
+            (GO_NAME, GO_URL),
         ],
     ),
     (
@@ -1866,7 +1875,7 @@ def body_for(page: dict) -> str:
             {card(h, "/services/experience-engineering/", "Experience Engineering", "Customer experience (CX), website and digital design, build and testing", "offer")}
             {card(h, "/services/ai-agents-for-marketing/", "AI Agents for Marketing", "AI marketing agents that clean data and improve performance, guided by experts", "offer")}
             {card(h, "/services/operating-model-design/", "Operating Model Design", "Target operating model: how teams, data and AI agents work together", "offer")}
-            {card(h, "/services/value-orchestration/", "Value Orchestration", "Interim growth team and programme office that gets strategy delivered", "offer")}
+            {card(h, GO_URL, GO_NAME, "Interim growth team and programme office that gets strategy delivered", "offer")}
             {card(h, "/services/ai-enablement/", "AI Enablement", "AI skills, training and adoption: finding where AI pays off", "offer")}
           </div>
           <p class="case-line" {mod("Case line")}>Dayinsure, one-line result. <a href="{h("/work/dayinsure/")}">Read the case study</a></p>
@@ -1896,7 +1905,7 @@ def body_for(page: dict) -> str:
             ("Experience Engineering", "/services/experience-engineering/", "A journey, product or website is underperforming and you want it found, fixed, tested and scaled."),
             ("AI Agents for Marketing", "/services/ai-agents-for-marketing/", "Your customer data is holding marketing back and you want AI marketing agents doing the work."),
             ("Operating Model Design", "/services/operating-model-design/", "You need to redesign how teams, data and AI agents work together: a target operating model."),
-            ("Value Orchestration", "/services/value-orchestration/", "You need an interim growth team, and sometimes an interim CMO, to get the strategy delivered and the value tracked."),
+            (GO_NAME, GO_URL, "You need an interim growth team, and sometimes an interim CMO, to get the strategy delivered and the value tracked."),
             ("AI Enablement", "/services/ai-enablement/", "You want your people to use AI well and to find where it pays off."),
         ]
         lines = link_list([(f"<strong>{n}.</strong> {t}", h(u), "") for n, u, t in six])
@@ -2483,7 +2492,7 @@ def body_for(page: dict) -> str:
           {link_list([
               ("Strategy project", h("/services/growth-strategy/"), ""),
               ("Strategy into activation", h("/services/activation/"), ""),
-              ("Embedded interim growth team (Value Orchestration)", h("/services/value-orchestration/"), ""),
+              (f"Embedded interim growth team ({GO_NAME})", h(GO_URL), ""),
               ("Advisory retainer", h("/services/ceo-advisory/"), ""),
           ])}
         </section>
@@ -2990,12 +2999,12 @@ def service_module(page: dict, h) -> dict:
           <h3 class="plain">New work units</h3>
           <p class="prose">Key functions, capabilities and workflows.</p>
           <h3 class="plain">Orchestration: culture, value, capability</h3>
-          <p class="prose">The same three words as <a href="{h("/services/value-orchestration/")}">Value Orchestration</a>, which staffs what this page designs.</p>
+          <p class="prose">The same three words as <a href="{h(GO_URL)}">{GO_NAME}</a>, which staffs what this page designs.</p>
         </section>
 """,
             how=how_section("Diagnose the current model, design the adaptive model, implement."),
         )
-    if url == "/services/value-orchestration/":
+    if url == GO_URL:
         return dict(
             help="""
           <h3 class="plain">Interim growth team</h3>
@@ -3192,7 +3201,7 @@ def check_vocabulary() -> None:
     unused = [n for n, (g, _, _) in COMPONENTS.items() if g != "Chrome" and n not in used]
     if unused:
         print("note: in the library but on no page:", ", ".join(unused))
-    banned = ["chip", "MURAL", "previous build", "not at the top", "banner up", "Canonical<", "Growth Office", "growth-office", "growth office"]
+    banned = ["chip", "MURAL", "previous build", "not at the top", "banner up", "Canonical<", "Value Orchestration", "value-orchestration", "value orchestration"]
     for path in MOCKS.rglob("index.html"):
         text = path.read_text(encoding="utf-8")
         for b in banned:
@@ -3200,9 +3209,18 @@ def check_vocabulary() -> None:
                 raise SystemExit(f"Banned wording {b!r} in {path.relative_to(ROOT)}")
 
 
+def write_redirects() -> None:
+    """Cloudflare Pages alias: the retired 15 Oct name's URL lands on the
+    working name's page (see GO_NAME). One source, regenerated with the site."""
+    lines = f"{GO_ALIAS_URL} {GO_URL} 301\n{GO_ALIAS_URL.rstrip('/')} {GO_URL} 301\n"
+    (MOCKS / "_redirects").write_text(lines, encoding="utf-8")
+    print("wrote", (MOCKS / "_redirects").relative_to(ROOT))
+
+
 if __name__ == "__main__":
     write_pages()
     write_sitemap_html()
     write_heading_map_md()
+    write_redirects()
     check_vocabulary()
     print(f"pages: {len(PAGES)}")
