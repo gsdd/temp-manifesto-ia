@@ -161,7 +161,7 @@ For each: purpose, shape in this wireframe, when to use which interaction type.
 | **Video 16:9** | Showreel, partner film, case film | Dashed 16:9 | Static placeholder. Film later |
 | **Metric box** | A number | Dashed cell, big figure, caption | Static. At a glance; hero numbers |
 | **CIVD four-cell** | Growth Strategy frame | Four dashed cells, then optional paragraphs | Static diagram. Link "Open the CIVD module" is a text link beside it, not the cells |
-| **Operating Architecture figure** | Adaptive model | Captioned figure (not yet drawn) | Static. Caption links Orchestration to Growth Office |
+| **Operating Architecture figure** | Adaptive model | Captioned figure (not yet drawn) | Static. Caption links Orchestration to Value Orchestration |
 | **AgentLab catalogue** | Named agents | Grouped list of entries, not pages | Static entries. Not nav items |
 | **Phase row** | Named how-it-works | Find / Redesign / Test / Scale; 4 wks / 6 wks; interim then embed | Static process. Can be four short static boxes, not cards |
 

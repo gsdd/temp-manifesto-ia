@@ -24,7 +24,7 @@ flowchart TB
     SA --> S4["/services/experience-engineering/ Experience Engineering"]:::canonical
     SA --> S5["/services/ai-agents-for-marketing/ AI Agents for Marketing #agentlab"]:::canonical
     SA --> S6["/services/operating-model-design/ Operating Model Design #operating-architecture"]:::canonical
-    SA --> S7["/services/growth-office/ Growth Office"]:::canonical
+    SA --> S7["/services/value-orchestration/ Value Orchestration"]:::canonical
     SA --> S8["/services/ai-enablement/ AI Enablement"]:::canonical
     S --> S9["/services/ceo-advisory/ (pillar 3, Side-by-Side) #advisors"]:::supporting
 
@@ -36,12 +36,13 @@ flowchart TB
     E --> E4["/expertise/pricing/"]:::supporting
     E --> E5["/expertise/customer-value/"]:::supporting
 
-    %% Sectors: four light landings, no index page, reached from the footer and Work filters
+    %% Sectors: five light landings, no index page, reached from the footer and Work filters
     Home --> Sec["Sectors (footer heading, not a page)"]:::light
     Sec --> Sec1["/sectors/financial-services/"]:::light
     Sec --> Sec2["/sectors/media/"]:::light
     Sec --> Sec3["/sectors/consumer/"]:::light
     Sec --> Sec4["/sectors/retail/"]:::light
+    Sec --> Sec5["/sectors/energy/"]:::light
 
     %% Work
     Home --> W["/work/ Hub, filterable"]:::canonical
@@ -96,7 +97,7 @@ flowchart LR
             EE["Experience Engineering"]
             DA["AI Agents for Marketing"]
             OA["Operating Model Design"]
-            GO["Growth Office"]
+            GO["Value Orchestration"]
             AI["AI Enablement"]
         end
         subgraph P3["CEO Advisory"]

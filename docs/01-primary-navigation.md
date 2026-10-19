@@ -91,7 +91,7 @@ The heading is the pillar hub (D-11, D-54). Overview is the same destination, la
 | Strand 3 | Experience Engineering | Customer experience and websites | `/services/experience-engineering/` |
 | Strand 4 | AI Agents for Marketing | AI marketing agents, guided by experts | `/services/ai-agents-for-marketing/` |
 | Strand 5 | Operating Model Design | Target operating model | `/services/operating-model-design/` |
-| Strand 6 | Growth Office | Interim growth team | `/services/growth-office/` |
+| Strand 6 | Value Orchestration | Interim growth team | `/services/value-orchestration/` |
 | Strand 7 | AI Enablement | AI skills and adoption | `/services/ai-enablement/` |
 
 Order of the six services follows the Source B deck. Overview is the group page. Labels are the v3 labels (`nav-wording-decisions.md`), unchanged. Every strand has a short subtitle in buyer language (`docs/keyword-findings.md`). Deck one-liners still do not return.
@@ -189,13 +189,13 @@ v3 gave Insights a two-column dropdown (three type filters plus Expertise with f
 The footer is the second navigation system. It is identical on every page and carries the full site structure, including sectors and themes, which are kept out of the header.
 
 **Footer column 1: What we do**
-Growth Strategy, Proposition Innovation, Customer Research and Insight, Experience Engineering, AI Agents for Marketing, Operating Model Design, Growth Office, AI Enablement, CEO Advisory, All services
+Growth Strategy, Proposition Innovation, Customer Research and Insight, Experience Engineering, AI Agents for Marketing, Operating Model Design, Value Orchestration, AI Enablement, CEO Advisory, All services
 
 **Footer column 2: Expertise**
 Loyalty, Membership, Subscriptions, Pricing, Customer Value
 
 **Footer column 3: Who we work with** (heading is plain text; there is no sector index page in v4, D-44)
-Financial services, Media, Consumer, Retail (each to `/sectors/{slug}/`)
+Financial services, Media, Consumer, Retail, Energy (each to `/sectors/{slug}/`)
 
 **Footer column 4: Company**
 About, Our people, Our approach, Values and culture, Careers, Our work, Our thinking, The Nutshell, Contact
@@ -275,7 +275,7 @@ Header items, About dropdown, footer, breadcrumbs, labels and slugs are unchange
 | Group titles look like headings; Growth Strategy has one child | Group titles are linked hubs with a trailing arrow. Growth Strategy shows Overview + Proposition Innovation |
 | Activation: six children, no Overview | Overview + the six |
 | CEO Advisory: heading + Our advisors (reads as one strand), greyed or quieter type | Hub heading + Side-by-Side + Our advisors, same contrast as the other pillars (D-57) |
-| Two quiet lines only (Experience Engineering, Growth Office) | Keyword-led subtitle under every strand (D-58) |
+| Two quiet lines only (Experience Engineering, Value Orchestration) | Keyword-led subtitle under every strand (D-58) |
 | Latest thinking at the foot of Home | Featured thinking after the triangle (`thinking-placement.md`) |
 | Chips catalogue with working-notes sidebar | Component library, live components only (D-59, D-60) |
 

@@ -46,7 +46,7 @@ Proposition Innovation       Customer Research and Insight
                                Customer experience and websites
                              AI Agents for Marketing
                              Operating Model Design
-                             Growth Office
+                             Value Orchestration
                                Interim growth team
                              AI Enablement
 
@@ -56,7 +56,7 @@ All services   Expertise   Contact
 - **Three columns stay.** Growth Strategy, Activation Services, CEO Advisory, in that order. CEO Advisory narrower and lighter. Nothing else is reintroduced.
 - **Column headings are the pillar links.** Growth Strategy heads column 1 and links to `/services/growth-strategy/`. The v3 list item "Growth Strategy" underneath it, which went to the same page, is cut. Same in column 3: the heading CEO Advisory is the link, and the "Side-by-Side" item beneath it (same page) is cut. Side-by-Side is named on the CEO Advisory page.
 - **One short line per pillar, none per item.** Three pillar lines of four to six words. The thirteen item subtitles are gone.
-- **Two quiet lines, for the two coined names that need them.** Experience Engineering ("Customer experience and websites") and Growth Office ("Interim growth team"). These are the two labels Andy flagged as opaque on the 7 September call. Every other label is already the searched term, or is close enough to stand alone (Proposition Innovation, AI Enablement).
+- **Two quiet lines, for the two coined names that need them.** Experience Engineering ("Customer experience and websites") and Value Orchestration ("Interim growth team"). These are the two labels Andy flagged as opaque on the 7 September call. Every other label is already the searched term, or is close enough to stand alone (Proposition Innovation, AI Enablement).
 - **"Meet the advisors" is cut.** About, Our team lists the advisors under `#advisors`, and the CEO Advisory page surfaces their profiles as its main block. The menu did not need a second route.
 - **The heading line is cut.** "Our Growth Architecture / Strategy that works. Execution that delivers." was a line to read before reaching the pillars. Growth Architecture is the subheading of `/services/` and is in the company name; the strapline is hero copy on Home and the Services hub.
 - **Footer row: three words.** All services, Expertise, Contact. The five theme names are gone from the menu.
@@ -121,7 +121,7 @@ Work hub filters: Service is the one filter group open on load, grouped by pilla
 | Mega-nav heading line "Our Growth Architecture" with strapline | Removed from the menu. Subheading on `/services/`; strapline in Home and hub heroes. |
 | Column 1 items: Growth Strategy, Proposition Innovation | Heading Growth Strategy (link), item Proposition Innovation |
 | Column 3 items: Side-by-Side, Meet the advisors | Heading CEO Advisory (link) with one line. No items. |
-| 13 item subtitles | 2 quiet lines (Experience Engineering, Growth Office) |
+| 13 item subtitles | 2 quiet lines (Experience Engineering, Value Orchestration) |
 | 3 pillar subtitles, seven to nine words | 3 pillar lines, four to six words |
 | Footer row: All services, "Expertise: loyalty, membership, subscriptions, pricing, customer value", Contact | All services, Expertise, Contact |
 | Insights: two-column dropdown | Insights: plain link |
@@ -146,7 +146,7 @@ The words v3 put in the menu are not lost. They moved to the place a visitor rea
 | "Strategy that works. Execution that delivers." | Home hero, Services hub hero |
 | Pillar subtitles (seven to nine words) | Shortened to four to six words; same three lines used on Home and the Services hub triangle (shared data) |
 | "Customer experience (CX), website and digital design, build and testing" | Experience Engineering: quiet line "Customer experience and websites" in the menu; H2s "Customer experience (CX) design", "Website and digital product design and build", "User research and testing"; title tag "Experience Engineering: customer experience and websites" |
-| "Interim growth team and programme office that gets strategy delivered" | Growth Office: quiet line "Interim growth team" in the menu; "programme office" in the page H2s and title tag |
+| "Interim growth team and programme office that gets strategy delivered" | Value Orchestration: quiet line "Interim growth team" in the menu; "programme office" in the page H2s and title tag |
 | "Research, surveys, analytics and customer listening, faster with AI" | Customer Research and Insight page: H2s and meta description |
 | "New offers and business models: loyalty, membership, subscription, direct-to-consumer" | Proposition Innovation page: H2 per proposition type, each linking to its expertise theme |
 | "AI that cleans up customer data and improves marketing performance" | AI Agents for Marketing page: hero line and H2s |

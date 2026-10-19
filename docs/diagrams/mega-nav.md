@@ -38,7 +38,7 @@ flowchart TB
             C2b["Experience Engineering → /services/experience-engineering/<br/><i>Customer experience and websites</i>"]
             C2c["AI Agents for Marketing → /services/ai-agents-for-marketing/<br/><i>AI marketing agents, guided by experts</i>"]
             C2d["Operating Model Design → /services/operating-model-design/<br/><i>Target operating model</i>"]
-            C2e["Growth Office → /services/growth-office/<br/><i>Interim growth team</i>"]
+            C2e["Value Orchestration → /services/value-orchestration/<br/><i>Interim growth team</i>"]
             C2f["AI Enablement → /services/ai-enablement/<br/><i>AI skills and adoption</i>"]
             C2o --> C2a --> C2b --> C2c --> C2d --> C2e --> C2f
         end
@@ -113,7 +113,7 @@ Two levels deep. No pillar sub-accordions and no sectors block; sectors are in t
 flowchart LR
     subgraph F1["What we do"]
         direction TB
-        F1a["Growth Strategy, Proposition Innovation, Customer Research and Insight, Experience Engineering, AI Agents for Marketing, Operating Model Design, Growth Office, AI Enablement, CEO Advisory, All services"]
+        F1a["Growth Strategy, Proposition Innovation, Customer Research and Insight, Experience Engineering, AI Agents for Marketing, Operating Model Design, Value Orchestration, AI Enablement, CEO Advisory, All services"]
     end
     subgraph F2["Expertise"]
         direction TB
@@ -121,7 +121,7 @@ flowchart LR
     end
     subgraph F3["Who we work with (heading is plain text)"]
         direction TB
-        F3a["Financial services, Media, Consumer, Retail"]
+        F3a["Financial services, Media, Consumer, Retail, Energy"]
     end
     subgraph F4["Company"]
         direction TB

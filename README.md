@@ -1,4 +1,4 @@
-# Manifesto Growth Architects: Website Information Architecture (v5)
+# Manifesto Growth Architects: Website Information Architecture
 
 This repository holds the Information Architecture (IA) package for the new Manifesto Growth Architects (MGA) website. It is documentation plus a clickable full-site wireframe. There is no production website code here and no visual design. The package defines what the site contains, how it is organised, how it is navigated, and which page owns which topic.
 
@@ -10,7 +10,9 @@ This repository holds the Information Architecture (IA) package for the new Mani
 
 **v5 takes the pages to best in class on evidence.** Gary's feedback on v4 (16 September) was that the navigation was calm but not yet best in class, and that Andy's deck might not be fully reflected. v5 reviewed the live navigation of ten real peers and six pattern references (`docs/competitor-nav-review.md`), audited the deck slide by slide (`docs/andy-deck-coverage.md`), and made eight refinements (`docs/v5-refinements.md`). The finding: the menu was already sparser than any peer's; the gap was on the pages. So v5 rebuilds the Services hub as the Growth Architecture story with a way in by problem, puts proof under each offer, names the system and its frameworks where a buyer can see them, and adds exactly one quiet link to the menu.
 
-**Andy's feedback pass (1 October, Source H)** applies three changes from Andy Bacon's review of the wires and nothing else: the existing showreel / client video is confirmed in the Home hero (D-61); About is reframed around Growth Architecture, with copy to come from the brand work (D-63); Our people becomes three sections, Growth Architects, Expert Community and SxS Advisors (D-62). Our services, Our work, Our thinking and Careers are held at their existing structure until Andy sends the proposed templates.
+**Andy's feedback pass (1 October, Source H)** applies three changes from Andy Bacon's review of the wires and nothing else: the existing showreel / client video is confirmed in the Home hero (D-61); About is reframed around Growth Architecture, with copy to come from the brand work (D-63); Our people becomes three sections, Growth Architects, Expert Community and SxS Advisors (D-62). Our services, Our work, Our thinking and Careers were held at their existing structure until Andy sent the proposed templates.
+
+**The Mural layouts pass (15 October, Source I)** applies Manifesto's confirmed page layouts to five page families: case studies (hero with tag pills and image, sticky stat rail, attributed testimonial, The Opportunity / The Solution / The Impact), Our work (one grid with a logo band, Industry and Service filters and a testimony video), service and strand pages (Overview, Why now?, How can we help you?, Why us?, Our experts with a profile pop-up, Related case studies carousel; nothing behind accordions or tabs), Careers (values cards, five application steps, an Open positions / All toggle; DEI and Benefits kept) and Our thinking (type tabs with All first, one thought leadership card for everything, no dates, reports gated on their own pages). It renames Growth Office to **Value Orchestration** (`/services/value-orchestration/`; the old slug redirects) and unifies the industry taxonomy (Financial services, Consumer, Media, Retail, plus a new light Energy sector). The change log for the visual designer is `docs/mural-layout-check-oct.md`; the decisions are D-64 to D-71.
 
 **The wireframe pass before it does not replace the v5 IA.** It extends the v5 mock into a clickable full-site wireframe covering the sitemap, with page notes, heading maps, and UK keyword intel (`docs/heading-map.md`, `docs/keyword-findings.md`). A MURAL pass folded current-site labels and keep/drop modules into the chrome (six header items, Our thinking, Careers first-class) without adopting the old sitemap. This pass: makes mega-nav group titles obvious hubs; treats CEO Advisory as a full-weight pillar; puts a keyword-led subtitle under every strand; moves Our thinking up the homepage; indexes live **page modules** (not working notes) at `/catalogue/`; fills footer, forms, listing states and utility stubs. See `docs/thinking-placement.md` and `docs/strand-gap-check.md`. The client-facing recommendations are in `docs/ia-recommendations-report.md`.
 
@@ -26,7 +28,7 @@ The What we do menu **is** Andy's triangle: three linked hub headings (each with
 | | Experience Engineering *Customer experience and websites* | |
 | | AI Agents for Marketing *AI marketing agents, guided by experts* | |
 | | Operating Model Design *Target operating model* | |
-| | Growth Office *Interim growth team* | |
+| | Value Orchestration *Interim growth team* | |
 | | AI Enablement *AI skills and adoption* | |
 
 Column headings are the pillar hubs. Under the columns, one thin row: All services, Expertise, Our work. Hub rows (Overview) make the group titles obviously clickable. CEO Advisory is full visual weight (same contrast as the other pillars). The v3 panel had about 200; Prophet's has about 25 links and Elixirr's about 60 against our panel.
@@ -56,8 +58,9 @@ Services are the spine of the site and the canonical home for every capability t
 | F: Gary's v4 feedback, 15 Sept evening | Simplify the whole concept; fewer words; sparse chips; calm homepage; clean mock | How much the chrome may say |
 | G: Gary's v5 brief, 16 Sept | Best in class on competitor evidence; full deck fidelity; no deck copy in the mega-nav | Where the pages go beyond the peer set |
 | H: Andy's feedback via Gary, 1 Oct | Showreel on Home; About framed around Growth Architecture; team in three sections; hold the other templates | Those three pages |
+| I: Manifesto's Mural page layouts, 15 Oct | Case study, work, service, careers and thinking templates; the thought leadership card; the Value Orchestration rename; the unified taxonomy with Energy | Page layout for those five families |
 
-Full summaries of all eight are in `docs/00-sources.md`. The competitor review is cited as evidence for G, not as a source of its own.
+Full summaries of all nine are in `docs/00-sources.md`. The competitor review is cited as evidence for G, not as a source of its own.
 
 ## How to read the package
 
@@ -71,6 +74,7 @@ Full summaries of all eight are in `docs/00-sources.md`. The competitor review i
 | `docs/thinking-placement.md` | Why Latest thinking moved up the homepage | Gary reviewing Home |
 | `docs/strand-gap-check.md` | Old IA columns and early Home / Services wireframes vs current IA, especially CIVD and Side-by-Side | Gary and Andy checking missed strands |
 | `docs/mural-gap-check.md` | What the MURAL board added to nav, page notes and headings; what was left out; open questions | Reviewing the wireframe chrome |
+| `docs/mural-layout-check-oct.md` | The 15 October Mural layouts pass: what changed per page, the rename, the taxonomy mapping, judgement calls and open items | Bruno, and anyone reviewing the client layouts |
 | `docs/v5-refinements.md` | What v5 changes and why, with the competitor and deck evidence for each; old to new; the tests v5 has to pass | Gary and Andy reviewing v5 |
 | `docs/competitor-nav-review.md` | How ten real peers and six pattern references structure nav, services and IA; what is best in class; what to avoid; a patterns table against v4 | Anyone asking "is this best in class?" |
 | `docs/andy-deck-coverage.md` | Every element of Andy's deck, slide by slide: Present, Partial or Missing in the IA, and where v5 puts it | Andy, and Gary checking the deck is reflected |
@@ -81,7 +85,7 @@ Full summaries of all eight are in `docs/00-sources.md`. The competitor review i
 | `docs/03-page-layouts.md` | The on-page tag rule, then block-by-block templates for each page type | Designers, content, developers |
 | `docs/04-canonicals-and-seo.md` | Which page owns which topic, where the search vocabulary now lives, what is indexed, how pages link | SEO, content, developers |
 | `docs/05-content-matrix.md` | Content types against pages, and launch minimums | Content, CMS modelling |
-| `docs/06-decisions-log.md` | Why v1 was rejected, why later versions exist, and every decision (D-01 to D-59) with sources and fallbacks | Stakeholders reviewing the IA |
+| `docs/06-decisions-log.md` | Why v1 was rejected, why later versions exist, and every decision (D-01 to D-71) with sources and fallbacks | Stakeholders reviewing the IA |
 | `docs/nav-wording-decisions.md` | Every v2 to v3 label change with its reason, the v4 status of each, and what competitors call the same thing | Anyone editing a label |
 | `docs/diagrams/` | Mermaid diagrams of the mega-nav and sitemap | Anyone who prefers a picture |
 
@@ -97,7 +101,7 @@ Full summaries of all eight are in `docs/00-sources.md`. The competitor review i
 - **Nav label**: what the site calls a service. Follows what a prospect would search for.
 - **Hero line**: the one line under a service page's H1 that carries its searched terms.
 - **Expertise theme**: a growth problem MGA understands deeply. Lives under `/expertise/`. Shown to visitors as "Expertise".
-- **Sector**: an industry grouping used as a proof point and a filter. Four light landings, no index page.
+- **Sector**: an industry grouping used as a proof point and a filter. Five light landings (Financial services, Media, Consumer, Retail, Energy), no index page.
 - **On-page tag**: a small linked tag on a page. Each page type shows tags from one dimension only, three visible. Do not call these chips in UI copy.
 - **Page module / block**: a live content unit (card, logo row, quote, video, form, empty state). Indexed at `mocks/catalogue/`.
 - **Weight**: how much content and SEO investment a page receives. Defined in `docs/02-sitemap.md`.

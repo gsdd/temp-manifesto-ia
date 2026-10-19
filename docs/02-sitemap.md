@@ -61,7 +61,7 @@ Source A suggested a separate Growth Architecture page alongside a services hub.
 | `/services/experience-engineering/` | Service detail | Activation Services | **Experience Engineering**. Finding, redesigning, testing and scaling experiences that drive disproportionate value; the four phases are the How it works block (R6). Customer experience (CX), website and digital design, build and testing (Source B). Numbers line: over 3x EBITDA return on investment. Written so customer experience, website and research searches land here (Source C). Owns "experience engineering" and the CX / website / digital product cluster. | Canonical |
 | `/services/ai-agents-for-marketing/` | Service detail | Activation Services | **AI Agents for Marketing** (deck: Data Agents). AI that cleans up customer data and improves marketing performance, guided by experts. AgentLab and the agent catalogue (Source B), anchored `#agentlab`. Numbers line: 4 weeks to audit, 6 weeks to first agents. Owns "AI agents for marketing / marketing AI / customer data quality / data agents / AgentLab". "Data Agents" and "AgentLab" are named on the page. | Canonical |
 | `/services/operating-model-design/` | Service detail | Activation Services | **Operating Model Design** (deck: Operating Architecture / Operating Models). How teams, data and AI agents work together: grounded in customer value, fuelled by data, redesigned around humans and AI agents, orchestrated for impact (Source B). The framework figure is anchored `#operating-architecture`. Owns "operating model design / operating model consultancy / operating architecture". | Canonical |
-| `/services/growth-office/` | Service detail | Activation Services | **Growth Office**. Interim growth team and programme office bridging strategy and delivery through culture, capability and value (Source B); two phases, interim then embedded, as the How it works block (R6). Owns "growth office / interim growth leadership / transformation programme office". | Canonical |
+| `/services/value-orchestration/` | Service detail | Activation Services | **Value Orchestration**. Interim growth team and programme office bridging strategy and delivery through culture, capability and value (Source B); two phases, interim then embedded, as the How it works block (R6). Owns "value orchestration / interim growth leadership / transformation programme office". | Canonical |
 | `/services/ai-enablement/` | Service detail | Activation Services | **AI Enablement**. AI skills, training and adoption; finding where AI pays off; business model innovation (Source B). Names the expert network in body copy. Owns "AI enablement / AI adoption / AI training for leadership teams". | Canonical |
 | `/services/ceo-advisory/` | Service detail (third pillar, full visual weight) | CEO Advisory | **CEO Advisory**. Two strands: Side-by-Side (named product, anchored `#side-by-side`) and Our advisors (people, anchored `#advisors`). One-to-one advice for CEOs and senior leaders from experienced growth leaders, retainer-based, virtual or in person (Source B). Both strands are in the mega-nav (D-54). Present and visible as the third pillar; not greyed out (D-57). "SxS" is not used on the site. | Supporting |
 
@@ -109,9 +109,10 @@ Light landings only (Source C: sector-agnostic services, no sector POV pages; Ga
 | `/sectors/media/` | Sector light landing | As above for media and publishing. | Light |
 | `/sectors/consumer/` | Sector light landing | As above for consumer brands, travel and leisure. | Light |
 | `/sectors/retail/` | Sector light landing | As above for retail. | Light |
+| `/sectors/energy/` | Sector light landing | As above for energy providers and the businesses around them. | Light |
 
 Notes:
-- Four sectors from Source A. Travel and leisure clients (Merlin, Parkdean, IAG) sit under Consumer. Technology clients (Meta, Microsoft) appear in Our work without a sector landing (`06-decisions-log.md`, D-09).
+- Five sectors: four from Source A plus Energy, added in the Mural layouts pass when the industry taxonomy was unified (Source I; `06-decisions-log.md`, D-71). The client's Mural filters said Finance and CPG; this package uses Financial services and Consumer as the one list for filters, tag pills and sector landings. Travel and leisure clients (Merlin, Parkdean, IAG) sit under Consumer. Technology clients (Meta, Microsoft) appear in Our work without a sector landing (D-09).
 - **There is no `/sectors/` index page** (v4, D-44). v3 had one as the footer heading target; it duplicated the footer's own list. The footer heading "Who we work with" is plain text, and `/sectors/` redirects to `/work/` (`04-canonicals-and-seo.md`, section 7).
 - A sector landing is indexed only when it has at least 150 words of unique intro, three published case studies and two insights tagged to it. Below that it is noindex, follow.
 - No pages under a sector. Ever.
@@ -122,8 +123,8 @@ Notes:
 
 | URL | Page type | Purpose | Weight |
 |---|---|---|---|
-| `/work/` | Work hub (filterable) | Every case study in one place. Service filter open on load; expertise and sector behind More filters (D-43). Testimonials live inside case studies (Source A). | Canonical |
-| `/work/{client}/` | Case study | One engagement: challenge, approach, result, quote, services used, themes, sector. Examples from Source B: `/work/dayinsure/`, `/work/key-group/`, `/work/transfergo/`, `/work/merlin/`, `/work/wsj/`, `/work/parkdean/`, `/work/tsb/`, `/work/post-office/`, `/work/mars/`, `/work/bbc/`. | Supporting |
+| `/work/` | Work hub (filterable) | Every case study in one grid (client layout, Source I; D-66): short intro with the "Our clients" support line, auto-scrolling client logo band, Industry and Service filter groups open on load with Expertise behind More filters, a testimony video block and the contact band. Testimonials live inside case studies (Source A). | Canonical |
+| `/work/{client}/` | Case study | One engagement in the client's template (Source I; D-65): hero with project name, title, tag pills and image; a sticky stat rail with Contact us; an attributed testimonial; The Opportunity, The Solution, The Impact; See more of our case studies. Examples from Source B: `/work/dayinsure/`, `/work/key-group/`, `/work/transfergo/`, `/work/merlin/`, `/work/wsj/`, `/work/parkdean/`, `/work/tsb/`, `/work/post-office/`, `/work/mars/`, `/work/bbc/`. | Supporting |
 | `/work/?service={slug}` | Filtered view | Case studies for one service. Canonical to `/work/`. | Utility (noindex) |
 | `/work/?expertise={slug}` | Filtered view | Case studies for one theme. Canonical to `/work/`. | Utility (noindex) |
 | `/work/?sector={slug}` | Filtered view | Case studies for one sector. Canonical to `/work/`. | Utility (noindex) |
@@ -140,14 +141,14 @@ Notes:
 
 | URL | Page type | Purpose | Weight |
 |---|---|---|---|
-| `/insights/` | Insights hub (filterable) | All articles, reports and events, newest first ("latest" is a section, not a page, per Source A). Type filter open on load; expertise, service and sector behind More filters (D-43). This is where the v3 Insights dropdown's type links now live (D-38). | Supporting |
+| `/insights/` | Insights hub (filterable) | All articles, reports, news and events in one grid (client layout, Source I; D-68): type filter tabs with All first, then a tag filter; one thought leadership card for every item with its type on the card and no dates. Each tab is a crawlable URL state and the nav dropdown's type links land on these states (D-38). | Supporting |
 | `/insights/{slug}/` | Insight | One article, report or event. Tagged to services, themes and sectors. | Supporting (Light if under 500 words or an event listing) |
 | `/insights/?type={article\|report\|event}` | Filtered view | Insights of one type. Canonical to `/insights/`. | Utility (noindex) |
 | `/insights/?expertise={slug}` | Filtered view | Insights for one theme. Canonical to `/insights/`. | Utility (noindex) |
 | `/newsletter/` | Newsletter sign-up | Capture email sign-ups. | Utility (indexed) |
 
 Notes:
-- Reports that need a download form use the same `/insights/{slug}/` template with a gated download module. No separate `/resources/` section.
+- Reports get their own single pages on the same `/insights/{slug}/` template, with the email gate on that page; nothing downloads from the grid (Source I). No separate `/resources/` section.
 - Events are insights of type "event" and drop out of the default list after the event date, remaining reachable by URL.
 - No author, tag or category archive pages. Filters and team profiles cover these.
 - Any insight on loyalty links back to `/expertise/loyalty/` (Source A).
@@ -177,8 +178,8 @@ Notes:
 
 | URL | Page type | Purpose | Weight |
 |---|---|---|---|
-| `/careers/` | Careers hub | Life at Manifesto, benefits and the current open roles on one page. | Light |
-| `/careers/{role}/` | Role | One open role with how to apply. | Light (noindex when closed) |
+| `/careers/` | Careers hub | One page in the client's shape (Source I; D-67): hero with a See open positions anchor button, Life at Manifesto, Values and culture cards, DEI, benefits, the five-step application process, and the roles list with an Open positions / All toggle. | Light |
+| `/careers/{role}/` | Role | One open role: title, description and how to apply via LinkedIn (Source I). | Light (noindex when closed) |
 
 Notes:
 - Source A lists Life at Manifesto, Benefits and Open Roles as children of Careers. At MGA's size these are sections of one page, not three pages. If the roles list grows past ten, split `/careers/roles/` out.
@@ -237,7 +238,7 @@ Anchors that other pages link to (not pages): `/services/growth-strategy/#civd`,
 | Excluded | Reason |
 |---|---|
 | A separate `/growth-architecture/` page | Merged into `/services/`. One hub carries the triangle. `/growth-architecture/` redirects there. |
-| A `/sectors/` index page | Cut in v4 (D-44). It listed the four sectors, which the footer already does. `/sectors/` redirects to `/work/`. |
+| A `/sectors/` index page | Cut in v4 (D-44). It listed the sectors, which the footer already does. `/sectors/` redirects to `/work/`. |
 | A separate `/side-by-side/` or advisors page | Side-by-Side is the CEO Advisory offer and is named on `/services/ceo-advisory/`; the advisors are that page's main block and a group on `/about/team/`. `/side-by-side/` redirects. |
 | A separate CIVD page | CIVD is the Growth Strategy frame (Source B). It is a module on `/services/growth-strategy/` and is explained once in How we work. |
 | Sector point-of-view pages (for example `/sectors/retail/loyalty-in-retail/`) | Source C: sector-agnostic services. Sector content is a filter and a light landing, not a destination. |

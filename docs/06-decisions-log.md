@@ -1,6 +1,6 @@
-# 06. Decisions log (v5)
+# 06. Decisions log
 
-Every significant IA decision, the options considered, what was chosen, and the trade-off. Each entry names the sources it rests on. The eight sources are summarised in `00-sources.md`:
+Every significant IA decision, the options considered, what was chosen, and the trade-off. Each entry names the sources it rests on. The nine sources are summarised in `00-sources.md`:
 
 - **Source A**: Gary's IA feedback document (structure, three intersecting dimensions, one canonical home per topic, About and Careers split).
 - **Source B**: Andy's Growth Architecture Services deck, working draft Sept 26 (the triangle, service grouping, Why and What copy per service).
@@ -10,8 +10,9 @@ Every significant IA decision, the options considered, what was chosen, and the 
 - **Source F**: Gary's v4 feedback of 15 September, evening (the whole concept is still too complicated; simplify the idea, then the UI; calm mocks; quiet homepage chips).
 - **Source G**: Gary's v5 brief of 16 September (not yet best in class; review real competitors; check the deck is fully reflected; no deck copy back in the mega-nav).
 - **Source H**: Andy Bacon's IA feedback relayed by Gary, 1 October (showreel on Home; About framed around Growth Architecture; team in three sections; hold Services, Work, Thinking and Careers templates).
+- **Source I**: Manifesto's confirmed Mural page layouts, 15 October (the case study, work, service, careers and thinking templates; the thought leadership card; the Value Orchestration rename; the unified industry taxonomy with Energy).
 
-Precedence: structure from A; service taxonomy from B; weight and order from C; simplification from D and F; nav wording from C and E; where the pages go beyond the peer set from G, evidenced by `competitor-nav-review.md`. Where E's "add a subtitle" and F's "fewer words" conflict, F wins in the menu and E's words move to the page. Where G's "best in class" and F's calmness pull apart, the change lands on a page or as one quiet link, never as a column or a subtitle.
+Precedence: structure from A; service taxonomy from B; weight and order from C; simplification from D and F; nav wording from C and E; where the pages go beyond the peer set from G, evidenced by `competitor-nav-review.md`. Where E's "add a subtitle" and F's "fewer words" conflict, F wins in the menu and E's words move to the page. Where G's "best in class" and F's calmness pull apart, the change lands on a page or as one quiet link, never as a column or a subtitle. Page layout for the case study, work, service, careers and thinking families now comes from I; where I's sketches clash with the locked IA, the locked IA wins and the clash is an open item.
 
 ---
 
@@ -105,7 +106,7 @@ What v1 got right and v2 keeps: services canonical and flat under `/services/`; 
 | ID | Decision | Sources |
 |---|---|---|
 | D-34 | Mega-nav heading line ("Our Growth Architecture" and strapline) removed from the menu; strapline moves to the Home and Services hub heroes | F, D |
-| D-35 | Item subtitles retired. One pillar line per column (four to six words). Two quiet lines only, under Experience Engineering and Growth Office. Search vocabulary moves to page heroes, H2s and title tags | F, C, E |
+| D-35 | Item subtitles retired. One pillar line per column (four to six words). Two quiet lines only, under Experience Engineering and Value Orchestration. Search vocabulary moves to page heroes, H2s and title tags | F, C, E |
 | D-36 | Duplicate routes cut: the Growth Strategy item under its own heading, the Side-by-Side item under CEO Advisory, and "Meet the advisors". Column headings are the pillar links; column 3 is heading and line only | F, C |
 | D-37 | Panel footer row is three short links: All services, Expertise, Contact. Theme names removed from the menu | F |
 | D-38 | Insights is a plain header link. Its dropdown (type filters and five themes) is removed; filters live on the hub | F, A |
@@ -125,7 +126,7 @@ What v1 got right and v2 keeps: services canonical and flat under `/services/`; 
 | D-27 | Customer Intelligence becomes Customer Research and Insight (`/services/customer-research/`) | C, E |
 | D-28 | Data Agents becomes AI Agents for Marketing (`/services/ai-agents-for-marketing/`) | B (strapline), C, E |
 | D-29 | Operating Architecture becomes Operating Model Design (`/services/operating-model-design/`) | B (slide 3 "Operating Models"), E |
-| D-30 | Experience Engineering, Growth Office, Proposition Innovation, AI Enablement, Activation Services and Side-by-Side keep their labels; all thirteen subtitles rewritten in plain English with searched terms | C, E |
+| D-30 | Experience Engineering, Value Orchestration, Proposition Innovation, AI Enablement, Activation Services and Side-by-Side keep their labels; all thirteen subtitles rewritten in plain English with searched terms | C, E |
 | D-31 | No acronyms in the nav: SxS removed, D2C expanded, CX always written "customer experience (CX)" | C, E |
 | D-32 | Visitor-facing label for the themes dimension is "Expertise", not "Expertise themes" | E |
 | D-33 | The five header labels stay after review against "Services" and "Case studies" | A, E |
@@ -232,13 +233,13 @@ What v1 got right and v2 keeps: services canonical and flat under `/services/`; 
 
 **Chosen**: Every service label in the mega-nav carries one plain-English line, fixed text, no more than ten words. Pillar headings carry one short line each.
 
-**Rationale**: Source C: "HPX failed; clients look for CX"; Experience Engineering "needs subtitles / keywords so 'can you build a website?' maps clearly"; Growth Office terminology is "hard". Source D asks for "plain subtitles under labels". Subtitles are the lightest way to make Source B's labels legible.
+**Rationale**: Source C: "HPX failed; clients look for CX"; Experience Engineering "needs subtitles / keywords so 'can you build a website?' maps clearly"; Value Orchestration terminology is "hard". Source D asks for "plain subtitles under labels". Subtitles are the lightest way to make Source B's labels legible.
 
 **Trade-off**: Subtitles add text to the panel. They are kept to one line and are the only text besides labels, so the panel still reads as three short lists.
 
 **v3 note**: v2 wrote the subtitles partly in deck language. D-30 rewrites all thirteen. The mechanism (one line, ten words, fixed text) is unchanged.
 
-**v4 note**: Superseded by D-35. Item subtitles are retired from the menu; the three pillar lines stay, shortened; two quiet lines remain under Experience Engineering and Growth Office. The v3 subtitle wording is reused as the hero line on each service page.
+**v4 note**: Superseded by D-35. Item subtitles are retired from the menu; the three pillar lines stay, shortened; two quiet lines remain under Experience Engineering and Value Orchestration. The v3 subtitle wording is reused as the hero line on each service page.
 
 ---
 
@@ -280,6 +281,8 @@ What v1 got right and v2 keeps: services canonical and flat under `/services/`; 
 ## D-09. Four sectors; travel and leisure under Consumer; no technology sector
 
 **Chosen**: Financial services, Media, Consumer, Retail (Source A's list). Merlin, Parkdean and IAG sit under Consumer. Meta and Microsoft appear in Our work without a sector landing.
+
+**Mural note**: Extended by D-71. Energy joins as a fifth light sector, and the client's Finance and CPG filter labels map to Financial services and Consumer.
 
 **Rationale**: Sectors are light, so fewer is better. A new sector is added only when it has three case studies and two insights (the same threshold used to index a landing).
 
@@ -474,11 +477,11 @@ What v1 got right and v2 keeps: services canonical and flat under `/services/`; 
 
 ## D-30. Labels kept with rewritten subtitles
 
-**Chosen**: Experience Engineering, Growth Office, Proposition Innovation, AI Enablement, Activation Services (pillar) and Side-by-Side keep their labels. All thirteen mega-nav subtitles are rewritten in plain English; each contains at least one term a prospect would search. The full list is in `01-primary-navigation.md` section 3.2 and the reasons per line in `nav-wording-decisions.md`.
+**Chosen**: Experience Engineering, Value Orchestration, Proposition Innovation, AI Enablement, Activation Services (pillar) and Side-by-Side keep their labels. All thirteen mega-nav subtitles are rewritten in plain English; each contains at least one term a prospect would search. The full list is in `01-primary-navigation.md` section 3.2 and the reasons per line in `nav-wording-decisions.md`.
 
 **Rationale per label**:
 - *Experience Engineering*: Source C and Source E both say keep it and subtitle it. It is the Dayinsure / Key Group model Andy wants to be known for. Subtitle: "Customer experience (CX), website and digital design, build and testing".
-- *Growth Office*: Andy said the terminology is hard (Source C). Alternatives ("Growth Delivery Team", "Interim Growth Team") each lost part of culture plus capability plus value tracking. Short, parallels PMO / transformation office. Subtitle: "Interim growth team and programme office that gets strategy delivered".
+- *Value Orchestration*: Andy said the terminology is hard (Source C). Alternatives ("Growth Delivery Team", "Interim Growth Team") each lost part of culture plus capability plus value tracking. Short, parallels PMO / transformation office. Subtitle: "Interim growth team and programme office that gets strategy delivered".
 - *Proposition Innovation*: both Gary's IA doc (Source A, "Proposition / Innovation") and the deck use "proposition"; it is standard UK marketing language; no single plain term covers loyalty, membership, subscription and direct-to-consumer. Subtitle carries those terms.
 - *AI Enablement*: now common B2B language and searched. Wider than "training". Subtitle names the plain parts: "AI skills, training and adoption: finding where AI pays off".
 - *Activation Services*: pillar name in the triangle; group page is Supporting, not a search target; the six services beneath carry the searched words. Subtitle: "Hands-on delivery that turns strategy into results".
@@ -486,7 +489,7 @@ What v1 got right and v2 keeps: services canonical and flat under `/services/`; 
 
 **Trade-off**: Six Manifesto terms remain in the panel. Each has a plain subtitle directly beneath it, which is the pattern Source E asks for.
 
-**v4 note**: The labels stand. The subtitles are retired from the menu (D-35) and become the hero line on each service page. Only Experience Engineering and Growth Office keep a quiet line in the menu, because those are the two Andy named as opaque on the call (Source C). Proposition Innovation, Activation Services and Side-by-Side stand without one: the first two are the pillar and its natural companion, and Side-by-Side is no longer a menu item.
+**v4 note**: The labels stand. The subtitles are retired from the menu (D-35) and become the hero line on each service page. Only Experience Engineering and Value Orchestration keep a quiet line in the menu, because those are the two Andy named as opaque on the call (Source C). Proposition Innovation, Activation Services and Side-by-Side stand without one: the first two are the pillar and its natural companion, and Side-by-Side is no longer a menu item.
 
 ---
 
@@ -537,13 +540,13 @@ What v1 got right and v2 keeps: services canonical and flat under `/services/`; 
 
 **Options**
 1. Keep a subtitle under every item (v3).
-2. Subtitles only under the coined names (Experience Engineering, Growth Office, Proposition Innovation, Side-by-Side).
+2. Subtitles only under the coined names (Experience Engineering, Value Orchestration, Proposition Innovation, Side-by-Side).
 3. No item subtitles at all; the three pillar lines only.
 4. Pillar lines plus a quiet line under the two names Andy explicitly flagged as opaque on the call.
 
 **Chosen**: Option 4.
 
-**Rationale**: Source F: prefer labels only; at most one short line per pillar; a quiet line is acceptable for a coined name that stays, or move the explanation to the page, and prefer bare if still busy. Source C is the tie-breaker on which names need help: Andy said Experience Engineering must map to "can you build a website?" and that Growth Office terminology is hard. He did not say that about Proposition Innovation (both Gary's IA doc and the deck use "proposition"; it is standard UK marketing language) or Activation Services (the pillar name, with the searched words in the six labels beneath it). Side-by-Side is no longer a menu item (D-36). Option 3 would leave Experience Engineering unexplained in the menu, which contradicts Otter. Option 2 keeps four lines where two do the job.
+**Rationale**: Source F: prefer labels only; at most one short line per pillar; a quiet line is acceptable for a coined name that stays, or move the explanation to the page, and prefer bare if still busy. Source C is the tie-breaker on which names need help: Andy said Experience Engineering must map to "can you build a website?" and that Value Orchestration terminology is hard. He did not say that about Proposition Innovation (both Gary's IA doc and the deck use "proposition"; it is standard UK marketing language) or Activation Services (the pillar name, with the searched words in the six labels beneath it). Side-by-Side is no longer a menu item (D-36). Option 3 would leave Experience Engineering unexplained in the menu, which contradicts Otter. Option 2 keeps four lines where two do the job.
 
 The three pillar lines are shortened from seven to nine words to four to six ("Where and how you grow", "Turning strategy into results", "One-to-one support for leaders") and are shared with the Home and Services hub triangle blocks.
 
@@ -690,7 +693,7 @@ Result: column 1 is a heading and one item; column 3 is a heading and its pillar
 
 ## D-48. Service page: situations first, proof up, numbers where the deck gives them
 
-**Chosen**: The Why block opens with three one-line situations. Proof moves from block 7 to directly after What we do. A Conditional numbers line sits under the hero on the two pages where Source B gives a figure (Experience Engineering: over 3x EBITDA return; AI Agents for Marketing: 4 weeks, 6 weeks). Each service module names the structure its slide has: Find, Redesign, Test, Scale; the 4 and 6 week timeline; AgentLab's four groups and twelve agents; Growth Office's two phases; the "So What" hook; candidate Growth Strategy H2s from the appendix.
+**Chosen**: The Why block opens with three one-line situations. Proof moves from block 7 to directly after What we do. A Conditional numbers line sits under the hero on the two pages where Source B gives a figure (Experience Engineering: over 3x EBITDA return; AI Agents for Marketing: 4 weeks, 6 weeks). Each service module names the structure its slide has: Find, Redesign, Test, Scale; the 4 and 6 week timeline; AgentLab's four groups and twelve agents; Value Orchestration's two phases; the "So What" hook; candidate Growth Strategy H2s from the appendix.
 
 **Rationale**: Prophet opens its Growth Strategy page with three situations. Elsewhen and Baringa put case studies directly under the offer; Ekimetrics puts numbers above the fold. Slides 7 to 12 each have a structure that v4 placed loosely ("typical phases", "agents are entries"); naming them means content and CMS build the same thing and nothing on a slide is left without a stated home.
 
@@ -745,9 +748,9 @@ Result: column 1 is a heading and one item; column 3 is a heading and its pillar
 
 ## D-52. Activation group page: the bridge and "Which of the six do you need?"
 
-**Chosen**: `/services/activation/` opens with the bridge in one line (from the deck's Growth Office "Why": a brilliant strategy only counts if it gets executed and the value shows up), then one line per service saying when you need it, then the six cards.
+**Chosen**: `/services/activation/` opens with the bridge in one line (from the deck's Value Orchestration "Why": a brilliant strategy only counts if it gets executed and the value shows up), then one line per service saying when you need it, then the six cards.
 
-**Rationale**: Gary's worry about the operating model versus activation distinction. In v4 it was an internal ruling (`04-canonicals-and-seo.md` 3.1: Operating Model Design designs, Growth Office staffs, AI Agents supplies the agents) never said to a visitor. Elixirr's Execution Edge page explains a coined family in its first sentence and then lists each capability with a line. The group page is where the six are seen together, so it is where the distinction belongs.
+**Rationale**: Gary's worry about the operating model versus activation distinction. In v4 it was an internal ruling (`04-canonicals-and-seo.md` 3.1: Operating Model Design designs, Value Orchestration staffs, AI Agents supplies the agents) never said to a visitor. Elixirr's Execution Edge page explains a coined family in its first sentence and then lists each capability with a line. The group page is where the six are seen together, so it is where the distinction belongs.
 
 **Trade-off**: Six services are described twice on one page (a line, then a card). Accepted: the lines say when, the cards say what.
 
@@ -817,7 +820,7 @@ Result: column 1 is a heading and one item; column 3 is a heading and its pillar
 ## D-58. Every mega-nav strand has a keyword-led subtitle
 
 **Options**
-1. Keep two quiet lines only (Experience Engineering, Growth Office) per D-35.
+1. Keep two quiet lines only (Experience Engineering, Value Orchestration) per D-35.
 2. Subtitle under every strand, short plain English drawn from UK keyword findings and deck language.
 3. Return full deck one-liners to the menu.
 
@@ -836,7 +839,7 @@ Result: column 1 is a heading and one item; column 3 is a heading and its pillar
 | Experience Engineering | Customer experience and websites |
 | AI Agents for Marketing | AI marketing agents, guided by experts |
 | Operating Model Design | Target operating model |
-| Growth Office | Interim growth team |
+| Value Orchestration | Interim growth team |
 | AI Enablement | AI skills and adoption |
 | Side-by-Side | One-to-one advisory retainer |
 | Our advisors | Experienced growth leaders |
@@ -909,21 +912,109 @@ Group membership is one CMS field on the profile, and every profile shows its gr
 
 ---
 
+## Mural layouts pass (15 October, Source I): D-64 to D-71
+
+Manifesto confirmed page layouts on their Mural boards for five page families: case studies, the case study index, service and strand pages, Careers, and Our thinking. Gary's rulings on the clashes: rename the interim growth team service to Value Orchestration everywhere, unify the industry taxonomy into one list, keep the locked IA (six-item header, What we do as the only mega-nav, Expertise themes supporting, no homepage reports grid, Life at Manifesto on Careers), and log the client's undecided ideas as open items rather than applying them. The per-page change log for the visual designer is `mural-layout-check-oct.md`.
+
+| ID | Decision | Sources |
+|---|---|---|
+| D-64 | The interim growth team service is renamed Value Orchestration: label, H1, slug `/services/value-orchestration/`, every internal link and document; the old slug 301s | I, C, E |
+| D-65 | Case studies use the client's template: hero with tag pills and image, sticky stat rail with Contact us, attributed testimonial, The Opportunity, The Solution, The Impact, See more of our case studies | I, A |
+| D-66 | Our work is one grid: intro with the "Our clients" support line, auto-scrolling logo band, Industry and Service filters, testimony video, contact band; the Featured / All split is removed | I, A, C |
+| D-67 | Careers follows the client's shape (anchor button, values cards, five application steps, Open positions / All toggle, reach-out line) and keeps DEI and Benefits; role pages apply via LinkedIn | I, A |
+| D-68 | Our thinking is type tabs with All first plus a tag filter, one thought leadership card per item with its type shown and no dates; every tab state is crawlable; reports gate on their own pages | I, A |
+| D-69 | Service and strand pages merge the client structure (Overview, Why now?, How can we help you?, Why us?, Our experts with a profile pop-up, Related case studies carousel) with the kept capability content as H3s; nothing hides behind accordions or tabs | I, B, F, G |
+| D-70 | The thought leadership card is the one listing card for thinking and case studies | I |
+| D-71 | One industry taxonomy: Financial services (not Finance), Consumer (not CPG), Media, Retail, and Energy as a new fifth light sector | I, A, C |
+
+## D-64. The interim growth team service is renamed Value Orchestration
+
+**Chosen**: The eighth activation service is **Value Orchestration** everywhere: nav strand, mega-nav quiet line context, page title ("Value Orchestration: interim growth team and programme office"), H1, slug `/services/value-orchestration/`, every internal link, and every document in this package. The old slug should 301 to the new one at build. The retired label is written out only in `mural-layout-check-oct.md` (the change log, which records the rename and the redirect) and in the wireframe build's banned-words guard, which fails the build if it reappears.
+
+**Rejected**: Keeping the old label with "Value Orchestration" as a subtitle; running both labels during a transition.
+
+**Rationale**: Source I: the client's own Mural boards use Value Orchestration, which settles the open item the competitor review raised (no peer used the old label; Andy had called the terminology hard on the 7 September call, Source C). The quiet line "Interim growth team" stays, because the new label is also coined: it polls no measured volume, and the retired label polled about 10 a month, so the plain term still has to carry the search intent (Source E's rule). Ekimetrics coins "Customer Value Orchestration" for an adjacent space; the labels are distinct but worth knowing when copy is written.
+
+**Trade-off**: Historic documents in this package now read the current name into summaries of older sources; `00-sources.md` states that convention so nobody thinks the deck said Value Orchestration.
+
+## D-65. Case studies use the client's template
+
+**Chosen**: `/work/{client}/` is: hero with the eyebrow "Case study", the client name as H1, a one-line project title, tag pills (service, industry, expertise) linking to their canonical pages, and a main image; then a two-column layout with a **sticky stat rail** on the left (two Metric boxes, a line, a Contact us button, pinned while the story scrolls) and the story on the right: an **attributed client testimonial** straight after the hero (quote plus film snippet where one exists), then **The Opportunity**, **The Solution**, **The Impact** as bullets; then **See more of our case studies** using the thought leadership card. Stats and quotes are placeholders marked "to be confirmed"; no client facts are invented.
+
+**Rejected**: The previous challenge / approach / result prose template; putting the testimonial at the foot (Source I places it beside the stats, straight after the hero).
+
+**Rationale**: Source I is the client's confirmed case template. It also honours Source A (testimonials live inside case studies) and the v5 proof-up principle: the stats and the testimonial are the first things beside the story. The tag pills respect the chip rule (one row, linked, capped).
+
+## D-66. Our work is one grid
+
+**Chosen**: `/work/` is: short intro with the support line "Our clients: ambitious leaders who want sustainable, customer-led growth"; an auto-scrolling client logo band (constant speed, pauses on hover and under reduced motion); **one grid** of thought leadership cards with a filter bar of Industry and Service groups (Expertise behind More filters) and a See more link; a testimony video block; the contact band. The Featured / All split is removed. The nav label and H1 stay **Our work**.
+
+**Rejected**: Renaming the page "Our clients" (the locked six-item header keeps Our work; the client's idea becomes the support line); keeping a Featured row above the grid (it fights the single grid Source I draws).
+
+**Rationale**: Source I draws one grid with filters. Source A made `/work/` the canonical case study home and Source C wanted sectors as proof, which the Industry filter group now carries using the unified taxonomy (D-71).
+
+## D-67. Careers follows the client's shape and keeps DEI and Benefits
+
+**Chosen**: `/careers/` is: hero with a **See open positions** anchor button and a brief description; **Life at Manifesto** (kept on Careers, separate from Our people); **Values and culture** as four cards linking to `/about/values/`; **Diversity, equity and inclusion** and **Benefits** (both kept); **Application process** as five steps (Application, Interview with Partners, Case study, References, Decision); **Roles** with an Open positions / All toggle defaulting to Open positions and an intro line inviting people to reach out even if no role fits. `/careers/{role}/` is title, description, and **how to apply via LinkedIn**, linking to the role's LinkedIn application page.
+
+**Rejected**: Dropping DEI and Benefits because the Mural sketch does not draw them (they are kept; the sketch is a layout, not a cut list); a separate "Not hiring for a listed role?" H2 (folded into the Roles intro line).
+
+**Rationale**: Source I gives the shape; Source A split About and Careers and both halves stand. The toggle defaults to Open positions so the page leads with what a candidate can act on; All keeps every role page reachable and crawlable.
+
+## D-68. Our thinking is type tabs, one card, no dates
+
+**Chosen**: `/insights/` is: **type filter tabs** with All first, then Articles, Reports, News, Events, plus a tag filter; one grid of **thought leadership cards**, one card design for every item with its type shown on the card and **no dates** (reports are evergreen); a See more link; The Nutshell sign-up. Each tab is a crawlable URL state (for example `?type=reports`) and the nav dropdown's Reports, Articles and Events items land on those states; the grid always links every item so filters hide nothing from crawlers. Nothing downloads from the grid: **reports get their own single pages** with the email gate there (full name, work email, company, an optional-updates tick). Articles end with a **related trio**: one article, one service, one report.
+
+**Rejected**: Dates on cards; download buttons in the grid; a Latest hero row separate from the grid.
+
+**Rationale**: Source I. The crawlability rule and the one-canonical-home rule (Source A) are preserved because the tabs are URL states over one fully linked grid. The related trio replaces the article page's former How we help block; the service link moves into the trio.
+
+## D-69. Service pages merge the client structure with the kept capability content
+
+**Chosen**: Every service and strand page (the seven services and CEO Advisory) is: hero (name, strapline from the hero line, image); **Overview**; **Why now?**; **How can we help you?** with the former capability H2s now H3s beneath it, every section visible on the page; the framework modules keep their anchored H2 homes where they add value (Customer, Innovation, Value and Delivery at `#civd`; AgentLab at `#agentlab`; Our Operating Architecture framework at `#operating-architecture`; Side-by-Side at `#side-by-side`); **Related case studies** as a constant-speed carousel of thought leadership cards, straight after How can we help you?; **Why us?**; **Our experts** as Person cards opening a **profile pop-up** whose full-profile URL keeps working for search; How it works where the deck gives one; the links to Expertise themes; the contact band. **No accordion or tabs anywhere**: every heading is a real H2 or H3 in the page source, for search and AI answers.
+
+**Rejected**: Accordions or tabs for the capability content (Source I sketches fold-outs in places; crawlability wins, so everything is visible); dropping the capability H2s (they carry the searched terms from `04-canonicals-and-seo.md` 6.1; they demote to H3s instead); applying the client's separate Growth Strategy and Activation landing ideas (undecided; the pillar hub pages keep their current hub roles; open item).
+
+**Rationale**: Source I gives the running order; Sources E and G put the search vocabulary in real headings, which is why nothing collapses; the v5 proof-up decision (D-48) survives as the Related case studies carousel sitting directly after the offer.
+
+## D-70. The thought leadership card is the one listing card
+
+**Chosen**: One card for thinking and case listings everywhere: rounded frame, image on top, one primary service tag pill, large title, short excerpt, a row of small uppercase secondary tags (industry or expertise), a Read more link, and the content type on the card where the list mixes types. Used on Our thinking, in related-thinking rows, as the case cards on `/work/` and in See more of our case studies. Greyscale in the wireframe like everything else.
+
+**Rejected**: Keeping the separate Case card and Article card silhouettes in the listings the client redrew (both stay in the component library for the blocks that still use them, for example Home).
+
+**Rationale**: Source I's card reference. One card, one shape, one interaction type holds the library honest and gives Bruno a single design target.
+
+## D-71. One industry taxonomy, with Energy as a fifth light sector
+
+**Chosen**: One industry list for filters, tag pills and sector landings: **Financial services, Consumer, Media, Retail, Energy**. The client's Mural filters said Finance and CPG; those map to Financial services and Consumer. Energy is new, added as a light landing at `/sectors/energy/` on the same rules as the other four (noindex until it clears the content threshold; no children).
+
+**Rejected**: Running the Mural labels (Finance, CPG) alongside the sitemap labels (two names for one thing breaks the filters and the tag pills); treating Energy as a Work filter only without a landing (the other four have landings; one list, one rule).
+
+**Rationale**: Source I's filters are the client's intent; Source A set the sector dimension and D-09 the original four. The mapping table is in `mural-layout-check-oct.md`.
+
+---
+
 ## Open items for the next stage (wireframes)
 
 | Item | Note |
 |---|---|
-| **Andy's sign-off on the three renames** | Customer Research and Insight, AI Agents for Marketing, Operating Model Design change how three offers are described to the market. The competitor review supports all three (frog "Customer Research & Insights"; Elixirr "Target Operating Model"; Prophet "Agentic Deployment"). Confirm before wireframes lock. Fallback if any is refused: revert that one label and slug to the deck term, with a quiet line as Growth Office has. |
-| **Two labels flagged for Andy by the competitor review** | No peer uses "Experience Engineering" (all say "Customer Experience") or "Growth Office" (Elixirr coined "Execution Edge" for the same space). The deck argues to keep both; competitors argue for plainer labels. v5 keeps both with their quiet lines and does not decide. If Andy prefers plain, the candidates are "Customer Experience and Digital" and "Interim Growth Team"; slugs would follow (`04-canonicals-and-seo.md`, section 7). |
+| **Andy's sign-off on the three renames** | Customer Research and Insight, AI Agents for Marketing, Operating Model Design change how three offers are described to the market. The competitor review supports all three (frog "Customer Research & Insights"; Elixirr "Target Operating Model"; Prophet "Agentic Deployment"). Confirm before wireframes lock. Fallback if any is refused: revert that one label and slug to the deck term, with a quiet line as Value Orchestration has. |
+| **Experience Engineering label** | No peer uses "Experience Engineering" (all say "Customer Experience"). The deck argues to keep it; competitors argue for plainer. It keeps its quiet line and is not decided. If Andy prefers plain, the candidate is "Customer Experience and Digital"; the slug would follow (`04-canonicals-and-seo.md`, section 7). The second label this item used to carry was settled by the Mural pass: the interim growth team service is now Value Orchestration (D-64). |
 | **Gary's confirmation of the v5 nav tweaks** | "Our advisors" in column 3 (D-49) stands and is now one of two CEO strands (D-54). Two-link footer row (D-50) stands. |
 | **Gary's confirmation of the v4 cuts** | Insights as a plain link (D-38) and the sector index cut (D-44) stand. The v4 "column 3 as heading only" question is answered by D-49. |
 | **Proposed fixed text for Andy** | The triangle line, the three pillar sentences, the seven situation lines and the six "which of the six" lines (`v5-refinements.md` R1, R2, R5) are proposals. The rules to keep: plain, in the visitor's words, one line each, no Manifesto shorthand. |
 | **"c&n" on slide 12** | Placement is settled: C and N members sit inside the Expert Community section of Our people (Source H, D-62). Still open: what the letters stand for, so the name can be written out in client-facing copy, and whether "c&n" in the AI Enablement client examples refers to the same group. |
-| **Services and Work templates (Andy)** | Andy is sending proposed templates for Our services and Our work. Both are held at their existing structure until then (Source H). Our thinking and Careers are also held. |
+| **Services and Work templates (Andy)** | Delivered: the Mural boards of 15 October are the proposed templates, now applied (Source I; D-65 to D-69). The hold from Source H is lifted for the five page families the boards cover. |
+| **"What we do" white frames (Mural, Option A and B)** | The client's board shows two white frames for the What we do landing whose content is not decided. The page keeps its current structure with rename-only changes until the client picks an option. |
+| **Growth Strategy landing (client idea)** | The client sketched a separate Growth Strategy landing. Not applied: the pillar hub page keeps its current hub role. Needs a decision on whether a second landing adds anything the hub does not. |
+| **Activation landing (client idea)** | Same as above for Activation: the hub at `/services/activation/` keeps its role; the sketched landing is not applied. |
+| **Our people auto-scrolling rows (client idea)** | The client sketched auto-scrolling team rows with pop-up bios on Our people, and names the middle group "C&N" where this package says Expert Community (D-62). Neither the rows nor the naming is applied; both need a decision. The profile pop-up component now exists (service pages use it), so applying the rows later is cheap. |
+| **Reports: gated or read on page** | Reports gate on their own pages (D-68) with an email form. How much of the report is readable before the gate, and whether any report is ungated, is a content decision still open. |
 | **About copy** | About is framed around Growth Architecture (D-63). Copy comes from the current brand work; the brand team to supply it against the six block headings in T11. |
 | **Showreel accessibility** | The existing showreel / client video is confirmed for the Home hero (D-61). Needs a poster frame and captions or a transcript before launch. Player behaviour (autoplay, sound) is a design decision, not IA. |
 | **Agent grouping in AgentLab** | The deck lists twelve agents under four group headings without assigning them. The assignment in `03-page-layouts.md` T3 is a reading of the slide for Andy to confirm. |
-| **Whether CIVD is still current** | Rechecked against Andy's deck and the old IA columns. Slide 5 still carries Customer, Innovation, Delivery, Value and is marked "to be updated" (copy, not retirement). MURAL: keep CIVD. This pass restores it as a four-cell module on Growth Strategy and a compact four-cell on the Services hub. If Andy retires it, drop those modules; no URL changes. See `strand-gap-check.md`. |
+| **Whether CIVD is still current, and where it sits** | Slide 5 still carries Customer, Innovation, Delivery, Value and is marked "to be updated" (copy, not retirement). The Mural service template does not draw it; this package keeps it as the anchored framework module on Growth Strategy (`#civd`) and the compact four-cell on the Services hub, under the client's How can we help you? structure. If the client wants it elsewhere or retired, it is one module move; no URL changes. |
 | Growth Strategy and Proposition Innovation copy | Source B marks both slides "to be updated from existing content". Andy is sourcing (Source C action). |
 | CEO Advisory event | Pushed to October (Source C). The page can launch with advisor profiles and the Why / What copy from Source B before the event. |
 | Advisor profiles | The CEO Advisory page's main block is advisor profiles. Until at least one profile is flagged as advisor, the block shows the Why / What copy only. |
